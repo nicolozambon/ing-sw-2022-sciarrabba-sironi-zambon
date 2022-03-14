@@ -1,0 +1,1 @@
+typeSearchIndex = [{"l":"All Classes and Interfaces","u":"allclasses-index.html"},{"p":"it.polimi.ingsw","l":"Board"},{"p":"it.polimi.ingsw","l":"Pawn"},{"p":"it.polimi.ingsw","l":"Student"}];updateSearchResults();
