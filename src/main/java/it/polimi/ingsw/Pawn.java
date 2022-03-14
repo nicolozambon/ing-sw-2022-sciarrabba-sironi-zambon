@@ -1,4 +1,8 @@
 package it.polimi.ingsw;
 
-public class Pawn {
+public abstract class Pawn {
+    private Board position;
+
+    public Board getPosition() {
+    }
 }

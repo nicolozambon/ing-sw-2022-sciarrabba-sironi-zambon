@@ -1,2 +1,4 @@
-package it.polimi.ingsw;public class Student {
+package it.polimi.ingsw;
+
+public class Student {
 }
