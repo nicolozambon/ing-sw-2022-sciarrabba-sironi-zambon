@@ -1,4 +1,4 @@
-@startuml ing_sw
+@startuml initial_uml
 !theme vibrant
 skinparam Linetype polyline
 skinparam Linetype ortho
