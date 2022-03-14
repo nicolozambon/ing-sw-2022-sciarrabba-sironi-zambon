@@ -1,2 +1,7 @@
 .DS_STORE
 .idea
+target/
+.vscode/
+out/
+*.iml
+src/**/META-INF
