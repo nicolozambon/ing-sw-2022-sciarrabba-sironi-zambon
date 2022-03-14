@@ -3,7 +3,7 @@
 skinparam Linetype polyline
 skinparam Linetype ortho
 
-package server <<Folder>> {
+package model <<Folder>> {
     enum Color {
         YELLOW
         BLUE
@@ -22,7 +22,7 @@ package server <<Folder>> {
         - ArrayList<Player> playerOrder
         + <<constructor>>Game()
         + void round()
-        + void addPlayer()
+        + void addPlayer(Player player)
     }
 
     abstract class Board {
