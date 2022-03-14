@@ -1,20 +1,19 @@
 package it.polimi.ingsw;
 
-public class Student extends Pawn{
+public class Professor extends Pawn{
     private final Color color;
 
-
-    /** Student's constructor
+    /** Professor's constructor
      *
-     * @param color Student's color
+     * @param color Professor's color
      */
-    public Student (Color color){
+    public Professor (Color color){
         this.color = color;
     }
 
     /**
      *
-     * @return the student's color
+     * @return the professor's color
      */
     public Color getColor(){
         return this.color;
