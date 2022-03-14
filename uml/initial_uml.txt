@@ -80,7 +80,7 @@ package server <<Folder>> {
     }
 
     class Deck {
-        - ArrayList<Card> cardList
+        - List<Card> cardList
         + Card extractCard()
     }
 
