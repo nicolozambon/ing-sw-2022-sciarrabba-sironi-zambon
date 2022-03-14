@@ -1,0 +1,126 @@
+@startuml ing_sw
+!theme vibrant
+skinparam Linetype polyline
+skinparam Linetype ortho
+
+package server <<Folder>> {
+    enum Color {
+        YELLOW
+        BLUE
+        GREEN
+        RED
+        PINK
+    }
+
+    enum TowerColor {
+        WHITE
+        GRAY
+        BLACK
+    }
+
+    class Game {
+        - ArrayList<Player> playerOrder
+        + <<constructor>>Game()
+        + void round()
+        + void addPlayer()
+    }
+
+    abstract class Board {
+        ~ int ID
+        + ArrayList<Student> getStudentOnBoard()
+        + int getID()
+    }
+    
+    abstract class Pawn {
+        - Board position
+        + Board getPosition()
+    }
+
+    abstract class Card
+
+    class Player {
+        - String nickname
+        + <<constructor>>Player(String nickname)
+        + String getNickname()
+    }
+
+    class Island {
+    
+    }
+    
+    class School {
+    
+    }
+
+    class Cloud {
+
+    }
+
+    class Professor {
+        - Color color
+    }
+
+    class Student {
+        - Color color
+    }
+
+    class Tower {
+        - TowerColor color
+    }
+
+    class MotherNature
+
+    class AssistantCard {
+        - int value
+        - int movement
+    }
+
+    class CharacterCard {
+        - Color color
+    }
+
+    class Deck {
+        - ArrayList<Card> cardList
+        + Card extractCard()
+    }
+
+    class Coin {
+        - AssistantCard card
+        + AssistantCard getCard()
+    }
+
+    class BlockTile {
+        - Island island
+        + Island getPosition()
+    }
+
+    BlockTile -UP-> Island
+    Coin -RIGHT-> AssistantCard
+
+    Card <|-DOWN- AssistantCard
+    Card <|-- CharacterCard
+
+    Board <|-DOWN- Island
+    Board <|-DOWN- Cloud
+    Board <|-DOWN- School
+    Board <-RIGHT-- Pawn
+
+    Pawn <|-- Professor
+    Pawn <|-- Student
+    Pawn <|-- Tower
+    Pawn <|-- MotherNature
+
+    Deck *-- Card
+    Deck <-UP- Player
+
+    Game --> Player
+    Game --> Board
+    Game --> Pawn
+    
+    Color <.UP. Professor
+    Color <.UP. Student
+
+    TowerColor <.UP. Tower
+}
+
+@enduml
