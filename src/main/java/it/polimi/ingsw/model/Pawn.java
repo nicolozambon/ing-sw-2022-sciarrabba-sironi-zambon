@@ -14,4 +14,12 @@ public abstract class Pawn {
     public Board getPosition(){
         return position;
     }
+
+    /**
+     * 
+     * @param newPosition Move pawn
+     */
+    public void setPosition(Board newPosition) {
+        this.position = newPosition;
+    }
 }
