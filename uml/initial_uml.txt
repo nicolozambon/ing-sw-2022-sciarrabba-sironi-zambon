@@ -80,7 +80,8 @@ package server <<Folder>> {
     }
 
     class Deck {
-        - List<Card> cardList
+        - ArrayList<Card> cardArrayList
+        + <<constructor>>Deck(ArrayList<Card> cardArrayList)
         + Card extractCard()
     }
 
