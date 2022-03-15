@@ -1,24 +1,15 @@
 package it.polimi.ingsw.model;
 
-import java.util.ArrayList;
+import java.util.List;
 
-public abstract class Board {
-    int ID;
+public interface Board {
+
     /**
      *
      * @return return the students on the board
      */
-    public ArrayList<Student> getStudentOnBoard() {
-        ArrayList<Student> student = null;
+    List<Student> getStudentOnBoard();
 
-        return student;
-    }
+    void addStudent(Student student);
 
-    /**
-     *
-     * @return the ID of the board.
-     */
-    public int getID() {
-        return ID;
-    }
 }

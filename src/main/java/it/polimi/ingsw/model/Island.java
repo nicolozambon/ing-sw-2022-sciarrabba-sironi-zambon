@@ -1,11 +1,26 @@
 package it.polimi.ingsw.model;
 
-public class Island extends Board {
+import java.util.List;
+
+public class Island implements Board {
+
+
+
     public Island() {
 
     }
 
-    Player getInfluencer() {
+    @Override
+    public List<Student> getStudentOnBoard() {
         return null;
+    }
+
+    public Player getInfluencer() {
+        return null;
+    }
+
+    @Override
+    public void addStudent(Student student){
+
     }
 }

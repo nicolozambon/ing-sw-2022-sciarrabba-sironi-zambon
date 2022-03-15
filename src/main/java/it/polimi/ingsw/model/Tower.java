@@ -1,6 +1,6 @@
 package it.polimi.ingsw.model;
 
-public class Tower extends Pawn{
+public class Tower{
     private final TowerColor color;
 
     /** Tower's constructor

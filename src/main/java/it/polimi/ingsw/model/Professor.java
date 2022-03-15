@@ -1,6 +1,6 @@
 package it.polimi.ingsw.model;
 
-public class Professor extends Pawn{
+public class Professor implements Pawn{
     private final Color color;
 
     /** Professor's constructor
