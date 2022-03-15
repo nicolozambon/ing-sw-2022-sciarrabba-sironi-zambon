@@ -46,15 +46,19 @@ package model <<Folder>> {
     }
 
     class Island {
-    
+        - Tower tower
+        + Player getInfluencer()
+        + int getNumStudentsByColor(Color color)
+        + void setTower()
+        + Tower getTower()
     }
     
     class School {
-    
+        - Player owner
+        + Player getOwner()
     }
 
     class Cloud {
-
     }
 
     class Professor {

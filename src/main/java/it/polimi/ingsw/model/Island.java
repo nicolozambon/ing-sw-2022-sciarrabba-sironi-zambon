@@ -5,5 +5,7 @@ public class Island extends Board {
 
     }
 
-
+    Player getInfluencer() {
+        return null;
+    }
 }
