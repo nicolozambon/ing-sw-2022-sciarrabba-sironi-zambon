@@ -77,7 +77,7 @@ package model <<Folder>> {
     }
 
     class CharacterCard {
-        - Color color
+        - CharacterCardEffect effect
     }
 
     class Deck {
@@ -87,8 +87,8 @@ package model <<Folder>> {
     }
 
     class Coin {
-        - AssistantCard card
-        + AssistantCard getCard()
+        - CharacterCard card
+        + CharacterCard getCard()
     }
 
     class NoEntryTile {
@@ -97,7 +97,7 @@ package model <<Folder>> {
     }
 
     NoEntryTile -UP-> Island
-    Coin -RIGHT-> AssistantCard
+    Coin -RIGHT-> CharacterCard
 
     Card <|-DOWN- AssistantCard
     Card <|-- CharacterCard

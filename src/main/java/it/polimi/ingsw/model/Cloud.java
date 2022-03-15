@@ -4,4 +4,5 @@ public class Cloud extends Board {
     public Cloud() {
 
     }
+
 }
