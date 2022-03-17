@@ -1,22 +1,16 @@
 package it.polimi.ingsw.model;
 
-public class Tower{
-    private final TowerColor color;
+public class Tower extends Pawn<TowerColor>{
 
-    /** Tower's constructor
-     *
-     * @param color Tower's color
-     */
-    public Tower (TowerColor color){
-        this.color = color;
+    public final Player owner;
+
+    /*public Tower (TowerColor color){
+        super(color);
+    }*/
+
+    public Tower (Player owner, TowerColor color){
+        super(color);
+        this.owner = owner;
     }
 
-
-    /**
-     *
-     * @return the tower's color
-     */
-    public TowerColor getColor(){
-        return this.color;
-    }
 }

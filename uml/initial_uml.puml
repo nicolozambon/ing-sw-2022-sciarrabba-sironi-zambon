@@ -20,60 +20,89 @@ package model <<Folder>> {
 
     class Game {
         - ArrayList<Player> playerOrder
+
         + <<constructor>>Game()
         + void round()
-        + void addPlayer(Player player)
+        + void addPlayer(Player)
     }
 
-    abstract class Board {
-        ~ int ID
-        + ArrayList<Student> getStudentOnBoard()
-        + int getID()
+    class Board<T> {
+        + List<T> pawns
+
+        + <<constructor>>Board()
+        + <<constructor>>Board(List<T>)
+        + List<T> getPawns()
+        + T getPawn()
+        + boolean addPawns(List<T>)
+        + boolean addPawn(T)
     }
     
-    abstract class Pawn {
-        - Board position
-        + Board getPosition()
-        + void setPosition(Board newPosition)
+    abstract class Pawn<T> {
+        - T color
+
+        + <<constructor>>Pawn(T)
+        + T getColor()
     }
 
-    abstract class Card
+    abstract class Card{
+        + <<constructor>>Card(Lorem ipsum)
+    }
 
     class Player {
         - String nickname
-        + <<constructor>>Player(String nickname)
+        + School school
+
+        + <<constructor>>Player(String, List<Student>, List<Tower>)
         + String getNickname()
     }
 
     class Island {
         - Tower tower
-        + Player getInfluencer()
-        + int getNumStudentsByColor(Color color)
-        + void setTower()
+
+        + <<constructor>>Island(List<Student>)
+        + Tower setTower()
         + Tower getTower()
+        + Player getInfluencer()
+        - int countByColor(Color)
+
     }
     
     class School {
         - Player owner
+        + Board diningRoom
+        + Board entrance
+        + Board professorsTable
+        + Board towersBoard
+
+        + <<constructor>>School(Player, List<Student>, List<Tower>)
         + Player getOwner()
     }
 
     class Cloud {
+        + <<constructor>>Cloud(List<Student>)
     }
 
     class Professor {
-        - Color color
+        + <<constructor>>Professor(Color)
     }
 
     class Student {
-        - Color color
+        + <<constructor>>Student(Color)
     }
 
     class Tower {
-        - TowerColor color
+        + Player owner
+
+        + <<constructor>>Tower(Player, TowerColor)
     }
 
-    class MotherNature
+    class MotherNature {
+        - private Island position
+
+        + <<constructor>>MotherNature(Island)
+        + Island getPosition()
+        + Island setPosition(Island)
+    }
 
     class AssistantCard {
         - int value
@@ -86,7 +115,7 @@ package model <<Folder>> {
 
     class Deck {
         - ArrayList<Card> cardArrayList
-        + <<constructor>>Deck(ArrayList<Card> cardArrayList)
+        + <<constructor>>Deck(ArrayList<Card>)
         + Card extractCard()
     }
 
@@ -101,27 +130,28 @@ package model <<Folder>> {
     }
 
     NoEntryTile -UP-> Island
-    Coin -RIGHT-> CharacterCard
+    CharacterCard <-- Coin
 
     Card <|-DOWN- AssistantCard
-    Card <|-- CharacterCard
+    Card <|-DOWN- CharacterCard
 
-    Board <|-DOWN- Island
-    Board <|-DOWN- Cloud
-    Board <|-DOWN- School
-    Board <-RIGHT-- Pawn
+    Board <|-DOWN- "<<bind>> T->Student" Island
+    Board <|-DOWN- Cloud : <<bind>> T->Student
 
-    Pawn <|-- Professor
-    Pawn <|-- Student
-    Pawn <|-- Tower
-    Pawn <|-- MotherNature
+    School --* Board
 
-    Deck *-- Card
+    Pawn <|-DOWN- Professor : <<bind>> T->Color
+    Pawn <|-DOWN- Student : <<bind>> T->Color
+    Pawn <|--- Tower : <<bind>> T->TowerColor
+
+    MotherNature -UP-> Island
+
+    Deck *-DOWN- Card
     Deck <-UP- Player
 
-    Game --> Player
-    Game --> Board
-    Game --> Pawn
+    Game -DOWN-> Player
+    Game --> School
+    Game -RIGHT-> Pawn
     
     Color <.UP. Professor
     Color <.UP. Student

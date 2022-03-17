@@ -1,10 +1,16 @@
 package it.polimi.ingsw.model;
 
-public class Player {
-    private String nickname;
+import java.util.List;
 
-    public Player(String nickname) {
+public class Player {
+
+    private String nickname;
+    public final School school;
+
+
+    public Player(String nickname, List<Student> students, List<Tower> towers) {
         this.nickname = nickname;
+        school = new School(this, students, towers);
     }
 
     /**

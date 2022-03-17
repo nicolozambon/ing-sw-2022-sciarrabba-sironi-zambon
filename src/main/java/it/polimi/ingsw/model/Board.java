@@ -1,15 +1,34 @@
 package it.polimi.ingsw.model;
 
+import java.util.ArrayList;
 import java.util.List;
 
-public interface Board {
+public class Board<T> {
 
-    /**
-     *
-     * @return return the students on the board
-     */
-    List<Student> getStudentOnBoard();
+    private List<T> pawns;
 
-    void addStudent(Student student);
+    public Board (){
+        pawns = new ArrayList<T>();
+    }
+
+    public Board(List<T> pawns){
+        this.pawns = new ArrayList<T>(pawns);
+    }
+
+    public List<T> getPawns(){
+        return new ArrayList<T>(pawns);
+    }
+
+    public T getPawn(int index){
+        return pawns.remove(index);
+    }
+
+    public boolean addPawns(List<T> pawns){
+        return this.pawns.addAll(pawns);
+    }
+
+    public boolean addPawn(T pawn){
+        return this.pawns.add(pawn);
+    }
 
 }
