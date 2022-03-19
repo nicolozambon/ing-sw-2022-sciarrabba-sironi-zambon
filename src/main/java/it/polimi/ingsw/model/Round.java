@@ -2,7 +2,6 @@ package it.polimi.ingsw.model;
 
 import java.util.ArrayList;
 
-
 public class Round (ArrayList<Player> playerOrder, StudentBag sb, MotherNature mn) {
     private StudentBag studentbag;
     private MotherNature mothernature;
@@ -16,7 +15,7 @@ public class Round (ArrayList<Player> playerOrder, StudentBag sb, MotherNature m
         putStudentsOnClouds(cloud1, cloud2, cloud3);
 
         //Step 2
-        for (player : playerOrder) {
+        for (Player : playerOrder) {
             //TODO: choose an assistant card and put it in the discard deck.
             //TODO: check that the choice can be made (one cannot choose to play the same assistant card already played by another player in the same round.
                     // In the rare case you only have a matching card, you must play it. However, if you do so, you will play after the player who played the card first.
@@ -24,7 +23,11 @@ public class Round (ArrayList<Player> playerOrder, StudentBag sb, MotherNature m
     }
 
     public void actionPhase () {
+        for (Player : playerOrder) {
+            for (int i = 0; i < 3; i++) {//TODO: game with 3 players?
 
+            }
+        }
     }
 
     /**
@@ -40,6 +43,7 @@ public class Round (ArrayList<Player> playerOrder, StudentBag sb, MotherNature m
             studentbag.extractStudentAndMove(cloud3);
         }
     }
+
 
 
 }
