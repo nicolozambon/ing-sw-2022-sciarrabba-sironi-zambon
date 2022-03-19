@@ -31,4 +31,18 @@ public class Board<T> {
         return this.pawns.add(pawn);
     }
 
+    public boolean removePawn(T pawn) {
+        return this.pawns.remove(pawn);
+    }
+
+    public boolean movePawn (T pawn, Board from, Board to) throws ArrayIndexOutOfBoundsException { //Is this the right exception?
+       try {
+            to.addPawn(pawn);
+            from.removePawn(pawn);
+       } catch (ArrayIndexOutOfBoundsException e) {
+            return false;
+       }
+       return true;
+    }
+
 }

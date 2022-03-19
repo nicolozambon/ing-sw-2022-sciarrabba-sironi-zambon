@@ -9,4 +9,6 @@ public class Student extends Pawn{
     public Student (Color color){
         super(color);
     }
+
+
 }
