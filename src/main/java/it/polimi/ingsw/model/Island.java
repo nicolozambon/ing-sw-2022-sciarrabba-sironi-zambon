@@ -1,5 +1,6 @@
 package it.polimi.ingsw.model;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Island extends Board<Student>{
@@ -29,24 +30,33 @@ public class Island extends Board<Student>{
         return num;
     }
 
-    //TODO fix not working properly
     public Player getInfluencer(List<Player> players){
         Player influencer = null;
+        List<Integer> values = new ArrayList<Integer>();
         int highestInfluence = 0;
+        int influence;
 
         if (tower != null) influencer = tower.owner;
 
         for (Player player : players) {
-            int influence = 0;
+            influence = 0;
+            if (influencer == player) influence++;
+
             for(Professor prof : player.school.professorsTable.getPawns()){
                 influence = influence + countByColor(prof.getColor());
             }
 
-            if (influencer == player) influence++;
+            if (influence > highestInfluence) {
+                highestInfluence = influence;
+                influencer = player;
+            }
+            values.add(influence);
+        }
 
-            //Here!
-            if (influence > highestInfluence) highestInfluence = influence;
+        final int streamVar = highestInfluence;
 
+        if( values.stream().filter(x -> x == streamVar).count() > 1){
+            influencer = tower.owner;
         }
 
         return influencer;

@@ -2,7 +2,7 @@ package it.polimi.ingsw.model;
 
 import java.util.Random;
 
-public class StudentBag extends Board {
+public class StudentBag extends Board<Student> {
 
     public StudentBag() {
         for (int j = 0; j < 26; j++) {
@@ -31,13 +31,13 @@ public class StudentBag extends Board {
      * Extracts a student from the StudentBag and puts it in the destination board.
      * @param destination Board to which the student is to be moved.
      */
-    void extractStudentAndMove(Board destination) {
+    void extractStudentAndMove(Board<Student> destination) {
         Random rand = new Random();
         int value = rand.nextInt(131);
         try {
             this.movePawn(getPawn(value), this, destination);
         } catch (ArrayIndexOutOfBoundsException e) {
-            System.out.println("Random integer " + value + " is Out Of Bounds.")
+            System.out.println("Random integer " + value + " is Out Of Bounds.");
         }
     }
 }

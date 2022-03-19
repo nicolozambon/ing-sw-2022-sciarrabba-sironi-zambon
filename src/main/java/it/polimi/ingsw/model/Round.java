@@ -1,8 +1,9 @@
 package it.polimi.ingsw.model;
 
 import java.util.ArrayList;
+import java.util.List;
 
-public class Round (ArrayList<Player> playerOrder, StudentBag sb, MotherNature mn) {
+public class Round (List<Player> playerOrder, StudentBag sb, MotherNature mn) {
     private StudentBag studentbag;
     private MotherNature mothernature;
     public Round () {
@@ -10,9 +11,11 @@ public class Round (ArrayList<Player> playerOrder, StudentBag sb, MotherNature m
         this.mothernature = mn;
     }
 
-    public void planningPhase () {
+    public void planningPhase (Cloud ... clouds) {
         //Step 1
-        putStudentsOnClouds(cloud1, cloud2, cloud3);
+        for(Cloud cloud : clouds) {
+            studentbag.extractStudentAndMove(cloud);
+        }
 
         //Step 2
         for (Player : playerOrder) {
@@ -29,21 +32,5 @@ public class Round (ArrayList<Player> playerOrder, StudentBag sb, MotherNature m
             }
         }
     }
-
-    /**
-     * Refills the cloud tiles with new students from the Student's Bag
-     * @param cloud1
-     * @param cloud2
-     * @param cloud3
-     */
-    public void putStudentsOnClouds(Cloud cloud1, Cloud cloud2, Cloud cloud3) {
-        for (int i = 0; i < 3; i++) {
-            studentbag.extractStudentAndMove(cloud1);
-            studentbag.extractStudentAndMove(cloud2);
-            studentbag.extractStudentAndMove(cloud3);
-        }
-    }
-
-
 
 }
