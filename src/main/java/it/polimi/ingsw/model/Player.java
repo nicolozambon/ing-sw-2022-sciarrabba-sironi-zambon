@@ -14,9 +14,9 @@ public class Player {
     public Player(String nickname, List<Student> students, List<Tower> towers) {
         this.nickname = nickname;
         school = new School(this, students, towers);
-        //this.AssistantCardDeck = new DeckAssistantCard();
-        //this.DiscardPileDeck = new Deck ();
-        //COMMENTED TO SILENCE WARNINGS AS IT'S INCOMPLETE.
+        this.AssistantCardDeck = new DeckAssistantCard(null);
+        this.DiscardPileDeck = new Deck (null);
+        //TODO: modify these null cardArrayLists
     }
 
     /**
