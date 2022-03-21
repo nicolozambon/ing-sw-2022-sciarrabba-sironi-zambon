@@ -1,6 +1,7 @@
 package it.polimi.ingsw.model;
 
 import it.polimi.ingsw.model.card.*;
+import it.polimi.ingsw.model.manager.Manager;
 
 import java.sql.Array;
 import java.util.ArrayList;
@@ -70,6 +71,11 @@ public class Round {
             for (int i = 0; i < 4; i++){
                 //player choose island where to move students
                 p.school.diningRoom.moveToPawn(student, dest);
+                // ...
+
+                Manager manager = new Manager();
+
+                int influence = manager.calculateInfluence();
             }
         }
     }
