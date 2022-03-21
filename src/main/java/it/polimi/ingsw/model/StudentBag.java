@@ -7,21 +7,9 @@ public class StudentBag extends Board<Student> {
     public StudentBag() {
         for (int j = 0; j < 26; j++) {
             this.addPawn(new Student(Color.BLUE));
-        }
-
-        for (int j = 0; j < 26; j++) {
             this.addPawn(new Student(Color.GREEN));
-        }
-
-        for (int j = 0; j < 26; j++) {
             this.addPawn(new Student(Color.PINK));
-        }
-
-        for (int j = 0; j < 26; j++) {
             this.addPawn(new Student(Color.RED));
-        }
-
-        for (int j = 0; j < 26; j++) {
             this.addPawn(new Student(Color.YELLOW));
         }
     }
@@ -33,7 +21,7 @@ public class StudentBag extends Board<Student> {
      */
     void extractStudentAndMove(Board<Student> destination) {
         Random rand = new Random();
-        int value = rand.nextInt(131);
+        int value = rand.nextInt(130);
         try {
             this.movePawn(getPawn(value), this, destination);
         } catch (ArrayIndexOutOfBoundsException e) {
