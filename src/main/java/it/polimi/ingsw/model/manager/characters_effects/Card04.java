@@ -1,7 +1,27 @@
 package it.polimi.ingsw.model.manager.characters_effects;
 
+import it.polimi.ingsw.model.card.AssistantCard;
 import it.polimi.ingsw.model.manager.Manager;
 import it.polimi.ingsw.model.*;
 
-public class Card04 extends Manager{
+public class Card04 extends Manager {
+
+    /*
+    CARD EFFECT:
+    "You may move Mother Nature up to 2 additional Islands than is indicated by the Assistant card you've played."
+    */
+
+    @Override
+    public Island motherNatureMovement(MotherNature motherNature, Island from, AssistantCard card, int steps_choice) {
+        Island destination = null;
+        if (steps_choice <= card.getSteps() + 2) {
+            while (steps_choice > 0) {
+                destination = from.nextIsland();
+                steps_choice--;
+            }
+        }
+        motherNature.setPosition(destination);
+        return destination;
+    }
+
 }
