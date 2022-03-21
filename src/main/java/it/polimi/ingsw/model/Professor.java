@@ -1,5 +1,7 @@
 package it.polimi.ingsw.model;
 
+import it.polimi.ingsw.model.enums.Color;
+
 public class Professor extends Pawn<Color>{
 
     /** Professor's constructor

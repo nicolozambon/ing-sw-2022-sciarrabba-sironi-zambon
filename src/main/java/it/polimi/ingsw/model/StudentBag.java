@@ -1,8 +1,8 @@
 package it.polimi.ingsw.model;
 
-import java.util.ArrayList;
+import it.polimi.ingsw.model.enums.Color;
+
 import java.util.Random;
-import java.util.List;
 
 public class StudentBag extends Board<Student> {
 
