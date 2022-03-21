@@ -24,7 +24,7 @@ public class Round {
      * Planning phase of the game.
      * Step 1 -> Populate all 2(3) clouds with 3 students.
      * Step 2 -> Choose an assistant card and put it in the discard deck.
-     *
+     *        -> Modify the order of playerOrder
      * @param clouds All Clouds.
      */
     public void planningPhase(Cloud... clouds) {
@@ -53,9 +53,14 @@ public class Round {
                     }
                 }
             } while (hasBeenPlayed == true);
-
             playedCardInRound.add(choice);
         }
+
+        //Step 3
+        for (Player p : playerOrder) {
+
+        }
+
     }
 
     public void actionPhase() {
