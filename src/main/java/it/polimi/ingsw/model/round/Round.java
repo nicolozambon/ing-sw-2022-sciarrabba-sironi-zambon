@@ -68,7 +68,7 @@ public class Round {
 
     public void actionPhase() {
         for(Player p : playerOrder) {
-            new Action(p);
+            new Action(p, p.lastAssistantCard());
         }
     }
 

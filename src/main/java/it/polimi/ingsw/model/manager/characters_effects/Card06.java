@@ -1,24 +1,17 @@
-package it.polimi.ingsw.model.manager;
+package it.polimi.ingsw.model.manager.characters_effects;
 
+import it.polimi.ingsw.model.manager.Manager;
 import it.polimi.ingsw.model.*;
-import it.polimi.ingsw.model.card.*;
 
 import java.util.ArrayList;
 import java.util.List;
 
+public class Card06 extends Manager {
+    /*CARD EFFECT:
+    "When resolving a Conquering on an Island, Towers do not count towards influence."
+    */
 
-public class Manager {
-
-    public Manager() {
-
-    }
-
-    //public int calculatePlayerInfluenceOnIsland(Player player, Island island) {
-
-    public int calculatePlayerInfluenceOnIsland(List<Player> players, Player actual, Island island) {
-        return 0;
-    }
-
+    @Override
     public Player getInfluencer(List<Player> players, Island island){
         Player influencer = null;
         List<Integer> values = new ArrayList<Integer>();
@@ -31,7 +24,7 @@ public class Manager {
 
         for (Player player : players) {
             influence = 0;
-            if (influencer == player) influence++;
+            //if (influencer == player) influence++; Tower do not count
 
             for(Professor prof : player.school.professorsTable.getPawns()){
                 influence = influence + island.countByColor(prof.getColor());
@@ -52,23 +45,4 @@ public class Manager {
 
         return influencer;
     }
-
-    public void professorControl() {
-
-    }
-
-    public Island motherNatureMovement(MotherNature motherNature, Island from, AssistantCard card, int steps_choice) {
-        Island destination = null;
-        if (steps_choice <= card.getSteps()) {
-            while (steps_choice > 0) {
-                destination = from.nextIsland();
-                steps_choice--;
-            }
-        }
-        motherNature.setPosition(destination);
-        return destination;
-    }
-
-
-
 }

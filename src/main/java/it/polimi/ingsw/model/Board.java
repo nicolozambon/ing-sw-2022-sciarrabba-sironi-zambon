@@ -5,7 +5,7 @@ import java.util.List;
 
 public class Board<T> {
 
-    final List<T> pawns;
+    public final List<T> pawns;
 
     public Board() {
         pawns = new ArrayList<T>();

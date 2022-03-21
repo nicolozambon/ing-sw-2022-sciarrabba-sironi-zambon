@@ -13,16 +13,16 @@ public class Player {
 
     private List<Coin> coins = new ArrayList<>();
 
-    private final Deck AssistantCardDeck;
-    private final Deck DiscardPileDeck;
+    private final Deck assistantCardDeck;
+    private final Deck discardPileDeck;
 
 
     public Player(String nickname, List<Student> students, List<Tower> towers, int id, Deck ACD, Deck DPD, Coin coin) {
         this.nickname = nickname;
         this.id = id;
         school = new School(this, students, towers);
-        this.AssistantCardDeck = ACD;
-        this.DiscardPileDeck = DPD;
+        this.assistantCardDeck = ACD;
+        this.discardPileDeck = DPD;
         coins.add(coin);
     }
 
@@ -34,8 +34,8 @@ public class Player {
     }
 
     public Card playAssistantCard(int index){
-        Card chosen = AssistantCardDeck.cards.get(index);
-        DiscardPileDeck.moveInCard(chosen, AssistantCardDeck);
+        Card chosen = assistantCardDeck.cards.get(index);
+        discardPileDeck.moveInCard(chosen, assistantCardDeck);
 
         return chosen;
     }
@@ -49,6 +49,10 @@ public class Player {
             temp.add(coins.remove(i));
         }
         return temp;
+    }
+
+    public AssistantCard lastAssistantCard(){
+        return (AssistantCard)discardPileDeck.cards.get(discardPileDeck.cards.size()-1);
     }
 
 
