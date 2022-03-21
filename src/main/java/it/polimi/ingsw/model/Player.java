@@ -9,13 +9,15 @@ public class Player {
 
     private String nickname;
     public final School school;
+    public final int id;
 
     private Deck AssistantCardDeck;
     private Deck DiscardPileDeck;
 
 
-    public Player(String nickname, List<Student> students, List<Tower> towers) {
+    public Player(String nickname, List<Student> students, List<Tower> towers, int id) {
         this.nickname = nickname;
+        this.id = id;
         school = new School(this, students, towers);
         this.AssistantCardDeck = new DeckAssistantCard(null);
         this.DiscardPileDeck = new Deck (null);
@@ -28,4 +30,5 @@ public class Player {
     public String getNickname() {
         return this.nickname;
     }
+
 }
