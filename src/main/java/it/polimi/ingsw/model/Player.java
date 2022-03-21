@@ -14,7 +14,7 @@ public class Player {
     private final Deck DiscardPileDeck;
 
 
-    public Player(String nickname, List<Student> students, List<Tower> towers, int id) {
+    public Player(String nickname, List<Student> students, List<Tower> towers, int id, Deck ACD, Deck DPD) {
         this.nickname = nickname;
         this.id = id;
         school = new School(this, students, towers);
