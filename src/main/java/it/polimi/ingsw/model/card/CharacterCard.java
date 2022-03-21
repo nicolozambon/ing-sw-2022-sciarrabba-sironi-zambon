@@ -1,25 +1,21 @@
 package it.polimi.ingsw.model.card;
 
-import com.google.gson.Gson;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
+public class CharacterCard extends Card {
 
-public class CharacterCard {
+    private final int id;
+    private final int coins;
+    private final String name;
+    private final String path;
+    private final String setup;
+    private final String effect;
 
-    private CharacterCard[] cards;
-
-    public CharacterCard() {
-
-    }
-
-    public void doEffectByID(int ID) {
-
-    }
-
-    private void getCardsConfiguration() throws FileNotFoundException {
-        Gson gson = new Gson();
-        CharacterCard[] cards = gson.fromJson(new FileReader("src/main/resources/json/characters_card.json"), CharacterCard[].class);
-        this.cards = cards;
+    public CharacterCard(int id, int coins, String name, String path, String setup, String effect) {
+        this.id = id;
+        this.coins = coins;
+        this.name = name;
+        this.path = path;
+        this.setup = setup;
+        this.effect = effect;
     }
 
 }
