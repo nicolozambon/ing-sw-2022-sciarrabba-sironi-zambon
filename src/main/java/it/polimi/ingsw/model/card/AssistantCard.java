@@ -36,4 +36,5 @@ public class AssistantCard extends Card {
     public int hashCode() {
         return Objects.hash(value, steps);
     }
+
 }
