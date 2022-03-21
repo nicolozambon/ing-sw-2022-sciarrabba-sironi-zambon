@@ -1,11 +1,9 @@
-package it.polimi.ingsw.model;
+package it.polimi.ingsw.model.round;
 
+import it.polimi.ingsw.model.*;
 import it.polimi.ingsw.model.card.*;
-import it.polimi.ingsw.model.manager.Manager;
 
-import java.sql.Array;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 public class Round {
@@ -15,10 +13,19 @@ public class Round {
 
     private List<Player> playerOrder;
 
+
+    private Action action;
+
     public Round(List<Player> playerOrder, StudentBag sb, MotherNature mn) {
         this.studentbag = sb;
         this.mothernature = mn;
         this.playerOrder = playerOrder;
+    }
+
+    public void refillClouds(List<Cloud> clouds, StudentBag studentbag) {
+        for (Cloud cloud : clouds) {
+            studentbag.extractStudentAndMove(cloud);
+        }
     }
 
     /**
@@ -26,19 +33,13 @@ public class Round {
      * Step 1 -> Populate all 2(3) clouds with 3 students.
      * Step 2 -> Choose an assistant card and put it in the discard deck.
      *        -> Modify the order of playerOrder
-     * @param clouds All Clouds.
      */
-    public void planningPhase(Cloud... clouds) {
+    public void planningPhase() {
         List<AssistantCard> playedCardInRound = new ArrayList<>();
         boolean hasBeenPlayed = false;
 
         int i = 0;
         int minValue = 100; //FIRST
-
-        //Step 1
-        for (Cloud cloud : clouds) {
-            studentbag.extractStudentAndMove(cloud);
-        }
 
         //Step 2
         for (Player p : playerOrder) {
@@ -65,18 +66,8 @@ public class Round {
     }
 
     public void actionPhase() {
-        Board<Student> dest;
-        Student student;
-        for (Player p : playerOrder) {
-            for (int i = 0; i < 4; i++){
-                //player choose island where to move students
-                p.school.diningRoom.moveToPawn(student, dest);
-                // ...
-
-                Manager manager = new Manager();
-
-                int influence = manager.calculateInfluence();
-            }
+        for(Player p : playerOrder) {
+            new Action(p);
         }
     }
 

@@ -7,7 +7,7 @@ import java.util.List;
 
 public class Island extends Board<Student>{
 
-    Tower tower;
+    private Tower tower;
 
     public Island(List<Student> students) {
         super(students);
@@ -62,6 +62,16 @@ public class Island extends Board<Student>{
         }
 
         return influencer;
+    }
+
+    public int getInfluence(Player player){
+        int influence = 0;
+        if (player == tower.owner) influence++;
+
+        for(Professor prof : player.school.professorsTable.getPawns()){
+            influence = influence + countByColor(prof.getColor());
+        }
+        return influence;
     }
 
 }

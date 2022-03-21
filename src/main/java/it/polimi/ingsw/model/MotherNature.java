@@ -1,6 +1,7 @@
 package it.polimi.ingsw.model;
 
 public class MotherNature {
+
     private Island position;
 
     public MotherNature(Island position){

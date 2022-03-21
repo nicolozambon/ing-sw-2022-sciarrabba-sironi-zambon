@@ -1,11 +1,12 @@
 package it.polimi.ingsw.model.manager.characters_effects;
 
 import it.polimi.ingsw.model.manager.Manager;
+import it.polimi.ingsw.model.*;
 
-public class Card01 extends Manager {
+public class Card02 extends Manager {
 
     @Override
-    public int calculateInfluence() {
+    public int calculateInfluence(Player player) {
 
     }
 
