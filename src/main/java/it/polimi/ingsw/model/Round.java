@@ -2,7 +2,9 @@ package it.polimi.ingsw.model;
 
 import it.polimi.ingsw.model.card.*;
 
+import java.sql.Array;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class Round {
@@ -26,8 +28,12 @@ public class Round {
      * @param clouds All Clouds.
      */
     public void planningPhase(Cloud... clouds) {
-        ArrayList<AssistantCard> playedCardInRound = new ArrayList<AssistantCard>();
+        List<AssistantCard> playedCardInRound = new ArrayList<>();
         boolean hasBeenPlayed = false;
+
+        int i = 0;
+        int minValue = 100; //FIRST
+
         //Step 1
         for (Cloud cloud : clouds) {
             studentbag.extractStudentAndMove(cloud);
@@ -53,8 +59,13 @@ public class Round {
     }
 
     public void actionPhase() {
+        Board<Student> dest;
+        Student student;
         for (Player p : playerOrder) {
-
+            for (int i = 0; i < 4; i++){
+                //player choose island where to move students
+                p.school.diningRoom.moveToPawn(student, dest);
+            }
         }
     }
 
