@@ -1,5 +1,8 @@
 package it.polimi.ingsw.model;
 
+import it.polimi.ingsw.model.card.Deck;
+import it.polimi.ingsw.model.card.DeckAssistantCard;
+
 import java.util.List;
 
 public class Player {
