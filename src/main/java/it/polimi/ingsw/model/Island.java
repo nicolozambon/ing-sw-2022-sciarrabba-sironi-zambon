@@ -32,6 +32,11 @@ public class Island extends Board<Student>{
         return num;
     }
 
+    public Island nextIsland() {
+        // TODO need to return the reference to the next Island
+        return null;
+    }
+
     public Player getInfluencer(List<Player> players){
         Player influencer = null;
         List<Integer> values = new ArrayList<Integer>();

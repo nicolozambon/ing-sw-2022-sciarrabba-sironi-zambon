@@ -10,6 +10,8 @@ import java.util.ArrayList;
 
 import java.util.ArrayList;
 
+import static it.polimi.ingsw.model.enums.Color.*;
+
 public class Card12 extends Manager {
     public Card12() {
 
@@ -19,37 +21,29 @@ public class Card12 extends Manager {
         //TODO: get choice from player.
 
         for (Player p : players) {
-            switch (choice) {
-                case RED:
-                    for (int i = 0; i < 3; i++) {
+            for (int i = 0; i < 3; i++) {
+                switch (choice) {
+                    case RED:
                         if (!(p.school.RedDiningTable.isEmpty())) {
                             p.school.RedDiningTable.moveToPawn(p.school.RedDiningTable.get(p.school.RedDiningTable.size()-1), studentBag);
                         }
-                    }
-                case GREEN:
-                    for (int i = 0; i < 3; i++) {
+                    case GREEN:
                         if (!(p.school.GreenDiningTable.isEmpty())) {
                             p.school.GreenDiningTable.moveToPawn(p.school.GreenDiningTable.get(p.school.GreenDiningTable.size()-1), studentBag);
                         }
-                    }
-                case YELLOW:
-                    for (int i = 0; i < 3; i++) {
+                    case YELLOW:
                         if (!(p.school.YellowDiningTable.isEmpty())) {
                             p.school.YellowDiningTable.moveToPawn(p.school.YellowDiningTable.get(p.school.YellowDiningTable.size()-1), studentBag);
                         }
-                    }
-                case BLUE:
-                    for (int i = 0; i < 3; i++) {
+                    case BLUE:
                         if (!(p.school.BlueDiningTable.isEmpty())) {
                             p.school.BlueDiningTable.moveToPawn(p.school.BlueDiningTable.get(p.school.BlueDiningTable.size()-1), studentBag);
                         }
-                    }
-                case PINK:
-                    for (int i = 0; i < 3; i++) {
+                    case PINK:
                         if (!(p.school.PinkDiningTable.isEmpty())) {
                             p.school.PinkDiningTable.moveToPawn(p.school.PinkDiningTable.get(p.school.PinkDiningTable.size()-1), studentBag);
                         }
-                    }
+                }
             }
         }
 

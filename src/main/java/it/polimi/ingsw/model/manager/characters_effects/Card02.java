@@ -15,16 +15,17 @@ public class Card02 extends Manager {
     of Students as the player who currently controls them."
     */
 
-    public int calculatePlayerInfluenceOnIsland(Game game, Player player, Island island) {
+    @Override
+    public int calculatePlayerInfluenceOnIsland(ArrayList<Player> players, Player actual, Island island) {
         Player influencer = null;
         int influence = 0;
 
         Tower tower = island.getTower();
         if (tower != null) influencer = tower.owner;
 
-        if (player.equals(influencer)) influence++;
-        for (Player each_player : game.getPlayerOrder()) {
-            for (Professor professor : each_player.school.professorsTable.getPawns()) {
+        if (actual.equals(influencer)) influence++;
+        for (Player player : players) {
+            for (Professor professor : player.school.professorsTable.getPawns()) {
                 influence = influence + island.countByColor(professor.getColor());
             }
         }
