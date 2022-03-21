@@ -4,8 +4,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Round (List<Player> playerOrder, StudentBag sb, MotherNature mn) {
+
     private StudentBag studentbag;
     private MotherNature mothernature;
+
     public Round () {
         this.studentbag = sb;
         this.mothernature = mn;
