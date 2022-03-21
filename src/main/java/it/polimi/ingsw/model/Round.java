@@ -7,6 +7,7 @@ import java.sql.Array;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.HashMap;
 
 public class Round {
 
@@ -27,13 +28,16 @@ public class Round {
      * Step 2 -> Choose an assistant card and put it in the discard deck.
      *        -> Modify the order of playerOrder
      * @param clouds All Clouds.
+     * @return the new playerOrder.
      */
-    public void planningPhase(Cloud... clouds) {
-        List<AssistantCard> playedCardInRound = new ArrayList<>();
+    public ArrayList<Player> planningPhase(Cloud... clouds) {
+        ArrayList<AssistantCard> playedCardInRound = new ArrayList<>();
         boolean hasBeenPlayed = false;
 
+        ArrayList<Player> newPlayerOrder = new ArrayList<>();
+
+        int minValue;
         int i = 0;
-        int minValue = 100; //FIRST
 
         //Step 1
         for (Cloud cloud : clouds) {
@@ -53,15 +57,13 @@ public class Round {
                         hasBeenPlayed = true;
                     }
                 }
-            } while (hasBeenPlayed == true);
+            } while (hasBeenPlayed);
             playedCardInRound.add(choice);
         }
 
-        //Step 3
-        for (Player p : playerOrder) {
+        //TODO: player order.
 
-        }
-
+        return newPlayerOrder;
     }
 
     public void actionPhase() {
