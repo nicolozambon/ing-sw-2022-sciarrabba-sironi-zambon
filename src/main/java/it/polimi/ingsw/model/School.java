@@ -33,5 +33,4 @@ public class School {
     public Player getOwner(){
         return owner;
     }
-
 }
