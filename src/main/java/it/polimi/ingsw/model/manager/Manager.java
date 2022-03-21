@@ -9,7 +9,7 @@ public class Manager {
 
     }
 
-    public int calculateInfluence(Player player, Island island) {
+    public int calculatePlayerInfluenceOnIsland(Game game, Player player, Island island) {
         return 0;
     }
 

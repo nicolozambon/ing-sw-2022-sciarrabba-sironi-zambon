@@ -16,9 +16,9 @@ public class Game {
         StudentBag studentbag = new StudentBag();
     }
 
-    /* void round() {
-
-    } */
+    public ArrayList<Player> getPlayerOrder() {
+        return this.playerOrder;
+    }
 
     void addPlayer(Player player) {
         this.playerOrder.add(player);

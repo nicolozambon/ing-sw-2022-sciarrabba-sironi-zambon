@@ -29,7 +29,7 @@ public class Card12 extends Manager {
                 case GREEN:
                     for (int i = 0; i < 3; i++) {
                         if (!(p.school.GreenDiningTable.isEmpty())) {
-                            p.school.GreendDiningTable.moveToPawn(p.school.GreenDiningTable.get(p.school.GreenDiningTable.size()-1), studentBag);
+                            p.school.GreenDiningTable.moveToPawn(p.school.GreenDiningTable.get(p.school.GreenDiningTable.size()-1), studentBag);
                         }
                     }
                 case YELLOW:

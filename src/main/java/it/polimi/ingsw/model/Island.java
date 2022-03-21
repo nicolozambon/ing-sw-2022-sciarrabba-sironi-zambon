@@ -24,7 +24,7 @@ public class Island extends Board<Student>{
         return tower;
     }
 
-    private int countByColor(Color color){
+    public int countByColor(Color color){
         int num = (int) this.getPawns()
                 .stream()
                 .filter(x -> x.getColor() == color)
