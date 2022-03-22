@@ -1,6 +1,6 @@
-package it.polimi.ingsw.model.manager.characters_effects;
+package it.polimi.ingsw.model.round.handler.characters_effects;
 
-import it.polimi.ingsw.model.manager.Handler;
+import it.polimi.ingsw.model.round.handler.Handler;
 import it.polimi.ingsw.model.*;
 
 import java.util.ArrayList;

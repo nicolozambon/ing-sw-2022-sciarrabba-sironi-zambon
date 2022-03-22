@@ -1,10 +1,10 @@
-package it.polimi.ingsw.model.manager.characters_effects;
+package it.polimi.ingsw.model.round.handler.characters_effects;
 
 import it.polimi.ingsw.model.Island;
 import it.polimi.ingsw.model.Player;
 import it.polimi.ingsw.model.Professor;
 import it.polimi.ingsw.model.Tower;
-import it.polimi.ingsw.model.manager.Handler;
+import it.polimi.ingsw.model.round.handler.Handler;
 
 import java.util.ArrayList;
 import java.util.List;

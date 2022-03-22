@@ -2,73 +2,59 @@ package it.polimi.ingsw.model.round;
 
 import it.polimi.ingsw.model.*;
 import it.polimi.ingsw.model.card.*;
+import it.polimi.ingsw.model.round.handler.Handler;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class Round {
 
-    private StudentBag studentbag;
-    private MotherNature mothernature;
+    private PlanningPhase planning;
+    private ActionPhase action;
+    private MotherNature motherNature;
+    private List<Player> players;
+    private List<Island> islands;
+    private Player actual;
 
-    private List<Player> playerOrder;
+    private Handler handler;
 
-    private Action action;
+    public Round(List<Player> playerOrder, List<Island> islands, MotherNature motherNature, List<Cloud> clouds, StudentBag bag) {
+        this.players = playerOrder;
+        this.motherNature = motherNature;
+        this.planning = new PlanningPhase();
+        this.action = new ActionPhase();
+        this.actual = players.get(0);
 
-    public Round(List<Player> playerOrder, StudentBag sb, MotherNature mn) {
-        this.studentbag = sb;
-        this.mothernature = mn;
-        this.playerOrder = playerOrder;
+        this.handler = new Handler();
+        this.planning.addStudentsToCloud(clouds, bag);
     }
 
-    public void refillClouds(List<Cloud> clouds, StudentBag studentbag) {
-        for (Cloud cloud : clouds) {
-            studentbag.extractStudentAndMove(cloud);
+    public void playAssistantCardForPlayer(int player_id, int choice) {
+        Player player = this.players.get(player_id);
+        if (player.equals(this.actual)) {
+            this.planning.playAssistantCard(player, choice);
         }
     }
 
-    /**
-     * Planning phase of the game.
-     * Step 1 -> Populate all 2(3) clouds with 3 students.
-     * Step 2 -> Choose an assistant card and put it in the discard deck.
-     *        -> Modify the order of playerOrder
-     * @param clouds All Clouds.
-     * @return the new playerOrder.
-     */
-    public void planningPhase() {
-        List<AssistantCard> playedCardInRound = new ArrayList<>();
-        boolean hasBeenPlayed = false;
-
-        ArrayList<Player> newPlayerOrder = new ArrayList<>();
-
-        //int minValue;
-
-        //Step 2
-        for (Player p : playerOrder) {
-            AssistantCard choice;
-            int index = 0; //TODO: Fix
-            do {
-                //TODO: Player makes choice
-                hasBeenPlayed = false;
-                choice = (AssistantCard) p.playAssistantCard(index);
-                for (AssistantCard c : playedCardInRound) {
-                    if (choice.equals(c)) {
-                        hasBeenPlayed = true;
-                    }
-                }
-            } while (hasBeenPlayed);
-            playedCardInRound.add(choice);
-        }
-
-        //TODO: player order.
-
-        return newPlayerOrder;
-    }
-
-    public void actionPhase() {
-        for(Player p : playerOrder) {
-            new Action(p, p.lastAssistantCard());
+    public void moveStudent(int player_id, boolean isDiningRoom, int from_index, int dest_index) {
+        Player player = this.players.get(player_id);
+        if (player.equals(this.actual)) {
+            Island island = null;
+            if (!isDiningRoom) { // move to island
+                island = this.islands.get(dest_index);
+            }
+            this.action.moveStudent(player, isDiningRoom, from_index, island);
         }
     }
+
+    public void playCharacterCard(int player_id, int card_id, int steps_choice) {
+        Player player = this.players.get(player_id);
+        if (player.equals(this.actual)) {
+            player.playCharacterCard(card_id);
+            AssistantCard card = null; // TODO to be fixed --> pass card situations to Round()
+            this.handler.motherNatureMovement(this.motherNature, card, steps_choice);
+        }
+    }
+
 
 }
