@@ -40,7 +40,7 @@ public class Player {
         return chosen;
     }
 
-    public List<Coin> playCharacterCard(int cost) {
+    public void playCharacterCard(int card_id) {
         List<Coin> temp = new ArrayList<>();
 
         if (cost > coins.size() - 1) return temp;
@@ -48,7 +48,7 @@ public class Player {
         for (int i = 0; i < cost; i++) {
             temp.add(coins.remove(i));
         }
-        return temp;
+
     }
 
     public AssistantCard lastAssistantCard(){

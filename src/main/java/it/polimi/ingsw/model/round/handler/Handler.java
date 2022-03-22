@@ -60,13 +60,8 @@ public class Handler {
     public void motherNatureMovement(MotherNature motherNature, AssistantCard card, int steps_choice) {
         Island destination = null;
         if (steps_choice <= card.getSteps()) {
-            while (steps_choice > 0) {
-                destination = from.nextIsland();
-                steps_choice--;
-            }
+            motherNature.stepsToMove(steps_choice);
         }
-        motherNature.setPosition(destination);
-        return destination;
     }
 
 

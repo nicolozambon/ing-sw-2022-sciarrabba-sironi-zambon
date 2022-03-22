@@ -43,4 +43,8 @@ public class School {
             case GREEN -> GreenDiningTable.moveInPawn(index, entrance);
         }
     }
+
+    public void moveStudentIsland(int index, Island island){
+        island.moveInPawn(index, island);
+    }
 }
