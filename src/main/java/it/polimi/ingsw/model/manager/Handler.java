@@ -7,9 +7,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-public class Manager {
+public class Handler {
 
-    public Manager() {
+    public Handler() {
 
     }
 

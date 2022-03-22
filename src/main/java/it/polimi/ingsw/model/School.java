@@ -33,4 +33,14 @@ public class School {
     public Player getOwner(){
         return owner;
     }
+
+    public void moveStudentDiningRoom(int index){
+        switch (entrance.getPawns().get(index).getColor()) {
+            case RED -> RedDiningTable.moveInPawn(index, entrance);
+            case PINK -> PinkDiningTable.moveInPawn(index, entrance);
+            case BLUE -> BlueDiningTable.moveInPawn(index, entrance);
+            case YELLOW -> YellowDiningTable.moveInPawn(index, entrance);
+            case GREEN -> GreenDiningTable.moveInPawn(index, entrance);
+        }
+    }
 }

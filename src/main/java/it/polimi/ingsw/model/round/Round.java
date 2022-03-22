@@ -13,7 +13,6 @@ public class Round {
 
     private List<Player> playerOrder;
 
-
     private Action action;
 
     public Round(List<Player> playerOrder, StudentBag sb, MotherNature mn) {

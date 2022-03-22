@@ -5,48 +5,24 @@ import java.util.List;
 
 public class Board<T> {
 
-    public final List<T> pawns;
+    private final List<T> pawns;
 
     public Board() {
-        pawns = new ArrayList<T>();
+        pawns = new ArrayList<>();
     }
 
     public Board(List<T> pawns) {
-        this.pawns = new ArrayList<T>(pawns);
+        this.pawns = new ArrayList<>(pawns);
     }
 
     public List<T> getPawns() {
-        return new ArrayList<T>(pawns);
+        return new ArrayList<>(pawns);
     }
 
-    public T getPawn(int index) {
-        return pawns.remove(index);
-    }
-
-    public boolean moveInPawn(T pawn, Board<T> src) throws ArrayIndexOutOfBoundsException { //Is this the right exception?
+    public boolean moveInPawn(int index, Board<T> src) throws ArrayIndexOutOfBoundsException { //Is this the right exception?
         try {
-            this.pawns.add(pawn);
-            src.pawns.remove(pawn);
-        } catch (ArrayIndexOutOfBoundsException e) {
-            return false;
-        }
-        return true;
-    }
-
-    public boolean moveToPawn(T pawn, Board<T> dst) throws ArrayIndexOutOfBoundsException { //Is this the right exception?
-        try {
-            dst.pawns.add(pawn);
-            this.pawns.remove(pawn);
-        } catch (ArrayIndexOutOfBoundsException e) {
-            return false;
-        }
-        return true;
-    }
-
-    public static boolean movePawn(T pawn, Board<T> src, Board<T> dst) throws ArrayIndexOutOfBoundsException {
-        try {
-            dst.pawns.add(pawn);
-            src.pawns.remove(pawn);
+            this.pawns.add(src.pawns.get(index));
+            src.pawns.remove(src.pawns.get(index));
         } catch (ArrayIndexOutOfBoundsException e) {
             return false;
         }

@@ -2,34 +2,25 @@ package it.polimi.ingsw.model.round;
 
 import it.polimi.ingsw.model.*;
 import it.polimi.ingsw.model.card.AssistantCard;
-import it.polimi.ingsw.model.manager.Manager;
-import it.polimi.ingsw.model.enums.*;
+import it.polimi.ingsw.model.manager.Handler;
 
 public class Action {
 
     private Player player;
     private AssistantCard assistantCard;
-    private Manager manager;
+    private Handler handler;
 
     public Action(Player player, AssistantCard assistantCard){
         this.player = player;
         this.assistantCard = assistantCard;
-        manager = new Manager();
+        handler = new Handler();
     }
 
-    public void playCharacterCard(Manager manager) {
+    public void playCharacterCard(Handler manager) {
         this.manager = manager;
     }
 
-    public void moveStudentDiningRoom(Student student){
-        switch (student.getColor()) {
-            case RED -> player.school.entrance.moveToPawn(student, player.school.RedDiningTable);
-            case PINK -> player.school.entrance.moveToPawn(student, player.school.PinkDiningTable);
-            case BLUE -> player.school.entrance.moveToPawn(student, player.school.BlueDiningTable);
-            case YELLOW -> player.school.entrance.moveToPawn(student, player.school.YellowDiningTable);
-            case GREEN -> player.school.entrance.moveToPawn(student, player.school.GreenDiningTable);
-        }
-    }
+
 
     public void moveStudentIsland(Student student, Island island){
         player.school.entrance.moveToPawn(student, island);

@@ -12,7 +12,9 @@ public class MotherNature {
         return position;
     }
 
-    public void setPosition(Island position) {
-        this.position = position;
+    public void stepsToMove(int steps) {
+        for (int i = 0; i < steps; i++) {
+            position = position.getNextIsland();
+        }
     }
 }

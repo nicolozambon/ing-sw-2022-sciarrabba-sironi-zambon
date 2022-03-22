@@ -7,14 +7,26 @@ import java.util.List;
 
 public class Island extends Board<Student>{
 
+    private int ID;
+
     private Tower tower;
 
-    public Island(List<Student> students) {
+    private Island nextIsland;
+    private Island prevIsland;
+
+    private boolean linkNext;
+    private boolean linkPrev;
+
+    public Island(List<Student> students, Island prev, Island next) {
         super(students);
+        this.prevIsland = prev;
+        this.nextIsland = next;
+        linkPrev = false;
+        linkNext = false;
         tower = null;
     }
 
-    public Tower setTower(Tower tower){
+    public Tower setTower(Tower tower) {
         Tower temp = this.tower;
         this.tower = tower;
         return temp;
@@ -24,59 +36,27 @@ public class Island extends Board<Student>{
         return tower;
     }
 
-    public int countByColor(Color color){
-        int num = (int) this.getPawns()
-                .stream()
-                .filter(x -> x.getColor() == color)
-                .count();
-        return num;
+    public Island getNextIsland() {
+        return this.nextIsland;
     }
 
-    public Island nextIsland() {
-        // TODO need to return the reference to the next Island
-        return null;
+    public Island getPrevIsland() {
+        return this.prevIsland;
     }
 
-    public Player getInfluencer(List<Player> players){
-        Player influencer = null;
-        List<Integer> values = new ArrayList<Integer>();
-        int highestInfluence = 0;
-        int influence;
-
-        if (tower != null) influencer = tower.owner;
-
-        for (Player player : players) {
-            influence = 0;
-            if (influencer == player) influence++;
-
-            for(Professor prof : player.school.professorsTable.getPawns()){
-                influence = influence + countByColor(prof.getColor());
-            }
-
-            if (influence > highestInfluence) {
-                highestInfluence = influence;
-                influencer = player;
-            }
-            values.add(influence);
-        }
-
-        final int streamVar = highestInfluence;
-
-        if( values.stream().filter(x -> x == streamVar).count() > 1){
-            influencer = tower.owner;
-        }
-
-        return influencer;
+    public boolean isLinkNext() {
+        return linkNext;
     }
 
-    public int getInfluence(Player player){
-        int influence = 0;
-        if (player == tower.owner) influence++;
-
-        for(Professor prof : player.school.professorsTable.getPawns()){
-            influence = influence + countByColor(prof.getColor());
-        }
-        return influence;
+    public boolean isLinkPrev() {
+        return linkPrev;
     }
 
+    public void linkToNext() {
+        this.linkNext = true;
+    }
+
+    public void linkToPrev() {
+        this.linkPrev = true;
+    }
 }

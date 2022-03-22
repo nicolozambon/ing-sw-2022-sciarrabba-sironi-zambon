@@ -4,12 +4,12 @@ import it.polimi.ingsw.model.Island;
 import it.polimi.ingsw.model.Player;
 import it.polimi.ingsw.model.Professor;
 import it.polimi.ingsw.model.Tower;
-import it.polimi.ingsw.model.manager.Manager;
+import it.polimi.ingsw.model.manager.Handler;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class Card08 extends Manager {
+public class Card08 extends Handler {
     /*CARD EFFECT:
     "During the influence calculation this turn, you count as having 2 more influence."
     */

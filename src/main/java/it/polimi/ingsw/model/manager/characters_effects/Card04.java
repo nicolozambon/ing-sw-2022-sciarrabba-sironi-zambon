@@ -1,10 +1,10 @@
 package it.polimi.ingsw.model.manager.characters_effects;
 
 import it.polimi.ingsw.model.card.AssistantCard;
-import it.polimi.ingsw.model.manager.Manager;
+import it.polimi.ingsw.model.manager.Handler;
 import it.polimi.ingsw.model.*;
 
-public class Card04 extends Manager {
+public class Card04 extends Handler {
 
     /*
     CARD EFFECT:
@@ -16,7 +16,7 @@ public class Card04 extends Manager {
         Island destination = null;
         if (steps_choice <= card.getSteps() + 2) {
             while (steps_choice > 0) {
-                destination = from.nextIsland();
+                destination = from.getNextIsland();
                 steps_choice--;
             }
         }

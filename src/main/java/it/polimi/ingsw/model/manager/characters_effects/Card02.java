@@ -1,13 +1,11 @@
 package it.polimi.ingsw.model.manager.characters_effects;
 
-import it.polimi.ingsw.model.manager.Manager;
+import it.polimi.ingsw.model.manager.Handler;
 import it.polimi.ingsw.model.*;
-import org.junit.jupiter.api.extension.ExtensionContext;
 
 import java.util.ArrayList;
-import java.util.List;
 
-public class Card02 extends Manager {
+public class Card02 extends Handler {
 
     /*
     CARD EFFECT:

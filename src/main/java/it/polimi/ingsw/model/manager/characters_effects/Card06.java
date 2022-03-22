@@ -1,12 +1,12 @@
 package it.polimi.ingsw.model.manager.characters_effects;
 
-import it.polimi.ingsw.model.manager.Manager;
+import it.polimi.ingsw.model.manager.Handler;
 import it.polimi.ingsw.model.*;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class Card06 extends Manager {
+public class Card06 extends Handler {
     /*CARD EFFECT:
     "When resolving a Conquering on an Island, Towers do not count towards influence."
     */

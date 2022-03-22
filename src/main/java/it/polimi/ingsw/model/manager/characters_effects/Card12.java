@@ -1,18 +1,15 @@
 package it.polimi.ingsw.model.manager.characters_effects;
 
-import it.polimi.ingsw.model.manager.Manager;
+import it.polimi.ingsw.model.manager.Handler;
 import it.polimi.ingsw.model.*;
 
 import it.polimi.ingsw.model.Board;
-import it.polimi.ingsw.model.StudentBag;
 import it.polimi.ingsw.model.Player;
-import java.util.ArrayList;
-
 import java.util.ArrayList;
 
 import static it.polimi.ingsw.model.enums.Color.*;
 
-public class Card12 extends Manager {
+public class Card12 extends Handler {
     public Card12() {
 
     }

@@ -4,12 +4,12 @@ import it.polimi.ingsw.model.Island;
 import it.polimi.ingsw.model.Player;
 import it.polimi.ingsw.model.Professor;
 import it.polimi.ingsw.model.Tower;
-import it.polimi.ingsw.model.manager.Manager;
+import it.polimi.ingsw.model.manager.Handler;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class Card09 extends Manager {
+public class Card09 extends Handler {
 
     /*CARD EFFECT:
     "Choose a color of Student: during the influence calculation this turn, that color adds no influence."

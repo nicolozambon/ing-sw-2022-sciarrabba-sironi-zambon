@@ -1,11 +1,11 @@
 package it.polimi.ingsw.model.manager.characters_effects;
 
-import it.polimi.ingsw.model.manager.Manager;
+import it.polimi.ingsw.model.manager.Handler;
 import it.polimi.ingsw.model.*;
 
 import it.polimi.ingsw.model.Board;
 
-public class Card10 extends Manager {
+public class Card10 extends Handler {
 
     public Card10() {
 
