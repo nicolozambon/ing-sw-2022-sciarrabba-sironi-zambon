@@ -12,7 +12,7 @@ public class ActionPhase {
 
     public void moveStudent(Player player, boolean isDiningRoom, Student student, Island island) {
         if (isDiningRoom) {
-            player.getSchool().moveStudentDiningRoom(student);
+           player.getSchool().moveStudentDiningRoom(student);
         } else {
             player.getSchool().moveStudentIsland(student, island);
         }

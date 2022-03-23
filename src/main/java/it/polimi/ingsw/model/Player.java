@@ -5,14 +5,15 @@ import it.polimi.ingsw.model.component.card.*;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 public class Player {
 
-    private String nickname;
+    private final String nickname;
     private final School school;
     public final int id;
 
-    private List<Coin> coins = new ArrayList<>();
+    private final List<Coin> coins = new ArrayList<>();
 
     private final Deck assistantCardDeck;
     private final Deck discardPileDeck;
@@ -38,14 +39,12 @@ public class Player {
         return this.nickname;
     }
 
-    public Card playAssistantCard(int index){
+    public void playAssistantCard(int index) {
         Card chosen = assistantCardDeck.cards.get(index);
         discardPileDeck.moveInCard(chosen, assistantCardDeck);
-
-        return chosen;
     }
 
-    public void playCharacterCard(CharacterCard card){
+    public void playCharacterCard(CharacterCard card) {
         int cost = card.getCost();
         if (coins.size() < cost); //TODO gestire errore
         for (int i = 0; i < cost; i++){
@@ -53,9 +52,34 @@ public class Player {
         }
     }
 
-    public AssistantCard lastAssistantCard(){
+    public AssistantCard lastAssistantCard() {
         return (AssistantCard)discardPileDeck.cards.get(discardPileDeck.cards.size()-1);
     }
 
+    public void moveStudentDiningRoom(Student student, List<Coin> coins) {
+        if (school.moveStudentDiningRoom(student)) {
+            this.coins.add(coins.remove(0));
+        }
+    }
 
+    public void moveStudentIsland(Student student, Island island) {
+        school.moveStudentIsland(student, island);
+    }
+
+    public void chooseCloud(Cloud cloud) {
+        school.takeStudentsFromCloud(cloud);
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Player player = (Player) o;
+        return id == player.id;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id);
+    }
 }

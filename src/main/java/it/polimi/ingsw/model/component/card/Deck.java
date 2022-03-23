@@ -1,19 +1,19 @@
 package it.polimi.ingsw.model.component.card;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Collections;
-
 
 public class Deck {
 
-    public final ArrayList<Card> cards;
+    public final List<Card> cards;
 
     public Deck() {
-        this.cards = new ArrayList<Card>();
+        this.cards = new ArrayList<>();
     }
 
-    public Deck(ArrayList<Card> cardArrayList) {
-        this.cards = cardArrayList;
+    public Deck(List<Card> cards) {
+        this.cards = new ArrayList<>(cards);
     }
 
     /**

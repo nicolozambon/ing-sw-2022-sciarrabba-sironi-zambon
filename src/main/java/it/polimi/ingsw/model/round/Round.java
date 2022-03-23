@@ -1,36 +1,40 @@
 package it.polimi.ingsw.model.round;
 
 import it.polimi.ingsw.model.*;
-import it.polimi.ingsw.model.card.*;
 import it.polimi.ingsw.model.component.*;
-import it.polimi.ingsw.model.component.card.AssistantCard;
-import it.polimi.ingsw.model.component.card.CharacterCard;
-import it.polimi.ingsw.model.round.component.*;
-import it.polimi.ingsw.model.round.handler.Handler;
+import it.polimi.ingsw.model.component.card.*;
 
+import it.polimi.ingsw.model.round.handler.*;
+
+import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class Round {
 
-    private PlanningPhase planning;
-    private ActionPhase action;
-    private MotherNature motherNature;
     private List<Player> players;
     private List<Island> islands;
-    private Player actual;
+    private List<Cloud> clouds;
+    private MotherNature motherNature;
     private List<CharacterCard> characterCards;
+    private List<Coin> coins;
+
+    private PlanningPhase planning;
+    private ActionPhase action;
+
+    private Player actual;
 
     private Handler handler;
 
-    public Round(List<Player> playerOrder, List<Island> islands, MotherNature motherNature, List<Cloud> clouds,
-                 StudentBag bag, List<CharacterCard> characterCards) {
-        this.players = playerOrder;
+    public Round(List<Player> players, List<Island> islands, MotherNature motherNature, List<Cloud> clouds,
+                 StudentBag bag) {
+        this.players = players;
         this.motherNature = motherNature;
         this.planning = new PlanningPhase();
         this.action = new ActionPhase();
         this.actual = players.get(0);
-        this.characterCards = characterCards;
-
+        this.clouds = clouds;
         this.handler = new Handler();
         this.planning.addStudentsToCloud(clouds, bag);
     }
@@ -64,5 +68,24 @@ public class Round {
         }
     }
 
+    private void orderPlayersForAction(){
+        this.players =
+                this.players.stream()
+                .sorted(Comparator.comparingInt(x -> x.lastAssistantCard().getValue()))
+                .collect(Collectors.toList());
+    }
+
+    private void orderPlayersForNextRound(){
+        List<Player> temp = new ArrayList<>();
+        orderPlayersForAction();
+
+        temp.add(this.players.remove(0));
+        temp.addAll(this.players
+                    .stream()
+                    .sorted(Comparator.comparingInt(x -> x.id))
+                    .collect(Collectors.toList()));
+
+        this.players = temp;
+    }
 
 }
