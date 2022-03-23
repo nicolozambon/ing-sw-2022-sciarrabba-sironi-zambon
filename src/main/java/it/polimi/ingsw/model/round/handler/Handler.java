@@ -2,6 +2,11 @@ package it.polimi.ingsw.model.round.handler;
 
 import it.polimi.ingsw.model.*;
 import it.polimi.ingsw.model.card.*;
+import it.polimi.ingsw.model.component.Island;
+import it.polimi.ingsw.model.component.MotherNature;
+import it.polimi.ingsw.model.component.Professor;
+import it.polimi.ingsw.model.component.Tower;
+import it.polimi.ingsw.model.component.card.AssistantCard;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -11,6 +16,10 @@ public class Handler {
 
     public Handler() {
 
+    }
+
+    public int calculateInfluence(){
+        return 0;
     }
 
     //public int calculatePlayerInfluenceOnIsland(Player player, Island island) {
@@ -33,8 +42,8 @@ public class Handler {
             influence = 0;
             if (influencer == player) influence++;
 
-            for(Professor prof : player.school.professorsTable.getPawns()){
-                influence = influence + island.countByColor(prof.getColor());
+            for(Professor prof : player.getSchool().getProfessorsTable().getPawns()){
+               // influence = influence + island.countByColor(prof.getColor());
             }
 
             if (influence > highestInfluence) {

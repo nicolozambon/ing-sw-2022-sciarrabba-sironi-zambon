@@ -1,5 +1,7 @@
 package it.polimi.ingsw.model.card;
 
+import it.polimi.ingsw.model.component.card.AssistantCard;
+import it.polimi.ingsw.model.component.card.CharacterCard;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.DisplayName;
 

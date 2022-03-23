@@ -1,11 +1,8 @@
-package it.polimi.ingsw.model;
+package it.polimi.ingsw.model.component;
 
-import it.polimi.ingsw.model.enums.Color;
-
-import java.util.ArrayList;
 import java.util.List;
 
-public class Island extends Board<Student>{
+public class Island extends Board<Student> {
 
     private int ID;
 

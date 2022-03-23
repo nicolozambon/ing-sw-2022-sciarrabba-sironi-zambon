@@ -1,8 +1,8 @@
 package it.polimi.ingsw.model;
 
 import com.google.gson.Gson;
-import it.polimi.ingsw.model.card.AssistantCard;
-import it.polimi.ingsw.model.card.CharacterCard;
+import it.polimi.ingsw.model.component.card.AssistantCard;
+import it.polimi.ingsw.model.component.card.CharacterCard;
 
 import java.io.FileNotFoundException;
 import java.io.FileReader;

@@ -1,6 +1,7 @@
 package it.polimi.ingsw.model;
 
-import it.polimi.ingsw.model.card.*;
+import it.polimi.ingsw.model.component.*;
+import it.polimi.ingsw.model.component.card.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -8,7 +9,7 @@ import java.util.List;
 public class Player {
 
     private String nickname;
-    public final School school;
+    private final School school;
     public final int id;
 
     private List<Coin> coins = new ArrayList<>();
@@ -26,6 +27,10 @@ public class Player {
         coins.add(coin);
     }
 
+    public School getSchool() {
+        return school;
+    }
+
     /**
     * @return Player's nickname
     **/
@@ -40,15 +45,12 @@ public class Player {
         return chosen;
     }
 
-    public void playCharacterCard(int card_id) {
-        List<Coin> temp = new ArrayList<>();
-
-        if (cost > coins.size() - 1) return temp;
-
-        for (int i = 0; i < cost; i++) {
-            temp.add(coins.remove(i));
+    public void playCharacterCard(CharacterCard card){
+        int cost = card.getCost();
+        if (coins.size() < cost); //TODO gestire errore
+        for (int i = 0; i < cost; i++){
+            coins.remove(0);
         }
-
     }
 
     public AssistantCard lastAssistantCard(){

@@ -1,6 +1,4 @@
-package it.polimi.ingsw.model;
-
-import it.polimi.ingsw.model.enums.Color;
+package it.polimi.ingsw.model.component;
 
 import java.util.Random;
 
@@ -14,7 +12,7 @@ public class StudentBag extends Board<Student> {
         Random rand = new Random();
         int value = rand.nextInt(130);
         try {
-            destination.moveInPawn(value, this);
+            destination.moveInPawn(this.getPawns().get(value), this);
         } catch (ArrayIndexOutOfBoundsException e) {
             System.out.println("Random integer " + value + " is Out Of Bounds.");
         }

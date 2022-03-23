@@ -1,4 +1,4 @@
-package it.polimi.ingsw.model;
+package it.polimi.ingsw.model.component;
 
 public abstract class Pawn<T>{
 

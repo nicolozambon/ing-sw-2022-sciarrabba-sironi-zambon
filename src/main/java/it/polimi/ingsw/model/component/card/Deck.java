@@ -1,4 +1,4 @@
-package it.polimi.ingsw.model.card;
+package it.polimi.ingsw.model.component.card;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -15,8 +15,6 @@ public class Deck {
     public Deck(ArrayList<Card> cardArrayList) {
         this.cards = cardArrayList;
     }
-
-
 
     /**
      * Shuffles the given deck.

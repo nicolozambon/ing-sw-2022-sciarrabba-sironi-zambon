@@ -1,4 +1,4 @@
-package it.polimi.ingsw.model;
+package it.polimi.ingsw.model.component;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -19,10 +19,10 @@ public class Board<T> {
         return new ArrayList<>(pawns);
     }
 
-    public boolean moveInPawn(int index, Board<T> src) throws ArrayIndexOutOfBoundsException { //Is this the right exception?
+    public boolean moveInPawn(T pawn, Board<T> src) throws ArrayIndexOutOfBoundsException { //Is this the right exception?
         try {
-            this.pawns.add(src.pawns.get(index));
-            src.pawns.remove(src.pawns.get(index));
+            this.pawns.add(pawn);
+            src.pawns.remove(pawn);
         } catch (ArrayIndexOutOfBoundsException e) {
             return false;
         }

@@ -1,4 +1,4 @@
-package it.polimi.ingsw.model.card;
+package it.polimi.ingsw.model.component.card;
 
 import java.util.Objects;
 
@@ -23,6 +23,10 @@ public class CharacterCard extends Card {
         this.path = path;
         this.setup = setup;
         this.effect = effect;
+    }
+
+    public int getCost(){
+        return this.cost;
     }
 
     @Override

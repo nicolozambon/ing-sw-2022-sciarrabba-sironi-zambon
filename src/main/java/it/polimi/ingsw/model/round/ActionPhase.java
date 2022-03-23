@@ -1,8 +1,8 @@
 package it.polimi.ingsw.model.round;
 
 import it.polimi.ingsw.model.*;
-import it.polimi.ingsw.model.card.AssistantCard;
-import it.polimi.ingsw.model.round.handler.Handler;
+import it.polimi.ingsw.model.component.Island;
+import it.polimi.ingsw.model.component.Student;
 
 public class ActionPhase {
 
@@ -10,11 +10,11 @@ public class ActionPhase {
 
     }
 
-    public void moveStudent(Player player, boolean isDiningRoom, int from_index, Island island) {
+    public void moveStudent(Player player, boolean isDiningRoom, Student student, Island island) {
         if (isDiningRoom) {
-            player.school.moveStudentDiningRoom(from_index);
+            player.getSchool().moveStudentDiningRoom(student);
         } else {
-            player.school.moveStudentIsland(from_index, island);
+            player.getSchool().moveStudentIsland(student, island);
         }
     }
 

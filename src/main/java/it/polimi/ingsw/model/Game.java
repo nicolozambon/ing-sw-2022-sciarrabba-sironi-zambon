@@ -1,5 +1,8 @@
 package it.polimi.ingsw.model;
 
+import it.polimi.ingsw.model.component.Cloud;
+import it.polimi.ingsw.model.component.StudentBag;
+
 import java.util.ArrayList;
 
 public class Game {

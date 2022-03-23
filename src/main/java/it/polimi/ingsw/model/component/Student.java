@@ -1,4 +1,4 @@
-package it.polimi.ingsw.model;
+package it.polimi.ingsw.model.component;
 
 import it.polimi.ingsw.model.enums.Color;
 
