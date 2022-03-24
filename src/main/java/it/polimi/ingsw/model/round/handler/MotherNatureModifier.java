@@ -1,4 +1,4 @@
 package it.polimi.ingsw.model.round.handler;
 
-public class MovementModifierHandler {
+public class MotherNatureModifier {
 }
