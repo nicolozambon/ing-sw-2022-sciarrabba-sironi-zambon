@@ -4,12 +4,18 @@ import it.polimi.ingsw.model.component.Cloud;
 import it.polimi.ingsw.model.component.StudentBag;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 public class Game {
 
-    //Maybe here is useful have 2 List of Player ordered in different way:
-    // one for the clockwise order and other one for the round order
-    private ArrayList<Player> playerOrder;
+    Map<Integer, Integer> numOfStudent = new HashMap<>(){{
+        this.put(2, 3);
+        this.put(3, 4);
+        this.put(4, 3);
+    }};
+
+    private ArrayList<Player> players;
 
     private Cloud Cloud1;
     private Cloud Cloud2;
@@ -20,11 +26,14 @@ public class Game {
     }
 
     public ArrayList<Player> getPlayerOrder() {
-        return this.playerOrder;
+        return this.players;
     }
 
     void addPlayer(Player player) {
-        this.playerOrder.add(player);
+        this.players.add(player);
     }
 
+    private Player isThereWinner(){
+        return null;
+    }
 }

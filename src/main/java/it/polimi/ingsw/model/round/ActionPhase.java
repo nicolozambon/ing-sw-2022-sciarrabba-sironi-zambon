@@ -1,21 +1,21 @@
 package it.polimi.ingsw.model.round;
 
 import it.polimi.ingsw.model.*;
-import it.polimi.ingsw.model.component.Island;
-import it.polimi.ingsw.model.component.Student;
+import it.polimi.ingsw.model.component.*;
+
+
+import java.util.List;
 
 public class ActionPhase {
 
-    public ActionPhase() {
+    private Player player;
 
+    public ActionPhase(Player player) {
+        this.player = player;
     }
 
-    public void moveStudent(Player player, boolean isDiningRoom, Student student, Island island) {
-        if (isDiningRoom) {
-           player.getSchool().moveStudentDiningRoom(student);
-        } else {
-            player.getSchool().moveStudentIsland(student, island);
-        }
+    public void moveStudentToDiningRoom(Student student, List<Coin> coinsSrc) {
+        this.player.moveStudentDiningRoom(student, coinsSrc);
     }
 
 }

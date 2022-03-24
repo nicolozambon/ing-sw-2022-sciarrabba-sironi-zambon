@@ -45,8 +45,8 @@ public class Player {
     }
 
     public void playCharacterCard(CharacterCard card) {
-        int cost = card.getCost();
-        if (coins.size() < cost); //TODO gestire errore
+        int cost = card.getCoins();
+        if (coins.size() < cost);
         for (int i = 0; i < cost; i++){
             coins.remove(0);
         }

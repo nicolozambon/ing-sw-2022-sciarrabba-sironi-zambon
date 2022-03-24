@@ -10,17 +10,12 @@ import java.util.List;
 
 public class Handler {
 
-    public Handler() {
-
-    }
 
     public int calculateInfluence(){
         return 0;
     }
 
-    //public int calculatePlayerInfluenceOnIsland(Player player, Island island) {
-
-    public int calculatePlayerInfluenceOnIsland(List<Player> players, Player actual, Island island) {
+    public int calculatePlayerInfluenceOnIsland(Player actual, Island island) {
         return 0;
     }
 

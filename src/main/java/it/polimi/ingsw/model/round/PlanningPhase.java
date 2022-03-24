@@ -7,7 +7,6 @@ import java.util.List;
 
 public class PlanningPhase {
 
-    //TODO fix problem put only 1 student per cloud
     public void addStudentsToCloud(List<Cloud> clouds, StudentBag bag) {
         for (Cloud cloud : clouds) {
             bag.extractStudentAndMove(cloud);
