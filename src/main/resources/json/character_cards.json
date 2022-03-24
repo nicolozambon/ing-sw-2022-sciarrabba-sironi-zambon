@@ -5,7 +5,8 @@
     "path": "",
     "coins": 1,
     "setup": "In Setup, draw 4 Students and place them on this card.",
-    "effect": "Take 1 Student from this card and place it on an Island of your choice. Then, draw a new Student from the Bag and place it on this card."
+    "effect": "Take 1 Student from this card and place it on an Island of your choice. Then, draw a new Student from the Bag and place it on this card.",
+    "category": null
   },
   {
     "id": 2,
@@ -47,8 +48,8 @@
     "path": "",
     "coins": 2,
     "setup": "In Setup, put 4 No Entry tiles on this card.",
-    "effect": "Place a No Entry tile on an Island of your choice. The first time Mother Nature ends her movement there, put the No Entry tile back onto this card DO NOT calculate influence on that Island, or place any Towers."
-
+    "effect": "Place a No Entry tile on an Island of your choice. The first time Mother Nature ends her movement there, put the No Entry tile back onto this card DO NOT calculate influence on that Island, or place any Towers.",
+    "category": null
   },
   {
     "id": 6,
@@ -68,7 +69,8 @@
     "path": "",
     "coins": 1,
     "setup": "In Setup, draw 6 Students and place them on this card.",
-    "effect": "You may take up to 3 Students from this card and replace them with the same number of Students from your Entrance."
+    "effect": "You may take up to 3 Students from this card and replace them with the same number of Students from your Entrance.",
+    "category": null
   },
   {
     "id": 8,
@@ -112,7 +114,8 @@
     "path": "",
     "coins": 2,
     "setup": "In Setup, draw 4 Students and place them on this card.",
-    "effect": "Take 1 Student from this card and place it in your Dining Room. Then, draw a new Student from the Bag and place it on this card."
+    "effect": "Take 1 Student from this card and place it in your Dining Room. Then, draw a new Student from the Bag and place it on this card.",
+    "category": null
   },
   {
     "id": 12,
