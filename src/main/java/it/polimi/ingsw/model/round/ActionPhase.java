@@ -20,7 +20,7 @@ public class ActionPhase {
     private Player actualPlayer;
     private List<Player> otherPlayers;
     private Map<String, Integer> callableMethod;
-    Handler handler;
+    private Handler handler;
 
     public ActionPhase(Player player, List<Player> otherPlayers, int numOfStudentToMove) {
         this.actualPlayer = player;
@@ -86,12 +86,12 @@ public class ActionPhase {
         }
     }
 
-    public void extraAction() {
+    /*public void extraAction() {
         if(callableMethod.get("students_cloud") > 0) {
             this.handler.extraAction();
             callableMethod.put("students_cloud", callableMethod.get("students_cloud") - 1 );
         }
-    }
+    } */
 
     public void endActionPhase() {
       //  return this.handler;
