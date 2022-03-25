@@ -14,8 +14,10 @@ public class Island extends Board<Student> {
     private boolean linkNext;
     private boolean linkPrev;
 
-    public Island(List<Student> students, Island prev, Island next) {
+    public Island(int ID, List<Student> students, Island prev, Island next) {
+
         super(students);
+        this.ID = ID;
         this.prevIsland = prev;
         this.nextIsland = next;
         linkPrev = false;
