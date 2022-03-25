@@ -80,7 +80,7 @@ public class Round {
     private void orderPlayersForAction(){
         this.playersHavePlayed =
                 this.playersHavePlayed.stream()
-                .sorted(Comparator.comparingInt(x -> x.lastAssistantCard().getValue()))
+                .sorted(Comparator.comparingInt(x -> x.getLastAssistantCard().getValue()))
                 .collect(Collectors.toList());
         playersToPlay = playersHavePlayed;
         playersHavePlayed = new ArrayList<>();

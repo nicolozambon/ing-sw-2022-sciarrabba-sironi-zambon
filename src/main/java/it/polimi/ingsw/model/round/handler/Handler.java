@@ -2,9 +2,7 @@ package it.polimi.ingsw.model.round.handler;
 
 import it.polimi.ingsw.model.*;
 import it.polimi.ingsw.model.component.*;
-import it.polimi.ingsw.model.component.card.*;
 
-import java.util.ArrayList;
 import java.util.List;
 
 
@@ -67,7 +65,7 @@ public class Handler {
 
     public void motherNatureMovement(Player player, MotherNature motherNature, int steps_choice) {
         Island destination = null;
-        if (steps_choice <= player.lastAssistantCard().getSteps()) {
+        if (steps_choice <= player.getLastAssistantCard().getSteps()) {
             motherNature.stepsToMove(steps_choice);
         }
     }

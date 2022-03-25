@@ -52,7 +52,7 @@ public class Player {
         }
     }
 
-    public AssistantCard lastAssistantCard() {
+    public AssistantCard getLastAssistantCard() {
         return (AssistantCard)discardPileDeck.cards.get(discardPileDeck.cards.size()-1);
     }
 
