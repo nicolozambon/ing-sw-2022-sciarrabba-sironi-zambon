@@ -15,15 +15,11 @@ public class Handler {
         this.actualPlayer = player;
     }
 
-    public int calculateInfluence(){
-        return 0;
+    public void resolveIsland(MotherNature motherNature, List<Player> othersPlayer) {
+
     }
 
-    public int calculatePlayerInfluenceOnIsland(Player actual, Island island) {
-        return 0;
-    }
-
-    public Player getInfluencer(List<Player> players, Island island){
+    /*public Player getInfluencer(List<Player> players, Island island){
         Player influencer = null;
         List<Integer> values = new ArrayList<Integer>();
         Tower tower = island.getTower();
@@ -55,7 +51,7 @@ public class Handler {
         }
 
         return influencer;
-    }
+    }*/
 
     public void professorControl(List<Player> otherPlayers) {
         for (Player player : otherPlayers) {

@@ -9,6 +9,9 @@ import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
 
+
+//Class Round keep players sorted and "mapping" integer to actual object
+
 public class Round {
 
     private List<Player> playersToPlay;
@@ -56,11 +59,18 @@ public class Round {
     }
 
     public void playAssistantCardForPlayer(int player_id, int choice) {
-        Player player = this.playersToPlay.get(player_id);
-        if (player.equals(this.playersToPlay.get(0))) {
-            this.planning.playAssistantCard(player, choice);
+        if (!isPlanningFinished) {
+            Player player = this.playersToPlay.get(player_id);
+            if (player.equals(this.playersToPlay.get(0))) {
+                this.planning.playAssistantCard(player, choice);
+            }
+            playersHavePlayed.add(playersToPlay.remove(0));
         }
-        playersHavePlayed.add(playersToPlay.remove(0));
+
+        if (playersToPlay.size() == 0) {
+            isPlanningFinished = true;
+            orderPlayersForAction();
+        }
     }
 
 
