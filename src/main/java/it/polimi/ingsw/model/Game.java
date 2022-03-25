@@ -9,7 +9,7 @@ import java.util.Map;
 
 public class Game {
 
-    Map<Integer, Integer> numOfStudent = new HashMap<>(){{
+    private Map<Integer, Integer> numOfStudent = new HashMap<>(){{
         this.put(2, 3);
         this.put(3, 4);
         this.put(4, 3);
