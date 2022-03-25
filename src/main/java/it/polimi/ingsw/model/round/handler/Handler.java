@@ -9,7 +9,11 @@ import java.util.List;
 
 
 public class Handler {
+    private Player actualPlayer;
 
+    public Handler(Player player) {
+        this.actualPlayer = player;
+    }
 
     public int calculateInfluence(){
         return 0;
@@ -53,17 +57,27 @@ public class Handler {
         return influencer;
     }
 
-    public void professorControl() {
-
+    public void professorControl(List<Player> otherPlayers) {
+        for (Player player : otherPlayers) {
+            for (Professor prof : player.getSchool().getProfessorsTable().getPawns()) {
+                if (    actualPlayer.getSchool().getDiningRoomByColor(prof.getColor()).getNumPawns() >
+                        player.getSchool().getDiningRoomByColor(prof.getColor()).getNumPawns()
+                ) {
+                    actualPlayer.getSchool().controlProfessor(prof, player.getSchool().getProfessorsTable());
+                }
+            }
+        }
     }
 
-    public void motherNatureMovement(MotherNature motherNature, AssistantCard card, int steps_choice) {
+    public void motherNatureMovement(Player player, MotherNature motherNature, int steps_choice) {
         Island destination = null;
-        if (steps_choice <= card.getSteps()) {
+        if (steps_choice <= player.lastAssistantCard().getSteps()) {
             motherNature.stepsToMove(steps_choice);
         }
     }
 
+    public void extraAction() {
 
+    }
 
 }

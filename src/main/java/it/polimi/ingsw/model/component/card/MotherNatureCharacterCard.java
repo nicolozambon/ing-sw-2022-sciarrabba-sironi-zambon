@@ -7,7 +7,8 @@ public class MotherNatureCharacterCard extends CharacterCard {
     private CharacterCard card;
 
     public MotherNatureCharacterCard(CharacterCard card) {
-        this.card = card;
+        super(card);
+        this.getParams();//TODO params parsing
     }
 
 }

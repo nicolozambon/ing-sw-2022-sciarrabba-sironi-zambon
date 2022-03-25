@@ -1,5 +1,8 @@
 package it.polimi.ingsw.model.component.card;
 
+import org.w3c.dom.CharacterData;
+
+import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
 
@@ -23,6 +26,20 @@ public class CharacterCard extends Card {
         this.effect = effect;
         this.category = category;
         this.params = params;
+    }
+
+    public CharacterCard(CharacterCard card) {
+        this.id = card.id;
+        this.res_path = card.res_path;
+        this.coins = card.coins;
+        this.setup = card.setup;
+        this.effect = card.effect;
+        this.category = card.category;
+        this.params = card.params;
+    }
+
+    protected Map<String, Object> getParams() {
+        return new HashMap<>(params);
     }
 
     public int getCoins() {

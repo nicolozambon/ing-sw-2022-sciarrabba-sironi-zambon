@@ -13,11 +13,13 @@ public class Round {
 
     private List<Player> playersToPlay;
     private List<Player> playersHavePlayed;
-    private List<Island> islands;
-    private List<Cloud> clouds;
-    private MotherNature motherNature;
-    private List<CharacterCard> characterCards;
-    private List<Coin> coins;
+    private final List<Island> islands;
+    private final List<Cloud> clouds;
+    private final MotherNature motherNature;
+    private final List<CharacterCard> characterCards;
+    private final List<Coin> coins;
+
+    private boolean isPlanningFinished;
 
     private PlanningPhase planning;
     private ActionPhase action;
@@ -33,15 +35,23 @@ public class Round {
         this.clouds = clouds;
         this.motherNature = motherNature;
         this.characterCards = characterCards;
+        this.coins = coins;
         this.numStudentToMove = numStudentToMove;
 
         this.planning = new PlanningPhase();
+        this.isPlanningFinished = false;
+        this.planning.addStudentsToCloud(this.clouds, bag);
+
     }
 
     public void playActionPhase(int player_id) {
-        Player player = this.playersToPlay.get(player_id);
-        if (player.equals(this.playersToPlay.get(0))) {
-            ActionPhase action = new ActionPhase(player);
+        if (isPlanningFinished) {
+            Player player = this.playersToPlay.get(player_id);
+            if (player.equals(this.playersToPlay.get(0))) {
+                List<Player> allPlayer = new ArrayList<>(playersToPlay);
+                allPlayer.addAll(playersHavePlayed);
+                this.action = new ActionPhase(player, allPlayer, numStudentToMove);
+            }
         }
     }
 
@@ -52,6 +62,8 @@ public class Round {
         }
         playersHavePlayed.add(playersToPlay.remove(0));
     }
+
+
 
 
 

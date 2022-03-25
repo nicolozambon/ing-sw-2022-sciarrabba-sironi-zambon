@@ -5,7 +5,10 @@ public class InfluenceCharacterCard extends CharacterCard {
     private CharacterCard card;
 
     public InfluenceCharacterCard(CharacterCard card) {
-        this.card = card;
+        super(card);
+        this.getParams();//TODO params parsing
     }
+
+
 
 }

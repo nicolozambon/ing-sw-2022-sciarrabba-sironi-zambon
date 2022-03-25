@@ -19,6 +19,10 @@ public class Board<T> {
         return new ArrayList<>(pawns);
     }
 
+    public int getNumPawns() {
+        return this.pawns.size();
+    }
+
     public boolean moveInPawn(T pawn, Board<T> src) throws ArrayIndexOutOfBoundsException { //TODO: Is this the right exception?
         try {
             this.pawns.add(pawn);

@@ -5,7 +5,8 @@ public class MovementCharacterCard extends CharacterCard {
     private CharacterCard card;
 
     public MovementCharacterCard(CharacterCard card) {
-        this.card = card;
+        super(card);
+        this.getParams();//TODO params parsing
     }
 
 }
