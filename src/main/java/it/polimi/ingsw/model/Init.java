@@ -53,6 +53,5 @@ public class Init {
             index = generator.nextInt(this.characters.length);
             this.selectedCharacterCards.add(factory.setSubclass(this.characters[index]));
         }
-        //CharacterCardFactory();
     }
 }
