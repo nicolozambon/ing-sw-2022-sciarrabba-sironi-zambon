@@ -49,7 +49,7 @@ package model <<Folder>> {
 
                 + <<Constructor>> CharacterCard (id : int, res_path : String, coins : int, setup : String, effect : String, category : String, params : Map<String, Object>, hasBeenPlayed : boolean)
                 + <<Constructor>> CharacterCard (CharacterCard : CharacterCard)
-                + getId : int
+                + getId() : int
                 # getParams() : Map<String, Object>
                 + getCoins() : int
             }
@@ -160,6 +160,8 @@ package model <<Folder>> {
             + stepsToMove(steps : int) : void
         }
 
+        Island <-DOWN- MotherNature
+
         class NoEntryTile {
             - island : Island
 
@@ -184,9 +186,9 @@ package model <<Folder>> {
 
         class School {
             - owner : Player
-            - entrance : Board<Student> {readOnly}
+            - entrance : Board<Student>
             - diningRoom : Map<Color, Board<Student>>
-            - professorsTable : Board<Professor> {readOnly}
+            - professorsTable : Board<Professor>
             - towersBoard : Board<Tower>
 
             + <<Constructor>> School (owner : Player, students : List<Student>, towers : List<Tower>)
@@ -204,6 +206,7 @@ package model <<Folder>> {
         }
 
         Color <... School
+        Board *-UP- School
 
         class Student {
             + <<Constructor>> Student (color : Color)
@@ -270,12 +273,93 @@ package model <<Folder>> {
             - actualPlayer : Player
             - otherPlayers : List<Player>
             - callableMethod : Map<String, Integer>
-            handler : Handler
+            - handler : Handler
 
-            + <<Constructor>> ActionPhase
+            + <<Constructor>> ActionPhase (player : Player, otherPlayers : List<Player>, numOfStudentToMove : int)
+            + playCharacterCard (card : CharacterCard) : void
+            + moveStudentToDiningRoom (student : Student, coinSrc : List<Coin>) : void
+            + professorControl () : void
+            + moveStudentToIsland (student : Student, island : Island) : void
+            + moveMotherNature (motherNature : MotherNature, steps : int) : void
+            + resolveIsland (motherNature : MotherNature) : void
+            + getStudentsFromCloud (cloud : Cloud) : void
+            + endActionPhase() : void
+        }
+
+        class PlanningPhase {
+            + addStudentsToCloud (clouds : List<Cloud>, bag : StudentBag) : void
+            + playAssistantCard (player : Player, choice : int)
+        }
+
+        class Round {
+            - playersToPlay : List<Player>
+            - playersHavePlayed : List<Player>
+            - islands : List<Island> {readOnly}
+            - clouds : List<Cloud> {readOnly}
+            - motherNature : MotherNature {readOnly}
+            - characterCards : List<CharacterCard> {readOnly}
+            - coins : List<Coin>
+            - isPlanningFinished : boolean
+            - planning : PlanningPhase
+            - action : ActionPhase
+            - numStudentToMove : int {readOnly}
+
+            + <<Constructor>> Round (playersToPlay : List<Player>, islands : List<Island>, clouds : List<Cloud>, motherNature : MotherNature, characterCards : List<CharacterCard>, coins : List<Coin>, bag : StudentBag, numStudentToMove : int)
+            + playActionPhase (player_id : int) : void
+            + playAssistantCardForPlayer (player_id : int, choice : int) : void
+            + orderPlayersForAction () : void
+            + orderPlayersForNextRound() : void
+
         }
    }
 
+   class Game {
+        - numOfStudents : Map<Integer, Integer>
+        - players : ArrayList<Player>
+        - cloud1 : Cloud
+        - cloud2 : Cloud
+        - cloud3 : Cloud
+
+        + <<Constructor>> Game()
+        + getPlayerOrder() : ArrayList<Player>
+        + addPlayer (player : Player)
+        + isThereWinner() : Player
+   }
+
+   class Init {
+        - assistants : AssistantCard[]
+        - characters : CharacterCard[]
+        - selectedCharacterCards : ArrayList<CharacterCard>
+
+        + <<Constructor>> Init()
+        + getAssistantsConfiguration() : AssistantCard[]
+        + getCharactersConfiguration() : CharacterCard[]
+        - readCardsConfiguration() : void
+        - chooseCharacterCards () : void
+   }
+
+   class Player {
+        - nickname : String {readOnly}
+        - school : School {readOnly}
+        - id : int {readOnly}
+        - coins : List<Coin> {readOnly}
+        - assistantCardDeck : Deck
+        - discardPileDeck : Deck
+
+        + <<Constructor>> Player (nickname : String, students : List<Student>, towers : List<Tower>, id : int, ACD : Deck, DPD : Deck, coin : Coin)
+        + getSchool() : School
+        + getNickname() : String
+        + playAssistantCard (index : int) : void
+        + playCharacterCard (card : CharacterCard) : void
+        + getLastAssistantCard() : AssistantCard
+        + moveStudentDiningRoom (student : Student, coins : List<Coin>)
+        + moveStudentIsland (student : Student, island : Island) : void
+        + chooseCloud (cloud : Cloud)
+   }
 }
+
+CharacterCard <--- CharacterCardFactory
+Player <-UP- Game
+Init <-UP- Game
 
 @enduml
