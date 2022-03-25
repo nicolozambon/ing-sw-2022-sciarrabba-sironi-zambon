@@ -1,7 +1,7 @@
 package it.polimi.ingsw.model.component;
 
 public class NoEntryTile {
-    Island island;
+    private Island island;
 
     public NoEntryTile(Island island) {
         this.island = island;

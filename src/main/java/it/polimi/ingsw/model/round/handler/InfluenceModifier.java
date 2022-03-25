@@ -19,7 +19,7 @@ public class InfluenceModifier extends Handler {
     }
 
     @Override
-    public void resolveIsland(MotherNature motherNature, List<Player> othersPlayer) {
-        super.resolveIsland(motherNature, othersPlayer);
+    public void resolveIsland(MotherNature motherNature, List<Player> otherPlayers) {
+        super.resolveIsland(motherNature, otherPlayers);
     }
 }

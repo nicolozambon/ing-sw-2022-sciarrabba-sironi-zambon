@@ -15,7 +15,7 @@ public class Handler {
         this.actualPlayer = player;
     }
 
-    public void resolveIsland(MotherNature motherNature, List<Player> othersPlayer) {
+    public void resolveIsland(MotherNature motherNature, List<Player> otherPlayers) {
 
     }
 

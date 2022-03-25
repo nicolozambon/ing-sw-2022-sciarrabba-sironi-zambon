@@ -10,7 +10,7 @@ public class HandlerFactory {
 
     private CharacterCard card;
 
-    public void HandlerFactory(CharacterCard card) {
+    public HandlerFactory(CharacterCard card) {
         this.card = card;
     }
 
