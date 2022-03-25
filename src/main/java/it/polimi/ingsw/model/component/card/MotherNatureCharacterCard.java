@@ -1,7 +1,13 @@
 package it.polimi.ingsw.model.component.card;
 
+import java.util.Map;
+
 public class MotherNatureCharacterCard extends CharacterCard {
-    public MotherNatureCharacterCard(int id, int cost, String name, String path, String setup, String effect) {
-        super(id, cost, name, path, setup, effect);
+
+    private CharacterCard card;
+
+    public MotherNatureCharacterCard(CharacterCard card) {
+        this.card = card;
     }
+
 }
