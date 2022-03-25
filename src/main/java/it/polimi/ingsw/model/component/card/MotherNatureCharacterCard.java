@@ -1,5 +1,7 @@
 package it.polimi.ingsw.model.component.card;
 
+import it.polimi.ingsw.model.Player;
+
 import java.util.Map;
 
 public class MotherNatureCharacterCard extends CharacterCard {
@@ -9,7 +11,7 @@ public class MotherNatureCharacterCard extends CharacterCard {
     private int extraMovement;
     private boolean extraResolving;
 
-    public MotherNatureCharacterCard(CharacterCard card) {
+    public MotherNatureCharacterCard(Player player, CharacterCard card) {
         super(card);
         Map<String, Object> params = this.getParams();
         this.extraMovement = (int) params.get("extra_movement");
