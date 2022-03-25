@@ -1,6 +1,6 @@
 package it.polimi.ingsw.model.component;
 
-import it.polimi.ingsw.model.enums.Color;
+import it.polimi.ingsw.enums.Color;
 
 public class Student extends Pawn<Color>{
 

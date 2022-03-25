@@ -1,7 +1,6 @@
 package it.polimi.ingsw.model.component;
 
-import it.polimi.ingsw.model.enums.TowerColor;
-import org.junit.Before;
+import it.polimi.ingsw.enums.TowerColor;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.DisplayName;
 import static org.junit.jupiter.api.Assertions.*;

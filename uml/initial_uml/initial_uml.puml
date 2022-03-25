@@ -3,160 +3,279 @@
 skinparam Linetype polyline
 skinparam Linetype ortho
 
+package enums <<Folder>> {
+        enum Color {
+                YELLOW
+                BLUE
+                GREEN
+                RED
+                PINK
+            }
+
+            enum TowerColor {
+                WHITE
+                GRAY
+                BLACK
+            }
+}
+
 package model <<Folder>> {
-    enum Color {
-        YELLOW
-        BLUE
-        GREEN
-        RED
-        PINK
+    package component <<Folder>> {
+        package card <<Folder>> {
+            abstract class Card {
+
+            }
+
+            class AssistantCard {
+                - id : int {readOnly}
+                - String path {readOnly}
+                - int value {readOnly}
+                - int steps {readOnly}
+
+                + <<Constructor>> AssistantCard (id : int, path : String, value : int, steps : int)
+                + getValue () : int
+                + getSteps () : int
+            }
+
+            class CharacterCard {
+                - id : int
+                - res_path : String
+                - coins : int
+                - setup : String
+                - effect : String
+                - category : String
+                - params : Map<String, Object>
+                - hasBeenPlayed : boolean
+
+                + <<Constructor>> CharacterCard (id : int, res_path : String, coins : int, setup : String, effect : String, category : String, params : Map<String, Object>, hasBeenPlayed : boolean)
+                + <<Constructor>> CharacterCard (CharacterCard : CharacterCard)
+                + getId : int
+                # getParams() : Map<String, Object>
+                + getCoins() : int
+            }
+
+            class CharacterCardFactory {
+                + <<Constructor>> CharacterCardFactory()
+                + setSubClass(card : CharacterCard) : CharacterCard
+            }
+
+            class Deck {
+                + cards : List<Card> {readOnly}
+
+                + <<Constructor>> Deck()
+                + <<Constructor>> Deck (cards : List<Card>)
+                + shuffleDeck (deck : Deck) : void
+                + moveInCard (card : Card, src : Deck) : void
+            }
+
+            class InfluenceCharacterCard {
+                - card : CharacterCard
+                - towerInfluence : int
+                - extraInfluence : int
+                - colorWithoutInfluence : boolean
+
+                + <<Constructor>> InfluenceCharacterCard (card : CharacterCard)
+                + getTowerInfluence() : int
+                + extraInfluence() : int
+                + isColorWithoutInfluence() : boolean
+            }
+
+            class MotherNatureCharacterCard {
+                - card : CharacterCard
+                - extraMovement : int
+                - extraResolving : boolean
+
+                + <<Constructor>> MotherNatureCharacterCard (player : Player, card : CharacterCard)
+                + getExtraMovement() : int
+                + isExtraResolving() : boolean
+            }
+
+            class MovementCharacterCard {
+                - card : CharacterCard
+                - towerInfluence : int
+                - extraInfluence : int
+                - colorWithoutInfluence : boolean
+
+                + <<Constructor>> InfluenceCharacterCard (card : CharacterCard)
+                + getTowerInfluence() : int
+                + getExtraInfluence() : int
+                + isColorWithoutInfluence() : boolean
+            }
+
+            Card <|-- AssistantCard
+            Card <|-- CharacterCard
+
+            CharacterCard <|-- InfluenceCharacterCard
+            CharacterCard <|-- MotherNatureCharacterCard
+            CharacterCard <|-- MovementCharacterCard
+
+            Deck *--- Card
+        }
+
+        class Board<T> {
+            - pawns : List<T> {readOnly}
+
+            + <<Constructor>> Board()
+            + <<Constructor>> Board(pawns : List<T>)
+            + getPawns() : List<T>
+            + getNumPawns() : int
+            + moveInPawn(pawn : T, src : Board<T>) : boolean
+        }
+
+        class Cloud {
+            + <<Constructor>> Cloud (students : List<Student>)
+        }
+
+        Board <|-- Cloud : <<bind>> T -> Student
+
+        class Coin {
+
+        }
+
+        class Island {
+            - ID : int
+            - tower : Tower
+            - nextIsland : Island
+            - prevIsland : Island
+            - linkNext : boolean
+            - linkPrev : boolean
+
+            + <<Constructor>> Island (ID : int, students : List<Student>, prev : Island, next : Island)
+            + setTower(tower : Tower) : Tower
+            + getTower(): Tower
+            + getNextIsland() : Island
+            + isLinkNext() : boolean
+            + isLinkPrev() : boolean
+            + linkToNext() : void
+            + linkToPrev() : void
+        }
+
+        Board <|-- Island : <<bind>> T -> Student
+
+        class MotherNature {
+            - position : Island
+
+            + <<Constructor>> MotherNature(position : Island)
+            + getPosition() : Island
+            + stepsToMove(steps : int) : void
+        }
+
+        class NoEntryTile {
+            - island : Island
+
+            + <<Constructor>> NoEntryTile (island : Island)
+            + getIsland() : Island
+        }
+
+        class Pawn<T> {
+            - color : T {readOnly}
+
+            + <<Constructor>> Pawn (color : T)
+            + getColor() : T
+        }
+
+        class Professor {
+            + <<Constructor>> Professor (color : Color)
+        }
+        Pawn <|-- Professor
+        Color <... Professor
     }
+        Pawn <|-- Professor : <<bind>> T -> Color
 
-    enum TowerColor {
-        WHITE
-        GRAY
-        BLACK
-    }
+        class School {
+            - owner : Player
+            - entrance : Board<Student> {readOnly}
+            - diningRoom : Map<Color, Board<Student>>
+            - professorsTable : Board<Professor> {readOnly}
+            - towersBoard : Board<Tower>
 
-    class Game {
-        - ArrayList<Player> playerOrder
+            + <<Constructor>> School (owner : Player, students : List<Student>, towers : List<Tower>)
+            + getOwner() : Player
+            + getEntrance() : Board<Student>
+            + getDiningRoomByColor (color : Color)
+            + getProfessorsTable() : Board<Professor>
+            + getTowersBoard() : Board<Tower>
+            + moveStudentDiningRoom(student : Student) : boolean
+            + moveStudentIsland(student : Student, island : Island) : void
+            + takeStudentFromCloud(cloud : Cloud) : void
+            + controlProfessor (professor : Professor, src : Board<Professor>) : void
+            + takeInTower (tower : Tower) : void
+            + takeOutTower() : Tower
+        }
 
-        + <<constructor>>Game()
-        + void round()
-        + void addPlayer(Player)
-    }
+        Color <... School
 
-    class Board<T> {
-        + List<T> pawns
+        class Student {
+            + <<Constructor>> Student (color : Color)
+        }
 
-        + <<constructor>>Board()
-        + <<constructor>>Board(List<T>)
-        + List<T> getPawns()
-        + T getPawn()
-        + boolean addPawns(List<T>)
-        + boolean addPawn(T)
-    }
-    
-    abstract class Pawn<T> {
-        - T color
+        Pawn <|-- Student : <<bind>> T -> Color
+        Color <... Student
 
-        + <<constructor>>Pawn(T)
-        + T getColor()
-    }
+        class StudentBag {
+            + extractStudentAndMove (destination : Board<Student>) : void
+        }
 
-    abstract class Card{
-        + <<constructor>>Card(Lorem ipsum)
-    }
+        Board <|-- StudentBag : <<bind>> T -> Student
 
-    class Player {
-        - String nickname
-        + School school
+        class Tower {
+            + <<Constructor>> Tower (color : TowerColor)
+        }
+        Pawn <|-- Tower : <<bind>> T -> TowerColor
+        TowerColor <... Tower
 
-        + <<constructor>>Player(String, List<Student>, List<Tower>)
-        + String getNickname()
-    }
+   package round <<Folder>> {
+        package handler <<Folder>> {
+            class Handler {
+                - actualPlayer : Player
 
-    class Island {
-        - Tower tower
+                + <<Constructor>> Handler (player : Player)
+                + resolveIsland (motherNature : MotherNature, otherPlayers : List<Player>) : void
+                + professorControl (otherPlayers : List<Player>) : void
+                + motherNatureMovement (player : Player, motherNature : MotherNature, steps_choice : int) : void
+                + extraAction () : void
+            }
 
-        + <<constructor>>Island(List<Student>)
-        + Tower setTower()
-        + Tower getTower()
-        + Player getInfluencer()
-        - int countByColor(Color)
+            class HandlerFactory {
+                - card : CharacterCard
 
-    }
-    
-    class School {
-        - Player owner
-        + Board diningRoom
-        + Board entrance
-        + Board professorsTable
-        + Board towersBoard
+                + <<Constructor>> HandlerFactory (card : CharacterCard)
+                + buildHandler (player : Player) : Handler
+            }
 
-        + <<constructor>>School(Player, List<Student>, List<Tower>)
-        + Player getOwner()
-    }
+            class InfluenceModifier {
+                + <<Constructor>> InfluenceModifier (player : Player, card : InfluenceCharacterCard)
+                + resolveIsland (motherNature : MotherNature, otherPlayers : List<Player>) : void
+            }
 
-    class Cloud {
-        + <<constructor>>Cloud(List<Student>)
-    }
+            Handler <|-- InfluenceModifier
 
-    class Professor {
-        + <<constructor>>Professor(Color)
-    }
+            class MotherNatureModifier {
+                + <<Constructor>> MotherNatureModifier (player : Player, card : MotherNatureCharacterCard)
+                + motherNatureMovement (player : Player, motherNature : MotherNature, steps_choice : int)
+            }
 
-    class Student {
-        + <<constructor>>Student(Color)
-    }
+            Handler <|-- MotherNatureModifier
 
-    class Tower {
-        + Player owner
+            class MovementModifier {
+                + <<Constructor>> MovementModifier (player : Player, card : MovementCharacterCard)
+                + professorControl (otherPlayers : List<Player>) : void
+                + extraAction () : void
+            }
 
-        + <<constructor>>Tower(Player, TowerColor)
-    }
+            Handler <|-- MovementModifier
+        }
 
-    class MotherNature {
-        - private Island position
+        class ActionPhase {
+            - actualPlayer : Player
+            - otherPlayers : List<Player>
+            - callableMethod : Map<String, Integer>
+            handler : Handler
 
-        + <<constructor>>MotherNature(Island)
-        + Island getPosition()
-        + Island setPosition(Island)
-    }
+            + <<Constructor>> ActionPhase
+        }
+   }
 
-    class AssistantCard {
-        - int value
-        - int movement
-    }
-
-    class CharacterCard {
-        - CharacterCardEffect effect
-    }
-
-    class Deck {
-        - ArrayList<Card> cardArrayList
-        + <<constructor>>Deck(ArrayList<Card>)
-        + Card extractCard()
-    }
-
-    class Coin {
-        - CharacterCard card
-        + CharacterCard getCard()
-    }
-
-    class NoEntryTile {
-        - Island island
-        + Island getPosition()
-    }
-
-    NoEntryTile -UP-> Island
-    CharacterCard <-- Coin
-
-    Card <|-DOWN- AssistantCard
-    Card <|-DOWN- CharacterCard
-
-    Board <|-DOWN- "<<bind>> T->Student" Island
-    Board <|-DOWN- Cloud : <<bind>> T->Student
-
-    School --* Board
-
-    Pawn <|-DOWN- Professor : <<bind>> T->Color
-    Pawn <|-DOWN- Student : <<bind>> T->Color
-    Pawn <|--- Tower : <<bind>> T->TowerColor
-
-    MotherNature -UP-> Island
-
-    Deck *-DOWN- Card
-    Deck <-UP- Player
-
-    Game -DOWN-> Player
-    Game --> School
-    Game -RIGHT-> Pawn
-    
-    Color <.UP. Professor
-    Color <.UP. Student
-
-    TowerColor <.UP. Tower
 }
 
 @enduml

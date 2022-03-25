@@ -7,10 +7,9 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.DisplayName;
 import static org.junit.jupiter.api.Assertions.*;
-import it.polimi.ingsw.model.Game;
-import it.polimi.ingsw.model.Player;
+
 import it.polimi.ingsw.model.component.card.*;
-import it.polimi.ingsw.model.enums.TowerColor;
+
 import java.util.List;
 import java.util.ArrayList;
 

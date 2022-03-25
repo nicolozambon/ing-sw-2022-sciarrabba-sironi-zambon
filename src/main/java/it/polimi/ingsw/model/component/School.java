@@ -1,7 +1,7 @@
 package it.polimi.ingsw.model.component;
 
 import it.polimi.ingsw.model.Player;
-import it.polimi.ingsw.model.enums.Color;
+import it.polimi.ingsw.enums.Color;
 
 import java.util.HashMap;
 import java.util.List;
