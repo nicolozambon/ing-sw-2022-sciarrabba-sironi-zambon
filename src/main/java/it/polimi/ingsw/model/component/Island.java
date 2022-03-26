@@ -1,6 +1,7 @@
 package it.polimi.ingsw.model.component;
 
 import java.util.List;
+import java.util.Objects;
 
 public class Island extends Board<Student> {
 
@@ -11,17 +12,15 @@ public class Island extends Board<Student> {
     private Island nextIsland;
     private Island prevIsland;
 
-    private boolean linkNext;
-    private boolean linkPrev;
+    private boolean unifyNext;
+    private boolean unifyLeft;
 
-    public Island(int ID, List<Student> students, Island prev, Island next) {
-
+    public Island(int ID, List<Student> students) {
         super(students);
         this.ID = ID;
-        this.prevIsland = prev;
-        this.nextIsland = next;
-        linkPrev = false;
-        linkNext = false;
+
+        unifyLeft = false;
+        unifyNext = false;
         tower = null;
     }
 
@@ -43,19 +42,40 @@ public class Island extends Board<Student> {
         return this.prevIsland;
     }
 
-    public boolean isLinkNext() {
-        return linkNext;
+    public void setNextIsland(Island nextIsland) {
+        this.nextIsland = nextIsland;
     }
 
-    public boolean isLinkPrev() {
-        return linkPrev;
+    public void setPrevIsland(Island prevIsland) {
+        this.prevIsland = prevIsland;
     }
 
-    public void linkToNext() {
-        this.linkNext = true;
+    public boolean isUnifyNext() {
+        return unifyNext;
     }
 
-    public void linkToPrev() {
-        this.linkPrev = true;
+    public boolean isUnifyLeft() {
+        return unifyLeft;
+    }
+
+    public void unifyToNext() {
+        this.unifyNext = true;
+    }
+
+    public void unifyToPrev() {
+        this.unifyLeft = true;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Island island = (Island) o;
+        return ID == island.ID;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(ID);
     }
 }

@@ -22,10 +22,10 @@ public class GameTest {
     @BeforeEach
     void initialization() {
         testGame = new Game();
-        List<Student> students1 = new ArrayList<Student>;
-        List<Student> students2 = new ArrayList<Student>;
-        List<Tower> towers1 = new ArrayList<Tower>(BLACK);
-        List<Tower> towers2 = new ArrayList<Tower>(WHITE);
+        List<Student> students1 = new ArrayList<Student>();
+        List<Student> students2 = new ArrayList<Student>();
+        //List<Tower> towers1 = new ArrayList<Tower>(BLACK);
+       // List<Tower> towers2 = new ArrayList<Tower>(WHITE);
         Deck assistantCardDeck1 = new Deck(new ArrayList<Card>());
         Deck discardPileDeck1 = new Deck(new ArrayList<Card>());
         Deck assistantCardDeck2 = new Deck(new ArrayList<Card>());
@@ -33,8 +33,8 @@ public class GameTest {
         Coin coin1 = new Coin();
         Coin coin2 = new Coin();
 
-        player1 = new Player("Player1", students1, towers1, 0, assistantCardDeck1, discardPileDeck1, coin1);
-        player2 = new Player("Player2", students2, towers2, 1, assistantCardDeck2, discardPileDeck2, coin2);
+        //player1 = new Player("Player1", students1, towers1, 0, assistantCardDeck1, discardPileDeck1, coin1);
+       // player2 = new Player("Player2", students2, towers2, 1, assistantCardDeck2, discardPileDeck2, coin2);
 
         playerOrder = testGame.getPlayerOrder();
     }

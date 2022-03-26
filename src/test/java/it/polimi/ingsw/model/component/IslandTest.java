@@ -1,5 +1,6 @@
 package it.polimi.ingsw.model.component;
 
+import java.util.*;
 import it.polimi.ingsw.enums.TowerColor;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.DisplayName;
@@ -9,9 +10,8 @@ public class IslandTest {
 
 
     @Test
-    @DisplayName("Test tower movement")
-    public void checkTowerMovemnt() {
-        Island island = new Island(1, null, null, null);
+    public void checkTowerMovement() {
+        Island island = new Island(1, new ArrayList<>());
 
         Tower towerBlack = new Tower(TowerColor.BLACK);
         Tower towerWhite = new Tower(TowerColor.WHITE);
@@ -25,7 +25,20 @@ public class IslandTest {
 
         island.setTower(towerGrey);
         assertEquals(towerGrey, island.getTower());
-
     }
+
+    @Test
+    public void checkSetNextPrevIsland() {
+        Island island1 = new Island(1, new ArrayList<>());
+        Island island2 = new Island(2, new ArrayList<>());
+
+        island1.setNextIsland(island2);
+        island2.setPrevIsland(island1);
+
+        assertEquals(island1.getNextIsland(), island2);
+        assertEquals(island2.getPrevIsland(), island1);
+    }
+
+
 
 }

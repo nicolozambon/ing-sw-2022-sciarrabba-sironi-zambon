@@ -11,7 +11,7 @@ public class Player {
 
     private final String nickname;
     private final School school;
-    public final int id;
+    public final int ID;
 
     private final List<Coin> coins = new ArrayList<>();
 
@@ -19,12 +19,13 @@ public class Player {
     private final Deck discardPileDeck;
 
 
-    public Player(String nickname, List<Student> students, List<Tower> towers, int id, Deck ACD, Deck DPD, Coin coin) {
+    public Player(int ID, String nickname, List<Student> students, List<Tower> towers,
+                    Deck assistanCardDeck, Coin coin) {
         this.nickname = nickname;
-        this.id = id;
+        this.ID = ID;
         school = new School(this, students, towers);
-        this.assistantCardDeck = ACD;
-        this.discardPileDeck = DPD;
+        this.assistantCardDeck = assistanCardDeck;
+        this.discardPileDeck = new Deck();
         coins.add(coin);
     }
 
@@ -75,11 +76,11 @@ public class Player {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Player player = (Player) o;
-        return id == player.id;
+        return ID == player.ID;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id);
+        return Objects.hash(ID);
     }
 }

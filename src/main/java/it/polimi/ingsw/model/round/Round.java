@@ -93,7 +93,7 @@ public class Round {
         temp.add(this.playersHavePlayed.remove(0));
         temp.addAll(this.playersHavePlayed
                     .stream()
-                    .sorted(Comparator.comparingInt(x -> x.id))
+                    .sorted(Comparator.comparingInt(x -> x.ID))
                     .collect(Collectors.toList()));
 
         this.playersToPlay = temp;

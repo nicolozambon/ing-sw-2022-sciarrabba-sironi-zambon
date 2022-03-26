@@ -10,7 +10,7 @@ public class CharacterCardFactory {
             case "influence":
                 final_card = new InfluenceCharacterCard(card);
             case "mother_nature":
-                final_card = new MotherNatureCharacterCard(player, card);
+                final_card = new MotherNatureCharacterCard(card);
             case "movement":
                 final_card = new MovementCharacterCard(card);
         }
