@@ -1,5 +1,6 @@
 package it.polimi.ingsw.model;
 
+import it.polimi.ingsw.enums.TowerColor;
 import it.polimi.ingsw.model.component.*;
 import it.polimi.ingsw.model.component.card.*;
 
@@ -11,6 +12,7 @@ public class Player {
 
     private final String nickname;
     private final School school;
+    private final TowerColor towerColor;
     public final int ID;
 
     private final List<Coin> coins = new ArrayList<>();
@@ -19,18 +21,24 @@ public class Player {
     private final Deck discardPileDeck;
 
 
-    public Player(int ID, String nickname, List<Student> students, List<Tower> towers,
-                    Deck assistanCardDeck, Coin coin) {
+    public Player(int ID, String nickname, List<Student> students, List<Tower> towers, Deck assistantCardDeck, Coin coin) {
         this.nickname = nickname;
         this.ID = ID;
-        school = new School(this, students, towers);
-        this.assistantCardDeck = assistanCardDeck;
+        this.school = new School(this, students, towers);
+        this.assistantCardDeck = assistantCardDeck;
         this.discardPileDeck = new Deck();
-        coins.add(coin);
+        this.coins.add(coin);
+
+        // TODO: randomize and choose a color (or is it chosen by the client?).
+        this.towerColor = TowerColor.GREY;
     }
 
     public School getSchool() {
         return school;
+    }
+
+    public TowerColor getTowerColor() {
+        return towerColor;
     }
 
     /**

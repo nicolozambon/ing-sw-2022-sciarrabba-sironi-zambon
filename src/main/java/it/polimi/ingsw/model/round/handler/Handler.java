@@ -7,49 +7,67 @@ import java.util.List;
 
 
 public class Handler {
-    private Player actualPlayer;
+    private final Player actualPlayer;
 
     public Handler(Player player) {
         this.actualPlayer = player;
     }
 
-    public void resolveIsland(MotherNature motherNature, List<Player> otherPlayers) {
-
+    public Player getActualPlayer() {
+        return this.actualPlayer;
     }
 
-    /*public Player getInfluencer(List<Player> players, Island island){
-        Player influencer = null;
-        List<Integer> values = new ArrayList<Integer>();
+    public Player getMostInfluentialPlayerOnIsland(List<Player> otherPlayers, Island island) {
+        Player mip = null;
         Tower tower = island.getTower();
+        int actualPlayerInfluence = 0;
+        int previousInfluence = 0;
+        int influence = 0;
 
-        int highestInfluence = 0;
-        int influence;
+        // TODO add a feature: necessary to return null player if the players has equal influence
 
-        if (tower != null) influencer = tower.owner;
+        if (tower != null) {
+            if (actualPlayer.equals(tower.getOwner())) {
+                influence++;
+            }
+        }
 
-        for (Player player : players) {
+        for (Player player : otherPlayers) {
             influence = 0;
-            if (influencer == player) influence++;
-
-            for(Professor prof : player.getSchool().getProfessorsTable().getPawns()){
-               // influence = influence + island.countByColor(prof.getColor());
+            if (tower != null) {
+                if (player.equals(tower.getOwner())) {
+                    influence++;
+                }
             }
-
-            if (influence > highestInfluence) {
-                highestInfluence = influence;
-                influencer = player;
+            for (Professor professor : player.getSchool().getProfessorsTable().getPawns()) {
+                influence += island.countStudentsByColor(professor.getColor());
             }
-            values.add(influence);
+            if (influence > previousInfluence) {
+                mip = player;
+            }
+            previousInfluence = influence;
         }
 
-        final int streamVar = highestInfluence;
-
-        if( values.stream().filter(x -> x == streamVar).count() > 1){
-            influencer = tower.owner;
+        for (Professor professor : this.actualPlayer.getSchool().getProfessorsTable().getPawns()) {
+            actualPlayerInfluence += island.countStudentsByColor(professor.getColor());
+        }
+        if (actualPlayerInfluence > influence) {
+            mip = this.actualPlayer;
         }
 
-        return influencer;
-    }*/
+        return mip;
+    }
+
+    // To be called after motherNatureMovement().
+    // See "Controlling an Island" and "Conquering an Island" sections at page 6 of the rules.
+    public void resolveIsland(MotherNature motherNature, List<Player> otherPlayers) {
+        Island island = motherNature.getPosition();
+        Player player = null;
+
+        player = this.getMostInfluentialPlayerOnIsland(otherPlayers, island);
+        Tower tower = new Tower(player.getTowerColor());
+        island.setTower(tower);
+    }
 
     public void professorControl(List<Player> otherPlayers) {
         for (Player player : otherPlayers) {

@@ -1,5 +1,7 @@
 package it.polimi.ingsw.model.component;
 
+import it.polimi.ingsw.enums.Color;
+
 import java.util.List;
 import java.util.Objects;
 
@@ -64,6 +66,12 @@ public class Island extends Board<Student> {
 
     public void unifyToPrev() {
         this.unifyLeft = true;
+    }
+
+    public int countStudentsByColor(Color color) {
+        // TODO: implement the method that returns the num of students of the requested color on the island.
+        // Maybe could be useful also in Board class.
+        return 0;
     }
 
     @Override
