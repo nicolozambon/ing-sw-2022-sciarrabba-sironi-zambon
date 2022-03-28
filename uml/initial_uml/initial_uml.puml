@@ -47,9 +47,10 @@ package model <<Folder>> {
                 - params : Map<String, Object>
                 - hasBeenPlayed : boolean
 
-                + <<Constructor>> CharacterCard (id : int, res_path : String, coins : int, setup : String, effect : String, category : String, params : Map<String, Object>, hasBeenPlayed : boolean)
-                + <<Constructor>> CharacterCard (CharacterCard : CharacterCard)
+                + <<Constructor>> CharacterCard (id : int, res_path : String, coins : int, setup : String, effect : String, category : String, params : Map<String, Object>)
+                + <<Constructor>> CharacterCard (card : CharacterCard)
                 + getId() : int
+                + getCategory() : String
                 # getParams() : Map<String, Object>
                 + getCoins() : int
             }
@@ -92,14 +93,14 @@ package model <<Folder>> {
 
             class MovementCharacterCard {
                 - card : CharacterCard
-                - towerInfluence : int
-                - extraInfluence : int
-                - colorWithoutInfluence : boolean
+                - extraControl : int
+                - possibleExchange : int
+                - numOfStudentsToReturn : int
 
                 + <<Constructor>> InfluenceCharacterCard (card : CharacterCard)
-                + getTowerInfluence() : int
-                + getExtraInfluence() : int
-                + isColorWithoutInfluence() : boolean
+                + getExtraControl() : int
+                + getPossibleExchange() : int
+                + getNumOfStudentsToReturn() : boolean
             }
 
             Card <|-- AssistantCard
@@ -137,17 +138,21 @@ package model <<Folder>> {
             - tower : Tower
             - nextIsland : Island
             - prevIsland : Island
-            - linkNext : boolean
-            - linkPrev : boolean
+            - unifyNext : boolean
+            - unifyLeft : boolean
 
-            + <<Constructor>> Island (ID : int, students : List<Student>, prev : Island, next : Island)
+            + <<Constructor>> Island (ID : int, students : List<Student>)
             + setTower(tower : Tower) : Tower
             + getTower(): Tower
             + getNextIsland() : Island
-            + isLinkNext() : boolean
-            + isLinkPrev() : boolean
-            + linkToNext() : void
-            + linkToPrev() : void
+            + getPrevIsland() : Island
+            + setNextIsland(nextIsland : Island) : void
+            + setPrevIsland(prevIsland : Island) : void
+            + isUnifyNext() : boolean
+            + isUnifyPrev() : boolean
+            + unifyToNext() : void
+            + unifyToPrev() : void
+            + countStudentsByColor(color : Color) : int
         }
 
         Board <|-- Island : <<bind>> T -> Student
@@ -169,7 +174,7 @@ package model <<Folder>> {
             + getIsland() : Island
         }
 
-        class Pawn<T> {
+        abstract class Pawn<T> {
             - color : T {readOnly}
 
             + <<Constructor>> Pawn (color : T)
@@ -194,7 +199,7 @@ package model <<Folder>> {
             + <<Constructor>> School (owner : Player, students : List<Student>, towers : List<Tower>)
             + getOwner() : Player
             + getEntrance() : Board<Student>
-            + getDiningRoomByColor (color : Color)
+            + getDiningRoomByColor (color : Color) : Board<Student>
             + getProfessorsTable() : Board<Professor>
             + getTowersBoard() : Board<Tower>
             + moveStudentDiningRoom(student : Student) : boolean
@@ -222,21 +227,28 @@ package model <<Folder>> {
         Board <|-- StudentBag : <<bind>> T -> Student
 
         class Tower {
+            - owner : Player
+
             + <<Constructor>> Tower (color : TowerColor)
+            + setOwner(owner : Player) : void
+            + getOwner() : Player
         }
+
         Pawn <|-- Tower : <<bind>> T -> TowerColor
         TowerColor <... Tower
 
    package round <<Folder>> {
         package handler <<Folder>> {
             class Handler {
-                - actualPlayer : Player
+                - actualPlayer : Player {readOnly}
 
                 + <<Constructor>> Handler (player : Player)
-                + resolveIsland (motherNature : MotherNature, otherPlayers : List<Player>) : void
+                + getActualPlayer() : Player
+                + getMostInfluentialPlayerOnIsland(otherPlayers : List<Player>, island : Island) : Player
+                + resolveIsland(motherNature : MotherNature, otherPlayers : List<Player>) : void
                 + professorControl (otherPlayers : List<Player>) : void
-                + motherNatureMovement (player : Player, motherNature : MotherNature, steps_choice : int) : void
-                + extraAction () : void
+                + motherNatureMovement(player : Player, motherNature : MotherNature, steps_choice : int) : void
+                + extraAction(player : Player, motherNature : MotherNature, steps_choice : int) : void
             }
 
             class HandlerFactory {
@@ -247,23 +259,29 @@ package model <<Folder>> {
             }
 
             class InfluenceModifier {
+                - card : InfluenceCharacterCard
+
                 + <<Constructor>> InfluenceModifier (player : Player, card : InfluenceCharacterCard)
-                + resolveIsland (motherNature : MotherNature, otherPlayers : List<Player>) : void
+                + getMostInfluentialPlayerOnIsland(otherPlayers : List<Player>, island : Island) : Player
             }
 
             Handler <|-- InfluenceModifier
 
             class MotherNatureModifier {
+                - card : MotherNatureCharacterCard
+
                 + <<Constructor>> MotherNatureModifier (player : Player, card : MotherNatureCharacterCard)
-                + motherNatureMovement (player : Player, motherNature : MotherNature, steps_choice : int)
+                + motherNatureMovement(player : Player, motherNature : MotherNature, steps_choice : int) : void
+                + extraAction(player : Player, motherNature : MotherNature, steps_choice : int) : void
             }
 
             Handler <|-- MotherNatureModifier
 
             class MovementModifier {
+                - card : MovementCharacterCard
+
                 + <<Constructor>> MovementModifier (player : Player, card : MovementCharacterCard)
                 + professorControl (otherPlayers : List<Player>) : void
-                + extraAction () : void
             }
 
             Handler <|-- MovementModifier
@@ -288,7 +306,7 @@ package model <<Folder>> {
 
         class PlanningPhase {
             + addStudentsToCloud (clouds : List<Cloud>, bag : StudentBag) : void
-            + playAssistantCard (player : Player, choice : int)
+            + playAssistantCard (player : Player, choice : int) : void
         }
 
         class Round {
@@ -321,7 +339,7 @@ package model <<Folder>> {
 
         + <<Constructor>> Game()
         + getPlayerOrder() : ArrayList<Player>
-        + addPlayer (player : Player)
+        + addPlayer (player : Player) : void
         + isThereWinner() : Player
    }
 
@@ -340,13 +358,15 @@ package model <<Folder>> {
    class Player {
         - nickname : String {readOnly}
         - school : School {readOnly}
+        - towerColor : TowerColor {readOnly}
         - id : int {readOnly}
         - coins : List<Coin> {readOnly}
         - assistantCardDeck : Deck
         - discardPileDeck : Deck
 
-        + <<Constructor>> Player (nickname : String, students : List<Student>, towers : List<Tower>, id : int, ACD : Deck, DPD : Deck, coin : Coin)
+        + <<Constructor>> Player (nickname : String, students : List<Student>, towers : List<Tower>, id : int, assistantCardDeck : Deck, coin : Coin)
         + getSchool() : School
+        + getTowerColor : TowerColor
         + getNickname() : String
         + playAssistantCard (index : int) : void
         + playCharacterCard (card : CharacterCard) : void
