@@ -15,13 +15,13 @@ public class Island extends Board<Student> {
     private Island prevIsland;
 
     private boolean unifyNext;
-    private boolean unifyLeft;
+    private boolean unifyPrev;
 
     public Island(int ID, List<Student> students) {
         super(students);
         this.ID = ID;
 
-        unifyLeft = false;
+        unifyPrev = false;
         unifyNext = false;
         tower = null;
     }
@@ -56,8 +56,8 @@ public class Island extends Board<Student> {
         return unifyNext;
     }
 
-    public boolean isUnifyLeft() {
-        return unifyLeft;
+    public boolean isUnifyPrev() {
+        return unifyPrev;
     }
 
     public void unifyToNext() {
@@ -65,7 +65,7 @@ public class Island extends Board<Student> {
     }
 
     public void unifyToPrev() {
-        this.unifyLeft = true;
+        this.unifyPrev = true;
     }
 
     public int countStudentsByColor(Color color) {

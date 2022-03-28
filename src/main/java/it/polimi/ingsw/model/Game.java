@@ -17,9 +17,7 @@ public class Game {
 
     private ArrayList<Player> players;
 
-    private Cloud Cloud1;
-    private Cloud Cloud2;
-    private Cloud Cloud3;
+    private ArrayList<Cloud> Clouds;
 
     public Game() {
         StudentBag studentbag = new StudentBag();
