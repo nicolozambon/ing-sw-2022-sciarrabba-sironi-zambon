@@ -2,7 +2,6 @@ package it.polimi.ingsw.model.round.handler;
 
 import it.polimi.ingsw.model.Player;
 import it.polimi.ingsw.model.component.Island;
-import it.polimi.ingsw.model.component.MotherNature;
 import it.polimi.ingsw.model.component.Professor;
 import it.polimi.ingsw.model.component.Tower;
 import it.polimi.ingsw.model.component.card.InfluenceCharacterCard;
