@@ -316,9 +316,8 @@ package model <<Folder>> {
    class Game {
         - numOfStudents : Map<Integer, Integer>
         - players : ArrayList<Player>
-        - cloud1 : Cloud
-        - cloud2 : Cloud
-        - cloud3 : Cloud
+        - clouds : List<Cloud>
+        - coins : List<Coin>
 
         + <<Constructor>> Game()
         + getPlayerOrder() : ArrayList<Player>
@@ -361,5 +360,9 @@ package model <<Folder>> {
 CharacterCard <--- CharacterCardFactory
 Player <-UP- Game
 Init <-UP- Game
+Player <--- Coin
+Round <--- ActionPhase
+Round <--- PlanningPhase
+Handler <--- HandlerFactory
 
 @enduml
