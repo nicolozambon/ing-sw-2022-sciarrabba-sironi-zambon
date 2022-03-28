@@ -25,6 +25,10 @@ public class MotherNatureModifier extends Handler {
         if (steps_choice <= (player.getLastAssistantCard().getSteps() + this.card.getExtraMovement())) {
             motherNature.stepsToMove(steps_choice);
         }
+    }
+
+    @Override
+    public void extraAction(Player player, MotherNature motherNature, int steps_choice) {
         if (this.card.isExtraResolving()) {
             // TODO: correct the extraResolving part.
             super.motherNatureMovement(player, motherNature, steps_choice);

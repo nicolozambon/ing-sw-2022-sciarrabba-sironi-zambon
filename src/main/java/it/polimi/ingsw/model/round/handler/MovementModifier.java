@@ -43,9 +43,4 @@ public class MovementModifier extends Handler {
             }
         }
     }
-
-    @Override
-    public void extraAction() {
-        super.extraAction();
-    }
 }

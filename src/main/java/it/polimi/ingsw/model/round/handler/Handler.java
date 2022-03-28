@@ -88,7 +88,7 @@ public class Handler {
         }
     }
 
-    public void extraAction() {
+    public void extraAction(Player player, MotherNature motherNature, int steps_choice) {
 
     }
 
