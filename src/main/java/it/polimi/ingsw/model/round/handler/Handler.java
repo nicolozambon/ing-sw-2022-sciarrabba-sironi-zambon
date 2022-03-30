@@ -81,14 +81,14 @@ public class Handler {
         }
     }
 
-    public void motherNatureMovement(Player player, MotherNature motherNature, int steps_choice) {
+    public void motherNatureMovement(Player player, MotherNature motherNature, int stepsChoice) {
         Island destination = null;
-        if (steps_choice <= player.getLastAssistantCard().getSteps()) {
-            motherNature.stepsToMove(steps_choice);
+        if (stepsChoice <= player.getLastAssistantCard().getSteps()) {
+            motherNature.stepsToMove(stepsChoice);
         }
     }
 
-    public void extraAction(Player player, MotherNature motherNature, int steps_choice) {
+    public void extraAction(Player player, MotherNature motherNature, int stepsChoice) {
 
     }
 
