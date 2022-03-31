@@ -24,7 +24,7 @@ class InitTest {
         Gson gson = new Gson();
         AssistantCard[] assistants = gson.fromJson(new FileReader("src/main/resources/json/assistant_cards.json"), AssistantCard[].class);
         CharacterCard[] characters = gson.fromJson(new FileReader("src/main/resources/json/character_cards.json"), CharacterCard[].class);
-        assertEquals(40, assistants.length);
+        assertEquals(10, assistants.length);
         assertEquals(12, characters.length);
     }
 
