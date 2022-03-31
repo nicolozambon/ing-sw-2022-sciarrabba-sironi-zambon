@@ -1,10 +1,10 @@
-package it.polimi.ingsw.model.round;
+package it.polimi.ingsw.controller.round;
 
 import it.polimi.ingsw.model.*;
 import it.polimi.ingsw.model.component.*;
 import it.polimi.ingsw.model.component.card.CharacterCard;
-import it.polimi.ingsw.model.exception.IllegalActionException;
-import it.polimi.ingsw.model.round.handler.*;
+import it.polimi.ingsw.exceptions.IllegalActionException;
+import it.polimi.ingsw.controller.round.handler.*;
 
 
 import java.util.HashMap;

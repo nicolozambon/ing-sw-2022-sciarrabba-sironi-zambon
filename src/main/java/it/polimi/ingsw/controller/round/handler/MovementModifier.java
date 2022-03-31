@@ -1,10 +1,9 @@
-package it.polimi.ingsw.model.round.handler;
+package it.polimi.ingsw.controller.round.handler;
 
 import it.polimi.ingsw.enums.Color;
 import it.polimi.ingsw.model.Player;
 import it.polimi.ingsw.model.component.Professor;
 import it.polimi.ingsw.model.component.School;
-import it.polimi.ingsw.model.component.card.MotherNatureCharacterCard;
 import it.polimi.ingsw.model.component.card.MovementCharacterCard;
 
 import java.util.List;

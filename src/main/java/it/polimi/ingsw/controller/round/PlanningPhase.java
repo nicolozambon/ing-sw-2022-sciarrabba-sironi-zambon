@@ -1,4 +1,4 @@
-package it.polimi.ingsw.model.round;
+package it.polimi.ingsw.controller.round;
 
 import it.polimi.ingsw.model.*;
 import it.polimi.ingsw.model.component.*;

@@ -1,8 +1,8 @@
 package it.polimi.ingsw.model;
 
+import it.polimi.ingsw.controller.Game;
 import it.polimi.ingsw.model.component.Coin;
 import it.polimi.ingsw.model.component.Student;
-import it.polimi.ingsw.model.component.Tower;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.DisplayName;

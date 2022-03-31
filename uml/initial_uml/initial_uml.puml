@@ -4,19 +4,18 @@ skinparam Linetype polyline
 skinparam Linetype ortho
 
 package enums <<Folder>> {
-        enum Color {
-                YELLOW
-                BLUE
-                GREEN
-                RED
-                PINK
-            }
-
-            enum TowerColor {
-                WHITE
-                GRAY
-                BLACK
-            }
+    enum Color {
+        YELLOW
+        BLUE
+        GREEN
+        RED
+        PINK
+    }
+    enum TowerColor {
+        WHITE
+        GRAY
+        BLACK
+    }
 }
 
 package model <<Folder>> {

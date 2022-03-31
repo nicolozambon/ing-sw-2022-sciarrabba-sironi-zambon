@@ -1,5 +1,6 @@
-package it.polimi.ingsw.model;
+package it.polimi.ingsw.controller;
 
+import it.polimi.ingsw.model.Player;
 import it.polimi.ingsw.model.component.Cloud;
 import it.polimi.ingsw.model.component.StudentBag;
 

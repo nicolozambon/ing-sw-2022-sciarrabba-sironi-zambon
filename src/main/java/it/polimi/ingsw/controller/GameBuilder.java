@@ -1,4 +1,4 @@
-package it.polimi.ingsw.model;
+package it.polimi.ingsw.controller;
 
 import com.google.gson.Gson;
 import it.polimi.ingsw.model.component.card.AssistantCard;
@@ -11,14 +11,14 @@ import java.util.ArrayList;
 import java.util.Random;
 
 
-public class Init {
+public class GameBuilder {
 
     private AssistantCard[] assistants;
     private CharacterCard[] characters;
 
     private ArrayList<CharacterCard> selectedCharacterCards;
 
-    public Init() {
+    public GameBuilder() {
         readCardsConfiguration();
         chooseCharacterCards();
     }
