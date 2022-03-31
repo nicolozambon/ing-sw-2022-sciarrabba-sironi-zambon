@@ -10,17 +10,12 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 
-//Class Round keep players sorted and "mapping" integer to actual object
+//Class Round keep players sorted
 
 public class Round {
 
     private List<Player> playersToPlay;
     private List<Player> playersHavePlayed;
-    private final List<Island> islands;
-    private final List<Cloud> clouds;
-    private final MotherNature motherNature;
-    private final List<CharacterCard> characterCards;
-    private final List<Coin> coins;
 
     private boolean isPlanningFinished;
 
@@ -29,39 +24,24 @@ public class Round {
 
     private final int numStudentToMove;
 
-    public Round(List<Player> playersToPlay, List<Island> islands, List<Cloud> clouds, MotherNature motherNature,
-                 List<CharacterCard> characterCards, List<Coin> coins, StudentBag bag, int numStudentToMove) {
+    public Round(List<Player> players, List<Cloud> clouds, StudentBag bag, int numStudentToMove) {
 
-        this.playersToPlay = playersToPlay;
+        this.playersToPlay = players;
         this.playersHavePlayed = new ArrayList<>();
-        this.islands = islands;
-        this.clouds = clouds;
-        this.motherNature = motherNature;
-        this.characterCards = characterCards;
-        this.coins = coins;
         this.numStudentToMove = numStudentToMove;
 
-        this.planning = new PlanningPhase();
         this.isPlanningFinished = false;
-        this.planning.addStudentsToCloud(this.clouds, bag);
+        this.planning.addStudentsToCloud(clouds, bag);
+
+        this.action = null;
 
     }
 
-    public void playActionPhase(int player_id) {
-        if (isPlanningFinished) {
-            Player player = this.playersToPlay.get(player_id);
-            if (player.equals(this.playersToPlay.get(0))) {
-                List<Player> allPlayer = new ArrayList<>(playersToPlay);
-                allPlayer.addAll(playersHavePlayed);
-                this.action = new ActionPhase(player, allPlayer, numStudentToMove);
-            }
-        }
-    }
 
-    public void playAssistantCardForPlayer(int player_id, int choice) {
+    public void playAssistantCard(int player_id, int choice) {
         if (!isPlanningFinished) {
-            Player player = this.playersToPlay.get(player_id);
-            if (player.equals(this.playersToPlay.get(0))) {
+            Player player = this.playersToPlay.get(0);
+            if (player.ID == player_id) {
                 this.planning.playAssistantCard(player, choice);
             }
             playersHavePlayed.add(playersToPlay.remove(0));
@@ -73,7 +53,36 @@ public class Round {
         }
     }
 
+    public ActionPhase startActionPhase(int player_id) {
+        if (isPlanningFinished && action == null) {
+            Player player = this.playersToPlay.get(0);
+            if (player.ID == player_id) {
+                List<Player> otherPlayers = new ArrayList<>(playersToPlay);
+                otherPlayers.remove(player);
+                otherPlayers.addAll(playersHavePlayed);
+                action = new ActionPhase(player, otherPlayers, numStudentToMove);
+                return action;
+            }
+        }
+        return null;
+    }
 
+    public ActionPhase endActionPhase(int player_id) {
+        if (action != null) {
+            if (this.action.getPlayer().ID == player_id && action.isEnded()) {
+                playersHavePlayed.add(playersToPlay.remove(0));
+                action = null;
+                return action;
+            }
+        }
+        return action;
+    }
+
+
+    public List<Player> end() {
+        orderPlayersForNextRound();
+        return new ArrayList<>(this.playersToPlay);
+    }
 
 
 
@@ -95,7 +104,6 @@ public class Round {
                     .stream()
                     .sorted(Comparator.comparingInt(x -> x.ID))
                     .collect(Collectors.toList()));
-
         this.playersToPlay = temp;
     }
 

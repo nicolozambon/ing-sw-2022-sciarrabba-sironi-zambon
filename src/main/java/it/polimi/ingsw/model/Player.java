@@ -12,7 +12,6 @@ public class Player {
 
     private final String nickname;
     private final School school;
-    private final TowerColor towerColor;
     public final int ID;
 
     private final List<Coin> coins = new ArrayList<>();
@@ -28,24 +27,14 @@ public class Player {
         this.assistantCardDeck = assistantCardDeck;
         this.discardPileDeck = new Deck();
         this.coins.add(coin);
+    }
 
-        // TODO: randomize and choose a color (or is it chosen by the client?).
-        this.towerColor = TowerColor.GREY;
+    public String getNickname() {
+        return this.nickname;
     }
 
     public School getSchool() {
         return school;
-    }
-
-    public TowerColor getTowerColor() {
-        return towerColor;
-    }
-
-    /**
-    * @return Player's nickname
-    **/
-    public String getNickname() {
-        return this.nickname;
     }
 
     public void playAssistantCard(int index) {
@@ -73,10 +62,6 @@ public class Player {
 
     public void moveStudentIsland(Student student, Island island) {
         school.moveStudentIsland(student, island);
-    }
-
-    public void chooseCloud(Cloud cloud) {
-        school.takeStudentsFromCloud(cloud);
     }
 
     @Override

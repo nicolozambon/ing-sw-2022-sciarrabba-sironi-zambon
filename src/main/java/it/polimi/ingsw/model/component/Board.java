@@ -23,14 +23,9 @@ public class Board<T> {
         return this.pawns.size();
     }
 
-    public boolean moveInPawn(T pawn, Board<T> src) throws ArrayIndexOutOfBoundsException { //TODO: Is this the right exception?
-        try {
-            this.pawns.add(pawn);
-            src.pawns.remove(pawn);
-        } catch (ArrayIndexOutOfBoundsException e) {
-            return false;
-        }
-        return true;
+    public void moveInPawn(T pawn, Board<T> src) {
+        this.pawns.add(pawn);
+        src.pawns.remove(pawn);
     }
 
 }

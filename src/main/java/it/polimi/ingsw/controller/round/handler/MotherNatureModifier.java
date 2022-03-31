@@ -20,18 +20,17 @@ public class MotherNatureModifier extends Handler {
     }
 
     @Override
-    public void motherNatureMovement(Player player, MotherNature motherNature, int stepsChoice) {
+    public void motherNatureMovement(MotherNature motherNature, int stepsChoice) {
         Island destination = null;
-        if (stepsChoice <= (player.getLastAssistantCard().getSteps() + this.card.getExtraMovement())) {
+        if (stepsChoice <= (this.getActualPlayer().getLastAssistantCard().getSteps() + this.card.getExtraMovement())) {
             motherNature.stepsToMove(stepsChoice);
         }
     }
 
     @Override
-    public void extraAction(Player player, MotherNature motherNature, int stepsChoice) {
+    public void extraAction(Object obj) {
         if (this.card.isExtraResolving()) {
             // TODO: correct the extraResolving part.
-            super.motherNatureMovement(player, motherNature, stepsChoice);
         }
     }
 }

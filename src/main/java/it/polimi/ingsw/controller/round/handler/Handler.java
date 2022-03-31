@@ -65,8 +65,8 @@ public class Handler {
         Player player = null;
 
         player = this.getMostInfluentialPlayerOnIsland(otherPlayers, island);
-        Tower tower = new Tower(player.getTowerColor());
-        island.setTower(tower);
+        //Tower tower = new Tower(player.getTowerColor());
+        //island.setTower(tower);
     }
 
     public void professorControl(List<Player> otherPlayers) {
@@ -81,14 +81,14 @@ public class Handler {
         }
     }
 
-    public void motherNatureMovement(Player player, MotherNature motherNature, int stepsChoice) {
+    public void motherNatureMovement(MotherNature motherNature, int stepsChoice) {
         Island destination = null;
-        if (stepsChoice <= player.getLastAssistantCard().getSteps()) {
+        if (stepsChoice <= actualPlayer.getLastAssistantCard().getSteps()) {
             motherNature.stepsToMove(stepsChoice);
         }
     }
 
-    public void extraAction(Player player, MotherNature motherNature, int stepsChoice) {
+    public void extraAction(Object obj) {
 
     }
 

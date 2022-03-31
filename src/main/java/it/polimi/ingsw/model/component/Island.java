@@ -69,9 +69,7 @@ public class Island extends Board<Student> {
     }
 
     public int countStudentsByColor(Color color) {
-        // TODO: implement the method that returns the num of students of the requested color on the island.
-        // Maybe could be useful also in Board class.
-        return 0;
+        return (int) getPawns().stream().filter(x -> x.getColor() == color).count();
     }
 
     @Override

@@ -21,7 +21,7 @@ public class GameTest {
 
     @BeforeEach
     void initialization() {
-        testGame = new Game();
+       // testGame = new Game();
         List<Student> students1 = new ArrayList<Student>();
         List<Student> students2 = new ArrayList<Student>();
         //List<Tower> towers1 = new ArrayList<Tower>(BLACK);
@@ -36,7 +36,7 @@ public class GameTest {
         //player1 = new Player("Player1", students1, towers1, 0, assistantCardDeck1, discardPileDeck1, coin1);
        // player2 = new Player("Player2", students2, towers2, 1, assistantCardDeck2, discardPileDeck2, coin2);
 
-        playerOrder = testGame.getPlayerOrder();
+        //playerOrder = testGame.getPlayerOrder();
     }
 
     @Test

@@ -17,8 +17,6 @@ public class Tower extends Pawn<TowerColor>{
     }
 
     public Player getOwner() {
-        Player owner = null;
-        // TODO: create the method that returns the owner of the tower
         return owner;
     }
 
