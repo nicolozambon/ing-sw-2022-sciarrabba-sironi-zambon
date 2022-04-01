@@ -1,8 +1,14 @@
 package it.polimi.ingsw.model.component;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
 
 public class StudentBag extends Board<Student> {
+
+    public StudentBag(List<Student> students) {
+        super(students);
+    }
 
     /**
      * Extracts a student from the StudentBag and puts it in the destination board.
