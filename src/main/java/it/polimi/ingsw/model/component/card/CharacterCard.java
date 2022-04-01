@@ -54,6 +54,10 @@ public class CharacterCard extends Card {
         return id;
     }
 
+    public void incrementCoins() {
+        this.coins++;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

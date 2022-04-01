@@ -1,4 +1,4 @@
-package it.polimi.ingsw.controller.round.handler;
+package it.polimi.ingsw.controller.handler;
 
 import it.polimi.ingsw.model.Player;
 import it.polimi.ingsw.model.component.Island;

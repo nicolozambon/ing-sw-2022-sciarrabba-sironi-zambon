@@ -1,9 +1,8 @@
-package it.polimi.ingsw.controller;
+package it.polimi.ingsw.model;
 
-import it.polimi.ingsw.controller.round.ActionPhase;
-import it.polimi.ingsw.controller.round.Round;
+import it.polimi.ingsw.controller.ActionPhase;
+import it.polimi.ingsw.controller.Controller;
 import it.polimi.ingsw.exceptions.IllegalActionException;
-import it.polimi.ingsw.model.Player;
 import it.polimi.ingsw.model.component.*;
 import it.polimi.ingsw.model.component.card.*;
 
@@ -11,18 +10,18 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class Game {
+public class Model {
 
     private List<Player> players;
     private final List<Island> islands;
     private final List<Cloud> clouds;
     private final MotherNature motherNature;
     private final List<CharacterCard> characterCards;
-    private final List<Coin> coins;
+    private int coins;
     private final StudentBag bag;
     private final int numStudentToMove;
 
-    private Round round;
+    private Controller controller;
     private ActionPhase actionPhase;
 
     private Map<Integer, Integer> numStudentToMovePerPlayer = new HashMap<>(){{
@@ -31,8 +30,8 @@ public class Game {
         //this.put(4, 3);
     }};
 
-    public Game(List<Player> players, List<Island> islands, List<Cloud> clouds, MotherNature motherNature,
-                List<CharacterCard> characterCards, List<Coin> coins, StudentBag bag) {
+    public Model(List<Player> players, List<Island> islands, List<Cloud> clouds, MotherNature motherNature,
+                 List<CharacterCard> characterCards, int coins, StudentBag bag) {
         this.players = players;
         this.islands = islands;
         this.clouds = clouds;
@@ -44,17 +43,14 @@ public class Game {
         this.numStudentToMove = numStudentToMovePerPlayer.get(this.players.size());
     }
 
-    public void startRound() {
-        round = new Round(players, clouds, bag, numStudentToMove);
+    public void playAssistantCard(int player_id, int choice) {
+
     }
 
     public void playCharacterCard(int player_id, int choice) {
-        round.playAssistantCard(player_id, choice);
+        controller.playAssistantCard(player_id, choice);
     }
 
-    public void startActionPhase(int player_id) {
-        actionPhase = round.startActionPhase(player_id);
-    }
 
     public void moveStudentToDiningRoom(int player_id, int choice) {
         Player player = actionPhase.getPlayer();
@@ -85,22 +81,6 @@ public class Game {
         if (player.ID == player_id){
             actionPhase.getStudentsFromCloud(clouds.get(choice));
         }
-    }
-
-    public void extraAction(int player_id, Object o) {
-        Player player = actionPhase.getPlayer();
-        if (player.ID == player_id) {
-            actionPhase.extraAction(o);
-        }
-    }
-
-    public void endActionPhase(int player_id) {
-        actionPhase = round.endActionPhase(player_id);
-    }
-
-    public void endRound() {
-        players = round.end();
-        round = null;
     }
 
 }

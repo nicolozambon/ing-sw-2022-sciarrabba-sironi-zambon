@@ -1,5 +1,7 @@
-package it.polimi.ingsw.controller.round;
+package it.polimi.ingsw.controller;
 
+import it.polimi.ingsw.controller.handler.Handler;
+import it.polimi.ingsw.controller.handler.HandlerFactory;
 import it.polimi.ingsw.model.*;
 import it.polimi.ingsw.model.component.*;
 import it.polimi.ingsw.model.component.card.CharacterCard;
@@ -46,9 +48,9 @@ public class ActionPhase {
         }
     }
 
-    public void moveStudentToDiningRoom(Student student, List<Coin> coinsFund) {
+    public void moveStudentToDiningRoom(Student student) {
         if(callableMethod.get("student_movement") > 0) {
-            this.actualPlayer.moveStudentDiningRoom(student, coinsFund);
+            this.actualPlayer.moveStudentDiningRoom(student);
             callableMethod.put("student_movement", callableMethod.get("student_movement") - 1);
             professorControl();
         }

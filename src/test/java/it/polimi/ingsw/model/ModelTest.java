@@ -1,6 +1,5 @@
 package it.polimi.ingsw.model;
 
-import it.polimi.ingsw.controller.Game;
 import it.polimi.ingsw.model.component.Coin;
 import it.polimi.ingsw.model.component.Student;
 import org.junit.jupiter.api.BeforeEach;
@@ -13,8 +12,8 @@ import it.polimi.ingsw.model.component.card.*;
 import java.util.List;
 import java.util.ArrayList;
 
-public class GameTest {
-    Game testGame;
+public class ModelTest {
+    Model testModel;
     ArrayList<Player> playerOrder;
     Player player1;
     Player player2;
