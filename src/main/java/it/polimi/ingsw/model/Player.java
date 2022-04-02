@@ -1,5 +1,6 @@
 package it.polimi.ingsw.model;
 
+import it.polimi.ingsw.enums.Color;
 import it.polimi.ingsw.enums.TowerColor;
 import it.polimi.ingsw.model.component.*;
 import it.polimi.ingsw.model.component.card.*;
@@ -14,19 +15,19 @@ public class Player {
     private final School school;
     public final int ID;
 
-    private final List<Coin> coins = new ArrayList<>();
+    private int coins;
 
     private final Deck assistantCardDeck;
     private final Deck discardPileDeck;
 
 
-    public Player(int ID, String nickname, List<Student> students, List<Tower> towers, Deck assistantCardDeck, Coin coin) {
+    public Player(int ID, String nickname, List<Student> students, List<Tower> towers, Deck assistantCardDeck) {
         this.nickname = nickname;
         this.ID = ID;
         this.school = new School(this, students, towers);
         this.assistantCardDeck = assistantCardDeck;
         this.discardPileDeck = new Deck();
-        this.coins.add(coin);
+        this.coins = 1;
     }
 
     public String getNickname() {
@@ -37,6 +38,22 @@ public class Player {
         return school;
     }
 
+    public int getCoinValue() {
+        return this.coins;
+    }
+
+    public void setCoinValue(int value) {
+        this.coins = value;
+    }
+
+    public void increaseCoinValueByOne() {
+        this.coins++;
+    }
+
+    public void decreaseCoinValueByOne() {
+        this.coins--;
+    }
+
     public void playAssistantCard(int index) {
         Card chosen = assistantCardDeck.cards.get(index);
         discardPileDeck.moveInCard(chosen, assistantCardDeck);
@@ -44,9 +61,9 @@ public class Player {
 
     public void playCharacterCard(CharacterCard card) {
         int cost = card.getCoins();
-        if (coins.size() < cost);
+        if (coins < cost);
         for (int i = 0; i < cost; i++){
-            coins.remove(0);
+            this.decreaseCoinValueByOne();
         }
     }
 
@@ -54,9 +71,10 @@ public class Player {
         return (AssistantCard)discardPileDeck.cards.get(discardPileDeck.cards.size()-1);
     }
 
-    public void moveStudentDiningRoom(Student student, List<Coin> coins) {
+    public void moveStudentDiningRoom(Student student, Model model) {
         if (school.moveStudentDiningRoom(student)) {
-            this.coins.add(coins.remove(0));
+            this.increaseCoinValueByOne();
+            model.decreaseCoinValueByOne();
         }
     }
 

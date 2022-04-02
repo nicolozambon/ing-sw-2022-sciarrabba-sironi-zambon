@@ -1,6 +1,5 @@
 package it.polimi.ingsw.model;
 
-import it.polimi.ingsw.model.component.Coin;
 import it.polimi.ingsw.model.component.Student;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -29,8 +28,7 @@ public class ModelTest {
         Deck discardPileDeck1 = new Deck(new ArrayList<Card>());
         Deck assistantCardDeck2 = new Deck(new ArrayList<Card>());
         Deck discardPileDeck2 = new Deck(new ArrayList<Card>());
-        Coin coin1 = new Coin();
-        Coin coin2 = new Coin();
+        int numCoins = 2;
 
         //player1 = new Player("Player1", students1, towers1, 0, assistantCardDeck1, discardPileDeck1, coin1);
        // player2 = new Player("Player2", students2, towers2, 1, assistantCardDeck2, discardPileDeck2, coin2);

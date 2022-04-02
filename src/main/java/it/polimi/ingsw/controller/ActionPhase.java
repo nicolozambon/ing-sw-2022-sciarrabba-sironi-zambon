@@ -6,7 +6,6 @@ import it.polimi.ingsw.model.*;
 import it.polimi.ingsw.model.component.*;
 import it.polimi.ingsw.model.component.card.CharacterCard;
 import it.polimi.ingsw.exceptions.IllegalActionException;
-import it.polimi.ingsw.controller.round.handler.*;
 
 
 import java.util.HashMap;
@@ -22,11 +21,14 @@ public class ActionPhase {
     private List<Player> otherPlayers;
     private Map<String, Integer> callableMethod;
 
+    private Model model;
+
     private Handler handler;
 
-    public ActionPhase(Player player, List<Player> otherPlayers, int numOfStudentToMove) {
+    public ActionPhase(Player player, List<Player> otherPlayers, int numOfStudentToMove, Model model) {
         this.actualPlayer = player;
         this.otherPlayers = otherPlayers;
+        this.model = model;
 
         callableMethod = new HashMap<>(){{
             this.put("student_movement", numOfStudentToMove);
@@ -45,12 +47,13 @@ public class ActionPhase {
             callableMethod.put("character_card", callableMethod.get("character_card") - 1);
             callableMethod.put("extra_action", 1);
             this.handler = new HandlerFactory(card).buildHandler(actualPlayer);
+            card.incrementCoinCost();
         }
     }
 
     public void moveStudentToDiningRoom(Student student) {
         if(callableMethod.get("student_movement") > 0) {
-            this.actualPlayer.moveStudentDiningRoom(student);
+            this.actualPlayer.moveStudentDiningRoom(student, this.model);
             callableMethod.put("student_movement", callableMethod.get("student_movement") - 1);
             professorControl();
         }

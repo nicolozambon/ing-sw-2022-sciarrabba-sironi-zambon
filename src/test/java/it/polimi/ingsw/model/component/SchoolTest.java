@@ -31,7 +31,7 @@ class SchoolTest {
         for (int i = 0; i < 8; i++) {
             towers.add(new Tower(TowerColor.GREY));
         }
-        player = new Player( 1,"player", students, towers, new Deck(), new Coin());
+        player = new Player( 1,"player", students, towers, new Deck());
         school = player.getSchool();
     }
 
@@ -60,7 +60,7 @@ class SchoolTest {
     void checkProfessorMovementTest() {
         Professor professor = new Professor(Color.GREEN);
         Island island = new Island(1, new ArrayList<>());
-        Player player = new Player(1, "pippo", new ArrayList<>(), new ArrayList<>(), new Deck(), new Coin());
+        Player player = new Player(1, "pippo", new ArrayList<>(), new ArrayList<>(), new Deck());
         School school = new School(player, new ArrayList<Student>(), new ArrayList<Tower>());
 
         ArrayList<Professor> arrayList = new ArrayList<Professor>();
@@ -84,7 +84,7 @@ class SchoolTest {
 
     @Test
     void takeInTowerTest() {
-        Player owner1 = new Player(1, "pluto", new ArrayList<Student>(), new ArrayList<Tower>(), new Deck(), new Coin());
+        Player owner1 = new Player(1, "pluto", new ArrayList<Student>(), new ArrayList<Tower>(), new Deck());
         Tower tower1 = new Tower(TowerColor.BLACK);
         School school1 = new School(owner1, new ArrayList<Student>(), new ArrayList<Tower>());
 
@@ -98,7 +98,7 @@ class SchoolTest {
 
     @Test
     void takeOutTowerTest() {
-        Player owner1 = new Player(1, "pluto", new ArrayList<Student>(), new ArrayList<Tower>(), new Deck(), new Coin());
+        Player owner1 = new Player(1, "pluto", new ArrayList<Student>(), new ArrayList<Tower>(), new Deck());
         Tower tower1 = new Tower(TowerColor.BLACK);
         ArrayList<Tower> towerList = new ArrayList<Tower>();
         towerList.add(tower1);
@@ -115,7 +115,7 @@ class SchoolTest {
         ArrayList<Student> studentArrayList = new ArrayList<Student>();
         Island island = new Island(1, studentArrayList);
 
-        Player owner1 = new Player(1, "pluto", new ArrayList<Student>(), new ArrayList<Tower>(), new Deck(), new Coin());
+        Player owner1 = new Player(1, "pluto", new ArrayList<Student>(), new ArrayList<Tower>(), new Deck());
         ArrayList<Student> studentArrayList2 = new ArrayList<Student>();
         Student student1 = new Student(Color.BLUE);
         studentArrayList2.add(student1);
@@ -140,7 +140,7 @@ class SchoolTest {
 
         Cloud cloud = new Cloud(studentArrayList);
 
-        Player owner1 = new Player(1, "pluto", new ArrayList<Student>(), new ArrayList<Tower>(), new Deck(), new Coin());
+        Player owner1 = new Player(1, "pluto", new ArrayList<Student>(), new ArrayList<Tower>(), new Deck());
         School school = new School(owner1, new ArrayList<Student>(), new ArrayList<Tower>());
 
         school.takeStudentsFromCloud(cloud);

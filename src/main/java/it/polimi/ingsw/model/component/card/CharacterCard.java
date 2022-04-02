@@ -54,7 +54,7 @@ public class CharacterCard extends Card {
         return id;
     }
 
-    public void incrementCoins() {
+    public void incrementCoinCost() {
         this.coins++;
     }
 

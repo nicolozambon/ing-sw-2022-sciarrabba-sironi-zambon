@@ -23,13 +23,15 @@ public class Controller {
 
     private final int numStudentToMove;
 
-    Model model;
+    private Model model;
 
-    public Controller(List<Player> players, List<Cloud> clouds, StudentBag bag, int numStudentToMove) {
+    public Controller(List<Player> players, List<Cloud> clouds, StudentBag bag, int numStudentToMove, Model model) {
 
         this.playersToPlay = players;
         this.playersHavePlayed = new ArrayList<>();
         this.numStudentToMove = numStudentToMove;
+
+        this.model = model;
 
         this.isPlanningFinished = false;
         this.planning.addStudentsToCloud(clouds, bag);
@@ -39,10 +41,10 @@ public class Controller {
     }
 
 
-    public void playAssistantCard(int player_id, int choice) {
+    public void playAssistantCard(int playerID, int choice) {
         if (!isPlanningFinished) {
             Player player = this.playersToPlay.get(0);
-            if (player.ID == player_id) {
+            if (player.ID == playerID) {
                 this.planning.playAssistantCard(player, choice);
             }
             playersHavePlayed.add(playersToPlay.remove(0));
@@ -54,26 +56,25 @@ public class Controller {
         }
     }
 
-    public ActionPhase startActionPhase(int player_id) {
+    public ActionPhase startActionPhase(int playerID) {
         if (isPlanningFinished && action == null) {
             Player player = this.playersToPlay.get(0);
-            if (player.ID == player_id) {
+            if (player.ID == playerID) {
                 List<Player> otherPlayers = new ArrayList<>(playersToPlay);
                 otherPlayers.remove(player);
                 otherPlayers.addAll(playersHavePlayed);
-                action = new ActionPhase(player, otherPlayers, numStudentToMove);
+                action = new ActionPhase(player, otherPlayers, numStudentToMove, model);
                 return action;
             }
         }
         return null;
     }
 
-    public ActionPhase endActionPhase(int player_id) {
+    public ActionPhase endActionPhase(int playerID) {
         if (action != null) {
-            if (this.action.getPlayer().ID == player_id && action.isEnded()) {
+            if (this.action.getPlayer().ID == playerID && action.isEnded()) {
                 playersHavePlayed.add(playersToPlay.remove(0));
                 action = null;
-                return action;
             }
         }
         return action;

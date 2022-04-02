@@ -43,42 +43,58 @@ public class Model {
         this.numStudentToMove = numStudentToMovePerPlayer.get(this.players.size());
     }
 
-    public void playAssistantCard(int player_id, int choice) {
+    public int getCoins() {
+        return this.coins;
+    }
+
+    public void increaseCoinValueByOne() {
+        this.coins++;
+    }
+
+    public void decreaseCoinValueByOne() {
+        this.coins--;
+    }
+
+    public void addCoinValue(int difference) {
+        this.coins += difference;
+    }
+
+    public void playAssistantCard(int playerID, int choice) {
 
     }
 
-    public void playCharacterCard(int player_id, int choice) {
-        controller.playAssistantCard(player_id, choice);
+    public void playCharacterCard(int playerID, int choice) {
+        controller.playAssistantCard(playerID, choice);
     }
 
 
-    public void moveStudentToDiningRoom(int player_id, int choice) {
+    public void moveStudentToDiningRoom(int playerID, int choice) {
         Player player = actionPhase.getPlayer();
-        if (player.ID == player_id){
+        if (player.ID == playerID){
             Student student = player.getSchool().getEntrance().getPawns().get(choice);
-            actionPhase.moveStudentToDiningRoom(student, coins);
+            actionPhase.moveStudentToDiningRoom(student);
         }
     }
 
-    public void moveStudentToIsland(int player_id, int studentChoice, int islandChoice) throws IllegalActionException {
+    public void moveStudentToIsland(int playerID, int studentChoice, int islandChoice) throws IllegalActionException {
         Player player = actionPhase.getPlayer();
-        if (player.ID == player_id){
+        if (player.ID == playerID){
             Island island = islands.get(islandChoice);
             Student student = player.getSchool().getEntrance().getPawns().get(studentChoice);
             actionPhase.moveStudentToIsland(student, island);
         }
     }
 
-    public void moveMotherNature(int player_id, int stepsChoice) {
+    public void moveMotherNature(int playerID, int stepsChoice) {
         Player player = actionPhase.getPlayer();
-        if (player.ID == player_id){
+        if (player.ID == playerID){
             actionPhase.moveMotherNature(motherNature, stepsChoice);
         }
     }
 
-    public void getStudentsFromCloud(int player_id, int choice) {
+    public void getStudentsFromCloud(int playerID, int choice) {
         Player player = actionPhase.getPlayer();
-        if (player.ID == player_id){
+        if (player.ID == playerID){
             actionPhase.getStudentsFromCloud(clouds.get(choice));
         }
     }
