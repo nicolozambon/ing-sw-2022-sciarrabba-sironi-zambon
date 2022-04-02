@@ -12,9 +12,9 @@ public class School {
     private Player owner;
 
     private final Board<Student> entrance;
-    private Map<Color, Board<Student>> diningRoom;
+    private final Map<Color, Board<Student>> diningRoom;
     private final Board<Professor> professorsTable;
-    private Board<Tower> towersBoard;
+    private final Board<Tower> towersBoard;
 
     public School(Player owner, List<Student> students, List<Tower> towers) {
         this.owner = owner;
@@ -22,14 +22,14 @@ public class School {
         this.entrance = new Board<Student>(students);
 
         this.diningRoom = new HashMap<>();
-        this.diningRoom.put(Color.RED, new Board<Student>());
-        this.diningRoom.put(Color.YELLOW, new Board<Student>());
-        this.diningRoom.put(Color.BLUE, new Board<Student>());
-        this.diningRoom.put(Color.GREEN, new Board<Student>());
-        this.diningRoom.put(Color.PINK, new Board<Student>());
+        this.diningRoom.put(Color.RED, new Board<>());
+        this.diningRoom.put(Color.YELLOW, new Board<>());
+        this.diningRoom.put(Color.BLUE, new Board<>());
+        this.diningRoom.put(Color.GREEN, new Board<>());
+        this.diningRoom.put(Color.PINK, new Board<>());
 
-        this.professorsTable = new Board<Professor>();
-        this.towersBoard = new Board<Tower> (towers);
+        this.professorsTable = new Board<>();
+        this.towersBoard = new Board<> (towers);
     }
 
     public Player getOwner(){
@@ -53,7 +53,7 @@ public class School {
     }
 
     public boolean moveStudentDiningRoom(Student student) {
-        if (this.diningRoom.get(student.getColor()).getPawns().size() < 8) {
+        if (this.diningRoom.get(student.getColor()).getPawns().size() < 10) {
             this.diningRoom.get(student.getColor()).moveInPawn(student, entrance);
         }
 
@@ -71,22 +71,8 @@ public class School {
         }
     }
 
-    public void controlProfessor(Professor professor, Board<Professor> src) {
+    public void setProfessor(Professor professor, Board<Professor> src) {
         professorsTable.moveInPawn(professor, src);
-    }
-
-    public void takeInTower(Tower tower){
-        List<Tower> temp = towersBoard.getPawns();
-        temp.add(tower);
-        towersBoard = new Board<>(temp);
-    }
-
-    public Tower takeOutTower(){
-        Tower tower;
-        List<Tower> temp = towersBoard.getPawns();
-        tower = temp.remove(temp.size()-1);
-        towersBoard = new Board<>(temp);
-        return tower;
     }
 
 }

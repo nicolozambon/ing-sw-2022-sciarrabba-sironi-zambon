@@ -1,15 +1,16 @@
 package it.polimi.ingsw.model.component;
 
 import it.polimi.ingsw.enums.Color;
+import it.polimi.ingsw.model.Player;
 
 import java.util.List;
 import java.util.Objects;
 
 public class Island extends Board<Student> {
 
-    private int ID;
+    private final int ID;
 
-    private Tower tower;
+    private final Board<Tower> towerBoard = new Board<>();
 
     private Island nextIsland;
     private Island prevIsland;
@@ -23,17 +24,21 @@ public class Island extends Board<Student> {
 
         unifyPrev = false;
         unifyNext = false;
-        tower = null;
     }
 
-    public Tower setTower(Tower tower) {
-        Tower temp = this.tower;
-        this.tower = tower;
-        return temp;
+    public void setTower(Player player) {
+        if (towerBoard.getNumPawns() == 0) {
+            Board<Tower> sourceTowerBoard = player.getSchool().getTowersBoard();
+            Tower oldTower = this.getTower();
+            Board<Tower> oldTowerBoard = oldTower.getOwner().getSchool().getTowersBoard();
+
+            oldTowerBoard.moveInPawn(oldTower, towerBoard);
+            towerBoard.moveInPawn(sourceTowerBoard.getPawns().get(0), sourceTowerBoard);
+        }
     }
 
-    public Tower getTower(){
-        return tower;
+    public Tower getTower() {
+        return towerBoard.getPawns().get(0);
     }
 
     public Island getNextIsland() {

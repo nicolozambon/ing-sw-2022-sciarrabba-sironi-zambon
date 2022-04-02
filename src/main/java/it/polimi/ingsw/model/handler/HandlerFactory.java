@@ -1,10 +1,12 @@
-package it.polimi.ingsw.controller.handler;
+package it.polimi.ingsw.model.handler;
 
 import it.polimi.ingsw.model.Player;
 import it.polimi.ingsw.model.component.card.CharacterCard;
 import it.polimi.ingsw.model.component.card.InfluenceCharacterCard;
 import it.polimi.ingsw.model.component.card.MotherNatureCharacterCard;
 import it.polimi.ingsw.model.component.card.MovementCharacterCard;
+
+import java.util.List;
 
 public class HandlerFactory {
 
@@ -14,20 +16,20 @@ public class HandlerFactory {
         this.card = card;
     }
 
-    public Handler buildHandler(Player player) {
+    public Handler buildHandler(List<Player> players) {
         Handler final_handler = null;
         switch (card.getCategory()) {
             case "influence":
-                final_handler = new InfluenceModifier(player, (InfluenceCharacterCard) this.card);
+                final_handler = new InfluenceHandler(players, (InfluenceCharacterCard) this.card);
                 break;
             case "mother_nature":
-                final_handler = new MotherNatureModifier(player, (MotherNatureCharacterCard) this.card);
+                final_handler = new MotherNatureHandler(players, (MotherNatureCharacterCard) this.card);
                 break;
             case "movement":
-                final_handler = new MovementModifier(player, (MovementCharacterCard) this.card);
+                final_handler = new MovementHandler(players, (MovementCharacterCard) this.card);
                 break;
             default:
-                final_handler = new Handler(player);
+                final_handler = new Handler(players);
         }
         return final_handler;
     }

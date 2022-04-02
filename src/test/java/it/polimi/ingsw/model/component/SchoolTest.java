@@ -67,7 +67,7 @@ class SchoolTest {
         arrayList.add(professor);
         Board<Professor> board = new Board<Professor>(arrayList);
 
-        school.controlProfessor(professor, board);
+        school.setProfessor(professor, board);
 
         Board<Professor> professorTable = school.getProfessorsTable();
         List<Professor> professorTableArrayList = professorTable.getPawns();
@@ -81,33 +81,6 @@ class SchoolTest {
             assertTrue(towerBoard.getPawns().contains(tower));
         }
     }
-
-    @Test
-    void takeInTowerTest() {
-        Player owner1 = new Player(1, "pluto", new ArrayList<Student>(), new ArrayList<Tower>(), new Deck());
-        Tower tower1 = new Tower(TowerColor.BLACK);
-        School school1 = new School(owner1, new ArrayList<Student>(), new ArrayList<Tower>());
-
-        school1.takeInTower(tower1);
-
-        Board towerBoard = school1.getTowersBoard();
-        List<Tower> towerBoardList = towerBoard.getPawns();
-
-        assertTrue(towerBoardList.contains(tower1));
-    }
-
-    @Test
-    void takeOutTowerTest() {
-        Player owner1 = new Player(1, "pluto", new ArrayList<Student>(), new ArrayList<Tower>(), new Deck());
-        Tower tower1 = new Tower(TowerColor.BLACK);
-        ArrayList<Tower> towerList = new ArrayList<Tower>();
-        towerList.add(tower1);
-        School school1 = new School(owner1, new ArrayList<Student>(), towerList);
-
-        school1.takeOutTower();
-        assertTrue(school1.getProfessorsTable().getPawns().isEmpty());
-    }
-
 
 
     @Test

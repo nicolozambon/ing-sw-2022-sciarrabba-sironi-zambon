@@ -1,11 +1,8 @@
 package it.polimi.ingsw.model;
 
-import it.polimi.ingsw.enums.Color;
-import it.polimi.ingsw.enums.TowerColor;
 import it.polimi.ingsw.model.component.*;
 import it.polimi.ingsw.model.component.card.*;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
@@ -38,19 +35,15 @@ public class Player {
         return school;
     }
 
-    public int getCoinValue() {
+    public int getCoins() {
         return this.coins;
     }
 
-    public void setCoinValue(int value) {
-        this.coins = value;
-    }
-
-    public void increaseCoinValueByOne() {
+    private void increaseCoinValueByOne() {
         this.coins++;
     }
 
-    public void decreaseCoinValueByOne() {
+    private void decreaseCoinValueByOne() {
         this.coins--;
     }
 
@@ -71,15 +64,20 @@ public class Player {
         return (AssistantCard)discardPileDeck.cards.get(discardPileDeck.cards.size()-1);
     }
 
-    public void moveStudentDiningRoom(Student student, Model model) {
-        if (school.moveStudentDiningRoom(student)) {
+    public boolean moveStudentDiningRoom(Student student, int coins) {
+        if (school.moveStudentDiningRoom(student) && coins > 0) {
             this.increaseCoinValueByOne();
-            model.decreaseCoinValueByOne();
+            return true;
         }
+        return false;
     }
 
     public void moveStudentIsland(Student student, Island island) {
         school.moveStudentIsland(student, island);
+    }
+
+    public void takeStudentsFromCloud(Cloud cloud) {
+        this.school.takeStudentsFromCloud(cloud);
     }
 
     @Override

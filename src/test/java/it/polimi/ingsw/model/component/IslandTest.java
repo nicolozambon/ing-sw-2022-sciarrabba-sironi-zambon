@@ -13,24 +13,6 @@ public class IslandTest {
 
 
     @Test
-    public void checkTowerMovement() {
-        Island island = new Island(1, new ArrayList<>());
-
-        Tower towerBlack = new Tower(TowerColor.BLACK);
-        Tower towerWhite = new Tower(TowerColor.WHITE);
-        Tower towerGrey = new Tower(TowerColor.GREY);
-
-        island.setTower(towerBlack);
-        assertEquals(towerBlack, island.getTower());
-
-        island.setTower(towerWhite);
-        assertEquals(towerWhite, island.getTower());
-
-        island.setTower(towerGrey);
-        assertEquals(towerGrey, island.getTower());
-    }
-
-    @Test
     public void checkSetNextPrevIsland() {
         Island island1 = new Island(1, new ArrayList<>());
         Island island2 = new Island(2, new ArrayList<>());

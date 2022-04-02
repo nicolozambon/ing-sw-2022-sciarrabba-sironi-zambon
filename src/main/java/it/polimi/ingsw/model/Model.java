@@ -1,28 +1,32 @@
 package it.polimi.ingsw.model;
 
-import it.polimi.ingsw.controller.ActionPhase;
-import it.polimi.ingsw.controller.Controller;
 import it.polimi.ingsw.exceptions.IllegalActionException;
 import it.polimi.ingsw.model.component.*;
 import it.polimi.ingsw.model.component.card.*;
+import it.polimi.ingsw.model.handler.Handler;
+import it.polimi.ingsw.model.handler.HandlerFactory;
+import it.polimi.ingsw.enums.*;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+
 public class Model {
 
-    private List<Player> players;
+    private final List<Player> players;
     private final List<Island> islands;
     private final List<Cloud> clouds;
     private final MotherNature motherNature;
     private final List<CharacterCard> characterCards;
     private int coins;
+    private final Board<Professor> startingProfessorBoard;
     private final StudentBag bag;
     private final int numStudentToMove;
 
-    private Controller controller;
-    private ActionPhase actionPhase;
+    Handler handler;
+
 
     private Map<Integer, Integer> numStudentToMovePerPlayer = new HashMap<>(){{
         this.put(2, 3);
@@ -31,72 +35,73 @@ public class Model {
     }};
 
     public Model(List<Player> players, List<Island> islands, List<Cloud> clouds, MotherNature motherNature,
-                 List<CharacterCard> characterCards, int coins, StudentBag bag) {
+                 List<CharacterCard> characterCards, int coins, Board<Professor> startingProfessorBoard, StudentBag bag) {
         this.players = players;
         this.islands = islands;
         this.clouds = clouds;
         this.motherNature = motherNature;
         this.characterCards = characterCards;
         this.coins = coins;
+        this.startingProfessorBoard = startingProfessorBoard;
         this.bag = bag;
-        this.actionPhase = null;
+
+        handler = new Handler(new ArrayList<>(players));
+
         this.numStudentToMove = numStudentToMovePerPlayer.get(this.players.size());
     }
 
-    public int getCoins() {
-        return this.coins;
+    public void playAssistantCard(int playerId, int choice) {
+        players.get(playerId).playAssistantCard(choice);
     }
 
-    public void increaseCoinValueByOne() {
-        this.coins++;
-    }
+    public void playCharacterCard(int playerId, int choice) {
+        CharacterCard card =    characterCards
+                                .stream()
+                                .filter(x -> x.getId() == choice)
+                                .findFirst()
+                                .get();
 
-    public void decreaseCoinValueByOne() {
-        this.coins--;
-    }
+        card.incrementCoinCost();
 
-    public void addCoinValue(int difference) {
-        this.coins += difference;
-    }
-
-    public void playAssistantCard(int playerID, int choice) {
-
-    }
-
-    public void playCharacterCard(int playerID, int choice) {
-        controller.playAssistantCard(playerID, choice);
+        players.get(playerId).playCharacterCard(card);
+        this.handler = new HandlerFactory(card).buildHandler(new ArrayList<>(players));
     }
 
 
-    public void moveStudentToDiningRoom(int playerID, int choice) {
-        Player player = actionPhase.getPlayer();
-        if (player.ID == playerID){
-            Student student = player.getSchool().getEntrance().getPawns().get(choice);
-            actionPhase.moveStudentToDiningRoom(student);
+    public void moveStudentToDiningRoom(int playerId, int choice) {
+        Player player = players.get(playerId);
+        Student student = player.getSchool().getEntrance().getPawns().get(choice);
+        if (player.moveStudentDiningRoom(student, this.coins))  this.coins--;
+        this.handler.professorControl(players.get(playerId), student.getColor(), startingProfessorBoard);
+    }
+
+    public void moveStudentToIsland(int playerId, int studentChoice, int islandChoice) {
+        Player player = players.get(playerId);
+        Student student = player.getSchool().getEntrance().getPawns().get(studentChoice);
+        player.moveStudentIsland(student, islands.get(islandChoice));
+    }
+
+    public void moveMotherNature(int playerId, int stepsChoice) {
+        this.handler.motherNatureMovement(players.get(playerId), motherNature, stepsChoice);
+    }
+
+    public void addStudentsToClouds() {
+        for (Cloud cloud : clouds) {
+            for (int i = 0; i < numStudentToMove; i++) {
+                bag.extractStudentAndMove(cloud);
+            }
         }
     }
 
-    public void moveStudentToIsland(int playerID, int studentChoice, int islandChoice) throws IllegalActionException {
-        Player player = actionPhase.getPlayer();
-        if (player.ID == playerID){
-            Island island = islands.get(islandChoice);
-            Student student = player.getSchool().getEntrance().getPawns().get(studentChoice);
-            actionPhase.moveStudentToIsland(student, island);
-        }
+    public void getStudentsFromCloud(int playerId, int choice) {
+        players.get(playerId).takeStudentsFromCloud(clouds.get(choice));
     }
 
-    public void moveMotherNature(int playerID, int stepsChoice) {
-        Player player = actionPhase.getPlayer();
-        if (player.ID == playerID){
-            actionPhase.moveMotherNature(motherNature, stepsChoice);
-        }
+    public void extraAction(int value) {
+        this.handler.extraAction(value, this);
     }
 
-    public void getStudentsFromCloud(int playerID, int choice) {
-        Player player = actionPhase.getPlayer();
-        if (player.ID == playerID){
-            actionPhase.getStudentsFromCloud(clouds.get(choice));
-        }
+    private void resetHandler() {
+        this.handler = new Handler(this.players);
     }
-
 }
