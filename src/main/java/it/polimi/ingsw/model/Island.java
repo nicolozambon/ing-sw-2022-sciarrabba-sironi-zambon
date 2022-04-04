@@ -50,10 +50,12 @@ public class Island extends Board<Student> {
 
     protected void setNextIsland(Island nextIsland) {
         this.nextIsland = nextIsland;
+        this.unifyToNext();
     }
 
     protected void setPrevIsland(Island prevIsland) {
         this.prevIsland = prevIsland;
+        this.unifyToPrev();
     }
 
     protected boolean isUnifyNext() {

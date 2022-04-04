@@ -23,6 +23,9 @@ public class IslandTest {
 
         assertEquals(island1.getNextIsland(), island2);
         assertEquals(island2.getPrevIsland(), island1);
+
+        assertTrue(island1.isUnifyNext());
+        assertTrue(island2.isUnifyPrev());
     }
 
     @Test
@@ -54,7 +57,4 @@ public class IslandTest {
         numOfGreens = island1.countStudentsByColor(Color.GREEN);
         assertEquals(numOfGreens, 1);
     }
-
-
-
 }
