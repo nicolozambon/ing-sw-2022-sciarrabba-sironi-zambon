@@ -7,7 +7,8 @@
     "setup": "In Setup, draw 4 Students and place them on this card.",
     "effect": "Take 1 Student from this card and place it on an Island of your choice. Then, draw a new Student from the Bag and place it on this card.",
     "category": null,
-    "params": {}
+    "params": {},
+    "extra_action": false
   },
   {
     "id": 2,
@@ -20,7 +21,8 @@
       "extra_control": 1,
       "possible_exchange": 0,
       "num_of_students_to_return": 0
-    }
+    },
+    "extra_action": false
   },
   {
     "id": 3,
@@ -32,7 +34,8 @@
     "params": {
       "extra_movement": 0,
       "extra_resolving": true
-    }
+    },
+    "extra_action": true
   },
   {
     "id": 4,
@@ -44,7 +47,8 @@
     "params": {
       "extra_movement": 2,
       "extra_resolving": false
-    }
+    },
+    "extra_action": false
   },
   {
     "id": 5,
@@ -53,7 +57,8 @@
     "setup": "In Setup, put 4 No Entry tiles on this card.",
     "effect": "Place a No Entry tile on an Island of your choice. The first time Mother Nature ends her movement there, put the No Entry tile back onto this card DO NOT calculate influence on that Island, or place any Towers.",
     "category": null,
-    "params": {}
+    "params": {},
+    "extra_action": false
   },
   {
     "id": 6,
@@ -66,7 +71,8 @@
       "tower_influence": 0,
       "extra_influence": 0,
       "color_without_influence": false
-    }
+    },
+    "extra_action": false
   },
   {
     "id": 7,
@@ -75,7 +81,8 @@
     "setup": "In Setup, draw 6 Students and place them on this card.",
     "effect": "You may take up to 3 Students from this card and replace them with the same number of Students from your Entrance.",
     "category": null,
-    "params": {}
+    "params": {},
+    "extra_action": false
   },
   {
     "id": 8,
@@ -88,7 +95,8 @@
       "tower_influence": 1,
       "extra_influence": 2,
       "color_without_influence": false
-    }
+    },
+    "extra_action": false
   },
   {
     "id": 9,
@@ -101,7 +109,8 @@
       "tower_influence": 1,
       "extra_influence": 0,
       "color_without_influence": true
-    }
+    },
+    "extra_action": true
   },
   {
     "id": 10,
@@ -114,7 +123,8 @@
       "extra_control": 0,
       "possible_exchange": 2,
       "num_of_students_to_return": 0
-    }
+    },
+    "extra_action": true
   },
   {
     "id": 11,
@@ -123,7 +133,8 @@
     "setup": "In Setup, draw 4 Students and place them on this card.",
     "effect": "Take 1 Student from this card and place it in your Dining Room. Then, draw a new Student from the Bag and place it on this card.",
     "category": null,
-    "params": {}
+    "params": {},
+    "extra_action": false
   },
   {
     "id": 12,
@@ -136,6 +147,7 @@
       "extra_control": 0,
       "possible_exchange": 0,
       "num_of_students_to_return": 3
-    }
+    },
+    "extra_action": true
   }
 ]

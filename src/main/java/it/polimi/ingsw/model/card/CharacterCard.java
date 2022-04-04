@@ -17,7 +17,7 @@ public class CharacterCard extends Card {
 
     private boolean hasBeenPlayed = false;
 
-    public CharacterCard(int id, String res_path, int coins, String setup, String effect, String category, Map<String, Object> params, boolean hasExtraAction) {
+    public CharacterCard(int id, String res_path, int coins, String setup, String effect, String category, Map<String, Object> params, Boolean hasExtraAction) {
         this.id = id;
         this.res_path = res_path;
         this.coins = coins;
@@ -36,7 +36,7 @@ public class CharacterCard extends Card {
         this.effect = card.effect;
         this.category = card.category;
         this.params = card.params;
-        //TODO: gestire hasExtraAction qui
+        this.hasExtraAction = card.hasExtraAction;
     }
 
     protected Map<String, Object> getParams() {
@@ -45,6 +45,10 @@ public class CharacterCard extends Card {
 
     public int getCoins() {
         return this.coins;
+    }
+
+    public boolean getHasExtraAction() {
+        return this.hasExtraAction;
     }
 
     public String getCategory() {
