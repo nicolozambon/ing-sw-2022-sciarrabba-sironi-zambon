@@ -1,11 +1,7 @@
 package it.polimi.ingsw.model;
 
-import it.polimi.ingsw.exceptions.IllegalActionException;
-import it.polimi.ingsw.model.component.*;
-import it.polimi.ingsw.model.component.card.*;
-import it.polimi.ingsw.model.handler.Handler;
-import it.polimi.ingsw.model.handler.HandlerFactory;
-import it.polimi.ingsw.enums.*;
+import it.polimi.ingsw.model.card.CharacterCard;
+import it.polimi.ingsw.model.card.*;
 
 import java.util.ArrayList;
 import java.util.HashMap;

@@ -1,6 +1,7 @@
 package it.polimi.ingsw.model;
 
-import it.polimi.ingsw.model.component.Student;
+import it.polimi.ingsw.model.card.Card;
+import it.polimi.ingsw.model.card.Deck;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.DisplayName;

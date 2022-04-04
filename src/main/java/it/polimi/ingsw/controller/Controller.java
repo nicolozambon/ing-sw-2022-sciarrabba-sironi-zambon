@@ -1,7 +1,6 @@
 package it.polimi.ingsw.controller;
 
 import it.polimi.ingsw.model.*;
-import it.polimi.ingsw.model.component.*;
 
 import java.util.ArrayList;
 import java.util.Comparator;
@@ -25,7 +24,7 @@ public class Controller {
 
     private Model model;
 
-    public Controller(List<Player> players, List<Cloud> clouds, StudentBag bag, int numStudentToMove, Model model) {
+    protected Controller(List<Player> players, List<Cloud> clouds, StudentBag bag, int numStudentToMove, Model model) {
 
         this.playersToPlay = players;
         this.playersHavePlayed = new ArrayList<>();
@@ -41,7 +40,7 @@ public class Controller {
     }
 
 
-    public void playAssistantCard(int playerID, int choice) {
+    protected void playAssistantCard(int playerID, int choice) {
         if (!isPlanningFinished) {
             Player player = this.playersToPlay.get(0);
             if (player.ID == playerID) {
@@ -56,7 +55,7 @@ public class Controller {
         }
     }
 
-    public ActionPhase startActionPhase(int playerID) {
+    protected ActionPhase startActionPhase(int playerID) {
         if (isPlanningFinished && action == null) {
             Player player = this.playersToPlay.get(0);
             if (player.ID == playerID) {
@@ -70,7 +69,7 @@ public class Controller {
         return null;
     }
 
-    public ActionPhase endActionPhase(int playerID) {
+    protected ActionPhase endActionPhase(int playerID) {
         if (action != null) {
             if (this.action.getPlayer().ID == playerID && action.isEnded()) {
                 playersHavePlayed.add(playersToPlay.remove(0));
@@ -80,13 +79,10 @@ public class Controller {
         return action;
     }
 
-
-    public List<Player> end() {
+    protected List<Player> end() {
         orderPlayersForNextRound();
         return new ArrayList<>(this.playersToPlay);
     }
-
-
 
     private void orderPlayersForAction(){
         this.playersHavePlayed =

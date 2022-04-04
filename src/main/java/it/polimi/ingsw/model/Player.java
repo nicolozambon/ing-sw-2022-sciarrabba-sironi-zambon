@@ -1,7 +1,10 @@
 package it.polimi.ingsw.model;
 
-import it.polimi.ingsw.model.component.*;
-import it.polimi.ingsw.model.component.card.*;
+import it.polimi.ingsw.model.card.AssistantCard;
+import it.polimi.ingsw.model.card.Card;
+import it.polimi.ingsw.model.card.CharacterCard;
+import it.polimi.ingsw.model.card.Deck;
+import it.polimi.ingsw.model.card.*;
 
 import java.util.List;
 import java.util.Objects;

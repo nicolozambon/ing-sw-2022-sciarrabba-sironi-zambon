@@ -1,7 +1,6 @@
 package it.polimi.ingsw.controller;
 
 import it.polimi.ingsw.model.*;
-import it.polimi.ingsw.model.component.*;
 
 import java.util.List;
 
