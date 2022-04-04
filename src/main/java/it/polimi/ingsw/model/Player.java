@@ -1,10 +1,8 @@
 package it.polimi.ingsw.model;
 
 import it.polimi.ingsw.model.card.AssistantCard;
-import it.polimi.ingsw.model.card.Card;
 import it.polimi.ingsw.model.card.CharacterCard;
 import it.polimi.ingsw.model.card.Deck;
-import it.polimi.ingsw.model.card.*;
 
 import java.util.List;
 import java.util.Objects;
@@ -13,17 +11,17 @@ public class Player {
 
     private final String nickname;
     private final School school;
-    public final int ID;
+    public final int id;
 
     private int coins;
 
-    private final Deck assistantCardDeck;
-    private final Deck discardPileDeck;
+    private final Deck<AssistantCard> assistantCardDeck;
+    private final Deck<AssistantCard> discardPileDeck;
 
 
-    public Player(int ID, String nickname, List<Student> students, List<Tower> towers, Deck assistantCardDeck) {
+    protected Player(int id, String nickname, List<Student> students, List<Tower> towers, Deck<AssistantCard> assistantCardDeck) {
         this.nickname = nickname;
-        this.ID = ID;
+        this.id = id;
         this.school = new School(this, students, towers);
         this.assistantCardDeck = assistantCardDeck;
         this.discardPileDeck = new Deck();
@@ -34,52 +32,45 @@ public class Player {
         return this.nickname;
     }
 
-    public School getSchool() {
+    protected School getSchool() {
         return school;
     }
 
-    public int getCoins() {
+    protected int getCoins() {
         return this.coins;
     }
 
-    private void increaseCoinValueByOne() {
-        this.coins++;
+    protected void playAssistantCard(int index) {
+        for(AssistantCard card : assistantCardDeck.getCards()) {
+            if(card.getId() == index) discardPileDeck.moveInCard(card, assistantCardDeck);
+        }
     }
 
-    private void decreaseCoinValueByOne() {
-        this.coins--;
-    }
-
-    public void playAssistantCard(int index) {
-        Card chosen = assistantCardDeck.cards.get(index);
-        discardPileDeck.moveInCard(chosen, assistantCardDeck);
-    }
-
-    public void playCharacterCard(CharacterCard card) {
+    protected void playCharacterCard(CharacterCard card) {
         int cost = card.getCoins();
-        if (coins < cost);
-        for (int i = 0; i < cost; i++){
-            this.decreaseCoinValueByOne();
+        if (this.coins < cost) {
+            this.coins -= cost;
         }
     }
 
     public AssistantCard getLastAssistantCard() {
-        return (AssistantCard)discardPileDeck.cards.get(discardPileDeck.cards.size()-1);
+        return discardPileDeck.getCards().get(discardPileDeck.getCards().size()-1);
     }
 
-    public boolean moveStudentDiningRoom(Student student, int coins) {
-        if (school.moveStudentDiningRoom(student) && coins > 0) {
-            this.increaseCoinValueByOne();
+    protected boolean moveStudentDiningRoom(Student student, int coinReserve) {
+        school.moveStudentDiningRoom(student);
+        if (coinReserve > 0 && school.getDiningRoomByColor(student.getColor()).getNumPawns() % 3 == 2) {
+            this.coins += 1;
             return true;
         }
         return false;
     }
 
-    public void moveStudentIsland(Student student, Island island) {
+    protected void moveStudentIsland(Student student, Island island) {
         school.moveStudentIsland(student, island);
     }
 
-    public void takeStudentsFromCloud(Cloud cloud) {
+    protected void takeStudentsFromCloud(Cloud cloud) {
         this.school.takeStudentsFromCloud(cloud);
     }
 
@@ -88,11 +79,11 @@ public class Player {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Player player = (Player) o;
-        return ID == player.ID;
+        return id == player.id;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(ID);
+        return Objects.hash(id);
     }
 }

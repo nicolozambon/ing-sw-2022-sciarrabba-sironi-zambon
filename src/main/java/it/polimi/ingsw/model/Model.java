@@ -1,7 +1,6 @@
 package it.polimi.ingsw.model;
 
 import it.polimi.ingsw.model.card.CharacterCard;
-import it.polimi.ingsw.model.card.*;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -16,7 +15,7 @@ public class Model {
     private final List<Cloud> clouds;
     private final MotherNature motherNature;
     private final List<CharacterCard> characterCards;
-    private int coins;
+    private int coinReserve;
     private final Board<Professor> startingProfessorBoard;
     private final StudentBag bag;
     private final int numStudentToMove;
@@ -31,13 +30,13 @@ public class Model {
     }};
 
     public Model(List<Player> players, List<Island> islands, List<Cloud> clouds, MotherNature motherNature,
-                 List<CharacterCard> characterCards, int coins, Board<Professor> startingProfessorBoard, StudentBag bag) {
+                 List<CharacterCard> characterCards, int coinReserve, Board<Professor> startingProfessorBoard, StudentBag bag) {
         this.players = players;
         this.islands = islands;
         this.clouds = clouds;
         this.motherNature = motherNature;
         this.characterCards = characterCards;
-        this.coins = coins;
+        this.coinReserve = coinReserve;
         this.startingProfessorBoard = startingProfessorBoard;
         this.bag = bag;
 
@@ -67,7 +66,7 @@ public class Model {
     public void moveStudentToDiningRoom(int playerId, int choice) {
         Player player = players.get(playerId);
         Student student = player.getSchool().getEntrance().getPawns().get(choice);
-        if (player.moveStudentDiningRoom(student, this.coins))  this.coins--;
+        if (player.moveStudentDiningRoom(student, this.coinReserve))  this.coinReserve--;
         this.handler.professorControl(players.get(playerId), student.getColor(), startingProfessorBoard);
     }
 
@@ -99,5 +98,9 @@ public class Model {
 
     private void resetHandler() {
         this.handler = new Handler(this.players);
+    }
+
+    protected List<Island> getIslands(){
+        return new ArrayList<>(this.islands);
     }
 }

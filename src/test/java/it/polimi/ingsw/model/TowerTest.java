@@ -30,7 +30,7 @@ class TowerTest {
         for (int i = 0; i < 8; i++) {
             towers.add(new Tower(TowerColor.GREY));
         }
-        player = new Player(1, "player", students, towers, new Deck());
+        player = new Player(1, "player", students, towers, new Deck<>());
     }
 
     @Test

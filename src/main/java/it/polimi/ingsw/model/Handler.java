@@ -7,7 +7,7 @@ import java.util.*;
 
 public class Handler {
 
-    private List<Player> players;
+    List<Player> players;
 
     protected Handler(List<Player> players) {
         this.players = players;
@@ -39,7 +39,7 @@ public class Handler {
     protected void motherNatureMovement(Player currentPlayer, MotherNature motherNature, int stepsChoice) {
         if(stepsChoice > 0 && stepsChoice <= currentPlayer.getLastAssistantCard().getSteps()) {
             motherNature.stepsToMove(stepsChoice);
-            switchTowers(motherNature.getPosition(), getMostInfluentialPlayer(motherNature.getPosition()));
+            switchTowers(motherNature.getPosition(), getMostInfluentialPlayer(currentPlayer, motherNature.getPosition()));
             unifyIsland(motherNature.getPosition());
         }
     }
@@ -76,8 +76,8 @@ public class Handler {
      * @param island
      * @return the most influential player
      */
-    protected Player getMostInfluentialPlayer(Island island) {
-        Map<Player, Integer> playerInfluence = new HashMap<Player, Integer>();
+    protected Player getMostInfluentialPlayer(Player currentPlayer, Island island) {
+        Map<Player, Integer> playerInfluence = new HashMap<>();
         int maxInfluence = -1;
         Player playerMaxInfluence = null;
         boolean isValid = false;
@@ -119,7 +119,7 @@ public class Handler {
         }
     }
 
-    private void unifyIsland(Island island) {
+    protected void unifyIsland(Island island) {
         Tower tower = island.getTower();
         if (tower != null) {
 

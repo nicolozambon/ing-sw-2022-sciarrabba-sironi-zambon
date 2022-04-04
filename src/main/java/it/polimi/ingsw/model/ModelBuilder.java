@@ -23,11 +23,11 @@ public class ModelBuilder {
         chooseCharacterCards();
     }
 
-    public AssistantCard[] getAssistantsConfiguration() {
+    protected AssistantCard[] getAssistantsConfiguration() {
         return this.assistants;
     }
 
-    public CharacterCard[] getCharactersConfiguration() {
+    protected CharacterCard[] getCharactersConfiguration() {
         return this.characters;
     }
 

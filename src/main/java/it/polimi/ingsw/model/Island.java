@@ -7,7 +7,7 @@ import java.util.Objects;
 
 public class Island extends Board<Student> {
 
-    private final int ID;
+    private final int id;
 
     private final Board<Tower> towerBoard = new Board<>();
 
@@ -19,21 +19,21 @@ public class Island extends Board<Student> {
 
     protected Island(int ID, List<Student> students) {
         super(students);
-        this.ID = ID;
+        this.id = ID;
 
         unifyPrev = false;
         unifyNext = false;
     }
 
     protected void setTower(Player player) {
-        if (towerBoard.getNumPawns() == 0) {
-            Board<Tower> sourceTowerBoard = player.getSchool().getTowersBoard();
+        Board<Tower> sourceTowerBoard = player.getSchool().getTowersBoard();;
+        if (towerBoard.getNumPawns() > 0) {
             Tower oldTower = this.getTower();
             Board<Tower> oldTowerBoard = oldTower.getOwner().getSchool().getTowersBoard();
 
             oldTowerBoard.moveInPawn(oldTower, towerBoard);
-            towerBoard.moveInPawn(sourceTowerBoard.getPawns().get(0), sourceTowerBoard);
         }
+        towerBoard.moveInPawn(sourceTowerBoard.getPawns().get(0), sourceTowerBoard);
     }
 
     protected Tower getTower() {
@@ -76,16 +76,20 @@ public class Island extends Board<Student> {
         return (int) getPawns().stream().filter(x -> x.getColor() == color).count();
     }
 
+    protected int getId() {
+        return this.id;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Island island = (Island) o;
-        return ID == island.ID;
+        return id == island.id;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(ID);
+        return Objects.hash(id);
     }
 }

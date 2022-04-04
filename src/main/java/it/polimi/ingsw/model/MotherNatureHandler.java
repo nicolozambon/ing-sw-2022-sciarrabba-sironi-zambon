@@ -12,4 +12,15 @@ public class MotherNatureHandler extends Handler {
         super(players);
         this.card = card;
     }
+
+    @Override
+    protected void extraAction(int value, Model model) {
+        Island island = null;
+        for (Island i : model.getIslands()) {
+            if (i.getId() == value) island = i;
+        }
+
+        //TODO fix switchTowers(island, getMostInfluentialPlayer(, island));
+        unifyIsland(island);
+    }
 }

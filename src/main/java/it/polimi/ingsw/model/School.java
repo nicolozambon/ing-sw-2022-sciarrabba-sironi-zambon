@@ -51,13 +51,10 @@ public class School {
         return this.towersBoard;
     }
 
-    protected boolean moveStudentDiningRoom(Student student) {
-        if (this.diningRoom.get(student.getColor()).getPawns().size() < 10) {
+    protected void moveStudentDiningRoom(Student student) {
+        if (this.diningRoom.get(student.getColor()).getNumPawns() < 10) {
             this.diningRoom.get(student.getColor()).moveInPawn(student, entrance);
         }
-
-        if ((this.diningRoom.get(student.getColor()).getPawns().indexOf(student)) % 3 == 2) return true;
-        return false;
     }
 
     protected void moveStudentIsland(Student student, Island island) {

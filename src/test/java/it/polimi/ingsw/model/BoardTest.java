@@ -17,7 +17,7 @@ public class BoardTest {
     private Board<Student> src;
 
     @Test
-    public void checkPawnMovement() {
+    void checkPawnMovement() {
         this.pawn = new Student(Color.BLUE);
         this.dest = new Board<>();
         this.src = new Board<>();
@@ -27,7 +27,7 @@ public class BoardTest {
     }
 
     @Test
-    public void checkListSize() {
+    void checkListSize() {
         List<Student> list = new ArrayList<>();
         for (Color c: Color.values()) {
             list.add(new Student(c));

@@ -13,9 +13,9 @@ public class MovementCharacterCard extends CharacterCard {
     public MovementCharacterCard(CharacterCard card) {
         super(card);
         Map<String, Object> params = this.getParams();
-        this.extraControl = (int) params.get("extra_control");
-        this.possibleExchange = (int) params.get("possible_exchange");
-        this.numOfStudentsToReturn = (int) params.get("num_of_students_to_return");
+        this.extraControl = (Integer) params.get("extra_control");
+        this.possibleExchange = (Integer) params.get("possible_exchange");
+        this.numOfStudentsToReturn = (Integer) params.get("num_of_students_to_return");
     }
 
     public int getExtraControl() {

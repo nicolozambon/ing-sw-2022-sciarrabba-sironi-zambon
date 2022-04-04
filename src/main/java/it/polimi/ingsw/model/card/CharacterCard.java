@@ -4,7 +4,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
 
-public class CharacterCard extends Card {
+public class CharacterCard {
 
     private int id;
     private String res_path;
@@ -14,8 +14,6 @@ public class CharacterCard extends Card {
     private String category;
     private Map<String, Object> params;
     private boolean hasExtraAction;
-
-    private boolean hasBeenPlayed = false;
 
     public CharacterCard(int id, String res_path, int coins, String setup, String effect, String category, Map<String, Object> params, Boolean hasExtraAction) {
         this.id = id;

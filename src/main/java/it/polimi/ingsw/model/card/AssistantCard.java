@@ -2,7 +2,7 @@ package it.polimi.ingsw.model.card;
 
 import java.util.Objects;
 
-public class AssistantCard extends Card {
+public class AssistantCard {
 
     private final int id;
     private final String path;
@@ -22,6 +22,10 @@ public class AssistantCard extends Card {
 
     public int getSteps() {
         return this.steps;
+    }
+
+    public int getId() {
+        return id;
     }
 
     @Override

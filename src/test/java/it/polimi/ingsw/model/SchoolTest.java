@@ -3,6 +3,7 @@ package it.polimi.ingsw.model;
 import it.polimi.ingsw.enums.Color;
 import it.polimi.ingsw.enums.TowerColor;
 import it.polimi.ingsw.model.*;
+import it.polimi.ingsw.model.card.AssistantCard;
 import it.polimi.ingsw.model.card.Deck;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -29,7 +30,7 @@ class SchoolTest {
         for (int i = 0; i < 8; i++) {
             towers.add(new Tower(TowerColor.GREY));
         }
-        player = new Player( 1,"player", students, towers, new Deck());
+        player = new Player( 1,"player", students, towers, new Deck<>());
         school = player.getSchool();
     }
 
@@ -58,7 +59,7 @@ class SchoolTest {
     void checkProfessorMovementTest() {
         Professor professor = new Professor(Color.GREEN);
         Island island = new Island(1, new ArrayList<>());
-        Player player = new Player(1, "pippo", new ArrayList<>(), new ArrayList<>(), new Deck());
+        Player player = new Player(1, "pippo", new ArrayList<>(), new ArrayList<>(), new Deck<>());
         School school = new School(player, new ArrayList<Student>(), new ArrayList<Tower>());
 
         ArrayList<Professor> arrayList = new ArrayList<Professor>();
@@ -86,7 +87,7 @@ class SchoolTest {
         ArrayList<Student> studentArrayList = new ArrayList<Student>();
         Island island = new Island(1, studentArrayList);
 
-        Player owner1 = new Player(1, "pluto", new ArrayList<Student>(), new ArrayList<Tower>(), new Deck());
+        Player owner1 = new Player(1, "pluto", new ArrayList<Student>(), new ArrayList<Tower>(), new Deck<>());
         ArrayList<Student> studentArrayList2 = new ArrayList<Student>();
         Student student1 = new Student(Color.BLUE);
         studentArrayList2.add(student1);
