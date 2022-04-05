@@ -83,6 +83,10 @@ public class Player {
         school.exchangeStudentsDiningRoomEntrance(color, entrancePawnPosition);
     }
 
+    protected int getAssistantCardDeckSize() {
+        return this.assistantCardDeck.getCards().size();
+    }
+
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;

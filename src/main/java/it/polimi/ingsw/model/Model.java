@@ -111,11 +111,89 @@ public class Model {
         }
     }
 
-    protected boolean isThereWinner() {
+    /**
+     * Methos isThereWinner checks if there is at least one condition for which the game ends.
+     * @return NULL if there is no winner, the winning player otherwise.
+     */
+    protected Player isThereWinner() {
+        //The game ends immediately...
+
+        //... when a player builds their last tower -> that player wins the game
         for (Player player : players) {
-            if (player.getSchool().getTowersBoard().getNumPawns() == 0) return true;
+            if (player.getSchool().getTowersBoard().getNumPawns() == 0) return player;
         }
 
+        //... when only 3 groups of islands remain on the table
+        if (numOfGroupsOfIslands() == 3) return playerWithMostTowersOrProfessors();
+
+        //... when the last student has been drawn from the bag
+        if (bag.getPawns().size() == 0) return playerWithMostTowersOrProfessors();
+
+        //... or should any player run out of Assistant Cards in their hand
+        if (aPlayerHasFinishedAssistantCards()) return playerWithMostTowersOrProfessors();
+
+
+        return null;
+    }
+
+    private int numOfGroupsOfIslands () {
+        int numOfGroupOfIslands = 0;
+        int position = 0;
+        Island currentIsland = islands.get(0);
+
+        while (currentIsland.isUnifyPrev()) {
+            currentIsland = currentIsland.getPrevIsland();
+        }
+
+        while (position < islands.size()) {
+            if (!currentIsland.isUnifyNext()) {
+                numOfGroupOfIslands++;
+            }
+            position++;
+            currentIsland = islands.get(position);
+        }
+        return numOfGroupOfIslands;
+    }
+
+    private Player playerWithMostTowersOrProfessors() {
+        int minTowersInBoard = 10;
+        Player playerMinTowersInBoard = null;
+
+        for (Player player : players) {
+            if (player.getSchool().getTowersBoard().getPawns().size() < minTowersInBoard) {
+                minTowersInBoard = player.getSchool().getTowersBoard().getPawns().size();
+                playerMinTowersInBoard = player;
+            }
+        }
+
+        for (Player player : players) {
+            if (player.getSchool().getTowersBoard().getPawns().size() == minTowersInBoard && !player.equals(playerMinTowersInBoard)) {
+                return playerWithMostProfessors();
+            }
+        }
+        return playerMinTowersInBoard;
+    }
+
+    private Player playerWithMostProfessors() {
+        int maxProfessorsControlled = 0;
+        Player playerMaxProfessorControlled = null;
+
+        for (Player player : players) {
+            if (player.getSchool().getProfessorsTable().getPawns().size() > maxProfessorsControlled) {
+                maxProfessorsControlled = player.getSchool().getProfessorsTable().getPawns().size();
+                playerMaxProfessorControlled = player;
+            }
+        }
+
+        return playerMaxProfessorControlled;
+    }
+
+    private boolean aPlayerHasFinishedAssistantCards () {
+        for (Player player : players) {
+            if (player.getAssistantCardDeckSize() == 0) return true;
+        }
         return false;
     }
+
+
 }
