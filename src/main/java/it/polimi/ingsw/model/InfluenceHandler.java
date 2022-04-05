@@ -37,7 +37,7 @@ public class InfluenceHandler extends Handler {
 
     @Override
     protected Player getMostInfluentialPlayer(Player currentPlayer, Island island) {
-        Map<Player, Integer> playerInfluence = new HashMap<Player, Integer>();
+        Map<Player, Integer> playerInfluence = new HashMap<>();
         int maxInfluence = -1;
         Player playerMaxInfluence = null;
         boolean isValid = false;

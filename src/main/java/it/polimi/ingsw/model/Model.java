@@ -110,4 +110,8 @@ public class Model {
             player.returnStudentsToBag(bag, color, num);
         }
     }
+
+    protected boolean isThereWinner() {
+        return false;
+    }
 }

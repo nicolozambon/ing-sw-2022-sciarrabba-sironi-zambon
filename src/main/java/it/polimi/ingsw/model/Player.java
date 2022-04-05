@@ -79,7 +79,10 @@ public class Player {
         this.school.returnStudentsToBag(bag, color, num);
     }
 
-    @Override
+    protected void exchangeStudentsDiningRoomEntrance(Color color, int entrancePawnPosition) {
+        school.exchangeStudentsDiningRoomEntrance(color, entrancePawnPosition);
+    }
+
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;

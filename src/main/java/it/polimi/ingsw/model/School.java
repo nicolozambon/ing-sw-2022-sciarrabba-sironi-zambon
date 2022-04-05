@@ -81,4 +81,12 @@ public class School {
         professorsTable.moveInPawn(professor, src);
     }
 
+    protected void exchangeStudentsDiningRoomEntrance(Color color, int entrancePawnPosition) {
+        Student entranceStudent = entrance.getPawns().get(entrancePawnPosition);
+        Student diningStudent = getDiningRoomByColor(color).getPawns().get(getDiningRoomByColor(color).getNumPawns() - 1);
+
+        entrance.moveInPawn(diningStudent, getDiningRoomByColor(color));
+        getDiningRoomByColor(color).moveInPawn(entranceStudent, entrance);
+    }
+
 }

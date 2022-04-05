@@ -27,7 +27,14 @@ public class Handler {
             if ( !player.equals(playerWithMoreStudent) &&
                  getPlayersNumStudentsDR(player, color) == getPlayersNumStudentsDR(playerWithMoreStudent, color))
             {
-                playerWithMoreStudent = null;
+                if (currentPlayer.equals(player)) {
+                    playerWithMoreStudent = currentPlayer;
+                }
+                else {
+                    playerWithMoreStudent = null;
+                }
+
+
             }
         }
 
@@ -148,7 +155,7 @@ public class Handler {
     }
 
 
-    private Professor getProfessor(Color color, Board<Professor> startingProfBoard) {
+    protected Professor getProfessor(Color color, Board<Professor> startingProfBoard) {
 
         for (Professor prof : startingProfBoard.getPawns()) {
             if (prof.getColor() == color) return prof;
@@ -162,7 +169,7 @@ public class Handler {
         return null;
     }
 
-    private Board<Professor> getProfessorBoard(Color color, Board<Professor> startingProfBoard) {
+    protected Board<Professor> getProfessorBoard(Color color, Board<Professor> startingProfBoard) {
 
         for (Professor prof : startingProfBoard.getPawns()) {
             if (prof.getColor() == color) return startingProfBoard;
@@ -176,7 +183,7 @@ public class Handler {
         return null;
     }
 
-    private int getPlayersNumStudentsDR(Player player, Color color) {
+    protected int getPlayersNumStudentsDR(Player player, Color color) {
         return player.getSchool().getDiningRoomByColor(color).getNumPawns();
     }
 
