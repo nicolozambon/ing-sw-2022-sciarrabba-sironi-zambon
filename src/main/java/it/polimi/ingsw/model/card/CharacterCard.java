@@ -73,4 +73,8 @@ public class CharacterCard {
     public int hashCode() {
         return Objects.hash(coins, setup, effect, category, params);
     }
+
+    public String getSetup() {
+        return this.setup;
+    }
 }

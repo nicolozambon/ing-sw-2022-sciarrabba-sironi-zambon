@@ -13,11 +13,15 @@ import static org.junit.jupiter.api.Assertions.*;
 class CharacterCardTest {
     private CharacterCard[] tests;
 
-    public CharacterCardTest(CharacterCard test) {
+    public CharacterCardTest() {
         try {
             Gson gson = new Gson();
             this.tests = gson.fromJson(new FileReader("src/main/resources/json/character_cards.json"), CharacterCard[].class);
         } catch (FileNotFoundException exception) {}
+    }
+
+    public CharacterCard[] getAll() {
+        return this.tests;
     }
 
     @Test
@@ -33,4 +37,5 @@ class CharacterCardTest {
             assertTrue(coins <= 3 && coins >= 1);
         }
     }
+
 }

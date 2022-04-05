@@ -12,7 +12,7 @@ import static org.junit.jupiter.api.Assertions.*;
 class AssistantCardTest {
     private AssistantCard[] tests;
 
-    public AssistantCardTest(AssistantCard test) {
+    public AssistantCardTest() {
         try {
             Gson gson = new Gson();
             this.tests = gson.fromJson(new FileReader("src/main/resources/json/assistant_cards.json"), AssistantCard[].class);
