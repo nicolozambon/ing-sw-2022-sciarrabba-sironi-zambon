@@ -1,5 +1,6 @@
 package it.polimi.ingsw.model;
 
+import it.polimi.ingsw.enums.Color;
 import it.polimi.ingsw.model.card.AssistantCard;
 import it.polimi.ingsw.model.card.CharacterCard;
 import it.polimi.ingsw.model.card.Deck;
@@ -59,7 +60,7 @@ public class Player {
 
     protected boolean moveStudentDiningRoom(Student student, int coinReserve) {
         school.moveStudentDiningRoom(student);
-        if (coinReserve > 0 && school.getDiningRoomByColor(student.getColor()).getNumPawns() % 3 == 2) {
+        if (coinReserve > 0 && school.getDiningRoomByColor(student.getColor()).getNumPawns() % 3 == 0) {
             this.coins += 1;
             return true;
         }
@@ -72,6 +73,10 @@ public class Player {
 
     protected void takeStudentsFromCloud(Cloud cloud) {
         this.school.takeStudentsFromCloud(cloud);
+    }
+
+    protected void returnStudentsToBag(StudentBag bag, Color color, int num) {
+        this.school.returnStudentsToBag(bag, color, num);
     }
 
     @Override

@@ -14,13 +14,24 @@ public class MotherNatureHandler extends Handler {
     }
 
     @Override
-    protected void extraAction(int value, Model model) {
-        Island island = null;
-        for (Island i : model.getIslands()) {
-            if (i.getId() == value) island = i;
+    protected void motherNatureMovement(Player currentPlayer, MotherNature motherNature, int stepsChoice) {
+        if(stepsChoice > 0 && stepsChoice <= currentPlayer.getLastAssistantCard().getSteps() + card.getExtraMovement()) {
+            motherNature.stepsToMove(stepsChoice);
+            switchTowers(motherNature.getPosition(), getMostInfluentialPlayer(currentPlayer, motherNature.getPosition()));
+            unifyIsland(motherNature.getPosition());
         }
+    }
 
-        //TODO fix switchTowers(island, getMostInfluentialPlayer(, island));
-        unifyIsland(island);
+    @Override
+    protected void extraAction(Player currentPlayer, int value, Model model) {
+        if (card.isExtraResolving()) {
+            Island island = null;
+            for (Island i : model.getIslands()) {
+                if (i.getId() == value) island = i;
+            }
+
+            switchTowers(island, getMostInfluentialPlayer(currentPlayer, island));
+            unifyIsland(island);
+        }
     }
 }

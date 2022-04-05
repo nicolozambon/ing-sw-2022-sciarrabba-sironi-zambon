@@ -64,7 +64,7 @@ public class InfluenceHandler extends Handler {
     }
 
     @Override
-    protected void extraAction(int value, Model model) {
+    protected void extraAction(Player currentPlayer, int value, Model model) {
         colorWithNoInfluence = Color.values()[value];
     }
 }

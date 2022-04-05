@@ -106,7 +106,7 @@ public class Handler {
      * @param island
      * @param newOwner
      */
-    private void switchTowers (Island island, Player newOwner) {
+    protected void switchTowers (Island island, Player newOwner) {
         while (island.isUnifyPrev()) {
             island = island.getPrevIsland();
         }
@@ -143,7 +143,7 @@ public class Handler {
         }
     }
 
-    protected void extraAction(int value, Model model) {
+    protected void extraAction(Player currentPlayer, int value, Model model) {
         // @Override
     }
 

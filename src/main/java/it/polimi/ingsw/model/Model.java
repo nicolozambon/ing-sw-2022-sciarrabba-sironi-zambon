@@ -1,5 +1,6 @@
 package it.polimi.ingsw.model;
 
+import it.polimi.ingsw.enums.Color;
 import it.polimi.ingsw.model.card.CharacterCard;
 
 import java.util.ArrayList;
@@ -93,7 +94,7 @@ public class Model {
     }
 
     public void extraAction(int value) {
-        this.handler.extraAction(value, this);
+        this.handler.extraAction(players.get(0), value, this);
     }
 
     private void resetHandler() {
@@ -102,5 +103,11 @@ public class Model {
 
     protected List<Island> getIslands(){
         return new ArrayList<>(this.islands);
+    }
+
+    protected void returnStudentsToBag(Color color, int num){
+        for (Player player : players) {
+            player.returnStudentsToBag(bag, color, num);
+        }
     }
 }

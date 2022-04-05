@@ -67,6 +67,16 @@ public class School {
         }
     }
 
+    protected void returnStudentsToBag(StudentBag bag, Color color, int num) {
+        Board<Student> diningTable = diningRoom.get(color);
+        for (Student student : diningTable.getPawns()) {
+            if (num > 0) {
+                bag.moveInPawn(student, diningTable);
+                num--;
+            }
+        }
+    }
+
     protected void setProfessor(Professor professor, Board<Professor> src) {
         professorsTable.moveInPawn(professor, src);
     }

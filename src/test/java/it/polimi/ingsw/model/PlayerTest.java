@@ -40,7 +40,7 @@ class PlayerTest {
             towers.add(new Tower(TowerColor.BLACK));
         }
         player = new Player(1, "player", students, towers, deck);
-        assertEquals("player", player.getNickname());
+
         /*deck = new Deck<>(cards);
         students = new ArrayList<>();
         towers = new ArrayList<>();
@@ -53,6 +53,11 @@ class PlayerTest {
         }
         player2 = new Player(2, "player2",students, towers, deck);*/
 
+    }
+
+    @Test
+    void getNickname() {
+        assertEquals("player", player.getNickname());
     }
 
     @Test
@@ -75,7 +80,11 @@ class PlayerTest {
 
         player.moveStudentDiningRoom(new Student(Color.BLUE),20);
         player.moveStudentDiningRoom(new Student(Color.BLUE),20);
-        assertEquals(prevCoins+1, player.getCoins());
+        player.moveStudentDiningRoom(new Student(Color.BLUE),20);
+        player.moveStudentDiningRoom(new Student(Color.BLUE),20);
+        player.moveStudentDiningRoom(new Student(Color.BLUE),20);
+        player.moveStudentDiningRoom(new Student(Color.BLUE),20);
+        assertEquals(prevCoins+2, player.getCoins());
 
 
 
