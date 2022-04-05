@@ -16,27 +16,21 @@ public class MovementHandler extends Handler {
         this.card = card;
     }
 
-    /**extraAction for Card 10. int value is mapped so that each digit is an option following the schema:
-     * most left digit -> entrance pawn position (2)
-     * mid left digit -> entrance pawn color (2)
-     * mid right digit -> entrance pawn position (1)
-     * most right digit -> entrance pawn color (1)
+    /**
      *
      * @param currentPlayer
-     * @param value
+     * @param values values[0] = color 1, values[1] = position 1, values[2] = color 2, values[3] = position 2
      * @param model
      */
     @Override
-    protected void extraAction(Player currentPlayer, int value, Model model) {
+    protected void extraAction(Player currentPlayer, Model model, int ... values) {
         if (card.getNumOfStudentsToReturn() > 0) { //Card 12
-            model.returnStudentsToBag(Color.values()[value], card.getNumOfStudentsToReturn());
+            model.returnStudentsToBag(Color.values()[values[0]], card.getNumOfStudentsToReturn());
         } else if (card.getPossibleExchange() > 0) { //Card 10
-            int num = card.getNumOfStudentsToReturn();
-            for (; num > 0 && num/10 > 0; num = num/100) { //TODO check zeros es 0123
-                currentPlayer.exchangeStudentsDiningRoomEntrance(Color.values()[num%10 - 1], (num/10)%10 - 1);
+            for (int i = 0; i < values.length; i += 2) {
+                currentPlayer.exchangeStudentsDiningRoomEntrance(Color.values()[values[i]], values[i+1]);
             }
         }
-
     }
 
     @Override

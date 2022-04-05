@@ -150,7 +150,7 @@ public class Handler {
         }
     }
 
-    protected void extraAction(Player currentPlayer, int value, Model model) {
+    protected void extraAction(Player currentPlayer, Model model, int ... values) {
         // @Override
     }
 

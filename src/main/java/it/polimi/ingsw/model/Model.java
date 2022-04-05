@@ -93,8 +93,8 @@ public class Model {
         players.get(playerId).takeStudentsFromCloud(clouds.get(choice));
     }
 
-    public void extraAction(int value) {
-        this.handler.extraAction(players.get(0), value, this);
+    public void extraAction(int ... values) {
+        this.handler.extraAction(players.get(0), this, values);
     }
 
     private void resetHandler() {
@@ -112,6 +112,10 @@ public class Model {
     }
 
     protected boolean isThereWinner() {
+        for (Player player : players) {
+            if (player.getSchool().getTowersBoard().getNumPawns() == 0) return true;
+        }
+
         return false;
     }
 }
