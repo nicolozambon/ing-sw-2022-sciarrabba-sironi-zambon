@@ -14,6 +14,8 @@ public class Server {
     private String ip;
     private ServerSocket serverSocket;
 
+    private int numOfPlayers;
+
     public Server(int port){
         this.port = port;
         this.ip = DEFAULT_IP_SETTINGS;
