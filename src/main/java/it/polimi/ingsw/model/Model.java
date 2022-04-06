@@ -126,7 +126,6 @@ public class Model {
         //... or should any player run out of Assistant Cards in their hand
         if (aPlayerHasFinishedAssistantCards()) return playerWithMostTowersOrProfessors();
 
-
         return null;
     }
 
