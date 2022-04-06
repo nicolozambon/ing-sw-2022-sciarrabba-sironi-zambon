@@ -16,7 +16,7 @@ public class ModelBuilder {
     private AssistantCard[] assistants;
     private CharacterCard[] characters;
 
-    private ArrayList<CharacterCard> selectedCharacterCards;
+    private ArrayList<CharacterCard> selectedCharacterCards = new ArrayList<>();
 
     public ModelBuilder() {
         readCardsConfiguration();
@@ -34,10 +34,8 @@ public class ModelBuilder {
     private void readCardsConfiguration() {
         try {
             Gson gson = new Gson();
-            AssistantCard[] assistants = gson.fromJson(new FileReader("src/main/resources/json/assistant_cards.json"), AssistantCard[].class);
-            CharacterCard[] characters = gson.fromJson(new FileReader("src/main/resources/json/character_cards.json"), CharacterCard[].class);
-            this.assistants = assistants;
-            this.characters = characters;
+            this.assistants = gson.fromJson(new FileReader("src/main/resources/json/assistant_cards.json"), AssistantCard[].class);
+            this.characters = gson.fromJson(new FileReader("src/main/resources/json/character_cards.json"), CharacterCard[].class);
             //TODO should check if arrays are not empty
         } catch (FileNotFoundException exception) {
             //TODO Handle exception --> should quit game

@@ -5,8 +5,8 @@ import it.polimi.ingsw.model.ModelBuilder;
 public class Eriantys {
 
     public static void main(String[] args){
-        System.out.println("Welcome to it.polimi.ingsw.Eriantys");
-        new ModelBuilder();
+        System.out.println("Welcome to Eriantys");
+        ModelBuilder mb = new ModelBuilder();
     }
 
 }

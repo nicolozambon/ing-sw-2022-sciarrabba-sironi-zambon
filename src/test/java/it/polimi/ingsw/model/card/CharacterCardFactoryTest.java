@@ -22,13 +22,8 @@ class CharacterCardFactoryTest {
         String setup = null;
         for (CharacterCard card : this.tests) {
             category = card.getCategory();
-            setup = card.getSetup();
             System.out.println(category);
-            if (setup == null) {
-                assertTrue(Arrays.asList(permitted).contains(category));
-            } else {
-                assertEquals(null, category);
-            }
+            assertTrue(Arrays.asList(permitted).contains(category));
         }
     }
 }

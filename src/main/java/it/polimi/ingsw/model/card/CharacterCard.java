@@ -9,17 +9,15 @@ public class CharacterCard {
     private int id;
     private String res_path;
     private int coins;
-    private String setup;
     private String effect;
     private String category;
     private Map<String, Object> params;
     private boolean hasExtraAction;
 
-    public CharacterCard(int id, String res_path, int coins, String setup, String effect, String category, Map<String, Object> params, Boolean hasExtraAction) {
+    public CharacterCard(int id, String res_path, int coins, String effect, String category, Map<String, Object> params, Boolean hasExtraAction) {
         this.id = id;
         this.res_path = res_path;
         this.coins = coins;
-        this.setup = setup;
         this.effect = effect;
         this.category = category;
         this.params = params;
@@ -30,7 +28,6 @@ public class CharacterCard {
         this.id = card.id;
         this.res_path = card.res_path;
         this.coins = card.coins;
-        this.setup = card.setup;
         this.effect = card.effect;
         this.category = card.category;
         this.params = card.params;
@@ -66,15 +63,12 @@ public class CharacterCard {
         if (this == o) return true;
         if (!(o instanceof CharacterCard)) return false;
         CharacterCard that = (CharacterCard) o;
-        return coins == that.coins && Objects.equals(setup, that.setup) && Objects.equals(effect, that.effect) && Objects.equals(category, that.category) && Objects.equals(params, that.params);
+        return coins == that.coins && Objects.equals(effect, that.effect) && Objects.equals(category, that.category) && Objects.equals(params, that.params);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(coins, setup, effect, category, params);
+        return Objects.hash(coins, effect, category, params);
     }
 
-    public String getSetup() {
-        return this.setup;
-    }
 }
