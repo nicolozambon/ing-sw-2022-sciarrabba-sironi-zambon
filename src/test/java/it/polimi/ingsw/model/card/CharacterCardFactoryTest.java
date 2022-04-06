@@ -19,7 +19,6 @@ class CharacterCardFactoryTest {
     void permittedCategories() {
         String[] permitted = {"influence", "mother_nature", "movement"};
         String category = null;
-        String setup = null;
         for (CharacterCard card : this.tests) {
             category = card.getCategory();
             assertTrue(Arrays.asList(permitted).contains(category));
