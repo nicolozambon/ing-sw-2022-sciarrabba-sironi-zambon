@@ -17,11 +17,9 @@ class CharacterCardTest {
         try {
             Gson gson = new Gson();
             this.tests = gson.fromJson(new FileReader("src/main/resources/json/character_cards.json"), CharacterCard[].class);
-        } catch (FileNotFoundException exception) {}
-    }
-
-    public CharacterCard[] getAll() {
-        return this.tests;
+        } catch (FileNotFoundException exception) {
+            assertTrue(false);
+        }
     }
 
     @Test

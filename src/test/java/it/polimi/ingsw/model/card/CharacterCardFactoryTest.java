@@ -1,7 +1,10 @@
 package it.polimi.ingsw.model.card;
 
+import com.google.gson.Gson;
 import org.junit.jupiter.api.Test;
 
+import java.io.FileNotFoundException;
+import java.io.FileReader;
 import java.util.Arrays;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -11,8 +14,12 @@ class CharacterCardFactoryTest {
     private CharacterCard[] tests;
 
     public CharacterCardFactoryTest() {
-        CharacterCardTest tester = new CharacterCardTest();
-        this.tests = tester.getAll();
+        try {
+            Gson gson = new Gson();
+            this.tests = gson.fromJson(new FileReader("src/main/resources/json/character_cards.json"), CharacterCard[].class);
+        } catch (FileNotFoundException exception) {
+            assertTrue(false);
+        }
     }
 
     @Test
