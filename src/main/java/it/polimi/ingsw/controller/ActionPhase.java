@@ -13,15 +13,14 @@ import java.util.Map;
 
 public class ActionPhase {
 
-    private Player actualPlayer;
+    private Player currentPlayer;
     private List<Player> otherPlayers;
     private Map<String, Integer> callableMethod;
 
     private Model model;
 
-
     public ActionPhase(Player player, List<Player> otherPlayers, int numOfStudentToMove, Model model) {
-        this.actualPlayer = player;
+        this.currentPlayer = player;
         this.otherPlayers = otherPlayers;
         this.model = model;
 
@@ -34,32 +33,31 @@ public class ActionPhase {
         }};
     }
 
-    public void playCharacterCard() {
+    public void playCharacterCard(int choice) {
         if(callableMethod.get("character_card") > 0) {
-
+            this.model.playCharacterCard(this.currentPlayer.getId(), choice);
             callableMethod.put("character_card", callableMethod.get("character_card") - 1);
             callableMethod.put("extra_action", 1);
-
         }
     }
 
-    public void moveStudentToDiningRoom(Student student) {
+    public void moveStudentToDiningRoom(int choice) {
         if(callableMethod.get("student_movement") > 0) {
-
+            this.model.moveStudentToDiningRoom(this.currentPlayer.getId(), choice);
             callableMethod.put("student_movement", callableMethod.get("student_movement") - 1);
         }
     }
 
-    public void moveStudentToIsland(Student student, Island island) throws IllegalActionException {
+    public void moveStudentToIsland(int studentChoice, int islandChoice) throws IllegalActionException {
         if(callableMethod.get("student_movement") > 0) {
-
+            this.model.moveStudentToIsland(this.currentPlayer.getId(), studentChoice, islandChoice);
             callableMethod.put("student_movement", callableMethod.get("student_movement") - 1);
         } else throw new IllegalActionException();
     }
 
-    public void moveMotherNature(MotherNature motherNature, int steps) {
+    public void moveMotherNature(int stepsChoice) {
         if(callableMethod.get("mothernature_movement") > 0) {
-
+            this.model.moveMotherNature(this.currentPlayer.getId(), stepsChoice);
             callableMethod.put("mothernature_movement", callableMethod.get("mothernature_movement") - 1);
         }
     }
@@ -68,16 +66,16 @@ public class ActionPhase {
 
     }
 
-    public void getStudentsFromCloud(Cloud cloud) {
+    public void getStudentsFromCloud(int choice) {
         if(callableMethod.get("students_cloud") > 0) {
-
+            this.model.getStudentsFromCloud(this.currentPlayer.getId(), choice);
             callableMethod.put("students_cloud", callableMethod.get("students_cloud") - 1);
         }
     }
 
-    public void extraAction(Object obj) {
+    public void extraAction(int ... values) {
         if(callableMethod.get("extra_action") > 0) {
-
+            this.model.extraAction(values);
             callableMethod.put("extra_action", callableMethod.get("extra_action") - 1 );
         }
     }
@@ -91,6 +89,6 @@ public class ActionPhase {
     }
 
     public Player getPlayer () {
-        return actualPlayer;
+        return currentPlayer;
     }
 }

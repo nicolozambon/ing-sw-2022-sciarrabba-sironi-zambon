@@ -51,14 +51,8 @@ public class Model {
     }
 
     public void playCharacterCard(int playerId, int choice) {
-        CharacterCard card =    characterCards
-                                .stream()
-                                .filter(x -> x.getId() == choice)
-                                .findFirst()
-                                .get();
-
+        CharacterCard card = characterCards.stream().filter(x -> x.getId() == choice).findFirst().get();
         card.incrementCoinCost();
-
         players.get(playerId).playCharacterCard(card);
         this.handler = new HandlerFactory(card).buildHandler(new ArrayList<>(players));
     }

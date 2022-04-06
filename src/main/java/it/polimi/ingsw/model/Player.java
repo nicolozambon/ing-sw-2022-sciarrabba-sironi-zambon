@@ -12,7 +12,7 @@ public class Player {
 
     private final String nickname;
     private final School school;
-    public final int id;
+    private final int id;
 
     private int coins;
 
@@ -39,6 +39,10 @@ public class Player {
 
     protected int getCoins() {
         return this.coins;
+    }
+
+    public int getId() {
+        return this.getId();
     }
 
     protected void playAssistantCard(int index) {
