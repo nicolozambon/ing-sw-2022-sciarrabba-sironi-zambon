@@ -1,55 +1,146 @@
 package it.polimi.ingsw.model;
 
 import com.google.gson.Gson;
+import it.polimi.ingsw.enums.Color;
+import it.polimi.ingsw.enums.TowerColor;
 import it.polimi.ingsw.model.card.AssistantCard;
 import it.polimi.ingsw.model.card.CharacterCard;
 import it.polimi.ingsw.model.card.CharacterCardFactory;
+import it.polimi.ingsw.model.card.Deck;
 
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 import java.util.Random;
 
 
 public class ModelBuilder {
 
-    private AssistantCard[] assistants;
-    private CharacterCard[] characters;
+    public Model buildModel(List<String> names) {
 
-    private ArrayList<CharacterCard> selectedCharacterCards = new ArrayList<>();
+        List<Island> islands = buildIslands(12);
+        List<Cloud> clouds = buildClouds(names.size());
+        StudentBag bag = buildStudentBag();
 
-    public ModelBuilder() {
-        readCardsConfiguration();
-        chooseCharacterCards();
+        MotherNature motherNature = new MotherNature(islands.get(new Random().nextInt(islands.size())));
+
+        List<Player> players = buildPlayers(names, bag);
+
+        for (Island island : islands) {
+            if (island.getId() == motherNature.getPosition().getId()) {
+                bag.extractStudentAndMove(island);
+                bag.extractStudentAndMove(island);
+            }
+        }
+
+        return new Model(buildPlayers(names,bag), islands, clouds, motherNature, buildCharacterCard(), 20, buildProfessorBoard(), bag);
     }
 
-    protected AssistantCard[] getAssistantsConfiguration() {
-        return this.assistants;
+    private List<Player> buildPlayers(List<String> names, StudentBag bag) {
+        List<Player> players = new ArrayList<>();
+        List<AssistantCard> assistants = buildAssistantCard();
+
+        int id = 0;
+        int numEntrance = 0;
+        int numTower = 0;
+
+        if (names.size() == 2) {
+            numEntrance = 7;
+            numTower = 8;
+        } else if (names.size() == 3) {
+            numEntrance = 9;
+            numTower = 6;
+        }
+
+        for (String name : names) {
+            players.add(new Player(id, name, buildEntrance(numEntrance, bag), buildTowers(numTower, TowerColor.values()[id - 1]), new Deck<>(assistants)));
+            id++;
+        }
+
+        return new ArrayList<>(players);
     }
 
-    protected CharacterCard[] getCharactersConfiguration() {
-        return this.characters;
+    private List<Student> buildEntrance(int num, StudentBag bag) {
+        Board<Student> students = new Board<>();
+        for (int i = 0; i < num; i++) {
+            bag.extractStudentAndMove(students);
+        }
+        return students.getPawns();
     }
 
-    private void readCardsConfiguration() {
+    private List<Tower> buildTowers(int num, TowerColor color) {
+        List<Tower> towers = new ArrayList<>();
+        for (int i = 0; i < num; i++) {
+            towers.add(new Tower(color));
+        }
+        return new ArrayList<>(towers);
+    }
+
+    private StudentBag buildStudentBag() {
+        List<Student> students = new ArrayList<>();
+
+        for (Color c : Color.values()) {
+            for (int i = 0; i < 26; i++) {
+                students.add(new Student(c));
+            }
+        }
+        return new StudentBag(students);
+    }
+
+    private List<Island> buildIslands(int num) {
+        List<Island> islands = new ArrayList<>();
+        for (int i = 0; i > num; i++) {
+            islands.add(new Island(i));
+        }
+        return new ArrayList<>(islands);
+    }
+
+    private Board<Professor> buildProfessorBoard() {
+        List<Professor> professors = new ArrayList<>();
+        for (Color c : Color.values()) {
+            professors.add(new Professor(c));
+        }
+        return new Board<>(professors);
+    }
+
+    private List<Cloud> buildClouds(int num) {
+        List<Cloud> clouds = new ArrayList<>();
+        for (int i = 0; i > num; i++) {
+            clouds.add(new Cloud(new ArrayList<>()));
+        }
+        return new ArrayList<>(clouds);
+    }
+
+    private List<AssistantCard> buildAssistantCard() {
+        List<AssistantCard> assistants = new ArrayList<>();
         try {
             Gson gson = new Gson();
-            this.assistants = gson.fromJson(new FileReader("src/main/resources/json/assistant_cards.json"), AssistantCard[].class);
-            this.characters = gson.fromJson(new FileReader("src/main/resources/json/character_cards.json"), CharacterCard[].class);
-            //TODO should check if arrays are not empty
+            assistants = Arrays.asList(gson.fromJson(new FileReader("src/main/resources/json/assistant_cards.json"), AssistantCard[].class));
         } catch (FileNotFoundException exception) {
-            //TODO Handle exception --> should quit game
             exception.printStackTrace();
         }
+        return new ArrayList<>(assistants);
     }
 
-    private void chooseCharacterCards() {
+    private List<CharacterCard> buildCharacterCard() {
+        List<CharacterCard> characters = new ArrayList<>();
+        try {
+            Gson gson = new Gson();
+            characters = Arrays.asList(gson.fromJson(new FileReader("src/main/resources/json/character_cards.json"), CharacterCard[].class));
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+
         CharacterCardFactory factory = new CharacterCardFactory();
+        List<CharacterCard> characterCards = new ArrayList<>();
         Random generator = new Random();
         int index = 0;
         for (int i = 0; i < 3; i++) {
-            index = generator.nextInt(this.characters.length);
-            this.selectedCharacterCards.add(factory.setSubclass(this.characters[index]));
+            index = generator.nextInt(characters.size());
+            characterCards.add(factory.setSubclass(characters.get(index)));
         }
+        return new ArrayList<>(characterCards);
     }
 }

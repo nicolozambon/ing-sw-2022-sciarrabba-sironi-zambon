@@ -15,10 +15,10 @@ public class StudentBag extends Board<Student> {
      */
     protected void extractStudentAndMove(Board<Student> destination) {
         Random rand = new Random();
-        int value = rand.nextInt(130);
+        int value = rand.nextInt(this.getNumPawns());
         try {
             destination.moveInPawn(this.getPawns().get(value), this);
-        } catch (ArrayIndexOutOfBoundsException e) {
+        } catch (IndexOutOfBoundsException e) {
             System.out.println("Random integer " + value + " is Out Of Bounds.");
         }
     }

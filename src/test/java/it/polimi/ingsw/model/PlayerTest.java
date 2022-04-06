@@ -92,7 +92,7 @@ class PlayerTest {
 
     @Test
     void moveStudentIsland() {
-        Island island = new Island(1, new ArrayList<>());
+        Island island = new Island(1);
         for (Student student : students) {
             player.moveStudentIsland(student, island);
             assertTrue(island.getPawns().contains(student));

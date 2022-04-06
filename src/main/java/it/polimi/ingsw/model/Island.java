@@ -17,9 +17,9 @@ public class Island extends Board<Student> {
     private boolean unifyNext;
     private boolean unifyPrev;
 
-    protected Island(int ID, List<Student> students) {
-        super(students);
-        this.id = ID;
+    protected Island(int id) {
+        super();
+        this.id = id;
 
         unifyPrev = false;
         unifyNext = false;

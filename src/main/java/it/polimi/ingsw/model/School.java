@@ -18,7 +18,7 @@ public class School {
     protected School(Player owner, List<Student> students, List<Tower> towers) {
         this.owner = owner;
 
-        this.entrance = new Board<Student>(students);
+        this.entrance = new Board<>(students);
 
         this.diningRoom = new HashMap<>();
         this.diningRoom.put(Color.RED, new Board<>());
@@ -28,7 +28,7 @@ public class School {
         this.diningRoom.put(Color.PINK, new Board<>());
 
         this.professorsTable = new Board<>();
-        this.towersBoard = new Board<> (towers);
+        this.towersBoard = new Board<>(towers);
     }
 
     protected Player getOwner(){

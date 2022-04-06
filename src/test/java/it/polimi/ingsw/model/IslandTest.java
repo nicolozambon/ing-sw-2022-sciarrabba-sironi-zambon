@@ -15,8 +15,8 @@ public class IslandTest {
 
     @Test
     void checkSetNextPrevIsland() {
-        Island island1 = new Island(1, new ArrayList<>());
-        Island island2 = new Island(2, new ArrayList<>());
+        Island island1 = new Island(1);
+        Island island2 = new Island(2);
 
         island1.setNextIsland(island2);
         island2.setPrevIsland(island1);
@@ -30,8 +30,8 @@ public class IslandTest {
 
     @Test
     void countStudentsByColorTest() {
-        Island island1 = new Island(1, new ArrayList<Student>());
-        Island island2 = new Island(2, new ArrayList<Student>());
+        Island island1 = new Island(1);
+        Island island2 = new Island(2);
         Student student1 = new Student(Color.GREEN);
         Student student2 = new Student(Color.GREEN);
         Student student3 = new Student(Color.BLUE);
