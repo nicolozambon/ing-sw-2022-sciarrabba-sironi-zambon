@@ -22,7 +22,6 @@ class CharacterCardFactoryTest {
         String setup = null;
         for (CharacterCard card : this.tests) {
             category = card.getCategory();
-            System.out.println(category);
             assertTrue(Arrays.asList(permitted).contains(category));
         }
     }
