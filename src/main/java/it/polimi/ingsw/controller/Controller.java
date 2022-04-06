@@ -43,7 +43,7 @@ public class Controller {
     protected void playAssistantCard(int playerID, int choice) {
         if (!isPlanningFinished) {
             Player player = this.playersToPlay.get(0);
-            if (player.id == playerID) {
+            if (player.getId() == playerID) {
                 this.planning.playAssistantCard(player, choice);
             }
             playersHavePlayed.add(playersToPlay.remove(0));
@@ -58,7 +58,7 @@ public class Controller {
     protected ActionPhase startActionPhase(int playerID) {
         if (isPlanningFinished && action == null) {
             Player player = this.playersToPlay.get(0);
-            if (player.id == playerID) {
+            if (player.getId() == playerID) {
                 List<Player> otherPlayers = new ArrayList<>(playersToPlay);
                 otherPlayers.remove(player);
                 otherPlayers.addAll(playersHavePlayed);
@@ -71,7 +71,7 @@ public class Controller {
 
     protected ActionPhase endActionPhase(int playerID) {
         if (action != null) {
-            if (this.action.getPlayer().id == playerID && action.isEnded()) {
+            if (this.action.getPlayer().getId() == playerID && action.isEnded()) {
                 playersHavePlayed.add(playersToPlay.remove(0));
                 action = null;
             }
@@ -100,7 +100,7 @@ public class Controller {
         temp.add(this.playersHavePlayed.remove(0));
         temp.addAll(this.playersHavePlayed
                     .stream()
-                    .sorted(Comparator.comparingInt(x -> x.id))
+                    .sorted(Comparator.comparingInt(x -> x.getId()))
                     .collect(Collectors.toList()));
         this.playersToPlay = temp;
     }
