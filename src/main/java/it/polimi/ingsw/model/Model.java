@@ -30,7 +30,7 @@ public class Model {
         //this.put(4, 3);
     }};
 
-    public Model(List<Player> players, List<Island> islands, List<Cloud> clouds, MotherNature motherNature,
+    protected Model(List<Player> players, List<Island> islands, List<Cloud> clouds, MotherNature motherNature,
                  List<CharacterCard> characterCards, int coinReserve, Board<Professor> startingProfessorBoard, StudentBag bag) {
         this.players = players;
         this.islands = islands;

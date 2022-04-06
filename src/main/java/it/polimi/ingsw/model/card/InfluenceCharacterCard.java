@@ -13,8 +13,8 @@ public class InfluenceCharacterCard extends CharacterCard {
     public InfluenceCharacterCard(CharacterCard card) {
         super(card);
         Map<String, Object> params = this.getParams();
-        this.towerInfluence = (Integer) params.get("tower_influence");
-        this.extraInfluence = (Integer) params.get("extra_influence");
+        this.towerInfluence = (int) params.get("tower_influence");
+        this.extraInfluence = (int) params.get("extra_influence");
         this.colorWithoutInfluence = (boolean) params.get("color_without_influence");
     }
 

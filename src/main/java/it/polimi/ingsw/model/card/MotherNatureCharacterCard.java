@@ -12,7 +12,7 @@ public class MotherNatureCharacterCard extends CharacterCard {
     public MotherNatureCharacterCard(CharacterCard card) {
         super(card);
         Map<String, Object> params = this.getParams();
-        this.extraMovement = (Integer) params.get("extra_movement");
+        this.extraMovement = (int) params.get("extra_movement");
         this.extraResolving = (boolean) params.get("extra_resolving");
     }
 
