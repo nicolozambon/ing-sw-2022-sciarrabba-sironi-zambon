@@ -12,16 +12,16 @@ public class Eriantys {
         System.out.println("Welcome to Eriantys");
         System.out.println("1 - Server\n2 - Client");
         Scanner scanner = new Scanner(System.in);
-        while (true) {
-            switch (scanner.nextInt()) {
-                case 1:
-                    new Thread(new Server(1337)).start();
-                    break;
-                case 2:
-                    new Thread(new Client("127.0.0.1", 1337)).start();
-                    break;
-            }
+        int choice = scanner.nextInt();
+        switch (choice) {
+            case 1:
+                new Thread(new Server(1337)).start();
+                //break;
+            case 2:
+                new Thread(new Client("127.0.0.1", 1337)).start();
+                //break;
         }
+
     }
 
 }

@@ -2,7 +2,6 @@ package it.polimi.ingsw.server;
 
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.lang.annotation.Repeatable;
 import java.net.Socket;
 import java.util.Scanner;
 
@@ -29,8 +28,12 @@ public class ServerClientHandler implements Runnable {
                     out.flush();
                 }
             }
+            in.close();
+            out.close();
+            socket.close();
         } catch (IOException e) {
             e.printStackTrace();
         }
+
     }
 }
