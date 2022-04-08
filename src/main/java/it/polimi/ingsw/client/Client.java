@@ -6,7 +6,7 @@ import java.net.Socket;
 import java.util.NoSuchElementException;
 import java.util.Scanner;
 
-public class Client {
+public class Client implements Runnable{
 
     private String ip;
     private int port;
@@ -41,4 +41,13 @@ public class Client {
         }
     }
 
+
+    @Override
+    public void run() {
+        try {
+            startClient();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 }
