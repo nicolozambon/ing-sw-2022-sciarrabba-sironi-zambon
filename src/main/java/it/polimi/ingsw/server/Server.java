@@ -1,15 +1,12 @@
 package it.polimi.ingsw.server;
 
 import java.io.IOException;
-import java.io.PrintWriter;
-import java.net.InetAddress;
 import java.net.ServerSocket;
 import java.net.Socket;
-import java.util.Scanner;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
-public class Server implements Runnable{
+public class Server{
 
     private final String DEFAULT_IP_SETTINGS = "";
     private int port;
@@ -46,7 +43,7 @@ public class Server implements Runnable{
             try {
                 Socket socket = serverSocket.accept();
                 System.out.println("Received client connection");
-                executor.submit(new ServerClientHandler(socket));
+                executor.submit(new GameHandler(socket));
             } catch (IOException e) {
                 e.printStackTrace();
                 break;
@@ -55,15 +52,5 @@ public class Server implements Runnable{
 
         executor.shutdown();
         serverSocket.close();
-
-    }
-
-    @Override
-    public void run() {
-        try {
-            startServer();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
     }
 }

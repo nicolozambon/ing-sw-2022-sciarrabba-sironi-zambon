@@ -93,15 +93,18 @@ public class Controller {
         playersHavePlayed = new ArrayList<>();
     }
 
+    //TODO Fix order in case: game with 3 players and player in the middle (id = 1) will be the first in the next round
     private void orderPlayersForNextRound(){
         List<Player> temp = new ArrayList<>();
         orderPlayersForAction();
 
         temp.add(this.playersHavePlayed.remove(0));
+
         temp.addAll(this.playersHavePlayed
                     .stream()
                     .sorted(Comparator.comparingInt(x -> x.getId()))
                     .collect(Collectors.toList()));
+
         this.playersToPlay = temp;
     }
 

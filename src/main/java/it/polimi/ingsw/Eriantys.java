@@ -4,6 +4,7 @@ import it.polimi.ingsw.client.Client;
 import it.polimi.ingsw.model.ModelBuilder;
 import it.polimi.ingsw.server.Server;
 
+import java.io.IOException;
 import java.util.Scanner;
 
 public class Eriantys {
@@ -15,11 +16,19 @@ public class Eriantys {
         int choice = scanner.nextInt();
         switch (choice) {
             case 1:
-                new Thread(new Server(1337)).start();
-                //break;
+                try {
+                    new Server(1337).startServer();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+                break;
             case 2:
-                new Thread(new Client("127.0.0.1", 1337)).start();
-                //break;
+                try {
+                    new Client("127.0.0.1", 1337).startClient();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+                break;
         }
 
     }

@@ -5,11 +5,11 @@ import java.io.PrintWriter;
 import java.net.Socket;
 import java.util.Scanner;
 
-public class ServerClientHandler implements Runnable {
+public class GameHandler implements Runnable {
 
     private Socket socket;
 
-    public ServerClientHandler(Socket socket) {
+    public GameHandler(Socket socket) {
         this.socket = socket;
     }
 
