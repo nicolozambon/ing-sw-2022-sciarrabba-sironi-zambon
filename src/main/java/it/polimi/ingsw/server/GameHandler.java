@@ -15,7 +15,6 @@ public class GameHandler implements Runnable {
 
     @Override
     public void run() {
-
         try {
             Scanner in = new Scanner(socket.getInputStream());
             PrintWriter out = new PrintWriter(socket.getOutputStream());
