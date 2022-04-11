@@ -36,6 +36,10 @@ public class CLI {
         return colorsMap.get(color) + "███" + ANSI_RESET;
     }
 
+    private String getProfessor(Color color) {
+        return colorsMap.get(color) + "###" + ANSI_RESET;
+    }
+
     private String getFreePlaceholder(String board, char identifier, Color color) {
         char[] boardChars = board.toCharArray();
         StringBuilder string = new StringBuilder();
@@ -60,6 +64,17 @@ public class CLI {
         String placeholder = getFreePlaceholder(board, 'S', color);
         if (placeholder != null) {
             board = board.replace(placeholder, getStudent(color));
+        } else {
+            System.out.println("ERROR. There is no space for a new student."); // To be removed --> new Exception
+            //TODO: handle exception
+        }
+        return board;
+    }
+
+    private String addProfessorInBoard(String board, Color color) {
+        String placeholder = getFreePlaceholder(board, 'P', color);
+        if (placeholder != null) {
+            board = board.replace(placeholder, getProfessor(color));
         } else {
             System.out.println("ERROR. There is no space for a new student."); // To be removed --> new Exception
             //TODO: handle exception
@@ -125,10 +140,13 @@ public class CLI {
         System.out.println("\nTest 2");
         System.out.println(getPrintableBoard(school));
 
-        // Testing: add some other students
+        // Testing: add some other students and a professor
         school = this.addStudentInBoard(school, Color.GREEN);
         school = this.addStudentInBoard(school, Color.YELLOW);
         school = this.addStudentInBoard(school, Color.RED);
+
+        school = this.addProfessorInBoard(school, Color.PINK);
+
 
         // Demo good print
         System.out.println("\nTest 3");
