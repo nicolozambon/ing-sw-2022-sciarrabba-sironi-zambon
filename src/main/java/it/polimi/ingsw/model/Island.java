@@ -37,7 +37,8 @@ public class Island extends Board<Student> {
     }
 
     protected Tower getTower() {
-        return towerBoard.getPawns().get(0);
+        if (towerBoard.getNumPawns() > 0) return towerBoard.getPawns().get(0);
+        else return null;
     }
 
     protected Island getNextIsland() {
@@ -50,12 +51,10 @@ public class Island extends Board<Student> {
 
     protected void setNextIsland(Island nextIsland) {
         this.nextIsland = nextIsland;
-        this.unifyToNext();
     }
 
     protected void setPrevIsland(Island prevIsland) {
         this.prevIsland = prevIsland;
-        this.unifyToPrev();
     }
 
     protected boolean isUnifyNext() {

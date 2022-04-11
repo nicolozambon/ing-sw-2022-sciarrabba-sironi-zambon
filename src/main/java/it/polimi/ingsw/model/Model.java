@@ -6,9 +6,7 @@ import it.polimi.ingsw.exceptions.NotEnoughCoinsException;
 import it.polimi.ingsw.model.card.CharacterCard;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 
 public class Model {
@@ -84,7 +82,19 @@ public class Model {
         }
     }
 
-    public void getStudentsFromCloud(int playerId, int choice) {
+    protected MotherNature getMotherNature() {
+        return this.motherNature;
+    }
+
+    protected List<Professor> getProfessors() {
+        return new ArrayList<>(startingProfessorBoard.getPawns());
+    }
+
+    protected List<Cloud> getClouds() {
+        return new ArrayList<>(clouds);
+    }
+
+    public void takeStudentsFromCloud(int playerId, int choice) {
         players.get(playerId).takeStudentsFromCloud(clouds.get(choice));
     }
 
@@ -108,7 +118,6 @@ public class Model {
         return new ArrayList<>(this.islands);
     }
 
-
     protected void returnStudentsToBag(Color color, int num){
         for (Player player : players) {
             player.returnStudentsToBag(bag, color, num);
@@ -116,7 +125,7 @@ public class Model {
     }
 
     /**
-     * Methos isThereWinner checks if there is at least one condition for which the game ends.
+     * Methods isThereWinner checks if there is at least one condition for which the game ends.
      * @return NULL if there is no winner, the winning player otherwise.
      */
     protected Player isThereWinner() {

@@ -28,32 +28,17 @@ public class Handler {
         if (getPlayersNumStudentsDR(players.get(last), color) > getPlayersNumStudentsDR(players.get(last - 1), color)) {
             players.get(last).getSchool().setProfessor(professor, professorBoard);
         }
-
-        /*for (Player player : players) {
-            if ( !player.equals(playerWithMoreStudent) &&
-                    getPlayersNumStudentsDR(player, color) == getPlayersNumStudentsDR(playerWithMoreStudent, color))
-            {
-                if (currentPlayer.equals(player)) {
-                    playerWithMoreStudent = currentPlayer;
-                }
-                else {
-                    playerWithMoreStudent = null;
-                    break;
-                }
-
-            }
-        }
-
-        if (playerWithMoreStudent != null) {
-            playerWithMoreStudent.getSchool().setProfessor(professor, professorBoard);
-        }*/
     }
 
     protected void motherNatureMovement(Player currentPlayer, MotherNature motherNature, int stepsChoice) {
+        Player mostInfluentialPlayer = null;
         if(stepsChoice > 0 && stepsChoice <= currentPlayer.getLastAssistantCard().getSteps()) {
             motherNature.stepsToMove(stepsChoice);
-            switchTowers(motherNature.getPosition(), getMostInfluentialPlayer(currentPlayer, motherNature.getPosition()));
-            unifyIsland(motherNature.getPosition());
+            mostInfluentialPlayer = getMostInfluentialPlayer(currentPlayer, motherNature.getPosition());
+            if (mostInfluentialPlayer != null) {
+                switchTowers(motherNature.getPosition(), mostInfluentialPlayer);
+                unifyIsland(motherNature.getPosition());
+            }
         }
     }
 
@@ -78,7 +63,7 @@ public class Handler {
             influence += island.countStudentsByColor(professor.getColor());
         }
 
-        if (island.getTower().getOwner().equals(player)) {
+        if (island.getTower() != null && island.getTower().getOwner().equals(player)) {
             influence += 1;
         }
         return influence;

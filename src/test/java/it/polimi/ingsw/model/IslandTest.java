@@ -24,6 +24,10 @@ public class IslandTest {
         assertEquals(island1.getNextIsland(), island2);
         assertEquals(island2.getPrevIsland(), island1);
 
+        assertFalse(island1.isUnifyNext());
+        assertFalse(island2.isUnifyPrev());
+        island1.unifyToNext();
+        island2.unifyToPrev();
         assertTrue(island1.isUnifyNext());
         assertTrue(island2.isUnifyPrev());
     }

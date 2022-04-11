@@ -52,29 +52,6 @@ public class MovementHandler extends Handler {
                 getPlayersNumStudentsDR(players.get(size), color) == getPlayersNumStudentsDR(currentPlayer, color)) {
             currentPlayer.getSchool().setProfessor(professor, professorBoard);
         }
-
-        /*Player playerWithMoreStudent =
-                players
-                        .stream()
-                        .max(Comparator.comparingInt(x -> getPlayersNumStudentsDR(x, color)))
-                        .get();
-
-        for (Player player : players) {
-            if ( !player.equals(playerWithMoreStudent) &&
-                    getPlayersNumStudentsDR(player, color) == getPlayersNumStudentsDR(playerWithMoreStudent, color))
-            {
-                if (currentPlayer.equals(player) && card.getExtraControl() == 1) { // Card 2
-                    playerWithMoreStudent = currentPlayer;
-                }
-                else {
-                    playerWithMoreStudent = null;
-                }
-            }
-        }
-
-        if (playerWithMoreStudent != null) {
-            playerWithMoreStudent.getSchool().setProfessor(professor, professorBoard);
-        }*/
     }
 
 }

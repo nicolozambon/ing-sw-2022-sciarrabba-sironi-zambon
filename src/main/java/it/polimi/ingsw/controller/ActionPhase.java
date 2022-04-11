@@ -1,6 +1,5 @@
 package it.polimi.ingsw.controller;
 
-import it.polimi.ingsw.exceptions.NotEnoughCoinsException;
 import it.polimi.ingsw.model.*;
 import it.polimi.ingsw.exceptions.IllegalActionException;
 
@@ -76,7 +75,7 @@ public class ActionPhase {
 
     public void getStudentsFromCloud(int choice) {
         if(callableMethod.get("students_cloud") > 0) {
-            this.model.getStudentsFromCloud(this.currentPlayer.getId(), choice);
+            this.model.takeStudentsFromCloud(this.currentPlayer.getId(), choice);
             callableMethod.put("students_cloud", callableMethod.get("students_cloud") - 1);
         }
     }

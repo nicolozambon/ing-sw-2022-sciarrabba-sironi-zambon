@@ -17,7 +17,7 @@ public class MotherNature {
             while(position.isUnifyNext()) {
                 position = position.getNextIsland();
             }
-            //position = position.getNextIsland();
+            position = position.getNextIsland();
         }
     }
 }

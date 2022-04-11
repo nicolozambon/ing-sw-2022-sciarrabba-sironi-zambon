@@ -58,7 +58,11 @@ public class ModelBuilder {
         }
 
         for (String name : names) {
-            players.add(new Player(id, name, buildEntrance(numEntrance, bag), buildTowers(numTower, TowerColor.values()[id]), new Deck<>(assistants)));
+            Player p = new Player(id, name, buildEntrance(numEntrance, bag), buildTowers(numTower, TowerColor.values()[id]), new Deck<>(assistants));
+            for (Tower tower : p.getSchool().getTowersBoard().getPawns()) {
+                tower.setOwner(p);
+            }
+            players.add(p);
             id++;
         }
 
@@ -96,14 +100,12 @@ public class ModelBuilder {
         List<Island> islands = new ArrayList<>();
         for (int i = 0; i < 12; i++) {
             islands.add(new Island(i));
-            int size = islands.size();
-            if (size-1 > 1) {
-                islands.get(size-1).setPrevIsland(islands.get(size-2));
-                islands.get(size-2).setNextIsland(islands.get(size-1));
-            }
         }
-        islands.get(0).setPrevIsland(islands.get(islands.size()-1));
-        islands.get(islands.size()-1).setNextIsland(islands.get(0));
+        for (Island island : islands) {
+            island.setNextIsland(islands.get((island.getId() + 1) % islands.size()));
+            island.setPrevIsland(islands.get((island.getId() + islands.size() - 1) % islands.size()));
+        }
+
         return new ArrayList<>(islands);
     }
 
@@ -153,7 +155,7 @@ public class ModelBuilder {
             characterCards.add(factory.setSubclass(characters.get(index)));
         }
 
-        return new ArrayList<>(characters); //Only for testing purpose!
+        return new ArrayList<>(characters); //TODO Only for testing purpose!
         //return new ArrayList<>(characterCards);
     }
 }
