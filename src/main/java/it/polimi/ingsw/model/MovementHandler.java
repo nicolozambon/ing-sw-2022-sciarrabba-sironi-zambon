@@ -38,7 +38,22 @@ public class MovementHandler extends Handler {
         Professor professor = getProfessor(color, startingProfBoard);
         Board<Professor> professorBoard = getProfessorBoard(color, startingProfBoard);
 
-        Player playerWithMoreStudent =
+        List<Player> players =
+                this.players
+                        .stream()
+                        .sorted(Comparator.comparingInt(x -> getPlayersNumStudentsDR(x, color)))
+                        .toList();
+
+        int size = players.size() - 1;
+
+        if (getPlayersNumStudentsDR(players.get(size), color) > getPlayersNumStudentsDR(players.get(size - 1), color)) {
+            players.get(size).getSchool().setProfessor(professor, professorBoard);
+        } else if (card.getExtraControl() == 1 &&
+                getPlayersNumStudentsDR(players.get(size), color) == getPlayersNumStudentsDR(currentPlayer, color)) {
+            currentPlayer.getSchool().setProfessor(professor, professorBoard);
+        }
+
+        /*Player playerWithMoreStudent =
                 players
                         .stream()
                         .max(Comparator.comparingInt(x -> getPlayersNumStudentsDR(x, color)))
@@ -59,7 +74,7 @@ public class MovementHandler extends Handler {
 
         if (playerWithMoreStudent != null) {
             playerWithMoreStudent.getSchool().setProfessor(professor, professorBoard);
-        }
+        }*/
     }
 
 }

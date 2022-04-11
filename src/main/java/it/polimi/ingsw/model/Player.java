@@ -1,6 +1,7 @@
 package it.polimi.ingsw.model;
 
 import it.polimi.ingsw.enums.Color;
+import it.polimi.ingsw.exceptions.NotEnoughCoinsException;
 import it.polimi.ingsw.model.card.AssistantCard;
 import it.polimi.ingsw.model.card.CharacterCard;
 import it.polimi.ingsw.model.card.Deck;
@@ -42,7 +43,7 @@ public class Player {
     }
 
     public int getId() {
-        return this.getId();
+        return this.id;
     }
 
     protected void playAssistantCard(int index) {
@@ -51,10 +52,12 @@ public class Player {
         }
     }
 
-    protected void playCharacterCard(CharacterCard card) {
+    protected void playCharacterCard(CharacterCard card) throws NotEnoughCoinsException {
         int cost = card.getCoins();
-        if (this.coins < cost) {
-            this.coins -= cost;
+        if (this.coins >= cost) {
+            this.coins = this.coins - cost;
+        } else {
+            throw new NotEnoughCoinsException();
         }
     }
 
@@ -64,7 +67,7 @@ public class Player {
 
     protected boolean moveStudentDiningRoom(Student student, int coinReserve) {
         school.moveStudentDiningRoom(student);
-        if (coinReserve > 0 && school.getDiningRoomByColor(student.getColor()).getNumPawns() % 3 == 0) {
+        if (coinReserve > 0 && school.getDiningRoomByColor(student.getColor()).getNumPawns() % 3 == 2) {
             this.coins += 1;
             return true;
         }

@@ -10,23 +10,24 @@ import it.polimi.ingsw.model.card.Deck;
 
 import java.io.FileNotFoundException;
 import java.io.FileReader;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Random;
+import java.util.*;
 
 
 public class ModelBuilder {
 
+    private final Map<Integer, Integer> numStudentToMoveMap = new HashMap<>(){{
+        this.put(2, 3);
+        this.put(3, 4);
+        this.put(4, 3);
+    }};
+
     public Model buildModel(List<String> names) {
 
-        List<Island> islands = buildIslands(12);
+        List<Island> islands = buildIslands();
         List<Cloud> clouds = buildClouds(names.size());
         StudentBag bag = buildStudentBag();
 
         MotherNature motherNature = new MotherNature(islands.get(new Random().nextInt(islands.size())));
-
-        List<Player> players = buildPlayers(names, bag);
 
         for (Island island : islands) {
             if (island.getId() == motherNature.getPosition().getId()) {
@@ -35,12 +36,14 @@ public class ModelBuilder {
             }
         }
 
-        return new Model(buildPlayers(names,bag), islands, clouds, motherNature, buildCharacterCard(), 20, buildProfessorBoard(), bag);
+        int numStudentToMove = numStudentToMoveMap.get(clouds.size());
+
+        return new Model(buildPlayers(names,bag), islands, clouds, motherNature, buildCharacterCards(), 20, buildProfessorBoard(), bag, numStudentToMove);
     }
 
     private List<Player> buildPlayers(List<String> names, StudentBag bag) {
         List<Player> players = new ArrayList<>();
-        List<AssistantCard> assistants = buildAssistantCard();
+        List<AssistantCard> assistants = buildAssistantCards();
 
         int id = 0;
         int numEntrance = 0;
@@ -55,7 +58,7 @@ public class ModelBuilder {
         }
 
         for (String name : names) {
-            players.add(new Player(id, name, buildEntrance(numEntrance, bag), buildTowers(numTower, TowerColor.values()[id - 1]), new Deck<>(assistants)));
+            players.add(new Player(id, name, buildEntrance(numEntrance, bag), buildTowers(numTower, TowerColor.values()[id]), new Deck<>(assistants)));
             id++;
         }
 
@@ -89,11 +92,18 @@ public class ModelBuilder {
         return new StudentBag(students);
     }
 
-    private List<Island> buildIslands(int num) {
+    private List<Island> buildIslands() {
         List<Island> islands = new ArrayList<>();
-        for (int i = 0; i > num; i++) {
+        for (int i = 0; i < 12; i++) {
             islands.add(new Island(i));
+            int size = islands.size();
+            if (size-1 > 1) {
+                islands.get(size-1).setPrevIsland(islands.get(size-2));
+                islands.get(size-2).setNextIsland(islands.get(size-1));
+            }
         }
+        islands.get(0).setPrevIsland(islands.get(islands.size()-1));
+        islands.get(islands.size()-1).setNextIsland(islands.get(0));
         return new ArrayList<>(islands);
     }
 
@@ -107,13 +117,13 @@ public class ModelBuilder {
 
     private List<Cloud> buildClouds(int num) {
         List<Cloud> clouds = new ArrayList<>();
-        for (int i = 0; i > num; i++) {
+        for (int i = 0; i < num; i++) {
             clouds.add(new Cloud(new ArrayList<>()));
         }
         return new ArrayList<>(clouds);
     }
 
-    private List<AssistantCard> buildAssistantCard() {
+    private List<AssistantCard> buildAssistantCards() {
         List<AssistantCard> assistants = new ArrayList<>();
         try {
             Gson gson = new Gson();
@@ -124,7 +134,7 @@ public class ModelBuilder {
         return new ArrayList<>(assistants);
     }
 
-    private List<CharacterCard> buildCharacterCard() {
+    private List<CharacterCard> buildCharacterCards() {
         List<CharacterCard> characters = new ArrayList<>();
         try {
             Gson gson = new Gson();
@@ -136,11 +146,14 @@ public class ModelBuilder {
         CharacterCardFactory factory = new CharacterCardFactory();
         List<CharacterCard> characterCards = new ArrayList<>();
         Random generator = new Random();
-        int index = 0;
+        int index;
+
         for (int i = 0; i < 3; i++) {
             index = generator.nextInt(characters.size());
             characterCards.add(factory.setSubclass(characters.get(index)));
         }
-        return new ArrayList<>(characterCards);
+
+        return new ArrayList<>(characters); //Only for testing purpose!
+        //return new ArrayList<>(characterCards);
     }
 }

@@ -1,5 +1,6 @@
 package it.polimi.ingsw.controller;
 
+import it.polimi.ingsw.exceptions.NotEnoughCoinsException;
 import it.polimi.ingsw.model.*;
 import it.polimi.ingsw.exceptions.IllegalActionException;
 
@@ -34,10 +35,17 @@ public class ActionPhase {
     }
 
     public void playCharacterCard(int choice) {
-        if(callableMethod.get("character_card") > 0) {
-            this.model.playCharacterCard(this.currentPlayer.getId(), choice);
-            callableMethod.put("character_card", callableMethod.get("character_card") - 1);
-            callableMethod.put("extra_action", 1);
+        try {
+            if (callableMethod.get("character_card") > 0) {
+                this.model.playCharacterCard(this.currentPlayer.getId(), choice);
+                callableMethod.put("character_card", callableMethod.get("character_card") - 1);
+                if (this.model.getCharacterCards().get(choice).getHasExtraAction()) {
+                    callableMethod.put("extra_action", 1);
+                }
+
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
         }
     }
 
@@ -84,7 +92,7 @@ public class ActionPhase {
       for (String s : callableMethod.keySet()) {
           if (callableMethod.get(s) > 0) return false;
       }
-
+      this.model.resetHandler();
       return true;
     }
 

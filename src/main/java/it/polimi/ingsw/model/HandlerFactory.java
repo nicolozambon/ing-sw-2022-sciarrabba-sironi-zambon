@@ -9,23 +9,17 @@ import java.util.List;
 
 public class HandlerFactory {
 
-    private CharacterCard card;
-
-    protected HandlerFactory(CharacterCard card) {
-        this.card = card;
-    }
-
-    protected Handler buildHandler(List<Player> players) {
+    protected Handler buildHandler(List<Player> players, CharacterCard card) {
         Handler final_handler = null;
         switch (card.getCategory()) {
             case "influence":
-                final_handler = new InfluenceHandler(players, (InfluenceCharacterCard) this.card);
+                final_handler = new InfluenceHandler(players, new InfluenceCharacterCard(card));
                 break;
             case "mother_nature":
-                final_handler = new MotherNatureHandler(players, (MotherNatureCharacterCard) this.card);
+                final_handler = new MotherNatureHandler(players, new MotherNatureCharacterCard(card));
                 break;
             case "movement":
-                final_handler = new MovementHandler(players, (MovementCharacterCard) this.card);
+                final_handler = new MovementHandler(players, new MovementCharacterCard(card));
                 break;
             default:
                 final_handler = new Handler(players);

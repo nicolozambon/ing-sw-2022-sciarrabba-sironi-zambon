@@ -10,37 +10,43 @@ public class Handler {
     List<Player> players;
 
     protected Handler(List<Player> players) {
-        this.players = players;
+        this.players = new ArrayList<>(players);
     }
 
     protected void professorControl(Player currentPlayer, Color color, Board<Professor> startingProfBoard) {
         Professor professor = getProfessor(color, startingProfBoard);
         Board<Professor> professorBoard = getProfessorBoard(color, startingProfBoard);
 
-        Player playerWithMoreStudent =
-                players
+        List<Player> players =
+                this.players
                 .stream()
-                .max(Comparator.comparingInt(x -> getPlayersNumStudentsDR(x, color)))
-                .get();
+                .sorted(Comparator.comparingInt(x -> getPlayersNumStudentsDR(x, color)))
+                .toList();
 
-        for (Player player : players) {
+        int last = players.size() - 1;
+
+        if (getPlayersNumStudentsDR(players.get(last), color) > getPlayersNumStudentsDR(players.get(last - 1), color)) {
+            players.get(last).getSchool().setProfessor(professor, professorBoard);
+        }
+
+        /*for (Player player : players) {
             if ( !player.equals(playerWithMoreStudent) &&
-                 getPlayersNumStudentsDR(player, color) == getPlayersNumStudentsDR(playerWithMoreStudent, color))
+                    getPlayersNumStudentsDR(player, color) == getPlayersNumStudentsDR(playerWithMoreStudent, color))
             {
                 if (currentPlayer.equals(player)) {
                     playerWithMoreStudent = currentPlayer;
                 }
                 else {
                     playerWithMoreStudent = null;
+                    break;
                 }
-
 
             }
         }
 
         if (playerWithMoreStudent != null) {
             playerWithMoreStudent.getSchool().setProfessor(professor, professorBoard);
-        }
+        }*/
     }
 
     protected void motherNatureMovement(Player currentPlayer, MotherNature motherNature, int stepsChoice) {
@@ -80,8 +86,9 @@ public class Handler {
 
     /**
      * Calculates for every player the influence on each (group of) island.
-     * @param island
-     * @return the most influential player
+     * @param currentPlayer The current player who has moved mother nature
+     * @param island The Island where mother nature has ended her movement
+     * @return The most influential player on the specified island, the one who builds the tower
      */
     protected Player getMostInfluentialPlayer(Player currentPlayer, Island island) {
         Map<Player, Integer> playerInfluence = new HashMap<>();

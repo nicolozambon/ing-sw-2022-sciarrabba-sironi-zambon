@@ -93,16 +93,17 @@ public class Controller {
         playersHavePlayed = new ArrayList<>();
     }
 
-    //TODO Fix order in case: game with 3 players and player in the middle (id = 1) will be the first in the next round
+
     private void orderPlayersForNextRound(){
         List<Player> temp = new ArrayList<>();
         orderPlayersForAction();
-
+        int firstPlayerId;
         temp.add(this.playersHavePlayed.remove(0));
+        firstPlayerId = temp.get(0).getId();
 
         temp.addAll(this.playersHavePlayed
                     .stream()
-                    .sorted(Comparator.comparingInt(x -> x.getId()))
+                    .sorted(Comparator.comparingInt(x -> (x.getId() + firstPlayerId) % 3)) //Modulo 3 perché così i giocatori vengono ordinati SEMPRE in senso orario
                     .collect(Collectors.toList()));
 
         this.playersToPlay = temp;

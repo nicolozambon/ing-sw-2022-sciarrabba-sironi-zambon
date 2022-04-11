@@ -1,6 +1,8 @@
 package it.polimi.ingsw.model;
 
 import it.polimi.ingsw.enums.Color;
+import it.polimi.ingsw.exceptions.InvalidCardIdException;
+import it.polimi.ingsw.exceptions.NotEnoughCoinsException;
 import it.polimi.ingsw.model.card.CharacterCard;
 
 import java.util.ArrayList;
@@ -21,17 +23,11 @@ public class Model {
     private final StudentBag bag;
     private final int numStudentToMove;
 
-    Handler handler;
+    private Handler handler;
 
-
-    private Map<Integer, Integer> numStudentToMovePerPlayer = new HashMap<>(){{
-        this.put(2, 3);
-        this.put(3, 4);
-        //this.put(4, 3);
-    }};
 
     protected Model(List<Player> players, List<Island> islands, List<Cloud> clouds, MotherNature motherNature,
-                 List<CharacterCard> characterCards, int coinReserve, Board<Professor> startingProfessorBoard, StudentBag bag) {
+                 List<CharacterCard> characterCards, int coinReserve, Board<Professor> startingProfessorBoard, StudentBag bag, int numStudentToMove) {
         this.players = players;
         this.islands = islands;
         this.clouds = clouds;
@@ -41,22 +37,27 @@ public class Model {
         this.startingProfessorBoard = startingProfessorBoard;
         this.bag = bag;
 
-        handler = new Handler(new ArrayList<>(players));
+        this.handler = new Handler(this.players);
 
-        this.numStudentToMove = numStudentToMovePerPlayer.get(this.players.size());
+        this.numStudentToMove = numStudentToMove;
     }
 
     public void playAssistantCard(int playerId, int choice) {
         players.get(playerId).playAssistantCard(choice);
     }
 
-    public void playCharacterCard(int playerId, int choice) {
-        CharacterCard card = characterCards.stream().filter(x -> x.getId() == choice).findFirst().get();
-        card.incrementCoinCost();
-        players.get(playerId).playCharacterCard(card);
-        this.handler = new HandlerFactory(card).buildHandler(new ArrayList<>(players));
+    //TODO Not checking if player can play the card
+    public void playCharacterCard(int playerId, int choice) throws NotEnoughCoinsException, InvalidCardIdException {
+        CharacterCard card;
+        if (characterCards.stream().filter(x -> x.getId() == choice).findFirst().isPresent()) {
+            card = characterCards.stream().filter(x -> x.getId() == choice).findFirst().get();
+            players.get(playerId).playCharacterCard(card);
+            card.incrementCoinCost();
+            this.handler = new HandlerFactory().buildHandler(new ArrayList<>(players), card);
+        } else {
+            throw new InvalidCardIdException();
+        }
     }
-
 
     public void moveStudentToDiningRoom(int playerId, int choice) {
         Player player = players.get(playerId);
@@ -91,13 +92,22 @@ public class Model {
         this.handler.extraAction(players.get(0), this, values);
     }
 
-    private void resetHandler() {
+    public List<CharacterCard> getCharacterCards() {
+        return new ArrayList<>(characterCards);
+    }
+
+    protected List<Player> getPlayers() {
+        return new ArrayList<>(players);
+    }
+
+    public void resetHandler() {
         this.handler = new Handler(this.players);
     }
 
     protected List<Island> getIslands(){
         return new ArrayList<>(this.islands);
     }
+
 
     protected void returnStudentsToBag(Color color, int num){
         for (Player player : players) {
