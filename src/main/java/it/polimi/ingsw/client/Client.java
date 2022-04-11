@@ -23,15 +23,15 @@ public class Client{
         Scanner socketIn = new Scanner(socket.getInputStream());
         PrintWriter socketOut = new PrintWriter(socket.getOutputStream());
         Scanner stdin = new Scanner(System.in);
-        try{
-            while (true){
+        try {
+            while (true) {
                 String inputLine = stdin.nextLine();
                 socketOut.println(inputLine);
                 socketOut.flush();
                 String socketLine = socketIn.nextLine();
                 System.out.println(socketLine);
             }
-        } catch(NoSuchElementException e){
+        } catch (NoSuchElementException e) {
             System.out.println("Connection closed");
         } finally {
             stdin.close();

@@ -6,7 +6,7 @@ import java.net.Socket;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
-public class Server{
+public class Server {
 
     private final String DEFAULT_IP_SETTINGS = "";
     private int port;
