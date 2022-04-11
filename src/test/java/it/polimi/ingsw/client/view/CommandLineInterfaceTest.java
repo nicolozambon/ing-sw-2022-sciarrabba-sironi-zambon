@@ -7,7 +7,8 @@ public class CommandLineInterfaceTest {
 
     @Test
     void showGameBoard() {
-        showGameBoard();
+        CLI cli = new CLI();
+        cli.showGameBoard();
         assertTrue(true);
     }
 
