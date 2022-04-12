@@ -41,15 +41,15 @@ public class MovementHandler extends Handler {
         List<Player> players =
                 this.players
                         .stream()
-                        .sorted(Comparator.comparingInt(x -> getPlayersNumStudentsDR(x, color)))
+                        .sorted(Comparator.comparingInt(x -> getNumStudentsDR(x, color)))
                         .toList();
 
         int size = players.size() - 1;
 
-        if (getPlayersNumStudentsDR(players.get(size), color) > getPlayersNumStudentsDR(players.get(size - 1), color)) {
+        if (getNumStudentsDR(players.get(size), color) > getNumStudentsDR(players.get(size - 1), color)) {
             players.get(size).getSchool().setProfessor(professor, professorBoard);
         } else if (card.getExtraControl() == 1 &&
-                getPlayersNumStudentsDR(players.get(size), color) == getPlayersNumStudentsDR(currentPlayer, color)) {
+                getNumStudentsDR(players.get(size), color) == getNumStudentsDR(currentPlayer, color)) {
             currentPlayer.getSchool().setProfessor(professor, professorBoard);
         }
     }

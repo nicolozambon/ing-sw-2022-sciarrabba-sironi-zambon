@@ -20,12 +20,12 @@ public class Handler {
         List<Player> players =
                 this.players
                 .stream()
-                .sorted(Comparator.comparingInt(x -> getPlayersNumStudentsDR(x, color)))
+                .sorted(Comparator.comparingInt(x -> getNumStudentsDR(x, color)))
                 .toList();
 
         int last = players.size() - 1;
 
-        if (getPlayersNumStudentsDR(players.get(last), color) > getPlayersNumStudentsDR(players.get(last - 1), color)) {
+        if (getNumStudentsDR(players.get(last), color) > getNumStudentsDR(players.get(last - 1), color)) {
             players.get(last).getSchool().setProfessor(professor, professorBoard);
         }
     }
@@ -175,7 +175,7 @@ public class Handler {
         return null;
     }
 
-    protected int getPlayersNumStudentsDR(Player player, Color color) {
+    protected int getNumStudentsDR(Player player, Color color) {
         return player.getSchool().getDiningRoomByColor(color).getNumPawns();
     }
 

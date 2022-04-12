@@ -142,8 +142,4 @@ class ModelTest {
             i++;
         }
     }
-
-    @Test
-    void extraAction() {
-    }
 }

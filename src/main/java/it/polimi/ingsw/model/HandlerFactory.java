@@ -27,4 +27,8 @@ public class HandlerFactory {
         return final_handler;
     }
 
+    protected Handler buildHandler(List<Player> players) {
+        return new Handler(players);
+    }
+
 }
