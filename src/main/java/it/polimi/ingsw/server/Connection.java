@@ -1,10 +1,13 @@
 package it.polimi.ingsw.server;
 
+import it.polimi.ingsw.exceptions.OutOfBoundsException;
 import it.polimi.ingsw.server.Server;
 
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.net.Socket;
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Scanner;
 
 
@@ -12,9 +15,9 @@ public class Connection implements Runnable {
     private Socket socket;
     private Scanner input;
     private PrintWriter output;
-    private Server server;
-    private String nickname;
     private boolean active;
+    private final Server server;
+    private String nickname;
 
     public Connection (Socket socket, Server server) {
         this.socket = socket;
@@ -48,7 +51,6 @@ public class Connection implements Runnable {
 
     private void close() {
         this.closeConnection();
-        server.deregisterConnection(this);
     }
 
     @Override
@@ -56,13 +58,13 @@ public class Connection implements Runnable {
         try {
             input = new Scanner(socket.getInputStream());
             output = new PrintWriter(socket.getOutputStream());
-            send("Welcome, player! Choose a nickname...");
+            asyncSend("Welcome, player! Choose a nickname...");
             nickname = input.nextLine();
-            server.lobby(this, nickname);
-            while (isActive()) {
-                String newline = input.nextLine(); //TODO might need to be replaced...
-            }
+            this.server.addPlayer(this, nickname);
+
         } catch (IOException e) {
+            e.printStackTrace();
+        } catch (OutOfBoundsException e) {
             e.printStackTrace();
         } finally {
             this.close();
