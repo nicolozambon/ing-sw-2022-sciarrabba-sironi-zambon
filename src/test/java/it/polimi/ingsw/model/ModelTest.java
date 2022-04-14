@@ -81,7 +81,6 @@ class ModelTest {
     @Test
     void moveStudentToDiningRoom() {
         for (Player player : model.getPlayers()) {
-            System.out.println(player.getNickname());
             int i = 1;
             for (int j = 0 ; j < player.getSchool().getEntrance().getNumPawns();) {
                 Student student = player.getSchool().getEntrance().getPawns().get(j);

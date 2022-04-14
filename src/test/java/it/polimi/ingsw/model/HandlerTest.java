@@ -19,7 +19,7 @@ class HandlerTest {
         List<String> playersNames = new ArrayList<>();
         playersNames.add("player0");
         playersNames.add("player1");
-        //playersNames.add("player2");
+        playersNames.add("player2");
         model = modelBuilder.buildModel(playersNames);
         handler = new HandlerFactory().buildHandler(model.getPlayers());
     }
@@ -92,7 +92,7 @@ class HandlerTest {
 
         for (int i = 0; i < num; i++) {
             for (Player player : model.getPlayers()) {
-                Student student = player.getSchool().getEntrance().getPawns().get(0);
+                //Student student = player.getSchool().getEntrance().getPawns().get(0);
                 model.moveStudentToDiningRoom(player.getId(), 0);
             }
         }
@@ -104,12 +104,38 @@ class HandlerTest {
                 model.moveStudentToIsland(player.getId(), player.getSchool().getEntrance().getPawns().indexOf(student), islandId);
             }
         }
-        //TODO check correct tower presence
+
         List<Island> islands = model.getIslands();
         MotherNature mn = new MotherNature(islands.get(0));
         Player randomPlayer = model.getPlayers().get(new Random().nextInt(model.getPlayers().size()));
-        //handler.motherNatureMovement();
+        randomPlayer.playAssistantCard(1);
 
+        for (int i = 1; i < 13; i++) {
+            handler.motherNatureMovement(randomPlayer, mn,  1);
+            Player most = mostInfluentialPlayer(islands.get(i%12));
+            if (most != null) {
+                //System.out.println("Found most influential, checking tower presence...");
+                assertEquals(most, islands.get(i%12).getTower().getOwner());
+            }
+        }
+
+    }
+
+    private Player mostInfluentialPlayer(Island island) {
+        List<Player> players = model.getPlayers().stream().sorted(Comparator.comparingInt(x -> influenceOnIsland(x, island))).toList();
+        if (influenceOnIsland(players.get(players.size()-1), island) > influenceOnIsland(players.get(players.size()-2), island)) {
+            return players.get(players.size()-1);
+        }
+        return null;
+    }
+
+    private int influenceOnIsland(Player player, Island island) {
+        int influence = 0;
+        for (Professor prof : player.getSchool().getProfessorsTable().getPawns()) {
+            influence += island.countStudentsByColor(prof.getColor());
+        }
+        if (island.getTower() != null && island.getTower().getOwner().equals(player)) influence++;
+        return influence;
     }
 
     @Test

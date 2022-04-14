@@ -23,6 +23,7 @@ public class HandlerFactory {
                 break;
             default:
                 final_handler = new Handler(players);
+                break;
         }
         return final_handler;
     }
