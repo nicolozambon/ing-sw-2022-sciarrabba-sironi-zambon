@@ -14,8 +14,13 @@ public class GameHandler implements Runnable {
     Map<String, InitialClientConnection> playersConnection;
 
     public GameHandler(Map<String, InitialClientConnection> playersConnection) {
-        this.playersConnection = playersConnection;
-        model = modelBuilder.buildModel(playersConnection.keySet().stream().toList());
+
+        this.playersConnection = new HashMap<>(playersConnection);
+
+        this.modelBuilder = new ModelBuilder();
+
+        this.model = modelBuilder.buildModel(this.playersConnection.keySet().stream().toList());
+        System.out.println("GameHandler");
     }
 
     @Override

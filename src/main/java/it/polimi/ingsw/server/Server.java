@@ -91,9 +91,11 @@ public class Server {
             }
 
             if (check) {
-                for (String name : players.keySet()) {
+                System.out.println("Starting new Thread ");
+                /*for (String name : players.keySet()) {
                     players.get(name).setState(ConnectionAction.START);
-                }
+                }*/
+                new Thread(new GameHandler(players)).start();
 
                 players = new HashMap<>();
                 numPlayers = -1;

@@ -21,7 +21,9 @@ public class ModelBuilder {
         this.put(4, 3);
     }};
 
-    public Model buildModel(List<String> names) {
+    public Model buildModel(List<String> names1) {
+
+        List<String> names = new ArrayList<>(names1);
 
         List<Island> islands = buildIslands();
         List<Cloud> clouds = buildClouds(names.size());
