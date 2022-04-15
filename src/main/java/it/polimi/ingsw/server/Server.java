@@ -1,16 +1,14 @@
 package it.polimi.ingsw.server;
 
+import it.polimi.ingsw.enums.ConnectionAction;
 import it.polimi.ingsw.exceptions.OutOfBoundsException;
 
 import java.io.IOException;
 import java.net.ServerSocket;
 import java.net.Socket;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
+import java.util.*;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
-import java.util.Scanner;
 
 public class Server {
 
@@ -21,19 +19,14 @@ public class Server {
     /**
      * Identifies a new connection with the nickname.
      */
-    private HashMap<Connection, String> players = new HashMap<>();
-
-    /**
-     * Contains all active connections to the server.
-     */
-    private List<Connection> connections = new ArrayList<>();
+    private Map<String, InitialClientConnection> players = new HashMap<>();
 
     /**
      * Number of players for the match being built.
      */
-    private int numPlayers;
+    private int numPlayers = -1;
 
-    private GameHandler currentGame;
+    //private GameHandler currentGame;
 
     public Server(int port){
         this.port = port;
@@ -63,7 +56,7 @@ public class Server {
             try {
                 Socket socket = serverSocket.accept();
                 System.out.println("Received client connection");
-                executor.submit(new Connection(socket, this));
+                executor.submit(new InitialClientConnection(socket, this));
             } catch (IOException e) {
                 e.printStackTrace();
                 break;
@@ -73,18 +66,38 @@ public class Server {
         serverSocket.close();
     }
 
-    protected void addPlayer(Connection c, String nickname) throws OutOfBoundsException {
-        this.connections.add(c);
-        this.lobby(c, nickname);
+    protected synchronized void addPlayer(String nickname, InitialClientConnection connection) {
+        if(!players.containsKey(nickname)) {
+            players.put(nickname, connection);
+            players.get(nickname).setState(ConnectionAction.WAITING);
+            lobby(nickname);
+        } else {
+            //TODO gestire errore nickname uguale
+        }
     }
 
-    protected void lobby (Connection c, String nickname) throws OutOfBoundsException {
-        this.players.put(c, nickname);
+    private synchronized void lobby(String nickname) {
+
         if (players.size() == 1) { //First player, decides for the number of players.
-            //TODO request number of players to the connection of the first player.
-            setNumPlayers(2);
+            players.get(nickname).setState(ConnectionAction.SET_NUM_PLAYERS);
         } else if (players.size() == numPlayers) { //Start round, reached num of players.
-            //TODO get an arraylist with nicknames and send it to gamehandler.
+
+            boolean check = true;
+            for (String name : players.keySet()) {
+                if (players.get(name).getState() != ConnectionAction.WAITING) {
+                    check = false;
+                    System.out.println(name + " causing " + check);
+                }
+            }
+
+            if (check) {
+                for (String name : players.keySet()) {
+                    players.get(name).setState(ConnectionAction.START);
+                }
+
+                players = new HashMap<>();
+                numPlayers = -1;
+            }
         }
         //TODO enrich with messages signaling the current situation of the queue to the connected players.
     }

@@ -8,15 +8,15 @@ import java.util.Map;
 
 public class School {
 
-    private Player owner;
+    //private Player owner;
 
     private final Board<Student> entrance;
     private final Map<Color, Board<Student>> diningRoom;
     private final Board<Professor> professorsTable;
     private final Board<Tower> towersBoard;
 
-    protected School(Player owner, List<Student> students, List<Tower> towers) {
-        this.owner = owner;
+    protected School(List<Student> students, List<Tower> towers) {
+        //this.owner = owner;
 
         this.entrance = new Board<>(students);
 
@@ -31,9 +31,9 @@ public class School {
         this.towersBoard = new Board<>(towers);
     }
 
-    protected Player getOwner(){
+    /*protected Player getOwner(){
         return this.owner;
-    }
+    }*/
 
     protected Board<Student> getEntrance() {
         return this.entrance;

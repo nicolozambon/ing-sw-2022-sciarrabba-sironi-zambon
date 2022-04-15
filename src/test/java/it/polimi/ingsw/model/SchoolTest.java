@@ -35,11 +35,6 @@ class SchoolTest {
     }
 
     @Test
-    void getOwnerTest() {
-        assertEquals(school.getOwner(), player);
-    }
-
-    @Test
     void getEntranceTest() {
         Board<Student> entrance = school.getEntrance();
         for (Student student : students) {
@@ -91,7 +86,7 @@ class SchoolTest {
         ArrayList<Student> studentArrayList2 = new ArrayList<Student>();
         Student student1 = new Student(Color.BLUE);
         studentArrayList2.add(student1);
-        School school = new School(owner1, studentArrayList2, new ArrayList<>());
+        School school = new School(studentArrayList2, new ArrayList<>());
 
         school.moveStudentIsland(student1,island);
 
@@ -113,7 +108,7 @@ class SchoolTest {
         Cloud cloud = new Cloud(studentArrayList);
 
         Player owner1 = new Player(1, "pluto", new ArrayList<>(), new ArrayList<>(), new Deck<>());
-        School school = new School(owner1, new ArrayList<>(), new ArrayList<>());
+        School school = new School(new ArrayList<>(), new ArrayList<>());
 
         school.takeStudentsFromCloud(cloud);
         List<Student> studentArrayList2 = school.getEntrance().getPawns();

@@ -24,7 +24,7 @@ public class Player {
     protected Player(int id, String nickname, List<Student> students, List<Tower> towers, Deck<AssistantCard> assistantCardDeck) {
         this.nickname = nickname;
         this.id = id;
-        this.school = new School(this, students, towers);
+        this.school = new School(students, towers);
         this.assistantCardDeck = assistantCardDeck;
         this.discardPileDeck = new Deck();
         this.coins = 1;

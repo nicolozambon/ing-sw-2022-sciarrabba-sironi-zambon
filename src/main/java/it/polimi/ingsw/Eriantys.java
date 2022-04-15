@@ -1,7 +1,8 @@
 package it.polimi.ingsw;
 
 import it.polimi.ingsw.client.Client;
-import it.polimi.ingsw.model.ModelBuilder;
+import it.polimi.ingsw.client.GameClient;
+import it.polimi.ingsw.client.InitialClient;
 import it.polimi.ingsw.server.Server;
 
 import java.io.IOException;
@@ -17,14 +18,16 @@ public class Eriantys {
         switch (choice) {
             case 1:
                 try {
-                    new Server(1337).startServer();
+                    Server server= new Server(1337);
+                    server.startServer();
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
                 break;
             case 2:
                 try {
-                    new Client("127.0.0.1", 1337).startClient();
+                    Client client = new InitialClient("127.0.0.1", 1337);
+                    client.startClient();
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
