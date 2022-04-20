@@ -16,7 +16,7 @@ public class InitialClientConnection implements Runnable {
     private ObjectOutputStream outputStream;
 
     private boolean active;
-    private ConnectionAction STATE;
+    private ConnectionAction state;
 
     private String nickname;
 
@@ -33,18 +33,18 @@ public class InitialClientConnection implements Runnable {
     }
 
     public void setState(ConnectionAction newState) {
-        this.STATE = newState;
-        send(STATE);
+        this.state = newState;
+        send(state);
     }
 
     public ConnectionAction getState() {
-        return this.STATE;
+        return this.state;
     }
 
     public synchronized void read(){
         try {
 
-            switch(STATE) {
+            switch(state) {
                 case SET_NICKNAME -> {
                     Object input = inputStream.readObject();
                     if (input instanceof String) {
