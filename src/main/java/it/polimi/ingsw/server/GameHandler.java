@@ -1,7 +1,5 @@
 package it.polimi.ingsw.server;
 
-import it.polimi.ingsw.controller.ActionPhase;
-import it.polimi.ingsw.enums.ConnectionAction;
 import it.polimi.ingsw.model.Model;
 import it.polimi.ingsw.model.ModelBuilder;
 
@@ -11,9 +9,9 @@ public class GameHandler implements Runnable {
 
     private Model model;
     private ModelBuilder modelBuilder;
-    Map<String, InitialClientConnection> playersConnection;
+    Map<String, Connection> playersConnection;
 
-    public GameHandler(Map<String, InitialClientConnection> playersConnection) {
+    public GameHandler(Map<String, Connection> playersConnection) {
 
         this.playersConnection = new HashMap<>(playersConnection);
 
@@ -27,7 +25,7 @@ public class GameHandler implements Runnable {
     public void run() {
         System.out.println("GameHandler");
         for (String name : playersConnection.keySet()) {
-            playersConnection.get(name).setState(ConnectionAction.START);
+
         }
     }
 }

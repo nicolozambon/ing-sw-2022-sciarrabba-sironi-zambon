@@ -1,14 +1,13 @@
 package it.polimi.ingsw.server;
 
-import it.polimi.ingsw.enums.ConnectionAction;
-import it.polimi.ingsw.exceptions.OutOfBoundsException;
+import it.polimi.ingsw.Messages.Message;
+import it.polimi.ingsw.exceptions.*;
 
 import java.io.IOException;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.*;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
+import java.util.concurrent.*;
 
 public class Server {
 
@@ -16,26 +15,24 @@ public class Server {
     private int port;
     private String ip;
 
-    /**
-     * Identifies a new connection with the nickname.
-     */
-    private Map<String, InitialClientConnection> players = new HashMap<>();
+    private Queue<LobbyConnection> queue;
 
     /**
      * Number of players for the match being built.
      */
     private int numPlayers = -1;
 
-    //private GameHandler currentGame;
 
     public Server(int port){
         this.port = port;
         this.ip = DEFAULT_IP_SETTINGS;
+        this.queue = new ArrayDeque<>();
     }
 
     public Server(String ip, int port) {
         this.port = port;
         this.ip = ip;
+        this.queue = new ArrayDeque<>();
     }
 
     public void startServer() throws IOException {
@@ -52,11 +49,12 @@ public class Server {
         System.out.println("Server socket ready on port: " +  serverSocket.getLocalPort());
         System.out.println("Server socket ready on IP: " + serverSocket.getInetAddress().getHostAddress());
 
+        executor.submit(this::lobby);
         while (true) {
             try {
                 Socket socket = serverSocket.accept();
                 System.out.println("Received client connection");
-                executor.submit(new InitialClientConnection(socket, this));
+                executor.submit(new LobbyConnection(socket, this));
             } catch (IOException e) {
                 e.printStackTrace();
                 break;
@@ -66,49 +64,69 @@ public class Server {
         serverSocket.close();
     }
 
-    protected synchronized void addPlayer(String nickname, InitialClientConnection connection) {
-        if(!players.containsKey(nickname)) {
-            players.put(nickname, connection);
-            players.get(nickname).setState(ConnectionAction.WAITING);
-            lobby(nickname);
-        } else {
-            //TODO gestire errore nickname uguale
+    protected void enqueuePlayer(LobbyConnection connection) {
+        synchronized (queue) {
+            this.queue.add(connection);
+            this.queue.notifyAll();
         }
     }
 
-    private synchronized void lobby(String nickname) {
+    private void lobby() {
+        LobbyConnection connection;
+        Map<String, Connection> players = new HashMap<>();
+        while (true) {
 
-        if (players.size() == 1) { //First player, decides for the number of players.
-            players.get(nickname).setState(ConnectionAction.SET_NUM_PLAYERS);
-        } else if (players.size() == numPlayers) { //Start round, reached num of players.
+            while (queue.isEmpty()) {
+                try {
+                    synchronized (queue) {
+                        this.queue.wait();
+                    }
+                } catch (InterruptedException e) {
 
-            boolean check = true;
-            for (String name : players.keySet()) {
-                if (players.get(name).getState() != ConnectionAction.WAITING) {
-                    check = false;
-                    System.out.println(name + " causing " + check);
+                }
+            }
+            synchronized (queue) {
+                connection = queue.remove();
+            }
+
+            System.out.println("added player to a game");
+            if (numPlayers < 0) {
+                connection.send(new Message("NUM_PLAYERS", null));
+                while (numPlayers < 0) {
+                    try {
+                        synchronized (this) {
+                            wait();
+                        }
+                    } catch (InterruptedException e) {
+
+                    }
                 }
             }
 
-            if (check) {
-                System.out.println("Starting new Thread ");
-                /*for (String name : players.keySet()) {
-                    players.get(name).setState(ConnectionAction.START);
-                }*/
-                new Thread(new GameHandler(players)).start();
-
-                players = new HashMap<>();
-                numPlayers = -1;
+            if (!players.containsKey(connection.getNickname())) {
+                players.put(connection.getNickname(), connection);
+            } else {
+                connection.send(new Message("ERROR", "Nickname already taken, retry"));
+                connection.send(new Message("NICKNAME", null));
             }
+
+
+            if (players.size() == numPlayers) {
+                new Thread(new GameHandler(players));
+                numPlayers = -1;
+                players = new HashMap<>();
+            }
+
         }
-        //TODO enrich with messages signaling the current situation of the queue to the connected players.
+
     }
 
-    protected void setNumPlayers(int num) throws OutOfBoundsException {
+    protected synchronized void setNumPlayers (int num) throws OutOfBoundsException {
         if (num != 2 && num != 3) {
             throw new OutOfBoundsException();
         } else {
             this.numPlayers = num;
+            notifyAll();
         }
     }
 
