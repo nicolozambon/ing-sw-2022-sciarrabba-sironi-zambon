@@ -109,8 +109,8 @@ class HandlerTest {
         MotherNature mn = new MotherNature(islands.get(0));
         Player randomPlayer = model.getPlayers().get(new Random().nextInt(model.getPlayers().size()));
         randomPlayer.playAssistantCard(1);
-
-        for (int i = 1; i < 13; i++) {
+        int val = randomPlayer.getSchool().getTowersBoard().getNumPawns();
+        for (int i = 1; i < val; i++) {
             handler.motherNatureMovement(randomPlayer, mn,  1);
             Player most = mostInfluentialPlayer(islands.get(i%12));
             if (most != null) {
