@@ -1,6 +1,6 @@
 package it.polimi.ingsw.client;
 
-import it.polimi.ingsw.Messages.Message;
+import it.polimi.ingsw.messages.Message;
 import it.polimi.ingsw.client.view.ExampleView;
 
 import java.beans.PropertyChangeEvent;

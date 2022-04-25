@@ -1,6 +1,6 @@
 package it.polimi.ingsw.server;
 
-import it.polimi.ingsw.Messages.Message;
+import it.polimi.ingsw.messages.Message;
 import it.polimi.ingsw.exceptions.*;
 
 import java.io.IOException;

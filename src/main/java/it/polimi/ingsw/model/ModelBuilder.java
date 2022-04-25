@@ -21,9 +21,7 @@ public class ModelBuilder {
         this.put(4, 3);
     }};
 
-    public Model buildModel(List<String> names1) {
-
-        List<String> names = new ArrayList<>(names1);
+    public Model buildModel(List<String> names) {
 
         List<Island> islands = buildIslands();
         List<Cloud> clouds = buildClouds(names.size());
@@ -32,7 +30,7 @@ public class ModelBuilder {
         MotherNature motherNature = new MotherNature(islands.get(new Random().nextInt(islands.size())));
 
         for (Island island : islands) {
-            if (island.getId() == motherNature.getPosition().getId()) {
+            if (island.getId() != motherNature.getPosition().getId()) {
                 bag.extractStudentAndMove(island);
                 bag.extractStudentAndMove(island);
             }

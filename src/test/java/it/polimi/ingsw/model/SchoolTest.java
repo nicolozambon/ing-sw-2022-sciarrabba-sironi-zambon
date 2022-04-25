@@ -2,8 +2,6 @@ package it.polimi.ingsw.model;
 
 import it.polimi.ingsw.enums.Color;
 import it.polimi.ingsw.enums.TowerColor;
-import it.polimi.ingsw.model.*;
-import it.polimi.ingsw.model.card.AssistantCard;
 import it.polimi.ingsw.model.card.Deck;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -54,7 +52,9 @@ class SchoolTest {
     void checkProfessorMovementTest() {
         Professor professor = new Professor(Color.GREEN);
         Island island = new Island(1);
-        Player player = new Player(1, "pippo", new ArrayList<>(), new ArrayList<>(), new Deck<>());
+        List<Tower> towers = new ArrayList<>();
+        towers.add(new Tower(TowerColor.BLACK));
+        Player player = new Player(1, "pippo", new ArrayList<>(), towers, new Deck<>());
         School school = player.getSchool();
 
         ArrayList<Professor> arrayList = new ArrayList<Professor>();
@@ -82,8 +82,10 @@ class SchoolTest {
         ArrayList<Student> studentArrayList = new ArrayList<>();
         Island island = new Island(1);
 
-        Player owner1 = new Player(1, "pluto", new ArrayList<>(), new ArrayList<>(), new Deck<>());
-        ArrayList<Student> studentArrayList2 = new ArrayList<Student>();
+        List<Tower> towers = new ArrayList<>();
+        towers.add(new Tower(TowerColor.BLACK));
+        Player owner1 = new Player(1, "pluto", new ArrayList<>(), towers, new Deck<>());
+        ArrayList<Student> studentArrayList2 = new ArrayList<>();
         Student student1 = new Student(Color.BLUE);
         studentArrayList2.add(student1);
         School school = new School(studentArrayList2, new ArrayList<>());
@@ -107,7 +109,9 @@ class SchoolTest {
 
         Cloud cloud = new Cloud(studentArrayList);
 
-        Player owner1 = new Player(1, "pluto", new ArrayList<>(), new ArrayList<>(), new Deck<>());
+        List<Tower> towers = new ArrayList<>();
+        towers.add(new Tower(TowerColor.BLACK));
+        Player owner1 = new Player(1, "pluto", new ArrayList<>(), towers, new Deck<>());
         School school = new School(new ArrayList<>(), new ArrayList<>());
 
         school.takeStudentsFromCloud(cloud);

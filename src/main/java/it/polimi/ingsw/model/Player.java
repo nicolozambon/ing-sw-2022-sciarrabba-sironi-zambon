@@ -7,6 +7,7 @@ import it.polimi.ingsw.model.card.AssistantCard;
 import it.polimi.ingsw.model.card.CharacterCard;
 import it.polimi.ingsw.model.card.Deck;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
@@ -33,6 +34,10 @@ public class Player {
         this.coins = 1;
     }
 
+    public TowerColor getTowerColor() {
+        return towerColor;
+    }
+
     public String getNickname() {
         return this.nickname;
     }
@@ -53,6 +58,10 @@ public class Player {
         for(AssistantCard card : assistantCardDeck.getCards()) {
             if(card.getId() == index) discardPileDeck.moveInCard(card, assistantCardDeck);
         }
+    }
+
+    protected List<AssistantCard> getAssistantCards() {
+        return assistantCardDeck.getCards();
     }
 
     protected void playCharacterCard(CharacterCard card) throws NotEnoughCoinsException {

@@ -69,10 +69,6 @@ public class ActionPhase {
         }
     }
 
-    private void resolveIsland(MotherNature motherNature) {
-
-    }
-
     public void getStudentsFromCloud(int choice) {
         if(callableMethod.get("students_cloud") > 0) {
             this.model.takeStudentsFromCloud(this.currentPlayer.getId(), choice);

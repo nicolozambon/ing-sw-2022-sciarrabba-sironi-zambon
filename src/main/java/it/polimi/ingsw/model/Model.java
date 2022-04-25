@@ -112,6 +112,10 @@ public class Model implements Serializable {
         return new ArrayList<>(players);
     }
 
+    protected int getCoinReserve() {
+        return this.coinReserve;
+    }
+
     public void resetHandler() {
         this.handler = new Handler(this.players);
     }

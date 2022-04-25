@@ -6,17 +6,15 @@ import java.util.Objects;
 
 public class CharacterCard {
 
-    private int id;
-    private String res_path;
+    private final int id;
     private int coins;
-    private String effect;
-    private String category;
-    private Map<String, Object> params;
-    private boolean hasExtraAction;
+    private final String effect;
+    private final String category;
+    private final Map<String, Object> params;
+    private final boolean hasExtraAction;
 
-    public CharacterCard(int id, String res_path, int coins, String effect, String category, Map<String, Object> params, Boolean hasExtraAction) {
+    public CharacterCard(int id, int coins, String effect, String category, Map<String, Object> params, Boolean hasExtraAction) {
         this.id = id;
-        this.res_path = res_path;
         this.coins = coins;
         this.effect = effect;
         this.category = category;
@@ -26,7 +24,6 @@ public class CharacterCard {
 
     public CharacterCard(CharacterCard card) {
         this.id = card.id;
-        this.res_path = card.res_path;
         this.coins = card.coins;
         this.effect = card.effect;
         this.category = card.category;
@@ -56,6 +53,10 @@ public class CharacterCard {
 
     public void incrementCoinCost() {
         this.coins++;
+    }
+
+    public String getEffect() {
+        return this.effect;
     }
 
     @Override
