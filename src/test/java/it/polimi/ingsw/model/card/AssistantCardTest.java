@@ -15,7 +15,7 @@ class AssistantCardTest {
     public AssistantCardTest() {
         try {
             Gson gson = new Gson();
-            this.tests = gson.fromJson(new FileReader("src/main/resources/config/assistant_cards.config"), AssistantCard[].class);
+            this.tests = gson.fromJson(new FileReader("src/main/resources/config/assistant_cards.json"), AssistantCard[].class);
         } catch (FileNotFoundException exception) {}
     }
 
