@@ -131,7 +131,7 @@ public class ModelBuilder {
         List<AssistantCard> assistants = new ArrayList<>();
         try {
             Gson gson = new Gson();
-            assistants = Arrays.asList(gson.fromJson(new FileReader("src/main/resources/json/assistant_cards.json"), AssistantCard[].class));
+            assistants = Arrays.asList(gson.fromJson(new FileReader("src/main/resources/config/assistant_cards.config"), AssistantCard[].class));
         } catch (FileNotFoundException exception) {
             exception.printStackTrace();
         }
@@ -142,7 +142,7 @@ public class ModelBuilder {
         List<CharacterCard> characters = new ArrayList<>();
         try {
             Gson gson = new Gson();
-            characters = Arrays.asList(gson.fromJson(new FileReader("src/main/resources/json/character_cards.json"), CharacterCard[].class));
+            characters = Arrays.asList(gson.fromJson(new FileReader("src/main/resources/config/character_cards.config"), CharacterCard[].class));
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
