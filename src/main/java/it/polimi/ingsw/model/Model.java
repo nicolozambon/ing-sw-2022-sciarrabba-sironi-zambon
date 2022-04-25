@@ -49,7 +49,7 @@ public class Model implements Serializable {
     //TODO Not checking if player can play the card
     public void playCharacterCard(int playerId, int choice) throws NotEnoughCoinsException, InvalidCardIdException {
         CharacterCard card;
-        if (characterCards.stream().filter(x -> x.getId() == choice).findFirst().isPresent()) {
+        if (characterCards.stream().anyMatch(x -> x.getId() == choice)) {
             card = characterCards.stream().filter(x -> x.getId() == choice).findFirst().get();
             players.get(playerId).playCharacterCard(card);
             card.incrementCoinCost();

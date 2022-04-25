@@ -1,6 +1,7 @@
 package it.polimi.ingsw.model;
 
 import it.polimi.ingsw.enums.Color;
+import it.polimi.ingsw.enums.TowerColor;
 import it.polimi.ingsw.exceptions.NotEnoughCoinsException;
 import it.polimi.ingsw.model.card.AssistantCard;
 import it.polimi.ingsw.model.card.CharacterCard;
@@ -14,6 +15,7 @@ public class Player {
     private final String nickname;
     private final School school;
     private final int id;
+    private final TowerColor towerColor;
 
     private int coins;
 
