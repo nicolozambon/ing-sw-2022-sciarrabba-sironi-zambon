@@ -1,11 +1,13 @@
 package it.polimi.ingsw.model;
 
 import it.polimi.ingsw.enums.Color;
+import it.polimi.ingsw.enums.TowerColor;
 import it.polimi.ingsw.exceptions.NotEnoughCoinsException;
 import it.polimi.ingsw.model.card.AssistantCard;
 import it.polimi.ingsw.model.card.CharacterCard;
 import it.polimi.ingsw.model.card.Deck;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
@@ -14,6 +16,7 @@ public class Player {
     private final String nickname;
     private final School school;
     private final int id;
+    private final TowerColor towerColor;
 
     private int coins;
 
@@ -25,9 +28,14 @@ public class Player {
         this.nickname = nickname;
         this.id = id;
         this.school = new School(students, towers);
+        this.towerColor = towers.get(0).getColor();
         this.assistantCardDeck = assistantCardDeck;
         this.discardPileDeck = new Deck();
         this.coins = 1;
+    }
+
+    public TowerColor getTowerColor() {
+        return towerColor;
     }
 
     public String getNickname() {
@@ -50,6 +58,10 @@ public class Player {
         for(AssistantCard card : assistantCardDeck.getCards()) {
             if(card.getId() == index) discardPileDeck.moveInCard(card, assistantCardDeck);
         }
+    }
+
+    protected List<AssistantCard> getAssistantCards() {
+        return assistantCardDeck.getCards();
     }
 
     protected void playCharacterCard(CharacterCard card) throws NotEnoughCoinsException {

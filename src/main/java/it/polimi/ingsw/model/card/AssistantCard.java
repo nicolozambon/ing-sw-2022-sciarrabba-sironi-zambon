@@ -1,17 +1,18 @@
 package it.polimi.ingsw.model.card;
 
+import java.io.Serial;
+import java.io.Serializable;
 import java.util.Objects;
 
-public class AssistantCard {
+public class AssistantCard implements Serializable {
 
+    private static final long serialVersionUID = 987654321L;
     private final int id;
-    private final String path;
     private final int value;
     private final int steps;
 
-    public AssistantCard(int id, String path, int value, int steps) {
+    public AssistantCard(int id, int value, int steps) {
         this.id = id;
-        this.path = path;
         this.value = value;
         this.steps = steps;
     }
@@ -33,7 +34,7 @@ public class AssistantCard {
         if (this == o) return true;
         if (!(o instanceof AssistantCard)) return false;
         AssistantCard that = (AssistantCard) o;
-        return value == that.value && steps == that.steps;
+        return value == that.value && steps == that.steps && id == that.id;
     }
 
     @Override
@@ -41,4 +42,11 @@ public class AssistantCard {
         return Objects.hash(value, steps);
     }
 
+    @Override
+    public String toString() {
+        return "id = " + id +
+                ", value = " + value +
+                ", steps = " + steps +
+                '}';
+    }
 }

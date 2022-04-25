@@ -24,8 +24,8 @@ class PlayerTest {
     void initialization() {
 
         List<AssistantCard> cards = new ArrayList<>();
-        assistantCard1 = new AssistantCard(1, "", 10, 5);
-        assistantCard2 = new AssistantCard(2, "", 4, 9);
+        assistantCard1 = new AssistantCard(1, 10, 5);
+        assistantCard2 = new AssistantCard(2, 4, 9);
         cards.add(assistantCard1);
         cards.add(assistantCard2);
 

@@ -16,6 +16,7 @@ public class PlanningPhase {
         model.addStudentsToClouds();
     }
 
+    //TODO check if assistant card is already taken;
     public void playAssistantCard(Player player, int choice) {
         model.playAssistantCard(player.getId(), choice);
     }

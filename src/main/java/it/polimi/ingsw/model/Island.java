@@ -37,8 +37,12 @@ public class Island extends Board<Student> {
     }
 
     protected Tower getTower() {
-        if (towerBoard.getNumPawns() > 0) return towerBoard.getPawns().get(0);
-        else return null;
+        if (towerBoard.getNumPawns() > 0) {
+            return towerBoard.getPawns().get(0);
+        }
+        else {
+            return null;
+        }
     }
 
     protected Island getNextIsland() {

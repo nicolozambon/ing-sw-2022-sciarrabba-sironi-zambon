@@ -5,11 +5,13 @@ import it.polimi.ingsw.exceptions.InvalidCardIdException;
 import it.polimi.ingsw.exceptions.NotEnoughCoinsException;
 import it.polimi.ingsw.model.card.CharacterCard;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
 
-public class Model {
+public class Model implements Serializable {
+    private static final long serialVersionUID = 987654321L;
 
     private final List<Player> players;
     private final List<Island> islands;
@@ -47,7 +49,7 @@ public class Model {
     //TODO Not checking if player can play the card
     public void playCharacterCard(int playerId, int choice) throws NotEnoughCoinsException, InvalidCardIdException {
         CharacterCard card;
-        if (characterCards.stream().filter(x -> x.getId() == choice).findFirst().isPresent()) {
+        if (characterCards.stream().anyMatch(x -> x.getId() == choice)) {
             card = characterCards.stream().filter(x -> x.getId() == choice).findFirst().get();
             players.get(playerId).playCharacterCard(card);
             card.incrementCoinCost();
@@ -108,6 +110,10 @@ public class Model {
 
     protected List<Player> getPlayers() {
         return new ArrayList<>(players);
+    }
+
+    protected int getCoinReserve() {
+        return this.coinReserve;
     }
 
     public void resetHandler() {
@@ -206,4 +212,5 @@ public class Model {
         }
         return false;
     }
+
 }
