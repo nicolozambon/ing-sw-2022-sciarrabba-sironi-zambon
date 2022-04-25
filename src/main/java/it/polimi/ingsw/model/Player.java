@@ -25,6 +25,7 @@ public class Player {
         this.nickname = nickname;
         this.id = id;
         this.school = new School(students, towers);
+        this.towerColor = towers.get(0).getColor();
         this.assistantCardDeck = assistantCardDeck;
         this.discardPileDeck = new Deck();
         this.coins = 1;

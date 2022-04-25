@@ -5,11 +5,13 @@ import it.polimi.ingsw.exceptions.InvalidCardIdException;
 import it.polimi.ingsw.exceptions.NotEnoughCoinsException;
 import it.polimi.ingsw.model.card.CharacterCard;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
 
-public class Model {
+public class Model implements Serializable {
+    private static final long serialVersionUID = 987654321L;
 
     private final List<Player> players;
     private final List<Island> islands;
@@ -206,4 +208,5 @@ public class Model {
         }
         return false;
     }
+
 }
