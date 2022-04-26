@@ -49,9 +49,9 @@ public class CLI {
         this.put('└', '┐');
     }};
 
-    private static final Map<Character, String> pawnsMap = new HashMap<>(){{
-        this.put('s', " ◯ ");
-        this.put('p', "PRO");
+    private static final Map<String, String> pawnsMap = new HashMap<>(){{
+        this.put("s", " ● ");
+        this.put("p", "PRO");
     }};
 
     private String getStudent(Color color) {
@@ -62,19 +62,19 @@ public class CLI {
         return colorsMap.get(color) + this.PROF_PLACEHOLDER + ANSI_RESET;
     }
 
-    private Map<String, Integer> getFirstAvailablePlaceholder(Character[][] board, Character identifier, Color color) {
+    private Map<String, Integer> getFirstAvailablePlaceholder(String[][] board, String identifier, Color color) {
         Map<String, Integer> placeholder = new HashMap<>();
-        Character colorRow = Character.forDigit(positionMap.get(color), 10);
+        String colorRow = String.valueOf(Character.forDigit(positionMap.get(color), 10));
         int counter = 0;
         for (int i = 0; i < board.length; i++) {
             for (int j = 0; j < board[i].length; j++) {
                 if (counter == 0) {
-                    if (board[i][j] == identifier) {
+                    if (board[i][j].equals(identifier)) {
                         placeholder.put("start_row", i);
                         placeholder.put("start_col", j);
                         counter++;
                     }
-                } else if (counter == 1 && board[i][j] != colorRow) {
+                } else if (counter == 1 && !board[i][j].equals(colorRow)) {
                         placeholder.clear();
                         counter = 0;
                 } else if (counter == 3) {
@@ -87,12 +87,13 @@ public class CLI {
         return null;
     }
 
-    private void addStudentToBoard(Character[][] board, Color color) {
-        Map<String, Integer> placeholder = this.getFirstAvailablePlaceholder(board, 'S', color);
+    private void addStudentToBoard(String[][] board, Color color) {
+        Map<String, Integer> placeholder = this.getFirstAvailablePlaceholder(board, "S", color);
         if (placeholder != null) {
             int i = placeholder.get("start_row");
             int j = placeholder.get("start_col");
-            board[i][j] = Character.toLowerCase(board[i][j]);
+            board[i][j] = colorsMap.get(color) + board[i][j].toLowerCase();
+            board[i][j+2] = board[i][j] + ANSI_RESET;
         } else {
             System.out.println("ERROR. There is no space for a new student."); // To be removed --> new Exception
             //TODO: handle exception
@@ -120,37 +121,62 @@ public class CLI {
         return rotated;
     }
 
-    private String getPrintableBoard(Character[][] board, boolean removePlaceholders) {
+    private String getPrintableBoard(String[][] board, boolean removePlaceholders) {
         StringBuilder builder = new StringBuilder();
         int counter = 0;
-        Character identifier = null;
-        for (Character[] row : board) {
-            for (Character c : row) {
-                if (removePlaceholders && (isLetter(c) || isDigit(c))) {
-                    if (isLetter(c) && Character.isLowerCase(c)) {
-                        identifier = c;
-                    }
-                    if (identifier != null) {
-                        builder.append(pawnsMap.get(identifier).charAt(counter));
-                        if(counter < 2) {
-                            counter++;
+        String oldString = null;
+        String identifier = null;
+        for (String[] row : board) {
+            for (String c : row) {
+                // To be changed
+                if (c.length() > 4) {
+                    if (removePlaceholders && (isLetter(c.charAt(5)) || isDigit(c.charAt(5)))) {
+                        if (isLetter(c.charAt(5)) && Character.isLowerCase(c.charAt(5))) {
+                            identifier = String.valueOf(c.charAt(5));
+                            oldString = c;
+                        }
+                        if (identifier != null) {
+                            builder.append(oldString.replace(identifier, String.valueOf(pawnsMap.get(identifier).charAt(counter))));
+                            if(counter < 2) {
+                                counter++;
+                            } else {
+                                identifier = null;
+                                counter = 0;
+                            }
                         } else {
-                            identifier = null;
-                            counter = 0;
+                            builder.append(' ');
                         }
                     } else {
-                        builder.append(' ');
+                        builder.append(c);
                     }
                 } else {
-                    builder.append(c);
+                    if (removePlaceholders && (isLetter(c.charAt(0)) || isDigit(c.charAt(0)))) {
+                        if (isLetter(c.charAt(0)) && Character.isLowerCase(c.charAt(0))) {
+                            identifier = c;
+                        }
+                        if (identifier != null) {
+                            builder.append(pawnsMap.get(identifier).charAt(counter));
+                            if(counter < 2) {
+                                counter++;
+                            } else {
+                                identifier = null;
+                                counter = 0;
+                            }
+                        } else {
+                            builder.append(' ');
+                        }
+                    } else {
+                        builder.append(c);
+                    }
                 }
+
             }
             builder.append('\n');
         }
         return builder.toString();
     }
 
-    private Character[][] buildSetOfIslands(ArrayList<Character[][]> islands, Map<String, Character[][]> islandLinkers, ArrayList<Boolean> islandsLinkedToNext) {
+    private String[][] buildSetOfIslands(ArrayList<String[][]> islands, Map<String, String[][]> islandLinkers, ArrayList<Boolean> islandsLinkedToNext) {
         int[][] disposition = {
                 {110,   0,      1,      2,      3,      34},
                 {11,    -1,     -1,     -1,     -1,     4 },
@@ -175,7 +201,7 @@ public class CLI {
         int row = (islandH + spaceH) * islandsRows - spaceH;
         int col = (islandW + spaceW) * islandsCols - spaceW;
 
-        Character[][] set = new Character[row][col];
+        String[][] set = new String[row][col];
 
         int islandDispositionRowIndex;
         int islandDispositionColIndex;
@@ -192,17 +218,17 @@ public class CLI {
                     if (islandIndex >= 0 && islandIndex < 13) {
                         set[i][j] = islands.get(islandIndex)[i%(islandH+spaceH)][j%(islandW+spaceW)];
                     } else {
-                        set[i][j] = ' ';
+                        set[i][j] = " ";
                     }
 
                 } else {
-                    set[i][j] = ' ';
+                    set[i][j] = " ";
                 }
 
             }
         }
 
-        Character[][] linker = null;
+        String[][] linker = null;
         int linkerRowOnSet = 0;
         int linkerColOnSet = 0;
 
@@ -228,36 +254,36 @@ public class CLI {
         return set;
     }
 
-    private Character[][] buildGameBoard(ArrayList<Character[][]> schools, Character[][] setOfIslands) {
+    private String[][] buildGameBoard(ArrayList<String[][]> schools, String[][] setOfIslands) {
         int space = 4;
         int height = Math.max((setOfIslands.length + schools.get(0).length), schools.get(1).length);
         int width = setOfIslands[0].length + schools.get(1)[0].length + space;
-        Character[][] gameBoard = new Character[height][width];
+        String[][] gameBoard = new String[height][width];
 
         int mainSchoolOffset = (setOfIslands[0].length - schools.get(0)[0].length) / 2;
 
         for (int i=0; i<gameBoard.length; i++) {
             for (int j=0; j<gameBoard[i].length; j++) {
 
-                gameBoard[i][j] = ' ';
+                gameBoard[i][j] = " ";
 
                 // Side school
                 if (i < schools.get(1).length) {
                     if (i < setOfIslands.length && j < setOfIslands[0].length) {
                         gameBoard[i][j] = setOfIslands[i][j];
                     } else if (j-setOfIslands[0].length >= space && j-setOfIslands[0].length < schools.get(1)[i].length+space) {
-                        gameBoard[i][j] = schools.get(1)[i][j-setOfIslands[0].length-space];
+                        gameBoard[i][j] = schools.get(1)[i][j-setOfIslands[0].length-space].toString();
                     } else {
-                        gameBoard[i][j] = ' ';
+                        gameBoard[i][j] = " ";
                     }
                 }
 
                 // Main school
                 if (i >= setOfIslands.length && j < setOfIslands[0].length) {
                     if (j >= mainSchoolOffset && j-mainSchoolOffset < schools.get(0)[0].length) {
-                        gameBoard[i][j] = schools.get(0)[i-setOfIslands.length][j-mainSchoolOffset];
+                        gameBoard[i][j] = schools.get(0)[i-setOfIslands.length][j-mainSchoolOffset].toString();
                     } else {
-                        gameBoard[i][j] = ' ';
+                        gameBoard[i][j] = " ";
                     }
                 }
 
@@ -269,28 +295,29 @@ public class CLI {
 
     public void showGameBoard() {
         // Initialize island linkers
-        Map<String, Character[][]> islandLinkers = this.loader.getIslandLinkers();
+        Map<String, String[][]> islandLinkers = this.loader.getIslandLinkers();
         // TODO should be moved into the constructor
 
         // Create three schools
-        Character[][] mainSchool = this.loader.getSchool(false);
-        Character[][] vertSchoolOne = this.loader.getSchool(true);
-        Character[][] vertSchoolTwo = this.loader.getSchool(true);
+        String[][] mainSchool = this.loader.getSchool(false);
+        String[][] vertSchoolOne = this.loader.getSchool(true);
+        String[][] vertSchoolTwo = this.loader.getSchool(true);
 
         // Add some students to the schools
         this.addStudentToBoard(mainSchool, Color.RED);
         this.addStudentToBoard(mainSchool, Color.RED);
         this.addStudentToBoard(vertSchoolOne, Color.RED);
         this.addStudentToBoard(vertSchoolOne, Color.YELLOW);
+        this.addStudentToBoard(mainSchool, Color.GREEN);
 
         // Create a list of schools
-        ArrayList<Character[][]> schools = new ArrayList<>();
+        ArrayList<String[][]> schools = new ArrayList<>();
         schools.add(mainSchool);
         schools.add(vertSchoolOne);
         schools.add(vertSchoolTwo);
 
         // Create a list of 12 islands
-        ArrayList<Character[][]> islands = new ArrayList<>();
+        ArrayList<String[][]> islands = new ArrayList<>();
         for (int i=0; i < 12; i++) {
             islands.add(this.loader.getIsland());
         }
@@ -301,23 +328,28 @@ public class CLI {
             islandsLinkedToNext.add(false);
         }
 
+        this.addStudentToBoard(islands.get(0), Color.RED);
+        this.addStudentToBoard(islands.get(0), Color.YELLOW);
+        this.addStudentToBoard(islands.get(4), Color.BLUE);
+
         // Add link Island3 <--> Island4 (only this one supported at the moment)
         islandsLinkedToNext.set(3, true);
 
         // Build set of islands
-        Character[][] setOfIslands = this.buildSetOfIslands(islands, islandLinkers, islandsLinkedToNext);
+        String[][] setOfIslands = this.buildSetOfIslands(islands, islandLinkers, islandsLinkedToNext);
 
         // Build game board
-        Character[][] gameBoard = this.buildGameBoard(schools, setOfIslands);
+        String[][] gameBoard = this.buildGameBoard(schools, setOfIslands);
 
         // Print game board with placeholders for debug
+        System.out.println("DEBUG GAMEBOARD with PLACEHOLDERS");
         System.out.println(this.getPrintableBoard(gameBoard, false));
 
         System.out.println("\n\n\n\n");
 
         // Print game board
+        System.out.println("DEBUG GAMEBOARD");
         System.out.println(this.getPrintableBoard(gameBoard, true));
-
 
     }
 
