@@ -13,7 +13,7 @@ class HandlerTest {
     Model model;
     Handler handler;
 
-
+    @BeforeEach
     private void initialization() {
         ModelBuilder modelBuilder = new ModelBuilder();
         List<String> playersNames = new ArrayList<>();
@@ -26,7 +26,7 @@ class HandlerTest {
 
     @Test
     void professorControl() {
-        initialization();
+        //initialization();
         int num = 9;
         if (model.getPlayers().size() == 2) num = 7;
 
@@ -140,7 +140,7 @@ class HandlerTest {
 
     @Test
     void unifyIslandAndTowerSwitch() {
-        initialization();
+        //initialization();
         List<Island> islands = model.getIslands();
 
         islands.get(4).setTower(model.getPlayers().get(0));

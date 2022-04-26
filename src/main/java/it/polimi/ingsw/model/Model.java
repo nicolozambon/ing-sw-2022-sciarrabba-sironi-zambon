@@ -27,6 +27,9 @@ public class Model implements Serializable {
 
     private Handler handler;
 
+    private boolean isThereWinner;
+    private Player winner;
+
 
     protected Model(List<Player> players, List<Island> islands, List<Cloud> clouds, MotherNature motherNature,
                  List<CharacterCard> characterCards, int coinReserve, Board<Professor> startingProfessorBoard, StudentBag bag, int numStudentToMove) {
@@ -43,6 +46,8 @@ public class Model implements Serializable {
 
         this.controller = null;
         this.numStudentToMove = numStudentToMove;
+        this.isThereWinner = false;
+        this.winner = null;
     }
 
     public void playAssistantCard(int playerId, int choice) {
@@ -77,6 +82,9 @@ public class Model implements Serializable {
 
     public void moveMotherNature(int playerId, int stepsChoice) {
         this.handler.motherNatureMovement(players.get(playerId), motherNature, stepsChoice);
+        playerHasFinishedTowers();
+        threeGroupsIslandRemaining();
+
     }
 
     public void addStudentsToClouds() {
@@ -93,6 +101,11 @@ public class Model implements Serializable {
 
     protected List<Professor> getProfessors() {
         return new ArrayList<>(startingProfessorBoard.getPawns());
+    }
+
+    //TODO: remove?
+    protected Board<Professor> getProfessorsBoard() {
+        return this.startingProfessorBoard;
     }
 
     protected List<Cloud> getClouds() {
@@ -137,25 +150,80 @@ public class Model implements Serializable {
      * Methods isThereWinner checks if there is at least one condition for which the game ends.
      * @return NULL if there is no winner, the winning player otherwise.
      */
+
+    //TODO: separate isThereWinner in single functions
     protected Player isThereWinner() {
         //The game ends immediately...
 
-        //... when a player builds their last tower -> that player wins the game
+        /*//... when a player builds their last tower -> that player wins the game
         for (Player player : players) {
             if (player.getSchool().getTowersBoard().getNumPawns() == 0) return player;
         }
 
         //... when only 3 groups of islands remain on the table
         if (numOfGroupsOfIslands() == 3) return playerWithMostTowersOrProfessors();
-
+*/
         //... when the last student has been drawn from the bag
-        if (bag.getPawns().size() == 0) return playerWithMostTowersOrProfessors();
+        //if (bag.getPawns().size() == 0) return playerWithMostTowersOrProfessors();
+        studentBagIsEmpty();
 
         //... or should any player run out of Assistant Cards in their hand
-        if (aPlayerHasFinishedAssistantCards()) return playerWithMostTowersOrProfessors();
+        //if (aPlayerHasFinishedAssistantCards()) return playerWithMostTowersOrProfessors();
+        anyPlayerHasFinishedAssistantCards();
 
         return null;
     }
+
+    /**
+     * Method checks if the current player has finished towers. If so, that player wins.
+     * This check has to happen every time a tower is moved.
+     * @return true if there is a winner, false otherwise.
+     */
+    protected boolean playerHasFinishedTowers () {
+        for (Player player : players) {
+            if (player.getSchool().getTowersBoard().getNumPawns() == 0) {
+                this.setIsThereWinner(true);
+                this.setWinner(player);
+                return true;
+            }
+        }
+        return false;
+    }
+
+    /**
+     * Method checks if there are 3 groups of islands remaining. If so, the player with most towers or professors wins.
+     * This check has to happen every time there is a change in the islands.
+     * @return the winner if there is a winner, null otherwise.
+     */
+    protected Player threeGroupsIslandRemaining () {
+        if (numOfGroupsOfIslands() == 3) {
+            this.setIsThereWinner(true);
+            this.setWinner(playerWithMostTowersOrProfessors());
+        }
+        return null;
+    }
+
+    /**
+     * If the studentBag is empty, the match ends and the player with most towers or professors wins.
+     * This checks has to happen at the end of (every) round.
+     * @return the winner if there is a winner, null otherwise.
+     */
+    protected Player studentBagIsEmpty () {
+        if (bag.getPawns().size() == 0) return playerWithMostTowersOrProfessors();
+        return null;
+    }
+
+    /**
+     * If any player has finished assistants card, then the match ends and the player with most towers or professors wins.
+     * This checks has to happen at the end of (every) round.
+     * @return the winner if there is a winner, null otherwise.
+     */
+    protected Player anyPlayerHasFinishedAssistantCards() {
+        if (aPlayerHasFinishedAssistantCards()) return playerWithMostTowersOrProfessors();
+        return null;
+    }
+
+
 
     private int numOfGroupsOfIslands () {
         int numOfGroupOfIslands = 0;
@@ -223,4 +291,19 @@ public class Model implements Serializable {
         return controller;
     }
 
+    public boolean getIsThereWinner() {
+        return this.isThereWinner;
+    }
+
+    public void setIsThereWinner(boolean isThereWinner) {
+        this.isThereWinner = isThereWinner;
+    }
+
+    public void setWinner(Player player) {
+        this.winner = player;
+    }
+
+    public Player getWinner() {
+        return this.winner;
+    }
 }

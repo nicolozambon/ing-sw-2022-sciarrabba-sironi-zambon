@@ -30,7 +30,7 @@ public class InfluenceHandler extends Handler {
         }
 
         if (island.getTower().getOwner().equals(player)) {
-            influence += 1 * card.getTowerInfluence() ;
+            influence += card.getTowerInfluence();
         }
         return influence;
     }
