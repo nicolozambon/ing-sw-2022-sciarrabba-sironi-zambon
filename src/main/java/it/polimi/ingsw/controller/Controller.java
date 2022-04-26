@@ -32,57 +32,33 @@ public class Controller {
         this.model = model;
 
         this.isPlanningFinished = false;
-        this.planning = null;
-        this.action = null;
-
     }
 
-    public PlanningPhase startPlanningPhase(int playerID) {
-        Player player = this.playersToPlay.get(0);
-        if (player.getId() == playerID) {
-            planning = new PlanningPhase(player,this.model);
-            return planning;
-        }
-        return null;
-    }
-
-    public PlanningPhase endPlanningPhase(int playerID) {
-        Player player = this.playersToPlay.get(0);
-        if (player.getId() == playerID) {
-            planning = null;
-
-        }
-        return planning;
-    }
-
-
-    public ActionPhase startActionPhase(int playerID) {
-        if (isPlanningFinished && action == null) {
-            Player player = this.playersToPlay.get(0);
-            if (player.getId() == playerID) {
-                List<Player> otherPlayers = new ArrayList<>(playersToPlay);
-                otherPlayers.remove(player);
-                otherPlayers.addAll(playersHavePlayed);
-                action = new ActionPhase(player, otherPlayers, numStudentToMove, model);
-                return action;
+    protected void playAssistantCard(int playerId, int choice) {
+        if (!isPlanningFinished && playersToPlay.size() > 0) {
+            Player player = playersToPlay.get(0);
+            if (player.getId() == playerId) {
+                planning = new PlanningPhase(player, model);
+                planning.playAssistantCard(choice);
+                if (planning.isEnded()) {
+                    endPlayerTurn(player);
+                }
+            }
+            if (playersToPlay.size() < 0) {
+                endPlanningPhase();
             }
         }
-        return null;
     }
 
-    public ActionPhase endActionPhase(int playerID) {
-        if (action != null) {
-            if (this.action.getPlayer().getId() == playerID && action.isEnded()) {
-                playersHavePlayed.add(playersToPlay.remove(0));
-                action = null;
-            }
-        }
-        return action;
+
+
+    private void endPlanningPhase() {
+        isPlanningFinished = true;
     }
 
-    protected List<Player> end() {
-        orderPlayersForNextRound();
-        return new ArrayList<>(this.playersToPlay);
+    private void endPlayerTurn(Player player) {
+        playersToPlay.remove(player);
+        playersHavePlayed.add(player);
     }
 
     private void orderPlayersForAction(){
