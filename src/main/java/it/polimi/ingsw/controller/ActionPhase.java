@@ -5,7 +5,6 @@ import it.polimi.ingsw.exceptions.IllegalActionException;
 
 
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 
@@ -111,6 +110,10 @@ public class ActionPhase {
         if (callableMethod.get("move_student_island") < 1 && callableMethod.get("move_student_dining") < 1) {
             callableMethod.put("move_mothernature", 1);
         }
+    }
+
+    public Map<String, Integer> getOptions() {
+        return new HashMap<>(callableMethod);
     }
 
 }

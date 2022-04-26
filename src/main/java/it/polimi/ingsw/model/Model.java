@@ -83,7 +83,8 @@ public class Model implements Serializable {
     public void moveMotherNature(int playerId, int stepsChoice) {
         this.handler.motherNatureMovement(players.get(playerId), motherNature, stepsChoice);
         playerHasFinishedTowers();
-        threeGroupsIslandRemaining();
+        //TODO Fix, position OutOfBound
+        //threeGroupsIslandRemaining();
 
     }
 

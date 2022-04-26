@@ -1,0 +1,14 @@
+{
+  "nickname" : "Choose a nickname:",
+  "first_player" : "You are the first player, choose how many players this game will have (2-3):",
+  "wait" : "Please wait it's not your turn",
+
+  "assistant_card" : "Play an assistant card",
+  "move_student_dining" : "Move student to dining room",
+  "move_student_island" : "Move student to an island",
+  "move_mothernature": "Move mothernature",
+  "character_card" : "Play a character card",
+  "students_cloud" : "take students from cloud",
+  "extra_action" : "Use the character effect",
+  "end_action" : "End your action phase"
+}

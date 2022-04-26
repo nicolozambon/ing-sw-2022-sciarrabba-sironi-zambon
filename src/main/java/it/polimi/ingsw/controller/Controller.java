@@ -6,6 +6,7 @@ import it.polimi.ingsw.model.*;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 
 
@@ -32,6 +33,8 @@ public class Controller {
         this.numStudentToMove = numStudentToMove;
         this.model = model;
 
+        planning = new PlanningPhase(playersToPlay.get(0), this.model);
+        action = null;
         this.isPlanningFinished = false;
     }
 
@@ -155,6 +158,11 @@ public class Controller {
         }
     }
 
+    public Map<String, Integer> getOptions() {
+        if (isPlanningFinished) return planning.getOptions();
+        return action.getOptions();
+    }
+
     private boolean isRoundEnded(){
         return playersToPlay.size() == 0 && isPlanningFinished;
     }
@@ -183,6 +191,8 @@ public class Controller {
         playersToPlay = playersHavePlayed;
         playersHavePlayed = new ArrayList<>();
         isPlanningFinished = true;
+        planning = null;
+        action = new ActionPhase(playersToPlay.get(0), this.numStudentToMove, this.model);
     }
 
     private void orderPlayersForNextRound(){
@@ -198,6 +208,8 @@ public class Controller {
 
         this.playersToPlay = temp;
         isPlanningFinished = false;
+        action = null;
+        planning = new PlanningPhase(playersToPlay.get(0), this.model);
     }
 
     public List<Player> getPlayersHavePlayed() {
