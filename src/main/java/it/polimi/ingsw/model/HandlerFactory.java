@@ -9,7 +9,7 @@ import java.util.List;
 
 public class HandlerFactory {
 
-    protected Handler buildHandler(List<Player> players, CharacterCard card) {
+    public Handler buildHandler(List<Player> players, CharacterCard card) {
         Handler final_handler = null;
         switch (card.getCategory()) {
             case "influence":
@@ -28,7 +28,7 @@ public class HandlerFactory {
         return final_handler;
     }
 
-    protected Handler buildHandler(List<Player> players) {
+    public Handler buildHandler(List<Player> players) {
         return new Handler(players);
     }
 

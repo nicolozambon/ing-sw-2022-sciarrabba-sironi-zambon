@@ -17,19 +17,17 @@ public class ExampleView implements PropertyChangeListener {
 
     @Override
     public void propertyChange(PropertyChangeEvent evt) {
+        System.out.println(evt.getNewValue());
         switch (evt.getPropertyName()) {
             case "NICKNAME" -> {
-                System.out.println("Choose a nickname:");
                 String nickname = stdin.nextLine();
                 this.observable.firePropertyChange("NICKNAME", null, nickname);
             }
             case "NUM_PLAYERS" -> {
-                System.out.println("You are the first player, How many player would you like to play with (2 -3):");
                 int num = stdin.nextInt();
                 this.observable.firePropertyChange("NUM_PLAYERS", 0, num);
             }
             case "ERROR" -> {
-                System.out.println((String) evt.getNewValue());
             }
         }
         System.out.println("Wait...");

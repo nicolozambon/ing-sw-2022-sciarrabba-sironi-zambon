@@ -24,8 +24,8 @@ class PlayerTest {
     void initialization() {
 
         List<AssistantCard> cards = new ArrayList<>();
-        assistantCard1 = new AssistantCard(1, 10, 5);
-        assistantCard2 = new AssistantCard(2, 4, 9);
+        assistantCard1 = new AssistantCard(1, 5);
+        assistantCard2 = new AssistantCard(2, 9);
         cards.add(assistantCard1);
         cards.add(assistantCard2);
 
@@ -64,9 +64,9 @@ class PlayerTest {
     void AssistantCard() {
         assertThrows(IndexOutOfBoundsException.class, () -> player.getLastAssistantCard());
         player.playAssistantCard(1);
-        assertEquals(player.getLastAssistantCard().getId(), 1);
+        assertEquals(player.getLastAssistantCard().getValue(), 1);
         player.playAssistantCard(2);
-        assertEquals(player.getLastAssistantCard().getId(), 2);
+        assertEquals(player.getLastAssistantCard().getValue(), 2);
     }
 
     @Test

@@ -6,13 +6,12 @@ import java.util.Objects;
 
 public class AssistantCard implements Serializable {
 
+    @Serial
     private static final long serialVersionUID = 987654321L;
-    private final int id;
     private final int value;
     private final int steps;
 
-    public AssistantCard(int id, int value, int steps) {
-        this.id = id;
+    public AssistantCard(int value, int steps) {
         this.value = value;
         this.steps = steps;
     }
@@ -25,16 +24,11 @@ public class AssistantCard implements Serializable {
         return this.steps;
     }
 
-    public int getId() {
-        return id;
-    }
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (!(o instanceof AssistantCard)) return false;
-        AssistantCard that = (AssistantCard) o;
-        return value == that.value && steps == that.steps && id == that.id;
+        if (!(o instanceof AssistantCard that)) return false;
+        return value == that.value && steps == that.steps;
     }
 
     @Override
@@ -44,8 +38,7 @@ public class AssistantCard implements Serializable {
 
     @Override
     public String toString() {
-        return "id = " + id +
-                ", value = " + value +
+        return "value = " + value +
                 ", steps = " + steps +
                 '}';
     }

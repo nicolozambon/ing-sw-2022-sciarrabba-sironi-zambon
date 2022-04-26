@@ -15,47 +15,48 @@ public class Controller {
     private List<Player> playersToPlay;
     private List<Player> playersHavePlayed;
 
-    private boolean isPlanningFinished;
+    private Model model;
 
     private PlanningPhase planning;
     private ActionPhase action;
 
+    private boolean isPlanningFinished;
+
     private final int numStudentToMove;
 
-    private Model model;
-
-    protected Controller(List<Player> players, List<Cloud> clouds, StudentBag bag, int numStudentToMove, Model model) {
+    public Controller(List<Player> players, List<Cloud> clouds, StudentBag bag, int numStudentToMove, Model model) {
 
         this.playersToPlay = players;
         this.playersHavePlayed = new ArrayList<>();
         this.numStudentToMove = numStudentToMove;
-
         this.model = model;
 
         this.isPlanningFinished = false;
-        this.planning.addStudentsToCloud(clouds, bag);
-
+        this.planning = null;
         this.action = null;
 
     }
 
-
-    protected void playAssistantCard(int playerID, int choice) {
-        if (!isPlanningFinished) {
-            Player player = this.playersToPlay.get(0);
-            if (player.getId() == playerID) {
-                this.planning.playAssistantCard(player, choice);
-            }
-            playersHavePlayed.add(playersToPlay.remove(0));
+    public PlanningPhase startPlanningPhase(int playerID) {
+        Player player = this.playersToPlay.get(0);
+        if (player.getId() == playerID) {
+            planning = new PlanningPhase(player,this.model);
+            return planning;
         }
-
-        if (playersToPlay.size() == 0) {
-            isPlanningFinished = true;
-            orderPlayersForAction();
-        }
+        return null;
     }
 
-    protected ActionPhase startActionPhase(int playerID) {
+    public PlanningPhase endPlanningPhase(int playerID) {
+        Player player = this.playersToPlay.get(0);
+        if (player.getId() == playerID) {
+            planning = null;
+
+        }
+        return planning;
+    }
+
+
+    public ActionPhase startActionPhase(int playerID) {
         if (isPlanningFinished && action == null) {
             Player player = this.playersToPlay.get(0);
             if (player.getId() == playerID) {
@@ -69,7 +70,7 @@ public class Controller {
         return null;
     }
 
-    protected ActionPhase endActionPhase(int playerID) {
+    public ActionPhase endActionPhase(int playerID) {
         if (action != null) {
             if (this.action.getPlayer().getId() == playerID && action.isEnded()) {
                 playersHavePlayed.add(playersToPlay.remove(0));
@@ -102,11 +103,13 @@ public class Controller {
         firstPlayerId = temp.get(0).getId();
 
         temp.addAll(this.playersHavePlayed
-                    .stream()
-                    .sorted(Comparator.comparingInt(x -> (x.getId() + firstPlayerId) % 3)) //Modulo 3 perché così i giocatori vengono ordinati SEMPRE in senso orario
-                    .collect(Collectors.toList()));
+                .stream()
+                .sorted(Comparator.comparingInt(x -> (x.getId() + firstPlayerId) % 3)).toList());
 
         this.playersToPlay = temp;
     }
 
+    public List<Player> getPlayersHavePlayed() {
+        return new ArrayList<>(playersHavePlayed);
+    }
 }

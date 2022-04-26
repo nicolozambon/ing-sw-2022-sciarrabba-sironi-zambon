@@ -56,11 +56,11 @@ public class Player {
 
     protected void playAssistantCard(int index) {
         for(AssistantCard card : assistantCardDeck.getCards()) {
-            if(card.getId() == index) discardPileDeck.moveInCard(card, assistantCardDeck);
+            if(card.getValue() == index) discardPileDeck.moveInCard(card, assistantCardDeck);
         }
     }
 
-    protected List<AssistantCard> getAssistantCards() {
+    public List<AssistantCard> getAssistantCards() {
         return assistantCardDeck.getCards();
     }
 

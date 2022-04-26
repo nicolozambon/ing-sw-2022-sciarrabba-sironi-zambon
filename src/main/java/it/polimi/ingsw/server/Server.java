@@ -17,6 +17,8 @@ public class Server {
 
     private Queue<LobbyConnection> queue;
 
+    private List<GameHandler> games;
+
     /**
      * Number of players for the match being built.
      */
@@ -27,17 +29,19 @@ public class Server {
         this.port = port;
         this.ip = DEFAULT_IP_SETTINGS;
         this.queue = new ArrayDeque<>();
+        this.games = new ArrayList<>();
     }
 
     public Server(String ip, int port) {
         this.port = port;
         this.ip = ip;
         this.queue = new ArrayDeque<>();
+        this.games = new ArrayList<>();
     }
 
     public void startServer() throws IOException {
 
-        ExecutorService executor = Executors.newCachedThreadPool();
+        ExecutorService connectionThreadPool = Executors.newCachedThreadPool();
         ServerSocket serverSocket = new ServerSocket();
 
         try {
@@ -49,18 +53,20 @@ public class Server {
         System.out.println("Server socket ready on port: " +  serverSocket.getLocalPort());
         System.out.println("Server socket ready on IP: " + serverSocket.getInetAddress().getHostAddress());
 
-        executor.submit(this::lobby);
+        connectionThreadPool.submit(this::lobby);
         while (true) {
             try {
                 Socket socket = serverSocket.accept();
                 System.out.println("Received client connection");
-                executor.submit(new LobbyConnection(socket, this));
+                LobbyConnection connection = new LobbyConnection(socket, this);
+                connection.send(new Message("NICKNAME", "Choose a Nickname:"));
+                connectionThreadPool.submit(connection);
             } catch (IOException e) {
                 e.printStackTrace();
                 break;
             }
         }
-        executor.shutdown();
+        connectionThreadPool.shutdown();
         serverSocket.close();
     }
 
@@ -74,6 +80,7 @@ public class Server {
     private void lobby() {
         LobbyConnection connection;
         Map<String, Connection> players = new HashMap<>();
+        ExecutorService gameThreadPool = Executors.newCachedThreadPool();
         while (true) {
 
             while (queue.isEmpty()) {
@@ -89,36 +96,45 @@ public class Server {
                 connection = queue.remove();
             }
 
-            System.out.println("added player to a game");
-            if (numPlayers < 0) {
-                connection.send(new Message("NUM_PLAYERS", null));
-                while (numPlayers < 0) {
-                    try {
-                        synchronized (this) {
-                            wait();
-                        }
-                    } catch (InterruptedException e) {
+            if (isNicknameUnique(connection, players)) {
+                players.put(connection.getNickname(), connection);
+                System.out.println("added player to a game");
+                if (numPlayers < 0) {
+                    connection.send(new Message("NUM_PLAYERS", "You are the first player, choose (2-3):"));
+                    while (numPlayers < 0) {
+                        try {
+                            synchronized (this) {
+                                wait();
+                            }
+                        } catch (InterruptedException e) {
 
+                        }
                     }
                 }
-            }
-
-            if (!players.containsKey(connection.getNickname())) {
-                players.put(connection.getNickname(), connection);
             } else {
                 connection.send(new Message("ERROR", "Nickname already taken, retry"));
-                connection.send(new Message("NICKNAME", null));
+                connection.send(new Message("NICKNAME", "Choose a Nickname:"));
             }
 
 
             if (players.size() == numPlayers) {
-                new Thread(new GameHandler(players));
+                GameHandler game = new GameHandler(players);
+                gameThreadPool.submit(game);
+                games.add(game);
                 numPlayers = -1;
                 players = new HashMap<>();
             }
 
         }
 
+    }
+
+    private synchronized boolean isNicknameUnique(Connection connection, Map<String, Connection> players) {
+        if (players.containsKey(connection.getNickname())) return false;
+        for (GameHandler game : games) {
+            if (game.getPlayersNicknames().contains(connection.getNickname())) return false;
+        }
+        return true;
     }
 
     protected synchronized void setNumPlayers (int num) throws OutOfBoundsException {
