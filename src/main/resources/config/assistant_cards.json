@@ -1,61 +1,41 @@
 [
   {
-    "id": 1,
-    "path": "",
     "value": 1,
     "steps": 1
   },
   {
-    "id": 2,
-    "path": "",
     "value": 2,
     "steps": 1
   },
   {
-    "id": 3,
-    "path": "",
     "value": 3,
     "steps": 2
   },
   {
-    "id": 4,
-    "path": "",
     "value": 4,
     "steps": 2
   },
   {
-    "id": 5,
-    "path": "",
     "value": 5,
     "steps": 3
   },
   {
-    "id": 6,
-    "path": "",
     "value": 6,
     "steps": 3
   },
   {
-    "id": 7,
-    "path": "",
     "value": 7,
     "steps": 4
   },
   {
-    "id": 8,
-    "path": "",
     "value": 8,
     "steps": 4
   },
   {
-    "id": 9,
-    "path": "",
     "value": 9,
     "steps": 5
   },
   {
-    "id": 10,
-    "path": "",
     "value": 10,
     "steps": 5
   }

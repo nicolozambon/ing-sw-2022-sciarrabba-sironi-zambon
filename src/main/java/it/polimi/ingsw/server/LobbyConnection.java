@@ -20,11 +20,12 @@ public class LobbyConnection implements Runnable, Connection {
     public LobbyConnection(Socket socket, Server server) {
         this.server = server;
         this.socket = socket;
+        startConnection();
     }
 
     @Override
     public void run() {
-        startConnection();
+
         while (active) {
             read();
         }
@@ -43,7 +44,7 @@ public class LobbyConnection implements Runnable, Connection {
                         server.setNumPlayers((int)input.getValue());
                     } catch (OutOfBoundsException e) {
                         send(new Message("ERROR", "Number of players not valid, retry"));
-                        send(new Message("NUM_PLAYERS", null));
+                        send(new Message("NUM_PLAYERS", "You are the first player, choose (2-3):"));
                     }
                 }
             }

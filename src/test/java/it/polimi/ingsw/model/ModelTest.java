@@ -58,7 +58,7 @@ class ModelTest {
             assertEquals(i, player.getId());
             for (int j = 1 ; j < 11; j++) {
                 model.playAssistantCard(player.getId(),j);
-                assertEquals(j,player.getLastAssistantCard().getId());
+                assertEquals(j,player.getLastAssistantCard().getValue());
             }
             i++;
         }
