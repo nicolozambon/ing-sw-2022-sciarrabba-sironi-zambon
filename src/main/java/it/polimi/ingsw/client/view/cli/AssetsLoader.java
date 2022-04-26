@@ -10,7 +10,7 @@ public class AssetsLoader {
 
     final String FOLDER_PATH = "src/main/resources/assets/cli/";
 
-    private Character[][] readMatrixFromFile(String filename) {
+    private String[][] readMatrixFromFile(String filename) {
         StringBuilder builder = new StringBuilder();
         String string = null;
         try {
@@ -30,26 +30,27 @@ public class AssetsLoader {
         int colsNumber = string.indexOf("\n");
         string = string.replace("\n", "");
         int rowsNumber = string.length() / colsNumber;
-        Character[][] matrix = new Character[rowsNumber][colsNumber];
+        String[][] matrix = new String[rowsNumber][colsNumber];
         for (int i = 0; i < rowsNumber; i++) {
             for (int j = 0; j < colsNumber; j++) {
-                matrix[i][j] = string.charAt(i*colsNumber+j);
+                matrix[i][j] = String.valueOf(string.charAt(i*colsNumber+j));
             }
         }
         return matrix;
     }
 
-    protected Character[][] getIsland() {
+    protected String[][] getIsland() {
         return this.readMatrixFromFile("island");
     }
 
-    protected Map<String, Character[][]> getIslandLinkers() {
-        Map<String, Character[][]> linkers = new HashMap<>();
+    protected Map<String, String[][]> getIslandLinkers() {
+        Map<String, String[][]> linkers = new HashMap<>();
         linkers.put("tr", this.readMatrixFromFile("pseudo_island_tr"));
+        linkers.put("tl", this.readMatrixFromFile("pseudo_island_tl"));
         return linkers;
     }
 
-    protected Character[][] getSchool(boolean rotated) {
+    protected String[][] getSchool(boolean rotated) {
         if (!rotated) {
             return this.readMatrixFromFile("school");
         } else {
