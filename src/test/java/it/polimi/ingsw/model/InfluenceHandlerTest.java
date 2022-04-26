@@ -44,7 +44,6 @@ class InfluenceHandlerTest {
         ArrayList<Student> cloud4List = new ArrayList<>();
 
         Player player1 = model.getPlayers().get(0);
-        System.out.println("Player1: " + player1);
         Player player2 = model.getPlayers().get(1);
         Player player3 = model.getPlayers().get(2);
 
@@ -56,7 +55,7 @@ class InfluenceHandlerTest {
 
         Student student4 = new Student(Color.BLUE);
         Student student5 = new Student(Color.BLUE);
-        Student student6 = new Student(Color.BLUE);
+        Student student6 = new Student(Color.RED);
 
         Student student7 = new Student(Color.YELLOW);
         Student student8 = new Student(Color.YELLOW);
@@ -91,13 +90,23 @@ class InfluenceHandlerTest {
         player1.takeStudentsFromCloud(cloud4);
 
         //To get coins
-        player1.moveStudentDiningRoom(player1.getSchool().getEntrance().getPawns().get(player1.getSchool().getEntrance().getPawns().size()-1), 20);
-        player1.moveStudentDiningRoom(player1.getSchool().getEntrance().getPawns().get(player1.getSchool().getEntrance().getPawns().size()-1), 20);
-        player1.moveStudentDiningRoom(player1.getSchool().getEntrance().getPawns().get(player1.getSchool().getEntrance().getPawns().size()-1), 20);
-        player1.moveStudentDiningRoom(player1.getSchool().getEntrance().getPawns().get(player1.getSchool().getEntrance().getPawns().size()-1), 20);
-        player1.moveStudentDiningRoom(player1.getSchool().getEntrance().getPawns().get(player1.getSchool().getEntrance().getPawns().size()-1), 20);
-        player1.moveStudentDiningRoom(player1.getSchool().getEntrance().getPawns().get(player1.getSchool().getEntrance().getPawns().size()-1), 20);
+        model.moveStudentToDiningRoom(player1.getId(), 0);
+        model.moveStudentToDiningRoom(player1.getId(), 0);
+        model.moveStudentToDiningRoom(player1.getId(), 0);
+        model.moveStudentToDiningRoom(player1.getId(), 0);
+        model.moveStudentToDiningRoom(player1.getId(), 0);
+        model.moveStudentToDiningRoom(player1.getId(), 0);
+        /*
+        player1.moveStudentDiningRoom(player1.getSchool().getEntrance().getPawns().get(0), 20);
+        player1.moveStudentDiningRoom(player1.getSchool().getEntrance().getPawns().get(0), 20);
+        player1.moveStudentDiningRoom(player1.getSchool().getEntrance().getPawns().get(0), 20);
+        player1.moveStudentDiningRoom(player1.getSchool().getEntrance().getPawns().get(0), 20);
+        player1.moveStudentDiningRoom(player1.getSchool().getEntrance().getPawns().get(0), 20);
+        player1.moveStudentDiningRoom(player1.getSchool().getEntrance().getPawns().get(0), 20);
+        */
+
         System.out.println("Player1 coin size: " + player1.getCoins());
+        model.takeStudentsFromCloud(player1.getId(), 0);
         player1.takeStudentsFromCloud(cloud1);
         player2.takeStudentsFromCloud(cloud2);
 

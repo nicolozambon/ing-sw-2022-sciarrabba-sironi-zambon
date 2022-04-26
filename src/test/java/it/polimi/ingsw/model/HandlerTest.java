@@ -138,7 +138,7 @@ class HandlerTest {
         return influence;
     }
 
-    /*@Test
+    @Test
     void unifyIslandAndTowerSwitch() {
         //initialization();
         List<Island> islands = model.getIslands();
@@ -185,5 +185,5 @@ class HandlerTest {
         assertEquals(islands.get(0).getTower().getOwner(), model.getPlayers().get(num));
         assertEquals(islands.get(1).getTower().getOwner(), model.getPlayers().get(num));
 
-    }*/
+    }
 }
