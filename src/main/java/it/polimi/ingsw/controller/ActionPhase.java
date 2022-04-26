@@ -14,22 +14,22 @@ import java.util.Map;
 public class ActionPhase {
 
     private Player currentPlayer;
-    private List<Player> otherPlayers;
     private Map<String, Integer> callableMethod;
 
     private Model model;
 
-    public ActionPhase(Player player, List<Player> otherPlayers, int numOfStudentToMove, Model model) {
-        this.currentPlayer = player;
-        this.otherPlayers = otherPlayers;
+    public ActionPhase(Player currentPlayer, int numOfStudentToMove, Model model) {
+        this.currentPlayer = currentPlayer;
         this.model = model;
 
         callableMethod = new HashMap<>(){{
-            this.put("student_movement", numOfStudentToMove);
-            this.put("mothernature_movement", 1);
+            this.put("move_student_dining", numOfStudentToMove);
+            this.put("move_student_island", numOfStudentToMove);
+            this.put("move_mothernature", 0);
             this.put("character_card", 1);
-            this.put("students_cloud", 1);
+            this.put("students_cloud", 0);
             this.put("extra_action", 0);
+            this.put("end_action", 0);
         }};
     }
 
@@ -49,23 +49,26 @@ public class ActionPhase {
     }
 
     public void moveStudentToDiningRoom(int choice) {
-        if(callableMethod.get("student_movement") > 0) {
+        if(callableMethod.get("move_student_dining") > 0) {
             this.model.moveStudentToDiningRoom(this.currentPlayer.getId(), choice);
-            callableMethod.put("student_movement", callableMethod.get("student_movement") - 1);
+            moveStudentCounter();
         }
     }
 
     public void moveStudentToIsland(int studentChoice, int islandChoice) throws IllegalActionException {
-        if(callableMethod.get("student_movement") > 0) {
+        if(callableMethod.get("move_student_island") > 0) {
             this.model.moveStudentToIsland(this.currentPlayer.getId(), studentChoice, islandChoice);
-            callableMethod.put("student_movement", callableMethod.get("student_movement") - 1);
+            moveStudentCounter();
         } else throw new IllegalActionException();
     }
 
     public void moveMotherNature(int stepsChoice) {
-        if(callableMethod.get("mothernature_movement") > 0) {
+        if(callableMethod.get("move_mothernature") > 0) {
             this.model.moveMotherNature(this.currentPlayer.getId(), stepsChoice);
-            callableMethod.put("mothernature_movement", callableMethod.get("mothernature_movement") - 1);
+            callableMethod.put("move_mothernature", callableMethod.get("move_mothernature") - 1);
+            if (callableMethod.get("move_mothernature") < 1) {
+                callableMethod.put("students_cloud", 1);
+            }
         }
     }
 
@@ -73,6 +76,9 @@ public class ActionPhase {
         if(callableMethod.get("students_cloud") > 0) {
             this.model.takeStudentsFromCloud(this.currentPlayer.getId(), choice);
             callableMethod.put("students_cloud", callableMethod.get("students_cloud") - 1);
+            if (callableMethod.get("students_cloud") < 1 && callableMethod.get("extra_action") < 0) {
+                callableMethod.put("end_action", 1);
+            }
         }
     }
 
@@ -80,6 +86,14 @@ public class ActionPhase {
         if(callableMethod.get("extra_action") > 0) {
             this.model.extraAction(values);
             callableMethod.put("extra_action", callableMethod.get("extra_action") - 1 );
+        }
+    }
+
+    public void endAction(){
+        if(callableMethod.get("end_action") > 0) {
+            for (String s : callableMethod.keySet()) {
+                callableMethod.put(s, 0);
+            }
         }
     }
 
@@ -91,7 +105,11 @@ public class ActionPhase {
       return true;
     }
 
-    public Player getPlayer () {
-        return currentPlayer;
+    private void moveStudentCounter() {
+        callableMethod.put("move_student_island", callableMethod.get("move_student_island") - 1);
+        callableMethod.put("move_student_dining", callableMethod.get("move_student_dining") - 1);
+        if (callableMethod.get("move_student_island") < 1 && callableMethod.get("move_student_dining") < 1) {
+            callableMethod.put("move_mothernature", 1);
+        }
     }
 }

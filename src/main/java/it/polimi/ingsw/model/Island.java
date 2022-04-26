@@ -33,7 +33,7 @@ public class Island extends Board<Student> {
 
             oldTowerBoard.moveInPawn(oldTower, towerBoard);
         }
-        towerBoard.moveInPawn(sourceTowerBoard.getPawns().get(0), sourceTowerBoard);
+        if (sourceTowerBoard.getNumPawns() > 0) towerBoard.moveInPawn(sourceTowerBoard.getPawns().get(0), sourceTowerBoard);
     }
 
     protected Tower getTower() {

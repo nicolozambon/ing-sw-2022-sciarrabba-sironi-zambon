@@ -218,7 +218,7 @@ public class Model implements Serializable {
 
     public Controller getController() {
         if (controller == null) {
-            controller = new Controller(this.players,this.clouds,this.bag,this.numStudentToMove, this);
+            controller = new Controller(this.players, this, this.numStudentToMove);
         }
         return controller;
     }
