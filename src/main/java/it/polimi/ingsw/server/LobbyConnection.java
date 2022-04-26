@@ -1,7 +1,7 @@
 package it.polimi.ingsw.server;
 
-import it.polimi.ingsw.messages.Message;
 import it.polimi.ingsw.exceptions.OutOfBoundsException;
+import it.polimi.ingsw.messages.Message;
 
 import java.io.*;
 import java.net.Socket;

@@ -94,4 +94,5 @@ public class ActionPhase {
     public Player getPlayer () {
         return currentPlayer;
     }
+
 }
