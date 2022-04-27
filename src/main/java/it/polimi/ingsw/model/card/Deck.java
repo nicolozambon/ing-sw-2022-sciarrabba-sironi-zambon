@@ -29,7 +29,7 @@ public class Deck<T> {
     }
 
     public void moveInCard(T card, Deck<T> src) {
-        cards.add(card);
+        this.cards.add(card);
         src.cards.remove(card);
     }
 }

@@ -1,6 +1,8 @@
 package it.polimi.ingsw.controller;
 
 import it.polimi.ingsw.exceptions.IllegalActionException;
+import it.polimi.ingsw.exceptions.InvalidCardException;
+import it.polimi.ingsw.exceptions.NotPlayerTurnException;
 import it.polimi.ingsw.model.*;
 
 import java.util.ArrayList;
@@ -34,11 +36,12 @@ public class Controller {
         this.model = model;
 
         planning = new PlanningPhase(playersToPlay.get(0), this.model);
+
         action = null;
         this.isPlanningFinished = false;
     }
 
-    public void playAssistantCard(int playerId, int choice) {
+    public void playAssistantCard(int playerId, int choice) throws InvalidCardException, NotPlayerTurnException {
         if (!isPlanningFinished && playersToPlay.size() > 0) {
             Player player = playersToPlay.get(0);
             if (player.getId() == playerId) {
@@ -49,6 +52,8 @@ public class Controller {
                 if (planning.isEnded()) {
                     endPlayerPlanning(player);
                 }
+            } else {
+                throw new NotPlayerTurnException();
             }
         }
     }
@@ -215,4 +220,14 @@ public class Controller {
     public List<Player> getPlayersHavePlayed() {
         return new ArrayList<>(playersHavePlayed);
     }
+
+    public List<Player> getPlayersToPlay() {
+        return new ArrayList<>(playersToPlay);
+    }
+
+    public Player getActivePlayer() {
+        if (playersToPlay.size() > 0) return playersToPlay.get(0);
+        return null;
+    }
+
 }

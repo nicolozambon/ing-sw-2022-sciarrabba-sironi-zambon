@@ -2,14 +2,14 @@ package it.polimi.ingsw.client;
 
 import it.polimi.ingsw.messages.Message;
 import it.polimi.ingsw.client.view.ExampleView;
+import it.polimi.ingsw.listeners.Listener;
 
 import java.beans.PropertyChangeEvent;
-import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
 import java.io.*;
 import java.net.Socket;
 
-public class Client implements PropertyChangeListener {
+public class Client implements Listener {
 
     private final String ip;
     private final int port;

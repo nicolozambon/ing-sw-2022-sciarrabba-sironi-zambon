@@ -15,7 +15,7 @@ public class Server {
     private int port;
     private String ip;
 
-    private Queue<LobbyConnection> queue;
+    private Queue<Connection> queue;
 
     private List<GameHandler> games;
 
@@ -58,7 +58,7 @@ public class Server {
             try {
                 Socket socket = serverSocket.accept();
                 System.out.println("Received client connection");
-                LobbyConnection connection = new LobbyConnection(socket, this);
+                Connection connection = new Connection(socket, this);
                 connection.send(new Message("NICKNAME", "Choose a Nickname:"));
                 connectionThreadPool.submit(connection);
             } catch (IOException e) {
@@ -70,7 +70,7 @@ public class Server {
         serverSocket.close();
     }
 
-    protected void enqueuePlayer(LobbyConnection connection) {
+    protected void enqueuePlayer(Connection connection) {
         synchronized (queue) {
             this.queue.add(connection);
             this.queue.notifyAll();
@@ -78,7 +78,7 @@ public class Server {
     }
 
     private void lobby() {
-        LobbyConnection connection;
+        Connection connection;
         Map<String, Connection> players = new HashMap<>();
         ExecutorService gameThreadPool = Executors.newCachedThreadPool();
         while (true) {

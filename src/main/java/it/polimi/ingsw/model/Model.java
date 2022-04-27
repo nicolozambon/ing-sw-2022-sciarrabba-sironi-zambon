@@ -2,7 +2,7 @@ package it.polimi.ingsw.model;
 
 import it.polimi.ingsw.controller.Controller;
 import it.polimi.ingsw.enums.Color;
-import it.polimi.ingsw.exceptions.InvalidCardIdException;
+import it.polimi.ingsw.exceptions.InvalidCardException;
 import it.polimi.ingsw.exceptions.NotEnoughCoinsException;
 import it.polimi.ingsw.model.card.CharacterCard;
 
@@ -55,7 +55,7 @@ public class Model implements Serializable {
     }
 
 
-    public void playCharacterCard(int playerId, int choice) throws NotEnoughCoinsException, InvalidCardIdException {
+    public void playCharacterCard(int playerId, int choice) throws NotEnoughCoinsException, InvalidCardException {
         CharacterCard card;
         if (characterCards.stream().anyMatch(x -> x.getId() == choice)) {
             card = characterCards.stream().filter(x -> x.getId() == choice).findFirst().get();
@@ -63,7 +63,7 @@ public class Model implements Serializable {
             card.incrementCoinCost();
             this.handler = new HandlerFactory().buildHandler(new ArrayList<>(players), card);
         } else {
-            throw new InvalidCardIdException();
+            throw new InvalidCardException();
         }
     }
 
@@ -287,7 +287,7 @@ public class Model implements Serializable {
 
     public Controller getController() {
         if (controller == null) {
-            controller = new Controller(this.players, this, this.numStudentToMove);
+            controller = new Controller(new ArrayList<>(this.players), this, this.numStudentToMove);
         }
         return controller;
     }

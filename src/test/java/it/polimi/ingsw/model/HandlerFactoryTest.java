@@ -32,18 +32,10 @@ class HandlerFactoryTest {
         assertTrue(factory.buildHandler(players) instanceof Handler);
         for (CharacterCard card : model.getCharacterCards()) {
             switch (card.getCategory()) {
-                case "influence":
-                    assertTrue(factory.buildHandler(players, card) instanceof InfluenceHandler);
-                    break;
-                case "mother_nature":
-                    assertTrue(factory.buildHandler(players, card) instanceof MotherNatureHandler);
-                    break;
-                case "movement":
-                    assertTrue(factory.buildHandler(players, card) instanceof MovementHandler);
-                    break;
-                default:
-                    assertTrue(factory.buildHandler(players, card) instanceof Handler);
-                    break;
+                case "influence" -> assertTrue(factory.buildHandler(players, card) instanceof InfluenceHandler);
+                case "mother_nature" -> assertTrue(factory.buildHandler(players, card) instanceof MotherNatureHandler);
+                case "movement" -> assertTrue(factory.buildHandler(players, card) instanceof MovementHandler);
+                default -> assertTrue(factory.buildHandler(players, card) instanceof Handler);
             }
 
         }

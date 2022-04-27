@@ -1,4 +1,4 @@
-package it.polimi.ingsw.messages;
+package it.polimi.ingsw.client.view;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
@@ -23,22 +23,22 @@ public class OptionStringifier {
     }
 
     public String stringify(Map<String, Integer> options) {
-        String string = "";
+        StringBuilder string = new StringBuilder();
         int i = 1;
         for (String s : options.keySet()) {
             if (options.get(s) > 0) {
-                string = string + "\n" + i + ". " + dictionary.get(s);
+                string.append("\n").append(i).append(". ").append(dictionary.get(s));
                 i++;
             }
         }
-        return string;
+        return string.toString();
     }
 
     public String stringify() {
-        String string = "";
+        StringBuilder string = new StringBuilder();
         for (String s : dictionary.keySet()) {
-            string = string + "\n" + dictionary.get(s);
+            string.append("\n").append(dictionary.get(s));
         }
-        return string;
+        return string.toString();
     }
 }

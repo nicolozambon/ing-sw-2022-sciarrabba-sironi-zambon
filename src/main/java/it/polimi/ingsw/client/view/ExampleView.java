@@ -1,11 +1,14 @@
 package it.polimi.ingsw.client.view;
 
+import it.polimi.ingsw.listeners.Listenable;
+import it.polimi.ingsw.listeners.Listener;
+
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
 import java.util.Scanner;
 
-public class ExampleView implements PropertyChangeListener {
+public class ExampleView implements Listener, Listenable {
 
     private PropertyChangeSupport observable;
     private Scanner stdin;
@@ -38,6 +41,16 @@ public class ExampleView implements PropertyChangeListener {
     }
 
     public void addListener(String propertyName, PropertyChangeListener listener) {
+        this.observable.addPropertyChangeListener(propertyName, listener);
+    }
+
+    @Override
+    public void removeListener(PropertyChangeListener listener) {
+        this.observable.addPropertyChangeListener(listener);
+    }
+
+    @Override
+    public void removeListener(String propertyName, PropertyChangeListener listener) {
         this.observable.addPropertyChangeListener(propertyName, listener);
     }
 }

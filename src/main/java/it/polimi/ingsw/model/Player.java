@@ -30,7 +30,7 @@ public class Player {
         this.school = new School(students, towers);
         this.towerColor = towers.get(0).getColor();
         this.assistantCardDeck = assistantCardDeck;
-        this.discardPileDeck = new Deck();
+        this.discardPileDeck = new Deck<>();
         this.coins = 1;
     }
 
@@ -56,7 +56,9 @@ public class Player {
 
     protected void playAssistantCard(int index) {
         for(AssistantCard card : assistantCardDeck.getCards()) {
-            if(card.getValue() == index) discardPileDeck.moveInCard(card, assistantCardDeck);
+            if(card.getValue() == index) {
+                discardPileDeck.moveInCard(card, assistantCardDeck);
+            }
         }
     }
 

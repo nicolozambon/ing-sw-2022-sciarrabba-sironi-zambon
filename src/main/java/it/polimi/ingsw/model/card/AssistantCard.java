@@ -38,8 +38,7 @@ public class AssistantCard implements Serializable {
 
     @Override
     public String toString() {
-        return "value = " + value +
-                ", steps = " + steps +
-                '}';
+        return "{value = " + value +
+                ", steps = " + steps + "}";
     }
 }

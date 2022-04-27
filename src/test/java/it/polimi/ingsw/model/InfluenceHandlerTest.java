@@ -1,11 +1,8 @@
 package it.polimi.ingsw.model;
 
 import it.polimi.ingsw.enums.Color;
-import it.polimi.ingsw.exceptions.InvalidCardIdException;
+import it.polimi.ingsw.exceptions.InvalidCardException;
 import it.polimi.ingsw.exceptions.NotEnoughCoinsException;
-import it.polimi.ingsw.model.card.CharacterCard;
-import it.polimi.ingsw.model.card.CharacterCardFactory;
-import it.polimi.ingsw.model.card.InfluenceCharacterCard;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -36,7 +33,7 @@ class InfluenceHandlerTest {
     }
 
     @Test
-    void getMostInfluentialPlayer() throws NotEnoughCoinsException, InvalidCardIdException {
+    void getMostInfluentialPlayer() throws NotEnoughCoinsException, InvalidCardException {
 
         ArrayList<Student> cloud1List = new ArrayList<>();
         ArrayList<Student> cloud2List = new ArrayList<>();
