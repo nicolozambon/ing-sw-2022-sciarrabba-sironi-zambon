@@ -5,6 +5,7 @@ import com.google.gson.reflect.TypeToken;
 
 import java.io.FileNotFoundException;
 import java.io.FileReader;
+import java.util.List;
 import java.util.Map;
 
 public class OptionStringifier {
@@ -22,14 +23,10 @@ public class OptionStringifier {
 
     }
 
-    public String stringify(Map<String, Integer> options) {
+    public String stringify(Map<Integer, String> options) {
         StringBuilder string = new StringBuilder();
-        int i = 1;
-        for (String s : options.keySet()) {
-            if (options.get(s) > 0) {
-                string.append("\n").append(i).append(". ").append(dictionary.get(s));
-                i++;
-            }
+        for (Integer i : options.keySet()) {
+            string.append("\n").append(i).append(". ").append(dictionary.get(options.get(i)));
         }
         return string.toString();
     }

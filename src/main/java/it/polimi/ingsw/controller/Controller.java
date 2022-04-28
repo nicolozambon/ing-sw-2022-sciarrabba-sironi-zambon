@@ -1,14 +1,14 @@
 package it.polimi.ingsw.controller;
 
-import it.polimi.ingsw.exceptions.IllegalActionException;
 import it.polimi.ingsw.exceptions.InvalidCardException;
+import it.polimi.ingsw.exceptions.InvalidIslandException;
+import it.polimi.ingsw.exceptions.InvalidMotherNatureStepsException;
 import it.polimi.ingsw.exceptions.NotPlayerTurnException;
 import it.polimi.ingsw.model.*;
 
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
-import java.util.Map;
 import java.util.stream.Collectors;
 
 
@@ -58,7 +58,7 @@ public class Controller {
         }
     }
 
-    public void playCharacterCard(int playerId, int choice) {
+    public void playCharacterCard(int playerId, int choice) throws NotPlayerTurnException{
         if (isPlanningFinished && playersToPlay.size() > 0) {
             Player player = playersToPlay.get(0);
             if (player.getId() == playerId) {
@@ -69,11 +69,13 @@ public class Controller {
                 if (action.isEnded()) {
                     endPlayerAction(player);
                 }
+            } else {
+                throw new NotPlayerTurnException();
             }
         }
     }
 
-    public void moveStudentToDiningRoom(int playerId, int choice) {
+    public void moveStudentToDiningRoom(int playerId, int choice) throws NotPlayerTurnException{
         if (isPlanningFinished && playersToPlay.size() > 0) {
             Player player = playersToPlay.get(0);
             if (player.getId() == playerId) {
@@ -84,26 +86,31 @@ public class Controller {
                 if (action.isEnded()) {
                     endPlayerAction(player);
                 }
+            } else {
+                throw new NotPlayerTurnException();
             }
         }
     }
 
-    public void moveStudentToIsland(int playerId, int student, int island) throws IllegalActionException {
+    public void moveStudentToIsland(int playerId, int student, int island) throws NotPlayerTurnException, InvalidIslandException {
         if (isPlanningFinished && playersToPlay.size() > 0) {
             Player player = playersToPlay.get(0);
             if (player.getId() == playerId) {
                 if (action == null || action.isEnded()) {
                     action = new ActionPhase(player, numStudentToMove, model);
                 }
-                action.moveStudentToIsland(student, island);
+                if (island >= 0 && island < 12) action.moveStudentToIsland(student, island);
+                else throw new InvalidIslandException();
                 if (action.isEnded()) {
                     endPlayerAction(player);
                 }
+            } else {
+                throw new NotPlayerTurnException();
             }
         }
     }
 
-    public void moveMotherNature(int playerId, int choice) {
+    public void moveMotherNature(int playerId, int choice) throws NotPlayerTurnException, InvalidMotherNatureStepsException {
         if (isPlanningFinished && playersToPlay.size() > 0) {
             Player player = playersToPlay.get(0);
             if (player.getId() == playerId) {
@@ -114,11 +121,13 @@ public class Controller {
                 if (action.isEnded()) {
                     endPlayerAction(player);
                 }
+            } else {
+                throw new NotPlayerTurnException();
             }
         }
     }
 
-    public void getStudentsFromCloud(int playerId, int choice) {
+    public void getStudentsFromCloud(int playerId, int choice) throws NotPlayerTurnException{
         if (isPlanningFinished && playersToPlay.size() > 0) {
             Player player = playersToPlay.get(0);
             if (player.getId() == playerId) {
@@ -129,11 +138,13 @@ public class Controller {
                 if (action.isEnded()) {
                     endPlayerAction(player);
                 }
+            } else {
+                throw new NotPlayerTurnException();
             }
         }
     }
 
-    public void extraAction(int playerId, int ... values) {
+    public void extraAction(int playerId, int ... values) throws NotPlayerTurnException{
         if (isPlanningFinished && playersToPlay.size() > 0) {
             Player player = playersToPlay.get(0);
             if (player.getId() == playerId) {
@@ -144,11 +155,13 @@ public class Controller {
                 if (action.isEnded()) {
                     endPlayerAction(player);
                 }
+            } else {
+                throw new NotPlayerTurnException();
             }
         }
     }
 
-    public void endAction(int playerId) {
+    public void endAction(int playerId) throws NotPlayerTurnException{
         if (isPlanningFinished && playersToPlay.size() > 0) {
             Player player = playersToPlay.get(0);
             if (player.getId() == playerId) {
@@ -159,11 +172,13 @@ public class Controller {
                 if (action.isEnded()) {
                     endPlayerAction(player);
                 }
+            } else {
+                throw new NotPlayerTurnException();
             }
         }
     }
 
-    public Map<String, Integer> getOptions() {
+    public List<String> getOptions() {
         if (isPlanningFinished) return planning.getOptions();
         return action.getOptions();
     }

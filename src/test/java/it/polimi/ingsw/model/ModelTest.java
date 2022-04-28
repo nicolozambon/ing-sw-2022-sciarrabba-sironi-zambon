@@ -1,6 +1,7 @@
 package it.polimi.ingsw.model;
 
 import it.polimi.ingsw.exceptions.InvalidCardException;
+import it.polimi.ingsw.exceptions.InvalidMotherNatureStepsException;
 import it.polimi.ingsw.exceptions.NotEnoughCoinsException;
 import it.polimi.ingsw.model.card.CharacterCard;
 import org.junit.jupiter.api.BeforeEach;
@@ -109,7 +110,7 @@ class ModelTest {
     }
 
     @Test
-    void moveMotherNature() {
+    void moveMotherNature() throws InvalidMotherNatureStepsException {
         for (Player player : model.getPlayers()) {
             model.playAssistantCard(player.getId(), new Random().nextInt(1,11));
             for (int i = 0; i < player.getSchool().getEntrance().getNumPawns(); i++) {

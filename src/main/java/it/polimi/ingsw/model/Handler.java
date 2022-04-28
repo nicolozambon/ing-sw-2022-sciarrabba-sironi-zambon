@@ -1,6 +1,7 @@
 package it.polimi.ingsw.model;
 
 import it.polimi.ingsw.enums.*;
+import it.polimi.ingsw.exceptions.InvalidMotherNatureStepsException;
 
 import java.util.*;
 
@@ -30,7 +31,7 @@ public class Handler {
         }
     }
 
-    protected void motherNatureMovement(Player currentPlayer, MotherNature motherNature, int stepsChoice) {
+    protected void motherNatureMovement(Player currentPlayer, MotherNature motherNature, int stepsChoice) throws  InvalidMotherNatureStepsException{
         Player mostInfluentialPlayer = null;
         if(stepsChoice > 0 && stepsChoice <= currentPlayer.getLastAssistantCard().getSteps()) {
             motherNature.stepsToMove(stepsChoice);
@@ -39,6 +40,8 @@ public class Handler {
                 switchTowers(motherNature.getPosition(), mostInfluentialPlayer);
                 unifyIsland(motherNature.getPosition());
             }
+        } else {
+            throw new InvalidMotherNatureStepsException();
         }
     }
 

@@ -3,6 +3,7 @@ package it.polimi.ingsw.model;
 import it.polimi.ingsw.controller.Controller;
 import it.polimi.ingsw.enums.Color;
 import it.polimi.ingsw.exceptions.InvalidCardException;
+import it.polimi.ingsw.exceptions.InvalidMotherNatureStepsException;
 import it.polimi.ingsw.exceptions.NotEnoughCoinsException;
 import it.polimi.ingsw.model.card.CharacterCard;
 
@@ -80,7 +81,7 @@ public class Model implements Serializable {
         player.moveStudentIsland(student, islands.get(islandChoice));
     }
 
-    public void moveMotherNature(int playerId, int stepsChoice) {
+    public void moveMotherNature(int playerId, int stepsChoice) throws InvalidMotherNatureStepsException {
         this.handler.motherNatureMovement(players.get(playerId), motherNature, stepsChoice);
         playerHasFinishedTowers();
         //TODO Fix, position OutOfBound

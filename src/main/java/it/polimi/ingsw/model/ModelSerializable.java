@@ -11,6 +11,7 @@ import java.util.List;
 import java.util.ArrayList;
 import java.util.Map;
 
+//TODO add correct getter, add isLinkeRight and IsLinkedLeft IslandSerializable, add List of players nickname
 public final class ModelSerializable implements Serializable {
     private static final long serialVersionUID = 987654321L;
 
@@ -26,6 +27,9 @@ public final class ModelSerializable implements Serializable {
     private List<CharacterCardSerializable> characterCards;
     private List<Color> professors;
 
+    //Options
+    private Map<Integer, String> options;
+
     public ModelSerializable(Model model) {
         schools = new ArrayList<>();
         coins = new ArrayList<>();
@@ -36,6 +40,8 @@ public final class ModelSerializable implements Serializable {
         clouds = new ArrayList<>();
         characterCards = new ArrayList<>();
         professors = new ArrayList<>();
+
+
 
         for (Player player : model.getPlayers()) {
             schools.add(player.getId(), new SchoolSerializable(player.getSchool(), player.getTowerColor()));
@@ -81,6 +87,30 @@ public final class ModelSerializable implements Serializable {
                 "\n}";
         return first + second + third;
     }
+
+    public List<Color> getEntranceByPlayerId(int playerId) {
+        return new ArrayList<>(schools.get(playerId).entrance);
+    }
+
+    public int getDRByPlayerAndColor(int playerId, Color color) {
+        return schools.get(playerId).diningRoom.get(color);
+    }
+
+    public int getStudentOnIslandByPlayer(int playerId, int islandId) {
+        int value = 0;
+        for (Color color : Color.values()) {
+            value += islands.get(islandId).students.get(color);
+        }
+        return value;
+    }
+
+    public int getMNPosition() {
+        for (IslandSerializable i : islands) {
+            if (i.motherNaturePresence) return islands.indexOf(i);
+        }
+        return -1;
+    }
+
 
     private static class SchoolSerializable implements Serializable { //A SchoolSerializable for all players.
         private static final long serialVersionUID = 987654321L;

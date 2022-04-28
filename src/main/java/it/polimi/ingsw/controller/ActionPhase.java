@@ -1,10 +1,13 @@
 package it.polimi.ingsw.controller;
 
+import it.polimi.ingsw.exceptions.InvalidMotherNatureStepsException;
 import it.polimi.ingsw.model.*;
 import it.polimi.ingsw.exceptions.IllegalActionException;
 
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 
@@ -54,14 +57,14 @@ public class ActionPhase {
         }
     }
 
-    public void moveStudentToIsland(int studentChoice, int islandChoice) throws IllegalActionException {
+    public void moveStudentToIsland(int studentChoice, int islandChoice) {
         if(callableMethod.get("move_student_island") > 0) {
             this.model.moveStudentToIsland(this.currentPlayer.getId(), studentChoice, islandChoice);
             moveStudentCounter();
-        } else throw new IllegalActionException();
+        }
     }
 
-    public void moveMotherNature(int stepsChoice) {
+    public void moveMotherNature(int stepsChoice) throws InvalidMotherNatureStepsException {
         if(callableMethod.get("move_mothernature") > 0) {
             this.model.moveMotherNature(this.currentPlayer.getId(), stepsChoice);
             callableMethod.put("move_mothernature", callableMethod.get("move_mothernature") - 1);
@@ -112,8 +115,10 @@ public class ActionPhase {
         }
     }
 
-    public Map<String, Integer> getOptions() {
-        return new HashMap<>(callableMethod);
+    public List<String> getOptions() {
+        return new ArrayList<>(callableMethod.entrySet().stream()
+                                                        .filter(x -> x.getValue() > 0)
+                                                        .map(x -> x.getKey()).toList());
     }
 
 }

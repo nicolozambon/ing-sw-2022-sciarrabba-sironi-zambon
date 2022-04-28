@@ -6,9 +6,9 @@
   "assistant_card" : "Play an assistant card",
   "move_student_dining" : "Move student to dining room",
   "move_student_island" : "Move student to an island",
-  "move_mothernature": "Move mothernature",
+  "move_mothernature": "Move mother nature",
   "character_card" : "Play a character card",
-  "students_cloud" : "take students from cloud",
-  "extra_action" : "Use the character effect",
+  "students_cloud" : "Take students from cloud",
+  "extra_action" : "Use the character card effect",
   "end_action" : "End your action phase"
 }

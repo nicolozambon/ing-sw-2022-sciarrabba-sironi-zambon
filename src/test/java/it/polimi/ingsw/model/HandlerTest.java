@@ -1,6 +1,7 @@
 package it.polimi.ingsw.model;
 
 import it.polimi.ingsw.enums.Color;
+import it.polimi.ingsw.exceptions.InvalidMotherNatureStepsException;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -84,7 +85,7 @@ class HandlerTest {
     }
 
     @Test
-    void checkTowerPositioning() {
+    void checkTowerPositioning() throws InvalidMotherNatureStepsException {
 
         initialization();
         int num = 4;

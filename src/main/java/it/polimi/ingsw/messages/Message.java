@@ -1,22 +1,25 @@
 package it.polimi.ingsw.messages;
 
+import com.google.gson.Gson;
+
 import java.io.Serializable;
 
 public class Message implements Serializable {
 
     private final String name;
-    private final Object value;
+    private final String value;
+    private final static Gson gson = new Gson();
 
     public Message(String name, Object value) {
         this.name = name;
-        this.value = value;
+        this.value = gson.toJson(value);
     }
 
     public String getName() {
         return name;
     }
 
-    public Object getValue() {
-        return value;
+    public String getValue() {
+        return this.value;
     }
 }

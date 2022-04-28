@@ -62,8 +62,10 @@ public class PlanningPhase {
         return true;
     }
 
-    public Map<String, Integer> getOptions() {
-        return new HashMap<>(callableMethod);
+    public List<String> getOptions() {
+        return new ArrayList<>(callableMethod.entrySet().stream()
+                .filter(x -> x.getValue() > 0)
+                .map(x -> x.getKey()).toList());
     }
 
 }
