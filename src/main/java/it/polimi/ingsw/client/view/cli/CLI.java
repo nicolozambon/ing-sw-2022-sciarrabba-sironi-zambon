@@ -50,7 +50,7 @@ public class CLI {
     }};
 
     private static final Map<String, String> pawnsMap = new HashMap<>(){{
-        this.put("s", " ● ");
+        this.put("s", "███");
         this.put("p", "PRO");
     }};
 
@@ -306,6 +306,28 @@ public class CLI {
         // Add some students to the schools
         this.addStudentToBoard(mainSchool, Color.RED);
         this.addStudentToBoard(mainSchool, Color.RED);
+        this.addStudentToBoard(mainSchool, Color.YELLOW);
+        this.addStudentToBoard(mainSchool, Color.YELLOW);
+        this.addStudentToBoard(mainSchool, Color.YELLOW);
+        this.addStudentToBoard(mainSchool, Color.YELLOW);
+        this.addStudentToBoard(mainSchool, Color.YELLOW);
+        this.addStudentToBoard(mainSchool, Color.YELLOW);
+        this.addStudentToBoard(mainSchool, Color.YELLOW);
+        this.addStudentToBoard(mainSchool, Color.GREEN);
+        this.addStudentToBoard(mainSchool, Color.GREEN);
+        this.addStudentToBoard(mainSchool, Color.GREEN);
+        this.addStudentToBoard(mainSchool, Color.GREEN);
+        this.addStudentToBoard(mainSchool, Color.PINK);
+        this.addStudentToBoard(mainSchool, Color.PINK);
+        this.addStudentToBoard(mainSchool, Color.PINK);
+        this.addStudentToBoard(mainSchool, Color.PINK);
+        this.addStudentToBoard(mainSchool, Color.PINK);
+        this.addStudentToBoard(mainSchool, Color.BLUE);
+        this.addStudentToBoard(mainSchool, Color.BLUE);
+        this.addStudentToBoard(mainSchool, Color.BLUE);
+        this.addStudentToBoard(mainSchool, Color.BLUE);
+        this.addStudentToBoard(mainSchool, Color.BLUE);
+
         this.addStudentToBoard(vertSchoolOne, Color.RED);
         this.addStudentToBoard(vertSchoolOne, Color.YELLOW);
         this.addStudentToBoard(mainSchool, Color.GREEN);
@@ -330,6 +352,28 @@ public class CLI {
 
         this.addStudentToBoard(islands.get(0), Color.RED);
         this.addStudentToBoard(islands.get(0), Color.YELLOW);
+        this.addStudentToBoard(islands.get(0), Color.GREEN);
+        this.addStudentToBoard(islands.get(0), Color.PINK);
+        this.addStudentToBoard(islands.get(0), Color.BLUE);
+
+        this.addStudentToBoard(islands.get(1), Color.RED);
+        this.addStudentToBoard(islands.get(1), Color.GREEN);
+        this.addStudentToBoard(islands.get(1), Color.BLUE);
+
+        this.addStudentToBoard(islands.get(4), Color.RED);
+        this.addStudentToBoard(islands.get(4), Color.YELLOW);
+        this.addStudentToBoard(islands.get(4), Color.BLUE);
+
+        this.addStudentToBoard(islands.get(5), Color.RED);
+        this.addStudentToBoard(islands.get(5), Color.GREEN);
+        this.addStudentToBoard(islands.get(5), Color.BLUE);
+
+        this.addStudentToBoard(islands.get(9), Color.YELLOW);
+        this.addStudentToBoard(islands.get(9), Color.GREEN);
+        this.addStudentToBoard(islands.get(9), Color.PINK);
+        this.addStudentToBoard(islands.get(9), Color.BLUE);
+
+
         this.addStudentToBoard(islands.get(4), Color.BLUE);
 
         // Add link Island3 <--> Island4 (only this one supported at the moment)
