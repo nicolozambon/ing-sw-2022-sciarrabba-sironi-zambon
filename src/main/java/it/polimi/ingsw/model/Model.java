@@ -157,14 +157,12 @@ public class Model implements Serializable {
     protected Player isThereWinner() {
         //The game ends immediately...
 
-        /*//... when a player builds their last tower -> that player wins the game
-        for (Player player : players) {
-            if (player.getSchool().getTowersBoard().getNumPawns() == 0) return player;
-        }
+        //... when a player builds their last tower -> that player wins the game
+        if (playerHasFinishedTowers()) return this.winner;
 
         //... when only 3 groups of islands remain on the table
-        if (numOfGroupsOfIslands() == 3) return playerWithMostTowersOrProfessors();
-*/
+        if (threeGroupsIslandRemaining()) return this.winner;
+
         //... when the last student has been drawn from the bag
         //if (bag.getPawns().size() == 0) return playerWithMostTowersOrProfessors();
         studentBagIsEmpty();
@@ -197,12 +195,13 @@ public class Model implements Serializable {
      * This check has to happen every time there is a change in the islands.
      * @return the winner if there is a winner, null otherwise.
      */
-    protected Player threeGroupsIslandRemaining () {
+    protected boolean threeGroupsIslandRemaining () {
         if (numOfGroupsOfIslands() == 3) {
             this.setIsThereWinner(true);
             this.setWinner(playerWithMostTowersOrProfessors());
+            return true;
         }
-        return null;
+        return false;
     }
 
     /**
