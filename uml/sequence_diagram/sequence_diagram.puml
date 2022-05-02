@@ -1,0 +1,51 @@
+@startuml
+title GC27 - Eriantys Sequence Diagram
+
+actor User
+
+box "Local"
+participant View
+participant Client
+end box
+box "Remote"
+participant Connection
+participant VirtualView
+participant Controller
+participant Model
+end box
+
+User -> View: Action
+activate View
+
+View -> Client: fireRequestEvent()
+activate Client
+Client -> Client: requestPerformed()
+Client -> Client: send()
+
+Client -> Connection: requestEvent()
+activate Connection
+
+Connection -> VirtualView: requestEvent()
+activate VirtualView
+
+VirtualView -> Controller: requestEvent()
+activate Controller
+
+Controller -> Model: requestEvent()
+deactivate Controller
+activate Model
+
+Model --> VirtualView: response
+destroy Model
+
+VirtualView --> Connection: response
+deactivate VirtualView
+
+Connection --> Client: response
+deactivate Connection
+
+Client --> View: response
+deactivate Client
+
+View --> User: response
+@enduml
