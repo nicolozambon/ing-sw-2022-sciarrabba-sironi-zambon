@@ -33,8 +33,10 @@ public class MotherNatureHandler extends Handler {
                 if (island1.getId() == values[0]) island = island1;
             }
 
-            switchTowers(island, getMostInfluentialPlayer(currentPlayer, island));
-            unifyIsland(island);
+            if (getMostInfluentialPlayer(currentPlayer, island) != null) {
+                switchTowers(island, getMostInfluentialPlayer(currentPlayer, island));
+                unifyIsland(island);
+            }
         }
     }
 }

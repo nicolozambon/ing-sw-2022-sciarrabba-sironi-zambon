@@ -28,7 +28,7 @@ public class InfluenceHandler extends Handler {
             }
         }
 
-        if (island.getTower().getOwner().equals(player)) {
+        if (island.getTower() != null && island.getTower().getOwner().equals(player)) {
             influence += card.getTowerInfluence();
         }
         return influence;

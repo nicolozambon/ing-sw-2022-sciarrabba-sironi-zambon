@@ -104,6 +104,10 @@ public class Player {
         school.exchangeStudentsDiningRoomEntrance(color, entrancePawnPosition);
     }
 
+    protected void increaseCoinBy(int value) {
+        this.coins += value;
+    }
+
     protected int getAssistantCardDeckSize() {
         return this.assistantCardDeck.getCards().size();
     }

@@ -41,9 +41,11 @@ class MotherNatureHandlerTest {
     }
 
     @Test
-    void extraAction() throws NotEnoughCoinsException, InvalidCardException {
-        //model.playCharacterCard(0, 2);
-
-        //TODO
+    void card02Test() throws NotEnoughCoinsException, InvalidCardException {
+        model.getPlayers().get(0).increaseCoinBy(10);
+        model.playCharacterCard(0, 2);
+        model.playAssistantCard(0, 6);
+        model.extraAction(2);
+        assertTrue(model.getHandler() instanceof MotherNatureHandler);
     }
 }

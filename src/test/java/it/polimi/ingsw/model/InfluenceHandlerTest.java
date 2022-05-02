@@ -120,4 +120,22 @@ class InfluenceHandlerTest {
         assertEquals(player1, mostInfluentialPlayer);
     }
 
+    @Test
+    void card04Test() throws Exception {
+        model.getPlayers().get(0).increaseCoinBy(10);
+        model.playCharacterCard(0, 4);
+        model.playAssistantCard(0, 6);
+        model.moveMotherNature(0, 2);
+        assertTrue(model.getHandler() instanceof InfluenceHandler);
+    }
+
+    @Test
+    void card06Test() throws Exception {
+        model.getPlayers().get(0).increaseCoinBy(10);
+        model.playCharacterCard(0, 6);
+        model.playAssistantCard(0, 6);
+        model.extraAction(0);
+        assertTrue(model.getHandler() instanceof InfluenceHandler);
+    }
+
 }

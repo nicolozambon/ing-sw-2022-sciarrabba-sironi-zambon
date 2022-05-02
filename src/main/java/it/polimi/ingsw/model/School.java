@@ -85,8 +85,8 @@ public class School {
         Student entranceStudent = entrance.getPawns().get(entrancePawnPosition);
         Student diningStudent = getDiningRoomByColor(color).getPawns().get(getDiningRoomByColor(color).getNumPawns() - 1);
 
-        entrance.moveInPawn(diningStudent, getDiningRoomByColor(color));
-        getDiningRoomByColor(color).moveInPawn(entranceStudent, entrance);
+        entrance.moveInPawn(diningStudent, getDiningRoomByColor(diningStudent.getColor()));
+        getDiningRoomByColor(entranceStudent.getColor()).moveInPawn(entranceStudent, entrance);
     }
 
 }

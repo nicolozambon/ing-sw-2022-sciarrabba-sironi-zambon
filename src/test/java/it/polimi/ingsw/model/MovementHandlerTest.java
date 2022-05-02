@@ -28,7 +28,7 @@ public class MovementHandlerTest {
         handler = new HandlerFactory().buildHandler(model.getPlayers());
     }
     @Test
-    void extraActionCard10() throws NotEnoughCoinsException, InvalidCardException {
+    void extraActionCard7() throws NotEnoughCoinsException, InvalidCardException {
         Player player1 = model.getPlayers().get(0);
 
         ArrayList<Student> cloud1List = new ArrayList<>();
@@ -42,31 +42,33 @@ public class MovementHandlerTest {
         Student student5 = new Student(Color.GREEN);
         Student student6 = new Student(Color.GREEN);
 
-        cloud1List.add(student1);
-        cloud1List.add(student2);
-        cloud1List.add(student3);
-
         cloud2List.add(student4);
         cloud2List.add(student5);
         cloud2List.add(student6);
 
+        cloud1List.add(student1);
+        cloud1List.add(student2);
+        cloud1List.add(student3);
+
         Cloud cloud1 = new Cloud(cloud1List);
         Cloud cloud2 = new Cloud(cloud2List);
 
-        player1.takeStudentsFromCloud(cloud1);
         player1.takeStudentsFromCloud(cloud2);
+        player1.takeStudentsFromCloud(cloud1);
+
+
 
         player1.moveStudentDiningRoom(student4, 20);
         player1.moveStudentDiningRoom(student5, 20);
         player1.moveStudentDiningRoom(student6, 20);
 
-        System.out.println(player1.getSchool().getEntrance().getNumPawns());
 
         model.playCharacterCard(0, 7);
-        handler.extraAction(player1, model, 0, 8, 1, 8);
 
-        int num = player1.getSchool().getDiningRoomByColor(Color.GREEN).getNumPawns();
-        //assertEquals(2, num);
+        model.extraAction(1, player1.getSchool().getEntrance().getNumPawns()-1, 1, player1.getSchool().getEntrance().getNumPawns()-2);
+
+        assertEquals(1, player1.getSchool().getDiningRoomByColor(Color.GREEN).getNumPawns());
+        assertEquals(2, player1.getSchool().getDiningRoomByColor(Color.YELLOW).getNumPawns());
     }
 
     @Test

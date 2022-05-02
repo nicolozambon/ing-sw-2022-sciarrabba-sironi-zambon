@@ -84,8 +84,7 @@ public class Model implements Serializable {
     public void moveMotherNature(int playerId, int stepsChoice) throws InvalidMotherNatureStepsException {
         this.handler.motherNatureMovement(players.get(playerId), motherNature, stepsChoice);
         playerHasFinishedTowers();
-        //TODO Fix, position OutOfBound
-        //threeGroupsIslandRemaining();
+        threeGroupsIslandRemaining();
 
     }
 
@@ -103,11 +102,6 @@ public class Model implements Serializable {
 
     protected List<Professor> getProfessors() {
         return new ArrayList<>(startingProfessorBoard.getPawns());
-    }
-
-    //TODO: remove?
-    protected Board<Professor> getProfessorsBoard() {
-        return this.startingProfessorBoard;
     }
 
     protected List<Cloud> getClouds() {
@@ -196,7 +190,7 @@ public class Model implements Serializable {
      * @return the winner if there is a winner, null otherwise.
      */
     protected boolean threeGroupsIslandRemaining () {
-        if (numOfGroupsOfIslands() == 3) {
+        if (numOfGroupsOfIslands() < 4) {
             this.setIsThereWinner(true);
             this.setWinner(playerWithMostTowersOrProfessors());
             return true;
@@ -226,23 +220,22 @@ public class Model implements Serializable {
 
 
 
-    private int numOfGroupsOfIslands () {
-        int numOfGroupOfIslands = 0;
-        int position = 0;
-        Island currentIsland = islands.get(0);
+    private int numOfGroupsOfIslands() {
+        int num = 0;
+        Island island = islands.get(0);
 
-        while (currentIsland.isUnifyPrev()) {
-            currentIsland = currentIsland.getPrevIsland();
+        while (island.isUnifyPrev()) {
+            island = island.getPrevIsland();
         }
 
-        while (position < islands.size()) {
-            if (!currentIsland.isUnifyNext()) {
-                numOfGroupOfIslands++;
-            }
-            position++;
-            currentIsland = islands.get(position);
+        for (int i = 0; i < 12; i++) {
+            if (!island.isUnifyNext()) num++;
+            island = island.getNextIsland();
+            num++;
+
         }
-        return numOfGroupOfIslands;
+
+        return num;
     }
 
     private Player playerWithMostTowersOrProfessors() {
@@ -306,5 +299,9 @@ public class Model implements Serializable {
 
     public Player getWinner() {
         return this.winner;
+    }
+
+    protected Handler getHandler() {
+        return handler;
     }
 }
