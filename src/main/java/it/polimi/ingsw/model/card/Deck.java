@@ -16,14 +16,6 @@ public class Deck<T> {
         this.cards = new ArrayList<>(cards);
     }
 
-    /**
-     * Shuffles the given deck.
-     * @param deck to shuffle.
-     */
-    public void shuffleDeck(Deck<T> deck) {
-        Collections.shuffle(deck.cards);
-    }
-
     public List<T> getCards() {
         return new ArrayList<T>(cards);
     }

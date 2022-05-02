@@ -96,7 +96,7 @@ public final class ModelSerializable implements Serializable {
         return schools.get(playerId).diningRoom.get(color);
     }
 
-    public int getStudentOnIslandByPlayer(int islandId) {
+    public int getStudentOnIslandById(int islandId) {
         int value = 0;
         for (Color color : Color.values()) {
             value += islands.get(islandId).students.get(color);
