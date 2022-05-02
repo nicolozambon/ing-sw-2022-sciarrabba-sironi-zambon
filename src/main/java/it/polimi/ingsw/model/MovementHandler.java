@@ -17,10 +17,10 @@ public class MovementHandler extends Handler {
     }
 
     /**
-     *
+     * Card 10: exchange 1 or 2 students from the dining room and viceversa; takes a couple of Color-Position values to exchange.
      * @param currentPlayer
-     * @param values values[0] = color 1, values[1] = position 1, values[2] = color 2, values[3] = position 2
      * @param model
+     * @param values
      */
     @Override
     protected void extraAction(Player currentPlayer, Model model, int ... values) {
