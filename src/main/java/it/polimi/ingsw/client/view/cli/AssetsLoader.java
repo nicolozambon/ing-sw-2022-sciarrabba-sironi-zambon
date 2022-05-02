@@ -45,8 +45,12 @@ public class AssetsLoader {
 
     protected Map<String, String[][]> getIslandLinkers() {
         Map<String, String[][]> linkers = new HashMap<>();
-        linkers.put("tr", this.readMatrixFromFile("pseudo_island_tr"));
-        linkers.put("tl", this.readMatrixFromFile("pseudo_island_tl"));
+        linkers.put("tr", this.readMatrixFromFile("islands_linkers/top_right"));
+        linkers.put("tl", this.readMatrixFromFile("islands_linkers/top_left"));
+        linkers.put("br", this.readMatrixFromFile("islands_linkers/bottom_right"));
+        linkers.put("bl", this.readMatrixFromFile("islands_linkers/bottom_left"));
+        linkers.put("hr", this.readMatrixFromFile("islands_linkers/horizontal"));
+        linkers.put("vr", this.readMatrixFromFile("islands_linkers/vertical"));
         return linkers;
     }
 

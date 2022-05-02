@@ -183,6 +183,7 @@ public class CLI {
                 {10,    -1,     -1,     -1,     -1,     5 },
                 {910,   9,      8,      7,      6,      56},
         };
+
         /* disposition example:
              ###  ###  ###  ###
         ###                      ###
@@ -234,14 +235,59 @@ public class CLI {
 
         for (int i=0; i<disposition.length; i++) {
             for (int j=0; j<disposition[i].length; j++) {
-                if (disposition[i][j] > 0 && disposition[i][j] < 13) {
+                if (disposition[i][j] >= 0 && disposition[i][j] < 13) {
                     if (islandsLinkedToNext.get(disposition[i][j])) {
-                        linker = islandLinkers.get("tr");
+
+                        int linkerBaseRowOnSet = 0;
+                        int linkerBaseColOnSet = 0;
+
+                        if (i == 1 && j == 0) {
+                            linker = islandLinkers.get("tl");
+                            linkerBaseRowOnSet = i * (islandH + spaceH) - (islandH + spaceH);
+                            linkerBaseColOnSet = j * (islandW + spaceW);
+                            System.out.println("top_left"); // ok
+                        } else if (i == 0 && j == disposition[i].length-2) {
+                            linker = islandLinkers.get("tr");
+                            linkerBaseRowOnSet = i * (islandH + spaceH);
+                            linkerBaseColOnSet = j * (islandW + spaceW) + islandW - 1;
+                            System.out.println("top_right"); // ok
+                        } else if (i == disposition.length-1 && j == 1) {
+                            linker = islandLinkers.get("bl");
+                            linkerBaseRowOnSet = i * (islandH + spaceH) + islandH - 1 - (islandH + spaceH);
+                            linkerBaseColOnSet = j * (islandW + spaceW) - (islandW + spaceW);
+                            System.out.println("bottom_left");
+                        } else if (i == disposition.length-2 && j == disposition[i].length-1) {
+                            linker = islandLinkers.get("br");
+                            linkerBaseRowOnSet = i * (islandH + spaceH) + islandH - 1;
+                            linkerBaseColOnSet = j * (islandW + spaceW) - spaceW - 1;
+                            System.out.println("bottom_right");
+                        } else if (i == 0 || i == disposition.length-1) {
+                            linker = islandLinkers.get("hr");
+                            linkerBaseRowOnSet = i * (islandH + spaceH);
+                            linkerBaseColOnSet = j * (islandW + spaceW) + islandW - 1;
+                            if (i == disposition.length-1) {
+                                linkerBaseColOnSet -= (islandW + spaceW);
+                            }
+                            System.out.println("hr");
+                        } else if (j == 0 || j == disposition[i].length-1) {
+                            linker = islandLinkers.get("vr");
+                            linkerBaseRowOnSet = i * (islandH + spaceH) + islandH - 1;
+                            linkerBaseColOnSet = j * (islandW + spaceW);
+                            if (j == 0) {
+                                linkerBaseRowOnSet -= (islandH + spaceH);
+                            }
+                            System.out.println("vr"); // ok
+                        }
+
+                        System.out.print(i);
+                        System.out.print(' ');
+                        System.out.print(j);
+                        System.out.print('\n');
 
                         for (int linkerRow=0; linkerRow<linker.length; linkerRow++) {
                             for (int linkerCol=0; linkerCol<linker[0].length; linkerCol++) {
-                                linkerRowOnSet = i * (islandH + spaceH) + linkerRow;
-                                linkerColOnSet = j * (islandW + spaceW) + islandW + linkerCol - 1;
+                                linkerRowOnSet = linkerBaseRowOnSet + linkerRow;
+                                linkerColOnSet = linkerBaseColOnSet + linkerCol;
                                 set[linkerRowOnSet][linkerColOnSet] = linker[linkerRow][linkerCol];
                             }
                         }
@@ -294,7 +340,7 @@ public class CLI {
     }
 
     public void showGameBoard() {
-        // Initialize island linkers
+        // Initialize island islands_linkers
         Map<String, String[][]> islandLinkers = this.loader.getIslandLinkers();
         // TODO should be moved into the constructor
 
@@ -340,13 +386,13 @@ public class CLI {
 
         // Create a list of 12 islands
         ArrayList<String[][]> islands = new ArrayList<>();
-        for (int i=0; i < 12; i++) {
+        for (int i=0; i<12; i++) {
             islands.add(this.loader.getIsland());
         }
 
         // Initialize island links relations
         ArrayList<Boolean> islandsLinkedToNext = new ArrayList<Boolean>();
-        for (int i=0; i < 12; i++) {
+        for (int i=0; i<12; i++) {
             islandsLinkedToNext.add(false);
         }
 
@@ -373,11 +419,35 @@ public class CLI {
         this.addStudentToBoard(islands.get(9), Color.PINK);
         this.addStudentToBoard(islands.get(9), Color.BLUE);
 
-
         this.addStudentToBoard(islands.get(4), Color.BLUE);
 
         // Add link Island3 <--> Island4 (only this one supported at the moment)
+
+        // top_right
         islandsLinkedToNext.set(3, true);
+
+        // top_left
+        islandsLinkedToNext.set(11, true);
+
+        // bottom_right
+        islandsLinkedToNext.set(5, true);
+
+        // bottom_left
+        islandsLinkedToNext.set(9, true);
+
+        // horizontal
+        islandsLinkedToNext.set(0, true);
+        islandsLinkedToNext.set(1, true);
+        islandsLinkedToNext.set(2, true);
+        islandsLinkedToNext.set(6, true);
+        islandsLinkedToNext.set(7, true);
+        islandsLinkedToNext.set(8, true);
+
+        // vertical
+        islandsLinkedToNext.set(4, true);
+        islandsLinkedToNext.set(10, true);
+
+
 
         // Build set of islands
         String[][] setOfIslands = this.buildSetOfIslands(islands, islandLinkers, islandsLinkedToNext);
