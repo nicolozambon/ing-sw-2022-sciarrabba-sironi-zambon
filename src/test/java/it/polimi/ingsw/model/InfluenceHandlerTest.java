@@ -27,13 +27,9 @@ class InfluenceHandlerTest {
         handler = new HandlerFactory().buildHandler(model.getPlayers());
 
     }
-    @Test
-    void resolveIslandHelper() {
-
-    }
 
     @Test
-    void getMostInfluentialPlayer() throws NotEnoughCoinsException, InvalidCardException {
+    public void getMostInfluentialPlayerTest() throws NotEnoughCoinsException, InvalidCardException {
 
         ArrayList<Student> cloud1List = new ArrayList<>();
         ArrayList<Student> cloud2List = new ArrayList<>();
@@ -122,10 +118,6 @@ class InfluenceHandlerTest {
         System.out.println("mostInfluentialPlayer: " + mostInfluentialPlayer);
 
         assertEquals(player1, mostInfluentialPlayer);
-
     }
 
-    @Test
-    void extraAction() {
-    }
 }

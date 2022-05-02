@@ -1,10 +1,8 @@
 package it.polimi.ingsw.controller;
 
 import it.polimi.ingsw.enums.Color;
-import it.polimi.ingsw.exceptions.InvalidCardException;
-import it.polimi.ingsw.exceptions.InvalidIslandException;
-import it.polimi.ingsw.exceptions.InvalidMotherNatureStepsException;
-import it.polimi.ingsw.exceptions.NotPlayerTurnException;
+import it.polimi.ingsw.events.RequestEvent;
+import it.polimi.ingsw.exceptions.*;
 import it.polimi.ingsw.model.Model;
 import it.polimi.ingsw.model.ModelBuilder;
 import it.polimi.ingsw.model.ModelSerializable;
@@ -63,32 +61,29 @@ class ControllerTest {
 
 
     private void playPlanningPhase() throws  InvalidCardException, NotPlayerTurnException {
-        controller.playAssistantCard(0, 8);
-        controller.playAssistantCard(1, 10);
-        controller.playAssistantCard(2, 9);
-        assertEquals(0, controller.getPlayersToPlay().get(0).getId());
-        assertEquals(2, controller.getPlayersToPlay().get(1).getId());
-        assertEquals(1, controller.getPlayersToPlay().get(2).getId());
+        controller.playAssistantCard(0, 10);
+        controller.playAssistantCard(1, 8);
+        controller.playAssistantCard(2, 6);
+        assertEquals(2, controller.getPlayersToPlay().get(0).getId());
+        assertEquals(1, controller.getPlayersToPlay().get(1).getId());
+        assertEquals(0, controller.getPlayersToPlay().get(2).getId());
     }
 
     @Test
     void moveStudentToDiningRoom() throws InvalidCardException, NotPlayerTurnException {
         playPlanningPhase();
-        assertEquals(0, controller.getPlayersToPlay().get(0).getId());
-        assertEquals(2, controller.getPlayersToPlay().get(1).getId());
-        assertEquals(1, controller.getPlayersToPlay().get(2).getId());
 
         assertThrows(NotPlayerTurnException.class, () -> controller.moveStudentToDiningRoom(1, 4));
 
         Player player = controller.getActivePlayer();
-        assertEquals(0, player.getId());
+        assertEquals(2, player.getId());
         ModelSerializable modelSerializable = new ModelSerializable(this.model);
         int initialSize =  modelSerializable.getEntranceByPlayerId(player.getId()).size();
 
-        controller.moveStudentToDiningRoom(0, 0);
-        controller.moveStudentToDiningRoom(0, 0);
-        controller.moveStudentToDiningRoom(0, 0);
-        controller.moveStudentToDiningRoom(0, 0);
+        controller.moveStudentToDiningRoom(2, 0);
+        controller.moveStudentToDiningRoom(2, 0);
+        controller.moveStudentToDiningRoom(2, 0);
+        controller.moveStudentToDiningRoom(2, 0);
 
         modelSerializable = new ModelSerializable(this.model);
         assertEquals(initialSize-4, modelSerializable.getEntranceByPlayerId(player.getId()).size());
@@ -107,34 +102,34 @@ class ControllerTest {
         assertThrows(NotPlayerTurnException.class, () -> controller.moveStudentToIsland(1, 4, 9));
 
         Player player = controller.getActivePlayer();
-        assertEquals(0, player.getId());
+        assertEquals(2, player.getId());
         ModelSerializable modelSerializable = new ModelSerializable(this.model);
         int initialSize =  modelSerializable.getEntranceByPlayerId(player.getId()).size();
 
-        assertThrows(InvalidIslandException.class, () -> controller.moveStudentToIsland(0, 0, 12));
-        assertThrows(InvalidIslandException.class, () -> controller.moveStudentToIsland(0, 0, -1));
+        assertThrows(InvalidIslandException.class, () -> controller.moveStudentToIsland(2, 0, 12));
+        assertThrows(InvalidIslandException.class, () -> controller.moveStudentToIsland(2, 0, -1));
 
         modelSerializable = new ModelSerializable(this.model);
         int prevSize = modelSerializable.getStudentOnIslandByPlayer(6);
-        controller.moveStudentToIsland(0, 0, 6);
+        controller.moveStudentToIsland(2, 0, 6);
         modelSerializable = new ModelSerializable(this.model);
         assertEquals(prevSize + 1, modelSerializable.getStudentOnIslandByPlayer(6));
 
         modelSerializable = new ModelSerializable(this.model);
         prevSize = modelSerializable.getStudentOnIslandByPlayer(9);
-        controller.moveStudentToIsland(0, 0, 9);
+        controller.moveStudentToIsland(2, 0, 9);
         modelSerializable = new ModelSerializable(this.model);
         assertEquals(prevSize + 1, modelSerializable.getStudentOnIslandByPlayer(9));
 
         modelSerializable = new ModelSerializable(this.model);
         prevSize = modelSerializable.getStudentOnIslandByPlayer(2);
-        controller.moveStudentToIsland(0, 0, 2);
+        controller.moveStudentToIsland(2, 0, 2);
         modelSerializable = new ModelSerializable(this.model);
         assertEquals(prevSize + 1, modelSerializable.getStudentOnIslandByPlayer(2));
 
         modelSerializable = new ModelSerializable(this.model);
         prevSize = modelSerializable.getStudentOnIslandByPlayer(7);
-        controller.moveStudentToIsland(0, 0, 7);
+        controller.moveStudentToIsland(2, 0, 7);
         modelSerializable = new ModelSerializable(this.model);
         assertEquals(prevSize + 1, modelSerializable.getStudentOnIslandByPlayer(7));
 
@@ -142,42 +137,44 @@ class ControllerTest {
 
     }
 
-    private void playAC_MoveStudent() throws InvalidIslandException, InvalidCardException, NotPlayerTurnException {
-        playPlanningPhase();
-        controller.moveStudentToIsland(0, 0, 2);
-        controller.moveStudentToIsland(0, 0, 11);
+    private void playAC_MoveStudent(int playerId) throws InvalidIslandException, InvalidCardException, NotPlayerTurnException {
 
-        controller.moveStudentToDiningRoom(0, 0);
-        controller.moveStudentToDiningRoom(0, 2);
+        controller.moveStudentToIsland(playerId, 0, 2);
+        controller.moveStudentToIsland(playerId, 0, 11);
+
+        controller.moveStudentToDiningRoom(playerId, 0);
+        controller.moveStudentToDiningRoom(playerId, 2);
     }
 
     @Test
     void moveMotherNature() throws InvalidIslandException, InvalidCardException, NotPlayerTurnException, InvalidMotherNatureStepsException {
-        playAC_MoveStudent();
+        playPlanningPhase();
+        playAC_MoveStudent(2);
 
-        assertThrows(InvalidMotherNatureStepsException.class, () -> controller.moveMotherNature(0, 5));
-        assertThrows(InvalidMotherNatureStepsException.class, () -> controller.moveMotherNature(0, 0));
+        assertThrows(InvalidMotherNatureStepsException.class, () -> controller.moveMotherNature(2, 5));
+        assertThrows(InvalidMotherNatureStepsException.class, () -> controller.moveMotherNature(2, 0));
 
         ModelSerializable modelSerializable = new ModelSerializable(this.model);
         int start = modelSerializable.getMNPosition();
 
-        controller.moveMotherNature(0, 4);
+        controller.moveMotherNature(2, 3);
 
         modelSerializable = new ModelSerializable(this.model);
 
-        assertEquals((start + 4) % 12, modelSerializable.getMNPosition());
+        assertEquals((start + 3) % 12, modelSerializable.getMNPosition());
     }
 
-    private void playUntilCloud() throws NotPlayerTurnException, InvalidIslandException, InvalidCardException, InvalidMotherNatureStepsException {
-        playAC_MoveStudent();
-        controller.moveMotherNature(0, 4);
+    private void playUntilCloud(int playerId) throws NotPlayerTurnException, InvalidIslandException, InvalidCardException, InvalidMotherNatureStepsException {
+        playAC_MoveStudent(playerId);
+        controller.moveMotherNature(playerId, 1);
     }
 
     @Test
     void getStudentsFromCloud() throws NotPlayerTurnException, InvalidIslandException, InvalidCardException, InvalidMotherNatureStepsException {
-        playUntilCloud();
+        playPlanningPhase();
+        playUntilCloud(2);
 
-        controller.getStudentsFromCloud(0, 0);
+        controller.takeStudentsFromCloud(2, 0);
         ModelSerializable modelSerializable = new ModelSerializable(this.model);
         assertEquals(0, modelSerializable.getStudentOnCloud(0));
         assertEquals(9, modelSerializable.getEntranceByPlayerId(0).size());
@@ -185,23 +182,77 @@ class ControllerTest {
     }
 
     @Test
-    void playCharacterCard() throws NotPlayerTurnException, InvalidIslandException, InvalidCardException, InvalidMotherNatureStepsException{
-        playUntilCloud();
-        controller.getStudentsFromCloud(0, 0);
+    void playCharacterCard() throws Exception {
+        playPlanningPhase();
+        playUntilCloud(2);
+        controller.takeStudentsFromCloud(2, 0);
 
         ModelSerializable modelSerializable = new ModelSerializable(this.model);
         int prev = modelSerializable.getCharacterCardCost(3);
-        controller.playCharacterCard(0, 3);
+        controller.playCharacterCard(2, 3);
         modelSerializable = new ModelSerializable(this.model);
         assertEquals(prev + 1, modelSerializable.getCharacterCardCost(3));
     }
 
     @Test
-    void extraAction() {
+    void extraAction() throws Exception {
+        playPlanningPhase();
+        playUntilCloud(2);
+        controller.takeStudentsFromCloud(2, 0);
+        assertThrows(NotEnoughCoinsException.class, () -> controller.playCharacterCard(2, 2));
+        controller.extraAction(2, 1);
     }
 
     @Test
-    void endAction() {
+    void endAction() throws NotPlayerTurnException, InvalidIslandException, InvalidCardException, InvalidMotherNatureStepsException {
+        playPlanningPhase();
+        playUntilCloud(2);
+        controller.takeStudentsFromCloud(2, 0);
+        //System.out.println(controller.getOptions());
+        controller.endAction(2);
+        assertEquals(1, controller.getActivePlayer().getId());
+    }
+
+    @Test
+    void requestPlayAssistantCard() throws Exception{
+        //playPlanningPhase();
+        Player currentPlayer = controller.getActivePlayer();
+        assertEquals(0, currentPlayer.getId());
+        controller.requestPerformed(new RequestEvent("playAssistantCard", 0, 2));
+        assertEquals(2, currentPlayer.getLastAssistantCard().getValue());
+    }
+
+    @Test
+    void getOptions() {
+        assertEquals(1, controller.getOptions().size());
+        assertTrue(controller.getOptions().contains("assistant_card"));
+        assertEquals(0, controller.getActivePlayer().getId());
+        assertEquals(3, controller.getPlayersToPlay().size());
+        assertEquals(0, controller.getPlayersHavePlayed().size());
+    }
+
+    @Test
+    void orderPlayerForNextRound() throws Exception{
+        playPlanningPhase();
+
+        playUntilCloud(2);
+        controller.takeStudentsFromCloud(2, 0);
+        controller.endAction(2);
+
+        playUntilCloud(1);
+        controller.takeStudentsFromCloud(1, 2);
+        controller.endAction(1);
+
+        playUntilCloud(0);
+        controller.takeStudentsFromCloud(0, 1);
+        controller.endAction(0);
+
+        List<Player> players = controller.getPlayersToPlay();
+        assertEquals(3, players.size());
+
+        assertEquals(2, players.get(0).getId());
+        assertEquals(1, players.get(1).getId());
+        assertEquals(0, players.get(2).getId());
     }
 
 }

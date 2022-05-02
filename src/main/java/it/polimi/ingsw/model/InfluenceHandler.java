@@ -26,7 +26,6 @@ public class InfluenceHandler extends Handler {
             else if(!colorWithNoInfluence.equals(professor.getColor())) {
                 influence += island.countStudentsByColor(professor.getColor());
             }
-
         }
 
         if (island.getTower().getOwner().equals(player)) {

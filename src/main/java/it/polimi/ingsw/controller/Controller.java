@@ -1,10 +1,7 @@
 package it.polimi.ingsw.controller;
 
 import it.polimi.ingsw.events.RequestEvent;
-import it.polimi.ingsw.exceptions.InvalidCardException;
-import it.polimi.ingsw.exceptions.InvalidIslandException;
-import it.polimi.ingsw.exceptions.InvalidMotherNatureStepsException;
-import it.polimi.ingsw.exceptions.NotPlayerTurnException;
+import it.polimi.ingsw.exceptions.*;
 import it.polimi.ingsw.listeners.RequestListener;
 import it.polimi.ingsw.model.*;
 
@@ -63,7 +60,7 @@ public class Controller implements RequestListener {
         }
     }
 
-    public void playCharacterCard(int playerId, int choice) throws NotPlayerTurnException{
+    public void playCharacterCard(int playerId, int choice) throws NotPlayerTurnException, NotEnoughCoinsException, InvalidCardException {
         if (isPlanningFinished && playersToPlay.size() > 0) {
             Player player = playersToPlay.get(0);
             if (player.getId() == playerId) {
@@ -132,14 +129,14 @@ public class Controller implements RequestListener {
         }
     }
 
-    public void getStudentsFromCloud(int playerId, int choice) throws NotPlayerTurnException{
+    public void takeStudentsFromCloud(int playerId, int choice) throws NotPlayerTurnException{
         if (isPlanningFinished && playersToPlay.size() > 0) {
             Player player = playersToPlay.get(0);
             if (player.getId() == playerId) {
                 if (action == null || action.isEnded()) {
                     action = new ActionPhase(player, numStudentToMove, model);
                 }
-                action.getStudentsFromCloud(choice);
+                action.takeStudentsFromCloud(choice);
                 if (action.isEnded()) {
                     endPlayerAction(player);
                 }
@@ -184,7 +181,7 @@ public class Controller implements RequestListener {
     }
 
     public List<String> getOptions() {
-        if (isPlanningFinished) return planning.getOptions();
+        if (!isPlanningFinished) return planning.getOptions();
         return action.getOptions();
     }
 
@@ -273,8 +270,8 @@ public class Controller implements RequestListener {
             }
 
             default -> {
-                Method method = Controller.class.getDeclaredMethod(methodName, int.class);
-                method.invoke(this, values[0]);
+                Method method = Controller.class.getDeclaredMethod(methodName, int.class, int.class);
+                method.invoke(this, requestEvent.getPlayerId(), values[0]);
             }
         }
     }
