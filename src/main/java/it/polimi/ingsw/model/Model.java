@@ -105,11 +105,6 @@ public class Model implements Serializable {
         return new ArrayList<>(startingProfessorBoard.getPawns());
     }
 
-    //TODO: remove?
-    protected Board<Professor> getProfessorsBoard() {
-        return this.startingProfessorBoard;
-    }
-
     protected List<Cloud> getClouds() {
         return new ArrayList<>(clouds);
     }

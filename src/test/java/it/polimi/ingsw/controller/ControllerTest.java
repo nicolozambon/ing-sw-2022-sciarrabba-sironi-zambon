@@ -115,28 +115,28 @@ class ControllerTest {
         assertThrows(InvalidIslandException.class, () -> controller.moveStudentToIsland(0, 0, -1));
 
         modelSerializable = new ModelSerializable(this.model);
-        int prevSize = modelSerializable.getStudentOnIslandByPlayer(6);
+        int prevSize = modelSerializable.getStudentOnIslandById(6);
         controller.moveStudentToIsland(0, 0, 6);
         modelSerializable = new ModelSerializable(this.model);
-        assertEquals(prevSize + 1, modelSerializable.getStudentOnIslandByPlayer(6));
+        assertEquals(prevSize + 1, modelSerializable.getStudentOnIslandById(6));
 
         modelSerializable = new ModelSerializable(this.model);
-        prevSize = modelSerializable.getStudentOnIslandByPlayer(9);
+        prevSize = modelSerializable.getStudentOnIslandById(9);
         controller.moveStudentToIsland(0, 0, 9);
         modelSerializable = new ModelSerializable(this.model);
-        assertEquals(prevSize + 1, modelSerializable.getStudentOnIslandByPlayer(9));
+        assertEquals(prevSize + 1, modelSerializable.getStudentOnIslandById(9));
 
         modelSerializable = new ModelSerializable(this.model);
-        prevSize = modelSerializable.getStudentOnIslandByPlayer(2);
+        prevSize = modelSerializable.getStudentOnIslandById(2);
         controller.moveStudentToIsland(0, 0, 2);
         modelSerializable = new ModelSerializable(this.model);
-        assertEquals(prevSize + 1, modelSerializable.getStudentOnIslandByPlayer(2));
+        assertEquals(prevSize + 1, modelSerializable.getStudentOnIslandById(2));
 
         modelSerializable = new ModelSerializable(this.model);
-        prevSize = modelSerializable.getStudentOnIslandByPlayer(7);
+        prevSize = modelSerializable.getStudentOnIslandById(7);
         controller.moveStudentToIsland(0, 0, 7);
         modelSerializable = new ModelSerializable(this.model);
-        assertEquals(prevSize + 1, modelSerializable.getStudentOnIslandByPlayer(7));
+        assertEquals(prevSize + 1, modelSerializable.getStudentOnIslandById(7));
 
         assertEquals(initialSize-4, modelSerializable.getEntranceByPlayerId(player.getId()).size());
 
