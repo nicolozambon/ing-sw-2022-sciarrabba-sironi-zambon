@@ -1,23 +1,35 @@
 package it.polimi.ingsw.server;
 
-import it.polimi.ingsw.messages.Message;
+import it.polimi.ingsw.controller.Controller;
+import it.polimi.ingsw.events.RequestEvent;
+import it.polimi.ingsw.listenables.RequestListenable;
+import it.polimi.ingsw.listeners.RequestListener;
+import it.polimi.ingsw.messages.answers.ErrorAnswer;
+import it.polimi.ingsw.messages.answers.OptionAnswer;
 import it.polimi.ingsw.exceptions.*;
 
 import java.io.IOException;
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.*;
 import java.util.concurrent.*;
 
-public class Server {
+public class Server implements RequestListener {
 
-    private final String DEFAULT_IP_SETTINGS = "";
-    private int port;
-    private String ip;
+    private static final String DEFAULT_IP = "";
 
-    private Queue<Connection> queue;
+    private final int port;
+    private final String ip;
 
-    private List<GameHandler> games;
+    private final Queue<Connection> queue;
+
+    private final List<GameHandler> games;
+
+    private final Set<Connection> unqueuedConnection;
+
+    private final VirtualView virtualView;
 
     /**
      * Number of players for the match being built.
@@ -27,9 +39,11 @@ public class Server {
 
     public Server(int port){
         this.port = port;
-        this.ip = DEFAULT_IP_SETTINGS;
+        this.ip = DEFAULT_IP;
         this.queue = new ArrayDeque<>();
         this.games = new ArrayList<>();
+        this.unqueuedConnection = new HashSet<>();
+        this.virtualView = new VirtualView();
     }
 
     public Server(String ip, int port) {
@@ -37,12 +51,16 @@ public class Server {
         this.ip = ip;
         this.queue = new ArrayDeque<>();
         this.games = new ArrayList<>();
+        this.unqueuedConnection = new HashSet<>();
+        this.virtualView = new VirtualView();
     }
 
     public void startServer() throws IOException {
 
         ExecutorService connectionThreadPool = Executors.newCachedThreadPool();
         ServerSocket serverSocket = new ServerSocket();
+
+        this.virtualView.addRequestListener(this);
 
         try {
             serverSocket = new ServerSocket(port);
@@ -58,8 +76,10 @@ public class Server {
             try {
                 Socket socket = serverSocket.accept();
                 System.out.println("Received client connection");
-                Connection connection = new Connection(socket, this);
-                connection.send(new Message("NICKNAME", "Choose a Nickname:"));
+
+                Connection connection = new Connection(socket, this, this.virtualView);
+                unqueuedConnection.add(connection);
+
                 connectionThreadPool.submit(connection);
             } catch (IOException e) {
                 e.printStackTrace();
@@ -70,9 +90,9 @@ public class Server {
         serverSocket.close();
     }
 
-    protected void enqueuePlayer(Connection connection) {
+    public void enqueuePlayer(String nickname) {
         synchronized (queue) {
-            this.queue.add(connection);
+            this.queue.add(unqueuedConnection.stream().filter(x -> x.getNickname().equals(nickname)).findAny().get());
             this.queue.notifyAll();
         }
     }
@@ -100,22 +120,21 @@ public class Server {
                 players.put(connection.getNickname(), connection);
                 System.out.println("added player to a game");
                 if (numPlayers < 0) {
-                    connection.send(new Message("NUM_PLAYERS", "You are the first player, choose (2-3):"));
+                    connection.send(new OptionAnswer("first_player"));
                     while (numPlayers < 0) {
                         try {
                             synchronized (this) {
                                 wait();
                             }
                         } catch (InterruptedException e) {
-
+                            e.printStackTrace();
                         }
                     }
                 }
             } else {
-                connection.send(new Message("ERROR", "Nickname already taken, retry"));
-                connection.send(new Message("NICKNAME", "Choose a Nickname:"));
+                connection.send(new ErrorAnswer("Nickname already taken!"));
+                connection.send(new OptionAnswer("nickname"));
             }
-
 
             if (players.size() == numPlayers) {
                 GameHandler game = new GameHandler(players);
@@ -137,7 +156,7 @@ public class Server {
         return true;
     }
 
-    protected synchronized void setNumPlayers (int num) throws OutOfBoundsException {
+    public synchronized void setNumPlayers (int num) throws OutOfBoundsException {
         if (num != 2 && num != 3) {
             throw new OutOfBoundsException();
         } else {
@@ -146,4 +165,28 @@ public class Server {
         }
     }
 
+
+    @Override
+    public void requestPerformed(RequestEvent requestEvent) {
+
+        switch(requestEvent.getPropertyName()) {
+
+            case "nickname" -> {
+                enqueuePlayer(requestEvent.getString());
+            }
+
+            case "first_player" -> {
+                try {
+                    setNumPlayers(requestEvent.getValues()[0]);
+                } catch (OutOfBoundsException e) {
+                    e.printStackTrace();
+                }
+            }
+
+            default -> {
+                //TODO handling error
+            }
+
+        }
+    }
 }

@@ -15,14 +15,14 @@ class OptionStringifierTest {
         OptionStringifier optionStringifier = new OptionStringifier();
         //System.out.println(optionStringifier.stringify());
 
-        Map<Integer, String> options = new HashMap<>(){{
-            this.put(1, "move_student_dining");
-            this.put(2, "move_student_island");
-            this.put(3, "move_mothernature");
-            this.put(4, "character_card");
-            this.put(5, "students_cloud");
-            this.put(6, "extra_action");
-            this.put(7, "end_action");
+        List<String> options = new ArrayList<>(){{
+            this.add("move_student_dining");
+            this.add("move_student_island");
+            this.add("move_mothernature");
+            this.add("character_card");
+            this.add("students_cloud");
+            this.add("extra_action");
+            this.add("end_action");
         }};
 
         System.out.println(optionStringifier.stringify(options));

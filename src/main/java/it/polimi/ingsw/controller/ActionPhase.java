@@ -15,10 +15,10 @@ import java.util.Map;
 
 public class ActionPhase {
 
-    private Player currentPlayer;
-    private Map<String, Integer> callableMethod;
+    private final Model model;
+    private final Player currentPlayer;
+    private final Map<String, Integer> callableMethod;
 
-    private Model model;
 
     public ActionPhase(Player currentPlayer, int numOfStudentToMove, Model model) {
         this.currentPlayer = currentPlayer;

@@ -1,11 +1,15 @@
 package it.polimi.ingsw.controller;
 
+import it.polimi.ingsw.events.RequestEvent;
 import it.polimi.ingsw.exceptions.InvalidCardException;
 import it.polimi.ingsw.exceptions.InvalidIslandException;
 import it.polimi.ingsw.exceptions.InvalidMotherNatureStepsException;
 import it.polimi.ingsw.exceptions.NotPlayerTurnException;
+import it.polimi.ingsw.listeners.RequestListener;
 import it.polimi.ingsw.model.*;
 
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
@@ -14,7 +18,7 @@ import java.util.stream.Collectors;
 
 //Class Round keep players sorted
 
-public class Controller {
+public class Controller implements RequestListener {
 
     private List<Player> playersToPlay;
     private List<Player> playersHavePlayed;
@@ -36,6 +40,7 @@ public class Controller {
         this.model = model;
 
         planning = new PlanningPhase(playersToPlay.get(0), this.model);
+        this.model.addStudentsToClouds();
 
         action = null;
         this.isPlanningFinished = false;
@@ -230,6 +235,7 @@ public class Controller {
         isPlanningFinished = false;
         action = null;
         planning = new PlanningPhase(playersToPlay.get(0), this.model);
+        this.model.addStudentsToClouds();
     }
 
     public List<Player> getPlayersHavePlayed() {
@@ -245,4 +251,31 @@ public class Controller {
         return null;
     }
 
+    @Override
+    public void requestPerformed(RequestEvent requestEvent) throws NoSuchMethodException, InvocationTargetException, IllegalAccessException {
+        String methodName = requestEvent.getPropertyName();
+        int[] values = requestEvent.getValues();
+        switch(methodName) {
+
+            case "moveStudentToIsland" -> {
+                Method method = Controller.class.getDeclaredMethod(methodName, int.class, int.class);
+                method.invoke(this, values[0], values[1]);
+            }
+
+            case "extraAction" -> {
+                Method method = Controller.class.getDeclaredMethod(methodName, int[].class);
+                method.invoke(this, (Object) values);
+            }
+
+            case "endAction" -> {
+                Method method = Controller.class.getDeclaredMethod(methodName);
+                method.invoke(this);
+            }
+
+            default -> {
+                Method method = Controller.class.getDeclaredMethod(methodName, int.class);
+                method.invoke(this, values[0]);
+            }
+        }
+    }
 }

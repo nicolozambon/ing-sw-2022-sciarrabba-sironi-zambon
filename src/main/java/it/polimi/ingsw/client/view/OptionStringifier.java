@@ -23,12 +23,13 @@ public class OptionStringifier {
 
     }
 
-    public String stringify(Map<Integer, String> options) {
-        StringBuilder string = new StringBuilder();
-        for (Integer i : options.keySet()) {
-            string.append("\n").append(i).append(". ").append(dictionary.get(options.get(i)));
+    public String stringify(List<String> options) {
+        StringBuilder stringBuilder = new StringBuilder();
+        int i = 1;
+        for (String string : options) {
+            stringBuilder.append("\n").append(i).append(". ").append(dictionary.get(string));
         }
-        return string.toString();
+        return stringBuilder.toString();
     }
 
     public String stringify() {

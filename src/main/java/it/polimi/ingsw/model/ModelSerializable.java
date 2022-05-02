@@ -96,12 +96,20 @@ public final class ModelSerializable implements Serializable {
         return schools.get(playerId).diningRoom.get(color);
     }
 
-    public int getStudentOnIslandByPlayer(int playerId, int islandId) {
+    public int getStudentOnIslandByPlayer(int islandId) {
         int value = 0;
         for (Color color : Color.values()) {
             value += islands.get(islandId).students.get(color);
         }
         return value;
+    }
+
+    public int getStudentOnCloud(int cloudId) {
+        return clouds.get(cloudId).students.size();
+    }
+
+    public int getCharacterCardCost(int characterId) {
+        return characterCards.stream().filter(x -> x.id == characterId).findAny().get().cost;
     }
 
     public int getMNPosition() {

@@ -1,15 +1,14 @@
 package it.polimi.ingsw.client;
 
-import it.polimi.ingsw.messages.Message;
+import it.polimi.ingsw.messages.answers.Answer;
 import it.polimi.ingsw.client.view.ExampleView;
-import it.polimi.ingsw.listeners.Listener;
+import it.polimi.ingsw.messages.requests.Request;
 
-import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeSupport;
 import java.io.*;
 import java.net.Socket;
 
-public class Client implements Listener {
+public class Client {
 
     private final String ip;
     private final int port;
@@ -29,8 +28,8 @@ public class Client implements Listener {
 
     public synchronized void read() {
         try {
-            Message message = (Message) inputStream.readObject();
-            this.observable.firePropertyChange(message.getName(), null, message.getValue());
+            Answer answer = (Answer) inputStream.readObject();
+            this.observable.firePropertyChange(answer.process(this));
         } catch (Exception e) {
             e.printStackTrace();
             stopClient();
@@ -45,8 +44,6 @@ public class Client implements Listener {
         System.out.println("Connection established");
 
         ExampleView view = new ExampleView();
-        this.observable.addPropertyChangeListener(view);
-        view.addListener(this);
 
         while (active) {
             read();
@@ -67,11 +64,9 @@ public class Client implements Listener {
         }
     }
 
-    @Override
-    public void propertyChange(PropertyChangeEvent evt) {
-        Message message = new Message(evt.getPropertyName(), evt.getNewValue());
+    private void send(Request request) {
         try {
-            outputStream.writeObject(message);
+            outputStream.writeObject(request);
             outputStream.flush();
         }catch(Exception e){
             e.printStackTrace();

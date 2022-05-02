@@ -1,31 +1,34 @@
 package it.polimi.ingsw.server;
 
-import it.polimi.ingsw.messages.Message;
-import it.polimi.ingsw.listeners.Listenable;
+import it.polimi.ingsw.events.RequestEvent;
+import it.polimi.ingsw.listenables.RequestListenable;
+import it.polimi.ingsw.listeners.RequestListener;
+import it.polimi.ingsw.messages.answers.Answer;
+import it.polimi.ingsw.messages.requests.Request;
 
-import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
 import java.io.*;
 import java.net.Socket;
 
-public class Connection implements Runnable, Listenable {
+public class Connection implements Runnable {
 
-    private Server server;
-    private Socket socket;
+    private final Server server;
+    private final Socket socket;
     private boolean active;
 
     private ObjectInputStream inputStream;
     private ObjectOutputStream outputStream;
 
+    private final VirtualView view;
+
+
     private String nickname;
 
-    private PropertyChangeSupport observable;
-
-    public Connection(Socket socket, Server server) {
+    public Connection(Socket socket, Server server, VirtualView view) {
         this.server = server;
         this.socket = socket;
+        this.view = view;
         startConnection();
-        this.observable = new PropertyChangeSupport(this);
     }
 
     @Override
@@ -37,17 +40,18 @@ public class Connection implements Runnable, Listenable {
 
     public synchronized void read(){
         try {
-            Message input = (Message) inputStream.readObject();
-            this.observable.firePropertyChange(input.getName(), null, input.getValue());
+            RequestEvent request = (RequestEvent) inputStream.readObject();
+            if (request.getPropertyName().equals("nickname")) this.nickname = request.getString();
+            view.fireRequest(request);
         } catch (Exception e) {
             e.printStackTrace();
             stopConnection();
         }
     }
 
-    public void send(Message message) {
+    public void send(Answer answer) {
         try {
-            outputStream.writeObject(message);
+            outputStream.writeObject(answer);
             outputStream.flush();
         } catch (IOException e) {
             e.printStackTrace();
@@ -82,23 +86,4 @@ public class Connection implements Runnable, Listenable {
         return this.nickname;
     }
 
-    @Override
-    public void addListener(PropertyChangeListener listener) {
-
-    }
-
-    @Override
-    public void addListener(String propertyName, PropertyChangeListener listener) {
-
-    }
-
-    @Override
-    public void removeListener(PropertyChangeListener listener) {
-
-    }
-
-    @Override
-    public void removeListener(String propertyName, PropertyChangeListener listener) {
-
-    }
 }

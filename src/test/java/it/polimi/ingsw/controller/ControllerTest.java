@@ -115,28 +115,28 @@ class ControllerTest {
         assertThrows(InvalidIslandException.class, () -> controller.moveStudentToIsland(0, 0, -1));
 
         modelSerializable = new ModelSerializable(this.model);
-        int prevSize = modelSerializable.getStudentOnIslandByPlayer(0, 6);
+        int prevSize = modelSerializable.getStudentOnIslandByPlayer(6);
         controller.moveStudentToIsland(0, 0, 6);
         modelSerializable = new ModelSerializable(this.model);
-        assertEquals(prevSize + 1, modelSerializable.getStudentOnIslandByPlayer(0, 6));
+        assertEquals(prevSize + 1, modelSerializable.getStudentOnIslandByPlayer(6));
 
         modelSerializable = new ModelSerializable(this.model);
-        prevSize = modelSerializable.getStudentOnIslandByPlayer(0, 9);
+        prevSize = modelSerializable.getStudentOnIslandByPlayer(9);
         controller.moveStudentToIsland(0, 0, 9);
         modelSerializable = new ModelSerializable(this.model);
-        assertEquals(prevSize + 1, modelSerializable.getStudentOnIslandByPlayer(0, 9));
+        assertEquals(prevSize + 1, modelSerializable.getStudentOnIslandByPlayer(9));
 
         modelSerializable = new ModelSerializable(this.model);
-        prevSize = modelSerializable.getStudentOnIslandByPlayer(0, 2);
+        prevSize = modelSerializable.getStudentOnIslandByPlayer(2);
         controller.moveStudentToIsland(0, 0, 2);
         modelSerializable = new ModelSerializable(this.model);
-        assertEquals(prevSize + 1, modelSerializable.getStudentOnIslandByPlayer(0, 2));
+        assertEquals(prevSize + 1, modelSerializable.getStudentOnIslandByPlayer(2));
 
         modelSerializable = new ModelSerializable(this.model);
-        prevSize = modelSerializable.getStudentOnIslandByPlayer(0, 7);
+        prevSize = modelSerializable.getStudentOnIslandByPlayer(7);
         controller.moveStudentToIsland(0, 0, 7);
         modelSerializable = new ModelSerializable(this.model);
-        assertEquals(prevSize + 1, modelSerializable.getStudentOnIslandByPlayer(0, 7));
+        assertEquals(prevSize + 1, modelSerializable.getStudentOnIslandByPlayer(7));
 
         assertEquals(initialSize-4, modelSerializable.getEntranceByPlayerId(player.getId()).size());
 
@@ -168,8 +168,32 @@ class ControllerTest {
         assertEquals((start + 4) % 12, modelSerializable.getMNPosition());
     }
 
+    private void playUntilCloud() throws NotPlayerTurnException, InvalidIslandException, InvalidCardException, InvalidMotherNatureStepsException {
+        playAC_MoveStudent();
+        controller.moveMotherNature(0, 4);
+    }
+
     @Test
-    void getStudentsFromCloud() {
+    void getStudentsFromCloud() throws NotPlayerTurnException, InvalidIslandException, InvalidCardException, InvalidMotherNatureStepsException {
+        playUntilCloud();
+
+        controller.getStudentsFromCloud(0, 0);
+        ModelSerializable modelSerializable = new ModelSerializable(this.model);
+        assertEquals(0, modelSerializable.getStudentOnCloud(0));
+        assertEquals(9, modelSerializable.getEntranceByPlayerId(0).size());
+
+    }
+
+    @Test
+    void playCharacterCard() throws NotPlayerTurnException, InvalidIslandException, InvalidCardException, InvalidMotherNatureStepsException{
+        playUntilCloud();
+        controller.getStudentsFromCloud(0, 0);
+
+        ModelSerializable modelSerializable = new ModelSerializable(this.model);
+        int prev = modelSerializable.getCharacterCardCost(3);
+        controller.playCharacterCard(0, 3);
+        modelSerializable = new ModelSerializable(this.model);
+        assertEquals(prev + 1, modelSerializable.getCharacterCardCost(3));
     }
 
     @Test
