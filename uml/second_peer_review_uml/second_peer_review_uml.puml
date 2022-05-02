@@ -425,7 +425,227 @@ package model <<Folder>> {
 
 package Controller <<Folder>> {
     class ActionPhase {
+        - model : Model {readOnly}
+        - currentPlayer : Player {readOnly}
+        - callableMethod : Map<String, Integer> {readOnly}
 
+        + <<Constructor>> ActionPhase (currentPlayer : Player, numOfStudentsToMove : int, model : Model)
+        + playCharacterCard (choice : int) : void
+        + moveStudentToDiningRoom (choice : int) : void
+        + moveStudentToIsland (studentChoice : int, islandChoice : int) : void
+        + moveMotherNature (stepsChoice : int) : void
+        + takeStudentsFromCloud (choice : int) : void
+        + extraAction (values : int[]) : extraAction
+        + endAction() : void
+        + isEnded () : boolean
+        + moveStudentCounter() : void
+        + getOptions() : List<String>
+    }
+
+    class Controller {
+        - playersToPlay : List<Player>
+        - playersHavePlayed : List<Player>
+        - model : Model
+        - planning : PlanningPhase
+        - action : ActionPhase
+        - isPlanningFinished : boolean
+        - numStudentToMove : int {readOnly}
+
+        + <<Constructor>> Controller (players : List<Player>, model : Model, numStudentToMove : int)
+        + playAssistantCard (playerId : int, choice : int) : void
+        + playCharacterCard (playerId : int, choice : int) : void
+        + moveStudentToDiningRoom (playerId : int, student : int, island : int) : void
+        + moveMotherNature (playerId : int, choice : int) : void
+        + takeStudentFromCloud (playerId : int, choice : int) : void
+        + extraAction (playerId : int, values : int[]) : void
+        + endAction (olayerId : int) : void
+        + getOptions() : List<String>
+        + isRoundEnded() : boolean
+        + endPlayerPlanning (player : Player) : void
+        + endPlayerAction (player : Player) : void
+        + orderPlayerForAction() : void
+        + orderPlayersForNextRound() : void
+        + getPlayersHavePlayed() : List<Player>
+        + getPlayersToPlay() : List<Player>
+        + getActivePlayer() : Player
+        + requestPerformed (requestEvent : RequestEvent) : void
+    }
+
+    class PlanningPhase {
+        - model : Model
+        - currentPlayer : Player
+        - callableMethod : Map<String, Integer>
+
+        + <<Constructor>> PlanningPhase (currentPlayer : Player, model : Model)
+        + playAssistantCard (choice : int) _ void
+        - playedAssistantCard() : List<Integer>
+        - existsNotPlayedCard (choice : int) : boolean
+        - cardIsPlayable (choice : int) : boolean
+        + isEnded () : boolean
+        + getOptions() : List<String>
+    }
+}
+
+package Client <<Folder>> {
+    class Client {
+        - ip : String {readOnly}
+        - port : int {readOnly}
+        - socket : Socket {readOnly}
+        - active : boolean {readOnly}
+        - outputStream : ObjectOutputStream
+        - inputStream : ObjectInputStream
+        - observable : PropertyChangeSupport {readOnly}
+
+        + <<Constructor>> Client (ip : String, port : int)
+        + read() : void
+        + startClient() : void
+        + stopClient() : void
+        - send (request : Request) : void
+    }
+
+    package CLI <<Folder>> {
+
+    }
+}
+
+package Events <<Folder>> {
+    class RequestEvent {
+        - propertyName : String {readOnly}
+        - playerId : int {readOnly}
+        - values : int[] {readOnly}
+        - string : String {readOnly}
+
+        + <<Constructor>> RequestEvent (propertyName : String, playerId : int, values : int[])
+        + <<Constructor>> RequestEvent (propertyName : String, playerId : int, string : String)
+
+        + getPlayerId() : int
+        + getValues() : int[]
+        + getPropertyName() : String
+        + getString () : String
+    }
+}
+
+package Exceptions <<Folder>> {
+    class IllegalActionException {}
+    class InvalidCardException {}
+    class InvalidIslandException {}
+    class InvalidMotherNatureStepsException {}
+    class NotEnoughCoinsException {}
+    class NotPlayerTurnException {}
+    class OutOfBoundsException {}
+}
+
+package Listenables <<Folder>> {
+    abstract class RequestListenable {
+        - listeners : List<RequestListener> {readOnly}
+
+        + <<Constructor>> RequestListenable()
+        + addRequestListener(requestListener : RequestListener) : void
+        + removeRequestListener (requestListener : RequestListener) : void
+        + fireRequest (requestEvent RequestEvent) : void
+    }
+}
+
+package Listener <<Folder>> {
+    interface RequestListener {
+        requestPerformed (requestEvent : RequestEvent) : void
+    }
+}
+
+package Messages <<Folder>> {
+    package Answers <<Folder>> {
+        interface Answer {
+            process (eventSource : Object) : PropertyChangeEvent
+        }
+
+        class ErrorAnswer {
+            - message : String {readOnly}
+
+            + <<Constructor>> ErrorAnswer (message : String)
+            + process (eventSource : Object) : PropertyChangeEvent
+        }
+
+        class OptionAnswer {
+            - options : List<String>
+
+            + <<Constructor>> OptionAnswer (options : String [])
+            + process (eventSource : Object) : PropertyChangeEvent
+        }
+
+        class UpdateAnswer {
+            - propertyName : String {readOnly}
+            - changes : Object {readOnly}
+
+            + <<Constructor>> UpdateAnswer (propertyName : String, changes : Object)
+            + process (eventSource : Object) : PropertyChangeEvent
+        }
+    }
+
+    package Requests <<Folder>> {
+        interface Request {
+            + process (eventSource : Object) : PropertyChangeEvent
+        }
+
+        class CommandRequest {
+            - propertyName : String {readOnly}
+            - changes : Object {readOnly}
+
+            + <<Constructor>> UpdateAnswer (propertyName : String, changes : Object)
+            + process (eventSource : Object) : PropertyChangeEvent
+        }
+    }
+}
+
+package Server <<Folder>> {
+    class Connection {
+        - server : Server {readOnly}
+        - socket : Socket {readOnly}
+        - active : boolean
+        - inputStream : ObjectInputStream
+        - outputStream : ObjectOutputStream
+        - view : VirtualView {readOnly}
+        - nickname : String
+
+        + <<Constructor>> Connection (socket : Socket, server : Server, view : VirtualView)
+        + run() : void
+        + read() : void
+        + send(answer Answer) : void
+        + startConnection() : void
+        + stopConnection() : void
+        + getNickname() : String
+    }
+
+    class GameHandler {
+        - model : Model
+        - controller : Controller
+        - playersConnection : Map<String, Connection>
+
+        + <<Constructor>> GameHandler (playersConnection : Map<String, Connection>)
+        + run() : void
+        + getPlayersNickname() : List<String>
+    }
+
+    class Server {
+        - DEFAULT_IP : String {readOnly}
+        - port : int {readOnly}
+        - queue : Queue<Connection>
+        - games : List<GameHandler> {readOnly}
+        - unqueuedConnection : Set<Connection> {readOnly}
+        - virtualView : VirtualView {readOnly}
+        - numPlayers : int
+
+        + <<Constructor>> Server (ip : String, port : int)
+        + startServer() : void
+        + enqueuePlayer (nickname : String)
+        - lobby () : void
+        - isNicknameUnique (connection : Connection, players : Map<String, Connection>)
+        + setNumPlayers (num : int) : void
+        + requestPerformed (requestEvent : RequestEvent) : void
+    }
+
+    class VirtualView {
+        + <<Constructor>> VirtualView ()
+        + fireRequest(requestEvent : RequestEvent) : void
     }
 }
 
