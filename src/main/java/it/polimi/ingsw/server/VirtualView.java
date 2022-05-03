@@ -26,7 +26,7 @@ public class VirtualView extends RequestListenable implements RequestListener {
             this.gameHandler.launchUpdateAnswerEvent();
         } catch (InvocationTargetException e) {
             Throwable x = e.getCause();
-            e.printStackTrace();
+            x.printStackTrace();
         }
     }
 

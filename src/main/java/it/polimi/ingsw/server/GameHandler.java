@@ -41,14 +41,11 @@ public class GameHandler implements Runnable {
 
         this.virtualView.setGameHandler(this);
         launchUpdateAnswerEvent();
-
     }
 
     public synchronized void launchUpdateAnswerEvent() {
         String currentPlayer = controller.getActivePlayer().getNickname();
-        System.out.println(currentPlayer);
         List<String> options = controller.getOptions();
-        //System.out.println(options);
 
         ModelSerializable modelSerializable = new ModelSerializable(this.model);
         for (String nickname : playersConnection.keySet()) {

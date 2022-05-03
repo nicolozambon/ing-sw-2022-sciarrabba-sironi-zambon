@@ -66,6 +66,7 @@ public class Connection extends RequestListenable implements Runnable {
         try {
             outputStream.writeObject(answer);
             outputStream.flush();
+            outputStream.reset();
         } catch (IOException e) {
             e.printStackTrace();
             stopConnection();

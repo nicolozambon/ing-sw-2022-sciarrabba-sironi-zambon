@@ -114,7 +114,6 @@ public class Server {
                         e.printStackTrace();
                     }
                 }
-                System.out.println("waiting for num of players");
             }
             do {
                 connection.send(new AnswerEvent("nickname", null));

@@ -93,10 +93,11 @@ public class ExampleView implements AnswerListener {
     }
 
     private void twoInputHandler(int option) {
-        System.out.println("Choose student and island es. 1 2 : ");
-        int student = stdin.nextInt();
-        int island = stdin.nextInt();
-        stdin.nextLine();
+        System.out.println("Choose student and island es. 1,2 : ");
+        String[] input = stdin.nextLine().split(",");
+        int student = Integer.parseInt(input[0]);
+        int island = Integer.parseInt(input[1]);
+        System.out.println(student + " " + island);
         client.send(new RequestEvent(this.options.get(option), this.id, student, island));
     }
 

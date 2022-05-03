@@ -69,6 +69,7 @@ public class Client extends AnswerListenable {
         try {
             outputStream.writeObject(request);
             outputStream.flush();
+            outputStream.reset();
         }catch(Exception e){
             e.printStackTrace();
             stopClient();

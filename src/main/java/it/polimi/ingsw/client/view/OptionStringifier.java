@@ -28,6 +28,7 @@ public class OptionStringifier {
         int i = 1;
         for (String string : options) {
             stringBuilder.append("\n").append(i).append(". ").append(dictionary.get(string));
+            i++;
         }
         return stringBuilder.toString();
     }

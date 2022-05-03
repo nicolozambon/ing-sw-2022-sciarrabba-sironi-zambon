@@ -144,7 +144,7 @@ public final class ModelSerializable implements Serializable {
 
         @Override
         public String toString() {
-            return "\nSchoolSerializable {" +
+            return "\n{" +
                     "diningRoom = " + diningRoom +
                     ", entrance = " + entrance +
                     ", profTable = " + profTable +
@@ -174,12 +174,13 @@ public final class ModelSerializable implements Serializable {
 
             if (island.getTower() != null) {
                 towerPresence = true;
+                color = island.getTower().getColor();
             }
         }
 
         @Override
         public String toString() {
-            return "\nIslandSerializable {" +
+            return "\n{" +
                     "students = " + students +
                     ", towerPresence = " + towerPresence +
                     ", color = " + color +
@@ -204,7 +205,7 @@ public final class ModelSerializable implements Serializable {
 
         @Override
         public String toString() {
-            return "\nCharacterCardSerializable {" +
+            return "\n{" +
                     "id = " + id +
                     ", effect = " + effect + '\'' +
                     ", cost = " + cost +
@@ -226,7 +227,7 @@ public final class ModelSerializable implements Serializable {
 
         @Override
         public String toString() {
-            return "\nCloudSerializable {" +
+            return "\n{" +
                     "students = " + students +
                     "}";
         }

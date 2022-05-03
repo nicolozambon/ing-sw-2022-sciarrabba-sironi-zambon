@@ -61,9 +61,6 @@ public class Controller implements RequestListener {
         if (isPlanningFinished && playersToPlay.size() > 0) {
             Player player = playersToPlay.get(0);
             if (player.getId() == playerId) {
-                if (action == null || action.isEnded()) {
-                    action = new ActionPhase(player, numStudentToMove, model);
-                }
                 action.playCharacterCard(choice);
                 if (action.isEnded()) {
                     endPlayerAction(player);
@@ -78,9 +75,6 @@ public class Controller implements RequestListener {
         if (isPlanningFinished && playersToPlay.size() > 0) {
             Player player = playersToPlay.get(0);
             if (player.getId() == playerId) {
-                if (action == null || action.isEnded()) {
-                    action = new ActionPhase(player, numStudentToMove, model);
-                }
                 action.moveStudentToDiningRoom(choice);
                 if (action.isEnded()) {
                     endPlayerAction(player);
@@ -95,9 +89,6 @@ public class Controller implements RequestListener {
         if (isPlanningFinished && playersToPlay.size() > 0) {
             Player player = playersToPlay.get(0);
             if (player.getId() == playerId) {
-                if (action == null || action.isEnded()) {
-                    action = new ActionPhase(player, numStudentToMove, model);
-                }
                 if (island >= 0 && island < 12) action.moveStudentToIsland(student, island);
                 else throw new InvalidIslandException();
                 if (action.isEnded()) {
@@ -113,9 +104,6 @@ public class Controller implements RequestListener {
         if (isPlanningFinished && playersToPlay.size() > 0) {
             Player player = playersToPlay.get(0);
             if (player.getId() == playerId) {
-                if (action == null || action.isEnded()) {
-                    action = new ActionPhase(player, numStudentToMove, model);
-                }
                 action.moveMotherNature(choice);
                 if (action.isEnded()) {
                     endPlayerAction(player);
@@ -130,9 +118,6 @@ public class Controller implements RequestListener {
         if (isPlanningFinished && playersToPlay.size() > 0) {
             Player player = playersToPlay.get(0);
             if (player.getId() == playerId) {
-                if (action == null || action.isEnded()) {
-                    action = new ActionPhase(player, numStudentToMove, model);
-                }
                 action.takeStudentsFromCloud(choice);
                 if (action.isEnded()) {
                     endPlayerAction(player);
@@ -147,9 +132,6 @@ public class Controller implements RequestListener {
         if (isPlanningFinished && playersToPlay.size() > 0) {
             Player player = playersToPlay.get(0);
             if (player.getId() == playerId) {
-                if (action == null || action.isEnded()) {
-                    action = new ActionPhase(player, numStudentToMove, model);
-                }
                 action.extraAction(values);
                 if (action.isEnded()) {
                     endPlayerAction(player);
@@ -164,9 +146,6 @@ public class Controller implements RequestListener {
         if (isPlanningFinished && playersToPlay.size() > 0) {
             Player player = playersToPlay.get(0);
             if (player.getId() == playerId) {
-                if (action == null || action.isEnded()) {
-                    action = new ActionPhase(player, numStudentToMove, model);
-                }
                 action.endAction();
                 if (action.isEnded()) {
                     endPlayerAction(player);
@@ -258,8 +237,8 @@ public class Controller implements RequestListener {
         switch(methodName) {
 
             case "moveStudentToIsland" -> {
-                Method method = Controller.class.getDeclaredMethod(methodName, int.class, int.class);
-                method.invoke(this, values[0], values[1]);
+                Method method = Controller.class.getDeclaredMethod(methodName, int.class, int.class, int.class);
+                method.invoke(this, requestEvent.getPlayerId(), values[0], values[1]);
             }
 
             case "extraAction" -> {
@@ -268,8 +247,8 @@ public class Controller implements RequestListener {
             }
 
             case "endAction" -> {
-                Method method = Controller.class.getDeclaredMethod(methodName);
-                method.invoke(this);
+                Method method = Controller.class.getDeclaredMethod(methodName, int.class);
+                method.invoke(this, requestEvent.getPlayerId());
             }
 
             default -> {

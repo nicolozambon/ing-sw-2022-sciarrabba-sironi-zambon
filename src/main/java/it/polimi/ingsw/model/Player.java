@@ -81,7 +81,7 @@ public class Player {
 
     protected boolean moveStudentDiningRoom(Student student, int coinReserve) {
         school.moveStudentDiningRoom(student);
-        if (coinReserve > 0 && school.getDiningRoomByColor(student.getColor()).getNumPawns() % 3 == 2) {
+        if (coinReserve > 0 && school.getDiningRoomByColor(student.getColor()).getNumPawns() % 3 == 0) {
             this.coins += 1;
             return true;
         }

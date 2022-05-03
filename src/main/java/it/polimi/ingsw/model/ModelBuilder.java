@@ -29,9 +29,9 @@ public class ModelBuilder {
 
         MotherNature motherNature = new MotherNature(islands.get(new Random().nextInt(islands.size())));
 
+        Island mnPosition = motherNature.getPosition();
         for (Island island : islands) {
-            if (island.getId() != motherNature.getPosition().getId()) {
-                bag.extractStudentAndMove(island);
+            if (island.getId() != mnPosition.getId() && island.getId() != (mnPosition.getId() + 6) % 12) {
                 bag.extractStudentAndMove(island);
             }
         }
