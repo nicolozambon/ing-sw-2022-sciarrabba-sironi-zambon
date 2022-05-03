@@ -3,9 +3,11 @@ package it.polimi.ingsw.client.view.cli;
 import it.polimi.ingsw.enums.Color;
 import it.polimi.ingsw.enums.TowerColor;
 
+import java.io.IOException;
+
 public class DemoLauncher {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
         CLI cli = new CLI();
 
         // Get main school
@@ -33,7 +35,7 @@ public class DemoLauncher {
         cli.addTowerToBoard(firstIsland, TowerColor.BLACK);
 
         // Add some pawns to the second island
-        String[][] secondIsland = cli.getIslands().get(1); // Get the first island
+        String[][] secondIsland = cli.getIslands().get(1); // Get the second island
         cli.addStudentToBoard(secondIsland, Color.BLUE);
         cli.addStudentToBoard(secondIsland, Color.PINK);
         cli.addStudentToBoard(secondIsland, Color.GREEN);
@@ -44,8 +46,6 @@ public class DemoLauncher {
 
         // Add link between fourth and fifth islands
         cli.addLinkToNextIsland(3);
-
-
 
         // Show updated game board
         cli.showGameBoard();
