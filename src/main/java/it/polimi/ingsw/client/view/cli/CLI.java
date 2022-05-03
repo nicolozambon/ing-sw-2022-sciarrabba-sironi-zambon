@@ -9,9 +9,6 @@ import static java.lang.Character.isDigit;
 import static java.lang.Character.isLetter;
 
 public class CLI {
-
-    private final String STUD_PLACEHOLDER = "███";
-    private final String PROF_PLACEHOLDER = "###";
     private final AssetsLoader loader;
 
     public CLI() {
@@ -27,8 +24,8 @@ public class CLI {
         this.put(Color.RED, "\u001B[31m");
         this.put(Color.PINK, "\u001B[35m");
         this.put(TowerColor.BLACK, "\u001B[30m");
+        this.put(TowerColor.GREY, "\u001B[90m");
         this.put(TowerColor.WHITE, "\u001B[37m");
-        this.put(TowerColor.GREY, "---");
     }};
 
     private static final Map<Object, Integer> positionMap = new HashMap<>(){{
@@ -52,19 +49,16 @@ public class CLI {
     private static final Map<String, String> pawnsMap = new HashMap<>(){{
         this.put("s", "███");
         this.put("p", "PRO");
+        this.put("t", "TOW");
+        this.put("m", "MON");
     }};
 
-    private String getStudent(Color color) {
-        return colorsMap.get(color) + this.STUD_PLACEHOLDER + ANSI_RESET;
-    }
-
-    private String getProfessor(Color color) {
-        return colorsMap.get(color) + this.PROF_PLACEHOLDER + ANSI_RESET;
-    }
-
-    private Map<String, Integer> getFirstAvailablePlaceholder(String[][] board, String identifier, Color color) {
+    private Map<String, Integer> getFirstAvailablePlaceholder(String[][] board, String identifier, Object color) {
         Map<String, Integer> placeholder = new HashMap<>();
-        String colorRow = String.valueOf(Character.forDigit(positionMap.get(color), 10));
+        String colorRow = "0";
+        if (identifier.equals("S") || identifier.equals("P")) {
+            colorRow = String.valueOf(Character.forDigit(positionMap.get(color), 10));
+        }
         int counter = 0;
         for (int i = 0; i < board.length; i++) {
             for (int j = 0; j < board[i].length; j++) {
@@ -87,17 +81,41 @@ public class CLI {
         return null;
     }
 
-    private void addStudentToBoard(String[][] board, Color color) {
-        Map<String, Integer> placeholder = this.getFirstAvailablePlaceholder(board, "S", color);
+    private void addPawnToBoard(String[][] board, Object color, String identifier) {
+        Map<String, Integer> placeholder = null;
+        if (!(color instanceof Color) && !(color instanceof TowerColor)) {
+            //TODO: handle exception
+            System.out.println("Error: not valid color.");
+        }
+        if (pawnsMap.containsKey(identifier.toLowerCase())) {
+            placeholder = this.getFirstAvailablePlaceholder(board, identifier, color);
+        }
         if (placeholder != null) {
             int i = placeholder.get("start_row");
             int j = placeholder.get("start_col");
             board[i][j] = colorsMap.get(color) + board[i][j].toLowerCase();
             board[i][j+2] = board[i][j] + ANSI_RESET;
         } else {
-            System.out.println("ERROR. There is no space for a new student."); // To be removed --> new Exception
+            System.out.println("ERROR. There is no space for a new pawn. (Identifier=" + identifier + ")."); // To be removed --> new Exception
+
             //TODO: handle exception
         }
+    }
+
+    private void addStudentToBoard(String[][] board, Color color) {
+        this.addPawnToBoard(board, color, "S");
+    }
+
+    private void addProfessorToBoard(String[][] board, Color color) {
+        this.addPawnToBoard(board, color, "P");
+    }
+
+    private void addTowerToBoard(String[][] board, TowerColor color) {
+        this.addPawnToBoard(board, color, "T");
+    }
+
+    private void addMotherNatureToBoard(String[][] board) {
+        this.addPawnToBoard(board, Color.RED, "M");
     }
 
     @Deprecated
@@ -245,22 +263,18 @@ public class CLI {
                             linker = islandLinkers.get("tl");
                             linkerBaseRowOnSet = i * (islandH + spaceH) - (islandH + spaceH);
                             linkerBaseColOnSet = j * (islandW + spaceW);
-                            System.out.println("top_left"); // ok
                         } else if (i == 0 && j == disposition[i].length-2) {
                             linker = islandLinkers.get("tr");
                             linkerBaseRowOnSet = i * (islandH + spaceH);
                             linkerBaseColOnSet = j * (islandW + spaceW) + islandW - 1;
-                            System.out.println("top_right"); // ok
                         } else if (i == disposition.length-1 && j == 1) {
                             linker = islandLinkers.get("bl");
                             linkerBaseRowOnSet = i * (islandH + spaceH) + islandH - 1 - (islandH + spaceH);
                             linkerBaseColOnSet = j * (islandW + spaceW) - (islandW + spaceW);
-                            System.out.println("bottom_left");
                         } else if (i == disposition.length-2 && j == disposition[i].length-1) {
                             linker = islandLinkers.get("br");
                             linkerBaseRowOnSet = i * (islandH + spaceH) + islandH - 1;
                             linkerBaseColOnSet = j * (islandW + spaceW) - spaceW - 1;
-                            System.out.println("bottom_right");
                         } else if (i == 0 || i == disposition.length-1) {
                             linker = islandLinkers.get("hr");
                             linkerBaseRowOnSet = i * (islandH + spaceH);
@@ -268,7 +282,6 @@ public class CLI {
                             if (i == disposition.length-1) {
                                 linkerBaseColOnSet -= (islandW + spaceW);
                             }
-                            System.out.println("hr");
                         } else if (j == 0 || j == disposition[i].length-1) {
                             linker = islandLinkers.get("vr");
                             linkerBaseRowOnSet = i * (islandH + spaceH) + islandH - 1;
@@ -276,7 +289,6 @@ public class CLI {
                             if (j == 0) {
                                 linkerBaseRowOnSet -= (islandH + spaceH);
                             }
-                            System.out.println("vr"); // ok
                         }
 
                         System.out.print(i);
@@ -378,6 +390,9 @@ public class CLI {
         this.addStudentToBoard(vertSchoolOne, Color.YELLOW);
         this.addStudentToBoard(mainSchool, Color.GREEN);
 
+        // Add some professors
+        this.addProfessorToBoard(mainSchool, Color.RED);
+
         // Create a list of schools
         ArrayList<String[][]> schools = new ArrayList<>();
         schools.add(mainSchool);
@@ -395,6 +410,12 @@ public class CLI {
         for (int i=0; i<12; i++) {
             islandsLinkedToNext.add(false);
         }
+
+        this.addTowerToBoard(islands.get(0), TowerColor.WHITE);
+        this.addTowerToBoard(islands.get(1), TowerColor.GREY);
+        this.addTowerToBoard(islands.get(2), TowerColor.BLACK);
+
+        this.addMotherNatureToBoard(islands.get(1));
 
         this.addStudentToBoard(islands.get(0), Color.RED);
         this.addStudentToBoard(islands.get(0), Color.YELLOW);
@@ -418,8 +439,6 @@ public class CLI {
         this.addStudentToBoard(islands.get(9), Color.GREEN);
         this.addStudentToBoard(islands.get(9), Color.PINK);
         this.addStudentToBoard(islands.get(9), Color.BLUE);
-
-        this.addStudentToBoard(islands.get(4), Color.BLUE);
 
         // Add link Island3 <--> Island4 (only this one supported at the moment)
 

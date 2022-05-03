@@ -35,17 +35,17 @@ Controller -> Model: requestEvent()
 deactivate Controller
 activate Model
 
-Model --> VirtualView: response
+Model --> VirtualView: AnswerEvent
 destroy Model
 
-VirtualView --> Connection: response
+VirtualView --> Connection: AnswerEvent
 deactivate VirtualView
 
-Connection --> Client: response
+Connection --> Client: AnswerEvent
 deactivate Connection
 
-Client --> View: response
+Client --> View: AnswerEvent
 deactivate Client
 
-View --> User: response
+View --> User: AnswerEvent
 @enduml
