@@ -9,20 +9,53 @@ import static java.lang.Character.isDigit;
 import static java.lang.Character.isLetter;
 
 public class CLI {
-    private final AssetsLoader loader;
+
+    private final Map<String, String[][]> islandLinkers;
+    private final ArrayList<String[][]> schools = new ArrayList<>();
+    private final ArrayList<String[][]> islands = new ArrayList<>();
+    private final ArrayList<Boolean> islandsLinkedToNext = new ArrayList<>();
 
     public CLI() {
-        this.loader = new AssetsLoader();
+        final AssetsLoader loader = new AssetsLoader();
+        this.islandLinkers = loader.getIslandLinkers();
+
+        // Create three schools
+        this.schools.add(loader.getSchool(false));
+        this.schools.add(loader.getSchool(true));
+        this.schools.add(loader.getSchool(true));
+
+        // Create twelve islands
+        for (int i=0; i<12; i++) {
+            this.islands.add(loader.getIsland());
+            this.islandsLinkedToNext.add(false);
+        }
+
+    }
+
+    public ArrayList<String[][]> getSchools() {
+        return this.schools;
+    }
+
+    public ArrayList<String[][]> getIslands() {
+        return this.islands;
+    }
+
+    public void addLinkToNextIsland(int islandId) {
+        this.islandsLinkedToNext.set(islandId, true);
+    }
+
+    public void removeLinkToNextIsland(int islandId) {
+        this.islandsLinkedToNext.set(islandId, false);
     }
 
     public static final String ANSI_RESET = "\u001B[0m";
 
     private static final Map<Object, String> colorsMap = new HashMap<>(){{
-        this.put(Color.YELLOW, "\u001B[33m");
+        this.put(Color.YELLOW, "\u001B[93m");
         this.put(Color.GREEN, "\u001B[32m");
         this.put(Color.BLUE, "\u001B[34m");
         this.put(Color.RED, "\u001B[31m");
-        this.put(Color.PINK, "\u001B[35m");
+        this.put(Color.PINK, "\u001B[95m");
         this.put(TowerColor.BLACK, "\u001B[30m");
         this.put(TowerColor.GREY, "\u001B[90m");
         this.put(TowerColor.WHITE, "\u001B[37m");
@@ -102,19 +135,19 @@ public class CLI {
         }
     }
 
-    private void addStudentToBoard(String[][] board, Color color) {
+    protected void addStudentToBoard(String[][] board, Color color) {
         this.addPawnToBoard(board, color, "S");
     }
 
-    private void addProfessorToBoard(String[][] board, Color color) {
+    protected void addProfessorToBoard(String[][] board, Color color) {
         this.addPawnToBoard(board, color, "P");
     }
 
-    private void addTowerToBoard(String[][] board, TowerColor color) {
+    protected void addTowerToBoard(String[][] board, TowerColor color) {
         this.addPawnToBoard(board, color, "T");
     }
 
-    private void addMotherNatureToBoard(String[][] board) {
+    protected void addMotherNatureToBoard(String[][] board) {
         this.addPawnToBoard(board, Color.RED, "M");
     }
 
@@ -194,7 +227,7 @@ public class CLI {
         return builder.toString();
     }
 
-    private String[][] buildSetOfIslands(ArrayList<String[][]> islands, Map<String, String[][]> islandLinkers, ArrayList<Boolean> islandsLinkedToNext) {
+    private String[][] buildSetOfIslands() {
         int[][] disposition = {
                 {110,   0,      1,      2,      3,      34},
                 {11,    -1,     -1,     -1,     -1,     4 },
@@ -209,8 +242,8 @@ public class CLI {
              ###  ###  ###  ###
         */
 
-        int islandH = islands.get(0).length;
-        int islandW = islands.get(0)[0].length;
+        int islandH = this.islands.get(0).length;
+        int islandW = this.islands.get(0)[0].length;
 
         int spaceH = 1;
         int spaceW = 4;
@@ -235,7 +268,7 @@ public class CLI {
 
                 if (i%(islandH+spaceH) < islandH && j%(islandW+spaceW) < islandW) {
                     if (islandIndex >= 0 && islandIndex < 13) {
-                        set[i][j] = islands.get(islandIndex)[i%(islandH+spaceH)][j%(islandW+spaceW)];
+                        set[i][j] = this.islands.get(islandIndex)[i%(islandH+spaceH)][j%(islandW+spaceW)];
                     } else {
                         set[i][j] = " ";
                     }
@@ -254,7 +287,7 @@ public class CLI {
         for (int i=0; i<disposition.length; i++) {
             for (int j=0; j<disposition[i].length; j++) {
                 if (disposition[i][j] >= 0 && disposition[i][j] < 13) {
-                    if (islandsLinkedToNext.get(disposition[i][j])) {
+                    if (this.islandsLinkedToNext.get(disposition[i][j])) {
 
                         int linkerBaseRowOnSet = 0;
                         int linkerBaseColOnSet = 0;
@@ -291,11 +324,6 @@ public class CLI {
                             }
                         }
 
-                        System.out.print(i);
-                        System.out.print(' ');
-                        System.out.print(j);
-                        System.out.print('\n');
-
                         for (int linkerRow=0; linkerRow<linker.length; linkerRow++) {
                             for (int linkerCol=0; linkerCol<linker[0].length; linkerCol++) {
                                 linkerRowOnSet = linkerBaseRowOnSet + linkerRow;
@@ -312,10 +340,10 @@ public class CLI {
         return set;
     }
 
-    private String[][] buildGameBoard(ArrayList<String[][]> schools, String[][] setOfIslands) {
+    private String[][] buildGameBoard(String[][] setOfIslands) {
         int space = 4;
-        int height = Math.max((setOfIslands.length + schools.get(0).length), schools.get(1).length);
-        int width = setOfIslands[0].length + schools.get(1)[0].length + space;
+        int height = Math.max((setOfIslands.length + this.schools.get(0).length), this.schools.get(1).length);
+        int width = setOfIslands[0].length + this.schools.get(1)[0].length + space;
         String[][] gameBoard = new String[height][width];
 
         int mainSchoolOffset = (setOfIslands[0].length - schools.get(0)[0].length) / 2;
@@ -326,11 +354,11 @@ public class CLI {
                 gameBoard[i][j] = " ";
 
                 // Side school
-                if (i < schools.get(1).length) {
+                if (i < this.schools.get(1).length) {
                     if (i < setOfIslands.length && j < setOfIslands[0].length) {
                         gameBoard[i][j] = setOfIslands[i][j];
-                    } else if (j-setOfIslands[0].length >= space && j-setOfIslands[0].length < schools.get(1)[i].length+space) {
-                        gameBoard[i][j] = schools.get(1)[i][j-setOfIslands[0].length-space].toString();
+                    } else if (j-setOfIslands[0].length >= space && j-setOfIslands[0].length < this.schools.get(1)[i].length+space) {
+                        gameBoard[i][j] = this.schools.get(1)[i][j-setOfIslands[0].length-space].toString();
                     } else {
                         gameBoard[i][j] = " ";
                     }
@@ -338,8 +366,8 @@ public class CLI {
 
                 // Main school
                 if (i >= setOfIslands.length && j < setOfIslands[0].length) {
-                    if (j >= mainSchoolOffset && j-mainSchoolOffset < schools.get(0)[0].length) {
-                        gameBoard[i][j] = schools.get(0)[i-setOfIslands.length][j-mainSchoolOffset].toString();
+                    if (j >= mainSchoolOffset && j-mainSchoolOffset < this.schools.get(0)[0].length) {
+                        gameBoard[i][j] = this.schools.get(0)[i-setOfIslands.length][j-mainSchoolOffset].toString();
                     } else {
                         gameBoard[i][j] = " ";
                     }
@@ -352,138 +380,12 @@ public class CLI {
     }
 
     public void showGameBoard() {
-        // Initialize island islands_linkers
-        Map<String, String[][]> islandLinkers = this.loader.getIslandLinkers();
-        // TODO should be moved into the constructor
-
-        // Create three schools
-        String[][] mainSchool = this.loader.getSchool(false);
-        String[][] vertSchoolOne = this.loader.getSchool(true);
-        String[][] vertSchoolTwo = this.loader.getSchool(true);
-
-        // Add some students to the schools
-        this.addStudentToBoard(mainSchool, Color.RED);
-        this.addStudentToBoard(mainSchool, Color.RED);
-        this.addStudentToBoard(mainSchool, Color.YELLOW);
-        this.addStudentToBoard(mainSchool, Color.YELLOW);
-        this.addStudentToBoard(mainSchool, Color.YELLOW);
-        this.addStudentToBoard(mainSchool, Color.YELLOW);
-        this.addStudentToBoard(mainSchool, Color.YELLOW);
-        this.addStudentToBoard(mainSchool, Color.YELLOW);
-        this.addStudentToBoard(mainSchool, Color.YELLOW);
-        this.addStudentToBoard(mainSchool, Color.GREEN);
-        this.addStudentToBoard(mainSchool, Color.GREEN);
-        this.addStudentToBoard(mainSchool, Color.GREEN);
-        this.addStudentToBoard(mainSchool, Color.GREEN);
-        this.addStudentToBoard(mainSchool, Color.PINK);
-        this.addStudentToBoard(mainSchool, Color.PINK);
-        this.addStudentToBoard(mainSchool, Color.PINK);
-        this.addStudentToBoard(mainSchool, Color.PINK);
-        this.addStudentToBoard(mainSchool, Color.PINK);
-        this.addStudentToBoard(mainSchool, Color.BLUE);
-        this.addStudentToBoard(mainSchool, Color.BLUE);
-        this.addStudentToBoard(mainSchool, Color.BLUE);
-        this.addStudentToBoard(mainSchool, Color.BLUE);
-        this.addStudentToBoard(mainSchool, Color.BLUE);
-
-        this.addStudentToBoard(vertSchoolOne, Color.RED);
-        this.addStudentToBoard(vertSchoolOne, Color.YELLOW);
-        this.addStudentToBoard(mainSchool, Color.GREEN);
-
-        // Add some professors
-        this.addProfessorToBoard(mainSchool, Color.RED);
-
-        // Create a list of schools
-        ArrayList<String[][]> schools = new ArrayList<>();
-        schools.add(mainSchool);
-        schools.add(vertSchoolOne);
-        schools.add(vertSchoolTwo);
-
-        // Create a list of 12 islands
-        ArrayList<String[][]> islands = new ArrayList<>();
-        for (int i=0; i<12; i++) {
-            islands.add(this.loader.getIsland());
-        }
-
-        // Initialize island links relations
-        ArrayList<Boolean> islandsLinkedToNext = new ArrayList<Boolean>();
-        for (int i=0; i<12; i++) {
-            islandsLinkedToNext.add(false);
-        }
-
-        this.addTowerToBoard(islands.get(0), TowerColor.WHITE);
-        this.addTowerToBoard(islands.get(1), TowerColor.GREY);
-        this.addTowerToBoard(islands.get(2), TowerColor.BLACK);
-
-        this.addMotherNatureToBoard(islands.get(1));
-
-        this.addStudentToBoard(islands.get(0), Color.RED);
-        this.addStudentToBoard(islands.get(0), Color.YELLOW);
-        this.addStudentToBoard(islands.get(0), Color.GREEN);
-        this.addStudentToBoard(islands.get(0), Color.PINK);
-        this.addStudentToBoard(islands.get(0), Color.BLUE);
-
-        this.addStudentToBoard(islands.get(1), Color.RED);
-        this.addStudentToBoard(islands.get(1), Color.GREEN);
-        this.addStudentToBoard(islands.get(1), Color.BLUE);
-
-        this.addStudentToBoard(islands.get(4), Color.RED);
-        this.addStudentToBoard(islands.get(4), Color.YELLOW);
-        this.addStudentToBoard(islands.get(4), Color.BLUE);
-
-        this.addStudentToBoard(islands.get(5), Color.RED);
-        this.addStudentToBoard(islands.get(5), Color.GREEN);
-        this.addStudentToBoard(islands.get(5), Color.BLUE);
-
-        this.addStudentToBoard(islands.get(9), Color.YELLOW);
-        this.addStudentToBoard(islands.get(9), Color.GREEN);
-        this.addStudentToBoard(islands.get(9), Color.PINK);
-        this.addStudentToBoard(islands.get(9), Color.BLUE);
-
-        // Add link Island3 <--> Island4 (only this one supported at the moment)
-
-        // top_right
-        islandsLinkedToNext.set(3, true);
-
-        // top_left
-        // islandsLinkedToNext.set(11, true);
-
-        // bottom_right
-        // islandsLinkedToNext.set(5, true);
-
-        // bottom_left
-        islandsLinkedToNext.set(9, true);
-
-        // horizontal
-        islandsLinkedToNext.set(0, true);
-        // islandsLinkedToNext.set(1, true);
-        islandsLinkedToNext.set(2, true);
-        islandsLinkedToNext.set(6, true);
-        // islandsLinkedToNext.set(7, true);
-        islandsLinkedToNext.set(8, true);
-
-        // vertical
-        islandsLinkedToNext.set(4, true);
-        //islandsLinkedToNext.set(10, true);
-
-
-
         // Build set of islands
-        String[][] setOfIslands = this.buildSetOfIslands(islands, islandLinkers, islandsLinkedToNext);
-
+        String[][] setOfIslands = this.buildSetOfIslands();
         // Build game board
-        String[][] gameBoard = this.buildGameBoard(schools, setOfIslands);
-
-        // Print game board with placeholders for debug
-        System.out.println("DEBUG GAMEBOARD with PLACEHOLDERS");
-        System.out.println(this.getPrintableBoard(gameBoard, false));
-
-        System.out.println("\n\n\n\n");
-
+        String[][] gameBoard = this.buildGameBoard(setOfIslands);
         // Print game board
-        System.out.println("DEBUG GAMEBOARD");
         System.out.println(this.getPrintableBoard(gameBoard, true));
-
     }
 
 }
