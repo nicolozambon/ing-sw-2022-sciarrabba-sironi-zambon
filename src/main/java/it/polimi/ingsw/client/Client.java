@@ -1,14 +1,14 @@
 package it.polimi.ingsw.client;
 
-import it.polimi.ingsw.messages.answers.Answer;
+import it.polimi.ingsw.events.AnswerEvent;
+import it.polimi.ingsw.events.RequestEvent;
+import it.polimi.ingsw.listenables.AnswerListenable;
 import it.polimi.ingsw.client.view.ExampleView;
-import it.polimi.ingsw.messages.requests.Request;
 
-import java.beans.PropertyChangeSupport;
 import java.io.*;
 import java.net.Socket;
 
-public class Client {
+public class Client extends AnswerListenable {
 
     private final String ip;
     private final int port;
@@ -18,18 +18,17 @@ public class Client {
     private ObjectOutputStream outputStream;
     private ObjectInputStream inputStream;
 
-    private final PropertyChangeSupport observable;
+    private ExampleView exampleView;
 
     public Client(String ip, int port){
         this.ip = ip;
         this.port = port;
-        this.observable = new PropertyChangeSupport(this);
     }
 
     public synchronized void read() {
         try {
-            Answer answer = (Answer) inputStream.readObject();
-            this.observable.firePropertyChange(answer.process(this));
+            AnswerEvent answer = (AnswerEvent) inputStream.readObject();
+            this.fireAnswer(answer);
         } catch (Exception e) {
             e.printStackTrace();
             stopClient();
@@ -38,12 +37,14 @@ public class Client {
 
     public void startClient() throws IOException {
         this.socket = new Socket(ip, port);
+
         this.outputStream = new ObjectOutputStream(socket.getOutputStream());
         this.inputStream = new ObjectInputStream(socket.getInputStream());
         this.active = true;
-        System.out.println("Connection established");
 
-        ExampleView view = new ExampleView();
+        System.out.println("Connection established");
+        this.exampleView = new ExampleView(this);
+        this.addAnswerListener(this.exampleView);
 
         while (active) {
             read();
@@ -64,7 +65,7 @@ public class Client {
         }
     }
 
-    private void send(Request request) {
+    public void send(RequestEvent request) {
         try {
             outputStream.writeObject(request);
             outputStream.flush();

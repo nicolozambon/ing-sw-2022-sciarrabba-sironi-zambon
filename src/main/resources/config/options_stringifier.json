@@ -3,12 +3,12 @@
   "first_player" : "You are the first player, choose how many players this game will have (2-3):",
   "wait" : "Please wait it's not your turn",
 
-  "assistant_card" : "Play an assistant card",
-  "move_student_dining" : "Move student to dining room",
-  "move_student_island" : "Move student to an island",
-  "move_mothernature": "Move mother nature",
-  "character_card" : "Play a character card",
-  "students_cloud" : "Take students from cloud",
-  "extra_action" : "Use the character card effect",
-  "end_action" : "End your action phase"
+  "playAssistantCard" : "Play an assistant card",
+  "moveStudentToDiningRoom" : "Move student to dining room",
+  "moveStudentToIsland" : "Move student to an island",
+  "moveMotherNature": "Move mother nature",
+  "playCharacterCard" : "Play a character card",
+  "takeStudentsFromCloud" : "Take students from cloud",
+  "extraAction" : "Use the character card effect",
+  "endAction" : "End your action phase"
 }

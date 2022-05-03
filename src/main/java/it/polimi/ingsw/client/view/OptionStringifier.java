@@ -32,6 +32,10 @@ public class OptionStringifier {
         return stringBuilder.toString();
     }
 
+    public String stringify(String option) {
+        return dictionary.get(option);
+    }
+
     public String stringify() {
         StringBuilder string = new StringBuilder();
         for (String s : dictionary.keySet()) {

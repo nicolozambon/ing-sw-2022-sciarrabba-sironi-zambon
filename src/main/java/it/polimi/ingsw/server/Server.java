@@ -1,22 +1,15 @@
 package it.polimi.ingsw.server;
 
-import it.polimi.ingsw.controller.Controller;
-import it.polimi.ingsw.events.RequestEvent;
-import it.polimi.ingsw.listenables.RequestListenable;
-import it.polimi.ingsw.listeners.RequestListener;
-import it.polimi.ingsw.messages.answers.ErrorAnswer;
-import it.polimi.ingsw.messages.answers.OptionAnswer;
+import it.polimi.ingsw.events.AnswerEvent;
 import it.polimi.ingsw.exceptions.*;
 
 import java.io.IOException;
-import java.lang.reflect.InvocationTargetException;
-import java.lang.reflect.Method;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.*;
 import java.util.concurrent.*;
 
-public class Server implements RequestListener {
+public class Server {
 
     private static final String DEFAULT_IP = "";
 
@@ -27,9 +20,6 @@ public class Server implements RequestListener {
 
     private final List<GameHandler> games;
 
-    private final Set<Connection> unqueuedConnection;
-
-    private final VirtualView virtualView;
 
     /**
      * Number of players for the match being built.
@@ -42,8 +32,6 @@ public class Server implements RequestListener {
         this.ip = DEFAULT_IP;
         this.queue = new ArrayDeque<>();
         this.games = new ArrayList<>();
-        this.unqueuedConnection = new HashSet<>();
-        this.virtualView = new VirtualView();
     }
 
     public Server(String ip, int port) {
@@ -51,8 +39,6 @@ public class Server implements RequestListener {
         this.ip = ip;
         this.queue = new ArrayDeque<>();
         this.games = new ArrayList<>();
-        this.unqueuedConnection = new HashSet<>();
-        this.virtualView = new VirtualView();
     }
 
     public void startServer() throws IOException {
@@ -60,7 +46,6 @@ public class Server implements RequestListener {
         ExecutorService connectionThreadPool = Executors.newCachedThreadPool();
         ServerSocket serverSocket = new ServerSocket();
 
-        this.virtualView.addRequestListener(this);
 
         try {
             serverSocket = new ServerSocket(port);
@@ -77,10 +62,10 @@ public class Server implements RequestListener {
                 Socket socket = serverSocket.accept();
                 System.out.println("Received client connection");
 
-                Connection connection = new Connection(socket, this, this.virtualView);
-                unqueuedConnection.add(connection);
-
+                Connection connection = new Connection(socket, this);
                 connectionThreadPool.submit(connection);
+                enqueuePlayer(connection);
+
             } catch (IOException e) {
                 e.printStackTrace();
                 break;
@@ -90,11 +75,13 @@ public class Server implements RequestListener {
         serverSocket.close();
     }
 
-    public void enqueuePlayer(String nickname) {
+    public void enqueuePlayer(Connection connection) {
         synchronized (queue) {
-            this.queue.add(unqueuedConnection.stream().filter(x -> x.getNickname().equals(nickname)).findAny().get());
+            this.queue.add(connection);
+            connection.send(new AnswerEvent("wait", null));
             this.queue.notifyAll();
         }
+
     }
 
     private void lobby() {
@@ -109,39 +96,50 @@ public class Server implements RequestListener {
                         this.queue.wait();
                     }
                 } catch (InterruptedException e) {
-
+                    e.printStackTrace();
                 }
             }
             synchronized (queue) {
                 connection = queue.remove();
             }
 
-            if (isNicknameUnique(connection, players)) {
-                players.put(connection.getNickname(), connection);
-                System.out.println("added player to a game");
-                if (numPlayers < 0) {
-                    connection.send(new OptionAnswer("first_player"));
-                    while (numPlayers < 0) {
-                        try {
-                            synchronized (this) {
-                                wait();
-                            }
-                        } catch (InterruptedException e) {
-                            e.printStackTrace();
+            if (numPlayers < 0) {
+                connection.send(new AnswerEvent("first_player", null));
+                while (numPlayers < 0) {
+                    try {
+                        synchronized (this) {
+                            wait();
                         }
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
                     }
                 }
-            } else {
-                connection.send(new ErrorAnswer("Nickname already taken!"));
-                connection.send(new OptionAnswer("nickname"));
+                System.out.println("waiting for num of players");
             }
+            do {
+                connection.send(new AnswerEvent("nickname", null));
+                try {
+                    synchronized (this) {
+                        wait();
+                    }
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+                System.out.println("waiting for nickname...");
+            } while (!isNicknameUnique(connection, players));
+
+            players.put(connection.getNickname(), connection);
+            System.out.println("added player to a game");
+            connection.send(new AnswerEvent("wait", null));
 
             if (players.size() == numPlayers) {
+                System.out.println(players);
                 GameHandler game = new GameHandler(players);
                 gameThreadPool.submit(game);
                 games.add(game);
                 numPlayers = -1;
                 players = new HashMap<>();
+                System.out.println("Start game...");
             }
 
         }
@@ -149,9 +147,15 @@ public class Server implements RequestListener {
     }
 
     private synchronized boolean isNicknameUnique(Connection connection, Map<String, Connection> players) {
-        if (players.containsKey(connection.getNickname())) return false;
+        if (players.containsKey(connection.getNickname())) {
+            connection.send(new AnswerEvent("error", "Nickname already taken!"));
+            return false;
+        }
         for (GameHandler game : games) {
-            if (game.getPlayersNicknames().contains(connection.getNickname())) return false;
+            if (game.getPlayersNicknames().contains(connection.getNickname())) {
+                connection.send(new AnswerEvent("error", "Nickname already taken!"));
+                return false;
+            }
         }
         return true;
     }
@@ -165,28 +169,4 @@ public class Server implements RequestListener {
         }
     }
 
-
-    @Override
-    public void requestPerformed(RequestEvent requestEvent) {
-
-        switch(requestEvent.getPropertyName()) {
-
-            case "nickname" -> {
-                enqueuePlayer(requestEvent.getString());
-            }
-
-            case "first_player" -> {
-                try {
-                    setNumPlayers(requestEvent.getValues()[0]);
-                } catch (OutOfBoundsException e) {
-                    e.printStackTrace();
-                }
-            }
-
-            default -> {
-                //TODO handling error
-            }
-
-        }
-    }
 }

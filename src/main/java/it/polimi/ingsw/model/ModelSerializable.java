@@ -212,7 +212,9 @@ public final class ModelSerializable implements Serializable {
         }
     }
 
-    private static class CloudSerializable {
+    private static class CloudSerializable implements Serializable{
+        private static final long serialVersionUID = 987654321L;
+
         List<Color> students;
 
         CloudSerializable(Cloud cloud) {
