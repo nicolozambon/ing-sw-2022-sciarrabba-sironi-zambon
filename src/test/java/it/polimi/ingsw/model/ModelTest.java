@@ -88,7 +88,7 @@ class ModelTest {
                 model.moveStudentToDiningRoom(player.getId(),j);
                 assertTrue(player.getSchool().getDiningRoomByColor(student.getColor()).getPawns().contains(student));
                 assertFalse(player.getSchool().getEntrance().getPawns().contains(student));
-                if (player.getSchool().getDiningRoomByColor(student.getColor()).getNumPawns() % 3 == 2) {
+                if (player.getSchool().getDiningRoomByColor(student.getColor()).getNumPawns() % 3 == 0) {
                     assertEquals( i + 1, player.getCoins());
                     i++;
                 }
