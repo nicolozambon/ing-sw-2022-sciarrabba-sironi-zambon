@@ -83,12 +83,12 @@ class InfluenceHandlerTest {
         player1.takeStudentsFromCloud(cloud4);
 
         //To get coins
-        model.moveStudentToDiningRoom(player1.getId(), 0);
-        model.moveStudentToDiningRoom(player1.getId(), 0);
-        model.moveStudentToDiningRoom(player1.getId(), 0);
-        model.moveStudentToDiningRoom(player1.getId(), 0);
-        model.moveStudentToDiningRoom(player1.getId(), 0);
-        model.moveStudentToDiningRoom(player1.getId(), 0);
+        model.moveStudentToDiningRoom(player1.getId(), player1.getSchool().getEntrance().getNumPawns() - 1);
+        model.moveStudentToDiningRoom(player1.getId(), player1.getSchool().getEntrance().getNumPawns() - 1);
+        model.moveStudentToDiningRoom(player1.getId(), player1.getSchool().getEntrance().getNumPawns() - 1);
+        model.moveStudentToDiningRoom(player1.getId(), player1.getSchool().getEntrance().getNumPawns() - 1);
+        model.moveStudentToDiningRoom(player1.getId(), player1.getSchool().getEntrance().getNumPawns() - 1);
+        model.moveStudentToDiningRoom(player1.getId(), player1.getSchool().getEntrance().getNumPawns() - 1);
         /*
         player1.moveStudentDiningRoom(player1.getSchool().getEntrance().getPawns().get(0), 20);
         player1.moveStudentDiningRoom(player1.getSchool().getEntrance().getPawns().get(0), 20);
