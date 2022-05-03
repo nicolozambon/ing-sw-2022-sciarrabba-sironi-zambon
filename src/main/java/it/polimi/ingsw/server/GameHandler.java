@@ -30,6 +30,7 @@ public class GameHandler implements Runnable {
     @Override
     public void run() {
         this.virtualView.addRequestListener(this.controller);
+
         for (Player player : controller.getPlayersToPlay()) {
             playersConnection.get(player.getNickname()).send(new AnswerEvent("set_id", player.getId()));
         }
@@ -38,27 +39,24 @@ public class GameHandler implements Runnable {
             playersConnection.get(nickname).addRequestListener(virtualView);
         }
 
+        this.virtualView.setGameHandler(this);
         launchUpdateAnswerEvent();
 
-        while (!model.getIsThereWinner()) {
-
-        }
     }
 
     public synchronized void launchUpdateAnswerEvent() {
-        Gson gson = new Gson();
+        String currentPlayer = controller.getActivePlayer().getNickname();
+        System.out.println(currentPlayer);
+        List<String> options = controller.getOptions();
+        //System.out.println(options);
 
+        ModelSerializable modelSerializable = new ModelSerializable(this.model);
         for (String nickname : playersConnection.keySet()) {
-            String currentPlayer = controller.getActivePlayer().getNickname();
             if (currentPlayer.equals(nickname)) {
-                System.out.println("found current player!");
-                String options = gson.toJson(controller.getOptions());
                 playersConnection.get(nickname).send(new AnswerEvent("options", options));
             } else {
-                String options = gson.toJson(new ArrayList<String>());
-                playersConnection.get(nickname).send(new AnswerEvent("options", options));
+                playersConnection.get(nickname).send(new AnswerEvent("options", new ArrayList<String>()));
             }
-            ModelSerializable modelSerializable = new ModelSerializable(this.model);
             playersConnection.get(nickname).send(new AnswerEvent("update", modelSerializable));
         }
     }

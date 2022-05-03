@@ -26,70 +26,70 @@ public class ActionPhase {
         this.model = model;
 
         callableMethod = new HashMap<>(){{
-            this.put("move_student_dining", numOfStudentToMove);
-            this.put("move_student_island", numOfStudentToMove);
-            this.put("move_mothernature", 0);
-            this.put("character_card", 1);
-            this.put("students_cloud", 0);
-            this.put("extra_action", 0);
-            this.put("end_action", 0);
+            this.put("moveStudentToDiningRoom", numOfStudentToMove);
+            this.put("moveStudentToIsland", numOfStudentToMove);
+            this.put("moveMotherNature", 0);
+            this.put("playCharacterCard", 1);
+            this.put("takeStudentsFromCloud", 0);
+            this.put("extraAction", 0);
+            this.put("endAction", 0);
         }};
     }
 
     public void playCharacterCard(int choice) throws NotEnoughCoinsException, InvalidCardException {
-        if (callableMethod.get("character_card") > 0) {
+        if (callableMethod.get("playCharacterCard") > 0) {
             this.model.playCharacterCard(this.currentPlayer.getId(), choice);
-            callableMethod.put("character_card", callableMethod.get("character_card") - 1);
+            callableMethod.put("playCharacterCard", callableMethod.get("playCharacterCard") - 1);
             if (this.model.getCharacterCards().get(choice).getHasExtraAction()) {
-                callableMethod.put("extra_action", 1);
+                callableMethod.put("extraAction", 1);
             }
 
         }
     }
 
     public void moveStudentToDiningRoom(int choice) {
-        if(callableMethod.get("move_student_dining") > 0) {
+        if(callableMethod.get("moveStudentToDiningRoom") > 0) {
             this.model.moveStudentToDiningRoom(this.currentPlayer.getId(), choice);
             moveStudentCounter();
         }
     }
 
     public void moveStudentToIsland(int studentChoice, int islandChoice) {
-        if(callableMethod.get("move_student_island") > 0) {
+        if(callableMethod.get("moveStudentToIsland") > 0) {
             this.model.moveStudentToIsland(this.currentPlayer.getId(), studentChoice, islandChoice);
             moveStudentCounter();
         }
     }
 
     public void moveMotherNature(int stepsChoice) throws InvalidMotherNatureStepsException {
-        if(callableMethod.get("move_mothernature") > 0) {
+        if(callableMethod.get("moveMotherNature") > 0) {
             this.model.moveMotherNature(this.currentPlayer.getId(), stepsChoice);
-            callableMethod.put("move_mothernature", callableMethod.get("move_mothernature") - 1);
-            if (callableMethod.get("move_mothernature") < 1) {
-                callableMethod.put("students_cloud", 1);
+            callableMethod.put("moveMotherNature", callableMethod.get("moveMotherNature") - 1);
+            if (callableMethod.get("moveMotherNature") < 1) {
+                callableMethod.put("takeStudentsFromCloud", 1);
             }
         }
     }
 
     public void takeStudentsFromCloud(int choice) {
-        if(callableMethod.get("students_cloud") > 0) {
+        if(callableMethod.get("takeStudentsFromCloud") > 0) {
             this.model.takeStudentsFromCloud(this.currentPlayer.getId(), choice);
-            callableMethod.put("students_cloud", callableMethod.get("students_cloud") - 1);
-            if (callableMethod.get("students_cloud") < 1 && (callableMethod.get("extra_action") < 1 || callableMethod.get("character_card") > 0)) {
-                callableMethod.put("end_action", 1);
+            callableMethod.put("takeStudentsFromCloud", callableMethod.get("takeStudentsFromCloud") - 1);
+            if (callableMethod.get("takeStudentsFromCloud") < 1 && (callableMethod.get("extraAction") < 1 || callableMethod.get("playCharacterCard") > 0)) {
+                callableMethod.put("endAction", 1);
             }
         }
     }
 
     public void extraAction(int ... values) {
-        if(callableMethod.get("extra_action") > 0) {
+        if(callableMethod.get("extraAction") > 0) {
             this.model.extraAction(values);
-            callableMethod.put("extra_action", callableMethod.get("extra_action") - 1 );
+            callableMethod.put("extraAction", callableMethod.get("extraAction") - 1 );
         }
     }
 
     public void endAction(){
-        if(callableMethod.get("end_action") > 0) {
+        if(callableMethod.get("endAction") > 0) {
             for (String s : callableMethod.keySet()) {
                 callableMethod.put(s, 0);
             }
@@ -105,10 +105,10 @@ public class ActionPhase {
     }
 
     private void moveStudentCounter() {
-        callableMethod.put("move_student_island", callableMethod.get("move_student_island") - 1);
-        callableMethod.put("move_student_dining", callableMethod.get("move_student_dining") - 1);
-        if (callableMethod.get("move_student_island") < 1 && callableMethod.get("move_student_dining") < 1) {
-            callableMethod.put("move_mothernature", 1);
+        callableMethod.put("moveStudentToIsland", callableMethod.get("moveStudentToIsland") - 1);
+        callableMethod.put("moveStudentToDiningRoom", callableMethod.get("moveStudentToDiningRoom") - 1);
+        if (callableMethod.get("moveStudentToIsland") < 1 && callableMethod.get("moveStudentToDiningRoom") < 1) {
+            callableMethod.put("moveMotherNature", 1);
         }
     }
 

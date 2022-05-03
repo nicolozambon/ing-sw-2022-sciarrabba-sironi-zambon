@@ -23,7 +23,7 @@ public class VirtualView extends RequestListenable implements RequestListener {
     public void fireRequest(RequestEvent requestEvent) throws NoSuchMethodException, IllegalAccessException {
         try {
             super.fireRequest(requestEvent);
-            gameHandler.launchUpdateAnswerEvent();
+            this.gameHandler.launchUpdateAnswerEvent();
         } catch (InvocationTargetException e) {
             Throwable x = e.getCause();
             e.printStackTrace();

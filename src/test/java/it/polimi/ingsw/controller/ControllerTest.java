@@ -36,14 +36,21 @@ class ControllerTest {
 
         current = controller.getActivePlayer();
         assertEquals(0, current.getId());
+
+        System.out.println(controller.getOptions());
         controller.playAssistantCard(0, 6);
+
         assertEquals(6,current.getLastAssistantCard().getValue());
+
 
         current = controller.getActivePlayer();
         assertEquals(1, current.getId());
         assertThrows(InvalidCardException.class, () -> controller.playAssistantCard(1, 6));
         assertThrows(NotPlayerTurnException.class, () -> controller.playAssistantCard(2, 7));
+
+        System.out.println(controller.getOptions());
         controller.playAssistantCard(1, 4);
+
         assertEquals(4, current.getLastAssistantCard().getValue());
 
         current = controller.getActivePlayer();
@@ -225,7 +232,7 @@ class ControllerTest {
     @Test
     void getOptions() {
         assertEquals(1, controller.getOptions().size());
-        assertTrue(controller.getOptions().contains("assistant_card"));
+        assertTrue(controller.getOptions().contains("playAssistantCard"));
         assertEquals(0, controller.getActivePlayer().getId());
         assertEquals(3, controller.getPlayersToPlay().size());
         assertEquals(0, controller.getPlayersHavePlayed().size());

@@ -47,9 +47,6 @@ public class Controller implements RequestListener {
         if (!isPlanningFinished && playersToPlay.size() > 0) {
             Player player = playersToPlay.get(0);
             if (player.getId() == playerId) {
-                if (planning == null || planning.isEnded()) {
-                    planning = new PlanningPhase(player, model);
-                }
                 planning.playAssistantCard(choice);
                 if (planning.isEnded()) {
                     endPlayerPlanning(player);
@@ -192,6 +189,9 @@ public class Controller implements RequestListener {
     private void endPlayerPlanning(Player player) {
         playersToPlay.remove(player);
         playersHavePlayed.add(player);
+        if (playersToPlay.size() > 0) {
+            planning = new PlanningPhase(playersToPlay.get(0), model);
+        }
         if (playersToPlay.size() == 0) {
             orderPlayersForAction();
         }
@@ -200,6 +200,9 @@ public class Controller implements RequestListener {
     private void endPlayerAction(Player player) {
         playersToPlay.remove(player);
         playersHavePlayed.add(player);
+        if (playersToPlay.size() > 0) {
+            action = new ActionPhase(playersToPlay.get(0), numStudentToMove, model);
+        }
         if (isRoundEnded()) {
             orderPlayersForNextRound();
         }

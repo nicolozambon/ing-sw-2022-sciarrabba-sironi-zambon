@@ -8,6 +8,7 @@ import it.polimi.ingsw.events.RequestEvent;
 import it.polimi.ingsw.listeners.AnswerListener;
 import it.polimi.ingsw.model.ModelSerializable;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
@@ -36,7 +37,10 @@ public class ExampleView implements AnswerListener {
         switch(answerEvent.getPropertyName()) {
             case "nickname" ->  setNickname(answerEvent);
             case "first_player" -> setNumOfPlayers(answerEvent);
-            case "set_id" -> this.id = (int) answerEvent.getValue();
+            case "set_id" -> {
+                this.id = (int) answerEvent.getValue();
+                System.out.println("my id: " + this.id);
+            }
             case "wait" -> System.out.println(optionStringifier.stringify(answerEvent.getPropertyName()));
             case "error" -> System.out.println((String) answerEvent.getValue());
             case "options" -> setOptions(answerEvent);
@@ -59,10 +63,7 @@ public class ExampleView implements AnswerListener {
     }
 
     private void setOptions(AnswerEvent answerEvent) {
-        Gson gson = new Gson();
-        String string = (String) answerEvent.getValue();
-        List<String> options = gson.fromJson(string, new TypeToken<List<String>>(){}.getType());
-        this.options = options;
+        this.options = (List<String>) answerEvent.getValue();
     }
 
     private void updateModel(AnswerEvent answerEvent) {
@@ -73,7 +74,7 @@ public class ExampleView implements AnswerListener {
             int choice = stdin.nextInt();
             stdin.nextLine();
             if (choice <= options.size() && choice > 0) {
-                choice = choice -1;
+                choice = choice - 1;
                 switch(this.options.get(choice)) {
                     case "moveStudentToIsland" -> twoInputHandler(choice);
                     case "endAction" -> noInputHandler(choice);

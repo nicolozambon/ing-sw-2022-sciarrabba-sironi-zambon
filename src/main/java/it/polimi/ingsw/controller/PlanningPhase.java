@@ -18,14 +18,14 @@ public class PlanningPhase {
         this.model = model;
         this.currentPlayer = currentPlayer;
         callableMethod = new HashMap<>(){{
-            this.put("assistant_card", 1);
+            this.put("playAssistantCard", 1);
         }};
     }
 
-    public void playAssistantCard(int choice) throws InvalidCardException{
-        if (callableMethod.get("assistant_card") > 0 && cardIsPlayable(choice)) {
+    public synchronized void playAssistantCard(int choice) throws InvalidCardException{
+        if (callableMethod.get("playAssistantCard") > 0 && cardIsPlayable(choice)) {
             model.playAssistantCard(this.currentPlayer.getId(), choice);
-            callableMethod.put("assistant_card", 0);
+            callableMethod.put("playAssistantCard", 0);
         } else {
             throw new InvalidCardException();
         }
