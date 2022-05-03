@@ -48,8 +48,8 @@ public class CLI {
 
     private static final Map<String, String> pawnsMap = new HashMap<>(){{
         this.put("s", "███");
-        this.put("p", "PRO");
-        this.put("t", "TOW");
+        this.put("p", "███");
+        this.put("t", "███");
         this.put("m", "MON");
     }};
 
@@ -446,25 +446,25 @@ public class CLI {
         islandsLinkedToNext.set(3, true);
 
         // top_left
-        islandsLinkedToNext.set(11, true);
+        // islandsLinkedToNext.set(11, true);
 
         // bottom_right
-        islandsLinkedToNext.set(5, true);
+        // islandsLinkedToNext.set(5, true);
 
         // bottom_left
         islandsLinkedToNext.set(9, true);
 
         // horizontal
         islandsLinkedToNext.set(0, true);
-        islandsLinkedToNext.set(1, true);
+        // islandsLinkedToNext.set(1, true);
         islandsLinkedToNext.set(2, true);
         islandsLinkedToNext.set(6, true);
-        islandsLinkedToNext.set(7, true);
+        // islandsLinkedToNext.set(7, true);
         islandsLinkedToNext.set(8, true);
 
         // vertical
         islandsLinkedToNext.set(4, true);
-        islandsLinkedToNext.set(10, true);
+        //islandsLinkedToNext.set(10, true);
 
 
 
