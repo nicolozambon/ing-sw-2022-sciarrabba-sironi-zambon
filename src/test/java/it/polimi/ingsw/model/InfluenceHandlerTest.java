@@ -83,12 +83,10 @@ class InfluenceHandlerTest {
         player1.takeStudentsFromCloud(cloud4);
 
         //To get coins
-        model.moveStudentToDiningRoom(player1.getId(), 0);
-        model.moveStudentToDiningRoom(player1.getId(), 0);
-        model.moveStudentToDiningRoom(player1.getId(), 0);
-        model.moveStudentToDiningRoom(player1.getId(), 0);
-        model.moveStudentToDiningRoom(player1.getId(), 0);
-        model.moveStudentToDiningRoom(player1.getId(), 0);
+        model.moveStudentToDiningRoom(player1.getId(), player1.getSchool().getEntrance().getNumPawns()-1);
+        model.moveStudentToDiningRoom(player1.getId(), player1.getSchool().getEntrance().getNumPawns()-1);
+        model.moveStudentToDiningRoom(player1.getId(), player1.getSchool().getEntrance().getNumPawns()-1);
+
         /*
         player1.moveStudentDiningRoom(player1.getSchool().getEntrance().getPawns().get(0), 20);
         player1.moveStudentDiningRoom(player1.getSchool().getEntrance().getPawns().get(0), 20);
@@ -103,9 +101,12 @@ class InfluenceHandlerTest {
         player1.takeStudentsFromCloud(cloud1);
         player2.takeStudentsFromCloud(cloud2);
 
-        player1.moveStudentIsland(player1.getSchool().getEntrance().getPawns().get(0), island);
-        player1.moveStudentIsland(player1.getSchool().getEntrance().getPawns().get(0), island);
-        player1.moveStudentIsland(player1.getSchool().getEntrance().getPawns().get(0), island);
+        model.moveStudentToIsland(player1.getId(), player1.getSchool().getEntrance().getNumPawns()-1, island.getId());
+        model.moveStudentToIsland(player1.getId(), player1.getSchool().getEntrance().getNumPawns()-1, island.getId());
+        model.moveStudentToIsland(player1.getId(), player1.getSchool().getEntrance().getNumPawns()-1, island.getId());
+
+        /*System.out.println(player1.getSchool().getProfessorsTable().getPawns().stream().map(Professor::getColor).toList());
+        System.out.println(island.getPawns().stream().map(Student::getColor).toList());*/
 
         player2.moveStudentIsland(player2.getSchool().getEntrance().getPawns().get(0), island);
         player2.moveStudentIsland(player2.getSchool().getEntrance().getPawns().get(0), island);
@@ -114,7 +115,7 @@ class InfluenceHandlerTest {
         model.playCharacterCard(0, 5);
         System.out.println("Player1 coin size after playing character: " + player1.getCoins());
 
-        Player mostInfluentialPlayer = handler.getMostInfluentialPlayer(player1, island);
+        Player mostInfluentialPlayer = model.getHandler().getMostInfluentialPlayer(player1, island);
         System.out.println("mostInfluentialPlayer: " + mostInfluentialPlayer);
 
         assertEquals(player1, mostInfluentialPlayer);
