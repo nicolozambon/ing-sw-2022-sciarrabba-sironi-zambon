@@ -4,11 +4,13 @@ import it.polimi.ingsw.events.AnswerEvent;
 import it.polimi.ingsw.events.RequestEvent;
 import it.polimi.ingsw.listenables.AnswerListenable;
 import it.polimi.ingsw.client.view.ExampleView;
+import it.polimi.ingsw.listenables.AnswerListenableInterface;
+import it.polimi.ingsw.listeners.AnswerListener;
 
 import java.io.*;
 import java.net.Socket;
 
-public class Client extends AnswerListenable {
+public class Client implements AnswerListenableInterface {
 
     private final String ip;
     private final int port;
@@ -20,9 +22,12 @@ public class Client extends AnswerListenable {
 
     private ExampleView exampleView;
 
+    private final AnswerListenable answerListenable;
+
     public Client(String ip, int port){
         this.ip = ip;
         this.port = port;
+        this.answerListenable = new AnswerListenable();
     }
 
     public synchronized void read() {
@@ -74,5 +79,20 @@ public class Client extends AnswerListenable {
             e.printStackTrace();
             stopClient();
         }
+    }
+
+    @Override
+    public void addAnswerListener(AnswerListener answerListener) {
+        this.answerListenable.addAnswerListener(answerListener);
+    }
+
+    @Override
+    public void removeAnswerListener(AnswerListener answerListener) {
+        this.answerListenable.removeAnswerListener(answerListener);
+    }
+
+    @Override
+    public void fireAnswer(AnswerEvent answerEvent) {
+        this.answerListenable.fireAnswer(answerEvent);
     }
 }

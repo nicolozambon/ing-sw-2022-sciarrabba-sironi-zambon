@@ -27,7 +27,7 @@ public class Player {
     protected Player(int id, String nickname, List<Student> students, List<Tower> towers, Deck<AssistantCard> assistantCardDeck) {
         this.nickname = nickname;
         this.id = id;
-        this.school = new School(students, towers);
+        this.school = new School(id, students, towers);
         this.towerColor = towers.get(0).getColor();
         this.assistantCardDeck = assistantCardDeck;
         this.discardPileDeck = new Deck<>();
@@ -116,7 +116,7 @@ public class Player {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Player player = (Player) o;
-        return id == player.id;
+        return id == player.id && nickname.equals(player.nickname);
     }
 
     @Override

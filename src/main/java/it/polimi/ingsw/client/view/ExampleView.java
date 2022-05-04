@@ -6,6 +6,7 @@ import it.polimi.ingsw.client.Client;
 import it.polimi.ingsw.events.AnswerEvent;
 import it.polimi.ingsw.events.RequestEvent;
 import it.polimi.ingsw.listeners.AnswerListener;
+import it.polimi.ingsw.model.Model;
 import it.polimi.ingsw.model.ModelSerializable;
 
 import java.util.ArrayList;
@@ -28,7 +29,6 @@ public class ExampleView implements AnswerListener {
         this.stdin = new Scanner(System.in);
         this.client = client;
         this.optionStringifier = new OptionStringifier();
-        System.out.println("Example view started");
     }
 
 
@@ -64,11 +64,7 @@ public class ExampleView implements AnswerListener {
 
     private void setOptions(AnswerEvent answerEvent) {
         this.options = (List<String>) answerEvent.getValue();
-    }
-
-    private void updateModel(AnswerEvent answerEvent) {
-        this.model = (ModelSerializable) answerEvent.getValue();
-        System.out.println(model);
+        System.out.println(this.model);
         if (this.options.size() > 0) {
             System.out.println(optionStringifier.stringify(options));
             int choice = stdin.nextInt();
@@ -82,7 +78,13 @@ public class ExampleView implements AnswerListener {
                 }
             }
         }
+    }
 
+    private void updateModel(AnswerEvent answerEvent) {
+        Gson gson = new Gson();
+        Model temp = gson.fromJson((String)answerEvent.getValue(), Model.class);
+        this.model = new ModelSerializable(temp);
+        System.out.println(this.model);
     }
 
     private void defaultInputHandler(int option) {

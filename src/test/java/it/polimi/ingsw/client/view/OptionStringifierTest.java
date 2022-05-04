@@ -16,15 +16,16 @@ class OptionStringifierTest {
         //System.out.println(optionStringifier.stringify());
 
         List<String> options = new ArrayList<>(){{
-            this.add("move_student_dining");
-            this.add("move_student_island");
-            this.add("move_mothernature");
-            this.add("character_card");
-            this.add("students_cloud");
-            this.add("extra_action");
-            this.add("end_action");
+            this.add("playAssistantCard");
+            this.add("moveStudentToDiningRoom");
+            this.add("moveStudentToIsland");
+            this.add("moveMotherNature");
+            this.add("playCharacterCard");
+            this.add("takeStudentsFromCloud");
+            this.add("extraAction");
+            this.add("endAction");
         }};
-
+        
         System.out.println(optionStringifier.stringify(options));
     }
 }

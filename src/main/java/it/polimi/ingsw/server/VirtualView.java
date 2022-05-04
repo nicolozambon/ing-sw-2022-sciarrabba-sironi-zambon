@@ -1,18 +1,23 @@
 package it.polimi.ingsw.server;
 
+import it.polimi.ingsw.events.AnswerEvent;
 import it.polimi.ingsw.events.RequestEvent;
 import it.polimi.ingsw.exceptions.NotPlayerTurnException;
 import it.polimi.ingsw.listenables.RequestListenable;
+import it.polimi.ingsw.listenables.RequestListenableInterface;
+import it.polimi.ingsw.listeners.AnswerListener;
 import it.polimi.ingsw.listeners.RequestListener;
+import it.polimi.ingsw.model.Model;
 
 import java.lang.reflect.InvocationTargetException;
 
-public class VirtualView extends RequestListenable implements RequestListener {
+public class VirtualView implements RequestListener, RequestListenableInterface, AnswerListener {
 
     private GameHandler gameHandler;
+    private final RequestListenable requestListenable;
 
     public VirtualView() {
-        super();
+        this.requestListenable = new RequestListenable();
     }
 
     public void setGameHandler(GameHandler gameHandler) {
@@ -20,18 +25,28 @@ public class VirtualView extends RequestListenable implements RequestListener {
     }
 
     @Override
-    public void fireRequest(RequestEvent requestEvent) throws NoSuchMethodException, IllegalAccessException {
-        try {
-            super.fireRequest(requestEvent);
-            this.gameHandler.launchUpdateAnswerEvent();
-        } catch (InvocationTargetException e) {
-            Throwable x = e.getCause();
-            x.printStackTrace();
-        }
+    public void addRequestListener(RequestListener requestListener) {
+        this.requestListenable.addRequestListener(requestListener);
+    }
+
+    @Override
+    public void removeRequestListener(RequestListener requestListener) {
+        this.requestListenable.removeRequestListener(requestListener);
+    }
+
+    @Override
+    public void fireRequest(RequestEvent requestEvent) throws Exception {
+        this.requestListenable.fireRequest(requestEvent);
     }
 
     @Override
     public void requestPerformed(RequestEvent requestEvent) throws InvocationTargetException, NoSuchMethodException, IllegalAccessException {
-        fireRequest(requestEvent);
+        this.requestListenable.fireRequest(requestEvent);
+        gameHandler.launchOptionsAnswerEvent();
+    }
+
+    @Override
+    public void answerPerformed(AnswerEvent answerEvent) {
+        gameHandler.launchUpdateAnswerEvent(answerEvent);
     }
 }

@@ -37,7 +37,6 @@ class ControllerTest {
         current = controller.getActivePlayer();
         assertEquals(0, current.getId());
 
-        System.out.println(controller.getOptions());
         controller.playAssistantCard(0, 6);
 
         assertEquals(6,current.getLastAssistantCard().getValue());
@@ -48,7 +47,6 @@ class ControllerTest {
         assertThrows(InvalidCardException.class, () -> controller.playAssistantCard(1, 6));
         assertThrows(NotPlayerTurnException.class, () -> controller.playAssistantCard(2, 7));
 
-        System.out.println(controller.getOptions());
         controller.playAssistantCard(1, 4);
 
         assertEquals(4, current.getLastAssistantCard().getValue());
