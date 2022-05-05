@@ -13,7 +13,7 @@ public class CharacterCard {
     private final Map<String, Object> params;
     private final boolean hasExtraAction;
 
-    public CharacterCard(int id, int coins, String effect, String category, Map<String, Object> params, Boolean hasExtraAction) {
+    public CharacterCard(int id, int coins, String effect, String category, Map<String, Object> params, boolean hasExtraAction) {
         this.id = id;
         this.coins = coins;
         this.effect = effect;
@@ -62,8 +62,7 @@ public class CharacterCard {
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (!(o instanceof CharacterCard)) return false;
-        CharacterCard that = (CharacterCard) o;
+        if (!(o instanceof CharacterCard that)) return false;
         return coins == that.coins && Objects.equals(effect, that.effect) && Objects.equals(category, that.category) && Objects.equals(params, that.params);
     }
 

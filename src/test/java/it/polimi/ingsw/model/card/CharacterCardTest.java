@@ -7,6 +7,10 @@ import org.junit.jupiter.api.Test;
 
 import java.io.FileNotFoundException;
 import java.io.FileReader;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+import java.util.Random;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -35,5 +39,4 @@ class CharacterCardTest {
             assertTrue(coins <= 3 && coins >= 1);
         }
     }
-
 }
