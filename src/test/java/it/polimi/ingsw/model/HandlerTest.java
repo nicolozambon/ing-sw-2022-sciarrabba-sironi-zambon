@@ -1,7 +1,8 @@
 package it.polimi.ingsw.model;
 
 import it.polimi.ingsw.enums.Color;
-import it.polimi.ingsw.exceptions.InvalidMotherNatureStepsException;
+import it.polimi.ingsw.exceptions.AssistantCardException;
+import it.polimi.ingsw.exceptions.MotherNatureStepsException;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -85,7 +86,7 @@ class HandlerTest {
     }
 
     @Test
-    void checkTowerPositioning() throws InvalidMotherNatureStepsException {
+    void checkTowerPositioning() throws MotherNatureStepsException, AssistantCardException {
 
         initialization();
         int num = 4;

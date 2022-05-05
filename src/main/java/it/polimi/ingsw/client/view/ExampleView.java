@@ -33,7 +33,7 @@ public class ExampleView implements AnswerListener {
 
 
     @Override
-    public void answerPerformed(AnswerEvent answerEvent) {
+    public void onAnswerEvent(AnswerEvent answerEvent) {
         switch(answerEvent.getPropertyName()) {
             case "nickname" ->  setNickname(answerEvent);
             case "first_player" -> setNumOfPlayers(answerEvent);
@@ -42,7 +42,11 @@ public class ExampleView implements AnswerListener {
                 System.out.println("my id: " + this.id);
             }
             case "wait" -> System.out.println(optionStringifier.stringify(answerEvent.getPropertyName()));
-            case "error" -> System.out.println((String) answerEvent.getValue());
+            case "error" -> {
+                //TODO Not handle setup error
+                System.out.println((String) answerEvent.getValue());
+                optionsHandler();
+            }
             case "options" -> setOptions(answerEvent);
             case "update" -> updateModel(answerEvent);
             default -> System.out.println("Answer Error!");
@@ -65,26 +69,13 @@ public class ExampleView implements AnswerListener {
     private void setOptions(AnswerEvent answerEvent) {
         this.options = (List<String>) answerEvent.getValue();
         System.out.println(this.model);
-        if (this.options.size() > 0) {
-            System.out.println(optionStringifier.stringify(options));
-            int choice = stdin.nextInt();
-            stdin.nextLine();
-            if (choice <= options.size() && choice > 0) {
-                choice = choice - 1;
-                switch(this.options.get(choice)) {
-                    case "moveStudentToIsland" -> twoInputHandler(choice);
-                    case "endAction" -> noInputHandler(choice);
-                    default -> defaultInputHandler(choice);
-                }
-            }
-        }
+        optionsHandler();
     }
 
     private void updateModel(AnswerEvent answerEvent) {
         Gson gson = new Gson();
         Model temp = gson.fromJson((String)answerEvent.getValue(), Model.class);
         this.model = new ModelSerializable(temp);
-        System.out.println(this.model);
     }
 
     private void defaultInputHandler(int option) {
@@ -105,6 +96,22 @@ public class ExampleView implements AnswerListener {
 
     private void noInputHandler(int option) {
         client.send(new RequestEvent(this.options.get(option), this.id));
+    }
+
+    private void optionsHandler() {
+        if (this.options.size() > 0) {
+            System.out.println(optionStringifier.stringify(options));
+            int choice = stdin.nextInt();
+            stdin.nextLine();
+            if (choice <= options.size() && choice > 0) {
+                choice = choice - 1;
+                switch(this.options.get(choice)) {
+                    case "moveStudentToIsland" -> twoInputHandler(choice);
+                    case "endAction" -> noInputHandler(choice);
+                    default -> defaultInputHandler(choice);
+                }
+            }
+        }
     }
 
 }

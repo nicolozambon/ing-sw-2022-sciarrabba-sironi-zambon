@@ -38,7 +38,7 @@ public class ModelBuilder {
 
         int numStudentToMove = numStudentToMoveMap.get(clouds.size());
 
-        return new Model(buildPlayers(names,bag), islands, clouds, motherNature, buildCharacterCards(), 20, buildProfessorBoard(), bag, numStudentToMove);
+        return new Model(buildPlayers(names,bag), islands, clouds, motherNature, buildCharacterCards(), 20 - names.size(), buildProfessorBoard(), bag, numStudentToMove);
     }
 
     private List<Player> buildPlayers(List<String> names, StudentBag bag) {

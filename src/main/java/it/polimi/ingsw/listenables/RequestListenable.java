@@ -28,7 +28,7 @@ public class RequestListenable implements RequestListenableInterface{
     @Override
     public void fireRequest(RequestEvent requestEvent) throws InvocationTargetException, NoSuchMethodException, IllegalAccessException{
         for (RequestListener requestListener : listeners) {
-            requestListener.requestPerformed(requestEvent);
+            requestListener.onRequestEvent(requestEvent);
         }
     }
 

@@ -43,7 +43,7 @@ public class Controller implements RequestListener {
         this.isPlanningFinished = false;
     }
 
-    public void playAssistantCard(int playerId, int choice) throws InvalidCardException, NotPlayerTurnException {
+    public void playAssistantCard(int playerId, int choice) throws AssistantCardException, NotPlayerTurnException {
         if (!isPlanningFinished && playersToPlay.size() > 0) {
             Player player = playersToPlay.get(0);
             if (player.getId() == playerId) {
@@ -57,7 +57,7 @@ public class Controller implements RequestListener {
         }
     }
 
-    public void playCharacterCard(int playerId, int choice) throws NotPlayerTurnException, NotEnoughCoinsException, InvalidCardException {
+    public void playCharacterCard(int playerId, int choice) throws NotPlayerTurnException, NotEnoughCoinsException, CharacterCardException {
         if (isPlanningFinished && playersToPlay.size() > 0) {
             Player player = playersToPlay.get(0);
             if (player.getId() == playerId) {
@@ -85,12 +85,12 @@ public class Controller implements RequestListener {
         }
     }
 
-    public void moveStudentToIsland(int playerId, int student, int island) throws NotPlayerTurnException, InvalidIslandException {
+    public void moveStudentToIsland(int playerId, int student, int island) throws NotPlayerTurnException, IslandException {
         if (isPlanningFinished && playersToPlay.size() > 0) {
             Player player = playersToPlay.get(0);
             if (player.getId() == playerId) {
                 if (island >= 0 && island < 12) action.moveStudentToIsland(student, island);
-                else throw new InvalidIslandException();
+                else throw new IslandException();
                 if (action.isEnded()) {
                     endPlayerAction(player);
                 }
@@ -100,7 +100,7 @@ public class Controller implements RequestListener {
         }
     }
 
-    public void moveMotherNature(int playerId, int choice) throws NotPlayerTurnException, InvalidMotherNatureStepsException {
+    public void moveMotherNature(int playerId, int choice) throws NotPlayerTurnException, MotherNatureStepsException {
         if (isPlanningFinished && playersToPlay.size() > 0) {
             Player player = playersToPlay.get(0);
             if (player.getId() == playerId) {
@@ -114,7 +114,7 @@ public class Controller implements RequestListener {
         }
     }
 
-    public void takeStudentsFromCloud(int playerId, int choice) throws NotPlayerTurnException{
+    public void takeStudentsFromCloud(int playerId, int choice) throws NotPlayerTurnException, Exception {
         if (isPlanningFinished && playersToPlay.size() > 0) {
             Player player = playersToPlay.get(0);
             if (player.getId() == playerId) {
@@ -231,7 +231,7 @@ public class Controller implements RequestListener {
     }
 
     @Override
-    public void requestPerformed(RequestEvent requestEvent) throws NoSuchMethodException, InvocationTargetException, IllegalAccessException {
+    public void onRequestEvent(RequestEvent requestEvent) throws NoSuchMethodException, InvocationTargetException, IllegalAccessException {
         String methodName = requestEvent.getPropertyName();
         int[] values = requestEvent.getValues();
         switch(methodName) {

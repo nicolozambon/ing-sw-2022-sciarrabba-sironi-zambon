@@ -166,4 +166,10 @@ public class Server {
         }
     }
 
+    protected void removeConnection(Connection connection) {
+        synchronized (queue) {
+            queue.remove(connection);
+        }
+    }
+
 }

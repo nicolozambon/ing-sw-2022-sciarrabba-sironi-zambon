@@ -4,15 +4,12 @@ import com.google.gson.Gson;
 import it.polimi.ingsw.controller.Controller;
 import it.polimi.ingsw.enums.Color;
 import it.polimi.ingsw.events.AnswerEvent;
-import it.polimi.ingsw.exceptions.InvalidCardException;
-import it.polimi.ingsw.exceptions.InvalidMotherNatureStepsException;
-import it.polimi.ingsw.exceptions.NotEnoughCoinsException;
+import it.polimi.ingsw.exceptions.*;
 import it.polimi.ingsw.listenables.AnswerListenable;
 import it.polimi.ingsw.listenables.AnswerListenableInterface;
 import it.polimi.ingsw.listeners.AnswerListener;
 import it.polimi.ingsw.model.card.CharacterCard;
 
-import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -61,21 +58,22 @@ public class Model implements AnswerListenableInterface {
         this.gson = new Gson();
     }
 
-    public void playAssistantCard(int playerId, int choice) {
+    public void playAssistantCard(int playerId, int choice) throws AssistantCardException {
         players.get(playerId).playAssistantCard(choice);
         fireAnswer(new AnswerEvent("update", gson.toJson(this)));
     }
 
 
-    public void playCharacterCard(int playerId, int choice) throws NotEnoughCoinsException, InvalidCardException {
+    public void playCharacterCard(int playerId, int choice) throws NotEnoughCoinsException, CharacterCardException {
         CharacterCard card;
         if (characterCards.stream().anyMatch(x -> x.getId() == choice)) {
             card = characterCards.stream().filter(x -> x.getId() == choice).findFirst().get();
             players.get(playerId).playCharacterCard(card);
+            this.coinReserve += card.getCoins() - 1;
             card.incrementCoinCost();
             this.handler = new HandlerFactory().buildHandler(new ArrayList<>(players), card);
         } else {
-            throw new InvalidCardException();
+            throw new CharacterCardException();
         }
         fireAnswer(new AnswerEvent("update", gson.toJson(this)));
     }
@@ -95,7 +93,7 @@ public class Model implements AnswerListenableInterface {
         fireAnswer(new AnswerEvent("update", gson.toJson(this)));
     }
 
-    public void moveMotherNature(int playerId, int stepsChoice) throws InvalidMotherNatureStepsException {
+    public void moveMotherNature(int playerId, int stepsChoice) throws MotherNatureStepsException {
         this.handler.motherNatureMovement(players.get(playerId), motherNature, stepsChoice);
         playerHasFinishedTowers();
         threeGroupsIslandRemaining();
@@ -111,7 +109,8 @@ public class Model implements AnswerListenableInterface {
         fireAnswer(new AnswerEvent("update", gson.toJson(this)));
     }
 
-    public void takeStudentsFromCloud(int playerId, int choice) {
+    public void takeStudentsFromCloud(int playerId, int choice) throws CloudException {
+        if (choice > clouds.size() - 1 || clouds.get(choice).getNumPawns() == 0) throw new CloudException();
         players.get(playerId).takeStudentsFromCloud(clouds.get(choice));
         fireAnswer(new AnswerEvent("update", gson.toJson(this)));
     }

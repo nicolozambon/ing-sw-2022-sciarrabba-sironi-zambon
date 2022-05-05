@@ -2,6 +2,7 @@ package it.polimi.ingsw.model;
 
 import it.polimi.ingsw.enums.Color;
 import it.polimi.ingsw.enums.TowerColor;
+import it.polimi.ingsw.exceptions.AssistantCardException;
 import it.polimi.ingsw.model.card.AssistantCard;
 import it.polimi.ingsw.model.card.Deck;
 import org.junit.jupiter.api.BeforeEach;
@@ -61,7 +62,7 @@ class PlayerTest {
     }
 
     @Test
-    void AssistantCard() {
+    void AssistantCard() throws AssistantCardException {
         assertThrows(IndexOutOfBoundsException.class, () -> player.getLastAssistantCard());
         player.playAssistantCard(1);
         assertEquals(player.getLastAssistantCard().getValue(), 1);

@@ -26,7 +26,7 @@ public class AnswerListenable implements AnswerListenableInterface{
     @Override
     public void fireAnswer(AnswerEvent answerEvent) {
         for (AnswerListener answerListener : listeners) {
-            answerListener.answerPerformed(answerEvent);
+            answerListener.onAnswerEvent(answerEvent);
         }
     }
 

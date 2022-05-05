@@ -30,7 +30,7 @@ class ControllerTest {
     }
 
     @Test
-    void playAssistantCard() throws InvalidCardException, NotPlayerTurnException {
+    void playAssistantCard() throws AssistantCardException, NotPlayerTurnException {
 
         Player current;
 
@@ -44,7 +44,7 @@ class ControllerTest {
 
         current = controller.getActivePlayer();
         assertEquals(1, current.getId());
-        assertThrows(InvalidCardException.class, () -> controller.playAssistantCard(1, 6));
+        assertThrows(AssistantCardException.class, () -> controller.playAssistantCard(1, 6));
         assertThrows(NotPlayerTurnException.class, () -> controller.playAssistantCard(2, 7));
 
         controller.playAssistantCard(1, 4);
@@ -52,8 +52,8 @@ class ControllerTest {
         assertEquals(4, current.getLastAssistantCard().getValue());
 
         current = controller.getActivePlayer();
-        assertThrows(InvalidCardException.class, () -> controller.playAssistantCard(2, 6));
-        assertThrows(InvalidCardException.class, () -> controller.playAssistantCard(2, 4));
+        assertThrows(AssistantCardException.class, () -> controller.playAssistantCard(2, 6));
+        assertThrows(AssistantCardException.class, () -> controller.playAssistantCard(2, 4));
         controller.playAssistantCard(2, 5);
         assertEquals(5, current.getLastAssistantCard().getValue());
         assertEquals(9, current.getAssistantCards().size());
@@ -65,7 +65,7 @@ class ControllerTest {
 
 
 
-    private void playPlanningPhase() throws  InvalidCardException, NotPlayerTurnException {
+    private void playPlanningPhase() throws AssistantCardException, NotPlayerTurnException {
         controller.playAssistantCard(0, 10);
         controller.playAssistantCard(1, 8);
         controller.playAssistantCard(2, 6);
@@ -75,7 +75,7 @@ class ControllerTest {
     }
 
     @Test
-    void moveStudentToDiningRoom() throws InvalidCardException, NotPlayerTurnException {
+    void moveStudentToDiningRoom() throws AssistantCardException, NotPlayerTurnException {
         playPlanningPhase();
 
         assertThrows(NotPlayerTurnException.class, () -> controller.moveStudentToDiningRoom(1, 4));
@@ -101,7 +101,7 @@ class ControllerTest {
     }
 
     @Test
-    void moveStudentToIsland() throws InvalidCardException, NotPlayerTurnException, InvalidIslandException {
+    void moveStudentToIsland() throws AssistantCardException, NotPlayerTurnException, IslandException {
         playPlanningPhase();
 
         assertThrows(NotPlayerTurnException.class, () -> controller.moveStudentToIsland(1, 4, 9));
@@ -111,8 +111,8 @@ class ControllerTest {
         ModelSerializable modelSerializable = new ModelSerializable(this.model);
         int initialSize =  modelSerializable.getEntranceByPlayerId(player.getId()).size();
 
-        assertThrows(InvalidIslandException.class, () -> controller.moveStudentToIsland(2, 0, 12));
-        assertThrows(InvalidIslandException.class, () -> controller.moveStudentToIsland(2, 0, -1));
+        assertThrows(IslandException.class, () -> controller.moveStudentToIsland(2, 0, 12));
+        assertThrows(IslandException.class, () -> controller.moveStudentToIsland(2, 0, -1));
 
         modelSerializable = new ModelSerializable(this.model);
         int prevSize = modelSerializable.getStudentOnIslandById(6);
@@ -142,7 +142,7 @@ class ControllerTest {
 
     }
 
-    private void playAC_MoveStudent(int playerId) throws InvalidIslandException, InvalidCardException, NotPlayerTurnException {
+    private void playAC_MoveStudent(int playerId) throws IslandException, AssistantCardException, NotPlayerTurnException {
 
         controller.moveStudentToIsland(playerId, 0, 2);
         controller.moveStudentToIsland(playerId, 0, 11);
@@ -152,12 +152,12 @@ class ControllerTest {
     }
 
     @Test
-    void moveMotherNature() throws InvalidIslandException, InvalidCardException, NotPlayerTurnException, InvalidMotherNatureStepsException {
+    void moveMotherNature() throws IslandException, AssistantCardException, NotPlayerTurnException, MotherNatureStepsException {
         playPlanningPhase();
         playAC_MoveStudent(2);
 
-        assertThrows(InvalidMotherNatureStepsException.class, () -> controller.moveMotherNature(2, 5));
-        assertThrows(InvalidMotherNatureStepsException.class, () -> controller.moveMotherNature(2, 0));
+        assertThrows(MotherNatureStepsException.class, () -> controller.moveMotherNature(2, 5));
+        assertThrows(MotherNatureStepsException.class, () -> controller.moveMotherNature(2, 0));
 
         ModelSerializable modelSerializable = new ModelSerializable(this.model);
         int start = modelSerializable.getMNPosition();
@@ -169,13 +169,13 @@ class ControllerTest {
         assertEquals((start + 3) % 12, modelSerializable.getMNPosition());
     }
 
-    private void playUntilCloud(int playerId) throws NotPlayerTurnException, InvalidIslandException, InvalidCardException, InvalidMotherNatureStepsException {
+    private void playUntilCloud(int playerId) throws NotPlayerTurnException, IslandException, AssistantCardException, MotherNatureStepsException {
         playAC_MoveStudent(playerId);
         controller.moveMotherNature(playerId, 1);
     }
 
     @Test
-    void getStudentsFromCloud() throws NotPlayerTurnException, InvalidIslandException, InvalidCardException, InvalidMotherNatureStepsException {
+    void getStudentsFromCloud() throws Exception {
         playPlanningPhase();
         playUntilCloud(2);
 
@@ -209,7 +209,7 @@ class ControllerTest {
     }
 
     @Test
-    void endAction() throws NotPlayerTurnException, InvalidIslandException, InvalidCardException, InvalidMotherNatureStepsException {
+    void endAction() throws NotPlayerTurnException, IslandException, AssistantCardException, Exception {
         playPlanningPhase();
         playUntilCloud(2);
         controller.takeStudentsFromCloud(2, 0);
@@ -223,7 +223,7 @@ class ControllerTest {
         //playPlanningPhase();
         Player currentPlayer = controller.getActivePlayer();
         assertEquals(0, currentPlayer.getId());
-        controller.requestPerformed(new RequestEvent("playAssistantCard", 0, 2));
+        controller.onRequestEvent(new RequestEvent("playAssistantCard", 0, 2));
         assertEquals(2, currentPlayer.getLastAssistantCard().getValue());
     }
 

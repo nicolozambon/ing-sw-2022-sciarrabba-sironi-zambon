@@ -2,12 +2,10 @@ package it.polimi.ingsw.server;
 
 import it.polimi.ingsw.events.AnswerEvent;
 import it.polimi.ingsw.events.RequestEvent;
-import it.polimi.ingsw.exceptions.NotPlayerTurnException;
 import it.polimi.ingsw.listenables.RequestListenable;
 import it.polimi.ingsw.listenables.RequestListenableInterface;
 import it.polimi.ingsw.listeners.AnswerListener;
 import it.polimi.ingsw.listeners.RequestListener;
-import it.polimi.ingsw.model.Model;
 
 import java.lang.reflect.InvocationTargetException;
 
@@ -40,13 +38,18 @@ public class VirtualView implements RequestListener, RequestListenableInterface,
     }
 
     @Override
-    public void requestPerformed(RequestEvent requestEvent) throws InvocationTargetException, NoSuchMethodException, IllegalAccessException {
-        this.requestListenable.fireRequest(requestEvent);
-        gameHandler.launchOptionsAnswerEvent();
+    public void onRequestEvent(RequestEvent requestEvent) throws InvocationTargetException, NoSuchMethodException, IllegalAccessException {
+        try {
+            this.requestListenable.fireRequest(requestEvent);
+            gameHandler.launchOptionsAnswerEvent();
+        } catch (InvocationTargetException e) {
+            gameHandler.launchErrorAnswerEvent(new AnswerEvent("error", e.getCause().getMessage()));
+        }
+
     }
 
     @Override
-    public void answerPerformed(AnswerEvent answerEvent) {
+    public void onAnswerEvent(AnswerEvent answerEvent) {
         gameHandler.launchUpdateAnswerEvent(answerEvent);
     }
 }

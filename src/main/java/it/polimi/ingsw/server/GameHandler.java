@@ -63,6 +63,10 @@ public class GameHandler implements Runnable {
         }
     }
 
+    public synchronized void launchErrorAnswerEvent(AnswerEvent answerEvent) {
+        playersConnection.get(controller.getActivePlayer().getNickname()).send(answerEvent);
+    }
+
     protected List<String> getPlayersNicknames() {
         return this.playersConnection.keySet().stream().toList();
     }

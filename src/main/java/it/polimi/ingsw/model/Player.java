@@ -2,12 +2,12 @@ package it.polimi.ingsw.model;
 
 import it.polimi.ingsw.enums.Color;
 import it.polimi.ingsw.enums.TowerColor;
+import it.polimi.ingsw.exceptions.AssistantCardException;
 import it.polimi.ingsw.exceptions.NotEnoughCoinsException;
 import it.polimi.ingsw.model.card.AssistantCard;
 import it.polimi.ingsw.model.card.CharacterCard;
 import it.polimi.ingsw.model.card.Deck;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
@@ -54,12 +54,16 @@ public class Player {
         return this.id;
     }
 
-    protected void playAssistantCard(int index) {
+    protected void playAssistantCard(int index) throws AssistantCardException {
+        boolean played = false;
         for(AssistantCard card : assistantCardDeck.getCards()) {
             if(card.getValue() == index) {
                 discardPileDeck.moveInCard(card, assistantCardDeck);
+                played = true;
             }
         }
+        if (!played) throw new AssistantCardException();
+
     }
 
     public List<AssistantCard> getAssistantCards() {

@@ -91,6 +91,7 @@ public class Connection implements Runnable, RequestListenableInterface {
             outputStream.close();
             inputStream.close();
             socket.close();
+            server.removeConnection(this);
         } catch (IOException e) {
             e.printStackTrace();
         } finally {

@@ -1,7 +1,8 @@
 package it.polimi.ingsw.controller;
 
-import it.polimi.ingsw.exceptions.InvalidCardException;
-import it.polimi.ingsw.exceptions.InvalidMotherNatureStepsException;
+import it.polimi.ingsw.exceptions.CharacterCardException;
+import it.polimi.ingsw.exceptions.CloudException;
+import it.polimi.ingsw.exceptions.MotherNatureStepsException;
 import it.polimi.ingsw.exceptions.NotEnoughCoinsException;
 import it.polimi.ingsw.model.*;
 
@@ -36,11 +37,14 @@ public class ActionPhase {
         }};
     }
 
-    public void playCharacterCard(int choice) throws NotEnoughCoinsException, InvalidCardException {
+    public void playCharacterCard(int choice) throws NotEnoughCoinsException, CharacterCardException {
         if (callableMethod.get("playCharacterCard") > 0) {
             this.model.playCharacterCard(this.currentPlayer.getId(), choice);
             callableMethod.put("playCharacterCard", callableMethod.get("playCharacterCard") - 1);
+            //TODO character card not correctly setup hasExtraAction attribute
+            System.out.println(this.model.getCharacterCards().get(choice).getHasExtraAction());
             if (this.model.getCharacterCards().get(choice).getHasExtraAction()) {
+
                 callableMethod.put("extraAction", 1);
             }
 
@@ -61,7 +65,7 @@ public class ActionPhase {
         }
     }
 
-    public void moveMotherNature(int stepsChoice) throws InvalidMotherNatureStepsException {
+    public void moveMotherNature(int stepsChoice) throws MotherNatureStepsException {
         if(callableMethod.get("moveMotherNature") > 0) {
             this.model.moveMotherNature(this.currentPlayer.getId(), stepsChoice);
             callableMethod.put("moveMotherNature", callableMethod.get("moveMotherNature") - 1);
@@ -71,7 +75,7 @@ public class ActionPhase {
         }
     }
 
-    public void takeStudentsFromCloud(int choice) {
+    public void takeStudentsFromCloud(int choice) throws CloudException {
         if(callableMethod.get("takeStudentsFromCloud") > 0) {
             this.model.takeStudentsFromCloud(this.currentPlayer.getId(), choice);
             callableMethod.put("takeStudentsFromCloud", callableMethod.get("takeStudentsFromCloud") - 1);
