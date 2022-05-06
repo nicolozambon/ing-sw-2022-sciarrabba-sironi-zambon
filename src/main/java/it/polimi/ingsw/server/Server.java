@@ -87,6 +87,7 @@ public class Server {
     private void lobby() {
         Connection connection;
         Map<String, Connection> players = new HashMap<>();
+        List<String> options = new ArrayList<>();
         ExecutorService gameThreadPool = Executors.newCachedThreadPool();
         while (true) {
 
@@ -104,7 +105,9 @@ public class Server {
             }
 
             if (numPlayers < 0) {
-                connection.send(new AnswerEvent("first_player", null));
+                options.add("first_player");
+                connection.send(new AnswerEvent("options", options));
+                options.remove("first_player");
                 while (numPlayers < 0) {
                     try {
                         synchronized (this) {
@@ -116,7 +119,9 @@ public class Server {
                 }
             }
             do {
-                connection.send(new AnswerEvent("nickname", null));
+                options.add("nickname");
+                connection.send(new AnswerEvent("options", options));
+                options.remove("nickname");
                 try {
                     synchronized (this) {
                         wait();

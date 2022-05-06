@@ -50,14 +50,11 @@ public class Connection implements Runnable, RequestListenableInterface {
                         server.notifyAll();
                     }
                 }
-                case "first_player" -> {
-                    this.server.setNumPlayers(request.getValues()[0]);
-                }
+                case "first_player" -> this.server.setNumPlayers(request.getValues()[0]);
                 default -> fireRequest(request);
             }
         } catch (OutOfBoundsException e) {
             send(new AnswerEvent("error", "Number of players not possible!"));
-            send(new AnswerEvent("first_player", null));
         } catch (Exception e) {
             e.printStackTrace();
             stopConnection();

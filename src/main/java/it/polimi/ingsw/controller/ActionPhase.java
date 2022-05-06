@@ -41,8 +41,6 @@ public class ActionPhase {
         if (callableMethod.get("playCharacterCard") > 0) {
             this.model.playCharacterCard(this.currentPlayer.getId(), choice);
             callableMethod.put("playCharacterCard", callableMethod.get("playCharacterCard") - 1);
-            //TODO character card not correctly setup hasExtraAction attribute
-            System.out.println(this.model.getCharacterCards().get(choice).getHasExtraAction());
             if (this.model.getCharacterCards().get(choice).getHasExtraAction()) {
 
                 callableMethod.put("extraAction", 1);
@@ -94,9 +92,7 @@ public class ActionPhase {
 
     public void endAction(){
         if(callableMethod.get("endAction") > 0) {
-            for (String s : callableMethod.keySet()) {
-                callableMethod.put(s, 0);
-            }
+            callableMethod.replaceAll((s, v) -> 0);
         }
     }
 
@@ -119,7 +115,7 @@ public class ActionPhase {
     public List<String> getOptions() {
         return new ArrayList<>(callableMethod.entrySet().stream()
                                                         .filter(x -> x.getValue() > 0)
-                                                        .map(x -> x.getKey()).toList());
+                                                        .map(Map.Entry::getKey).toList());
     }
 
 }

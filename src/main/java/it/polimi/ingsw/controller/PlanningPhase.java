@@ -2,6 +2,7 @@ package it.polimi.ingsw.controller;
 
 import it.polimi.ingsw.exceptions.AssistantCardException;
 import it.polimi.ingsw.model.*;
+import it.polimi.ingsw.model.card.AssistantCard;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -40,8 +41,8 @@ public class PlanningPhase {
         return temp;
     }
 
-    private boolean existsNotPlayedCard(int choice) {
-        List<Integer> temp = currentPlayer.getAssistantCards().stream().map(x -> x.getValue()).toList();
+    private boolean existsNotPlayedCard() {
+        List<Integer> temp = currentPlayer.getAssistantCards().stream().map(AssistantCard::getValue).toList();
         for (Integer i : temp) {
             if (!playedAssistantCard().contains(i)) return true;
         }
@@ -49,10 +50,7 @@ public class PlanningPhase {
     }
 
     private boolean cardIsPlayable(int choice) {
-        if (!playedAssistantCard().contains(choice) || !existsNotPlayedCard(choice)) {
-            return true;
-        }
-        return false;
+        return !playedAssistantCard().contains(choice) || !existsNotPlayedCard();
     }
 
     public boolean isEnded() {
@@ -65,7 +63,7 @@ public class PlanningPhase {
     public List<String> getOptions() {
         return new ArrayList<>(callableMethod.entrySet().stream()
                 .filter(x -> x.getValue() > 0)
-                .map(x -> x.getKey()).toList());
+                .map(Map.Entry::getKey).toList());
     }
 
 }

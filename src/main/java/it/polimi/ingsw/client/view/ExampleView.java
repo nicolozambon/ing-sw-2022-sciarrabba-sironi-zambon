@@ -1,7 +1,6 @@
 package it.polimi.ingsw.client.view;
 
 import com.google.gson.Gson;
-import com.google.gson.reflect.TypeToken;
 import it.polimi.ingsw.client.Client;
 import it.polimi.ingsw.events.AnswerEvent;
 import it.polimi.ingsw.events.RequestEvent;
@@ -15,10 +14,9 @@ import java.util.Scanner;
 
 public class ExampleView implements AnswerListener {
 
-    private Scanner stdin;
+    private final Scanner stdin;
     private final Client client;
 
-    private ModelSerializable model;
     private String nickname;
     private int id;
 
@@ -29,38 +27,33 @@ public class ExampleView implements AnswerListener {
         this.stdin = new Scanner(System.in);
         this.client = client;
         this.optionStringifier = new OptionStringifier();
+        this.options = new ArrayList<>();
     }
 
 
     @Override
     public void onAnswerEvent(AnswerEvent answerEvent) {
         switch(answerEvent.getPropertyName()) {
-            case "nickname" ->  setNickname(answerEvent);
-            case "first_player" -> setNumOfPlayers(answerEvent);
-            case "set_id" -> {
-                this.id = (int) answerEvent.getValue();
-                System.out.println("my id: " + this.id);
-            }
+            case "set_id" -> this.id = (int) answerEvent.getValue();
+            case "options" -> setOptions(answerEvent);
+            case "update" -> updateModel(answerEvent);
             case "wait" -> System.out.println(optionStringifier.stringify(answerEvent.getPropertyName()));
             case "error" -> {
-                //TODO Not handle setup error
                 System.out.println((String) answerEvent.getValue());
                 optionsHandler();
             }
-            case "options" -> setOptions(answerEvent);
-            case "update" -> updateModel(answerEvent);
             default -> System.out.println("Answer Error!");
         }
     }
 
-    private void setNickname(AnswerEvent answerEvent) {
-        System.out.println(optionStringifier.stringify(answerEvent.getPropertyName()));
+    private void setNickname(int option) {
+        System.out.println(optionStringifier.stringify(options.get(option)));
         this.nickname = stdin.nextLine();
         client.send(new RequestEvent("nickname", 0, nickname));
     }
 
-    private void setNumOfPlayers(AnswerEvent answerEvent) {
-        System.out.println(optionStringifier.stringify(answerEvent.getPropertyName()));
+    private void setNumOfPlayers(int option) {
+        System.out.println(optionStringifier.stringify(options.get(option)));
         int num = stdin.nextInt();
         stdin.nextLine();
         client.send(new RequestEvent("first_player", 0, num));
@@ -68,14 +61,14 @@ public class ExampleView implements AnswerListener {
 
     private void setOptions(AnswerEvent answerEvent) {
         this.options = (List<String>) answerEvent.getValue();
-        System.out.println(this.model);
         optionsHandler();
     }
 
     private void updateModel(AnswerEvent answerEvent) {
         Gson gson = new Gson();
         Model temp = gson.fromJson((String)answerEvent.getValue(), Model.class);
-        this.model = new ModelSerializable(temp);
+        ModelSerializable model = new ModelSerializable(temp);
+        System.out.println(model);
     }
 
     private void defaultInputHandler(int option) {
@@ -100,17 +93,25 @@ public class ExampleView implements AnswerListener {
 
     private void optionsHandler() {
         if (this.options.size() > 0) {
-            System.out.println(optionStringifier.stringify(options));
-            int choice = stdin.nextInt();
-            stdin.nextLine();
+            int choice;
+            if (options.size() > 1) {
+                System.out.println(optionStringifier.stringify(options));
+                choice = stdin.nextInt();
+                stdin.nextLine();
+            } else {
+                choice = 1;
+            }
             if (choice <= options.size() && choice > 0) {
                 choice = choice - 1;
                 switch(this.options.get(choice)) {
                     case "moveStudentToIsland" -> twoInputHandler(choice);
                     case "endAction" -> noInputHandler(choice);
+                    case "nickname" -> setNickname(choice);
+                    case "first_player" -> setNumOfPlayers(choice);
                     default -> defaultInputHandler(choice);
                 }
             }
+
         }
     }
 
