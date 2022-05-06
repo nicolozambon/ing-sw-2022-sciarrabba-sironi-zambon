@@ -1,5 +1,6 @@
 package it.polimi.ingsw.server;
 
+import com.google.gson.Gson;
 import it.polimi.ingsw.events.AnswerEvent;
 import it.polimi.ingsw.exceptions.*;
 
@@ -17,21 +18,21 @@ public class Server {
     private final String ip;
 
     private final Queue<Connection> queue;
-
     private final List<GameHandler> games;
 
+    private final Gson gson;
 
     /**
      * Number of players for the match being built.
      */
     private int numPlayers = -1;
 
-
     public Server(int port){
         this.port = port;
         this.ip = DEFAULT_IP;
         this.queue = new ArrayDeque<>();
         this.games = new ArrayList<>();
+        this.gson = new Gson();
     }
 
     public Server(String ip, int port) {
@@ -39,6 +40,7 @@ public class Server {
         this.ip = ip;
         this.queue = new ArrayDeque<>();
         this.games = new ArrayList<>();
+        this.gson = new Gson();
     }
 
     public void startServer() throws IOException {
@@ -106,7 +108,7 @@ public class Server {
 
             if (numPlayers < 0) {
                 options.add("first_player");
-                connection.send(new AnswerEvent("options", options));
+                connection.send(new AnswerEvent("options", gson.toJson(options)));
                 options.remove("first_player");
                 while (numPlayers < 0) {
                     try {
@@ -120,7 +122,7 @@ public class Server {
             }
             do {
                 options.add("nickname");
-                connection.send(new AnswerEvent("options", options));
+                connection.send(new AnswerEvent("options", gson.toJson(options)));
                 options.remove("nickname");
                 try {
                     synchronized (this) {

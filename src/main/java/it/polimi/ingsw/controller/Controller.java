@@ -242,8 +242,8 @@ public class Controller implements RequestListener {
             }
 
             case "extraAction" -> {
-                Method method = Controller.class.getDeclaredMethod(methodName, int[].class);
-                method.invoke(this, (Object) values);
+                Method method = Controller.class.getDeclaredMethod(methodName, int.class, int[].class);
+                method.invoke(this, requestEvent.getPlayerId(), (Object) values);
             }
 
             case "endAction" -> {

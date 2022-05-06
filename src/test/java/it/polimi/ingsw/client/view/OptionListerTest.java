@@ -1,18 +1,15 @@
 package it.polimi.ingsw.client.view;
 
-import it.polimi.ingsw.client.view.OptionStringifier;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
-class OptionStringifierTest {
+class OptionListerTest {
 
     @Test
     void stringify() {
-        OptionStringifier optionStringifier = new OptionStringifier();
+        OptionLister optionLister = new OptionLister();
         //System.out.println(optionStringifier.stringify());
 
         List<String> options = new ArrayList<>(){{
@@ -26,6 +23,6 @@ class OptionStringifierTest {
             this.add("endAction");
         }};
         
-        System.out.println(optionStringifier.stringify(options));
+        System.out.println(optionLister.list(options));
     }
 }

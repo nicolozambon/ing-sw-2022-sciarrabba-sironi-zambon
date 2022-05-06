@@ -1,0 +1,13 @@
+{
+  "nickname" : "Choose a nickname:",
+  "first_player" : "You are the first player, choose how many players this game will have (2-3):",
+
+  "playAssistantCard" : "Choose an assistant card to play:",
+  "moveStudentToDiningRoom" : "Choose a student to move to dining room:",
+  "moveStudentToIsland" : "Choose a student to move to an island:\n(es. 5,2 will move student in position 5 to island with id 2)",
+  "moveMotherNature": "Choose the steps to move mother nature:",
+  "playCharacterCard" : "Choose a character card to play:",
+  "takeStudentsFromCloud" : "Choose the cloud to take students from:",
+  "extraAction" : "TBD:",
+  "endAction" : "Ending your action phase..."
+}

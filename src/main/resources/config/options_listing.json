@@ -1,7 +1,6 @@
 {
-  "nickname" : "Choose a nickname:",
-  "first_player" : "You are the first player, choose how many players this game will have (2-3):",
-  "wait" : "Please wait it's not your turn",
+  "nickname" : "Set your nickname",
+  "first_player" : "Set number of player to play with",
 
   "playAssistantCard" : "Play an assistant card",
   "moveStudentToDiningRoom" : "Move student to dining room",
@@ -10,5 +9,7 @@
   "playCharacterCard" : "Play a character card",
   "takeStudentsFromCloud" : "Take students from cloud",
   "extraAction" : "Use the character card effect",
-  "endAction" : "End your action phase"
+  "endAction" : "End your action phase",
+
+  "wait" : "Please wait it's not your turn"
 }

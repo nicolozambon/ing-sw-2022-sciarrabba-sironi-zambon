@@ -8,12 +8,12 @@ import java.io.FileReader;
 import java.util.List;
 import java.util.Map;
 
-public class OptionStringifier {
+public class OptionLister {
 
     private Map<String, String> dictionary;
 
-    public OptionStringifier() {
-        String path = "src/main/resources/config/options_stringifier.json";
+    public OptionLister() {
+        String path = "src/main/resources/config/options_listing.json";
         Gson gson = new Gson();
         try {
             this.dictionary = gson.fromJson(new FileReader(path), new TypeToken<Map<String, String>>(){}.getType());
@@ -23,7 +23,7 @@ public class OptionStringifier {
 
     }
 
-    public String stringify(List<String> options) {
+    public String list(List<String> options) {
         StringBuilder stringBuilder = new StringBuilder();
         int i = 1;
         for (String string : options) {
@@ -33,11 +33,11 @@ public class OptionStringifier {
         return stringBuilder.toString();
     }
 
-    public String stringify(String option) {
+    public String list(String option) {
         return dictionary.get(option);
     }
 
-    public String stringify() {
+    public String list() {
         StringBuilder string = new StringBuilder();
         for (String s : dictionary.keySet()) {
             string.append("\n").append(dictionary.get(s));
