@@ -1,8 +1,5 @@
 package it.polimi.ingsw.model;
 
-import it.polimi.ingsw.exceptions.InvalidCardException;
-import it.polimi.ingsw.exceptions.InvalidMotherNatureStepsException;
-import it.polimi.ingsw.exceptions.NotEnoughCoinsException;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -28,7 +25,7 @@ class MotherNatureHandlerTest {
     }
 
     @Test
-    void motherNatureMovement() throws NotEnoughCoinsException, InvalidCardException, InvalidMotherNatureStepsException {
+    void motherNatureMovement() throws Exception {
         Island island0 = model.getMotherNature().getPosition();
         Island island2 = island0.getNextIsland().getNextIsland();
 
@@ -41,7 +38,7 @@ class MotherNatureHandlerTest {
     }
 
     @Test
-    void card02Test() throws NotEnoughCoinsException, InvalidCardException {
+    void card02Test() throws Exception {
         model.getPlayers().get(0).increaseCoinBy(10);
         model.playCharacterCard(0, 2);
         model.playAssistantCard(0, 6);

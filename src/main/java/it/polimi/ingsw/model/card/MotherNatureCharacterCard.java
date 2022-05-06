@@ -4,10 +4,8 @@ import java.util.Map;
 
 public class MotherNatureCharacterCard extends CharacterCard {
 
-    private CharacterCard card;
-
-    private int extraMovement;
-    private boolean extraResolving;
+    private final int extraMovement;
+    private final boolean extraResolving;
 
     public MotherNatureCharacterCard(CharacterCard card) {
         super(card);

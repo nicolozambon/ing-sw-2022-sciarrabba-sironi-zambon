@@ -2,6 +2,7 @@ package it.polimi.ingsw.model;
 
 import it.polimi.ingsw.enums.Color;
 
+import java.io.Serializable;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -9,14 +10,16 @@ import java.util.Map;
 public class School {
 
     //private Player owner;
+    private final int id;
 
     private final Board<Student> entrance;
     private final Map<Color, Board<Student>> diningRoom;
     private final Board<Professor> professorsTable;
     private final Board<Tower> towersBoard;
 
-    protected School(List<Student> students, List<Tower> towers) {
+    protected School(int id, List<Student> students, List<Tower> towers) {
         //this.owner = owner;
+        this.id = id;
 
         this.entrance = new Board<>(students);
 
@@ -34,6 +37,10 @@ public class School {
     /*protected Player getOwner(){
         return this.owner;
     }*/
+
+    public int getId() {
+        return id;
+    }
 
     protected Board<Student> getEntrance() {
         return this.entrance;

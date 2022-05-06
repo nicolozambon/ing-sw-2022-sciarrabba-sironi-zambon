@@ -4,11 +4,9 @@ import java.util.Map;
 
 public class InfluenceCharacterCard extends CharacterCard {
 
-    private CharacterCard card;
-
-    private int towerInfluence;
-    private int extraInfluence;
-    private boolean colorWithoutInfluence;
+    private final int towerInfluence;
+    private final int extraInfluence;
+    private final boolean colorWithoutInfluence;
 
     public InfluenceCharacterCard(CharacterCard card) {
         super(card);

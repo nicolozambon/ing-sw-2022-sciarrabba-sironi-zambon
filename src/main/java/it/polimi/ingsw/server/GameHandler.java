@@ -3,24 +3,22 @@ package it.polimi.ingsw.server;
 import com.google.gson.Gson;
 import it.polimi.ingsw.controller.Controller;
 import it.polimi.ingsw.events.AnswerEvent;
-import it.polimi.ingsw.listeners.AnswerListener;
+import it.polimi.ingsw.listenables.AnswerListenable;
 import it.polimi.ingsw.model.Model;
 import it.polimi.ingsw.model.ModelBuilder;
 import it.polimi.ingsw.model.ModelSerializable;
 import it.polimi.ingsw.model.Player;
 
-import java.io.*;
 import java.util.*;
 
 public class GameHandler implements Runnable {
 
-    private Model model;
-    private Controller controller;
-    private Map<String, Connection> playersConnection;
-    private VirtualView virtualView;
+    private final Model model;
+    private final Controller controller;
+    private final Map<String, Connection> playersConnection;
+    private final VirtualView virtualView;
 
     public GameHandler(Map<String, Connection> playersConnection) {
-
         this.playersConnection = new HashMap<>(playersConnection);
         this.model = new ModelBuilder().buildModel(this.playersConnection.keySet().stream().toList());
         this.controller = model.getController();
@@ -29,6 +27,9 @@ public class GameHandler implements Runnable {
 
     @Override
     public void run() {
+        Gson gson = new Gson();
+        this.model.addAnswerListener(this.virtualView);
+
         this.virtualView.addRequestListener(this.controller);
 
         for (Player player : controller.getPlayersToPlay()) {
@@ -40,22 +41,30 @@ public class GameHandler implements Runnable {
         }
 
         this.virtualView.setGameHandler(this);
-        launchUpdateAnswerEvent();
+        this.launchUpdateAnswerEvent(new AnswerEvent("update", gson.toJson(this.model)));
+        this.launchOptionsAnswerEvent();
     }
 
-    public synchronized void launchUpdateAnswerEvent() {
+    public synchronized void launchUpdateAnswerEvent(AnswerEvent answerEvent) {
+        for (String nickname : playersConnection.keySet()) {
+            playersConnection.get(nickname).send(answerEvent);
+        }
+    }
+
+    public synchronized void launchOptionsAnswerEvent() {
         String currentPlayer = controller.getActivePlayer().getNickname();
         List<String> options = controller.getOptions();
-
-        ModelSerializable modelSerializable = new ModelSerializable(this.model);
         for (String nickname : playersConnection.keySet()) {
             if (currentPlayer.equals(nickname)) {
                 playersConnection.get(nickname).send(new AnswerEvent("options", options));
             } else {
                 playersConnection.get(nickname).send(new AnswerEvent("options", new ArrayList<String>()));
             }
-            playersConnection.get(nickname).send(new AnswerEvent("update", modelSerializable));
         }
+    }
+
+    public synchronized void launchErrorAnswerEvent(AnswerEvent answerEvent) {
+        playersConnection.get(controller.getActivePlayer().getNickname()).send(answerEvent);
     }
 
     protected List<String> getPlayersNicknames() {

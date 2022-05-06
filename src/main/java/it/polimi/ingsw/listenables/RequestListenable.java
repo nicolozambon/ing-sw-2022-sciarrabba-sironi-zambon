@@ -7,7 +7,7 @@ import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import java.util.List;
 
-public abstract class RequestListenable {
+public class RequestListenable implements RequestListenableInterface{
 
     private final List<RequestListener> listeners;
 
@@ -15,17 +15,20 @@ public abstract class RequestListenable {
         this.listeners = new ArrayList<>();
     }
 
+    @Override
     public void addRequestListener(RequestListener requestListener) {
         listeners.add(requestListener);
     }
 
+    @Override
     public void removeRequestListener(RequestListener requestListener) {
         listeners.remove(requestListener);
     }
 
+    @Override
     public void fireRequest(RequestEvent requestEvent) throws InvocationTargetException, NoSuchMethodException, IllegalAccessException{
         for (RequestListener requestListener : listeners) {
-            requestListener.requestPerformed(requestEvent);
+            requestListener.onRequestEvent(requestEvent);
         }
     }
 

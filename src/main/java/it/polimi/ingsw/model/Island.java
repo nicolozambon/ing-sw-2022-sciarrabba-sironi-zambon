@@ -11,8 +11,8 @@ public class Island extends Board<Student> {
 
     private final Board<Tower> towerBoard = new Board<>();
 
-    private Island nextIsland;
-    private Island prevIsland;
+    private transient Island nextIsland;
+    private transient Island prevIsland;
 
     private boolean unifyNext;
     private boolean unifyPrev;

@@ -2,22 +2,21 @@ package it.polimi.ingsw.model.card;
 
 public class CharacterCardFactory {
 
-    public void CharacterCardFactory() {}
-
     public CharacterCard setSubclass(CharacterCard card) {
-        CharacterCard final_card = null;
-        switch(card.getCategory()) {
-            case "influence":
-                final_card = new InfluenceCharacterCard(card);
-                break;
-            case "mother_nature":
-                final_card = new MotherNatureCharacterCard(card);
-                break;
-            case "movement":
-                final_card = new MovementCharacterCard(card);
-                break;
+        switch (card.getCategory()) {
+            case "influence" -> {
+                return new InfluenceCharacterCard(card);
+            }
+            case "mother_nature" -> {
+                return new MotherNatureCharacterCard(card);
+            }
+            case "movement" -> {
+                return new MovementCharacterCard(card);
+            }
+            default -> {
+                return null;
+            }
         }
-        return final_card;
     }
 
 }

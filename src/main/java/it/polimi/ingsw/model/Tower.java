@@ -2,9 +2,9 @@ package it.polimi.ingsw.model;
 
 import it.polimi.ingsw.enums.TowerColor;
 
-public class Tower extends Pawn<TowerColor>{
+public class Tower extends Pawn<TowerColor> {
 
-    private Player owner;
+    private transient Player owner;
 
     protected Tower (TowerColor color){
         super(color);

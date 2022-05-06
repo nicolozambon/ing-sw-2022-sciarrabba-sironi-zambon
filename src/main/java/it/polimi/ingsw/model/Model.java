@@ -1,19 +1,20 @@
 package it.polimi.ingsw.model;
 
+import com.google.gson.Gson;
 import it.polimi.ingsw.controller.Controller;
 import it.polimi.ingsw.enums.Color;
-import it.polimi.ingsw.exceptions.InvalidCardException;
-import it.polimi.ingsw.exceptions.InvalidMotherNatureStepsException;
-import it.polimi.ingsw.exceptions.NotEnoughCoinsException;
+import it.polimi.ingsw.events.AnswerEvent;
+import it.polimi.ingsw.exceptions.*;
+import it.polimi.ingsw.listenables.AnswerListenable;
+import it.polimi.ingsw.listenables.AnswerListenableInterface;
+import it.polimi.ingsw.listeners.AnswerListener;
 import it.polimi.ingsw.model.card.CharacterCard;
 
-import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
 
-public class Model implements Serializable {
-    private static final long serialVersionUID = 987654321L;
+public class Model implements AnswerListenableInterface {
 
     private final List<Player> players;
     private final List<Island> islands;
@@ -24,12 +25,15 @@ public class Model implements Serializable {
     private final Board<Professor> startingProfessorBoard;
     private final StudentBag bag;
     private final int numStudentToMove;
-    private Controller controller;
 
-    private Handler handler;
+    private transient Controller controller;
+    private transient Handler handler;
 
     private boolean isThereWinner;
     private Player winner;
+
+    private transient final AnswerListenable answerListenable;
+    private transient final Gson gson;
 
 
     protected Model(List<Player> players, List<Island> islands, List<Cloud> clouds, MotherNature motherNature,
@@ -49,23 +53,29 @@ public class Model implements Serializable {
         this.numStudentToMove = numStudentToMove;
         this.isThereWinner = false;
         this.winner = null;
+
+        this.answerListenable = new AnswerListenable();
+        this.gson = new Gson();
     }
 
-    public void playAssistantCard(int playerId, int choice) {
+    public void playAssistantCard(int playerId, int choice) throws AssistantCardException {
         players.get(playerId).playAssistantCard(choice);
+        fireAnswer(new AnswerEvent("update", gson.toJson(this)));
     }
 
 
-    public void playCharacterCard(int playerId, int choice) throws NotEnoughCoinsException, InvalidCardException {
+    public void playCharacterCard(int playerId, int choice) throws NotEnoughCoinsException, CharacterCardException {
         CharacterCard card;
         if (characterCards.stream().anyMatch(x -> x.getId() == choice)) {
             card = characterCards.stream().filter(x -> x.getId() == choice).findFirst().get();
             players.get(playerId).playCharacterCard(card);
+            this.coinReserve += card.getCoins() - 1;
             card.incrementCoinCost();
             this.handler = new HandlerFactory().buildHandler(new ArrayList<>(players), card);
         } else {
-            throw new InvalidCardException();
+            throw new CharacterCardException();
         }
+        fireAnswer(new AnswerEvent("update", gson.toJson(this)));
     }
 
     public void moveStudentToDiningRoom(int playerId, int choice) {
@@ -73,19 +83,21 @@ public class Model implements Serializable {
         Student student = player.getSchool().getEntrance().getPawns().get(choice);
         if (player.moveStudentDiningRoom(student, this.coinReserve))  this.coinReserve--;
         this.handler.professorControl(players.get(playerId), student.getColor(), startingProfessorBoard);
+        fireAnswer(new AnswerEvent("update", gson.toJson(this)));
     }
 
     public void moveStudentToIsland(int playerId, int studentChoice, int islandChoice) {
         Player player = players.get(playerId);
         Student student = player.getSchool().getEntrance().getPawns().get(studentChoice);
         player.moveStudentIsland(student, islands.get(islandChoice));
+        fireAnswer(new AnswerEvent("update", gson.toJson(this)));
     }
 
-    public void moveMotherNature(int playerId, int stepsChoice) throws InvalidMotherNatureStepsException {
+    public void moveMotherNature(int playerId, int stepsChoice) throws MotherNatureStepsException {
         this.handler.motherNatureMovement(players.get(playerId), motherNature, stepsChoice);
         playerHasFinishedTowers();
         threeGroupsIslandRemaining();
-
+        fireAnswer(new AnswerEvent("update", gson.toJson(this)));
     }
 
     public void addStudentsToClouds() {
@@ -94,6 +106,18 @@ public class Model implements Serializable {
                 bag.extractStudentAndMove(cloud);
             }
         }
+        fireAnswer(new AnswerEvent("update", gson.toJson(this)));
+    }
+
+    public void takeStudentsFromCloud(int playerId, int choice) throws CloudException {
+        if (choice > clouds.size() - 1 || clouds.get(choice).getNumPawns() == 0) throw new CloudException();
+        players.get(playerId).takeStudentsFromCloud(clouds.get(choice));
+        fireAnswer(new AnswerEvent("update", gson.toJson(this)));
+    }
+
+    public void extraAction(int ... values) {
+        this.handler.extraAction(players.get(0), this, values);
+        fireAnswer(new AnswerEvent("update", gson.toJson(this)));
     }
 
     protected MotherNature getMotherNature() {
@@ -106,14 +130,6 @@ public class Model implements Serializable {
 
     protected List<Cloud> getClouds() {
         return new ArrayList<>(clouds);
-    }
-
-    public void takeStudentsFromCloud(int playerId, int choice) {
-        players.get(playerId).takeStudentsFromCloud(clouds.get(choice));
-    }
-
-    public void extraAction(int ... values) {
-        this.handler.extraAction(players.get(0), this, values);
     }
 
     public List<CharacterCard> getCharacterCards() {
@@ -140,6 +156,7 @@ public class Model implements Serializable {
         for (Player player : players) {
             player.returnStudentsToBag(bag, color, num);
         }
+        fireAnswer(new AnswerEvent("update", gson.toJson(this)));
     }
 
     /**
@@ -303,5 +320,20 @@ public class Model implements Serializable {
 
     protected Handler getHandler() {
         return handler;
+    }
+
+    @Override
+    public void addAnswerListener(AnswerListener answerListener) {
+        this.answerListenable.addAnswerListener(answerListener);
+    }
+
+    @Override
+    public void removeAnswerListener(AnswerListener answerListener) {
+        this.answerListenable.removeAnswerListener(answerListener);
+    }
+
+    @Override
+    public void fireAnswer(AnswerEvent answerEvent) {
+        this.answerListenable.fireAnswer(answerEvent);
     }
 }

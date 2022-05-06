@@ -4,11 +4,9 @@ import java.util.Map;
 
 public class MovementCharacterCard extends CharacterCard {
 
-    private CharacterCard card;
-
-    private int extraControl;
-    private int possibleExchange;
-    private int numOfStudentsToReturn;
+    private final int extraControl;
+    private final int possibleExchange;
+    private final int numOfStudentsToReturn;
 
     public MovementCharacterCard(CharacterCard card) {
         super(card);

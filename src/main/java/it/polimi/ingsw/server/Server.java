@@ -124,7 +124,6 @@ public class Server {
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
-                System.out.println("waiting for nickname...");
             } while (!isNicknameUnique(connection, players));
 
             players.put(connection.getNickname(), connection);
@@ -132,7 +131,6 @@ public class Server {
             connection.send(new AnswerEvent("wait", null));
 
             if (players.size() == numPlayers) {
-                System.out.println(players);
                 GameHandler game = new GameHandler(players);
                 gameThreadPool.submit(game);
                 games.add(game);
@@ -165,6 +163,12 @@ public class Server {
         } else {
             this.numPlayers = num;
             notifyAll();
+        }
+    }
+
+    protected void removeConnection(Connection connection) {
+        synchronized (queue) {
+            queue.remove(connection);
         }
     }
 

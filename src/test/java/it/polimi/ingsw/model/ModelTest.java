@@ -1,7 +1,8 @@
 package it.polimi.ingsw.model;
 
-import it.polimi.ingsw.exceptions.InvalidCardException;
-import it.polimi.ingsw.exceptions.InvalidMotherNatureStepsException;
+import it.polimi.ingsw.exceptions.AssistantCardException;
+import it.polimi.ingsw.exceptions.CharacterCardException;
+import it.polimi.ingsw.exceptions.MotherNatureStepsException;
 import it.polimi.ingsw.exceptions.NotEnoughCoinsException;
 import it.polimi.ingsw.model.card.CharacterCard;
 import org.junit.jupiter.api.BeforeEach;
@@ -50,7 +51,7 @@ class ModelTest {
     }
 
     @Test
-    void playAssistantCard() {
+    void playAssistantCard() throws AssistantCardException {
         int i = 0;
         for (Player player : model.getPlayers()) {
             assertEquals(i, player.getId());
@@ -63,7 +64,7 @@ class ModelTest {
     }
 
     @Test
-    void playCharacterCard() throws NotEnoughCoinsException, InvalidCardException {
+    void playCharacterCard() throws NotEnoughCoinsException, CharacterCardException {
         for (Player player : model.getPlayers()) {
             for (CharacterCard card : model.getCharacterCards()) {
                 int prevCoin = player.getCoins();
@@ -110,7 +111,7 @@ class ModelTest {
     }
 
     @Test
-    void moveMotherNature() throws InvalidMotherNatureStepsException {
+    void moveMotherNature() throws MotherNatureStepsException, AssistantCardException {
         for (Player player : model.getPlayers()) {
             model.playAssistantCard(player.getId(), new Random().nextInt(1,11));
             for (int i = 0; i < player.getSchool().getEntrance().getNumPawns(); i++) {
@@ -125,7 +126,7 @@ class ModelTest {
     }
 
     @Test
-    void cloudMethods() {
+    void cloudMethods() throws Exception{
         model.addStudentsToClouds();
         for (Cloud cloud : model.getClouds()) {
             if (model.getPlayers().size() == 2) assertEquals(3, cloud.getNumPawns());

@@ -4,15 +4,14 @@ import it.polimi.ingsw.events.AnswerEvent;
 import it.polimi.ingsw.events.RequestEvent;
 import it.polimi.ingsw.exceptions.OutOfBoundsException;
 import it.polimi.ingsw.listenables.RequestListenable;
+import it.polimi.ingsw.listenables.RequestListenableInterface;
 import it.polimi.ingsw.listeners.RequestListener;
-import it.polimi.ingsw.messages.answers.Answer;
-import it.polimi.ingsw.messages.requests.Request;
 
-import java.beans.PropertyChangeSupport;
 import java.io.*;
 import java.net.Socket;
 
-public class Connection extends RequestListenable implements Runnable {
+public class Connection implements Runnable, RequestListenableInterface {
+
 
     private final Server server;
     private final Socket socket;
@@ -23,9 +22,12 @@ public class Connection extends RequestListenable implements Runnable {
 
     private String nickname = null;
 
+    private final RequestListenable requestListenable;
+
     public Connection(Socket socket, Server server) {
         this.server = server;
         this.socket = socket;
+        this.requestListenable = new RequestListenable();
         startConnection();
     }
 
@@ -89,6 +91,7 @@ public class Connection extends RequestListenable implements Runnable {
             outputStream.close();
             inputStream.close();
             socket.close();
+            server.removeConnection(this);
         } catch (IOException e) {
             e.printStackTrace();
         } finally {
@@ -100,4 +103,18 @@ public class Connection extends RequestListenable implements Runnable {
         return this.nickname;
     }
 
+    @Override
+    public void addRequestListener(RequestListener requestListener) {
+        this.requestListenable.addRequestListener(requestListener);
+    }
+
+    @Override
+    public void removeRequestListener(RequestListener requestListener) {
+        this.requestListenable.removeRequestListener(requestListener);
+    }
+
+    @Override
+    public void fireRequest(RequestEvent requestEvent) throws Exception {
+        this.requestListenable.fireRequest(requestEvent);
+    }
 }

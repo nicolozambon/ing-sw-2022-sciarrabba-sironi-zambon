@@ -6,6 +6,7 @@ import it.polimi.ingsw.client.Client;
 import it.polimi.ingsw.events.AnswerEvent;
 import it.polimi.ingsw.events.RequestEvent;
 import it.polimi.ingsw.listeners.AnswerListener;
+import it.polimi.ingsw.model.Model;
 import it.polimi.ingsw.model.ModelSerializable;
 
 import java.util.ArrayList;
@@ -28,12 +29,11 @@ public class ExampleView implements AnswerListener {
         this.stdin = new Scanner(System.in);
         this.client = client;
         this.optionStringifier = new OptionStringifier();
-        System.out.println("Example view started");
     }
 
 
     @Override
-    public void answerPerformed(AnswerEvent answerEvent) {
+    public void onAnswerEvent(AnswerEvent answerEvent) {
         switch(answerEvent.getPropertyName()) {
             case "nickname" ->  setNickname(answerEvent);
             case "first_player" -> setNumOfPlayers(answerEvent);
@@ -42,7 +42,11 @@ public class ExampleView implements AnswerListener {
                 System.out.println("my id: " + this.id);
             }
             case "wait" -> System.out.println(optionStringifier.stringify(answerEvent.getPropertyName()));
-            case "error" -> System.out.println((String) answerEvent.getValue());
+            case "error" -> {
+                //TODO Not handle setup error
+                System.out.println((String) answerEvent.getValue());
+                optionsHandler();
+            }
             case "options" -> setOptions(answerEvent);
             case "update" -> updateModel(answerEvent);
             default -> System.out.println("Answer Error!");
@@ -64,25 +68,14 @@ public class ExampleView implements AnswerListener {
 
     private void setOptions(AnswerEvent answerEvent) {
         this.options = (List<String>) answerEvent.getValue();
+        System.out.println(this.model);
+        optionsHandler();
     }
 
     private void updateModel(AnswerEvent answerEvent) {
-        this.model = (ModelSerializable) answerEvent.getValue();
-        System.out.println(model);
-        if (this.options.size() > 0) {
-            System.out.println(optionStringifier.stringify(options));
-            int choice = stdin.nextInt();
-            stdin.nextLine();
-            if (choice <= options.size() && choice > 0) {
-                choice = choice - 1;
-                switch(this.options.get(choice)) {
-                    case "moveStudentToIsland" -> twoInputHandler(choice);
-                    case "endAction" -> noInputHandler(choice);
-                    default -> defaultInputHandler(choice);
-                }
-            }
-        }
-
+        Gson gson = new Gson();
+        Model temp = gson.fromJson((String)answerEvent.getValue(), Model.class);
+        this.model = new ModelSerializable(temp);
     }
 
     private void defaultInputHandler(int option) {
@@ -103,6 +96,22 @@ public class ExampleView implements AnswerListener {
 
     private void noInputHandler(int option) {
         client.send(new RequestEvent(this.options.get(option), this.id));
+    }
+
+    private void optionsHandler() {
+        if (this.options.size() > 0) {
+            System.out.println(optionStringifier.stringify(options));
+            int choice = stdin.nextInt();
+            stdin.nextLine();
+            if (choice <= options.size() && choice > 0) {
+                choice = choice - 1;
+                switch(this.options.get(choice)) {
+                    case "moveStudentToIsland" -> twoInputHandler(choice);
+                    case "endAction" -> noInputHandler(choice);
+                    default -> defaultInputHandler(choice);
+                }
+            }
+        }
     }
 
 }

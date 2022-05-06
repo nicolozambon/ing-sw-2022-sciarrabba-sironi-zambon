@@ -1,6 +1,6 @@
 package it.polimi.ingsw.controller;
 
-import it.polimi.ingsw.exceptions.InvalidCardException;
+import it.polimi.ingsw.exceptions.AssistantCardException;
 import it.polimi.ingsw.model.*;
 
 import java.util.ArrayList;
@@ -22,12 +22,12 @@ public class PlanningPhase {
         }};
     }
 
-    public synchronized void playAssistantCard(int choice) throws InvalidCardException{
+    public synchronized void playAssistantCard(int choice) throws AssistantCardException {
         if (callableMethod.get("playAssistantCard") > 0 && cardIsPlayable(choice)) {
             model.playAssistantCard(this.currentPlayer.getId(), choice);
             callableMethod.put("playAssistantCard", 0);
         } else {
-            throw new InvalidCardException();
+            throw new AssistantCardException();
         }
 
     }

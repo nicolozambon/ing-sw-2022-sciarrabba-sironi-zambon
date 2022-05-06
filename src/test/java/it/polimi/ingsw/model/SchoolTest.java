@@ -88,7 +88,7 @@ class SchoolTest {
         ArrayList<Student> studentArrayList2 = new ArrayList<>();
         Student student1 = new Student(Color.BLUE);
         studentArrayList2.add(student1);
-        School school = new School(studentArrayList2, new ArrayList<>());
+        School school = owner1.getSchool();
 
         school.moveStudentIsland(student1,island);
 
@@ -112,7 +112,7 @@ class SchoolTest {
         List<Tower> towers = new ArrayList<>();
         towers.add(new Tower(TowerColor.BLACK));
         Player owner1 = new Player(1, "pluto", new ArrayList<>(), towers, new Deck<>());
-        School school = new School(new ArrayList<>(), new ArrayList<>());
+        School school = owner1.getSchool();
 
         school.takeStudentsFromCloud(cloud);
         List<Student> studentArrayList2 = school.getEntrance().getPawns();
