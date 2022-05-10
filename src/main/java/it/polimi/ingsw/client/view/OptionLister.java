@@ -5,6 +5,8 @@ import com.google.gson.reflect.TypeToken;
 
 import java.io.FileNotFoundException;
 import java.io.FileReader;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.util.List;
 import java.util.Map;
 
@@ -13,14 +15,9 @@ public class OptionLister {
     private Map<String, String> dictionary;
 
     public OptionLister() {
-        String path = "src/main/resources/config/options_listing.json";
         Gson gson = new Gson();
-        try {
-            this.dictionary = gson.fromJson(new FileReader(path), new TypeToken<Map<String, String>>(){}.getType());
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        }
-
+        InputStream inputStream = getClass().getResourceAsStream("/config/options_listing.json");
+        this.dictionary = gson.fromJson(new InputStreamReader(inputStream), new TypeToken<Map<String, String>>(){}.getType());
     }
 
     public String list(List<String> options) {

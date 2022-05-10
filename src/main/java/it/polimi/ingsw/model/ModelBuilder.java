@@ -1,6 +1,7 @@
 package it.polimi.ingsw.model;
 
 import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 import it.polimi.ingsw.enums.Color;
 import it.polimi.ingsw.enums.TowerColor;
 import it.polimi.ingsw.model.card.AssistantCard;
@@ -10,6 +11,9 @@ import it.polimi.ingsw.model.card.Deck;
 
 import java.io.FileNotFoundException;
 import java.io.FileReader;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.lang.reflect.Array;
 import java.util.*;
 
 
@@ -126,24 +130,21 @@ public class ModelBuilder {
     }
 
     private List<AssistantCard> buildAssistantCards() {
-        List<AssistantCard> assistants = new ArrayList<>();
-        try {
-            Gson gson = new Gson();
-            assistants = Arrays.asList(gson.fromJson(new FileReader("src/main/resources/config/assistant_cards.json"), AssistantCard[].class));
-        } catch (FileNotFoundException exception) {
-            exception.printStackTrace();
-        }
+        List<AssistantCard> assistants;
+        Gson gson = new Gson();
+
+        InputStream inputStream = getClass().getResourceAsStream("/config/assistant_cards.json");
+        assistants = Arrays.asList(gson.fromJson(new InputStreamReader(inputStream), AssistantCard[].class));
+
         return new ArrayList<>(assistants);
     }
 
     private List<CharacterCard> buildCharacterCards() {
-        List<CharacterCard> characters = new ArrayList<>();
-        try {
-            Gson gson = new Gson();
-            characters = Arrays.asList(gson.fromJson(new FileReader("src/main/resources/config/character_cards.json"), CharacterCard[].class));
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        }
+        List<CharacterCard> characters;
+        Gson gson = new Gson();
+
+        InputStream inputStream = getClass().getResourceAsStream("/config/character_cards.json");
+        characters = Arrays.asList(gson.fromJson(new InputStreamReader(inputStream), CharacterCard[].class));
 
         CharacterCardFactory factory = new CharacterCardFactory();
         List<CharacterCard> characterCards = new ArrayList<>();

@@ -4,8 +4,7 @@ import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import it.polimi.ingsw.events.RequestEvent;
 
-import java.io.FileNotFoundException;
-import java.io.FileReader;
+import java.io.*;
 import java.util.List;
 import java.util.Map;
 import java.util.Scanner;
@@ -13,7 +12,7 @@ import java.util.Scanner;
 //TODO Class for handling input by the user
 public class OptionHandler {
 
-    private Map<String, String> optionSelected;
+    private final Map<String, String> optionSelected;
     private final OptionLister optionLister;
     private final Scanner stdin;
     private int playerId;
@@ -24,12 +23,8 @@ public class OptionHandler {
         this.stdin = new Scanner(System.in);
 
         Gson gson = new Gson();
-        String path = "src/main/resources/config/options_selected.json";
-        try {
-            this.optionSelected = gson.fromJson(new FileReader(path), new TypeToken<Map<String, String>>(){}.getType());
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        }
+        InputStream inputStream = getClass().getResourceAsStream("/config/options_selected.json");
+        this.optionSelected = gson.fromJson(new InputStreamReader(inputStream), new TypeToken<Map<String, String>>(){}.getType());
     }
 
     public OptionHandler() {
@@ -38,12 +33,8 @@ public class OptionHandler {
         this.stdin = new Scanner(System.in);
 
         Gson gson = new Gson();
-        String path = "src/main/resources/config/options_selected.json";
-        try {
-            this.optionSelected = gson.fromJson(new FileReader(path), new TypeToken<Map<String, String>>(){}.getType());
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        }
+        InputStream inputStream = getClass().getResourceAsStream("/config/options_selected.json");
+        this.optionSelected = gson.fromJson(new InputStreamReader(inputStream), new TypeToken<Map<String, String>>(){}.getType());
     }
 
     public void setPlayerId(int playerId) {
