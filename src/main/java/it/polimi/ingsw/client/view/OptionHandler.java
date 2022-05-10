@@ -57,6 +57,10 @@ public class OptionHandler {
                     case "first_player" -> {
                         return setNumOfPlayers(options.get(choice));
                     }
+
+                    case "extraAction" -> {
+                        return extraActionInputHandler(options.get(choice));
+                    }
                     default -> {
                         return oneInputHandler(options.get(choice));
                     }
@@ -92,6 +96,16 @@ public class OptionHandler {
         System.out.println(this.optionSelected.get(option));
         String nickname = stdin.nextLine();
         return new RequestEvent("nickname", this.playerId, nickname);
+    }
+
+    private RequestEvent extraActionInputHandler(String option) {
+        System.out.println(this.optionSelected.get(option)); //TODO show correct messages based on character card
+        String[] input = stdin.nextLine().split(",");
+        int value0 = Integer.parseInt(input[0]);
+        int value1 = Integer.parseInt(input[1]);
+        int value2 = Integer.parseInt(input[2]);
+        int value3 = Integer.parseInt(input[3]);
+        return new RequestEvent(option, this.playerId, value0, value1, value2, value3);
     }
 
     private RequestEvent setNumOfPlayers(String option) {

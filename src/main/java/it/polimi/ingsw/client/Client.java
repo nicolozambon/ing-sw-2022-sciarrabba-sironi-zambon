@@ -1,5 +1,6 @@
 package it.polimi.ingsw.client;
 
+import com.google.gson.Gson;
 import it.polimi.ingsw.events.AnswerEvent;
 import it.polimi.ingsw.events.RequestEvent;
 import it.polimi.ingsw.listenables.AnswerListenable;
@@ -17,22 +18,25 @@ public class Client implements AnswerListenableInterface {
     private Socket socket;
     private boolean active;
 
-    private ObjectOutputStream outputStream;
-    private ObjectInputStream inputStream;
+    private DataOutputStream outputStream;
+    private DataInputStream inputStream;
 
     private ExampleView exampleView;
 
     private final AnswerListenable answerListenable;
 
+    private final Gson gson;
+
     public Client(String ip, int port){
         this.ip = ip;
         this.port = port;
         this.answerListenable = new AnswerListenable();
+        this.gson = new Gson();
     }
 
     public synchronized void read() {
         try {
-            AnswerEvent answer = (AnswerEvent) inputStream.readObject();
+            AnswerEvent answer = gson.fromJson(inputStream.readUTF(), AnswerEvent.class);
             this.fireAnswer(answer);
         } catch (Exception e) {
             e.printStackTrace();
@@ -43,8 +47,8 @@ public class Client implements AnswerListenableInterface {
     public void startClient() throws IOException {
         this.socket = new Socket(ip, port);
 
-        this.outputStream = new ObjectOutputStream(socket.getOutputStream());
-        this.inputStream = new ObjectInputStream(socket.getInputStream());
+        this.outputStream = new DataOutputStream(socket.getOutputStream());
+        this.inputStream = new DataInputStream(socket.getInputStream());
         this.active = true;
 
         System.out.println("Connection established");
@@ -72,9 +76,8 @@ public class Client implements AnswerListenableInterface {
 
     public void send(RequestEvent request) {
         try {
-            outputStream.writeObject(request);
+            outputStream.writeUTF(gson.toJson(request));
             outputStream.flush();
-            outputStream.reset();
         }catch(Exception e){
             e.printStackTrace();
             stopClient();

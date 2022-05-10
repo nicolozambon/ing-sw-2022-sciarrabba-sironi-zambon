@@ -12,8 +12,7 @@ import java.util.ArrayList;
 import java.util.Map;
 
 //TODO add correct getter, add isLinkeRight and IsLinkedLeft IslandSerializable, add List of players nickname
-public final class ModelSerializable implements Serializable {
-    private static final long serialVersionUID = 987654321L;
+public final class ModelSerializable {
 
     //Players State
     private List<SchoolSerializable> schools;
@@ -26,9 +25,6 @@ public final class ModelSerializable implements Serializable {
     private List<CloudSerializable> clouds;
     private List<CharacterCardSerializable> characterCards;
     private List<Color> professors;
-
-    //Options
-    private Map<Integer, String> options;
 
     public ModelSerializable(Model model) {
         schools = new ArrayList<>();
@@ -120,8 +116,8 @@ public final class ModelSerializable implements Serializable {
     }
 
 
-    private static class SchoolSerializable implements Serializable { //A SchoolSerializable for all players.
-        private static final long serialVersionUID = 987654321L;
+    private static class SchoolSerializable { //A SchoolSerializable for all players.
+
         Map<Color, Integer> diningRoom = new HashMap<>();
         List<Color> entrance = new ArrayList<>(); //Ordered by #Position of Entrance in the board.
         List<Color> profTable = new ArrayList<>();
@@ -155,8 +151,7 @@ public final class ModelSerializable implements Serializable {
     }
 
 
-    private static class IslandSerializable implements Serializable {
-        private static final long serialVersionUID = 987654321L;
+    private static class IslandSerializable {
 
         Map<Color, Integer> students;
         boolean towerPresence;
@@ -189,9 +184,7 @@ public final class ModelSerializable implements Serializable {
         }
     }
 
-    private static class CharacterCardSerializable implements Serializable {
-
-        private static final long serialVersionUID = 987654321L;
+    private static class CharacterCardSerializable {
 
         int id;
         String effect;
@@ -213,8 +206,7 @@ public final class ModelSerializable implements Serializable {
         }
     }
 
-    private static class CloudSerializable implements Serializable{
-        private static final long serialVersionUID = 987654321L;
+    private static class CloudSerializable {
 
         List<Color> students;
 

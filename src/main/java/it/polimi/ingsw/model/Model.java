@@ -60,7 +60,7 @@ public class Model implements AnswerListenableInterface {
 
     public void playAssistantCard(int playerId, int choice) throws AssistantCardException {
         players.get(playerId).playAssistantCard(choice);
-        fireAnswer(new AnswerEvent("update", gson.toJson(this)));
+        fireAnswer(new AnswerEvent("update", this));
     }
 
 
@@ -75,7 +75,7 @@ public class Model implements AnswerListenableInterface {
         } else {
             throw new CharacterCardException();
         }
-        fireAnswer(new AnswerEvent("update", gson.toJson(this)));
+        fireAnswer(new AnswerEvent("update", this));
     }
 
     public void moveStudentToDiningRoom(int playerId, int choice) {
@@ -83,21 +83,21 @@ public class Model implements AnswerListenableInterface {
         Student student = player.getSchool().getEntrance().getPawns().get(choice);
         if (player.moveStudentDiningRoom(student, this.coinReserve))  this.coinReserve--;
         this.handler.professorControl(players.get(playerId), student.getColor(), startingProfessorBoard);
-        fireAnswer(new AnswerEvent("update", gson.toJson(this)));
+        fireAnswer(new AnswerEvent("update", this));
     }
 
     public void moveStudentToIsland(int playerId, int studentChoice, int islandChoice) {
         Player player = players.get(playerId);
         Student student = player.getSchool().getEntrance().getPawns().get(studentChoice);
         player.moveStudentIsland(student, islands.get(islandChoice));
-        fireAnswer(new AnswerEvent("update", gson.toJson(this)));
+        fireAnswer(new AnswerEvent("update", this));
     }
 
     public void moveMotherNature(int playerId, int stepsChoice) throws MotherNatureStepsException {
         this.handler.motherNatureMovement(players.get(playerId), motherNature, stepsChoice);
         playerHasFinishedTowers();
         threeGroupsIslandRemaining();
-        fireAnswer(new AnswerEvent("update", gson.toJson(this)));
+        fireAnswer(new AnswerEvent("update", this));
     }
 
     public void addStudentsToClouds() {
@@ -106,18 +106,18 @@ public class Model implements AnswerListenableInterface {
                 bag.extractStudentAndMove(cloud);
             }
         }
-        fireAnswer(new AnswerEvent("update", gson.toJson(this)));
+        fireAnswer(new AnswerEvent("update", this));
     }
 
     public void takeStudentsFromCloud(int playerId, int choice) throws CloudException {
         if (choice > clouds.size() - 1 || clouds.get(choice).getNumPawns() == 0) throw new CloudException();
         players.get(playerId).takeStudentsFromCloud(clouds.get(choice));
-        fireAnswer(new AnswerEvent("update", gson.toJson(this)));
+        fireAnswer(new AnswerEvent("update", this));
     }
 
     public void extraAction(int ... values) {
         this.handler.extraAction(players.get(0), this, values);
-        fireAnswer(new AnswerEvent("update", gson.toJson(this)));
+        fireAnswer(new AnswerEvent("update", this));
     }
 
     protected MotherNature getMotherNature() {
@@ -156,7 +156,7 @@ public class Model implements AnswerListenableInterface {
         for (Player player : players) {
             player.returnStudentsToBag(bag, color, num);
         }
-        fireAnswer(new AnswerEvent("update", gson.toJson(this)));
+        fireAnswer(new AnswerEvent("update", this));
     }
 
     /**

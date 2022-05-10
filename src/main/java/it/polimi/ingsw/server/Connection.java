@@ -1,5 +1,6 @@
 package it.polimi.ingsw.server;
 
+import com.google.gson.Gson;
 import it.polimi.ingsw.events.AnswerEvent;
 import it.polimi.ingsw.events.RequestEvent;
 import it.polimi.ingsw.exceptions.OutOfBoundsException;
@@ -17,17 +18,20 @@ public class Connection implements Runnable, RequestListenableInterface {
     private final Socket socket;
     private boolean active;
 
-    private ObjectInputStream inputStream;
-    private ObjectOutputStream outputStream;
+    private DataInputStream inputStream;
+    private DataOutputStream outputStream;
 
     private String nickname = null;
 
     private final RequestListenable requestListenable;
 
+    private final Gson gson;
+
     public Connection(Socket socket, Server server) {
         this.server = server;
         this.socket = socket;
         this.requestListenable = new RequestListenable();
+        this.gson = new Gson();
         startConnection();
     }
 
@@ -42,7 +46,7 @@ public class Connection implements Runnable, RequestListenableInterface {
 
     public synchronized void read(){
         try {
-            RequestEvent request = (RequestEvent) inputStream.readObject();
+            RequestEvent request = this.gson.fromJson(inputStream.readUTF(), RequestEvent.class);
             switch (request.getPropertyName()) {
                 case "nickname" -> {
                     this.nickname = request.getString();
@@ -63,9 +67,8 @@ public class Connection implements Runnable, RequestListenableInterface {
 
     public void send(AnswerEvent answer) {
         try {
-            outputStream.writeObject(answer);
+            outputStream.writeUTF(gson.toJson(answer));
             outputStream.flush();
-            outputStream.reset();
         } catch (IOException e) {
             e.printStackTrace();
             stopConnection();
@@ -74,8 +77,8 @@ public class Connection implements Runnable, RequestListenableInterface {
 
     public void startConnection() {
         try {
-            this.outputStream = new ObjectOutputStream(socket.getOutputStream());
-            this.inputStream = new ObjectInputStream(socket.getInputStream());
+            this.outputStream = new DataOutputStream(socket.getOutputStream());
+            this.inputStream = new DataInputStream(socket.getInputStream());
             this.active = true;
         } catch (IOException e) {
             e.printStackTrace();

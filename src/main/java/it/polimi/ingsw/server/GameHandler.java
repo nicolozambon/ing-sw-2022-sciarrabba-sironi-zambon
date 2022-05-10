@@ -17,14 +17,12 @@ public class GameHandler implements Runnable {
     private final Controller controller;
     private final Map<String, Connection> playersConnection;
     private final VirtualView virtualView;
-    private final Gson gson;
 
     public GameHandler(Map<String, Connection> playersConnection) {
         this.playersConnection = new HashMap<>(playersConnection);
         this.model = new ModelBuilder().buildModel(this.playersConnection.keySet().stream().toList());
         this.controller = model.getController();
         this.virtualView = new VirtualView();
-        this.gson = new Gson();
     }
 
     @Override
@@ -42,7 +40,7 @@ public class GameHandler implements Runnable {
         }
 
         this.virtualView.setGameHandler(this);
-        this.launchUpdateAnswerEvent(new AnswerEvent("update", gson.toJson(this.model)));
+        this.launchUpdateAnswerEvent(new AnswerEvent("update", this.model));
         this.launchOptionsAnswerEvent();
     }
 
@@ -57,10 +55,11 @@ public class GameHandler implements Runnable {
         List<String> options = controller.getOptions();
         for (String nickname : playersConnection.keySet()) {
             if (currentPlayer.equals(nickname)) {
-                playersConnection.get(nickname).send(new AnswerEvent("options", gson.toJson(options)));
+                System.out.println("sending options");
+                playersConnection.get(nickname).send(new AnswerEvent("options", options));
             } else {
                 //playersConnection.get(nickname).send(new AnswerEvent("options", gson.toJson(new ArrayList<String>()) ));
-                playersConnection.get(nickname).send(new AnswerEvent("wait", null));
+                playersConnection.get(nickname).send(new AnswerEvent("wait"));
             }
         }
     }

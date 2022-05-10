@@ -8,6 +8,6 @@
   "moveMotherNature": "Choose the steps to move mother nature:",
   "playCharacterCard" : "Choose a character card to play:",
   "takeStudentsFromCloud" : "Choose the cloud to take students from:",
-  "extraAction" : "TBD:",
+  "extraAction" : "1,5,2,3",
   "endAction" : "Ending your action phase..."
 }

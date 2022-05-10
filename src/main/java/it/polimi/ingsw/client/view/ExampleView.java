@@ -1,10 +1,8 @@
 package it.polimi.ingsw.client.view;
 
 import com.google.gson.Gson;
-import com.google.gson.reflect.TypeToken;
 import it.polimi.ingsw.client.Client;
 import it.polimi.ingsw.events.AnswerEvent;
-import it.polimi.ingsw.events.RequestEvent;
 import it.polimi.ingsw.listeners.AnswerListener;
 import it.polimi.ingsw.model.Model;
 import it.polimi.ingsw.model.ModelSerializable;
@@ -40,7 +38,7 @@ public class ExampleView implements AnswerListener {
     public void onAnswerEvent(AnswerEvent answerEvent) {
         switch(answerEvent.getPropertyName()) {
             case "set_id" -> {
-                this.id = (int) answerEvent.getValue();
+                this.id = answerEvent.getNum();
                 this.optionHandler = new OptionHandler(this.id);
             }
             //TODO not setting nickname in example view
@@ -48,7 +46,7 @@ public class ExampleView implements AnswerListener {
             case "update" -> updateModel(answerEvent);
             case "wait" -> System.out.println(optionLister.list(answerEvent.getPropertyName()));
             case "error" -> {
-                System.out.println((String) answerEvent.getValue());
+                System.out.println((String) answerEvent.getMessage());
                 client.send(optionHandler.getRequestEvent(this.options));
             }
             default -> System.out.println("Answer Error!");
@@ -57,12 +55,12 @@ public class ExampleView implements AnswerListener {
 
 
     private void setOptions(AnswerEvent answerEvent) {
-        this.options = gson.fromJson((String) answerEvent.getValue(), new TypeToken<List<String>>(){}.getType());
+        this.options = answerEvent.getOptions();
         client.send(optionHandler.getRequestEvent(this.options));
     }
 
     private void updateModel(AnswerEvent answerEvent) {
-        Model temp = gson.fromJson((String)answerEvent.getValue(), Model.class);
+        Model temp = answerEvent.getModel();
         ModelSerializable model = new ModelSerializable(temp);
         System.out.println(model);
     }

@@ -1,13 +1,6 @@
 package it.polimi.ingsw.events;
 
-import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-
-public class RequestEvent implements Serializable {
-
-    private static final long serialVersionUID = 987654321L;
+public class RequestEvent {
 
     private final String propertyName;
     private final int playerId;

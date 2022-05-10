@@ -80,7 +80,7 @@ public class Server {
     public void enqueuePlayer(Connection connection) {
         synchronized (queue) {
             this.queue.add(connection);
-            connection.send(new AnswerEvent("wait", null));
+            connection.send(new AnswerEvent("wait"));
             this.queue.notifyAll();
         }
 
@@ -108,7 +108,7 @@ public class Server {
 
             if (numPlayers < 0) {
                 options.add("first_player");
-                connection.send(new AnswerEvent("options", gson.toJson(options)));
+                connection.send(new AnswerEvent("options", options));
                 options.remove("first_player");
                 while (numPlayers < 0) {
                     try {
@@ -120,10 +120,10 @@ public class Server {
                     }
                 }
             }
+            options.add("nickname");
+            connection.send(new AnswerEvent("options", options));
+            options.remove("nickname");
             do {
-                options.add("nickname");
-                connection.send(new AnswerEvent("options", gson.toJson(options)));
-                options.remove("nickname");
                 try {
                     synchronized (this) {
                         wait();
@@ -135,7 +135,7 @@ public class Server {
 
             players.put(connection.getNickname(), connection);
             System.out.println("added player to a game");
-            connection.send(new AnswerEvent("wait", null));
+            connection.send(new AnswerEvent("wait"));
 
             if (players.size() == numPlayers) {
                 GameHandler game = new GameHandler(players);
