@@ -46,7 +46,7 @@ public class ExampleView implements AnswerListener {
             case "update" -> updateModel(answerEvent);
             case "wait" -> System.out.println(optionLister.list(answerEvent.getPropertyName()));
             case "error" -> {
-                System.out.println((String) answerEvent.getMessage());
+                System.out.println(answerEvent.getMessage());
                 client.send(optionHandler.getRequestEvent(this.options));
             }
             default -> System.out.println("Answer Error!");
