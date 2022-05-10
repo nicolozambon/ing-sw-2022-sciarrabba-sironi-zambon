@@ -59,7 +59,7 @@ public class AnswerEvent {
         return propertyName;
     }
 
-    public Object getMessage() {
+    public String getMessage() {
         return message;
     }
 

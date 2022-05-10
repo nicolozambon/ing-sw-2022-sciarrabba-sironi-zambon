@@ -5,7 +5,7 @@ import it.polimi.ingsw.events.RequestEvent;
 import it.polimi.ingsw.exceptions.*;
 import it.polimi.ingsw.model.Model;
 import it.polimi.ingsw.model.ModelBuilder;
-import it.polimi.ingsw.model.ModelSerializable;
+import it.polimi.ingsw.model.ThinModel;
 import it.polimi.ingsw.model.Player;
 import org.junit.jupiter.api.*;
 
@@ -82,20 +82,20 @@ class ControllerTest {
 
         Player player = controller.getActivePlayer();
         assertEquals(2, player.getId());
-        ModelSerializable modelSerializable = new ModelSerializable(this.model);
-        int initialSize =  modelSerializable.getEntranceByPlayerId(player.getId()).size();
+        ThinModel thinModel = new ThinModel(this.model);
+        int initialSize =  thinModel.getEntranceByPlayerId(player.getId()).size();
 
         controller.moveStudentToDiningRoom(2, 0);
         controller.moveStudentToDiningRoom(2, 0);
         controller.moveStudentToDiningRoom(2, 0);
         controller.moveStudentToDiningRoom(2, 0);
 
-        modelSerializable = new ModelSerializable(this.model);
-        assertEquals(initialSize-4, modelSerializable.getEntranceByPlayerId(player.getId()).size());
+        thinModel = new ThinModel(this.model);
+        assertEquals(initialSize-4, thinModel.getEntranceByPlayerId(player.getId()).size());
 
         int numStudentInDining = 0;
         for (Color color : Color.values()) {
-            numStudentInDining += modelSerializable.getDRByPlayerAndColor(player.getId(), color);
+            numStudentInDining += thinModel.getDRByPlayerAndColor(player.getId(), color);
         }
         assertEquals(4, numStudentInDining);
     }
@@ -108,37 +108,37 @@ class ControllerTest {
 
         Player player = controller.getActivePlayer();
         assertEquals(2, player.getId());
-        ModelSerializable modelSerializable = new ModelSerializable(this.model);
-        int initialSize =  modelSerializable.getEntranceByPlayerId(player.getId()).size();
+        ThinModel thinModel = new ThinModel(this.model);
+        int initialSize =  thinModel.getEntranceByPlayerId(player.getId()).size();
 
         assertThrows(IslandException.class, () -> controller.moveStudentToIsland(2, 0, 12));
         assertThrows(IslandException.class, () -> controller.moveStudentToIsland(2, 0, -1));
 
-        modelSerializable = new ModelSerializable(this.model);
-        int prevSize = modelSerializable.getStudentOnIslandById(6);
+        thinModel = new ThinModel(this.model);
+        int prevSize = thinModel.getStudentOnIslandById(6);
         controller.moveStudentToIsland(2, 0, 6);
-        modelSerializable = new ModelSerializable(this.model);
-        assertEquals(prevSize + 1, modelSerializable.getStudentOnIslandById(6));
+        thinModel = new ThinModel(this.model);
+        assertEquals(prevSize + 1, thinModel.getStudentOnIslandById(6));
 
-        modelSerializable = new ModelSerializable(this.model);
-        prevSize = modelSerializable.getStudentOnIslandById(9);
+        thinModel = new ThinModel(this.model);
+        prevSize = thinModel.getStudentOnIslandById(9);
         controller.moveStudentToIsland(2, 0, 9);
-        modelSerializable = new ModelSerializable(this.model);
-        assertEquals(prevSize + 1, modelSerializable.getStudentOnIslandById(9));
+        thinModel = new ThinModel(this.model);
+        assertEquals(prevSize + 1, thinModel.getStudentOnIslandById(9));
 
-        modelSerializable = new ModelSerializable(this.model);
-        prevSize = modelSerializable.getStudentOnIslandById(2);
+        thinModel = new ThinModel(this.model);
+        prevSize = thinModel.getStudentOnIslandById(2);
         controller.moveStudentToIsland(2, 0, 2);
-        modelSerializable = new ModelSerializable(this.model);
-        assertEquals(prevSize + 1, modelSerializable.getStudentOnIslandById(2));
+        thinModel = new ThinModel(this.model);
+        assertEquals(prevSize + 1, thinModel.getStudentOnIslandById(2));
 
-        modelSerializable = new ModelSerializable(this.model);
-        prevSize = modelSerializable.getStudentOnIslandById(7);
+        thinModel = new ThinModel(this.model);
+        prevSize = thinModel.getStudentOnIslandById(7);
         controller.moveStudentToIsland(2, 0, 7);
-        modelSerializable = new ModelSerializable(this.model);
-        assertEquals(prevSize + 1, modelSerializable.getStudentOnIslandById(7));
+        thinModel = new ThinModel(this.model);
+        assertEquals(prevSize + 1, thinModel.getStudentOnIslandById(7));
 
-        assertEquals(initialSize-4, modelSerializable.getEntranceByPlayerId(player.getId()).size());
+        assertEquals(initialSize-4, thinModel.getEntranceByPlayerId(player.getId()).size());
 
     }
 
@@ -159,14 +159,14 @@ class ControllerTest {
         assertThrows(MotherNatureStepsException.class, () -> controller.moveMotherNature(2, 5));
         assertThrows(MotherNatureStepsException.class, () -> controller.moveMotherNature(2, 0));
 
-        ModelSerializable modelSerializable = new ModelSerializable(this.model);
-        int start = modelSerializable.getMNPosition();
+        ThinModel thinModel = new ThinModel(this.model);
+        int start = thinModel.getMNPosition();
 
         controller.moveMotherNature(2, 3);
 
-        modelSerializable = new ModelSerializable(this.model);
+        thinModel = new ThinModel(this.model);
 
-        assertEquals((start + 3) % 12, modelSerializable.getMNPosition());
+        assertEquals((start + 3) % 12, thinModel.getMNPosition());
     }
 
     private void playUntilCloud(int playerId) throws NotPlayerTurnException, IslandException, AssistantCardException, MotherNatureStepsException {
@@ -180,9 +180,9 @@ class ControllerTest {
         playUntilCloud(2);
 
         controller.takeStudentsFromCloud(2, 0);
-        ModelSerializable modelSerializable = new ModelSerializable(this.model);
-        assertEquals(0, modelSerializable.getStudentOnCloud(0));
-        assertEquals(9, modelSerializable.getEntranceByPlayerId(0).size());
+        ThinModel thinModel = new ThinModel(this.model);
+        assertEquals(0, thinModel.getStudentOnCloud(0));
+        assertEquals(9, thinModel.getEntranceByPlayerId(0).size());
 
     }
 
@@ -192,11 +192,11 @@ class ControllerTest {
         playUntilCloud(2);
         controller.takeStudentsFromCloud(2, 0);
 
-        ModelSerializable modelSerializable = new ModelSerializable(this.model);
-        int prev = modelSerializable.getCharacterCardCost(3);
+        ThinModel thinModel = new ThinModel(this.model);
+        int prev = thinModel.getCharacterCardCost(3);
         controller.playCharacterCard(2, 3);
-        modelSerializable = new ModelSerializable(this.model);
-        assertEquals(prev + 1, modelSerializable.getCharacterCardCost(3));
+        thinModel = new ThinModel(this.model);
+        assertEquals(prev + 1, thinModel.getCharacterCardCost(3));
     }
 
     @Test

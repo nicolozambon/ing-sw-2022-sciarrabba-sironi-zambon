@@ -1,5 +1,6 @@
 package it.polimi.ingsw.model;
 
+import it.polimi.ingsw.exceptions.MotherNatureStepsException;
 import it.polimi.ingsw.model.card.MotherNatureCharacterCard;
 
 import java.util.List;
@@ -13,7 +14,7 @@ public class MotherNatureHandler extends Handler {
     }
 
     @Override
-    protected void motherNatureMovement(Player currentPlayer, MotherNature motherNature, int stepsChoice) {
+    protected void motherNatureMovement(Player currentPlayer, MotherNature motherNature, int stepsChoice) throws MotherNatureStepsException {
         Player mostInfluentialPlayer = null;
         if(stepsChoice > 0 && stepsChoice <= currentPlayer.getLastAssistantCard().getSteps() + card.getExtraMovement()) {
             motherNature.stepsToMove(stepsChoice);
@@ -22,6 +23,8 @@ public class MotherNatureHandler extends Handler {
                 switchTowers(motherNature.getPosition(), mostInfluentialPlayer);
                 unifyIsland(motherNature.getPosition());
             }
+        } else {
+            throw new MotherNatureStepsException();
         }
     }
 

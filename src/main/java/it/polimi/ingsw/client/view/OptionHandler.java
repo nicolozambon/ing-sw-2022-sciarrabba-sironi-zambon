@@ -16,7 +16,7 @@ public class OptionHandler {
     private Map<String, String> optionSelected;
     private final OptionLister optionLister;
     private final Scanner stdin;
-    private final int playerId;
+    private int playerId;
 
     public OptionHandler(int playerId) {
         this.playerId = playerId;
@@ -30,6 +30,24 @@ public class OptionHandler {
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
+    }
+
+    public OptionHandler() {
+        this.playerId = -1;
+        this.optionLister = new OptionLister();
+        this.stdin = new Scanner(System.in);
+
+        Gson gson = new Gson();
+        String path = "src/main/resources/config/options_selected.json";
+        try {
+            this.optionSelected = gson.fromJson(new FileReader(path), new TypeToken<Map<String, String>>(){}.getType());
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void setPlayerId(int playerId) {
+        this.playerId = playerId;
     }
 
     public RequestEvent getRequestEvent(List<String> options) {
@@ -114,4 +132,5 @@ public class OptionHandler {
         stdin.nextLine();
         return new RequestEvent("first_player", this.playerId, num);
     }
+
 }

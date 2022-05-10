@@ -5,9 +5,7 @@ import org.junit.jupiter.api.Test;
 import java.util.ArrayList;
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.*;
-
-class ModelSerializableTest {
+class ThinModelTest {
 
     @Test
     void testToString() {
@@ -15,7 +13,7 @@ class ModelSerializableTest {
         names.add("P1");
         names.add("P2");
         Model model = new ModelBuilder().buildModel(names);
-        ModelSerializable modelSerializable = new ModelSerializable(model);
-        System.out.println(modelSerializable);
+        ThinModel thinModel = new ThinModel(model);
+        System.out.println(thinModel);
     }
 }

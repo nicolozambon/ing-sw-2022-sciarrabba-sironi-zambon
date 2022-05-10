@@ -1,12 +1,9 @@
 package it.polimi.ingsw.server;
 
-import com.google.gson.Gson;
 import it.polimi.ingsw.controller.Controller;
 import it.polimi.ingsw.events.AnswerEvent;
-import it.polimi.ingsw.listenables.AnswerListenable;
 import it.polimi.ingsw.model.Model;
 import it.polimi.ingsw.model.ModelBuilder;
-import it.polimi.ingsw.model.ModelSerializable;
 import it.polimi.ingsw.model.Player;
 
 import java.util.*;
@@ -33,6 +30,7 @@ public class GameHandler implements Runnable {
 
         for (Player player : controller.getPlayersToPlay()) {
             playersConnection.get(player.getNickname()).send(new AnswerEvent("set_id", player.getId()));
+            playersConnection.get(player.getNickname()).send(new AnswerEvent("set_nickname", player.getNickname()));
         }
 
         for (String nickname : playersConnection.keySet()) {

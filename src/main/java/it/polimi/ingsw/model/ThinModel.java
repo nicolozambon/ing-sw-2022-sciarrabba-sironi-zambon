@@ -5,14 +5,13 @@ import it.polimi.ingsw.enums.TowerColor;
 import it.polimi.ingsw.model.card.AssistantCard;
 import it.polimi.ingsw.model.card.CharacterCard;
 
-import java.io.Serializable;
 import java.util.HashMap;
 import java.util.List;
 import java.util.ArrayList;
 import java.util.Map;
 
-//TODO add correct getter, add isLinkeRight and IsLinkedLeft IslandSerializable, add List of players nickname
-public final class ModelSerializable {
+//TODO add List of players nickname
+public final class ThinModel {
 
     //Players State
     private List<SchoolSerializable> schools;
@@ -26,7 +25,7 @@ public final class ModelSerializable {
     private List<CharacterCardSerializable> characterCards;
     private List<Color> professors;
 
-    public ModelSerializable(Model model) {
+    public ThinModel(Model model) {
         schools = new ArrayList<>();
         coins = new ArrayList<>();
         assistantsCards = new ArrayList<>();
@@ -157,11 +156,15 @@ public final class ModelSerializable {
         boolean towerPresence;
         TowerColor color;
         boolean motherNaturePresence;
+        boolean isLinkedPrev;
+        boolean isLinkedNext;
 
         IslandSerializable(Island island) {
             this.students = new HashMap<>();
             this.towerPresence = false;
             this.motherNaturePresence = false;
+            this.isLinkedPrev = island.isUnifyPrev();
+            this.isLinkedNext = island.isUnifyNext();
 
             for (Color color : Color.values()) {
                 students.put(color, island.countStudentsByColor(color));
@@ -180,6 +183,8 @@ public final class ModelSerializable {
                     ", towerPresence = " + towerPresence +
                     ", color = " + color +
                     ", motherNaturePresence = " + motherNaturePresence +
+                    ", linkedPrev = " + isLinkedPrev +
+                    ", linkedNext = " + isLinkedNext +
                     "}";
         }
     }

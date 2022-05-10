@@ -1,36 +1,30 @@
 package it.polimi.ingsw.client.view;
 
-import com.google.gson.Gson;
 import it.polimi.ingsw.client.Client;
 import it.polimi.ingsw.events.AnswerEvent;
 import it.polimi.ingsw.listeners.AnswerListener;
 import it.polimi.ingsw.model.Model;
-import it.polimi.ingsw.model.ModelSerializable;
+import it.polimi.ingsw.model.ThinModel;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Scanner;
 
 public class ExampleView implements AnswerListener {
 
-    private final Scanner stdin;
     private final Client client;
-    private final Gson gson;
 
     private String nickname;
     private int id;
 
     private List<String> options;
     private final OptionLister optionLister;
-    private OptionHandler optionHandler;
+    private final OptionHandler optionHandler;
 
     public ExampleView(Client client) {
-        this.stdin = new Scanner(System.in);
         this.client = client;
         this.optionLister = new OptionLister();
         this.options = new ArrayList<>();
-        this.gson = new Gson();
-        this.optionHandler = new OptionHandler(-1);
+        this.optionHandler = new OptionHandler();
     }
 
 
@@ -39,7 +33,13 @@ public class ExampleView implements AnswerListener {
         switch(answerEvent.getPropertyName()) {
             case "set_id" -> {
                 this.id = answerEvent.getNum();
-                this.optionHandler = new OptionHandler(this.id);
+                this.optionHandler.setPlayerId(this.id);
+                System.out.println("My id is: " + this.id);
+            }
+
+            case "set_nickname" -> {
+                this.nickname = answerEvent.getMessage();
+                System.out.println("My nickname is: " + this.nickname);
             }
             //TODO not setting nickname in example view
             case "options" -> setOptions(answerEvent);
@@ -61,7 +61,7 @@ public class ExampleView implements AnswerListener {
 
     private void updateModel(AnswerEvent answerEvent) {
         Model temp = answerEvent.getModel();
-        ModelSerializable model = new ModelSerializable(temp);
+        ThinModel model = new ThinModel(temp);
         System.out.println(model);
     }
 
