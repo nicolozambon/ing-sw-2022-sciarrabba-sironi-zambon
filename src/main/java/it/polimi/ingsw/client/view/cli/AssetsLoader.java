@@ -2,6 +2,7 @@ package it.polimi.ingsw.client.view.cli;
 
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.InputStream;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Scanner;
@@ -9,23 +10,28 @@ import java.util.Scanner;
 public class AssetsLoader {
 
     final String FOLDER_PATH = "src/main/resources/assets/cli/";
+    final String FOLDER_PATH_TEST = "/assets/cli/";
 
     private String[][] readMatrixFromFile(String filename) {
         StringBuilder builder = new StringBuilder();
         String string = null;
-        try {
-            File file = new File(this.FOLDER_PATH + filename + ".txt");
-            Scanner reader = new Scanner(file);
-            while (reader.hasNextLine()) {
-                String row = reader.nextLine();
-                row += '\n';
-                builder.append(row.replace('?', ' '));
-            }
-            reader.close();
-        } catch (FileNotFoundException e) {
-            System.out.println("An error occurred.");
-            e.printStackTrace();
+
+        // File file = new File(this.FOLDER_PATH + filename + ".txt");
+        //Scanner reader = new Scanner(file);
+
+        // TODO start try here
+
+        InputStream is = getClass().getResourceAsStream(FOLDER_PATH_TEST + filename + ".txt");
+        Scanner reader = new Scanner(is);
+        while (reader.hasNextLine()) {
+            String row = reader.nextLine();
+            row += '\n';
+            builder.append(row.replace('?', ' '));
         }
+        reader.close();
+
+        // TODO end try here
+
         string = builder.toString();
         int colsNumber = string.indexOf("\n");
         string = string.replace("\n", "");
