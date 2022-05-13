@@ -8,7 +8,7 @@ import java.io.IOException;
 public class DemoLauncher {
 
     public static void main(String[] args) throws IOException {
-        CLI cli = new CLI();
+        CLI cli = new CLI(3);
 
         // Get main school
         String[][] mainSchool = cli.getSchools().get(0);
@@ -31,15 +31,16 @@ public class DemoLauncher {
         cli.addStudentToBoard(firstIsland, Color.YELLOW);
         cli.addStudentToBoard(firstIsland, Color.RED);
         cli.addStudentToBoard(firstIsland, Color.GREEN);
+        cli.addStudentToBoard(firstIsland, Color.PINK);
+        cli.addStudentToBoard(firstIsland, Color.BLUE);
         cli.addMotherNatureToBoard(firstIsland);
-        cli.addTowerToBoard(firstIsland, TowerColor.BLACK);
 
         // Add some pawns to the second island
         String[][] secondIsland = cli.getIslands().get(1); // Get the second island
         cli.addStudentToBoard(secondIsland, Color.BLUE);
         cli.addStudentToBoard(secondIsland, Color.PINK);
         cli.addStudentToBoard(secondIsland, Color.GREEN);
-        cli.addTowerToBoard(secondIsland, TowerColor.WHITE);
+        cli.addMotherNatureToBoard(secondIsland);
 
         // Add link between first and second islands
         cli.addLinkToNextIsland(0);

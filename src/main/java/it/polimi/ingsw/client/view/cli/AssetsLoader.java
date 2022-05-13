@@ -60,6 +60,10 @@ public class AssetsLoader {
         return linkers;
     }
 
+    protected String[][] getCharacterCardContainer() {
+        return this.readMatrixFromFile("character_card");
+    }
+
     protected String[][] getSchool(boolean rotated) {
         if (!rotated) {
             return this.readMatrixFromFile("school");

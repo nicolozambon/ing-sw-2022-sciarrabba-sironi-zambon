@@ -15,14 +15,16 @@ public class CLI {
     private final ArrayList<String[][]> islands = new ArrayList<>();
     private final ArrayList<Boolean> islandsLinkedToNext = new ArrayList<>();
 
-    public CLI() {
+    public CLI(Integer playersNumber) {
         final AssetsLoader loader = new AssetsLoader();
         this.islandLinkers = loader.getIslandLinkers();
 
-        // Create three schools
-        this.schools.add(loader.getSchool(false));
-        this.schools.add(loader.getSchool(true));
-        this.schools.add(loader.getSchool(true));
+        // Create schools
+        boolean isMain = false;
+        for (int i=0; i<playersNumber; i++) {
+            this.schools.add(loader.getSchool(isMain));
+            isMain = true;
+        }
 
         // Create twelve islands
         for (int i=0; i<12; i++) {
@@ -80,10 +82,10 @@ public class CLI {
     }};
 
     private static final Map<String, String> pawnsMap = new HashMap<>(){{
-        this.put("s", "███");
-        this.put("p", "███");
-        this.put("t", "███");
-        this.put("m", "MON");
+        this.put("s", "█  ");
+        this.put("p", "█  ");
+        this.put("t", "█  ");
+        this.put("n", "███");
     }};
 
     private Map<String, Integer> getFirstAvailablePlaceholder(String[][] board, String identifier, Object color) {
@@ -128,6 +130,7 @@ public class CLI {
             int j = placeholder.get("start_col");
             board[i][j] = colorsMap.get(color) + board[i][j].toLowerCase();
             board[i][j+2] = board[i][j] + ANSI_RESET;
+
         } else {
             System.out.println("ERROR. There is no space for a new pawn. (Identifier=" + identifier + ")."); // To be removed --> new Exception
 
@@ -148,7 +151,7 @@ public class CLI {
     }
 
     protected void addMotherNatureToBoard(String[][] board) {
-        this.addPawnToBoard(board, Color.RED, "M");
+        this.addPawnToBoard(board, Color.RED, "N");
     }
 
     @Deprecated
@@ -274,7 +277,7 @@ public class CLI {
                     }
 
                 } else {
-                    set[i][j] = " ";
+                    set[i][j] = "#";
                 }
 
             }
@@ -343,7 +346,15 @@ public class CLI {
     private String[][] buildGameBoard(String[][] setOfIslands) {
         int space = 4;
         int height = Math.max((setOfIslands.length + this.schools.get(0).length), this.schools.get(1).length);
+
         int width = setOfIslands[0].length + this.schools.get(1)[0].length + space;
+        /*
+        int width = setOfIslands[0].length;
+        for (int i=0; i<this.schools.size(); i++) {
+            width += this.schools.get(i)[0].length + space;
+        }
+        */
+
         String[][] gameBoard = new String[height][width];
 
         int mainSchoolOffset = (setOfIslands[0].length - schools.get(0)[0].length) / 2;
