@@ -31,7 +31,7 @@
             <Image url="@../../../../../../../OneDrive/Scuola/3°%20Anno/Ingegneria%20del%20Software/Progetto%20-%20Ingegneria%20del%20Software/Materiale%20Gioco/Graphical%20Assets/PLANCIA%20GIOCO_2.png" />
          </image>
       </ImageView>
-      <TextField id="textFieldIP" layoutX="653.0" layoutY="142.0" style="visibility: hidden;" />
+      <TextField id="textFieldIP" layoutX="653.0" layoutY="142.0" style="display: none;" />
       <Text layoutX="667.0" layoutY="108.0" strokeType="OUTSIDE" strokeWidth="0.0" text="WELCOME TO ERIANTYS" />
    </children>
 </Pane>
