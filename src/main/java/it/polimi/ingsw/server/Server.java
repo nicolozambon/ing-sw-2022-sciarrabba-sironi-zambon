@@ -19,8 +19,8 @@ public class Server {
 
     private final Queue<Connection> queue;
     private final List<GameHandler> games;
+    private final Map<String, Connection> players = new HashMap<>();
 
-    private final Gson gson;
 
     /**
      * Number of players for the match being built.
@@ -32,7 +32,6 @@ public class Server {
         this.ip = DEFAULT_IP;
         this.queue = new ArrayDeque<>();
         this.games = new ArrayList<>();
-        this.gson = new Gson();
     }
 
     public Server(String ip, int port) {
@@ -40,7 +39,6 @@ public class Server {
         this.ip = ip;
         this.queue = new ArrayDeque<>();
         this.games = new ArrayList<>();
-        this.gson = new Gson();
     }
 
     public void startServer() throws IOException {
@@ -80,15 +78,12 @@ public class Server {
     public void enqueuePlayer(Connection connection) {
         synchronized (queue) {
             this.queue.add(connection);
-            connection.send(new AnswerEvent("wait"));
             this.queue.notifyAll();
         }
-
     }
 
     private void lobby() {
         Connection connection;
-        Map<String, Connection> players = new HashMap<>();
         List<String> options = new ArrayList<>();
         ExecutorService gameThreadPool = Executors.newCachedThreadPool();
         while (true) {
@@ -106,7 +101,26 @@ public class Server {
                 connection = queue.remove();
             }
 
-            if (numPlayers < 0) {
+            options.add("nickname");
+            connection.send(new AnswerEvent("options", options));
+            options.remove("nickname");
+            do {
+                try {
+                    synchronized (this) {
+                        wait();
+                    }
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+            } while (!isNicknameUnique(connection));
+
+            synchronized(players) {
+                players.put(connection.getNickname(), connection);
+            }
+            System.out.println("added player to a game");
+
+            if (players.size() == 1) {
+                numPlayers = -1;
                 options.add("first_player");
                 connection.send(new AnswerEvent("options", options));
                 options.remove("first_player");
@@ -120,21 +134,7 @@ public class Server {
                     }
                 }
             }
-            options.add("nickname");
-            connection.send(new AnswerEvent("options", options));
-            options.remove("nickname");
-            do {
-                try {
-                    synchronized (this) {
-                        wait();
-                    }
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
-            } while (!isNicknameUnique(connection, players));
 
-            players.put(connection.getNickname(), connection);
-            System.out.println("added player to a game");
             connection.send(new AnswerEvent("wait"));
 
             if (players.size() == numPlayers) {
@@ -142,7 +142,7 @@ public class Server {
                 gameThreadPool.submit(game);
                 games.add(game);
                 numPlayers = -1;
-                players = new HashMap<>();
+                players.clear();
                 System.out.println("Start game...");
             }
 
@@ -150,15 +150,20 @@ public class Server {
 
     }
 
-    private synchronized boolean isNicknameUnique(Connection connection, Map<String, Connection> players) {
-        if (players.containsKey(connection.getNickname())) {
-            connection.send(new AnswerEvent("error", "Nickname already taken!"));
-            return false;
-        }
-        for (GameHandler game : games) {
-            if (game.getPlayersNicknames().contains(connection.getNickname())) {
+    private synchronized boolean isNicknameUnique(Connection connection) {
+
+        synchronized (players) {
+            if (players.containsKey(connection.getNickname())) {
                 connection.send(new AnswerEvent("error", "Nickname already taken!"));
                 return false;
+            }
+        }
+        synchronized (games) {
+            for (GameHandler game : games) {
+                if (game.getPlayersNicknames().contains(connection.getNickname())) {
+                    connection.send(new AnswerEvent("error", "Nickname already taken!"));
+                    return false;
+                }
             }
         }
         return true;
@@ -174,9 +179,32 @@ public class Server {
     }
 
     protected void removeConnection(Connection connection) {
+        System.out.println("removing connection");
         synchronized (queue) {
             queue.remove(connection);
         }
+        synchronized (players) {
+            players.values().stream().filter(c -> !c.equals(connection)).forEach(c -> {
+                disconnectConnection(c);
+                players.remove(c.getNickname());
+            });
+        }
+        synchronized (games) {
+            for (GameHandler game : games) {
+                if (game.getPlayersNicknames().contains(connection.getNickname())) {
+                    game.getPlayersConnection().values()
+                            .stream()
+                            .filter(c -> !c.equals(connection))
+                            .forEach(this::disconnectConnection);
+                    games.remove(game);
+                }
+            }
+        }
+    }
+
+    private void disconnectConnection(Connection connection) {
+        connection.send(new AnswerEvent("stop", "A client has disconnected, closing the game"));
+        connection.stopConnection();
     }
 
 }

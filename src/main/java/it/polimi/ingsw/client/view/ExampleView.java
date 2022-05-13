@@ -29,7 +29,7 @@ public class ExampleView implements AnswerListener {
 
 
     @Override
-    public void onAnswerEvent(AnswerEvent answerEvent) {
+    public synchronized void onAnswerEvent(AnswerEvent answerEvent) {
         switch(answerEvent.getPropertyName()) {
             case "set_id" -> {
                 this.id = answerEvent.getNum();
@@ -41,13 +41,17 @@ public class ExampleView implements AnswerListener {
                 this.nickname = answerEvent.getMessage();
                 System.out.println("My nickname is: " + this.nickname);
             }
-            //TODO not setting nickname in example view
+
             case "options" -> setOptions(answerEvent);
             case "update" -> updateModel(answerEvent);
             case "wait" -> System.out.println(optionLister.list(answerEvent.getPropertyName()));
             case "error" -> {
                 System.out.println(answerEvent.getMessage());
                 client.send(optionHandler.getRequestEvent(this.options));
+            }
+            case "stop" -> {
+                System.out.println(answerEvent.getMessage());
+                client.stopClient();
             }
             default -> System.out.println("Answer Error!");
         }

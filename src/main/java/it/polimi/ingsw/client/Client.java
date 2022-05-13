@@ -37,7 +37,7 @@ public class Client implements AnswerListenableInterface {
     public synchronized void read() {
         try {
             AnswerEvent answer = gson.fromJson(inputStream.readUTF(), AnswerEvent.class);
-            this.fireAnswer(answer);
+            new Thread(() -> this.fireAnswer(answer)).start();
         } catch (Exception e) {
             e.printStackTrace();
             stopClient();

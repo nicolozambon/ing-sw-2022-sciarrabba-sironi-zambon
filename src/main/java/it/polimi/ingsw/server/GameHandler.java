@@ -70,4 +70,8 @@ public class GameHandler implements Runnable {
         return this.playersConnection.keySet().stream().toList();
     }
 
+    protected Map<String, Connection> getPlayersConnection() {
+        return new HashMap<>(playersConnection);
+    }
+
 }

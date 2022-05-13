@@ -10,6 +10,7 @@ import it.polimi.ingsw.listeners.RequestListener;
 
 import java.io.*;
 import java.net.Socket;
+import java.net.SocketException;
 
 public class Connection implements Runnable, RequestListenableInterface {
 
@@ -41,7 +42,7 @@ public class Connection implements Runnable, RequestListenableInterface {
         while (active) {
             read();
         }
-        stopConnection();
+        //stopConnection();
     }
 
     public synchronized void read(){
@@ -61,6 +62,7 @@ public class Connection implements Runnable, RequestListenableInterface {
             send(new AnswerEvent("error", "Number of players not possible!"));
         } catch (Exception e) {
             e.printStackTrace();
+            server.removeConnection(this);
             stopConnection();
         }
     }
@@ -71,6 +73,7 @@ public class Connection implements Runnable, RequestListenableInterface {
             outputStream.flush();
         } catch (IOException e) {
             e.printStackTrace();
+            server.removeConnection(this);
             stopConnection();
         }
     }
@@ -82,6 +85,7 @@ public class Connection implements Runnable, RequestListenableInterface {
             this.active = true;
         } catch (IOException e) {
             e.printStackTrace();
+            server.removeConnection(this);
             stopConnection();
         }
     }
@@ -91,7 +95,6 @@ public class Connection implements Runnable, RequestListenableInterface {
             outputStream.close();
             inputStream.close();
             socket.close();
-            server.removeConnection(this);
         } catch (IOException e) {
             e.printStackTrace();
         } finally {
@@ -101,6 +104,10 @@ public class Connection implements Runnable, RequestListenableInterface {
 
     public String getNickname() {
         return this.nickname;
+    }
+
+    public boolean isActive() {
+        return active;
     }
 
     @Override
