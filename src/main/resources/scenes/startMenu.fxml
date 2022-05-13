@@ -12,13 +12,16 @@
          <font>
             <Font size="15.0" />
          </font>
+         <toggleGroup>
+            <ToggleGroup fx:id="startMenuGroup" />
+         </toggleGroup>
       </RadioButton>
-      <RadioButton layoutX="765.0" layoutY="206.0" mnemonicParsing="false" text="Online Server">
+      <RadioButton layoutX="765.0" layoutY="206.0" mnemonicParsing="false" text="Online Server" toggleGroup="$startMenuGroup">
          <font>
             <Font size="15.0" />
          </font>
       </RadioButton>
-      <RadioButton layoutX="702.0" layoutY="243.0" mnemonicParsing="false" text="Custom IP">
+      <RadioButton layoutX="702.0" layoutY="243.0" mnemonicParsing="false" text="Custom IP" toggleGroup="$startMenuGroup">
          <font>
             <Font size="15.0" />
          </font>
