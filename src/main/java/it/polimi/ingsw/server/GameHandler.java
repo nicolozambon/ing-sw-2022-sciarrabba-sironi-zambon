@@ -7,18 +7,24 @@ import it.polimi.ingsw.model.ModelBuilder;
 import it.polimi.ingsw.model.Player;
 
 import java.util.*;
+import java.util.stream.Collectors;
 
 public class GameHandler implements Runnable {
 
     private final Model model;
     private final Controller controller;
-    private final Map<String, Connection> playersConnection;
+    private final Map<Integer, Connection> playersConnection;
     private final VirtualView virtualView;
 
     public GameHandler(Map<String, Connection> playersConnection) {
-        this.playersConnection = new HashMap<>(playersConnection);
-        this.model = new ModelBuilder().buildModel(this.playersConnection.keySet().stream().toList());
+        this.playersConnection = new HashMap<>();
+        this.model = new ModelBuilder().buildModel(playersConnection.keySet().stream().toList());
         this.controller = model.getController();
+        for (Player player : controller.getPlayersToPlay()) {
+            playersConnection.get(player.getNickname()).send(new AnswerEvent("set_id", player.getId()));
+            playersConnection.get(player.getNickname()).send(new AnswerEvent("set_nickname", player.getNickname()));
+            this.playersConnection.put(player.getId(), playersConnection.get(player.getNickname()));
+        }
         this.virtualView = new VirtualView();
     }
 
@@ -28,14 +34,7 @@ public class GameHandler implements Runnable {
 
         this.virtualView.addRequestListener(this.controller);
 
-        for (Player player : controller.getPlayersToPlay()) {
-            playersConnection.get(player.getNickname()).send(new AnswerEvent("set_id", player.getId()));
-            playersConnection.get(player.getNickname()).send(new AnswerEvent("set_nickname", player.getNickname()));
-        }
-
-        for (String nickname : playersConnection.keySet()) {
-            playersConnection.get(nickname).addRequestListener(virtualView);
-        }
+        playersConnection.values().forEach(c -> c.addRequestListener(virtualView));
 
         this.virtualView.setGameHandler(this);
         this.launchUpdateAnswerEvent(new AnswerEvent("update", this.model));
@@ -43,35 +42,31 @@ public class GameHandler implements Runnable {
     }
 
     public synchronized void launchUpdateAnswerEvent(AnswerEvent answerEvent) {
-        for (String nickname : playersConnection.keySet()) {
-            playersConnection.get(nickname).send(answerEvent);
-        }
+        playersConnection.values().forEach(connection -> connection.send(answerEvent));
     }
 
     public synchronized void launchOptionsAnswerEvent() {
-        String currentPlayer = controller.getActivePlayer().getNickname();
+        int currentPlayerId = controller.getActivePlayer().getId();
         List<String> options = controller.getOptions();
-        for (String nickname : playersConnection.keySet()) {
-            if (currentPlayer.equals(nickname)) {
-                System.out.println("sending options");
-                playersConnection.get(nickname).send(new AnswerEvent("options", options));
+        for (int id : playersConnection.keySet()) {
+            if (currentPlayerId == id) {
+                playersConnection.get(id).send(new AnswerEvent("options", options));
             } else {
-                //playersConnection.get(nickname).send(new AnswerEvent("options", gson.toJson(new ArrayList<String>()) ));
-                playersConnection.get(nickname).send(new AnswerEvent("wait"));
+                playersConnection.get(id).send(new AnswerEvent("wait"));
             }
         }
     }
 
-    public synchronized void launchErrorAnswerEvent(AnswerEvent answerEvent) {
-        playersConnection.get(controller.getActivePlayer().getNickname()).send(answerEvent);
+    public synchronized void launchErrorAnswerEvent(int playerId, AnswerEvent answerEvent) {
+        playersConnection.get(playerId).send(answerEvent);
     }
 
-    protected List<String> getPlayersNicknames() {
-        return this.playersConnection.keySet().stream().toList();
+    protected List<String> getNicknames() {
+        return playersConnection.values().stream().map(Connection::getNickname).toList();
     }
 
-    protected Map<String, Connection> getPlayersConnection() {
-        return new HashMap<>(playersConnection);
+    protected List<Connection> getConnections() {
+        return playersConnection.values().stream().toList();
     }
 
 }
