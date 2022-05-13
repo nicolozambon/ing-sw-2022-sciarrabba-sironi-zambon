@@ -15,6 +15,8 @@ public class CLI {
     private final ArrayList<String[][]> islands = new ArrayList<>();
     private final ArrayList<Boolean> islandsLinkedToNext = new ArrayList<>();
 
+    private final String[][] characterCardTest;
+
     public CLI(Integer playersNumber) {
         final AssetsLoader loader = new AssetsLoader();
         this.islandLinkers = loader.getIslandLinkers();
@@ -31,6 +33,8 @@ public class CLI {
             this.islands.add(loader.getIsland());
             this.islandsLinkedToNext.add(false);
         }
+
+        this.characterCardTest = loader.getCharacterCardContainer();
 
     }
 
@@ -234,7 +238,7 @@ public class CLI {
         int[][] disposition = {
                 {110,   0,      1,      2,      3,      34},
                 {11,    -1,     -1,     -1,     -1,     4 },
-                {10,    -1,     -1,     -1,     -1,     5 },
+                {10,    -2,     -2,     -2,     -2,     5 },
                 {910,   9,      8,      7,      6,      56},
         };
 
@@ -248,7 +252,7 @@ public class CLI {
         int islandH = this.islands.get(0).length;
         int islandW = this.islands.get(0)[0].length;
 
-        int spaceH = 1;
+        int spaceH = 2;
         int spaceW = 4;
 
         int islandsRows = disposition.length;
@@ -277,7 +281,7 @@ public class CLI {
                     }
 
                 } else {
-                    set[i][j] = "#";
+                    set[i][j] = " ";
                 }
 
             }
@@ -340,6 +344,30 @@ public class CLI {
             }
         }
 
+
+        for (int i=0; i<disposition.length; i++) {
+            for (int j=0; j<disposition[i].length; j++) {
+                if (disposition[i][j] == -1) {
+
+                    int cardRowOnSet;
+                    int cardColOnSet;
+                    int cardBaseRowOnSet = 9;
+                    int cardBaseColOnSet = 26;
+
+                    String[][] card = this.characterCardTest;
+
+                    for (int cardRow=0; cardRow<card.length; cardRow++) {
+                        for (int cardCol=0; cardCol<card[0].length; cardCol++) {
+                            cardRowOnSet = cardBaseRowOnSet + cardRow;
+                            cardColOnSet = cardBaseColOnSet + cardCol;
+                            set[cardRowOnSet][cardColOnSet] = card[cardRow][cardCol];
+                        }
+                    }
+
+                }
+            }
+        }
+
         return set;
     }
 
@@ -396,7 +424,7 @@ public class CLI {
         // Build game board
         String[][] gameBoard = this.buildGameBoard(setOfIslands);
         // Print game board
-        System.out.println(this.getPrintableBoard(gameBoard, true));
+        System.out.println(this.getPrintableBoard(gameBoard, false));
     }
 
 }
