@@ -21,7 +21,7 @@
             <Font size="15.0" />
          </font>
       </RadioButton>
-      <RadioButton layoutX="702.0" layoutY="243.0" mnemonicParsing="false" text="Custom IP" toggleGroup="$startMenuGroup">
+      <RadioButton id="customIPID" layoutX="702.0" layoutY="243.0" mnemonicParsing="false" text="Custom IP" toggleGroup="$startMenuGroup">
          <font>
             <Font size="15.0" />
          </font>
