@@ -449,6 +449,47 @@ public class CLI {
             }
         }
 
+        // Construct clouds rectangle
+
+        int cloudH = this.clouds.get(0).length;
+        int cloudW = this.clouds.get(0)[0].length;
+        int cloudVerticalSpace = 1;
+
+        int cloudRectangleRows = (cloudH + cloudVerticalSpace) * this.clouds.size() - cloudVerticalSpace;
+
+        String[][] cloudsRectangle = new String[cloudRectangleRows][cloudW];
+
+        for (int i=0; i<cloudsRectangle.length; i++) {
+            for (int j=0; j<cloudsRectangle[i].length; j++) {
+
+                if (i%(cloudH+cloudVerticalSpace) < cloudH) {
+                    cloudsRectangle[i][j] = this.clouds.get(0)[i%(cloudH+cloudVerticalSpace)][j];
+                } else {
+                    cloudsRectangle[i][j] = " ";
+                }
+
+                /*
+                islandDispositionRowIndex = i / (islandH + spaceH);
+                islandDispositionColIndex = j / (islandW + spaceW);
+                islandIndex = disposition[islandDispositionRowIndex][islandDispositionColIndex];
+
+                if (i%(islandH+spaceH) < islandH && j%(islandW+spaceW) < islandW) {
+                    if (islandIndex >= 0 && islandIndex < 13) {
+                        set[i][j] = this.islands.get(islandIndex)[i%(islandH+spaceH)][j%(islandW+spaceW)];
+                    } else {
+                        set[i][j] = " ";
+                    }
+
+                } else {
+                    set[i][j] = " ";
+                }
+
+                 */
+
+            }
+        }
+
+
         for (int i=0; i<disposition.length; i++) {
             for (int j=0; j<disposition[i].length; j++) {
 
@@ -460,13 +501,11 @@ public class CLI {
                 if (disposition[i][j] == -5) {
                     cloudBaseColOnSet = 96;
 
-                    String[][] cloud = this.clouds.get(0);
-
-                    for (int cloudRow=0; cloudRow<cloud.length; cloudRow++) {
-                        for (int cloudCol=0; cloudCol<cloud[0].length; cloudCol++) {
+                    for (int cloudRow=0; cloudRow<cloudsRectangle.length; cloudRow++) {
+                        for (int cloudCol=0; cloudCol<cloudsRectangle[0].length; cloudCol++) {
                             cloudRowOnSet = cloudBaseRowOnSet + cloudRow;
                             cloudColOnSet = cloudBaseColOnSet + cloudCol;
-                            set[cloudRowOnSet][cloudColOnSet] = cloud[cloudRow][cloudCol];
+                            set[cloudRowOnSet][cloudColOnSet] = cloudsRectangle[cloudRow][cloudCol];
                         }
                     }
                 }
