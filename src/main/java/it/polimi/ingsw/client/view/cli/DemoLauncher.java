@@ -13,6 +13,9 @@ public class DemoLauncher {
         // Get main school
         String[][] mainSchool = cli.getSchools().get(0);
 
+        // Add some students to clouds
+        cli.addStudentToBoard(cli.getClouds().get(0), Color.BLUE);
+
         // Add some professors to the main school
         cli.addProfessorToBoard(mainSchool, Color.BLUE);
         cli.addProfessorToBoard(mainSchool, Color.RED);
@@ -26,6 +29,47 @@ public class DemoLauncher {
         cli.addStudentToBoard(mainSchool, Color.PINK);
         cli.addStudentToBoard(mainSchool, Color.YELLOW);
 
+        // Add some towers to the main school
+        cli.addTowerToBoard(mainSchool, TowerColor.WHITE);
+        cli.addTowerToBoard(mainSchool, TowerColor.WHITE);
+        cli.addTowerToBoard(mainSchool, TowerColor.WHITE);
+        cli.addTowerToBoard(mainSchool, TowerColor.WHITE);
+        cli.addTowerToBoard(mainSchool, TowerColor.WHITE);
+        cli.addTowerToBoard(mainSchool, TowerColor.WHITE);
+        cli.addTowerToBoard(mainSchool, TowerColor.WHITE);
+
+        // Add some pawns to the second school
+        String[][] secondSchool = cli.getSchools().get(1);
+        cli.addStudentToBoard(secondSchool, Color.YELLOW);
+        cli.addStudentToBoard(secondSchool, Color.BLUE);
+        cli.addStudentToBoard(secondSchool, Color.YELLOW);
+        cli.addStudentToBoard(secondSchool, Color.PINK);
+        cli.addStudentToBoard(secondSchool, Color.RED);
+        cli.addStudentToBoard(secondSchool, Color.RED);
+        cli.addStudentToBoard(secondSchool, Color.GREEN);
+        cli.addTowerToBoard(secondSchool, TowerColor.GREY);
+        cli.addTowerToBoard(secondSchool, TowerColor.GREY);
+        cli.addTowerToBoard(secondSchool, TowerColor.GREY);
+        cli.addTowerToBoard(secondSchool, TowerColor.GREY);
+        cli.addTowerToBoard(secondSchool, TowerColor.GREY);
+
+        // Add some pawns to the third school
+        String[][] thirdSchool = cli.getSchools().get(2);
+        cli.addStudentToBoard(thirdSchool, Color.GREEN);
+        cli.addStudentToBoard(thirdSchool, Color.RED);
+        cli.addStudentToBoard(thirdSchool, Color.YELLOW);
+        cli.addStudentToBoard(thirdSchool, Color.PINK);
+        cli.addStudentToBoard(thirdSchool, Color.RED);
+        cli.addStudentToBoard(thirdSchool, Color.BLUE);
+        cli.addStudentToBoard(thirdSchool, Color.GREEN);
+        cli.addTowerToBoard(thirdSchool, TowerColor.BLACK);
+        cli.addTowerToBoard(thirdSchool, TowerColor.BLACK);
+        cli.addTowerToBoard(thirdSchool, TowerColor.BLACK);
+        cli.addTowerToBoard(thirdSchool, TowerColor.BLACK);
+        cli.addTowerToBoard(thirdSchool, TowerColor.BLACK);
+        cli.addTowerToBoard(thirdSchool, TowerColor.BLACK);
+
+
         // Add some pawns to the first island
         String[][] firstIsland = cli.getIslands().get(0); // Get the first island
         cli.addStudentToBoard(firstIsland, Color.YELLOW);
@@ -33,6 +77,7 @@ public class DemoLauncher {
         cli.addStudentToBoard(firstIsland, Color.GREEN);
         cli.addStudentToBoard(firstIsland, Color.PINK);
         cli.addStudentToBoard(firstIsland, Color.BLUE);
+        cli.addTowerToBoard(firstIsland, TowerColor.GREY);
         cli.addMotherNatureToBoard(firstIsland);
 
         // Add some pawns to the second island
@@ -40,6 +85,7 @@ public class DemoLauncher {
         cli.addStudentToBoard(secondIsland, Color.BLUE);
         cli.addStudentToBoard(secondIsland, Color.PINK);
         cli.addStudentToBoard(secondIsland, Color.GREEN);
+        cli.addTowerToBoard(secondIsland, TowerColor.WHITE);
         cli.addMotherNatureToBoard(secondIsland);
 
         // Add link between first and second islands

@@ -50,6 +50,10 @@ public class CLI {
         return this.schools;
     }
 
+    public ArrayList<String[][]> getClouds() {
+        return this.clouds;
+    }
+
     public ArrayList<String[][]> getIslands() {
         return this.islands;
     }
@@ -94,10 +98,10 @@ public class CLI {
     }};
 
     private static final Map<String, String> pawnsMap = new HashMap<>(){{
-        this.put("s", "█  ");
-        this.put("p", "█  ");
-        this.put("t", "█  ");
-        this.put("n", "███");
+        this.put("s", " ● ");
+        this.put("p", " ⬢ ");
+        this.put("t", " ♜ ");
+        this.put("n", " ♟ ");
     }};
 
     private Map<String, Integer> getFirstAvailablePlaceholder(String[][] board, String identifier, Object color) {
@@ -246,6 +250,8 @@ public class CLI {
 
         int builderRowWidth = builder.indexOf("\n") + 1;
 
+        String cardTitle = "CARD: 1   COINS: 3";
+
         String cardText = "Choose an Island and resolve the Island as if Mother Nature had ended her movement there. Mother Nature will still move and the Island where she ends her movement will also be resolved.";
 
         Pattern p = Pattern.compile(".{1," + Integer.toString(cardTextWidth) + "}(\\s+|$)");
@@ -258,6 +264,12 @@ public class CLI {
         int charPositionInCard;
 
         for (int c=0; c<builder.length(); c++) {
+
+            if (builder.charAt(c) == '$') {
+                for (int j=0; j<cardTitle.length(); j++) {
+                    builder.setCharAt(c+j, cardTitle.charAt(j));
+                }
+            }
 
             if (builder.charAt(c) == '!') {
 
@@ -530,7 +542,7 @@ public class CLI {
         for (int i=0; i<gameBoard.length; i++) {
             for (int j=0; j<gameBoard[i].length; j++) {
 
-                gameBoard[i][j] = "*";
+                gameBoard[i][j] = " ";
 
 
 
@@ -567,7 +579,7 @@ public class CLI {
 
                             gameBoard[i][j] = this.schools.get(2)[i][j - this.schools.get(1)[i].length - space - setOfIslands[0].length - space];
                         } else {
-                            gameBoard[i][j] = "#";
+                            gameBoard[i][j] = " ";
                         }
 
                         /*
@@ -581,11 +593,11 @@ public class CLI {
                          */
                     }
                     mainSchoolOffset = this.schools.get(1)[0].length + space + (setOfIslands[0].length - this.schools.get(0)[0].length) / 2;
-                    if (i >= setOfIslands.length) {
-                        if (j >= mainSchoolOffset && j - mainSchoolOffset < this.schools.get(0)[0].length) {
+                    if (i >= setOfIslands.length && j >= mainSchoolOffset && j < setOfIslands[0].length + space + this.schools.get(1)[0].length) {
+                        if (j - mainSchoolOffset < this.schools.get(0)[0].length) {
                             gameBoard[i][j] = this.schools.get(0)[i - setOfIslands.length][j - mainSchoolOffset].toString();
                         } else {
-                            gameBoard[i][j] = "+";
+                            gameBoard[i][j] = " ";
                         }
                     }
 
@@ -603,7 +615,7 @@ public class CLI {
         // Build game board
         String[][] gameBoard = this.buildGameBoard(setOfIslands);
         // Print game board
-        System.out.println(this.getPrintableBoard(gameBoard, false));
+        System.out.println(this.getPrintableBoard(gameBoard, true));
     }
 
 }
