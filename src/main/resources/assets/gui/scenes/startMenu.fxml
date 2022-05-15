@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.image.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="980.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <RadioButton layoutX="650.0" layoutY="206.0" mnemonicParsing="false" selected="true" text="Localhost">
+         <font>
+            <Font size="15.0" />
+         </font>
+         <toggleGroup>
+            <ToggleGroup fx:id="startMenuGroup" />
+         </toggleGroup>
+      </RadioButton>
+      <RadioButton layoutX="765.0" layoutY="206.0" mnemonicParsing="false" text="Online Server" toggleGroup="$startMenuGroup">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </RadioButton>
+      <RadioButton id="customIPID" layoutX="702.0" layoutY="243.0" mnemonicParsing="false" text="Custom IP" toggleGroup="$startMenuGroup">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </RadioButton>
+      <ImageView fitHeight="355.0" fitWidth="825.0" layoutX="56.0" layoutY="292.0">
+         <image>
+            <Image url="@../images/Plancia_Gioco_2.png" />
+         </image>
+      </ImageView>
+      <TextField id="textFieldIP" layoutX="653.0" layoutY="142.0" style="display: none;" />
+      <Text layoutX="667.0" layoutY="108.0" strokeType="OUTSIDE" strokeWidth="0.0" text="WELCOME TO ERIANTYS" />
+   </children>
+</Pane>
