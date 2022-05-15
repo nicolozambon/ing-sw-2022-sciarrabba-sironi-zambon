@@ -11,6 +11,7 @@ import it.polimi.ingsw.listeners.RequestListener;
 import java.io.*;
 import java.net.Socket;
 import java.net.SocketException;
+import java.util.ArrayList;
 
 public class Connection implements Runnable, RequestListenableInterface {
 
@@ -38,7 +39,10 @@ public class Connection implements Runnable, RequestListenableInterface {
 
     @Override
     public void run() {
-
+        //TODO client send nickname without asking
+        send(new AnswerEvent("options", new ArrayList<>(){{
+            this.add("nickname");
+        }}));
         while (active) {
             read();
         }
@@ -51,9 +55,8 @@ public class Connection implements Runnable, RequestListenableInterface {
             switch (request.getPropertyName()) {
                 case "nickname" -> {
                     this.nickname = request.getString();
-                    synchronized (server) {
-                        server.notifyAll();
-                    }
+                    new Thread (() -> server.enqueuePlayer(this)).start();
+                    notifyAll();
                 }
                 case "first_player" -> this.server.setNumPlayers(request.getValues()[0]);
                 default -> fireRequest(request);

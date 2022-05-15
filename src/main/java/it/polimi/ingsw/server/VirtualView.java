@@ -38,14 +38,14 @@ public class VirtualView implements RequestListener, RequestListenableInterface,
     }
 
     @Override
-    public void onRequestEvent(RequestEvent requestEvent) throws NoSuchMethodException, IllegalAccessException {
+    public void onRequestEvent(RequestEvent requestEvent) throws IllegalAccessException {
         try {
             this.requestListenable.fireRequest(requestEvent);
             gameHandler.launchOptionsAnswerEvent();
         } catch (InvocationTargetException e) {
-            gameHandler.launchErrorAnswerEvent(new AnswerEvent("error", e.getCause().getMessage()));
+            gameHandler.launchErrorAnswerEvent(requestEvent.getPlayerId(), new AnswerEvent("error", e.getCause().getMessage()));
         } catch (NoSuchMethodException e) {
-            gameHandler.launchErrorAnswerEvent(new AnswerEvent("error", "Bad Request! Retry"));
+            gameHandler.launchErrorAnswerEvent(requestEvent.getPlayerId(), new AnswerEvent("error", "Bad Request! Retry"));
         }
 
     }

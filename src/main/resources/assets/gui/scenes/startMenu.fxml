@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+
+
+<Pane xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <SplitPane dividerPositions="0.5" prefHeight="515.0" prefWidth="724.0" style="-fx-background-color: #eee;" stylesheets="@../css/style.css">
+        <items>
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
+               <children>
+                  <ImageView fitHeight="350.0" fitWidth="350.0" layoutX="4.0" layoutY="82.0">
+                     <image>
+                        <Image url="@../images/Eriantys_Scatola.png" />
+                     </image>
+                  </ImageView>
+               </children>
+            </AnchorPane>
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
+               <children>
+                  <RadioButton layoutX="75.0" layoutY="180.0" mnemonicParsing="false" selected="true" text="Localhost">
+                     <font>
+                        <Font size="15.0" />
+                     </font>
+                     <toggleGroup>
+                        <ToggleGroup fx:id="startMenuGroup" />
+                     </toggleGroup>
+                  </RadioButton>
+                  <RadioButton layoutX="184.0" layoutY="180.0" mnemonicParsing="false" text="Online Server" toggleGroup="$startMenuGroup">
+                     <font>
+                        <Font size="15.0" />
+                     </font>
+                  </RadioButton>
+                  <RadioButton id="customIPID" layoutX="131.0" layoutY="208.0" mnemonicParsing="false" text="Custom IP" toggleGroup="$startMenuGroup">
+                     <font>
+                        <Font size="15.0" />
+                     </font>
+                  </RadioButton>
+                  <TextField id="textFieldIP" layoutX="110.0" layoutY="244.0" style="display: none;" />
+                  <Text layoutX="19.0" layoutY="75.0" strokeType="OUTSIDE" strokeWidth="0.0" text="WELCOME TO ERIANTYS" textAlignment="CENTER" wrappingWidth="319.611328125">
+                     <font>
+                        <Font size="34.0" />
+                     </font>
+                  </Text>
+                  <Text layoutX="149.0" layoutY="298.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Nickname">
+                     <font>
+                        <Font size="16.0" />
+                     </font>
+                  </Text>
+                  <TextField id="nicknameTextField" layoutX="110.0" layoutY="314.0" />
+                  <Text fill="#5e5e5e" layoutX="84.0" layoutY="472.0" strokeType="OUTSIDE" strokeWidth="0.0" text="CG27 - Sciarrabba Sironi Zambon" />
+                  <Text fill="#5e5e5e" layoutX="58.0" layoutY="488.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Prova Finale di Ingegneria del Software - 2022" />
+                  <Button id="connectBtn" layoutX="139.0" layoutY="358.0" mnemonicParsing="false" text="Connect">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Button>
+               </children>
+            </AnchorPane>
+        </items>
+      </SplitPane>
+      <Pane id="chooseNumPlayersPane" layoutX="46.0" layoutY="33.0" prefHeight="446.0" prefWidth="628.0" style="-fx-background-color: #eee; visibility: hidden;">
+         <children>
+            <Text layoutX="135.0" layoutY="66.0" strokeType="OUTSIDE" strokeWidth="0.0" text="You are the first to connect. Choose the number of players for this match" textAlignment="CENTER" wrappingWidth="358.0">
+               <font>
+                  <Font size="23.0" />
+               </font>
+            </Text>
+            <Button layoutX="173.0" layoutY="201.0" mnemonicParsing="false" text="2">
+               <font>
+                  <Font size="32.0" />
+               </font>
+            </Button>
+            <Button layoutX="393.0" layoutY="201.0" mnemonicParsing="false" text="3">
+               <font>
+                  <Font size="32.0" />
+               </font>
+            </Button>
+         </children>
+      </Pane>
+   </children>
+</Pane>

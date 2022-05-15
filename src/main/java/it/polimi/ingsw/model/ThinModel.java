@@ -114,6 +114,18 @@ public final class ThinModel {
         return -1;
     }
 
+    public int getNumPlayers() {
+        return schools.size();
+    }
+
+    public int getNumIslands() {
+        return islands.size();
+    }
+
+    public Map<Color, Integer> getStudentOnIsland(int id) {
+        return new HashMap<>(islands.get(id).students);
+    }
+
 
     private static class SchoolSerializable { //A SchoolSerializable for all players.
 

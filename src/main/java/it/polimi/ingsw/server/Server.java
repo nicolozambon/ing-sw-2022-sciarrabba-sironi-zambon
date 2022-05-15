@@ -1,6 +1,5 @@
 package it.polimi.ingsw.server;
 
-import com.google.gson.Gson;
 import it.polimi.ingsw.events.AnswerEvent;
 import it.polimi.ingsw.exceptions.*;
 
@@ -64,7 +63,6 @@ public class Server {
 
                 Connection connection = new Connection(socket, this);
                 connectionThreadPool.submit(connection);
-                enqueuePlayer(connection);
 
             } catch (IOException e) {
                 e.printStackTrace();
@@ -76,6 +74,16 @@ public class Server {
     }
 
     public void enqueuePlayer(Connection connection) {
+        while (!isNicknameUnique(connection)) {
+            try {
+                synchronized (connection) {
+                    connection.wait();
+                }
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }
+        System.out.println("adding to queue");
         synchronized (queue) {
             this.queue.add(connection);
             this.queue.notifyAll();
@@ -100,19 +108,6 @@ public class Server {
             synchronized (queue) {
                 connection = queue.remove();
             }
-
-            options.add("nickname");
-            connection.send(new AnswerEvent("options", options));
-            options.remove("nickname");
-            do {
-                try {
-                    synchronized (this) {
-                        wait();
-                    }
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
-            } while (!isNicknameUnique(connection));
 
             synchronized(players) {
                 players.put(connection.getNickname(), connection);
@@ -160,7 +155,7 @@ public class Server {
         }
         synchronized (games) {
             for (GameHandler game : games) {
-                if (game.getPlayersNicknames().contains(connection.getNickname())) {
+                if (game.getNicknames().contains(connection.getNickname())) {
                     connection.send(new AnswerEvent("error", "Nickname already taken!"));
                     return false;
                 }
@@ -191,8 +186,8 @@ public class Server {
         }
         synchronized (games) {
             for (GameHandler game : games) {
-                if (game.getPlayersNicknames().contains(connection.getNickname())) {
-                    game.getPlayersConnection().values()
+                if (game.getNicknames().contains(connection.getNickname())) {
+                    game.getConnections()
                             .stream()
                             .filter(c -> !c.equals(connection))
                             .forEach(this::disconnectConnection);
