@@ -48,6 +48,9 @@ public class DemoLauncher {
         // Add link between fourth and fifth islands
         cli.addLinkToNextIsland(3);
 
+        // Another link
+        cli.addLinkToNextIsland(4);
+
         // Show updated game board
         cli.showGameBoard();
     }

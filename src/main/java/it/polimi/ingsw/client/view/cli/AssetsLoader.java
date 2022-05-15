@@ -64,6 +64,10 @@ public class AssetsLoader {
         return this.readMatrixFromFile("character_card");
     }
 
+    protected String[][] getCloud() {
+        return this.readMatrixFromFile("cloud");
+    }
+
     protected String[][] getSchool(boolean rotated) {
         if (!rotated) {
             return this.readMatrixFromFile("school");

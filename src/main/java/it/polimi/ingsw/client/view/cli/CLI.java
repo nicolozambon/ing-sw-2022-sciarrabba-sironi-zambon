@@ -16,8 +16,8 @@ public class CLI {
     private final Map<String, String[][]> islandLinkers;
     private final ArrayList<String[][]> schools = new ArrayList<>();
     private final ArrayList<String[][]> islands = new ArrayList<>();
+    private final ArrayList<String[][]> clouds = new ArrayList<>();
     private final ArrayList<Boolean> islandsLinkedToNext = new ArrayList<>();
-
     private final String[][] characterCardTest;
 
     public CLI(Integer playersNumber) {
@@ -35,6 +35,11 @@ public class CLI {
         for (int i=0; i<12; i++) {
             this.islands.add(loader.getIsland());
             this.islandsLinkedToNext.add(false);
+        }
+
+        // Create three clouds
+        for (int i=0; i<3; i++) {
+            this.clouds.add(loader.getCloud());
         }
 
         this.characterCardTest = loader.getCharacterCardContainer();
@@ -252,10 +257,8 @@ public class CLI {
 
         int charPositionInCard;
 
-        // For all the chars in string
         for (int c=0; c<builder.length(); c++) {
 
-            // If special char '!' is found
             if (builder.charAt(c) == '!') {
 
                 for (int i=0; i<min(cardTextHeight, cardTextLines.size()); i++) {
@@ -270,12 +273,6 @@ public class CLI {
                             char selectedChar = cardTextLines.get(i).charAt(j);
 
                             builder.setCharAt(index, selectedChar);
-
-                            /*
-                            char selectedChar = cardText.charAt(charPositionInCard);
-                            builder.setCharAt(index, selectedChar);
-
-                             */
 
                         }
 
@@ -295,7 +292,7 @@ public class CLI {
                 {110,   0,      1,      2,      3,      34},
                 {11,    -1,     -2,     -3,     -5,     4 },
                 {10,    -9,     -9,     -9,     -9,     5 },
-                {910,   9,      8,      7,      6,      56},
+                {910,   9,      8,      7,      6,      56}
         };
 
         /* disposition example:
@@ -308,8 +305,8 @@ public class CLI {
         int islandH = this.islands.get(0).length;
         int islandW = this.islands.get(0)[0].length;
 
-        int spaceH = 2;
-        int spaceW = 4;
+        int spaceH = 1;
+        int spaceW = 2;
 
         int islandsRows = disposition.length;
         int islandsCols = disposition[0].length;
@@ -342,6 +339,22 @@ public class CLI {
 
             }
         }
+
+        // Add two extra row in middle
+        String[][] expandedSet = new String[row+2][col];
+        for (int i=0; i<expandedSet.length; i++) {
+            for (int j=0; j<expandedSet[i].length; j++) {
+                if (i < row/2) {
+                    expandedSet[i][j] = set[i][j];
+                } else if (i == row/2 || i == (row/2) + 1) {
+                    expandedSet[i][j] = " ";
+                } else {
+                    expandedSet[i][j] = set[i-2][j];
+                }
+            }
+        }
+        set = expandedSet;
+
 
         String[][] linker = null;
         int linkerRowOnSet = 0;
@@ -400,25 +413,24 @@ public class CLI {
             }
         }
 
-
         for (int i=0; i<disposition.length; i++) {
             for (int j=0; j<disposition[i].length; j++) {
 
                 int cardRowOnSet;
                 int cardColOnSet;
-                int cardBaseRowOnSet = 9;
+                int cardBaseRowOnSet = 8;
                 int cardBaseColOnSet = 0;
 
                 boolean printCard = false;
 
                 if (disposition[i][j] == -1) {
-                    cardBaseColOnSet = 26;
+                    cardBaseColOnSet = 24;
                     printCard = true;
                 } else if (disposition[i][j] == -2) {
-                    cardBaseColOnSet = 52;
+                    cardBaseColOnSet = 48;
                     printCard = true;
                 } else if (disposition[i][j] == -3) {
-                    cardBaseColOnSet = 78;
+                    cardBaseColOnSet = 72;
                     printCard = true;
                 }
 
@@ -437,6 +449,31 @@ public class CLI {
             }
         }
 
+        for (int i=0; i<disposition.length; i++) {
+            for (int j=0; j<disposition[i].length; j++) {
+
+                int cloudRowOnSet;
+                int cloudColOnSet;
+                int cloudBaseRowOnSet = 8;
+                int cloudBaseColOnSet = 0;
+
+                if (disposition[i][j] == -5) {
+                    cloudBaseColOnSet = 96;
+
+                    String[][] cloud = this.clouds.get(0);
+
+                    for (int cloudRow=0; cloudRow<cloud.length; cloudRow++) {
+                        for (int cloudCol=0; cloudCol<cloud[0].length; cloudCol++) {
+                            cloudRowOnSet = cloudBaseRowOnSet + cloudRow;
+                            cloudColOnSet = cloudBaseColOnSet + cloudCol;
+                            set[cloudRowOnSet][cloudColOnSet] = cloud[cloudRow][cloudCol];
+                        }
+                    }
+                }
+
+            }
+        }
+
         return set;
     }
 
@@ -445,12 +482,6 @@ public class CLI {
         int height = Math.max((setOfIslands.length + this.schools.get(0).length), this.schools.get(1).length);
 
         int width = setOfIslands[0].length + this.schools.get(1)[0].length + space;
-        /*
-        int width = setOfIslands[0].length;
-        for (int i=0; i<this.schools.size(); i++) {
-            width += this.schools.get(i)[0].length + space;
-        }
-        */
 
         String[][] gameBoard = new String[height][width];
 
