@@ -520,35 +520,75 @@ public class CLI {
         int space = 4;
         int height = Math.max((setOfIslands.length + this.schools.get(0).length), this.schools.get(1).length);
 
-        int width = setOfIslands[0].length + this.schools.get(1)[0].length + space;
+        // int width = setOfIslands[0].length + this.schools.get(1)[0].length + space;
+        int width = setOfIslands[0].length + this.schools.get(1)[0].length + space + this.schools.get(2)[0].length + space;
 
         String[][] gameBoard = new String[height][width];
 
-        int mainSchoolOffset = (setOfIslands[0].length - schools.get(0)[0].length) / 2;
+        int mainSchoolOffset;
 
         for (int i=0; i<gameBoard.length; i++) {
             for (int j=0; j<gameBoard[i].length; j++) {
 
-                gameBoard[i][j] = " ";
+                gameBoard[i][j] = "*";
 
-                // Side school
-                if (i < this.schools.get(1).length) {
+
+
+                mainSchoolOffset = (setOfIslands[0].length - schools.get(0)[0].length) / 2;
+
+                if (this.schools.size() == 2) {
                     if (i < setOfIslands.length && j < setOfIslands[0].length) {
                         gameBoard[i][j] = setOfIslands[i][j];
                     } else if (j-setOfIslands[0].length >= space && j-setOfIslands[0].length < this.schools.get(1)[i].length+space) {
                         gameBoard[i][j] = this.schools.get(1)[i][j-setOfIslands[0].length-space].toString();
                     } else {
-                        gameBoard[i][j] = " ";
+                        gameBoard[i][j] = "#";
                     }
-                }
 
-                // Main school
-                if (i >= setOfIslands.length && j < setOfIslands[0].length) {
-                    if (j >= mainSchoolOffset && j-mainSchoolOffset < this.schools.get(0)[0].length) {
-                        gameBoard[i][j] = this.schools.get(0)[i-setOfIslands.length][j-mainSchoolOffset].toString();
-                    } else {
-                        gameBoard[i][j] = " ";
+                    // Main school
+                    if (i >= setOfIslands.length && j < setOfIslands[0].length) {
+                        if (j >= mainSchoolOffset && j-mainSchoolOffset < this.schools.get(0)[0].length) {
+                            gameBoard[i][j] = this.schools.get(0)[i-setOfIslands.length][j-mainSchoolOffset].toString();
+                        } else {
+                            gameBoard[i][j] = "+";
+                        }
                     }
+
+                } else {
+
+                    if (i < this.schools.get(1).length) {
+
+
+                        if (j < this.schools.get(1)[i].length) {
+                            gameBoard[i][j] = this.schools.get(1)[i][j];
+                        } else if (j >= this.schools.get(1)[i].length + space && j - this.schools.get(1)[i].length - space < setOfIslands[0].length && i < setOfIslands.length) {
+                            gameBoard[i][j] = setOfIslands[i][j - this.schools.get(1)[i].length - space];
+                        } else if (j >= (this.schools.get(1)[i].length + space) + setOfIslands[0].length + space && j - this.schools.get(1)[i].length - space - setOfIslands[0].length - space < this.schools.get(1)[i].length && i < this.schools.get(1).length) {
+
+                            gameBoard[i][j] = this.schools.get(2)[i][j - this.schools.get(1)[i].length - space - setOfIslands[0].length - space];
+                        } else {
+                            gameBoard[i][j] = "#";
+                        }
+
+                        /*
+                        if (i >= setOfIslands.length && j < setOfIslands[0].length) {
+                            if (j >= mainSchoolOffset && j-mainSchoolOffset < this.schools.get(0)[0].length) {
+                                gameBoard[i][j] = this.schools.get(0)[i-setOfIslands.length][j-mainSchoolOffset].toString();
+                            } else {
+                                gameBoard[i][j] = "+";
+                            }
+                        }
+                         */
+                    }
+                    mainSchoolOffset = this.schools.get(1)[0].length + space + (setOfIslands[0].length - this.schools.get(0)[0].length) / 2;
+                    if (i >= setOfIslands.length) {
+                        if (j >= mainSchoolOffset && j - mainSchoolOffset < this.schools.get(0)[0].length) {
+                            gameBoard[i][j] = this.schools.get(0)[i - setOfIslands.length][j - mainSchoolOffset].toString();
+                        } else {
+                            gameBoard[i][j] = "+";
+                        }
+                    }
+
                 }
 
             }
