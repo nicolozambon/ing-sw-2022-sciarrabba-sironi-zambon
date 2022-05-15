@@ -4,9 +4,12 @@ import it.polimi.ingsw.enums.Color;
 import it.polimi.ingsw.enums.TowerColor;
 
 import java.util.*;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import static java.lang.Character.isDigit;
 import static java.lang.Character.isLetter;
+import static java.lang.Math.min;
 
 public class CLI {
 
@@ -231,14 +234,67 @@ public class CLI {
             }
             builder.append('\n');
         }
+
+        int cardTextWidth = 18;
+        int cardTextHeight = 13;
+        int index = 0;
+
+        int builderRowWidth = builder.indexOf("\n") + 1;
+
+        String cardText = "Choose an Island and resolve the Island as if Mother Nature had ended her movement there. Mother Nature will still move and the Island where she ends her movement will also be resolved.";
+
+        Pattern p = Pattern.compile(".{1," + Integer.toString(cardTextWidth) + "}(\\s+|$)");
+        Matcher m = p.matcher(cardText);
+        ArrayList<String> cardTextLines = new ArrayList<>();
+        while(m.find()) {
+            cardTextLines.add(m.group().trim());
+        }
+
+        int charPositionInCard;
+
+        // For all the chars in string
+        for (int c=0; c<builder.length(); c++) {
+
+            // If special char '!' is found
+            if (builder.charAt(c) == '!') {
+
+                for (int i=0; i<min(cardTextHeight, cardTextLines.size()); i++) {
+
+                    for (int j=0; j<min(cardTextWidth, cardTextLines.get(i).length()); j++) {
+
+                        if (j < cardTextLines.get(i).length()) {
+
+                            charPositionInCard = j + i * cardTextWidth;
+                            index = c + charPositionInCard%cardTextWidth + charPositionInCard/cardTextWidth * builderRowWidth;
+
+                            char selectedChar = cardTextLines.get(i).charAt(j);
+
+                            builder.setCharAt(index, selectedChar);
+
+                            /*
+                            char selectedChar = cardText.charAt(charPositionInCard);
+                            builder.setCharAt(index, selectedChar);
+
+                             */
+
+                        }
+
+                    }
+
+                }
+
+            }
+
+        }
+
         return builder.toString();
     }
 
     private String[][] buildSetOfIslands() {
         int[][] disposition = {
                 {110,   0,      1,      2,      3,      34},
-                {11,    -1,     -1,     -1,     -1,     4 },
-                {10,    -2,     -2,     -2,     -2,     5 },
+                {11,    -1,     -2,     -3,     -5,     4 },
+                {10,    -9,     -9,     -9,     -9,     5 },
                 {910,   9,      8,      7,      6,      56},
         };
 
@@ -347,15 +403,28 @@ public class CLI {
 
         for (int i=0; i<disposition.length; i++) {
             for (int j=0; j<disposition[i].length; j++) {
+
+                int cardRowOnSet;
+                int cardColOnSet;
+                int cardBaseRowOnSet = 9;
+                int cardBaseColOnSet = 0;
+
+                boolean printCard = false;
+
                 if (disposition[i][j] == -1) {
+                    cardBaseColOnSet = 26;
+                    printCard = true;
+                } else if (disposition[i][j] == -2) {
+                    cardBaseColOnSet = 52;
+                    printCard = true;
+                } else if (disposition[i][j] == -3) {
+                    cardBaseColOnSet = 78;
+                    printCard = true;
+                }
 
-                    int cardRowOnSet;
-                    int cardColOnSet;
-                    int cardBaseRowOnSet = 9;
-                    int cardBaseColOnSet = 26;
+                String[][] card = this.characterCardTest;
 
-                    String[][] card = this.characterCardTest;
-
+                if (printCard) {
                     for (int cardRow=0; cardRow<card.length; cardRow++) {
                         for (int cardCol=0; cardCol<card[0].length; cardCol++) {
                             cardRowOnSet = cardBaseRowOnSet + cardRow;
@@ -363,8 +432,8 @@ public class CLI {
                             set[cardRowOnSet][cardColOnSet] = card[cardRow][cardCol];
                         }
                     }
-
                 }
+
             }
         }
 
