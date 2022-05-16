@@ -1,5 +1,6 @@
 package it.polimi.ingsw.client.view;
 
+import it.polimi.ingsw.client.view.cli.OptionLister;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;

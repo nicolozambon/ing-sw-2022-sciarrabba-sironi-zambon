@@ -1,17 +1,23 @@
-package it.polimi.ingsw.client.view;
+package it.polimi.ingsw.client.view.cli;
 
 import it.polimi.ingsw.client.Client;
 import it.polimi.ingsw.events.AnswerEvent;
+import it.polimi.ingsw.events.RequestEvent;
+import it.polimi.ingsw.listenables.RequestListenable;
+import it.polimi.ingsw.listenables.RequestListenableInterface;
 import it.polimi.ingsw.listeners.AnswerListener;
+import it.polimi.ingsw.listeners.RequestListener;
 import it.polimi.ingsw.model.Model;
 import it.polimi.ingsw.model.ThinModel;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Scanner;
 
-public class ExampleView implements AnswerListener {
+public class ViewCLI implements AnswerListener, RequestListenableInterface {
 
-    private final Client client;
+    private Client client;
 
     private String nickname;
     private int id;
@@ -20,11 +26,15 @@ public class ExampleView implements AnswerListener {
     private final OptionLister optionLister;
     private final OptionHandler optionHandler;
 
-    public ExampleView(Client client) {
-        this.client = client;
+    private final RequestListenable requestListenable;
+
+    public ViewCLI() {
         this.optionLister = new OptionLister();
-        this.options = new ArrayList<>();
+        this.options = new ArrayList<>() {{
+            this.add("nickname");
+        }};
         this.optionHandler = new OptionHandler();
+        this.requestListenable = new RequestListenable();
     }
 
 
@@ -60,7 +70,7 @@ public class ExampleView implements AnswerListener {
 
     private void setOptions(AnswerEvent answerEvent) {
         this.options = answerEvent.getOptions();
-        client.send(optionHandler.getRequestEvent(this.options));
+        fireRequest(optionHandler.getRequestEvent(this.options));
     }
 
     private void updateModel(AnswerEvent answerEvent) {
@@ -69,5 +79,39 @@ public class ExampleView implements AnswerListener {
         System.out.println(model);
     }
 
+    public void startCLI() throws IOException {
+        /*Scanner stdin = new Scanner(System.in);
+        System.out.println("Server IP:");
+        String ip = stdin.nextLine();
+        this.client = new Client(ip);*/
+        this.client = new Client();
+        this.client.addAnswerListener(this);
+        this.addRequestListener(this.client);
+        new Thread(this.client).start();
+        setOptions(new AnswerEvent("options", this.options));
+    }
 
+    public static void main(String[] args) throws IOException{
+        ViewCLI view = new ViewCLI();
+        view.startCLI();
+    }
+
+    @Override
+    public void addRequestListener(RequestListener requestListener) {
+        this.requestListenable.addRequestListener(requestListener);
+    }
+
+    @Override
+    public void removeRequestListener(RequestListener requestListener) {
+        this.requestListenable.removeRequestListener(requestListener);
+    }
+
+    @Override
+    public void fireRequest(RequestEvent requestEvent) {
+        try {
+            this.requestListenable.fireRequest(requestEvent);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
 }

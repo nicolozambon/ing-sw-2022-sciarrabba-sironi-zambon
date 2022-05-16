@@ -1,24 +1,22 @@
 package it.polimi.ingsw.server;
 
 import it.polimi.ingsw.events.AnswerEvent;
-import it.polimi.ingsw.exceptions.*;
+import it.polimi.ingsw.exceptions.OutOfBoundsException;
 
 import java.io.IOException;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.*;
-import java.util.concurrent.*;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
 public class Server {
 
-    private static final String DEFAULT_IP = "";
+    private static final int port = 1337;
 
-    private final int port;
-    private final String ip;
-
-    private final Queue<Connection> queue;
+    private final Queue<ClientHandler> queue;
     private final List<GameHandler> games;
-    private final Map<String, Connection> players = new HashMap<>();
+    private final Map<String, ClientHandler> players = new HashMap<>();
 
 
     /**
@@ -26,18 +24,17 @@ public class Server {
      */
     private int numPlayers = -1;
 
-    public Server(int port){
-        this.port = port;
-        this.ip = DEFAULT_IP;
+    public Server(){
         this.queue = new ArrayDeque<>();
         this.games = new ArrayList<>();
     }
 
-    public Server(String ip, int port) {
-        this.port = port;
-        this.ip = ip;
-        this.queue = new ArrayDeque<>();
-        this.games = new ArrayList<>();
+    public static void main(String[] args) {
+        try {
+            new Server().startServer();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     public void startServer() throws IOException {
@@ -61,8 +58,8 @@ public class Server {
                 Socket socket = serverSocket.accept();
                 System.out.println("Received client connection");
 
-                Connection connection = new Connection(socket, this);
-                connectionThreadPool.submit(connection);
+                ClientHandler clientHandler = new ClientHandler(socket, this);
+                connectionThreadPool.submit(clientHandler);
 
             } catch (IOException e) {
                 e.printStackTrace();
@@ -73,11 +70,11 @@ public class Server {
         serverSocket.close();
     }
 
-    public void enqueuePlayer(Connection connection) {
-        while (!isNicknameUnique(connection)) {
+    public void enqueuePlayer(ClientHandler clientHandler) {
+        while (!isNicknameUnique(clientHandler)) {
             try {
-                synchronized (connection) {
-                    connection.wait();
+                synchronized (clientHandler) {
+                    clientHandler.wait();
                 }
             } catch (InterruptedException e) {
                 e.printStackTrace();
@@ -85,13 +82,13 @@ public class Server {
         }
         System.out.println("adding to queue");
         synchronized (queue) {
-            this.queue.add(connection);
+            this.queue.add(clientHandler);
             this.queue.notifyAll();
         }
     }
 
     private void lobby() {
-        Connection connection;
+        ClientHandler clientHandler;
         List<String> options = new ArrayList<>();
         ExecutorService gameThreadPool = Executors.newCachedThreadPool();
         while (true) {
@@ -106,18 +103,18 @@ public class Server {
                 }
             }
             synchronized (queue) {
-                connection = queue.remove();
+                clientHandler = queue.remove();
             }
 
             synchronized(players) {
-                players.put(connection.getNickname(), connection);
+                players.put(clientHandler.getNickname(), clientHandler);
             }
             System.out.println("added player to a game");
 
             if (players.size() == 1) {
                 numPlayers = -1;
                 options.add("first_player");
-                connection.send(new AnswerEvent("options", options));
+                clientHandler.send(new AnswerEvent("options", options));
                 options.remove("first_player");
                 while (numPlayers < 0) {
                     try {
@@ -130,7 +127,7 @@ public class Server {
                 }
             }
 
-            connection.send(new AnswerEvent("wait"));
+            clientHandler.send(new AnswerEvent("wait"));
 
             if (players.size() == numPlayers) {
                 GameHandler game = new GameHandler(players);
@@ -145,18 +142,18 @@ public class Server {
 
     }
 
-    private synchronized boolean isNicknameUnique(Connection connection) {
+    private synchronized boolean isNicknameUnique(ClientHandler clientHandler) {
 
         synchronized (players) {
-            if (players.containsKey(connection.getNickname())) {
-                connection.send(new AnswerEvent("error", "Nickname already taken!"));
+            if (players.containsKey(clientHandler.getNickname())) {
+                clientHandler.send(new AnswerEvent("error", "Nickname already taken!"));
                 return false;
             }
         }
         synchronized (games) {
             for (GameHandler game : games) {
-                if (game.getNicknames().contains(connection.getNickname())) {
-                    connection.send(new AnswerEvent("error", "Nickname already taken!"));
+                if (game.getNicknames().contains(clientHandler.getNickname())) {
+                    clientHandler.send(new AnswerEvent("error", "Nickname already taken!"));
                     return false;
                 }
             }
@@ -173,23 +170,23 @@ public class Server {
         }
     }
 
-    protected void removeConnection(Connection connection) {
+    protected void removeConnection(ClientHandler clientHandler) {
         System.out.println("removing connection");
         synchronized (queue) {
-            queue.remove(connection);
+            queue.remove(clientHandler);
         }
         synchronized (players) {
-            players.values().stream().filter(c -> !c.equals(connection)).forEach(c -> {
+            players.values().stream().filter(c -> !c.equals(clientHandler)).forEach(c -> {
                 disconnectConnection(c);
                 players.remove(c.getNickname());
             });
         }
         synchronized (games) {
             for (GameHandler game : games) {
-                if (game.getNicknames().contains(connection.getNickname())) {
+                if (game.getNicknames().contains(clientHandler.getNickname())) {
                     game.getConnections()
                             .stream()
-                            .filter(c -> !c.equals(connection))
+                            .filter(c -> !c.equals(clientHandler))
                             .forEach(this::disconnectConnection);
                     games.remove(game);
                 }
@@ -197,9 +194,9 @@ public class Server {
         }
     }
 
-    private void disconnectConnection(Connection connection) {
-        connection.send(new AnswerEvent("stop", "A client has disconnected, closing the game"));
-        connection.stopConnection();
+    private void disconnectConnection(ClientHandler clientHandler) {
+        clientHandler.send(new AnswerEvent("stop", "A client has disconnected, closing the game"));
+        clientHandler.stopConnection();
     }
 
 }

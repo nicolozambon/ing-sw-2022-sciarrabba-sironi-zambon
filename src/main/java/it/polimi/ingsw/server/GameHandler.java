@@ -7,16 +7,15 @@ import it.polimi.ingsw.model.ModelBuilder;
 import it.polimi.ingsw.model.Player;
 
 import java.util.*;
-import java.util.stream.Collectors;
 
 public class GameHandler implements Runnable {
 
     private final Model model;
     private final Controller controller;
-    private final Map<Integer, Connection> playersConnection;
+    private final Map<Integer, ClientHandler> playersConnection;
     private final VirtualView virtualView;
 
-    public GameHandler(Map<String, Connection> playersConnection) {
+    public GameHandler(Map<String, ClientHandler> playersConnection) {
         this.playersConnection = new HashMap<>();
         this.model = new ModelBuilder().buildModel(playersConnection.keySet().stream().toList());
         this.controller = model.getController();
@@ -42,7 +41,7 @@ public class GameHandler implements Runnable {
     }
 
     public synchronized void launchUpdateAnswerEvent(AnswerEvent answerEvent) {
-        playersConnection.values().forEach(connection -> connection.send(answerEvent));
+        playersConnection.values().forEach(clientHandler -> clientHandler.send(answerEvent));
     }
 
     public synchronized void launchOptionsAnswerEvent() {
@@ -62,10 +61,10 @@ public class GameHandler implements Runnable {
     }
 
     protected List<String> getNicknames() {
-        return playersConnection.values().stream().map(Connection::getNickname).toList();
+        return playersConnection.values().stream().map(ClientHandler::getNickname).toList();
     }
 
-    protected List<Connection> getConnections() {
+    protected List<ClientHandler> getConnections() {
         return playersConnection.values().stream().toList();
     }
 

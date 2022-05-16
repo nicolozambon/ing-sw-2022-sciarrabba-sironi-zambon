@@ -85,10 +85,10 @@ class ControllerTest {
         ThinModel thinModel = new ThinModel(this.model);
         int initialSize =  thinModel.getEntranceByPlayerId(player.getId()).size();
 
-        controller.moveStudentToDiningRoom(2, 0);
-        controller.moveStudentToDiningRoom(2, 0);
-        controller.moveStudentToDiningRoom(2, 0);
-        controller.moveStudentToDiningRoom(2, 0);
+        controller.moveStudentToDiningRoom(2, 1);
+        controller.moveStudentToDiningRoom(2, 1);
+        controller.moveStudentToDiningRoom(2, 1);
+        controller.moveStudentToDiningRoom(2, 1);
 
         thinModel = new ThinModel(this.model);
         assertEquals(initialSize-4, thinModel.getEntranceByPlayerId(player.getId()).size());
@@ -111,30 +111,30 @@ class ControllerTest {
         ThinModel thinModel = new ThinModel(this.model);
         int initialSize =  thinModel.getEntranceByPlayerId(player.getId()).size();
 
-        assertThrows(IslandException.class, () -> controller.moveStudentToIsland(2, 0, 12));
+        assertThrows(IslandException.class, () -> controller.moveStudentToIsland(2, 0, 13));
         assertThrows(IslandException.class, () -> controller.moveStudentToIsland(2, 0, -1));
 
         thinModel = new ThinModel(this.model);
         int prevSize = thinModel.getStudentOnIslandById(6);
-        controller.moveStudentToIsland(2, 0, 6);
+        controller.moveStudentToIsland(2, 4, 7);
         thinModel = new ThinModel(this.model);
         assertEquals(prevSize + 1, thinModel.getStudentOnIslandById(6));
 
         thinModel = new ThinModel(this.model);
         prevSize = thinModel.getStudentOnIslandById(9);
-        controller.moveStudentToIsland(2, 0, 9);
+        controller.moveStudentToIsland(2, 1, 10);
         thinModel = new ThinModel(this.model);
         assertEquals(prevSize + 1, thinModel.getStudentOnIslandById(9));
 
         thinModel = new ThinModel(this.model);
         prevSize = thinModel.getStudentOnIslandById(2);
-        controller.moveStudentToIsland(2, 0, 2);
+        controller.moveStudentToIsland(2, 1, 3);
         thinModel = new ThinModel(this.model);
         assertEquals(prevSize + 1, thinModel.getStudentOnIslandById(2));
 
         thinModel = new ThinModel(this.model);
         prevSize = thinModel.getStudentOnIslandById(7);
-        controller.moveStudentToIsland(2, 0, 7);
+        controller.moveStudentToIsland(2, 1, 8);
         thinModel = new ThinModel(this.model);
         assertEquals(prevSize + 1, thinModel.getStudentOnIslandById(7));
 
@@ -144,10 +144,10 @@ class ControllerTest {
 
     private void playAC_MoveStudent(int playerId) throws IslandException, AssistantCardException, NotPlayerTurnException {
 
-        controller.moveStudentToIsland(playerId, 0, 2);
-        controller.moveStudentToIsland(playerId, 0, 11);
+        controller.moveStudentToIsland(playerId, 1, 2);
+        controller.moveStudentToIsland(playerId, 1, 11);
 
-        controller.moveStudentToDiningRoom(playerId, 0);
+        controller.moveStudentToDiningRoom(playerId, 1);
         controller.moveStudentToDiningRoom(playerId, 2);
     }
 
@@ -179,7 +179,7 @@ class ControllerTest {
         playPlanningPhase();
         playUntilCloud(2);
 
-        controller.takeStudentsFromCloud(2, 0);
+        controller.takeStudentsFromCloud(2, 1);
         ThinModel thinModel = new ThinModel(this.model);
         assertEquals(0, thinModel.getStudentOnCloud(0));
         assertEquals(9, thinModel.getEntranceByPlayerId(0).size());
@@ -190,7 +190,7 @@ class ControllerTest {
     void playCharacterCard() throws Exception {
         playPlanningPhase();
         playUntilCloud(2);
-        controller.takeStudentsFromCloud(2, 0);
+        controller.takeStudentsFromCloud(2, 1);
 
         ThinModel thinModel = new ThinModel(this.model);
         int prev = thinModel.getCharacterCardCost(3);
@@ -203,7 +203,7 @@ class ControllerTest {
     void extraAction() throws Exception {
         playPlanningPhase();
         playUntilCloud(2);
-        controller.takeStudentsFromCloud(2, 0);
+        controller.takeStudentsFromCloud(2, 1);
         assertThrows(NotEnoughCoinsException.class, () -> controller.playCharacterCard(2, 2));
         controller.extraAction(2, 1);
     }
@@ -212,7 +212,7 @@ class ControllerTest {
     void endAction() throws NotPlayerTurnException, IslandException, AssistantCardException, Exception {
         playPlanningPhase();
         playUntilCloud(2);
-        controller.takeStudentsFromCloud(2, 0);
+        controller.takeStudentsFromCloud(2, 1);
         //System.out.println(controller.getOptions());
         controller.endAction(2);
         assertEquals(1, controller.getActivePlayer().getId());
@@ -241,15 +241,15 @@ class ControllerTest {
         playPlanningPhase();
 
         playUntilCloud(2);
-        controller.takeStudentsFromCloud(2, 0);
+        controller.takeStudentsFromCloud(2, 2);
         controller.endAction(2);
 
         playUntilCloud(1);
-        controller.takeStudentsFromCloud(1, 2);
+        controller.takeStudentsFromCloud(1, 1);
         controller.endAction(1);
 
         playUntilCloud(0);
-        controller.takeStudentsFromCloud(0, 1);
+        controller.takeStudentsFromCloud(0, 3);
         controller.endAction(0);
 
         List<Player> players = controller.getPlayersToPlay();

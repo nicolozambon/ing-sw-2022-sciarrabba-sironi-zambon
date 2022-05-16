@@ -42,7 +42,6 @@ public class ActionPhase {
             this.model.playCharacterCard(this.currentPlayer.getId(), choice);
             callableMethod.put("playCharacterCard", callableMethod.get("playCharacterCard") - 1);
             if (this.model.getCharacterCards().get(choice).getHasExtraAction()) {
-
                 callableMethod.put("extraAction", 1);
             }
 
@@ -77,7 +76,7 @@ public class ActionPhase {
         if(callableMethod.get("takeStudentsFromCloud") > 0) {
             this.model.takeStudentsFromCloud(this.currentPlayer.getId(), choice);
             callableMethod.put("takeStudentsFromCloud", callableMethod.get("takeStudentsFromCloud") - 1);
-            if (callableMethod.get("takeStudentsFromCloud") < 1 && (callableMethod.get("extraAction") < 1 || callableMethod.get("playCharacterCard") > 0)) {
+            if (callableMethod.get("takeStudentsFromCloud") < 1) {
                 callableMethod.put("endAction", 1);
             }
         }

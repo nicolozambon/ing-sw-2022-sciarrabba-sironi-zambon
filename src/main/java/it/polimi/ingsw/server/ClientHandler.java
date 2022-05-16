@@ -10,10 +10,9 @@ import it.polimi.ingsw.listeners.RequestListener;
 
 import java.io.*;
 import java.net.Socket;
-import java.net.SocketException;
 import java.util.ArrayList;
 
-public class Connection implements Runnable, RequestListenableInterface {
+public class ClientHandler implements Runnable, RequestListenableInterface {
 
 
     private final Server server;
@@ -29,7 +28,7 @@ public class Connection implements Runnable, RequestListenableInterface {
 
     private final Gson gson;
 
-    public Connection(Socket socket, Server server) {
+    public ClientHandler(Socket socket, Server server) {
         this.server = server;
         this.socket = socket;
         this.requestListenable = new RequestListenable();
@@ -39,14 +38,9 @@ public class Connection implements Runnable, RequestListenableInterface {
 
     @Override
     public void run() {
-        //TODO client send nickname without asking
-        send(new AnswerEvent("options", new ArrayList<>(){{
-            this.add("nickname");
-        }}));
         while (active) {
             read();
         }
-        //stopConnection();
     }
 
     public synchronized void read(){
