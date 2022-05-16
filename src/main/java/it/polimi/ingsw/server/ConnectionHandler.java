@@ -10,9 +10,8 @@ import it.polimi.ingsw.listeners.RequestListener;
 
 import java.io.*;
 import java.net.Socket;
-import java.util.ArrayList;
 
-public class ClientHandler implements Runnable, RequestListenableInterface {
+public class ConnectionHandler implements Runnable, RequestListenableInterface {
 
 
     private final Server server;
@@ -28,7 +27,7 @@ public class ClientHandler implements Runnable, RequestListenableInterface {
 
     private final Gson gson;
 
-    public ClientHandler(Socket socket, Server server) {
+    public ConnectionHandler(Socket socket, Server server) {
         this.server = server;
         this.socket = socket;
         this.requestListenable = new RequestListenable();

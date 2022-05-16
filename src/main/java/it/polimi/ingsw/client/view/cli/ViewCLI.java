@@ -1,6 +1,6 @@
 package it.polimi.ingsw.client.view.cli;
 
-import it.polimi.ingsw.client.Client;
+import it.polimi.ingsw.client.ClientConnection;
 import it.polimi.ingsw.events.AnswerEvent;
 import it.polimi.ingsw.events.RequestEvent;
 import it.polimi.ingsw.listenables.RequestListenable;
@@ -13,11 +13,10 @@ import it.polimi.ingsw.model.ThinModel;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Scanner;
 
 public class ViewCLI implements AnswerListener, RequestListenableInterface {
 
-    private Client client;
+    private ClientConnection clientConnection;
 
     private String nickname;
     private int id;
@@ -57,11 +56,11 @@ public class ViewCLI implements AnswerListener, RequestListenableInterface {
             case "wait" -> System.out.println(optionLister.list(answerEvent.getPropertyName()));
             case "error" -> {
                 System.out.println(answerEvent.getMessage());
-                client.send(optionHandler.getRequestEvent(this.options));
+                clientConnection.send(optionHandler.getRequestEvent(this.options));
             }
             case "stop" -> {
                 System.out.println(answerEvent.getMessage());
-                client.stopClient();
+                clientConnection.stopClient();
             }
             default -> System.out.println("Answer Error!");
         }
@@ -84,16 +83,11 @@ public class ViewCLI implements AnswerListener, RequestListenableInterface {
         System.out.println("Server IP:");
         String ip = stdin.nextLine();
         this.client = new Client(ip);*/
-        this.client = new Client();
-        this.client.addAnswerListener(this);
-        this.addRequestListener(this.client);
-        new Thread(this.client).start();
+        this.clientConnection = new ClientConnection();
+        this.clientConnection.addAnswerListener(this);
+        this.addRequestListener(this.clientConnection);
+        new Thread(this.clientConnection).start();
         setOptions(new AnswerEvent("options", this.options));
-    }
-
-    public static void main(String[] args) throws IOException{
-        ViewCLI view = new ViewCLI();
-        view.startCLI();
     }
 
     @Override

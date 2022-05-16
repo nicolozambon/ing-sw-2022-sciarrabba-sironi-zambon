@@ -14,9 +14,9 @@ public class Server {
 
     private static final int port = 1337;
 
-    private final Queue<ClientHandler> queue;
+    private final Queue<ConnectionHandler> queue;
     private final List<GameHandler> games;
-    private final Map<String, ClientHandler> players = new HashMap<>();
+    private final Map<String, ConnectionHandler> players = new HashMap<>();
 
 
     /**
@@ -58,8 +58,8 @@ public class Server {
                 Socket socket = serverSocket.accept();
                 System.out.println("Received client connection");
 
-                ClientHandler clientHandler = new ClientHandler(socket, this);
-                connectionThreadPool.submit(clientHandler);
+                ConnectionHandler connectionHandler = new ConnectionHandler(socket, this);
+                connectionThreadPool.submit(connectionHandler);
 
             } catch (IOException e) {
                 e.printStackTrace();
@@ -70,11 +70,11 @@ public class Server {
         serverSocket.close();
     }
 
-    public void enqueuePlayer(ClientHandler clientHandler) {
-        while (!isNicknameUnique(clientHandler)) {
+    public void enqueuePlayer(ConnectionHandler connectionHandler) {
+        while (!isNicknameUnique(connectionHandler)) {
             try {
-                synchronized (clientHandler) {
-                    clientHandler.wait();
+                synchronized (connectionHandler) {
+                    connectionHandler.wait();
                 }
             } catch (InterruptedException e) {
                 e.printStackTrace();
@@ -82,13 +82,13 @@ public class Server {
         }
         System.out.println("adding to queue");
         synchronized (queue) {
-            this.queue.add(clientHandler);
+            this.queue.add(connectionHandler);
             this.queue.notifyAll();
         }
     }
 
     private void lobby() {
-        ClientHandler clientHandler;
+        ConnectionHandler connectionHandler;
         List<String> options = new ArrayList<>();
         ExecutorService gameThreadPool = Executors.newCachedThreadPool();
         while (true) {
@@ -103,18 +103,18 @@ public class Server {
                 }
             }
             synchronized (queue) {
-                clientHandler = queue.remove();
+                connectionHandler = queue.remove();
             }
 
             synchronized(players) {
-                players.put(clientHandler.getNickname(), clientHandler);
+                players.put(connectionHandler.getNickname(), connectionHandler);
             }
             System.out.println("added player to a game");
 
             if (players.size() == 1) {
                 numPlayers = -1;
                 options.add("first_player");
-                clientHandler.send(new AnswerEvent("options", options));
+                connectionHandler.send(new AnswerEvent("options", options));
                 options.remove("first_player");
                 while (numPlayers < 0) {
                     try {
@@ -127,7 +127,7 @@ public class Server {
                 }
             }
 
-            clientHandler.send(new AnswerEvent("wait"));
+            connectionHandler.send(new AnswerEvent("wait"));
 
             if (players.size() == numPlayers) {
                 GameHandler game = new GameHandler(players);
@@ -142,18 +142,18 @@ public class Server {
 
     }
 
-    private synchronized boolean isNicknameUnique(ClientHandler clientHandler) {
+    private synchronized boolean isNicknameUnique(ConnectionHandler connectionHandler) {
 
         synchronized (players) {
-            if (players.containsKey(clientHandler.getNickname())) {
-                clientHandler.send(new AnswerEvent("error", "Nickname already taken!"));
+            if (players.containsKey(connectionHandler.getNickname())) {
+                connectionHandler.send(new AnswerEvent("error", "Nickname already taken!"));
                 return false;
             }
         }
         synchronized (games) {
             for (GameHandler game : games) {
-                if (game.getNicknames().contains(clientHandler.getNickname())) {
-                    clientHandler.send(new AnswerEvent("error", "Nickname already taken!"));
+                if (game.getNicknames().contains(connectionHandler.getNickname())) {
+                    connectionHandler.send(new AnswerEvent("error", "Nickname already taken!"));
                     return false;
                 }
             }
@@ -170,23 +170,23 @@ public class Server {
         }
     }
 
-    protected void removeConnection(ClientHandler clientHandler) {
+    protected void removeConnection(ConnectionHandler connectionHandler) {
         System.out.println("removing connection");
         synchronized (queue) {
-            queue.remove(clientHandler);
+            queue.remove(connectionHandler);
         }
         synchronized (players) {
-            players.values().stream().filter(c -> !c.equals(clientHandler)).forEach(c -> {
+            players.values().stream().filter(c -> !c.equals(connectionHandler)).forEach(c -> {
                 disconnectConnection(c);
                 players.remove(c.getNickname());
             });
         }
         synchronized (games) {
             for (GameHandler game : games) {
-                if (game.getNicknames().contains(clientHandler.getNickname())) {
+                if (game.getNicknames().contains(connectionHandler.getNickname())) {
                     game.getConnections()
                             .stream()
-                            .filter(c -> !c.equals(clientHandler))
+                            .filter(c -> !c.equals(connectionHandler))
                             .forEach(this::disconnectConnection);
                     games.remove(game);
                 }
@@ -194,9 +194,9 @@ public class Server {
         }
     }
 
-    private void disconnectConnection(ClientHandler clientHandler) {
-        clientHandler.send(new AnswerEvent("stop", "A client has disconnected, closing the game"));
-        clientHandler.stopConnection();
+    private void disconnectConnection(ConnectionHandler connectionHandler) {
+        connectionHandler.send(new AnswerEvent("stop", "A client has disconnected, closing the game"));
+        connectionHandler.stopConnection();
     }
 
 }
