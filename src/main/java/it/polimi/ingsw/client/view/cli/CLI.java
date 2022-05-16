@@ -13,6 +13,18 @@ import static java.lang.Math.min;
 
 public class CLI {
 
+    private class CharacterCardContent {
+        public CharacterCardContent(int id, int coins, String text) {
+
+        }
+    }
+
+    private class AssistantCardContent {
+        public AssistantCardContent(int value, int steps) {
+
+        }
+    }
+
     private final Map<String, String[][]> islandLinkers;
     private final ArrayList<String[][]> schools = new ArrayList<>();
     private final ArrayList<String[][]> islands = new ArrayList<>();
@@ -20,6 +32,12 @@ public class CLI {
     private final ArrayList<Boolean> islandsLinkedToNext = new ArrayList<>();
     private final String[][] characterCardTest;
 
+    private ArrayList<String[]> characterCards = new ArrayList<>();
+    /*
+    private ArrayList<AssistantCardContent> = new ArrayList<>();
+
+
+     */
     public CLI(Integer playersNumber) {
         final AssetsLoader loader = new AssetsLoader();
         this.islandLinkers = loader.getIslandLinkers();
@@ -154,20 +172,52 @@ public class CLI {
         }
     }
 
-    protected void addStudentToBoard(String[][] board, Color color) {
+    private String[][] findBoardBy(int id, ArrayList<String[][]> boardList) {
+        return boardList.get(id);
+    }
+
+    /*
+    protected void addCharacterCard(String text, int id, int coins) {
+        this.characterCards.add();
+    }
+    */
+
+    // SCHOOLS METHODS
+    protected void addStudentToSchoolDiningRoom(int id, Color color) {
+        String[][] board = this.findBoardBy(id, this.schools);
         this.addPawnToBoard(board, color, "S");
     }
-
-    protected void addProfessorToBoard(String[][] board, Color color) {
+    protected void addStudentToSchoolEntrance(int id, Color color) {
+        String[][] board = this.findBoardBy(id, this.schools);
+        this.addPawnToBoard(board, color, "E");
+    }
+    protected void addProfessorToSchool(int id, Color color) {
+        String[][] board = this.findBoardBy(id, this.schools);
         this.addPawnToBoard(board, color, "P");
     }
-
-    protected void addTowerToBoard(String[][] board, TowerColor color) {
+    protected void addTowerToSchool(int id, TowerColor color) {
+        String[][] board = this.findBoardBy(id, this.schools);
         this.addPawnToBoard(board, color, "T");
     }
 
-    protected void addMotherNatureToBoard(String[][] board) {
+    // ISLANDS METHODS
+    protected void addStudentToIsland(int id, Color color) {
+        String[][] board = this.findBoardBy(id, this.islands);
+        this.addPawnToBoard(board, color, "S");
+    }
+    protected void addMotherNatureToIsland(int id) {
+        String[][] board = this.findBoardBy(id, this.islands);
         this.addPawnToBoard(board, Color.RED, "N");
+    }
+    protected void addTowerToIsland(int id, TowerColor color) {
+        String[][] board = this.findBoardBy(id, this.islands);
+        this.addPawnToBoard(board, color, "T");
+    }
+
+    // CLOUDS METHODS
+    protected void addStudentToCloud(int id, Color color) {
+        String[][] board = this.findBoardBy(id, this.clouds);
+        this.addPawnToBoard(board, color, "S");
     }
 
     @Deprecated
@@ -390,15 +440,18 @@ public class CLI {
                             linkerBaseColOnSet = j * (islandW + spaceW) + islandW - 1;
                         } else if (i == disposition.length-1 && j == 1) {
                             linker = islandLinkers.get("bl");
-                            linkerBaseRowOnSet = i * (islandH + spaceH) + islandH - 1 - (islandH + spaceH);
+                            linkerBaseRowOnSet = i * (islandH + spaceH) + islandH - 1 - (islandH + spaceH) + 2;
                             linkerBaseColOnSet = j * (islandW + spaceW) - (islandW + spaceW);
                         } else if (i == disposition.length-2 && j == disposition[i].length-1) {
                             linker = islandLinkers.get("br");
-                            linkerBaseRowOnSet = i * (islandH + spaceH) + islandH - 1;
+                            linkerBaseRowOnSet = i * (islandH + spaceH) + islandH - 1 + 2;
                             linkerBaseColOnSet = j * (islandW + spaceW) - spaceW - 1;
                         } else if (i == 0 || i == disposition.length-1) {
                             linker = islandLinkers.get("hr");
                             linkerBaseRowOnSet = i * (islandH + spaceH);
+                            if (i > disposition.length/2) {
+                                linkerBaseRowOnSet += 2;
+                            }
                             linkerBaseColOnSet = j * (islandW + spaceW) + islandW - 1;
                             if (i == disposition.length-1) {
                                 linkerBaseColOnSet -= (islandW + spaceW);
@@ -543,8 +596,6 @@ public class CLI {
             for (int j=0; j<gameBoard[i].length; j++) {
 
                 gameBoard[i][j] = " ";
-
-
 
                 mainSchoolOffset = (setOfIslands[0].length - schools.get(0)[0].length) / 2;
 

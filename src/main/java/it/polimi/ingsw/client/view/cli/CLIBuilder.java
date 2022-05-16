@@ -11,6 +11,8 @@ import java.util.Map;
 
 public class CLIBuilder {
 
+    /*
+
     public CLI buildCLI(ThinModel model) {
         CLI cli = new CLI(model.getNumPlayers());
         Map<Color, Integer> s;
@@ -35,5 +37,6 @@ public class CLIBuilder {
         cli.showGameBoard();
     }
 
+     */
 
 }
