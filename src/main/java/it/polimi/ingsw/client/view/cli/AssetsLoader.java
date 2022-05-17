@@ -22,7 +22,7 @@ public class AssetsLoader {
         // TODO start try here
 
         InputStream is = getClass().getResourceAsStream(FOLDER_PATH_TEST + filename + ".txt");
-        Scanner reader = new Scanner(is);
+        Scanner reader = new Scanner(is, "UTF-8");
         while (reader.hasNextLine()) {
             String row = reader.nextLine();
             row += '\n';
