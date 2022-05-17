@@ -170,6 +170,7 @@ public class Server {
         }
     }
 
+    //TODO improve disconnection handling
     protected void removeConnection(ConnectionHandler connectionHandler) {
         System.out.println("removing connection");
         synchronized (queue) {

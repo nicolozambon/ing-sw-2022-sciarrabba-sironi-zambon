@@ -32,10 +32,7 @@ public class MotherNatureHandler extends Handler {
     @Override
     protected void extraAction(Player currentPlayer, Model model, int ...values) {
         if (card.isExtraResolving()) {
-            Island island = null;
-            for (Island island1 : model.getIslands()) {
-                if (island1.getId() == values[0]) island = island1;
-            }
+            Island island = model.getIslands().get(values[0]);
 
             if (getMostInfluentialPlayer(currentPlayer, island) != null) {
                 switchTowers(island, getMostInfluentialPlayer(currentPlayer, island));

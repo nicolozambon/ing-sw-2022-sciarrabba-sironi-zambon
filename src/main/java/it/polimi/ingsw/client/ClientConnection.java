@@ -53,6 +53,7 @@ public class ClientConnection implements AnswerListenableInterface, RequestListe
         System.out.println("Connection established");
     }
 
+    //TODO using executors
     public synchronized void read() {
         try {
             AnswerEvent answer = gson.fromJson(inputStream.readUTF(), AnswerEvent.class);

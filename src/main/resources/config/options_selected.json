@@ -8,9 +8,9 @@
   "moveMotherNature": "Choose the steps to move mother nature:",
   "playCharacterCard" : "Choose a character card to play:",
   "takeStudentsFromCloud" : "Choose the cloud to take students from:",
-  "card2" : "Use character card 2 effect",
-  "card6" : "Use character card 6 effect",
-  "card7" : "Choose at most 2 student to exchange from your entrance to your dining room\n(es. 1,YELLOW or 5,RED,6,PINK)",
+  "card2" : "Choose an island and resolve it:",
+  "card6" : "Choose a color, it will not add influence this turn:",
+  "card7" : "Choose a student to exchange from your entrance to your dining room:\n(es. 5,YELLOW)",
   "card8" : "Use character card 8 effect",
   "endAction" : "Ending your action phase..."
 }

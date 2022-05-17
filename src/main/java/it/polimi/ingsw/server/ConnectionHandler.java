@@ -50,6 +50,7 @@ public class ConnectionHandler implements Runnable, RequestListenableInterface {
             switch (request.getPropertyName()) {
                 case "nickname" -> {
                     this.nickname = request.getString();
+                    //TODO use executors
                     new Thread (() -> server.enqueuePlayer(this)).start();
                     notifyAll();
                 }

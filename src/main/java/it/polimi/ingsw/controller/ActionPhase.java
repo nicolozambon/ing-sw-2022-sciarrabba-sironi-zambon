@@ -42,7 +42,8 @@ public class ActionPhase {
             this.model.playCharacterCard(this.currentPlayer.getId(), choice);
             callableMethod.put("playCharacterCard", callableMethod.get("playCharacterCard") - 1);
             if (this.model.getCharacterCards().get(choice).getHasExtraAction()) {
-                callableMethod.put("extraAction", 1);
+                if (this.model.getCharacterCardIdByHandler() != 7) callableMethod.put("extraAction", 1);
+                callableMethod.put("extraAction", 2);
             }
 
         }

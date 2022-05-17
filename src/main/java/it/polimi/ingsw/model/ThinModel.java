@@ -10,7 +10,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-//TODO add List of players nickname
 public final class ThinModel {
 
     //Players State

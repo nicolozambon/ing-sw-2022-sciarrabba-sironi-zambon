@@ -8,10 +8,7 @@ import it.polimi.ingsw.events.RequestEvent;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.lang.reflect.Method;
-import java.util.InputMismatchException;
-import java.util.List;
-import java.util.Map;
-import java.util.Scanner;
+import java.util.*;
 
 //TODO Class for handling input by the user
 public class OptionHandler {
@@ -81,7 +78,7 @@ public class OptionHandler {
                     island = Integer.parseInt(input[1]);
                     error = false;
                 } else {
-                    System.out.println("Too many arguments");
+                    System.out.println("Wrong numbers of arguments!");
                 }
             } catch (NumberFormatException e) {
                 System.out.println("Not numbers retry!");
@@ -94,6 +91,23 @@ public class OptionHandler {
     private RequestEvent oneInputHandler(String option) {
         int choice = inputNumber(this.optionSelected.get(option));
         return new RequestEvent(option, this.playerId, choice);
+    }
+
+    private int inputNumber(String message) {
+        boolean error = true;
+        int choice = 0;
+        while (error) {
+            try {
+                System.out.println(message);
+                choice = stdin.nextInt();
+                error = false;
+            } catch (InputMismatchException e) {
+                System.out.println("Not a number retry!");
+            } finally {
+                stdin.nextLine();
+            }
+        }
+        return choice;
     }
 
     private RequestEvent noInputHandler(String option) {
@@ -117,8 +131,12 @@ public class OptionHandler {
         return null;
     }
 
-    private RequestEvent card7(String option) {
+    private RequestEvent card2(String option) {
+        return oneInputHandler(option);
+    }
 
+    //TODO implements this card
+    private RequestEvent card6(String option) {
         String[] input;
         int[] values = null;
         boolean error = true;
@@ -151,23 +169,63 @@ public class OptionHandler {
         return new RequestEvent("extraAction", this.playerId, values);
     }
 
-
-
-    private int inputNumber(String message) {
+    private RequestEvent card7(String option) {
+        String[] input;
+        int[] values = null;
         boolean error = true;
-        int choice = 0;
         while (error) {
+            System.out.println(this.optionSelected.get(option));
             try {
-                System.out.println(message);
-                choice = stdin.nextInt();
-                error = false;
-            } catch (InputMismatchException e) {
+                input = stdin.nextLine().split(",");
+                if (input.length == 2) {
+                    values = new int[2];
+                    values[0] = Integer.parseInt(input[0]) - 1;
+                    values[1] = Color.valueOf(input[1].toUpperCase()).ordinal();
+                    error = false;
+                } else {
+                    System.out.println("Wrong number of arguments");
+                }
+            } catch (NumberFormatException e) {
                 System.out.println("Not a number retry!");
-            } finally {
-                stdin.nextLine();
+            } catch (IllegalArgumentException e) {
+                System.out.println("Not a valid color retry!");
             }
         }
-        return choice;
+        return new RequestEvent("extraAction", this.playerId, values);
+    }
+
+    //TODO implements this card
+    private RequestEvent card8(String option) {
+        String[] input;
+        int[] values = null;
+        boolean error = true;
+        while (error) {
+            System.out.println(this.optionSelected.get(option));
+            try {
+                input = stdin.nextLine().split(",");
+                if (input.length == 2) {
+                    values = new int[2];
+                    values[0] = Integer.parseInt(input[0]) - 1;
+                    values[1] = Color.valueOf(input[1].toUpperCase()).ordinal();
+                    error = false;
+                } else if (input.length == 4) {
+                    values = new int[4];
+                    values[0] = Integer.parseInt(input[0]) - 1;
+                    values[1] = Color.valueOf(input[1].toUpperCase()).ordinal();
+                    values[2] = Integer.parseInt(input[2]) - 1;
+                    values[3] = Color.valueOf(input[3].toUpperCase()).ordinal();
+                    if (values[0] < values[2]) values[2]--;
+                    error = false;
+                } else {
+                    System.out.println("Wrong number of arguments");
+                }
+            } catch (NumberFormatException e) {
+                System.out.println("Not numbers retry!");
+            } catch (IllegalArgumentException e) {
+                System.out.println("Not a valid color retry!");
+            }
+        }
+        return new RequestEvent("extraAction", this.playerId, values);
     }
 
 }

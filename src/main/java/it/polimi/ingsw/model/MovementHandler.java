@@ -24,14 +24,12 @@ public class MovementHandler extends Handler {
      */
     @Override
     protected void extraAction(Player currentPlayer, Model model, int ... values) {
-        if (card.getNumOfStudentsToReturn() > 0) { //Card 12
+        if (card.getNumOfStudentsToReturn() > 0) { //Card 8
             model.returnStudentsToBag(Color.values()[values[0]], card.getNumOfStudentsToReturn());
         } else if (card.getPossibleExchange() > 0) { //Card 7
-            for (int i = 0; i < values.length; i += 2) {
-                int finalI = i;
-                System.out.println(values[i] + " " + Arrays.stream(Color.values()).filter(c -> c.ordinal() == values[finalI +1]).findFirst().get());
-                model.exchangeStudentsDiningRoomEntrance(currentPlayer.getId(), values[i], Arrays.stream(Color.values()).filter(c -> c.ordinal() == values[finalI +1]).findFirst().get());
-
+            if (values.length == 2) {
+                //System.out.println(values[0] + " " + Arrays.stream(Color.values()).filter(c -> c.ordinal() == values[1]).findFirst().get());
+                model.exchangeStudentsDiningRoomEntrance(currentPlayer.getId(), values[0], Arrays.stream(Color.values()).filter(c -> c.ordinal() == values[1]).findFirst().get());
             }
         }
     }
