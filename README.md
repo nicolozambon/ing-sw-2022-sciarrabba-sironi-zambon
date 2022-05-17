@@ -1,6 +1,6 @@
 # Software Engineering Project
 
-## Partecipants
+## Participants
 - Jonathan Sciarrabba
 - Alessandro Sironi
 - Nicolò Zambon
