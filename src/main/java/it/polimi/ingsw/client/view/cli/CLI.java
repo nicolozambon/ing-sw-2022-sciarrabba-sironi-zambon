@@ -68,17 +68,17 @@ public class CLI {
         this.islandsLinkedToNext.set(islandId, true);
     }
 
-    public static final String ANSI_RESET = "\u001B[0m";
+    public static final String ANSI_RESET = "-";
 
     private static final Map<Object, String> colorsMap = new HashMap<>(){{
-        this.put(Color.YELLOW, "\u001B[93m");
-        this.put(Color.GREEN, "\u001B[32m");
-        this.put(Color.BLUE, "\u001B[34m");
-        this.put(Color.RED, "\u001B[31m");
-        this.put(Color.PINK, "\u001B[95m");
-        this.put(TowerColor.BLACK, "\u001B[30m");
-        this.put(TowerColor.GREY, "\u001B[90m");
-        this.put(TowerColor.WHITE, "\u001B[37m");
+        this.put(Color.YELLOW, "-");
+        this.put(Color.GREEN, "-");
+        this.put(Color.BLUE, "-");
+        this.put(Color.RED, "-");
+        this.put(Color.PINK, "-");
+        this.put(TowerColor.BLACK, "-");
+        this.put(TowerColor.GREY, "-");
+        this.put(TowerColor.WHITE, "-");
     }};
 
     private static final Map<Object, Integer> positionMap = new HashMap<>(){{
@@ -100,10 +100,10 @@ public class CLI {
     }};
 
     private static final Map<String, String> pawnsMap = new HashMap<>(){{
-        this.put("s", " ● ");
-        this.put("p", " ⬢ ");
-        this.put("t", " ♜ ");
-        this.put("n", " ♟ ");
+        this.put("s", " # ");
+        this.put("p", " # ");
+        this.put("t", " # ");
+        this.put("n", " # ");
     }};
 
     private Map<String, Integer> getFirstAvailablePlaceholder(String[][] board, String identifier, Object color) {
