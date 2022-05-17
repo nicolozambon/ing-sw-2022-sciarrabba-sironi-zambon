@@ -2,6 +2,7 @@ package it.polimi.ingsw.client.view.cli;
 
 import it.polimi.ingsw.enums.Color;
 import it.polimi.ingsw.enums.TowerColor;
+import it.polimi.ingsw.model.card.CharacterCard;
 
 import java.util.*;
 import java.util.regex.Matcher;
@@ -13,26 +14,15 @@ import static java.lang.Math.min;
 
 public class CLI {
 
-    private class CharacterCardContent {
-        public CharacterCardContent(int id, int coins, String text) {
-
-        }
-    }
-
-    private class AssistantCardContent {
-        public AssistantCardContent(int value, int steps) {
-
-        }
-    }
-
     private final Map<String, String[][]> islandLinkers;
     private final ArrayList<String[][]> schools = new ArrayList<>();
     private final ArrayList<String[][]> islands = new ArrayList<>();
     private final ArrayList<String[][]> clouds = new ArrayList<>();
     private final ArrayList<Boolean> islandsLinkedToNext = new ArrayList<>();
-    private final String[][] characterCardTest;
 
-    private ArrayList<String[]> characterCards = new ArrayList<>();
+    private final String[][] characterCardTest;
+    private final String[][] assistantCardTest;
+    private final ArrayList<CharacterCard> characterCards = new ArrayList<>();
     /*
     private ArrayList<AssistantCardContent> = new ArrayList<>();
 
@@ -61,6 +51,7 @@ public class CLI {
         }
 
         this.characterCardTest = loader.getCharacterCardContainer();
+        this.assistantCardTest = loader.getAssistantCardContainer();
 
     }
 
@@ -160,11 +151,10 @@ public class CLI {
         return boardList.get(id);
     }
 
-    /*
-    protected void addCharacterCard(String text, int id, int coins) {
-        this.characterCards.add();
+    protected void addCharacterCard(int id, int coins, String effect) {
+        CharacterCard card = new CharacterCard(id, coins, effect);
+        this.characterCards.add(card);
     }
-    */
 
     // SCHOOLS METHODS
     protected void addStudentToSchoolDiningRoom(int id, Color color) {
@@ -298,15 +288,10 @@ public class CLI {
         }
 
         String cardTitle = "CARD: 1   COINS: 3";
+        String cardText;
+        int cardNumber = 0;
 
-        String cardText = "Choose an Island and resolve the Island as if Mother Nature had ended her movement there. Mother Nature will still move and the Island where she ends her movement will also be resolved.";
 
-        Pattern p = Pattern.compile(".{1," + Integer.toString(cardTextWidth) + "}(\\s+|$)");
-        Matcher m = p.matcher(cardText);
-        ArrayList<String> cardTextLines = new ArrayList<>();
-        while(m.find()) {
-            cardTextLines.add(m.group().trim());
-        }
 
         int charPositionInCard;
 
@@ -319,6 +304,17 @@ public class CLI {
             }
 
             if (builder.charAt(c) == '!') {
+
+                cardText = this.characterCards.get(cardNumber).getEffect();
+                // cardText = "Choose an Island and resolve the Island as if Mother Nature had ended her movement there. Mother Nature will still move and the Island where she ends her movement will also be resolved.";
+                Pattern p = Pattern.compile(".{1," + Integer.toString(cardTextWidth) + "}(\\s+|$)");
+                Matcher m = p.matcher(cardText);
+                ArrayList<String> cardTextLines = new ArrayList<>();
+                while(m.find()) {
+                    cardTextLines.add(m.group().trim());
+                }
+
+                cardNumber += 1;
 
                 for (int i=0; i<min(cardTextHeight, cardTextLines.size()); i++) {
 
@@ -513,6 +509,8 @@ public class CLI {
             }
         }
 
+
+
         // Construct clouds rectangle
 
         int cloudH = this.clouds.get(0).length;
@@ -588,13 +586,36 @@ public class CLI {
         int width = setOfIslands[0].length + this.schools.get(1)[0].length + space + this.schools.get(2)[0].length + space;
 
         String[][] gameBoard = new String[height][width];
+        for (int i=0; i<gameBoard.length; i++) {
+            for (int j=0; j<gameBoard[i].length; j++) {
+                gameBoard[i][j] = " ";
+            }
+        }
 
         int mainSchoolOffset;
 
+
+
+        // Assistant card
+        int cardRowOnSet;
+        int cardColOnSet;
+        int cardBaseRowOnSet = 39;
+        int cardBaseColOnSet = 150;
+
+        String[][] card = this.assistantCardTest;
+
+        for (int cardRow=0; cardRow<card.length; cardRow++) {
+            for (int cardCol=0; cardCol<card[0].length; cardCol++) {
+                cardRowOnSet = cardBaseRowOnSet + cardRow;
+                cardColOnSet = cardBaseColOnSet + cardCol;
+                gameBoard[cardRowOnSet][cardColOnSet] = card[cardRow][cardCol];
+            }
+        }
+
+
+
         for (int i=0; i<gameBoard.length; i++) {
             for (int j=0; j<gameBoard[i].length; j++) {
-
-                gameBoard[i][j] = " ";
 
                 mainSchoolOffset = (setOfIslands[0].length - schools.get(0)[0].length) / 2;
 
@@ -603,16 +624,12 @@ public class CLI {
                         gameBoard[i][j] = setOfIslands[i][j];
                     } else if (j-setOfIslands[0].length >= space && j-setOfIslands[0].length < this.schools.get(1)[i].length+space) {
                         gameBoard[i][j] = this.schools.get(1)[i][j-setOfIslands[0].length-space].toString();
-                    } else {
-                        gameBoard[i][j] = "#";
                     }
 
                     // Main school
                     if (i >= setOfIslands.length && j < setOfIslands[0].length) {
                         if (j >= mainSchoolOffset && j-mainSchoolOffset < this.schools.get(0)[0].length) {
                             gameBoard[i][j] = this.schools.get(0)[i-setOfIslands.length][j-mainSchoolOffset].toString();
-                        } else {
-                            gameBoard[i][j] = "+";
                         }
                     }
 
@@ -628,8 +645,6 @@ public class CLI {
                         } else if (j >= (this.schools.get(1)[i].length + space) + setOfIslands[0].length + space && j - this.schools.get(1)[i].length - space - setOfIslands[0].length - space < this.schools.get(1)[i].length && i < this.schools.get(1).length) {
 
                             gameBoard[i][j] = this.schools.get(2)[i][j - this.schools.get(1)[i].length - space - setOfIslands[0].length - space];
-                        } else {
-                            gameBoard[i][j] = " ";
                         }
 
                         /*
@@ -646,8 +661,6 @@ public class CLI {
                     if (i >= setOfIslands.length && j >= mainSchoolOffset && j < setOfIslands[0].length + space + this.schools.get(1)[0].length) {
                         if (j - mainSchoolOffset < this.schools.get(0)[0].length) {
                             gameBoard[i][j] = this.schools.get(0)[i - setOfIslands.length][j - mainSchoolOffset].toString();
-                        } else {
-                            gameBoard[i][j] = " ";
                         }
                     }
 

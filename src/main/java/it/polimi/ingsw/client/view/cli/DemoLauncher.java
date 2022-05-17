@@ -14,6 +14,10 @@ public class DemoLauncher {
 
         CLI cli = new CLI(3);
 
+        cli.addCharacterCard(1, 5, "lorem ipsum first card");
+        cli.addCharacterCard(1, 5, "lorem ipsum second card");
+        cli.addCharacterCard(1, 5, "lorem ipsum third card");
+
         cli.addStudentToSchoolDiningRoom(0, Color.RED);
         cli.addStudentToSchoolDiningRoom(0, Color.BLUE);
         cli.addProfessorToSchool(0, Color.BLUE);
@@ -58,21 +62,20 @@ public class DemoLauncher {
         cli.addStudentToSchoolDiningRoom(1, Color.GREEN);
         cli.addStudentToSchoolDiningRoom(1, Color.GREEN);
 
-
-
-
         cli.addLinkToNextIsland(0);
         cli.addLinkToNextIsland(1);
         cli.addLinkToNextIsland(2);
         cli.addLinkToNextIsland(3);
         cli.addLinkToNextIsland(4);
-        cli.addLinkToNextIsland(5);
-        cli.addLinkToNextIsland(6);
-        cli.addLinkToNextIsland(7);
-        cli.addLinkToNextIsland(8);
-        cli.addLinkToNextIsland(9);
-        cli.addLinkToNextIsland(10);
-        cli.addLinkToNextIsland(11);
+
+        cli.addStudentToIsland(0, Color.BLUE);
+        cli.addStudentToIsland(0, Color.YELLOW);
+        cli.addStudentToIsland(0, Color.GREEN);
+        cli.addStudentToIsland(0, Color.RED);
+        cli.addStudentToIsland(0, Color.PINK);
+
+        cli.addMotherNatureToIsland(0);
+        cli.addTowerToIsland(0, TowerColor.WHITE);
 
         // Show updated game board
         cli.showGameBoard();

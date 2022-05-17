@@ -22,6 +22,15 @@ public class CharacterCard {
         this.hasExtraAction = hasExtraAction;
     }
 
+    public CharacterCard(int id, int coins, String effect) {
+        this.id = id;
+        this.coins = coins;
+        this.effect = effect;
+        this.category = null;
+        this.params = null;
+        this.hasExtraAction = false;
+    }
+
     public CharacterCard(CharacterCard card) {
         this.id = card.id;
         this.coins = card.coins;
