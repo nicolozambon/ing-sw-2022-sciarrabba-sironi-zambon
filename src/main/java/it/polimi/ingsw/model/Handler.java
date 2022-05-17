@@ -8,7 +8,7 @@ import java.util.*;
 
 public class Handler {
 
-    List<Player> players;
+    protected List<Player> players;
 
     protected Handler(List<Player> players) {
         this.players = new ArrayList<>(players);
@@ -180,6 +180,10 @@ public class Handler {
 
     protected int getNumStudentsDR(Player player, Color color) {
         return player.getSchool().getDiningRoomByColor(color).getNumPawns();
+    }
+
+    public int getCardId() {
+        return -1;
     }
 
 }

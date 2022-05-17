@@ -104,8 +104,8 @@ public class Player {
         this.school.returnStudentsToBag(bag, color, num);
     }
 
-    protected void exchangeStudentsDiningRoomEntrance(Color color, int entrancePawnPosition) {
-        school.exchangeStudentsDiningRoomEntrance(color, entrancePawnPosition);
+    protected void exchangeStudentsDiningRoomEntrance(int entrancePawnPosition, Color color) {
+        school.exchangeStudentsDiningRoomEntrance(entrancePawnPosition, color);
     }
 
     protected void increaseCoinBy(int value) {

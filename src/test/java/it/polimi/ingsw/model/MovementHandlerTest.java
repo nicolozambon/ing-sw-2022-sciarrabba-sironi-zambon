@@ -65,7 +65,7 @@ public class MovementHandlerTest {
 
         model.playCharacterCard(0, 7);
 
-        model.extraAction(1, player1.getSchool().getEntrance().getNumPawns()-1, 1, player1.getSchool().getEntrance().getNumPawns()-2);
+        model.extraAction(0, player1.getSchool().getEntrance().getNumPawns()-1, 1, player1.getSchool().getEntrance().getNumPawns()-2, 1);
 
         assertEquals(1, player1.getSchool().getDiningRoomByColor(Color.GREEN).getNumPawns());
         assertEquals(2, player1.getSchool().getDiningRoomByColor(Color.YELLOW).getNumPawns());

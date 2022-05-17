@@ -42,7 +42,7 @@ class MotherNatureHandlerTest {
         model.getPlayers().get(0).increaseCoinBy(10);
         model.playCharacterCard(0, 2);
         model.playAssistantCard(0, 6);
-        model.extraAction(2);
+        model.extraAction(0,2);
         assertTrue(model.getHandler() instanceof MotherNatureHandler);
     }
 }

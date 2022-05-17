@@ -77,6 +77,10 @@ public class DemoLauncher {
         cli.addMotherNatureToIsland(0);
         cli.addTowerToIsland(0, TowerColor.WHITE);
 
+        cli.addMotherNatureToIsland(0);
+        cli.addTowerToIsland(0, TowerColor.WHITE);
+        cli.addStudentToIsland(0, Color.GREEN);
+
         // Show updated game board
         cli.showGameBoard();
     }

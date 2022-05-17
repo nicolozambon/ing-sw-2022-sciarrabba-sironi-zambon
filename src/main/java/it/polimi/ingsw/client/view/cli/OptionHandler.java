@@ -2,13 +2,13 @@ package it.polimi.ingsw.client.view.cli;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
+import it.polimi.ingsw.controller.Controller;
+import it.polimi.ingsw.enums.Color;
 import it.polimi.ingsw.events.RequestEvent;
 
 import java.io.*;
-import java.util.InputMismatchException;
-import java.util.List;
-import java.util.Map;
-import java.util.Scanner;
+import java.lang.reflect.Method;
+import java.util.*;
 
 //TODO Class for handling input by the user
 public class OptionHandler {
@@ -50,10 +50,10 @@ public class OptionHandler {
                         case "nickname" -> {
                             return setNickname(options.get(choice));
                         }
-                        case "extraAction" -> {
-                            return extraActionInputHandler(options.get(choice));
-                        }
                         default -> {
+                            if (options.get(choice).matches("card[2,6,7,8]")) {
+                                return extraActionInputHandler(options.get(choice));
+                            }
                             return oneInputHandler(options.get(choice));
                         }
                     }
@@ -64,14 +64,13 @@ public class OptionHandler {
         return null;
     }
 
-    //TODO Improve control on user input
     private RequestEvent twoInputHandler(String option)  {
-        System.out.println(this.optionSelected.get(option));
         String[] input;
         int student = 0;
         int island = 0;
         boolean error = true;
         while (error) {
+            System.out.println(this.optionSelected.get(option));
             try {
                 input = stdin.nextLine().split(",");
                 if (input.length == 2) {
@@ -105,14 +104,51 @@ public class OptionHandler {
     }
 
     private RequestEvent extraActionInputHandler(String option) {
-        System.out.println(this.optionSelected.get(option)); //TODO show correct messages based on character card
-        String[] input = stdin.nextLine().split(",");
-        int value0 = Integer.parseInt(input[0]);
-        int value1 = Integer.parseInt(input[1]);
-        int value2 = Integer.parseInt(input[2]);
-        int value3 = Integer.parseInt(input[3]);
-        return new RequestEvent(option, this.playerId, value0, value1, value2, value3);
+        try {
+            Method method = OptionHandler.class.getDeclaredMethod(option, String.class);
+            method.setAccessible(true);
+            return (RequestEvent) method.invoke(this, option);
+        } catch (Exception e){
+            e.printStackTrace();
+        }
+        return null;
     }
+
+    private RequestEvent card7(String option) {
+
+        String[] input;
+        int[] values = null;
+        boolean error = true;
+        while (error) {
+            System.out.println(this.optionSelected.get(option));
+            try {
+                input = stdin.nextLine().split(",");
+                if (input.length == 2) {
+                    values = new int[2];
+                    values[0] = Integer.parseInt(input[0]) - 1;
+                    values[1] = Color.valueOf(input[1].toUpperCase()).ordinal();
+                    error = false;
+                } else if (input.length == 4) {
+                    values = new int[4];
+                    values[0] = Integer.parseInt(input[0]) - 1;
+                    values[1] = Color.valueOf(input[1].toUpperCase()).ordinal();
+                    values[2] = Integer.parseInt(input[0]) - 1;
+                    values[3] = Color.valueOf(input[1].toUpperCase()).ordinal();
+                    if (values[0] < values[2]) values[2]--;
+                    error = false;
+                } else {
+                    System.out.println("Wrong number of arguments");
+                }
+            } catch (NumberFormatException e) {
+                System.out.println("Not numbers retry!");
+            } catch (IllegalArgumentException e) {
+                System.out.println("Not a valid color retry!");
+            }
+        }
+        return new RequestEvent("extraAction", this.playerId, values);
+    }
+
+
 
     private int inputNumber(String message) {
         boolean error = true;
