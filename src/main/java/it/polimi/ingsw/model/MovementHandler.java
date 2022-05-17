@@ -3,13 +3,14 @@ package it.polimi.ingsw.model;
 import it.polimi.ingsw.enums.Color;
 import it.polimi.ingsw.model.card.MovementCharacterCard;
 
+import java.util.Arrays;
 import java.util.Comparator;
 import java.util.List;
 
 //TODO remain card 2 and card 10
 public class MovementHandler extends Handler {
 
-    MovementCharacterCard card;
+    private final MovementCharacterCard card;
 
     protected MovementHandler(List<Player> players, MovementCharacterCard card) {
         super(players);
@@ -17,7 +18,7 @@ public class MovementHandler extends Handler {
     }
 
     /**
-     * Card 10: exchange 1 or 2 students from the dining room and viceversa; takes a couple of Color-Position values to exchange.
+     * Card 10: exchange 1 or 2 students from the dining room and viceversa; takes a couple of Position-Color values to exchange.
      * @param currentPlayer
      * @param model
      * @param values
@@ -28,8 +29,10 @@ public class MovementHandler extends Handler {
             model.returnStudentsToBag(Color.values()[values[0]], card.getNumOfStudentsToReturn());
         } else if (card.getPossibleExchange() > 0) { //Card 7
             for (int i = 0; i < values.length; i += 2) {
-                System.out.println(Color.values()[i] + " " + values[i+1]);
-                currentPlayer.exchangeStudentsDiningRoomEntrance(Color.values()[values[i]], values[i+1]);
+                int finalI = i;
+                System.out.println(values[i] + " " + Arrays.stream(Color.values()).filter(c -> c.ordinal() == values[finalI +1]).findFirst().get());
+                model.exchangeStudentsDiningRoomEntrance(currentPlayer.getId(), values[i], Arrays.stream(Color.values()).filter(c -> c.ordinal() == values[finalI +1]).findFirst().get());
+
             }
         }
     }
@@ -55,4 +58,8 @@ public class MovementHandler extends Handler {
         }
     }
 
+    @Override
+    public int getCardId() {
+        return this.card.getId();
+    }
 }

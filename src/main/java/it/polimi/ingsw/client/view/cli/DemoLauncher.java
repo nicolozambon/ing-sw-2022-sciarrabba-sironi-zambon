@@ -74,6 +74,10 @@ public class DemoLauncher {
         cli.addLinkToNextIsland(10);
         cli.addLinkToNextIsland(11);
 
+        cli.addMotherNatureToIsland(0);
+        cli.addTowerToIsland(0, TowerColor.WHITE);
+        cli.addStudentToIsland(0, Color.GREEN);
+
         // Show updated game board
         cli.showGameBoard();
     }

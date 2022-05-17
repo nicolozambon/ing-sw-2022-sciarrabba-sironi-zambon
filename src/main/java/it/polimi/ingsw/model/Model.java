@@ -115,8 +115,8 @@ public class Model implements AnswerListenableInterface {
         fireAnswer(new AnswerEvent("update", this));
     }
 
-    public void extraAction(int ... values) {
-        this.handler.extraAction(players.get(0), this, values);
+    public void extraAction(int playerId, int ... values) {
+        this.handler.extraAction(players.get(playerId), this, values);
         fireAnswer(new AnswerEvent("update", this));
     }
 
@@ -156,7 +156,11 @@ public class Model implements AnswerListenableInterface {
         for (Player player : players) {
             player.returnStudentsToBag(bag, color, num);
         }
-        fireAnswer(new AnswerEvent("update", this));
+        //fireAnswer(new AnswerEvent("update", this));
+    }
+
+    protected void exchangeStudentsDiningRoomEntrance(int playerId, int entrancePawnPosition, Color color) {
+        players.get(playerId).exchangeStudentsDiningRoomEntrance(entrancePawnPosition, color);
     }
 
     /**
@@ -320,6 +324,10 @@ public class Model implements AnswerListenableInterface {
 
     protected Handler getHandler() {
         return handler;
+    }
+
+    public int getCharacterCardIdByHandler() {
+        return this.handler.getCardId();
     }
 
     @Override

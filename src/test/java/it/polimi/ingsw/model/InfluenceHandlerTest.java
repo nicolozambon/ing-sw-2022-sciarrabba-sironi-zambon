@@ -136,7 +136,7 @@ class InfluenceHandlerTest {
         model.getPlayers().get(0).increaseCoinBy(10);
         model.playCharacterCard(0, 6);
         model.playAssistantCard(0, 6);
-        model.extraAction(0);
+        model.extraAction(0,0);
         assertTrue(model.getHandler() instanceof InfluenceHandler);
     }
 

@@ -84,7 +84,7 @@ public class ActionPhase {
 
     public void extraAction(int ... values) {
         if(callableMethod.get("extraAction") > 0) {
-            this.model.extraAction(values);
+            this.model.extraAction(this.currentPlayer.getId(), values);
             callableMethod.put("extraAction", callableMethod.get("extraAction") - 1 );
         }
     }
@@ -112,9 +112,14 @@ public class ActionPhase {
     }
 
     public List<String> getOptions() {
-        return new ArrayList<>(callableMethod.entrySet().stream()
+        List<String> options = new ArrayList<>(callableMethod.entrySet().stream()
                                                         .filter(x -> x.getValue() > 0)
                                                         .map(Map.Entry::getKey).toList());
+        if (options.contains("extraAction")) {
+            options.remove("extraAction");
+            options.add("card" + model.getCharacterCardIdByHandler());
+        }
+        return options;
     }
 
 }
