@@ -100,10 +100,10 @@ public class CLI {
     }};
 
     private static final Map<String, String> pawnsMap = new HashMap<>(){{
-        this.put("s", " # ");
-        this.put("p", " # ");
-        this.put("t", " # ");
-        this.put("n", " # ");
+        this.put("s", " ● ");
+        this.put("p", " ⬢ ");
+        this.put("t", " ♜ ");
+        this.put("n", " ♟ ");
     }};
 
     private Map<String, Integer> getFirstAvailablePlaceholder(String[][] board, String identifier, Object color) {
