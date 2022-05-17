@@ -7,7 +7,6 @@ import java.util.Arrays;
 import java.util.Comparator;
 import java.util.List;
 
-//TODO remain card 2 and card 10
 public class MovementHandler extends Handler {
 
     private final MovementCharacterCard card;

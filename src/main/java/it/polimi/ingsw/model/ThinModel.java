@@ -5,15 +5,16 @@ import it.polimi.ingsw.enums.TowerColor;
 import it.polimi.ingsw.model.card.AssistantCard;
 import it.polimi.ingsw.model.card.CharacterCard;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
-import java.util.ArrayList;
 import java.util.Map;
 
 //TODO add List of players nickname
 public final class ThinModel {
 
     //Players State
+    private List<String> nicknames;
     private List<SchoolSerializable> schools;
     private List<Integer> coins;
     private List<List<AssistantCard>> assistantsCards;
@@ -26,6 +27,7 @@ public final class ThinModel {
     private List<Color> professors;
 
     public ThinModel(Model model) {
+        nicknames = model.getPlayers().stream().map(Player::getNickname).toList();
         schools = new ArrayList<>();
         coins = new ArrayList<>();
         assistantsCards = new ArrayList<>();
@@ -127,7 +129,7 @@ public final class ThinModel {
     }
 
 
-    private static class SchoolSerializable { //A SchoolSerializable for all players.
+    private class SchoolSerializable { //A SchoolSerializable for all players.
 
         Map<Color, Integer> diningRoom = new HashMap<>();
         List<Color> entrance = new ArrayList<>(); //Ordered by #Position of Entrance in the board.

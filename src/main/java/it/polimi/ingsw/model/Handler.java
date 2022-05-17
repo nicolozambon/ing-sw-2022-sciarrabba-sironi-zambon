@@ -1,6 +1,6 @@
 package it.polimi.ingsw.model;
 
-import it.polimi.ingsw.enums.*;
+import it.polimi.ingsw.enums.Color;
 import it.polimi.ingsw.exceptions.MotherNatureStepsException;
 
 import java.util.*;

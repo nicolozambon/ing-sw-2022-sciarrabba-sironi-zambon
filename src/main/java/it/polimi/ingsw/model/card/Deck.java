@@ -2,7 +2,6 @@ package it.polimi.ingsw.model.card;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Collections;
 
 public class Deck<T> {
 

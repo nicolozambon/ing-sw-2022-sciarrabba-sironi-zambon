@@ -2,7 +2,6 @@ package it.polimi.ingsw.events;
 
 import it.polimi.ingsw.model.Model;
 
-import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 

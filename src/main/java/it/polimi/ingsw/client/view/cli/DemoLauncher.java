@@ -5,8 +5,6 @@ import it.polimi.ingsw.enums.Color;
 import it.polimi.ingsw.enums.TowerColor;
 
 import java.io.IOException;
-import java.util.HashMap;
-import java.util.Map;
 
 public class DemoLauncher {
 

@@ -1,14 +1,5 @@
 package it.polimi.ingsw.client.view.cli;
 
-import it.polimi.ingsw.enums.Color;
-import it.polimi.ingsw.model.Model;
-import it.polimi.ingsw.model.ModelBuilder;
-import it.polimi.ingsw.model.ThinModel;
-
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
-
 public class CLIBuilder {
 
     /*

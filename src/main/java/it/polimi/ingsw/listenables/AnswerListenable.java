@@ -2,6 +2,7 @@ package it.polimi.ingsw.listenables;
 
 import it.polimi.ingsw.events.AnswerEvent;
 import it.polimi.ingsw.listeners.AnswerListener;
+
 import java.util.ArrayList;
 import java.util.List;
 

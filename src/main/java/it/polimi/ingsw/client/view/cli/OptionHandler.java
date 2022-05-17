@@ -2,13 +2,16 @@ package it.polimi.ingsw.client.view.cli;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
-import it.polimi.ingsw.controller.Controller;
 import it.polimi.ingsw.enums.Color;
 import it.polimi.ingsw.events.RequestEvent;
 
-import java.io.*;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.lang.reflect.Method;
-import java.util.*;
+import java.util.InputMismatchException;
+import java.util.List;
+import java.util.Map;
+import java.util.Scanner;
 
 //TODO Class for handling input by the user
 public class OptionHandler {

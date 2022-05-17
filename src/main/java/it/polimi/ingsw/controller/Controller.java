@@ -3,7 +3,8 @@ package it.polimi.ingsw.controller;
 import it.polimi.ingsw.events.RequestEvent;
 import it.polimi.ingsw.exceptions.*;
 import it.polimi.ingsw.listeners.RequestListener;
-import it.polimi.ingsw.model.*;
+import it.polimi.ingsw.model.Model;
+import it.polimi.ingsw.model.Player;
 
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;

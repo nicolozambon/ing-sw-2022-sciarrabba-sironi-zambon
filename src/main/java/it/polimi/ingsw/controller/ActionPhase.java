@@ -4,8 +4,8 @@ import it.polimi.ingsw.exceptions.CharacterCardException;
 import it.polimi.ingsw.exceptions.CloudException;
 import it.polimi.ingsw.exceptions.MotherNatureStepsException;
 import it.polimi.ingsw.exceptions.NotEnoughCoinsException;
-import it.polimi.ingsw.model.*;
-
+import it.polimi.ingsw.model.Model;
+import it.polimi.ingsw.model.Player;
 
 import java.util.ArrayList;
 import java.util.HashMap;

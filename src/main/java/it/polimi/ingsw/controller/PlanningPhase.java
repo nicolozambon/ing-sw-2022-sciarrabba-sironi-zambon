@@ -1,7 +1,8 @@
 package it.polimi.ingsw.controller;
 
 import it.polimi.ingsw.exceptions.AssistantCardException;
-import it.polimi.ingsw.model.*;
+import it.polimi.ingsw.model.Model;
+import it.polimi.ingsw.model.Player;
 import it.polimi.ingsw.model.card.AssistantCard;
 
 import java.util.ArrayList;

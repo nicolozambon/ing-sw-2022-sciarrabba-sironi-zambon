@@ -2,7 +2,6 @@ package it.polimi.ingsw.model;
 
 import it.polimi.ingsw.enums.Color;
 
-import java.util.List;
 import java.util.Objects;
 
 public class Island extends Board<Student> {
