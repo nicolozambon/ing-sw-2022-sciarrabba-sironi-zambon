@@ -398,6 +398,16 @@
                                              <Image url="@../images/pawns/redStudent.png" />
                                          </image>
                                      </ImageView>
+                                    <ImageView fitHeight="55.0" fitWidth="81.0" layoutX="90.0" layoutY="476.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="2">
+                                       <image>
+                                          <Image url="@../images/pawns/yellowStudent.png" />
+                                       </image>
+                                    </ImageView>
+                                    <ImageView fitHeight="55.0" fitWidth="81.0" layoutX="170.0" layoutY="9.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="2" GridPane.rowIndex="1">
+                                       <image>
+                                          <Image url="@../images/pawns/yellowStudent.png" />
+                                       </image>
+                                    </ImageView>
                                  </children>
                               </GridPane>
                            </children>
