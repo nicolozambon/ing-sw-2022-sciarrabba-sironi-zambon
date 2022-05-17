@@ -298,7 +298,20 @@ public class CLI {
         int cardTextHeight = 13;
         int index = 0;
 
-        int builderRowWidth = builder.indexOf("\n") + 1;
+        int builderRowWidth;
+        int previousBuilderRowWidth = 0;
+        boolean isFirst = true;
+        ArrayList<Integer> builderRowsWidth = new ArrayList<>();
+        for (int i=0; i<board.length; i++) {
+            if (isFirst) {
+                builderRowWidth = builder.indexOf("\n") + 1;
+                isFirst = false;
+            } else {
+                builderRowWidth = builder.indexOf("\n", previousBuilderRowWidth) + 1;
+            }
+            builderRowsWidth.add(builderRowWidth-previousBuilderRowWidth);
+            previousBuilderRowWidth = builderRowWidth;
+        }
 
         String cardTitle = "CARD: 1   COINS: 3";
 
@@ -325,18 +338,20 @@ public class CLI {
 
                 for (int i=0; i<min(cardTextHeight, cardTextLines.size()); i++) {
 
+
                     for (int j=0; j<min(cardTextWidth, cardTextLines.get(i).length()); j++) {
 
-                        if (j < cardTextLines.get(i).length()) {
-
-                            charPositionInCard = j + i * cardTextWidth;
-                            index = c + charPositionInCard%cardTextWidth + charPositionInCard/cardTextWidth * builderRowWidth;
-
-                            char selectedChar = cardTextLines.get(i).charAt(j);
-
-                            builder.setCharAt(index, selectedChar);
-
+                        charPositionInCard = i * cardTextWidth + j;
+                        // index = c + j + charPositionInCard/cardTextWidth * builderRowsWidth.get(i+11);
+                        // index = (c + j) + (i * builderRowsWidth.get(i+11));
+                        index = (c + j);
+                        for (int k=11; k<i+11; k++) {
+                            index += builderRowsWidth.get(k+1);
                         }
+                        char selectedChar = cardTextLines.get(i).charAt(j);
+
+                        builder.setCharAt(index, selectedChar);
+
 
                     }
 

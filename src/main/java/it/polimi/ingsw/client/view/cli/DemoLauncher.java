@@ -16,6 +16,46 @@ public class DemoLauncher {
         cli.addStudentToCloud(0, Color.BLUE);
 
 
+        cli.addStudentToSchoolDiningRoom(1, Color.BLUE);
+        cli.addStudentToSchoolDiningRoom(1, Color.BLUE);
+        cli.addStudentToSchoolDiningRoom(1, Color.BLUE);
+        cli.addStudentToSchoolDiningRoom(1, Color.BLUE);
+        cli.addStudentToSchoolDiningRoom(1, Color.BLUE);
+        cli.addStudentToSchoolDiningRoom(1, Color.BLUE);
+        cli.addStudentToSchoolDiningRoom(1, Color.BLUE);
+        cli.addStudentToSchoolDiningRoom(1, Color.BLUE);
+        cli.addStudentToSchoolDiningRoom(1, Color.BLUE);
+
+        cli.addStudentToSchoolDiningRoom(1, Color.YELLOW);
+        cli.addStudentToSchoolDiningRoom(1, Color.YELLOW);
+        cli.addStudentToSchoolDiningRoom(1, Color.YELLOW);
+        cli.addStudentToSchoolDiningRoom(1, Color.YELLOW);
+
+        cli.addStudentToSchoolDiningRoom(1, Color.RED);
+        cli.addStudentToSchoolDiningRoom(1, Color.RED);
+        cli.addStudentToSchoolDiningRoom(1, Color.RED);
+        cli.addStudentToSchoolDiningRoom(1, Color.RED);
+        cli.addStudentToSchoolDiningRoom(1, Color.RED);
+        cli.addStudentToSchoolDiningRoom(1, Color.RED);
+        cli.addStudentToSchoolDiningRoom(1, Color.RED);
+        cli.addStudentToSchoolDiningRoom(1, Color.RED);
+
+        cli.addStudentToSchoolDiningRoom(1, Color.PINK);
+        cli.addStudentToSchoolDiningRoom(1, Color.PINK);
+        cli.addStudentToSchoolDiningRoom(1, Color.PINK);
+        cli.addStudentToSchoolDiningRoom(1, Color.PINK);
+        cli.addStudentToSchoolDiningRoom(1, Color.PINK);
+
+        cli.addStudentToSchoolDiningRoom(1, Color.GREEN);
+        cli.addStudentToSchoolDiningRoom(1, Color.GREEN);
+        cli.addStudentToSchoolDiningRoom(1, Color.GREEN);
+        cli.addStudentToSchoolDiningRoom(1, Color.GREEN);
+        cli.addStudentToSchoolDiningRoom(1, Color.GREEN);
+        cli.addStudentToSchoolDiningRoom(1, Color.GREEN);
+        cli.addStudentToSchoolDiningRoom(1, Color.GREEN);
+
+
+
 
         cli.addLinkToNextIsland(0);
         cli.addLinkToNextIsland(1);
