@@ -159,6 +159,7 @@ public class Model implements AnswerListenableInterface {
         //fireAnswer(new AnswerEvent("update", this));
     }
 
+    //TODO increment player coins and checking professor control
     protected void exchangeStudentsDiningRoomEntrance(int playerId, int entrancePawnPosition, Color color) {
         players.get(playerId).exchangeStudentsDiningRoomEntrance(entrancePawnPosition, color);
     }

@@ -132,8 +132,8 @@ public class OptionHandler {
                     values = new int[4];
                     values[0] = Integer.parseInt(input[0]) - 1;
                     values[1] = Color.valueOf(input[1].toUpperCase()).ordinal();
-                    values[2] = Integer.parseInt(input[0]) - 1;
-                    values[3] = Color.valueOf(input[1].toUpperCase()).ordinal();
+                    values[2] = Integer.parseInt(input[2]) - 1;
+                    values[3] = Color.valueOf(input[3].toUpperCase()).ordinal();
                     if (values[0] < values[2]) values[2]--;
                     error = false;
                 } else {
