@@ -26,8 +26,9 @@ public class MovementHandler extends Handler {
     protected void extraAction(Player currentPlayer, Model model, int ... values) {
         if (card.getNumOfStudentsToReturn() > 0) { //Card 12
             model.returnStudentsToBag(Color.values()[values[0]], card.getNumOfStudentsToReturn());
-        } else if (card.getPossibleExchange() > 0) { //Card 10
+        } else if (card.getPossibleExchange() > 0) { //Card 7
             for (int i = 0; i < values.length; i += 2) {
+                System.out.println(Color.values()[i] + " " + values[i+1]);
                 currentPlayer.exchangeStudentsDiningRoomEntrance(Color.values()[values[i]], values[i+1]);
             }
         }

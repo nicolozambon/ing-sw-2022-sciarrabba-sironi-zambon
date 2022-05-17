@@ -75,6 +75,7 @@ public class Controller implements RequestListener {
         if (isPlanningFinished && playersToPlay.size() > 0) {
             Player player = playersToPlay.get(0);
             if (player.getId() == playerId) {
+                choice--;
                 action.moveStudentToDiningRoom(choice);
                 if (action.isEnded()) {
                     endPlayerAction(player);
@@ -89,6 +90,8 @@ public class Controller implements RequestListener {
         if (isPlanningFinished && playersToPlay.size() > 0) {
             Player player = playersToPlay.get(0);
             if (player.getId() == playerId) {
+                island--;
+                student--;
                 if (island >= 0 && island < 12) action.moveStudentToIsland(student, island);
                 else throw new IslandException();
                 if (action.isEnded()) {
@@ -118,6 +121,7 @@ public class Controller implements RequestListener {
         if (isPlanningFinished && playersToPlay.size() > 0) {
             Player player = playersToPlay.get(0);
             if (player.getId() == playerId) {
+                choice--;
                 action.takeStudentsFromCloud(choice);
                 if (action.isEnded()) {
                     endPlayerAction(player);

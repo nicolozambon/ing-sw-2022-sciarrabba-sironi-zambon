@@ -110,7 +110,7 @@ public class Model implements AnswerListenableInterface {
     }
 
     public void takeStudentsFromCloud(int playerId, int choice) throws CloudException {
-        if (choice > clouds.size() - 1 || clouds.get(choice).getNumPawns() == 0) throw new CloudException();
+        if (choice < 0 || choice > clouds.size() - 1 || clouds.get(choice).getNumPawns() == 0) throw new CloudException();
         players.get(playerId).takeStudentsFromCloud(clouds.get(choice));
         fireAnswer(new AnswerEvent("update", this));
     }

@@ -43,8 +43,10 @@ public class VirtualView implements RequestListener, RequestListenableInterface,
             this.requestListenable.fireRequest(requestEvent);
             gameHandler.launchOptionsAnswerEvent();
         } catch (InvocationTargetException e) {
+            e.printStackTrace();
             gameHandler.launchErrorAnswerEvent(requestEvent.getPlayerId(), new AnswerEvent("error", e.getCause().getMessage()));
         } catch (NoSuchMethodException e) {
+            e.printStackTrace();
             gameHandler.launchErrorAnswerEvent(requestEvent.getPlayerId(), new AnswerEvent("error", "Bad Request! Retry"));
         }
 
