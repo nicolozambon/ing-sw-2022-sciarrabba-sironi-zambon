@@ -1,10 +1,9 @@
 package it.polimi.ingsw.model;
 
 import it.polimi.ingsw.enums.Color;
-import it.polimi.ingsw.model.Professor;
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class ProfessorTest {
 

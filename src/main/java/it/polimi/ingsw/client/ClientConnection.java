@@ -12,6 +12,8 @@ import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
 import java.net.Socket;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
 public class ClientConnection implements AnswerListenableInterface, RequestListener, Runnable {
 
@@ -27,6 +29,8 @@ public class ClientConnection implements AnswerListenableInterface, RequestListe
 
     private final Gson gson;
 
+    private ExecutorService executorService;
+
     public ClientConnection(String ip) throws IOException {
         this.ip = ip;
         this.answerListenable = new AnswerListenable();
@@ -37,6 +41,7 @@ public class ClientConnection implements AnswerListenableInterface, RequestListe
         this.inputStream = new DataInputStream(socket.getInputStream());
         this.active = true;
 
+        this.executorService = Executors.newCachedThreadPool();
         System.out.println("Connection established");
     }
 
@@ -50,14 +55,15 @@ public class ClientConnection implements AnswerListenableInterface, RequestListe
         this.inputStream = new DataInputStream(socket.getInputStream());
         this.active = true;
 
+        this.executorService = Executors.newCachedThreadPool();
         System.out.println("Connection established");
     }
 
-    //TODO using executors
     public synchronized void read() {
         try {
             AnswerEvent answer = gson.fromJson(inputStream.readUTF(), AnswerEvent.class);
-            new Thread(() -> this.fireAnswer(answer)).start();
+            executorService.submit(() -> this.fireAnswer(answer));
+            if (answer.getPropertyName().equals("stop")) stopClient();
         } catch (Exception e) {
             e.printStackTrace();
             stopClient();
@@ -74,6 +80,7 @@ public class ClientConnection implements AnswerListenableInterface, RequestListe
 
     public void stopClient() {
         try {
+            executorService.shutdownNow();
             outputStream.close();
             inputStream.close();
             socket.close();

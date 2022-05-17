@@ -1,12 +1,9 @@
 package it.polimi.ingsw.model;
 
-import java.util.*;
-
 import it.polimi.ingsw.enums.Color;
-import it.polimi.ingsw.model.Board;
-import it.polimi.ingsw.model.Island;
-import it.polimi.ingsw.model.Student;
 import org.junit.jupiter.api.Test;
+
+import java.util.ArrayList;
 
 import static org.junit.jupiter.api.Assertions.*;
 

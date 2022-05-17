@@ -2,9 +2,6 @@ package it.polimi.ingsw.model;
 
 import it.polimi.ingsw.enums.Color;
 import it.polimi.ingsw.enums.TowerColor;
-import it.polimi.ingsw.model.Player;
-import it.polimi.ingsw.model.Student;
-import it.polimi.ingsw.model.Tower;
 import it.polimi.ingsw.model.card.Deck;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -12,7 +9,7 @@ import org.junit.jupiter.api.Test;
 import java.util.ArrayList;
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class TowerTest {
 

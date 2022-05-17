@@ -12,6 +12,8 @@ import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
 import java.net.Socket;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
 public class ConnectionHandler implements Runnable, RequestListenableInterface {
 
@@ -29,11 +31,14 @@ public class ConnectionHandler implements Runnable, RequestListenableInterface {
 
     private final Gson gson;
 
+    private ExecutorService executorService;
+
     public ConnectionHandler(Socket socket, Server server) {
         this.server = server;
         this.socket = socket;
         this.requestListenable = new RequestListenable();
         this.gson = new Gson();
+        this.executorService = Executors.newCachedThreadPool();
         startConnection();
     }
 
@@ -50,8 +55,7 @@ public class ConnectionHandler implements Runnable, RequestListenableInterface {
             switch (request.getPropertyName()) {
                 case "nickname" -> {
                     this.nickname = request.getString();
-                    //TODO use executors
-                    new Thread (() -> server.enqueuePlayer(this)).start();
+                    executorService.submit(() -> server.enqueuePlayer(this));
                     notifyAll();
                 }
                 case "first_player" -> this.server.setNumPlayers(request.getValues()[0]);
@@ -91,6 +95,7 @@ public class ConnectionHandler implements Runnable, RequestListenableInterface {
 
     public void stopConnection() {
         try {
+            executorService.shutdownNow();
             outputStream.close();
             inputStream.close();
             socket.close();

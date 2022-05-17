@@ -1,12 +1,9 @@
 package it.polimi.ingsw.model;
 
-import it.polimi.ingsw.model.Island;
-import it.polimi.ingsw.model.MotherNature;
 import org.junit.jupiter.api.Test;
 
-import java.util.ArrayList;
-
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
 
 class MotherNatureTest {
 

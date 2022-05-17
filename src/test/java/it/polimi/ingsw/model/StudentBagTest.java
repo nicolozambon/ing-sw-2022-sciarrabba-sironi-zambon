@@ -1,14 +1,12 @@
 package it.polimi.ingsw.model;
 
-import java.util.*;
-
 import it.polimi.ingsw.enums.Color;
-import it.polimi.ingsw.model.Board;
-import it.polimi.ingsw.model.Student;
-import it.polimi.ingsw.model.StudentBag;
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.*;
+import java.util.ArrayList;
+import java.util.List;
+
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 
 public class StudentBagTest {

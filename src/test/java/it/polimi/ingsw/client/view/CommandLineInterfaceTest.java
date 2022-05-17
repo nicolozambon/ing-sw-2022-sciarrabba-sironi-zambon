@@ -1,8 +1,8 @@
 package it.polimi.ingsw.client.view;
 
-import it.polimi.ingsw.client.view.cli.CLI;
 import org.junit.jupiter.api.Test;
-import static org.junit.jupiter.api.Assertions.*;
+
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class CommandLineInterfaceTest {
 

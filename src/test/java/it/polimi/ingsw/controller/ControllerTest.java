@@ -5,14 +5,15 @@ import it.polimi.ingsw.events.RequestEvent;
 import it.polimi.ingsw.exceptions.*;
 import it.polimi.ingsw.model.Model;
 import it.polimi.ingsw.model.ModelBuilder;
-import it.polimi.ingsw.model.ThinModel;
 import it.polimi.ingsw.model.Player;
-import org.junit.jupiter.api.*;
-
-import static org.junit.jupiter.api.Assertions.*;
+import it.polimi.ingsw.model.ThinModel;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import static org.junit.jupiter.api.Assertions.*;
 
 class ControllerTest {
 

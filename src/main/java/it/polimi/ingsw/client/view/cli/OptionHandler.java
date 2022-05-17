@@ -8,9 +8,11 @@ import it.polimi.ingsw.events.RequestEvent;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.lang.reflect.Method;
-import java.util.*;
+import java.util.InputMismatchException;
+import java.util.List;
+import java.util.Map;
+import java.util.Scanner;
 
-//TODO Class for handling input by the user
 public class OptionHandler {
 
     private final Map<String, String> optionSelected;
@@ -41,6 +43,10 @@ public class OptionHandler {
                 if (choice <= options.size() && choice > 0) {
                     choice = choice - 1;
                     switch (options.get(choice)) {
+                        case "wait" -> {
+                            System.out.println(optionLister.list(options.get(choice)));
+                            return null;
+                        }
                         case "moveStudentToIsland" -> {
                             return twoInputHandler(options.get(choice));
                         }
@@ -131,6 +137,7 @@ public class OptionHandler {
         return null;
     }
 
+    //TODO test this card
     private RequestEvent card2(String option) {
         return oneInputHandler(option);
     }

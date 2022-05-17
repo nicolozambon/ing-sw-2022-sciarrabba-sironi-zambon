@@ -1,15 +1,14 @@
 package it.polimi.ingsw.model;
 
 import it.polimi.ingsw.enums.Color;
-import it.polimi.ingsw.exceptions.CharacterCardException;
-import it.polimi.ingsw.exceptions.NotEnoughCoinsException;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 class InfluenceHandlerTest {
     Model model;

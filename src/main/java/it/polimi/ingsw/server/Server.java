@@ -18,6 +18,9 @@ public class Server {
     private final List<GameHandler> games;
     private final Map<String, ConnectionHandler> players = new HashMap<>();
 
+    private static final List<String> waitOption = new ArrayList<>(){{
+        this.add("wait");
+    }};
 
     /**
      * Number of players for the match being built.
@@ -80,16 +83,17 @@ public class Server {
                 e.printStackTrace();
             }
         }
-        System.out.println("adding to queue");
         synchronized (queue) {
             this.queue.add(connectionHandler);
+            connectionHandler.send(new AnswerEvent("options", waitOption));
             this.queue.notifyAll();
         }
     }
 
     private void lobby() {
         ConnectionHandler connectionHandler;
-        List<String> options = new ArrayList<>();
+        List<String> first_playerOption = new ArrayList<>();
+        first_playerOption.add("first_player");
         ExecutorService gameThreadPool = Executors.newCachedThreadPool();
         while (true) {
 
@@ -113,10 +117,8 @@ public class Server {
 
             if (players.size() == 1) {
                 numPlayers = -1;
-                options.add("first_player");
-                connectionHandler.send(new AnswerEvent("options", options));
-                options.remove("first_player");
-                while (numPlayers < 0) {
+                connectionHandler.send(new AnswerEvent("options", first_playerOption));
+                while (players.size() > 0 && numPlayers < 0) {
                     try {
                         synchronized (this) {
                             wait();
@@ -125,16 +127,19 @@ public class Server {
                         e.printStackTrace();
                     }
                 }
+                connectionHandler.send(new AnswerEvent("options", waitOption));
             }
-
-            connectionHandler.send(new AnswerEvent("wait"));
 
             if (players.size() == numPlayers) {
                 GameHandler game = new GameHandler(players);
                 gameThreadPool.submit(game);
-                games.add(game);
+                synchronized (games) {
+                    games.add(game);
+                }
                 numPlayers = -1;
-                players.clear();
+                synchronized (players) {
+                    players.clear();
+                }
                 System.out.println("Start game...");
             }
 
@@ -142,7 +147,7 @@ public class Server {
 
     }
 
-    private synchronized boolean isNicknameUnique(ConnectionHandler connectionHandler) {
+    private boolean isNicknameUnique(ConnectionHandler connectionHandler) {
 
         synchronized (players) {
             if (players.containsKey(connectionHandler.getNickname())) {
@@ -170,17 +175,14 @@ public class Server {
         }
     }
 
-    //TODO improve disconnection handling
     protected void removeConnection(ConnectionHandler connectionHandler) {
         System.out.println("removing connection");
         synchronized (queue) {
             queue.remove(connectionHandler);
         }
         synchronized (players) {
-            players.values().stream().filter(c -> !c.equals(connectionHandler)).forEach(c -> {
-                disconnectConnection(c);
-                players.remove(c.getNickname());
-            });
+            players.values().stream().filter(c -> !c.equals(connectionHandler)).forEach(this::disconnectConnection);
+            players.clear();
         }
         synchronized (games) {
             for (GameHandler game : games) {
@@ -192,6 +194,9 @@ public class Server {
                     games.remove(game);
                 }
             }
+        }
+        synchronized(this) {
+            notifyAll();
         }
     }
 

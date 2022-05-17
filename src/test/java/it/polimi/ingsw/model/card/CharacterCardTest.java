@@ -1,18 +1,13 @@
 package it.polimi.ingsw.model.card;
 
 import com.google.gson.Gson;
-import it.polimi.ingsw.model.ModelBuilder;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import java.io.FileNotFoundException;
 import java.io.FileReader;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Random;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 class CharacterCardTest {
     private CharacterCard[] tests;

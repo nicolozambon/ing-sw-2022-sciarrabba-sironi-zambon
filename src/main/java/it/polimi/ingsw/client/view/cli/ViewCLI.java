@@ -7,7 +7,6 @@ import it.polimi.ingsw.listenables.RequestListenable;
 import it.polimi.ingsw.listenables.RequestListenableInterface;
 import it.polimi.ingsw.listeners.AnswerListener;
 import it.polimi.ingsw.listeners.RequestListener;
-import it.polimi.ingsw.model.Model;
 import it.polimi.ingsw.model.ThinModel;
 
 import java.io.IOException;
@@ -26,6 +25,8 @@ public class ViewCLI implements AnswerListener, RequestListenableInterface {
     private final OptionHandler optionHandler;
 
     private final RequestListenable requestListenable;
+
+    private ThinModel model = null;
 
     public ViewCLI() {
         this.optionLister = new OptionLister();
@@ -51,31 +52,28 @@ public class ViewCLI implements AnswerListener, RequestListenableInterface {
                 System.out.println("My nickname is: " + this.nickname);
             }
 
-            case "options" -> setOptions(answerEvent);
+            case "options" -> handleOptions(answerEvent);
             case "update" -> updateModel(answerEvent);
-            case "wait" -> System.out.println(optionLister.list(answerEvent.getPropertyName()));
+            //case "wait" -> System.out.println(optionLister.list(answerEvent.getPropertyName()));
             case "error" -> {
                 System.out.println(answerEvent.getMessage());
                 clientConnection.send(optionHandler.getRequestEvent(this.options));
             }
-            case "stop" -> {
-                System.out.println(answerEvent.getMessage());
-                clientConnection.stopClient();
-            }
+            case "stop" -> System.out.println(answerEvent.getMessage());
             default -> System.out.println("Answer Error!");
         }
     }
 
 
-    private void setOptions(AnswerEvent answerEvent) {
+    private void handleOptions(AnswerEvent answerEvent) {
         this.options = answerEvent.getOptions();
-        fireRequest(optionHandler.getRequestEvent(this.options));
+        if (this.model != null) System.out.println(this.model);
+        RequestEvent requestEvent = optionHandler.getRequestEvent(this.options);
+        if (requestEvent != null) fireRequest(requestEvent);
     }
 
     private void updateModel(AnswerEvent answerEvent) {
-        Model temp = answerEvent.getModel();
-        ThinModel model = new ThinModel(temp);
-        System.out.println(model);
+        this.model = new ThinModel(answerEvent.getModel());
     }
 
     public void startCLI() throws IOException {
@@ -87,7 +85,7 @@ public class ViewCLI implements AnswerListener, RequestListenableInterface {
         this.clientConnection.addAnswerListener(this);
         this.addRequestListener(this.clientConnection);
         new Thread(this.clientConnection).start();
-        setOptions(new AnswerEvent("options", this.options));
+        handleOptions(new AnswerEvent("options", this.options));
     }
 
     @Override

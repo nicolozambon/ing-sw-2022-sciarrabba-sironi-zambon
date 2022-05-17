@@ -1,16 +1,13 @@
 package it.polimi.ingsw.model;
 
 import it.polimi.ingsw.model.card.CharacterCard;
-import it.polimi.ingsw.model.card.InfluenceCharacterCard;
-import it.polimi.ingsw.model.card.MotherNatureCharacterCard;
-import it.polimi.ingsw.model.card.MovementCharacterCard;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 class HandlerFactoryTest {
 

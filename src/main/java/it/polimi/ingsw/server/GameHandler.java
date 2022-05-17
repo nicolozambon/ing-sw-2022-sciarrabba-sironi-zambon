@@ -6,6 +6,7 @@ import it.polimi.ingsw.model.Model;
 import it.polimi.ingsw.model.ModelBuilder;
 import it.polimi.ingsw.model.Player;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -16,6 +17,9 @@ public class GameHandler implements Runnable {
     private final Controller controller;
     private final Map<Integer, ConnectionHandler> playersConnection;
     private final VirtualView virtualView;
+    private static final List<String> waitOptions = new ArrayList<>() {{
+        this.add("wait");
+    }};
 
     public GameHandler(Map<String, ConnectionHandler> playersConnection) {
         this.playersConnection = new HashMap<>();
@@ -53,7 +57,7 @@ public class GameHandler implements Runnable {
             if (currentPlayerId == id) {
                 playersConnection.get(id).send(new AnswerEvent("options", options));
             } else {
-                playersConnection.get(id).send(new AnswerEvent("wait"));
+                playersConnection.get(id).send(new AnswerEvent("options", waitOptions));
             }
         }
     }
