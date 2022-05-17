@@ -6,7 +6,8 @@ import it.polimi.ingsw.model.card.MotherNatureCharacterCard;
 import java.util.List;
 
 public class MotherNatureHandler extends Handler {
-    MotherNatureCharacterCard card;
+
+    private final MotherNatureCharacterCard card;
 
     protected MotherNatureHandler(List<Player> players, MotherNatureCharacterCard card) {
         super(players);
@@ -41,5 +42,10 @@ public class MotherNatureHandler extends Handler {
                 unifyIsland(island);
             }
         }
+    }
+
+    @Override
+    public int getCardId() {
+        return this.card.getId();
     }
 }

@@ -9,7 +9,7 @@ import java.util.Map;
 
 public class InfluenceHandler extends Handler {
 
-    private InfluenceCharacterCard card;
+    private final InfluenceCharacterCard card;
     private Color colorWithNoInfluence = null;
 
     protected InfluenceHandler(List<Player> players, InfluenceCharacterCard card) {
@@ -65,5 +65,10 @@ public class InfluenceHandler extends Handler {
     @Override
     protected void extraAction(Player currentPlayer, Model model, int ... values) {
         colorWithNoInfluence = Color.values()[values[0]];
+    }
+
+    @Override
+    public int getCardId() {
+        return this.card.getId();
     }
 }
