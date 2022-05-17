@@ -64,24 +64,8 @@ public class CLI {
 
     }
 
-    public ArrayList<String[][]> getSchools() {
-        return this.schools;
-    }
-
-    public ArrayList<String[][]> getClouds() {
-        return this.clouds;
-    }
-
-    public ArrayList<String[][]> getIslands() {
-        return this.islands;
-    }
-
     public void addLinkToNextIsland(int islandId) {
         this.islandsLinkedToNext.set(islandId, true);
-    }
-
-    public void removeLinkToNextIsland(int islandId) {
-        this.islandsLinkedToNext.set(islandId, false);
     }
 
     public static final String ANSI_RESET = "\u001B[0m";

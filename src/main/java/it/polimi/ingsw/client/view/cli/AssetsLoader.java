@@ -65,7 +65,7 @@ public class AssetsLoader {
     }
 
     protected String[][] getAssistantCardContainer() {
-        return this.readMatrixFromFile("character_card");
+        return this.readMatrixFromFile("assistant_card");
     }
 
     protected String[][] getCloud() {

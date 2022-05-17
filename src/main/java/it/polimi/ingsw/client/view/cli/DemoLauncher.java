@@ -4,10 +4,16 @@ import it.polimi.ingsw.enums.Color;
 import it.polimi.ingsw.enums.TowerColor;
 
 import java.io.IOException;
+import java.util.HashMap;
+import java.util.Map;
 
 public class DemoLauncher {
 
     public static void main(String[] args) throws IOException {
+
+        System.out.println("\u001B[93m" + "ANSI escapes test "+ "\u001B[0m");
+
+
         CLI cli = new CLI(3);
 
         cli.addStudentToSchoolDiningRoom(0, Color.RED);
