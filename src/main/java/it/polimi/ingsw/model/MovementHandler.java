@@ -17,10 +17,10 @@ public class MovementHandler extends Handler {
     }
 
     /**
-     * Card 10: exchange 1 or 2 students from the dining room and viceversa; takes a couple of Position-Color values to exchange.
-     * @param currentPlayer
-     * @param model
-     * @param values
+     * Card 10: exchange 1 or 2 students from the dining room and vice versa; takes a couple of Position-Color values to exchange.
+     * @param currentPlayer Current player, who has invoked extraAction
+     * @param model the full model of the games
+     * @param values the list of values useful for the function
      */
     @Override
     protected void extraAction(Player currentPlayer, Model model, int ... values) {
@@ -29,7 +29,8 @@ public class MovementHandler extends Handler {
         } else if (card.getPossibleExchange() > 0) { //Card 7
             if (values.length == 2) {
                 //System.out.println(values[0] + " " + Arrays.stream(Color.values()).filter(c -> c.ordinal() == values[1]).findFirst().get());
-                model.exchangeStudentsDiningRoomEntrance(currentPlayer.getId(), values[0], Arrays.stream(Color.values()).filter(c -> c.ordinal() == values[1]).findFirst().get());
+                Color color = Arrays.stream(Color.values()).filter(c -> c.ordinal() == values[1]).findFirst().get();
+                model.exchangeStudentsDiningRoomEntrance(currentPlayer.getId(), values[0], color);
             }
         }
     }

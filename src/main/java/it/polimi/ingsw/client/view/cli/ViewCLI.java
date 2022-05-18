@@ -57,18 +57,24 @@ public class ViewCLI implements AnswerListener, RequestListenableInterface {
             //case "wait" -> System.out.println(optionLister.list(answerEvent.getPropertyName()));
             case "error" -> {
                 System.out.println(answerEvent.getMessage());
-                clientConnection.send(optionHandler.getRequestEvent(this.options));
+                handleOptions(new AnswerEvent("options", this.options));
             }
             case "stop" -> System.out.println(answerEvent.getMessage());
             default -> System.out.println("Answer Error!");
         }
+
     }
 
 
     private void handleOptions(AnswerEvent answerEvent) {
         this.options = answerEvent.getOptions();
         if (this.model != null) System.out.println(this.model);
-        RequestEvent requestEvent = optionHandler.getRequestEvent(this.options);
+        RequestEvent requestEvent = null;
+        try {
+            requestEvent = optionHandler.getRequestEvent(this.options);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
         if (requestEvent != null) fireRequest(requestEvent);
     }
 

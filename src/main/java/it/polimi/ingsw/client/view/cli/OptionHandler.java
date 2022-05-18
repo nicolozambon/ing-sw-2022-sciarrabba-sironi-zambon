@@ -5,8 +5,10 @@ import com.google.gson.reflect.TypeToken;
 import it.polimi.ingsw.enums.Color;
 import it.polimi.ingsw.events.RequestEvent;
 
+import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.InputMismatchException;
 import java.util.List;
@@ -33,7 +35,7 @@ public class OptionHandler {
         this.playerId = playerId;
     }
 
-    public RequestEvent getRequestEvent(List<String> options) {
+    public RequestEvent getRequestEvent(List<String> options) throws InterruptedException{
         if (options.size() > 0) {
             int choice = 1;
             do {
@@ -70,7 +72,7 @@ public class OptionHandler {
         return null;
     }
 
-    private RequestEvent twoInputHandler(String option)  {
+    private RequestEvent twoInputHandler(String option) throws InterruptedException {
         String[] input;
         int student = 0;
         int island = 0;
@@ -78,6 +80,9 @@ public class OptionHandler {
         while (error) {
             System.out.println(this.optionSelected.get(option));
             try {
+                while (System.in.available() == 0) {
+                    Thread.sleep(100);
+                }
                 input = stdin.nextLine().split(",");
                 if (input.length == 2) {
                     student = Integer.parseInt(input[0]);
@@ -88,29 +93,36 @@ public class OptionHandler {
                 }
             } catch (NumberFormatException e) {
                 System.out.println("Not numbers retry!");
+            } catch (IOException e) {
+                throw new RuntimeException(e);
             }
         }
         //System.out.println(student + " " + island);
         return new RequestEvent(option, this.playerId, student, island);
     }
 
-    private RequestEvent oneInputHandler(String option) {
+    private RequestEvent oneInputHandler(String option) throws InterruptedException {
         int choice = inputNumber(this.optionSelected.get(option));
         return new RequestEvent(option, this.playerId, choice);
     }
 
-    private int inputNumber(String message) {
+    private int inputNumber(String message) throws InterruptedException {
         boolean error = true;
         int choice = 0;
         while (error) {
             try {
                 System.out.println(message);
+                while (System.in.available() == 0) {
+                    Thread.sleep(100);
+                }
                 choice = stdin.nextInt();
+                stdin.nextLine();
                 error = false;
             } catch (InputMismatchException e) {
                 System.out.println("Not a number retry!");
-            } finally {
                 stdin.nextLine();
+            } catch (IOException e) {
+                e.printStackTrace();
             }
         }
         return choice;
@@ -126,11 +138,14 @@ public class OptionHandler {
         return new RequestEvent("nickname", this.playerId, nickname);
     }
 
-    private RequestEvent extraActionInputHandler(String option) {
+    private RequestEvent extraActionInputHandler(String option) throws InterruptedException {
         try {
             Method method = OptionHandler.class.getDeclaredMethod(option, String.class);
             method.setAccessible(true);
             return (RequestEvent) method.invoke(this, option);
+        } catch (InvocationTargetException e) {
+            //e.printStackTrace();
+            if (e.getCause() instanceof InterruptedException) throw new InterruptedException();
         } catch (Exception e){
             e.printStackTrace();
         }
@@ -138,7 +153,7 @@ public class OptionHandler {
     }
 
     //TODO test this card
-    private RequestEvent card2(String option) {
+    private RequestEvent card2(String option) throws InterruptedException{
         return oneInputHandler(option);
     }
 
@@ -176,13 +191,16 @@ public class OptionHandler {
         return new RequestEvent("extraAction", this.playerId, values);
     }
 
-    private RequestEvent card7(String option) {
+    private RequestEvent card7(String option) throws InterruptedException{
         String[] input;
         int[] values = null;
         boolean error = true;
         while (error) {
             System.out.println(this.optionSelected.get(option));
             try {
+                while (System.in.available() == 0) {
+                    Thread.sleep(100);
+                }
                 input = stdin.nextLine().split(",");
                 if (input.length == 2) {
                     values = new int[2];
@@ -196,6 +214,8 @@ public class OptionHandler {
                 System.out.println("Not a number retry!");
             } catch (IllegalArgumentException e) {
                 System.out.println("Not a valid color retry!");
+            } catch (IOException e) {
+                throw new RuntimeException(e);
             }
         }
         return new RequestEvent("extraAction", this.playerId, values);

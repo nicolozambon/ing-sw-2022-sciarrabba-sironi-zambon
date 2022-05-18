@@ -106,10 +106,10 @@ public class Server {
                     e.printStackTrace();
                 }
             }
+
             synchronized (queue) {
                 connectionHandler = queue.remove();
             }
-
             synchronized(players) {
                 players.put(connectionHandler.getNickname(), connectionHandler);
             }
