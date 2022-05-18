@@ -59,7 +59,10 @@ public class ViewCLI implements AnswerListener, RequestListenableInterface {
                 System.out.println(answerEvent.getMessage());
                 handleOptions(new AnswerEvent("options", this.options));
             }
-            case "stop" -> System.out.println(answerEvent.getMessage());
+            case "stop" -> {
+                System.out.println(answerEvent.getMessage());
+                clientConnection.stopClient();
+            }
             default -> System.out.println("Answer Error!");
         }
 

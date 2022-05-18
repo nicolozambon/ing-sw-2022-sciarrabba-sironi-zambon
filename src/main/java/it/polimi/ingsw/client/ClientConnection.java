@@ -63,7 +63,7 @@ public class ClientConnection implements AnswerListenableInterface, RequestListe
         try {
             AnswerEvent answer = gson.fromJson(inputStream.readUTF(), AnswerEvent.class);
             executorService.submit(() -> this.fireAnswer(answer));
-            if (answer.getPropertyName().equals("stop")) stopClient();
+            //if (answer.getPropertyName().equals("stop")) stopClient();
         } catch (Exception e) {
             e.printStackTrace();
             stopClient();
