@@ -174,13 +174,11 @@ public class OptionHandler {
         return new RequestEvent(option, this.playerId, choice);
     }
 
-    //TODO test this card
     private RequestEvent card2(String option) throws InterruptedException{
         RequestEvent requestEvent = oneInputHandler(option);
         return new RequestEvent("extraAction", this.playerId, requestEvent.getValues());
     }
 
-    //TODO test this card
     private RequestEvent card6(String option) throws InterruptedException{
         RequestEvent requestEvent = inputColor(option);
         return new RequestEvent("extraAction", this.playerId, requestEvent.getValues());
@@ -216,7 +214,6 @@ public class OptionHandler {
         return new RequestEvent("extraAction", this.playerId, values);
     }
 
-    //TODO test this card
     private RequestEvent card8(String option) throws InterruptedException{
         RequestEvent requestEvent = inputColor(option);
         return new RequestEvent("extraAction", this.playerId, requestEvent.getValues());

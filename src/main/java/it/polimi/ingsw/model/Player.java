@@ -2,7 +2,8 @@ package it.polimi.ingsw.model;
 
 import it.polimi.ingsw.enums.Color;
 import it.polimi.ingsw.enums.TowerColor;
-import it.polimi.ingsw.exceptions.AssistantCardException;
+import it.polimi.ingsw.exceptions.CardException;
+import it.polimi.ingsw.exceptions.InvalidActionException;
 import it.polimi.ingsw.exceptions.NotEnoughCoinsException;
 import it.polimi.ingsw.model.card.AssistantCard;
 import it.polimi.ingsw.model.card.CharacterCard;
@@ -54,7 +55,7 @@ public class Player {
         return this.id;
     }
 
-    protected void playAssistantCard(int index) throws AssistantCardException {
+    protected void playAssistantCard(int index) throws CardException {
         boolean played = false;
         for(AssistantCard card : assistantCardDeck.getCards()) {
             if(card.getValue() == index) {
@@ -62,7 +63,7 @@ public class Player {
                 played = true;
             }
         }
-        if (!played) throw new AssistantCardException();
+        if (!played) throw new CardException("Invalid assistant card played! Retry");
 
     }
 
@@ -83,7 +84,7 @@ public class Player {
         return discardPileDeck.getCards().get(discardPileDeck.getCards().size()-1);
     }
 
-    protected boolean moveStudentDiningRoom(Student student, int coinReserve) {
+    protected boolean moveStudentDiningRoom(Student student, int coinReserve) throws InvalidActionException {
         school.moveStudentDiningRoom(student);
         if (coinReserve > 0 && school.getDiningRoomByColor(student.getColor()).getNumPawns() % 3 == 0) {
             this.coins += 1;
@@ -104,7 +105,7 @@ public class Player {
         this.school.returnStudentsToBag(bag, color, num);
     }
 
-    protected void exchangeStudentsDiningRoomEntrance(int entrancePawnPosition, Color color) {
+    protected void exchangeStudentsDiningRoomEntrance(int entrancePawnPosition, Color color) throws InvalidActionException {
         school.exchangeStudentsDiningRoomEntrance(entrancePawnPosition, color);
     }
 

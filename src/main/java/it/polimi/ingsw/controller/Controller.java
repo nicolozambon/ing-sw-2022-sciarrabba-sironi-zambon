@@ -44,7 +44,7 @@ public class Controller implements RequestListener {
         this.isPlanningFinished = false;
     }
 
-    public void playAssistantCard(int playerId, int choice) throws AssistantCardException, NotPlayerTurnException {
+    public void playAssistantCard(int playerId, int choice) throws CardException, NotPlayerTurnException {
         if (!isPlanningFinished && playersToPlay.size() > 0) {
             Player player = playersToPlay.get(0);
             if (player.getId() == playerId) {
@@ -58,7 +58,7 @@ public class Controller implements RequestListener {
         }
     }
 
-    public void playCharacterCard(int playerId, int choice) throws NotPlayerTurnException, NotEnoughCoinsException, CharacterCardException {
+    public void playCharacterCard(int playerId, int choice) throws NotPlayerTurnException, NotEnoughCoinsException, CardException {
         if (isPlanningFinished && playersToPlay.size() > 0) {
             Player player = playersToPlay.get(0);
             if (player.getId() == playerId) {
@@ -72,7 +72,7 @@ public class Controller implements RequestListener {
         }
     }
 
-    public void moveStudentToDiningRoom(int playerId, int choice) throws NotPlayerTurnException{
+    public void moveStudentToDiningRoom(int playerId, int choice) throws NotPlayerTurnException, InvalidActionException {
         if (isPlanningFinished && playersToPlay.size() > 0) {
             Player player = playersToPlay.get(0);
             if (player.getId() == playerId) {
@@ -133,7 +133,7 @@ public class Controller implements RequestListener {
         }
     }
 
-    public void extraAction(int playerId, int ... values) throws NotPlayerTurnException {
+    public void extraAction(int playerId, int ... values) throws Exception {
         if (isPlanningFinished && playersToPlay.size() > 0) {
             Player player = playersToPlay.get(0);
             if (player.getId() == playerId) {

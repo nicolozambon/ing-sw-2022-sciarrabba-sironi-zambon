@@ -31,7 +31,7 @@ class ControllerTest {
     }
 
     @Test
-    void playAssistantCard() throws AssistantCardException, NotPlayerTurnException {
+    void playAssistantCard() throws CardException, NotPlayerTurnException {
 
         Player current;
 
@@ -45,7 +45,7 @@ class ControllerTest {
 
         current = controller.getActivePlayer();
         assertEquals(1, current.getId());
-        assertThrows(AssistantCardException.class, () -> controller.playAssistantCard(1, 6));
+        assertThrows(CardException.class, () -> controller.playAssistantCard(1, 6));
         assertThrows(NotPlayerTurnException.class, () -> controller.playAssistantCard(2, 7));
 
         controller.playAssistantCard(1, 4);
@@ -53,8 +53,8 @@ class ControllerTest {
         assertEquals(4, current.getLastAssistantCard().getValue());
 
         current = controller.getActivePlayer();
-        assertThrows(AssistantCardException.class, () -> controller.playAssistantCard(2, 6));
-        assertThrows(AssistantCardException.class, () -> controller.playAssistantCard(2, 4));
+        assertThrows(CardException.class, () -> controller.playAssistantCard(2, 6));
+        assertThrows(CardException.class, () -> controller.playAssistantCard(2, 4));
         controller.playAssistantCard(2, 5);
         assertEquals(5, current.getLastAssistantCard().getValue());
         assertEquals(9, current.getAssistantCards().size());
@@ -66,7 +66,7 @@ class ControllerTest {
 
 
 
-    private void playPlanningPhase() throws AssistantCardException, NotPlayerTurnException {
+    private void playPlanningPhase() throws CardException, NotPlayerTurnException {
         controller.playAssistantCard(0, 10);
         controller.playAssistantCard(1, 8);
         controller.playAssistantCard(2, 6);
@@ -76,7 +76,7 @@ class ControllerTest {
     }
 
     @Test
-    void moveStudentToDiningRoom() throws AssistantCardException, NotPlayerTurnException {
+    void moveStudentToDiningRoom() throws CardException, NotPlayerTurnException, InvalidActionException {
         playPlanningPhase();
 
         assertThrows(NotPlayerTurnException.class, () -> controller.moveStudentToDiningRoom(1, 4));
@@ -102,7 +102,7 @@ class ControllerTest {
     }
 
     @Test
-    void moveStudentToIsland() throws AssistantCardException, NotPlayerTurnException, IslandException {
+    void moveStudentToIsland() throws CardException, NotPlayerTurnException, IslandException {
         playPlanningPhase();
 
         assertThrows(NotPlayerTurnException.class, () -> controller.moveStudentToIsland(1, 4, 9));
@@ -143,7 +143,7 @@ class ControllerTest {
 
     }
 
-    private void playAC_MoveStudent(int playerId) throws IslandException, AssistantCardException, NotPlayerTurnException {
+    private void playAC_MoveStudent(int playerId) throws IslandException, CardException, NotPlayerTurnException, InvalidActionException {
 
         controller.moveStudentToIsland(playerId, 1, 2);
         controller.moveStudentToIsland(playerId, 1, 11);
@@ -153,7 +153,7 @@ class ControllerTest {
     }
 
     @Test
-    void moveMotherNature() throws IslandException, AssistantCardException, NotPlayerTurnException, MotherNatureStepsException {
+    void moveMotherNature() throws IslandException, CardException, NotPlayerTurnException, MotherNatureStepsException, InvalidActionException {
         playPlanningPhase();
         playAC_MoveStudent(2);
 
@@ -170,7 +170,7 @@ class ControllerTest {
         assertEquals((start + 3) % 12, thinModel.getMNPosition());
     }
 
-    private void playUntilCloud(int playerId) throws NotPlayerTurnException, IslandException, AssistantCardException, MotherNatureStepsException {
+    private void playUntilCloud(int playerId) throws NotPlayerTurnException, IslandException, CardException, MotherNatureStepsException, InvalidActionException {
         playAC_MoveStudent(playerId);
         controller.moveMotherNature(playerId, 1);
     }
@@ -210,7 +210,7 @@ class ControllerTest {
     }
 
     @Test
-    void endAction() throws NotPlayerTurnException, IslandException, AssistantCardException, Exception {
+    void endAction() throws NotPlayerTurnException, IslandException, CardException, Exception {
         playPlanningPhase();
         playUntilCloud(2);
         controller.takeStudentsFromCloud(2, 1);

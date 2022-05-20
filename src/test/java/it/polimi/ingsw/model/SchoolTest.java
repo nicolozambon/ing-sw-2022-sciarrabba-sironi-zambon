@@ -2,6 +2,7 @@ package it.polimi.ingsw.model;
 
 import it.polimi.ingsw.enums.Color;
 import it.polimi.ingsw.enums.TowerColor;
+import it.polimi.ingsw.exceptions.InvalidActionException;
 import it.polimi.ingsw.model.card.Deck;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -42,7 +43,7 @@ class SchoolTest {
     }
 
     @Test
-    void checkMovementToDiningRoomTest() {
+    void checkMovementToDiningRoomTest() throws InvalidActionException {
         for (Student student : school.getEntrance().getPawns()) {
             school.moveStudentDiningRoom(student);
             assertTrue(school.getDiningRoomByColor(student.getColor()).getPawns().contains(student));

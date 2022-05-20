@@ -58,13 +58,13 @@ public class Model implements AnswerListenableInterface {
         this.gson = new Gson();
     }
 
-    public void playAssistantCard(int playerId, int choice) throws AssistantCardException {
+    public void playAssistantCard(int playerId, int choice) throws CardException {
         players.get(playerId).playAssistantCard(choice);
         fireAnswer(new AnswerEvent("update", this));
     }
 
 
-    public void playCharacterCard(int playerId, int choice) throws NotEnoughCoinsException, CharacterCardException {
+    public void playCharacterCard(int playerId, int choice) throws NotEnoughCoinsException, CardException {
         CharacterCard card;
         if (characterCards.stream().anyMatch(x -> x.getId() == choice)) {
             card = characterCards.stream().filter(x -> x.getId() == choice).findFirst().get();
@@ -73,12 +73,12 @@ public class Model implements AnswerListenableInterface {
             card.incrementCoinCost();
             this.handler = new HandlerFactory().buildHandler(new ArrayList<>(players), card);
         } else {
-            throw new CharacterCardException();
+            throw new CardException("Invalid character card played! Retry");
         }
         fireAnswer(new AnswerEvent("update", this));
     }
 
-    public void moveStudentToDiningRoom(int playerId, int choice) {
+    public void moveStudentToDiningRoom(int playerId, int choice) throws InvalidActionException {
         Player player = players.get(playerId);
         Student student = player.getSchool().getEntrance().getPawns().get(choice);
         if (player.moveStudentDiningRoom(student, this.coinReserve))  this.coinReserve--;
@@ -115,7 +115,7 @@ public class Model implements AnswerListenableInterface {
         fireAnswer(new AnswerEvent("update", this));
     }
 
-    public void extraAction(int playerId, int ... values) {
+    public void extraAction(int playerId, int ... values) throws Exception {
         this.handler.extraAction(players.get(playerId), this, values);
         fireAnswer(new AnswerEvent("update", this));
     }
@@ -159,9 +159,19 @@ public class Model implements AnswerListenableInterface {
         //fireAnswer(new AnswerEvent("update", this));
     }
 
-    //TODO increment player coins and checking professor control
-    protected void exchangeStudentsDiningRoomEntrance(int playerId, int entrancePawnPosition, Color color) {
-        players.get(playerId).exchangeStudentsDiningRoomEntrance(entrancePawnPosition, color);
+    protected void exchangeStudentsDiningRoomEntrance(int playerId, int entrancePawnPosition, Color color) throws InvalidActionException {
+        Player player = players.get(playerId);
+        player.exchangeStudentsDiningRoomEntrance(entrancePawnPosition, color);
+
+        this.handler.professorControl(player, color, startingProfessorBoard);
+        Color entranceStudentColor = player.getSchool().getEntrance().getPawns().get(entrancePawnPosition).getColor();
+        this.handler.professorControl(player, entranceStudentColor, startingProfessorBoard);
+
+        if (player.getSchool().getDiningRoomByColor(entranceStudentColor).getNumPawns() % 3 == 0) {
+            player.increaseCoinBy(1);
+        }
+
+
     }
 
     /**

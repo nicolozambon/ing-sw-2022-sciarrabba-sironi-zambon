@@ -1,9 +1,6 @@
 package it.polimi.ingsw.controller;
 
-import it.polimi.ingsw.exceptions.CharacterCardException;
-import it.polimi.ingsw.exceptions.CloudException;
-import it.polimi.ingsw.exceptions.MotherNatureStepsException;
-import it.polimi.ingsw.exceptions.NotEnoughCoinsException;
+import it.polimi.ingsw.exceptions.*;
 import it.polimi.ingsw.model.Model;
 import it.polimi.ingsw.model.Player;
 
@@ -37,7 +34,7 @@ public class ActionPhase {
         }};
     }
 
-    public void playCharacterCard(int choice) throws NotEnoughCoinsException, CharacterCardException {
+    public void playCharacterCard(int choice) throws NotEnoughCoinsException, CardException {
         if (callableMethod.get("playCharacterCard") > 0) {
             this.model.playCharacterCard(this.currentPlayer.getId(), choice);
             callableMethod.put("playCharacterCard", callableMethod.get("playCharacterCard") - 1);
@@ -49,7 +46,7 @@ public class ActionPhase {
         }
     }
 
-    public void moveStudentToDiningRoom(int choice) {
+    public void moveStudentToDiningRoom(int choice) throws InvalidActionException {
         if(callableMethod.get("moveStudentToDiningRoom") > 0) {
             this.model.moveStudentToDiningRoom(this.currentPlayer.getId(), choice);
             moveStudentCounter();
@@ -83,7 +80,7 @@ public class ActionPhase {
         }
     }
 
-    public void extraAction(int ... values) {
+    public void extraAction(int ... values) throws Exception {
         if(callableMethod.get("extraAction") > 0) {
             this.model.extraAction(this.currentPlayer.getId(), values);
             callableMethod.put("extraAction", callableMethod.get("extraAction") - 1);

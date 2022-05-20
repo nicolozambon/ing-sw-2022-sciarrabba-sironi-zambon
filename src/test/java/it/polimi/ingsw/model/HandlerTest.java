@@ -1,7 +1,8 @@
 package it.polimi.ingsw.model;
 
 import it.polimi.ingsw.enums.Color;
-import it.polimi.ingsw.exceptions.AssistantCardException;
+import it.polimi.ingsw.exceptions.CardException;
+import it.polimi.ingsw.exceptions.InvalidActionException;
 import it.polimi.ingsw.exceptions.MotherNatureStepsException;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -30,7 +31,7 @@ class HandlerTest {
     }
 
     @Test
-    void professorControl() {
+    void professorControl() throws InvalidActionException {
         //initialization();
         int num = 9;
         if (model.getPlayers().size() == 2) num = 7;
@@ -89,7 +90,7 @@ class HandlerTest {
     }
 
     @Test
-    void checkTowerPositioning() throws MotherNatureStepsException, AssistantCardException {
+    void checkTowerPositioning() throws MotherNatureStepsException, CardException, InvalidActionException {
 
         initialization();
         int num = 4;

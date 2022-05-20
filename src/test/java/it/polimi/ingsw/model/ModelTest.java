@@ -1,7 +1,7 @@
 package it.polimi.ingsw.model;
 
-import it.polimi.ingsw.exceptions.AssistantCardException;
-import it.polimi.ingsw.exceptions.CharacterCardException;
+import it.polimi.ingsw.exceptions.CardException;
+import it.polimi.ingsw.exceptions.InvalidActionException;
 import it.polimi.ingsw.exceptions.MotherNatureStepsException;
 import it.polimi.ingsw.exceptions.NotEnoughCoinsException;
 import it.polimi.ingsw.model.card.CharacterCard;
@@ -51,7 +51,7 @@ class ModelTest {
     }
 
     @Test
-    void playAssistantCard() throws AssistantCardException {
+    void playAssistantCard() throws CardException {
         int i = 0;
         for (Player player : model.getPlayers()) {
             assertEquals(i, player.getId());
@@ -64,7 +64,7 @@ class ModelTest {
     }
 
     @Test
-    void playCharacterCard() throws NotEnoughCoinsException, CharacterCardException {
+    void playCharacterCard() throws NotEnoughCoinsException, CardException {
         for (Player player : model.getPlayers()) {
             for (CharacterCard card : model.getCharacterCards()) {
                 int prevCoin = player.getCoins();
@@ -81,7 +81,7 @@ class ModelTest {
     }
 
     @Test
-    void moveStudentToDiningRoom() {
+    void moveStudentToDiningRoom() throws InvalidActionException {
         for (Player player : model.getPlayers()) {
             int i = 1;
             for (int j = 0 ; j < player.getSchool().getEntrance().getNumPawns();) {
@@ -111,7 +111,7 @@ class ModelTest {
     }
 
     @Test
-    void moveMotherNature() throws MotherNatureStepsException, AssistantCardException {
+    void moveMotherNature() throws MotherNatureStepsException, CardException {
         for (Player player : model.getPlayers()) {
             model.playAssistantCard(player.getId(), new Random().nextInt(1,11));
             for (int i = 0; i < player.getSchool().getEntrance().getNumPawns(); i++) {

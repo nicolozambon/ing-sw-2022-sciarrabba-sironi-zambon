@@ -145,7 +145,7 @@ public class Handler {
         }
     }
 
-    protected void extraAction(Player currentPlayer, Model model, int ... values) {
+    protected void extraAction(Player currentPlayer, Model model, int ... values) throws Exception {
         // @Override
     }
 

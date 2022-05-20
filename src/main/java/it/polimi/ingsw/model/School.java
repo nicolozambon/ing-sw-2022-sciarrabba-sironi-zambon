@@ -1,6 +1,7 @@
 package it.polimi.ingsw.model;
 
 import it.polimi.ingsw.enums.Color;
+import it.polimi.ingsw.exceptions.InvalidActionException;
 
 import java.util.HashMap;
 import java.util.List;
@@ -57,10 +58,10 @@ public class School {
         return this.towersBoard;
     }
 
-    protected void moveStudentDiningRoom(Student student) {
+    protected void moveStudentDiningRoom(Student student) throws InvalidActionException {
         if (this.diningRoom.get(student.getColor()).getNumPawns() < 10) {
             this.diningRoom.get(student.getColor()).moveInPawn(student, entrance);
-        }
+        } else throw new InvalidActionException("Dining room is full!");
     }
 
     protected void moveStudentIsland(Student student, Island island) {
@@ -87,12 +88,14 @@ public class School {
         professorsTable.moveInPawn(professor, src);
     }
 
-    protected void exchangeStudentsDiningRoomEntrance(int entrancePawnPosition, Color color) {
+    protected void exchangeStudentsDiningRoomEntrance(int entrancePawnPosition, Color color) throws InvalidActionException{
         Student entranceStudent = entrance.getPawns().get(entrancePawnPosition);
         Student diningStudent = getDiningRoomByColor(color).getPawns().get(getDiningRoomByColor(color).getNumPawns() - 1);
 
-        entrance.moveInPawn(diningStudent, getDiningRoomByColor(diningStudent.getColor()));
-        getDiningRoomByColor(entranceStudent.getColor()).moveInPawn(entranceStudent, entrance);
+        if (getDiningRoomByColor(entranceStudent.getColor()).getNumPawns() < 10) {
+            entrance.moveInPawn(diningStudent, getDiningRoomByColor(diningStudent.getColor()));
+            getDiningRoomByColor(entranceStudent.getColor()).moveInPawn(entranceStudent, entrance);
+        } else throw new InvalidActionException("Dining room is full!");
     }
 
 }

@@ -1,6 +1,7 @@
 package it.polimi.ingsw.model;
 
 import it.polimi.ingsw.enums.Color;
+import it.polimi.ingsw.exceptions.InvalidActionException;
 import it.polimi.ingsw.model.card.MovementCharacterCard;
 
 import java.util.Arrays;
@@ -23,7 +24,7 @@ public class MovementHandler extends Handler {
      * @param values the list of values useful for the function
      */
     @Override
-    protected void extraAction(Player currentPlayer, Model model, int ... values) {
+    protected void extraAction(Player currentPlayer, Model model, int ... values) throws InvalidActionException {
         if (card.getNumOfStudentsToReturn() > 0) { //Card 8
             Color color = Arrays.stream(Color.values()).filter(c -> c.ordinal() == values[0]).findFirst().get();
             model.returnStudentsToBag(color, card.getNumOfStudentsToReturn());

@@ -1,5 +1,6 @@
 package it.polimi.ingsw.model;
 
+import it.polimi.ingsw.exceptions.IslandException;
 import it.polimi.ingsw.exceptions.MotherNatureStepsException;
 import it.polimi.ingsw.model.card.MotherNatureCharacterCard;
 
@@ -30,14 +31,20 @@ public class MotherNatureHandler extends Handler {
     }
 
     @Override
-    protected void extraAction(Player currentPlayer, Model model, int ...values) {
+    protected void extraAction(Player currentPlayer, Model model, int ...values) throws IslandException {
         if (card.isExtraResolving()) {
-            Island island = model.getIslands().get(values[0] - 1);
-
-            if (getMostInfluentialPlayer(currentPlayer, island) != null) {
-                switchTowers(island, getMostInfluentialPlayer(currentPlayer, island));
-                unifyIsland(island);
+            try {
+                Island island = model.getIslands().get(values[0] - 1);
+                if (getMostInfluentialPlayer(currentPlayer, island) != null) {
+                    switchTowers(island, getMostInfluentialPlayer(currentPlayer, island));
+                    unifyIsland(island);
+                }
+            } catch (IndexOutOfBoundsException e) {
+                throw new IslandException();
             }
+
+
+
         }
     }
 

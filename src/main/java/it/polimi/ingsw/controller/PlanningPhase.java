@@ -1,6 +1,6 @@
 package it.polimi.ingsw.controller;
 
-import it.polimi.ingsw.exceptions.AssistantCardException;
+import it.polimi.ingsw.exceptions.CardException;
 import it.polimi.ingsw.model.Model;
 import it.polimi.ingsw.model.Player;
 import it.polimi.ingsw.model.card.AssistantCard;
@@ -24,12 +24,12 @@ public class PlanningPhase {
         }};
     }
 
-    public synchronized void playAssistantCard(int choice) throws AssistantCardException {
+    public synchronized void playAssistantCard(int choice) throws CardException {
         if (callableMethod.get("playAssistantCard") > 0 && cardIsPlayable(choice)) {
             model.playAssistantCard(this.currentPlayer.getId(), choice);
             callableMethod.put("playAssistantCard", 0);
         } else {
-            throw new AssistantCardException();
+            throw new CardException("Invalid assistant card played! Retry");
         }
 
     }

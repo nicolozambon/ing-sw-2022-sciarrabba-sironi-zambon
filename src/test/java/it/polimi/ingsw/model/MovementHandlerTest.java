@@ -1,8 +1,6 @@
 package it.polimi.ingsw.model;
 
 import it.polimi.ingsw.enums.Color;
-import it.polimi.ingsw.exceptions.CharacterCardException;
-import it.polimi.ingsw.exceptions.NotEnoughCoinsException;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -27,7 +25,7 @@ public class MovementHandlerTest {
         handler = new HandlerFactory().buildHandler(model.getPlayers());
     }
     @Test
-    void extraActionCard7() throws NotEnoughCoinsException, CharacterCardException {
+    void extraActionCard7() throws Exception {
         Player player1 = model.getPlayers().get(0);
 
         ArrayList<Student> cloud1List = new ArrayList<>();
@@ -70,13 +68,4 @@ public class MovementHandlerTest {
         assertEquals(2, player1.getSchool().getDiningRoomByColor(Color.YELLOW).getNumPawns());
     }
 
-    @Test
-    void extraActionCard12() {
-
-    }
-
-    @Test
-    void professorControl() {
-
-    }
 }
