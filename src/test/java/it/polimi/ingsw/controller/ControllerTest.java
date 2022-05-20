@@ -102,7 +102,7 @@ class ControllerTest {
     }
 
     @Test
-    void moveStudentToIsland() throws CardException, NotPlayerTurnException, IslandException {
+    void moveStudentToIsland() throws CardException, NotPlayerTurnException, IslandException, InvalidActionException {
         playPlanningPhase();
 
         assertThrows(NotPlayerTurnException.class, () -> controller.moveStudentToIsland(1, 4, 9));

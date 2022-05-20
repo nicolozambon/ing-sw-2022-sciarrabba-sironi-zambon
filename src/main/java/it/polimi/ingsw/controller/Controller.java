@@ -87,7 +87,7 @@ public class Controller implements RequestListener {
         }
     }
 
-    public void moveStudentToIsland(int playerId, int student, int island) throws NotPlayerTurnException, IslandException {
+    public void moveStudentToIsland(int playerId, int student, int island) throws NotPlayerTurnException, IslandException, InvalidActionException {
         if (isPlanningFinished && playersToPlay.size() > 0) {
             Player player = playersToPlay.get(0);
             if (player.getId() == playerId) {

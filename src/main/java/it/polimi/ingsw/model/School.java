@@ -89,13 +89,17 @@ public class School {
     }
 
     protected void exchangeStudentsDiningRoomEntrance(int entrancePawnPosition, Color color) throws InvalidActionException{
-        Student entranceStudent = entrance.getPawns().get(entrancePawnPosition);
-        Student diningStudent = getDiningRoomByColor(color).getPawns().get(getDiningRoomByColor(color).getNumPawns() - 1);
+        try {
+            Student entranceStudent = entrance.getPawns().get(entrancePawnPosition);
+            Student diningStudent = getDiningRoomByColor(color).getPawns().get(getDiningRoomByColor(color).getNumPawns() - 1);
 
-        if (getDiningRoomByColor(entranceStudent.getColor()).getNumPawns() < 10) {
-            entrance.moveInPawn(diningStudent, getDiningRoomByColor(diningStudent.getColor()));
-            getDiningRoomByColor(entranceStudent.getColor()).moveInPawn(entranceStudent, entrance);
-        } else throw new InvalidActionException("Dining room is full!");
+            if (getDiningRoomByColor(entranceStudent.getColor()).getNumPawns() < 10) {
+                entrance.moveInPawn(diningStudent, getDiningRoomByColor(diningStudent.getColor()));
+                getDiningRoomByColor(entranceStudent.getColor()).moveInPawn(entranceStudent, entrance);
+            } else throw new InvalidActionException("Dining room is full!");
+        } catch (IndexOutOfBoundsException e) {
+            throw new InvalidActionException("Invalid pawn chosen, retry!");
+        }
     }
 
 }

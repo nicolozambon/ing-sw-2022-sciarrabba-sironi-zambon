@@ -72,25 +72,33 @@ public class Model implements AnswerListenableInterface {
             this.coinReserve += card.getCoins() - 1;
             card.incrementCoinCost();
             this.handler = new HandlerFactory().buildHandler(new ArrayList<>(players), card);
+            fireAnswer(new AnswerEvent("update", this));
         } else {
             throw new CardException("Invalid character card played! Retry");
         }
-        fireAnswer(new AnswerEvent("update", this));
     }
 
     public void moveStudentToDiningRoom(int playerId, int choice) throws InvalidActionException {
-        Player player = players.get(playerId);
-        Student student = player.getSchool().getEntrance().getPawns().get(choice);
-        if (player.moveStudentDiningRoom(student, this.coinReserve))  this.coinReserve--;
-        this.handler.professorControl(players.get(playerId), student.getColor(), startingProfessorBoard);
-        fireAnswer(new AnswerEvent("update", this));
+        try {
+            Player player = players.get(playerId);
+            Student student = player.getSchool().getEntrance().getPawns().get(choice);
+            if (player.moveStudentDiningRoom(student, this.coinReserve)) this.coinReserve--;
+            this.handler.professorControl(players.get(playerId), student.getColor(), startingProfessorBoard);
+            fireAnswer(new AnswerEvent("update", this));
+        } catch (IndexOutOfBoundsException e) {
+            throw new InvalidActionException("Invalid pawn chosen, retry!");
+        }
     }
 
-    public void moveStudentToIsland(int playerId, int studentChoice, int islandChoice) {
-        Player player = players.get(playerId);
-        Student student = player.getSchool().getEntrance().getPawns().get(studentChoice);
-        player.moveStudentIsland(student, islands.get(islandChoice));
-        fireAnswer(new AnswerEvent("update", this));
+    public void moveStudentToIsland(int playerId, int studentChoice, int islandChoice) throws InvalidActionException{
+        try {
+            Player player = players.get(playerId);
+            Student student = player.getSchool().getEntrance().getPawns().get(studentChoice);
+            player.moveStudentIsland(student, islands.get(islandChoice));
+            fireAnswer(new AnswerEvent("update", this));
+        } catch (IndexOutOfBoundsException e) {
+            throw new InvalidActionException("Invalid pawn chosen, retry!");
+        }
     }
 
     public void moveMotherNature(int playerId, int stepsChoice) throws MotherNatureStepsException {

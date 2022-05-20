@@ -53,7 +53,7 @@ public class ActionPhase {
         }
     }
 
-    public void moveStudentToIsland(int studentChoice, int islandChoice) {
+    public void moveStudentToIsland(int studentChoice, int islandChoice) throws InvalidActionException {
         if(callableMethod.get("moveStudentToIsland") > 0) {
             this.model.moveStudentToIsland(this.currentPlayer.getId(), studentChoice, islandChoice);
             moveStudentCounter();

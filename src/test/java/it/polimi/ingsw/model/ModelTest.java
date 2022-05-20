@@ -98,7 +98,7 @@ class ModelTest {
     }
 
     @Test
-    void moveStudentToIsland() {
+    void moveStudentToIsland() throws InvalidActionException {
         for (Player player : model.getPlayers()) {
             List<Student> students = player.getSchool().getEntrance().getPawns();
             for (Student student : students) {
@@ -111,7 +111,7 @@ class ModelTest {
     }
 
     @Test
-    void moveMotherNature() throws MotherNatureStepsException, CardException {
+    void moveMotherNature() throws MotherNatureStepsException, CardException, InvalidActionException {
         for (Player player : model.getPlayers()) {
             model.playAssistantCard(player.getId(), new Random().nextInt(1,11));
             for (int i = 0; i < player.getSchool().getEntrance().getNumPawns(); i++) {
