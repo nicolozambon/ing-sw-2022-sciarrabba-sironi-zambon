@@ -72,7 +72,7 @@
           <artifactId>javafx-maven-plugin</artifactId>
           <version>${javafx.maven.plugin.version}</version>
           <configuration>
-            <mainClass>it.polimi.ingsw.client.view.gui.App</mainClass>
+            <mainClass>it.polimi.ingsw.client.view.gui.ViewGUI</mainClass>
           </configuration>
         </plugin>
         <plugin>
