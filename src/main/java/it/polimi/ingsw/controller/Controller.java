@@ -133,7 +133,7 @@ public class Controller implements RequestListener {
         }
     }
 
-    public void extraAction(int playerId, int ... values) throws NotPlayerTurnException{
+    public void extraAction(int playerId, int ... values) throws NotPlayerTurnException {
         if (isPlanningFinished && playersToPlay.size() > 0) {
             Player player = playersToPlay.get(0);
             if (player.getId() == playerId) {

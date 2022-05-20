@@ -27,7 +27,7 @@ public class OptionHandler {
         this.optionLister = new OptionLister();
         this.stdin = new Scanner(System.in);
         Gson gson = new Gson();
-        InputStream inputStream = getClass().getResourceAsStream("/config/options_selected.json");
+        InputStream inputStream = getClass().getResourceAsStream("/assets/cli/options_selected.json");
         this.optionSelected = gson.fromJson(new InputStreamReader(inputStream), new TypeToken<Map<String, String>>(){}.getType());
     }
 
@@ -129,6 +129,7 @@ public class OptionHandler {
     }
 
     private RequestEvent noInputHandler(String option) {
+        System.out.println(this.optionSelected.get(option));
         return new RequestEvent(option, this.playerId);
     }
 
@@ -152,43 +153,37 @@ public class OptionHandler {
         return null;
     }
 
-    //TODO test this card
-    private RequestEvent card2(String option) throws InterruptedException{
-        return oneInputHandler(option);
-    }
-
-    //TODO implements this card
-    private RequestEvent card6(String option) {
-        String[] input;
-        int[] values = null;
+    private RequestEvent inputColor(String option) throws InterruptedException {
         boolean error = true;
+        int choice = -1;
         while (error) {
-            System.out.println(this.optionSelected.get(option));
             try {
-                input = stdin.nextLine().split(",");
-                if (input.length == 2) {
-                    values = new int[2];
-                    values[0] = Integer.parseInt(input[0]) - 1;
-                    values[1] = Color.valueOf(input[1].toUpperCase()).ordinal();
-                    error = false;
-                } else if (input.length == 4) {
-                    values = new int[4];
-                    values[0] = Integer.parseInt(input[0]) - 1;
-                    values[1] = Color.valueOf(input[1].toUpperCase()).ordinal();
-                    values[2] = Integer.parseInt(input[2]) - 1;
-                    values[3] = Color.valueOf(input[3].toUpperCase()).ordinal();
-                    if (values[0] < values[2]) values[2]--;
-                    error = false;
-                } else {
-                    System.out.println("Wrong number of arguments");
+                System.out.println(this.optionSelected.get(option));
+                while (System.in.available() == 0) {
+                    Thread.sleep(100);
                 }
-            } catch (NumberFormatException e) {
-                System.out.println("Not numbers retry!");
+                String s = stdin.nextLine();
+                choice = Color.valueOf(s.toUpperCase()).ordinal();
+                error = false;
             } catch (IllegalArgumentException e) {
-                System.out.println("Not a valid color retry!");
+                System.out.println("Not a valid color, retry!");
+            } catch (IOException e) {
+                e.printStackTrace();
             }
         }
-        return new RequestEvent("extraAction", this.playerId, values);
+        return new RequestEvent(option, this.playerId, choice);
+    }
+
+    //TODO test this card
+    private RequestEvent card2(String option) throws InterruptedException{
+        RequestEvent requestEvent = oneInputHandler(option);
+        return new RequestEvent("extraAction", this.playerId, requestEvent.getValues());
+    }
+
+    //TODO test this card
+    private RequestEvent card6(String option) throws InterruptedException{
+        RequestEvent requestEvent = inputColor(option);
+        return new RequestEvent("extraAction", this.playerId, requestEvent.getValues());
     }
 
     private RequestEvent card7(String option) throws InterruptedException{
@@ -221,38 +216,10 @@ public class OptionHandler {
         return new RequestEvent("extraAction", this.playerId, values);
     }
 
-    //TODO implements this card
-    private RequestEvent card8(String option) {
-        String[] input;
-        int[] values = null;
-        boolean error = true;
-        while (error) {
-            System.out.println(this.optionSelected.get(option));
-            try {
-                input = stdin.nextLine().split(",");
-                if (input.length == 2) {
-                    values = new int[2];
-                    values[0] = Integer.parseInt(input[0]) - 1;
-                    values[1] = Color.valueOf(input[1].toUpperCase()).ordinal();
-                    error = false;
-                } else if (input.length == 4) {
-                    values = new int[4];
-                    values[0] = Integer.parseInt(input[0]) - 1;
-                    values[1] = Color.valueOf(input[1].toUpperCase()).ordinal();
-                    values[2] = Integer.parseInt(input[2]) - 1;
-                    values[3] = Color.valueOf(input[3].toUpperCase()).ordinal();
-                    if (values[0] < values[2]) values[2]--;
-                    error = false;
-                } else {
-                    System.out.println("Wrong number of arguments");
-                }
-            } catch (NumberFormatException e) {
-                System.out.println("Not numbers retry!");
-            } catch (IllegalArgumentException e) {
-                System.out.println("Not a valid color retry!");
-            }
-        }
-        return new RequestEvent("extraAction", this.playerId, values);
+    //TODO test this card
+    private RequestEvent card8(String option) throws InterruptedException{
+        RequestEvent requestEvent = inputColor(option);
+        return new RequestEvent("extraAction", this.playerId, requestEvent.getValues());
     }
 
 }

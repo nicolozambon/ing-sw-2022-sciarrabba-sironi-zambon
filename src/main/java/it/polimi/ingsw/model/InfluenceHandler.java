@@ -3,6 +3,7 @@ package it.polimi.ingsw.model;
 import it.polimi.ingsw.enums.Color;
 import it.polimi.ingsw.model.card.InfluenceCharacterCard;
 
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -64,7 +65,7 @@ public class InfluenceHandler extends Handler {
 
     @Override
     protected void extraAction(Player currentPlayer, Model model, int ... values) {
-        colorWithNoInfluence = Color.values()[values[0]];
+        colorWithNoInfluence = Arrays.stream(Color.values()).filter(c -> c.ordinal() == values[0]).findFirst().get();
     }
 
     @Override

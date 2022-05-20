@@ -25,7 +25,8 @@ public class MovementHandler extends Handler {
     @Override
     protected void extraAction(Player currentPlayer, Model model, int ... values) {
         if (card.getNumOfStudentsToReturn() > 0) { //Card 8
-            model.returnStudentsToBag(Color.values()[values[0]], card.getNumOfStudentsToReturn());
+            Color color = Arrays.stream(Color.values()).filter(c -> c.ordinal() == values[0]).findFirst().get();
+            model.returnStudentsToBag(color, card.getNumOfStudentsToReturn());
         } else if (card.getPossibleExchange() > 0) { //Card 7
             if (values.length == 2) {
                 //System.out.println(values[0] + " " + Arrays.stream(Color.values()).filter(c -> c.ordinal() == values[1]).findFirst().get());

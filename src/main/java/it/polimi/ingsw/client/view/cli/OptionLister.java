@@ -14,7 +14,7 @@ public class OptionLister {
 
     public OptionLister() {
         Gson gson = new Gson();
-        InputStream inputStream = getClass().getResourceAsStream("/config/options_listing.json");
+        InputStream inputStream = getClass().getResourceAsStream("/assets/cli/options_listing.json");
         this.dictionary = gson.fromJson(new InputStreamReader(inputStream), new TypeToken<Map<String, String>>(){}.getType());
     }
 

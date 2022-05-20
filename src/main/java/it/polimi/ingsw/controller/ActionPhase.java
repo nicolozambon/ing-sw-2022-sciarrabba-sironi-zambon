@@ -41,11 +41,11 @@ public class ActionPhase {
         if (callableMethod.get("playCharacterCard") > 0) {
             this.model.playCharacterCard(this.currentPlayer.getId(), choice);
             callableMethod.put("playCharacterCard", callableMethod.get("playCharacterCard") - 1);
-            if (this.model.getCharacterCards().get(choice).getHasExtraAction()) {
-                if (this.model.getCharacterCardIdByHandler() != 7) callableMethod.put("extraAction", 1);
-                callableMethod.put("extraAction", 2);
-            }
+            if (this.model.getCharacterCards().get(choice-1).getHasExtraAction()) {
+                callableMethod.put("extraAction", 1);
+                if (this.model.getCharacterCardIdByHandler() == 7) callableMethod.put("extraAction", 2);
 
+            }
         }
     }
 
@@ -86,7 +86,7 @@ public class ActionPhase {
     public void extraAction(int ... values) {
         if(callableMethod.get("extraAction") > 0) {
             this.model.extraAction(this.currentPlayer.getId(), values);
-            callableMethod.put("extraAction", callableMethod.get("extraAction") - 1 );
+            callableMethod.put("extraAction", callableMethod.get("extraAction") - 1);
         }
     }
 

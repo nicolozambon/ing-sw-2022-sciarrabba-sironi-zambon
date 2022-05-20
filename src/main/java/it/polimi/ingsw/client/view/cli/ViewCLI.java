@@ -57,7 +57,7 @@ public class ViewCLI implements AnswerListener, RequestListenableInterface {
             //case "wait" -> System.out.println(optionLister.list(answerEvent.getPropertyName()));
             case "error" -> {
                 System.out.println(answerEvent.getMessage());
-                handleOptions(new AnswerEvent("options", this.options));
+                handleOptions(new AnswerEvent("error", this.options));
             }
             case "stop" -> {
                 System.out.println(answerEvent.getMessage());
@@ -71,7 +71,7 @@ public class ViewCLI implements AnswerListener, RequestListenableInterface {
 
     private void handleOptions(AnswerEvent answerEvent) {
         this.options = answerEvent.getOptions();
-        if (this.model != null) System.out.println(this.model);
+        if (this.model != null && !answerEvent.getPropertyName().equals("error")) System.out.println(this.model);
         RequestEvent requestEvent = null;
         try {
             requestEvent = optionHandler.getRequestEvent(this.options);
@@ -85,6 +85,7 @@ public class ViewCLI implements AnswerListener, RequestListenableInterface {
         this.model = new ThinModel(answerEvent.getModel());
     }
 
+    //TODO default loopback ip for testing purpose
     public void startCLI() throws IOException {
         /*Scanner stdin = new Scanner(System.in);
         System.out.println("Server IP:");
