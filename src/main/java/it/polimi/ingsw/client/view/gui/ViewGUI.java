@@ -28,7 +28,7 @@ public class ViewGUI extends Application implements RequestListenableInterface, 
 
     @Override
     public void start(Stage stage) throws IOException {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/assets/gui/scenes/startMenu.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/assets/gui/scenes/boardScene.fxml"));
         Scene scene = new Scene(loader.load());
         stage.setScene(scene);
         stage.setTitle("FXML Welcome");
