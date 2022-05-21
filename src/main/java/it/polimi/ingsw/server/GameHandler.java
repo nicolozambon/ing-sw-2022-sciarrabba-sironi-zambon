@@ -52,6 +52,7 @@ public class GameHandler implements Runnable {
 
     public synchronized void launchOptionsAnswerEvent() {
         int currentPlayerId = controller.getActivePlayer().getId();
+        waitOptions.add(controller.getActivePlayer().getNickname());
         List<String> options = controller.getOptions();
         for (int id : playersConnection.keySet()) {
             if (currentPlayerId == id) {
@@ -60,6 +61,7 @@ public class GameHandler implements Runnable {
                 playersConnection.get(id).send(new AnswerEvent("options", waitOptions));
             }
         }
+        waitOptions.remove(controller.getActivePlayer().getNickname());
     }
 
     public synchronized void launchErrorAnswerEvent(int playerId, AnswerEvent answerEvent) {

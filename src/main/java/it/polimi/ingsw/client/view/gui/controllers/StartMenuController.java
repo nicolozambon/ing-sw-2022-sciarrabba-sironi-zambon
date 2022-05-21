@@ -7,6 +7,8 @@ import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextField;
 import javafx.scene.control.ToggleGroup;
 
+import java.io.IOException;
+
 public class StartMenuController implements GUIController{
 
     private ViewGUI gui;
@@ -37,8 +39,10 @@ public class StartMenuController implements GUIController{
     }
 
     @FXML
-    private void setConnectButton() {
-
+    private void setConnectButton() throws IOException {
+        if (customRadioButton.isSelected()) gui.connect(ipTextField.getText(), nicknameTextField.getText());
+        if (localhostRadioButton.isSelected()) gui.connect("127.0.0.1",nicknameTextField.getText());
+        if (onlineRadioButton.isSelected()) gui.connect("127.0.0.1",nicknameTextField.getText());
     }
 
     @Override
