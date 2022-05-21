@@ -27,7 +27,6 @@ public class GameHandler implements Runnable {
         this.controller = model.getController();
         for (Player player : controller.getPlayersToPlay()) {
             playersConnection.get(player.getNickname()).send(new AnswerEvent("set_id", player.getId()));
-            playersConnection.get(player.getNickname()).send(new AnswerEvent("set_nickname", player.getNickname()));
             this.playersConnection.put(player.getId(), playersConnection.get(player.getNickname()));
         }
         this.virtualView = new VirtualView();

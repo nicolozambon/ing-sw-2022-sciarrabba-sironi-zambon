@@ -38,7 +38,7 @@ public class ConnectionHandler implements Runnable, RequestListenableInterface {
         this.socket = socket;
         this.requestListenable = new RequestListenable();
         this.gson = new Gson();
-        this.executorService = Executors.newCachedThreadPool();
+        this.executorService = Executors.newSingleThreadExecutor();
         startConnection();
     }
 

@@ -18,9 +18,7 @@ public class Server {
     private final List<GameHandler> games;
     private final Map<String, ConnectionHandler> players = new HashMap<>();
 
-    private static final List<String> waitOption = new ArrayList<>(){{
-        this.add("wait");
-    }};
+    private final List<String> waitOption = new ArrayList<>(List.of("wait"));
 
     /**
      * Number of players for the match being built.
@@ -113,6 +111,7 @@ public class Server {
             synchronized(players) {
                 players.put(connectionHandler.getNickname(), connectionHandler);
             }
+            connectionHandler.send(new AnswerEvent("set_nickname", connectionHandler.getNickname()));
             System.out.println("added player to a game");
 
             if (players.size() == 1) {
@@ -129,6 +128,8 @@ public class Server {
                 }
                 connectionHandler.send(new AnswerEvent("options", waitOption));
             }
+
+            players.values().forEach(c -> c.send(new AnswerEvent("lobby", players.keySet().stream().toList())));
 
             if (players.size() == numPlayers) {
                 GameHandler game = new GameHandler(players);
