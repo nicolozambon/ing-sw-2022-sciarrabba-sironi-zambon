@@ -2,6 +2,7 @@
 
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.effect.DropShadow?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -9,15 +10,16 @@
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane minHeight="1080.0" minWidth="1920.0" style="-fx-background-image: url('/images/background/island_backgound_cutted.png')" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="it.polimi.ingsw.psp58.view.UI.GUI.controller.BoardSceneController">
+<AnchorPane id="wrapperBoards" minHeight="1080.0" minWidth="1920.0" styleClass="anchor" stylesheets="@../css/boardScene.css" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1">
     <children>
-        <BorderPane minHeight="768.0" minWidth="1280.0" prefHeight="768.0" prefWidth="1280.0" style="-fx-background-color: transparent;" stylesheets="@../style.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+        <BorderPane minHeight="768.0" minWidth="1280.0" prefHeight="768.0" prefWidth="1280.0" style="-fx-background-color: transparent;" stylesheets="@../css/style.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
             <top>
                 <BorderPane styleClass="game-beige-pane" BorderPane.alignment="CENTER">
                     <left>
@@ -47,11 +49,11 @@
                                         <Font name="Avenir Next Condensed Bold" size="13.0" />
                                     </font>
                                 </Label>
-                                <HBox fx:id="l1Box" onMouseClicked="#level1Click">
+                                <HBox fx:id="l1Box">
                                     <children>
                                         <ImageView fitHeight="68.0" fitWidth="68.0" pickOnBounds="true" preserveRatio="true">
                                             <image>
-                                                <Image url="@../images/cellcluster/L1.png" />
+                                                <Image url="@../images/pawns/greenStudent.png" />
                                             </image>
                                             <HBox.margin>
                                                 <Insets />
@@ -59,11 +61,11 @@
                                         </ImageView>
                                     </children>
                                 </HBox>
-                                <HBox fx:id="l2Box" onMouseClicked="#level2Click">
+                                <HBox fx:id="l2Box">
                                     <children>
                                         <ImageView fitHeight="68.0" fitWidth="68.0" pickOnBounds="true" preserveRatio="true">
                                             <image>
-                                                <Image url="@../images/cellcluster/L2.png" />
+                                                <Image url="@../images/pawns/greenStudent.png" />
                                             </image>
                                             <HBox.margin>
                                                 <Insets />
@@ -71,11 +73,11 @@
                                         </ImageView>
                                     </children>
                                 </HBox>
-                                <HBox fx:id="l3Box" onMouseClicked="#level3Click">
+                                <HBox fx:id="l3Box">
                                     <children>
                                         <ImageView fitHeight="68.0" fitWidth="68.0" pickOnBounds="true" preserveRatio="true">
                                             <image>
-                                                <Image url="@../images/cellcluster/L3.png" />
+                                                <Image url="@../images/pawns/greenStudent.png" />
                                             </image>
                                             <HBox.margin>
                                                 <Insets />
@@ -83,11 +85,11 @@
                                         </ImageView>
                                     </children>
                                 </HBox>
-                                <HBox fx:id="domeBox" onMouseClicked="#domeClick">
+                                <HBox fx:id="domeBox">
                                     <children>
                                         <ImageView fitHeight="68.0" fitWidth="68.0" pickOnBounds="true" preserveRatio="true">
                                             <image>
-                                                <Image url="@../images/cellcluster/L0_DOME.png" />
+                                                <Image url="@../images/pawns/greenStudent.png" />
                                             </image>
                                             <HBox.margin>
                                                 <Insets />
@@ -109,111 +111,732 @@
          <center>
             <BorderPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
                <bottom>
-                  <VBox>
-                     <children>
-                        <HBox prefHeight="350.0" prefWidth="1119.0" BorderPane.alignment="CENTER">
-                           <children>
-                              <VBox prefHeight="400.0" prefWidth="157.0">
-                                 <children>
-                                    <GridPane prefHeight="365.0" prefWidth="157.0">
-                                      <columnConstraints>
-                                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                                      </columnConstraints>
-                                      <rowConstraints>
-                                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                      </rowConstraints>
-                                    </GridPane>
-                                 </children>
-                              </VBox>
-                              <VBox prefHeight="200.0" prefWidth="100.0" />
-                              <VBox prefHeight="350.0" prefWidth="600.0">
-                                 <children>
-                                    <GridPane prefHeight="353.0" prefWidth="540.0">
-                                      <columnConstraints>
-                                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                                          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                                          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                                          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                                          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                                          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                                          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                                          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                                          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                                      </columnConstraints>
-                                      <rowConstraints>
-                                          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                      </rowConstraints>
-                                    </GridPane>
-                                 </children>
-                              </VBox>
-                              <VBox prefHeight="200.0" prefWidth="100.0" />
-                              <VBox prefHeight="350.0" prefWidth="76.0">
-                                 <children>
-                                    <GridPane prefHeight="356.0" prefWidth="158.0">
-                                      <columnConstraints>
-                                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                                      </columnConstraints>
-                                      <rowConstraints>
-                                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                      </rowConstraints>
+                   <HBox prefHeight="980.0" prefWidth="1053.0" rotate="90.0">
+                       <children>
+                           <VBox prefHeight="980.0" prefWidth="613.0" />
+                           <VBox prefHeight="986.0" prefWidth="400.0" BorderPane.alignment="CENTER">
+                               <children>
+                                   <HBox prefHeight="76.0" prefWidth="401.0">
                                        <children>
-                                          <ImageView fitHeight="76.0" fitWidth="69.0" pickOnBounds="true" preserveRatio="true" rotate="90.0" GridPane.rowIndex="4">
-                                             <image>
-                                                <Image url="@../images/pawns/blueProf2D.png" />
-                                             </image>
-                                          </ImageView>
-                                          <ImageView fitHeight="76.0" fitWidth="69.0" pickOnBounds="true" preserveRatio="true" rotate="90.0" GridPane.rowIndex="3">
-                                             <image>
-                                                <Image url="@../images/pawns/pinkProf2D.png" />
-                                             </image>
-                                          </ImageView>
-                                          <ImageView fitHeight="76.0" fitWidth="69.0" pickOnBounds="true" preserveRatio="true" rotate="90.0" GridPane.rowIndex="2">
-                                             <image>
-                                                <Image url="@../images/pawns/yellowProf2D.png" />
-                                             </image>
-                                          </ImageView>
-                                          <ImageView fitHeight="74.0" fitWidth="69.0" pickOnBounds="true" preserveRatio="true" rotate="90.0" GridPane.rowIndex="1">
-                                             <image>
-                                                <Image url="@../images/pawns/redProf2D.png" />
-                                             </image>
-                                          </ImageView>
-                                          <ImageView fitHeight="55.0" fitWidth="69.0" pickOnBounds="true" preserveRatio="true" rotate="90.0">
-                                             <image>
-                                                <Image url="@../images/pawns/greenProf2D.png" />
-                                             </image>
-                                          </ImageView>
+                                           <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Nickname" textAlignment="CENTER" wrappingWidth="400.123046875" />
                                        </children>
-                                    </GridPane>
-                                 </children>
-                              </VBox>
-                           </children>
-                        </HBox>
-                        <HBox prefHeight="10.0" prefWidth="200.0" />
-                     </children>
-                  </VBox>
-               </bottom></BorderPane>
+                                   </HBox>
+                                   <VBox prefHeight="76.0" prefWidth="503.0">
+                                       <children>
+                                           <GridPane prefHeight="70.0">
+                                               <columnConstraints>
+                                                   <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
+                                                   <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
+                                                   <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
+                                                   <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
+                                                   <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
+                                               </columnConstraints>
+                                               <rowConstraints>
+                                                   <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                               </rowConstraints>
+                                               <children>
+                                                   <ImageView id="gp_0" fitHeight="55.0" fitWidth="69.0" pickOnBounds="true" preserveRatio="true">
+                                                       <image>
+                                                           <Image url="@../images/pawns/greenProf2D.png" />
+                                                       </image>
+                                                       <GridPane.margin>
+                                                           <Insets />
+                                                       </GridPane.margin>
+                                                   </ImageView>
+                                                   <ImageView id="rp_0" fitHeight="74.0" fitWidth="69.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1">
+                                                       <image>
+                                                           <Image url="@../images/pawns/redProf2D.png" />
+                                                       </image>
+                                                   </ImageView>
+                                                   <ImageView id="yp_0" fitHeight="76.0" fitWidth="69.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="2">
+                                                       <image>
+                                                           <Image url="@../images/pawns/yellowProf2D.png" />
+                                                       </image>
+                                                   </ImageView>
+                                                   <ImageView id="pp_0" fitHeight="76.0" fitWidth="69.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="3">
+                                                       <image>
+                                                           <Image url="@../images/pawns/pinkProf2D.png" />
+                                                       </image>
+                                                   </ImageView>
+                                                   <ImageView id="bp_0" fitHeight="76.0" fitWidth="69.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="4">
+                                                       <image>
+                                                           <Image url="@../images/pawns/blueProf2D.png" />
+                                                       </image>
+                                                   </ImageView>
+                                               </children>
+                                           </GridPane>
+                                       </children>
+                                   </VBox>
+                                   <HBox prefHeight="46.0" prefWidth="503.0" />
+                                   <VBox prefHeight="519.0" prefWidth="400.0">
+                                       <children>
+                                           <GridPane prefHeight="524.0">
+                                               <columnConstraints>
+                                                   <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                                   <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                                   <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                                   <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                                   <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                               </columnConstraints>
+                                               <rowConstraints>
+                                                   <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                                   <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                                   <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                                   <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                                   <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                                   <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                                   <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                                   <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                                   <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                                   <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                               </rowConstraints>
+                                               <children>
+                                                   <ImageView id="gs9_0" fitHeight="55.0" pickOnBounds="true" preserveRatio="true">
+                                                       <image>
+                                                           <Image url="@../images/pawns/greenStudent.png" />
+                                                       </image></ImageView>
+                                                   <ImageView id="gs8_0" fitHeight="55.0" fitWidth="82.0" layoutX="10.0" layoutY="9.0" pickOnBounds="true" preserveRatio="true" GridPane.rowIndex="1">
+                                                       <image>
+                                                           <Image url="@../images/pawns/greenStudent.png" />
+                                                       </image>
+                                                   </ImageView>
+                                                   <ImageView id="gs7_0" fitHeight="55.0" fitWidth="82.0" layoutX="10.0" layoutY="61.0" pickOnBounds="true" preserveRatio="true" GridPane.rowIndex="2">
+                                                       <image>
+                                                           <Image url="@../images/pawns/greenStudent.png" />
+                                                       </image>
+                                                   </ImageView>
+                                                   <ImageView id="gs6_0" fitHeight="55.0" fitWidth="82.0" layoutX="10.0" layoutY="113.0" pickOnBounds="true" preserveRatio="true" GridPane.rowIndex="3">
+                                                       <image>
+                                                           <Image url="@../images/pawns/greenStudent.png" />
+                                                       </image>
+                                                   </ImageView>
+                                                   <ImageView id="gs5_0" fitHeight="55.0" fitWidth="82.0" layoutX="10.0" layoutY="165.0" pickOnBounds="true" preserveRatio="true" GridPane.rowIndex="4">
+                                                       <image>
+                                                           <Image url="@../images/pawns/greenStudent.png" />
+                                                       </image>
+                                                   </ImageView>
+                                                   <ImageView id="gs4_0" fitHeight="55.0" fitWidth="82.0" layoutX="10.0" layoutY="217.0" pickOnBounds="true" preserveRatio="true" GridPane.rowIndex="5">
+                                                       <image>
+                                                           <Image url="@../images/pawns/greenStudent.png" />
+                                                       </image>
+                                                   </ImageView>
+                                                   <ImageView id="gs2_0" fitHeight="55.0" fitWidth="82.0" layoutX="10.0" layoutY="269.0" pickOnBounds="true" preserveRatio="true" GridPane.rowIndex="7">
+                                                       <image>
+                                                           <Image url="@../images/pawns/greenStudent.png" />
+                                                       </image>
+                                                   </ImageView>
+                                                   <ImageView id="gs3_0" fitHeight="55.0" fitWidth="82.0" layoutX="10.0" layoutY="269.0" pickOnBounds="true" preserveRatio="true" GridPane.rowIndex="6">
+                                                       <image>
+                                                           <Image url="@../images/pawns/greenStudent.png" />
+                                                       </image>
+                                                   </ImageView>
+                                                   <ImageView id="gs1_0" fitHeight="55.0" fitWidth="82.0" layoutX="10.0" layoutY="373.0" pickOnBounds="true" preserveRatio="true" GridPane.rowIndex="8">
+                                                       <image>
+                                                           <Image url="@../images/pawns/greenStudent.png" />
+                                                       </image>
+                                                   </ImageView>
+                                                   <ImageView id="gs0_0" fitHeight="55.0" fitWidth="82.0" layoutX="10.0" layoutY="425.0" pickOnBounds="true" preserveRatio="true" GridPane.rowIndex="9">
+                                                       <image>
+                                                           <Image url="@../images/pawns/greenStudent.png" />
+                                                       </image>
+                                                   </ImageView>
+                                                   <ImageView id="rs9_0" fitHeight="55.0" fitWidth="81.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1">
+                                                       <image>
+                                                           <Image url="@../images/pawns/redStudent.png" />
+                                                       </image>
+                                                   </ImageView>
+                                                   <ImageView id="rs8_0" fitHeight="55.0" fitWidth="81.0" layoutX="90.0" layoutY="9.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                                                       <image>
+                                                           <Image url="@../images/pawns/redStudent.png" />
+                                                       </image>
+                                                   </ImageView>
+                                                   <ImageView id="rs7_0" fitHeight="55.0" fitWidth="81.0" layoutX="90.0" layoutY="9.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                                                       <image>
+                                                           <Image url="@../images/pawns/redStudent.png" />
+                                                       </image>
+                                                   </ImageView>
+                                                   <ImageView id="rs6_0" fitHeight="55.0" fitWidth="81.0" layoutX="90.0" layoutY="9.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" GridPane.rowIndex="3">
+                                                       <image>
+                                                           <Image url="@../images/pawns/redStudent.png" />
+                                                       </image>
+                                                   </ImageView>
+                                                   <ImageView id="rs5_0" fitHeight="55.0" fitWidth="81.0" layoutX="90.0" layoutY="9.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" GridPane.rowIndex="4">
+                                                       <image>
+                                                           <Image url="@../images/pawns/redStudent.png" />
+                                                       </image>
+                                                   </ImageView>
+                                                   <ImageView id="rs4_0" fitHeight="55.0" fitWidth="81.0" layoutX="90.0" layoutY="9.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" GridPane.rowIndex="5">
+                                                       <image>
+                                                           <Image url="@../images/pawns/redStudent.png" />
+                                                       </image>
+                                                   </ImageView>
+                                                   <ImageView id="rs3_0" fitHeight="55.0" fitWidth="81.0" layoutX="90.0" layoutY="9.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" GridPane.rowIndex="6">
+                                                       <image>
+                                                           <Image url="@../images/pawns/redStudent.png" />
+                                                       </image>
+                                                   </ImageView>
+                                                   <ImageView id="rs2_0" fitHeight="55.0" fitWidth="81.0" layoutX="90.0" layoutY="9.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" GridPane.rowIndex="7">
+                                                       <image>
+                                                           <Image url="@../images/pawns/redStudent.png" />
+                                                       </image>
+                                                   </ImageView>
+                                                   <ImageView id="rs1_0" fitHeight="55.0" fitWidth="81.0" layoutX="90.0" layoutY="9.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" GridPane.rowIndex="8">
+                                                       <image>
+                                                           <Image url="@../images/pawns/redStudent.png" />
+                                                       </image>
+                                                   </ImageView>
+                                                   <ImageView id="rs0_0" fitHeight="55.0" fitWidth="81.0" layoutX="90.0" layoutY="9.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" GridPane.rowIndex="9">
+                                                       <image>
+                                                           <Image url="@../images/pawns/redStudent.png" />
+                                                       </image>
+                                                   </ImageView>
+                                                   <ImageView id="ys9_0" fitHeight="55.0" fitWidth="81.0" layoutX="90.0" layoutY="476.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="2">
+                                                       <image>
+                                                           <Image url="@../images/pawns/yellowStudent.png" />
+                                                       </image>
+                                                   </ImageView>
+                                                   <ImageView id="ys8_0" fitHeight="55.0" fitWidth="81.0" layoutX="170.0" layoutY="9.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="2" GridPane.rowIndex="1">
+                                                       <image>
+                                                           <Image url="@../images/pawns/yellowStudent.png" />
+                                                       </image>
+                                                   </ImageView>
+                                                   <ImageView id="ys7_0" fitHeight="55.0" fitWidth="81.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="2" GridPane.rowIndex="2">
+                                                       <image>
+                                                           <Image url="@../images/pawns/yellowStudent.png" />
+                                                       </image>
+                                                   </ImageView>
+                                                   <ImageView id="ys6_0" fitHeight="55.0" fitWidth="81.0" layoutX="170.0" layoutY="113.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="2" GridPane.rowIndex="3">
+                                                       <image>
+                                                           <Image url="@../images/pawns/yellowStudent.png" />
+                                                       </image>
+                                                   </ImageView>
+                                                   <ImageView id="ys5_0" fitHeight="55.0" fitWidth="81.0" layoutX="170.0" layoutY="113.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="2" GridPane.rowIndex="4">
+                                                       <image>
+                                                           <Image url="@../images/pawns/yellowStudent.png" />
+                                                       </image>
+                                                   </ImageView>
+                                                   <ImageView id="ys4_0" fitHeight="55.0" fitWidth="81.0" layoutX="170.0" layoutY="218.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="2" GridPane.rowIndex="5">
+                                                       <image>
+                                                           <Image url="@../images/pawns/yellowStudent.png" />
+                                                       </image>
+                                                   </ImageView>
+                                                   <ImageView id="ys3_0" fitHeight="55.0" fitWidth="81.0" layoutX="180.0" layoutY="228.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="2" GridPane.rowIndex="6">
+                                                       <image>
+                                                           <Image url="@../images/pawns/yellowStudent.png" />
+                                                       </image>
+                                                   </ImageView>
+                                                   <ImageView id="ys2_0" fitHeight="55.0" fitWidth="81.0" layoutX="170.0" layoutY="271.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="2" GridPane.rowIndex="7">
+                                                       <image>
+                                                           <Image url="@../images/pawns/yellowStudent.png" />
+                                                       </image>
+                                                   </ImageView>
+                                                   <ImageView id="ys1_0" fitHeight="55.0" fitWidth="81.0" layoutX="170.0" layoutY="374.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="2" GridPane.rowIndex="8">
+                                                       <image>
+                                                           <Image url="@../images/pawns/yellowStudent.png" />
+                                                       </image>
+                                                   </ImageView>
+                                                   <ImageView id="ys0_0" fitHeight="55.0" fitWidth="81.0" layoutX="170.0" layoutY="425.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="2" GridPane.rowIndex="9">
+                                                       <image>
+                                                           <Image url="@../images/pawns/yellowStudent.png" />
+                                                       </image>
+                                                   </ImageView>
+                                                   <ImageView id="ps9_0" fitHeight="55.0" fitWidth="81.0" layoutX="170.0" layoutY="9.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="3">
+                                                       <image>
+                                                           <Image url="@../images/pawns/pinkStudent.png" />
+                                                       </image>
+                                                   </ImageView>
+                                                   <ImageView id="ps8_0" fitHeight="55.0" fitWidth="81.0" layoutX="250.0" layoutY="9.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="3" GridPane.rowIndex="1">
+                                                       <image>
+                                                           <Image url="@../images/pawns/pinkStudent.png" />
+                                                       </image>
+                                                   </ImageView>
+                                                   <ImageView id="ps6_0" fitHeight="55.0" fitWidth="81.0" layoutX="250.0" layoutY="61.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="3" GridPane.rowIndex="3">
+                                                       <image>
+                                                           <Image url="@../images/pawns/pinkStudent.png" />
+                                                       </image>
+                                                   </ImageView>
+                                                   <ImageView id="ps7_0" fitHeight="55.0" fitWidth="81.0" layoutX="250.0" layoutY="61.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="3" GridPane.rowIndex="2">
+                                                       <image>
+                                                           <Image url="@../images/pawns/pinkStudent.png" />
+                                                       </image>
+                                                   </ImageView>
+                                                   <ImageView id="ps5_0" fitHeight="55.0" fitWidth="81.0" layoutX="250.0" layoutY="113.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="3" GridPane.rowIndex="4">
+                                                       <image>
+                                                           <Image url="@../images/pawns/pinkStudent.png" />
+                                                       </image>
+                                                   </ImageView>
+                                                   <ImageView id="ps2_0" fitHeight="55.0" fitWidth="81.0" layoutX="250.0" layoutY="217.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="3" GridPane.rowIndex="7">
+                                                       <image>
+                                                           <Image url="@../images/pawns/pinkStudent.png" />
+                                                       </image>
+                                                   </ImageView>
+                                                   <ImageView id="ps3_0" fitHeight="55.0" fitWidth="81.0" layoutX="250.0" layoutY="217.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="3" GridPane.rowIndex="6">
+                                                       <image>
+                                                           <Image url="@../images/pawns/pinkStudent.png" />
+                                                       </image>
+                                                   </ImageView>
+                                                   <ImageView id="ps5_0" fitHeight="55.0" fitWidth="81.0" layoutX="250.0" layoutY="217.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="3" GridPane.rowIndex="5">
+                                                       <image>
+                                                           <Image url="@../images/pawns/pinkStudent.png" />
+                                                       </image>
+                                                   </ImageView>
+                                                   <ImageView id="ps1_0" fitHeight="55.0" fitWidth="81.0" layoutX="250.0" layoutY="269.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="3" GridPane.rowIndex="8">
+                                                       <image>
+                                                           <Image url="@../images/pawns/pinkStudent.png" />
+                                                       </image>
+                                                   </ImageView>
+                                                   <ImageView id="ps0_0" fitHeight="55.0" fitWidth="81.0" layoutX="250.0" layoutY="425.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="3" GridPane.rowIndex="9">
+                                                       <image>
+                                                           <Image url="@../images/pawns/pinkStudent.png" />
+                                                       </image>
+                                                   </ImageView>
+                                                   <ImageView id="bs8_0" fitHeight="55.0" fitWidth="81.0" layoutX="250.0" layoutY="476.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="4" GridPane.rowIndex="1">
+                                                       <image>
+                                                           <Image url="@../images/pawns/blueStudent.png" />
+                                                       </image>
+                                                   </ImageView>
+                                                   <ImageView id="bs9_0" fitHeight="55.0" fitWidth="81.0" layoutX="260.0" layoutY="435.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="4">
+                                                       <image>
+                                                           <Image url="@../images/pawns/blueStudent.png" />
+                                                       </image>
+                                                   </ImageView>
+                                                   <ImageView id="bs7_0" fitHeight="55.0" fitWidth="81.0" layoutX="330.0" layoutY="61.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="4" GridPane.rowIndex="2">
+                                                       <image>
+                                                           <Image url="@../images/pawns/blueStudent.png" />
+                                                       </image>
+                                                   </ImageView>
+                                                   <ImageView id="bs5_0" fitHeight="55.0" fitWidth="81.0" layoutX="330.0" layoutY="113.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="4" GridPane.rowIndex="4">
+                                                       <image>
+                                                           <Image url="@../images/pawns/blueStudent.png" />
+                                                       </image>
+                                                   </ImageView>
+                                                   <ImageView id="bs6_0" fitHeight="55.0" fitWidth="81.0" layoutX="10.0" layoutY="9.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="4" GridPane.rowIndex="3">
+                                                       <image>
+                                                           <Image url="@../images/pawns/blueStudent.png" />
+                                                       </image>
+                                                   </ImageView>
+                                                   <ImageView id="bs4_0" fitHeight="55.0" fitWidth="81.0" layoutX="330.0" layoutY="165.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="4" GridPane.rowIndex="5">
+                                                       <image>
+                                                           <Image url="@../images/pawns/blueStudent.png" />
+                                                       </image>
+                                                   </ImageView>
+                                                   <ImageView id="bs3_0" fitHeight="55.0" fitWidth="81.0" layoutX="330.0" layoutY="269.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="4" GridPane.rowIndex="6">
+                                                       <image>
+                                                           <Image url="@../images/pawns/blueStudent.png" />
+                                                       </image>
+                                                   </ImageView>
+                                                   <ImageView id="bs2_0" fitHeight="55.0" fitWidth="81.0" layoutX="330.0" layoutY="321.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="4" GridPane.rowIndex="7">
+                                                       <image>
+                                                           <Image url="@../images/pawns/blueStudent.png" />
+                                                       </image>
+                                                   </ImageView>
+                                                   <ImageView id="bs1_0" fitHeight="55.0" fitWidth="81.0" layoutX="330.0" layoutY="373.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="4" GridPane.rowIndex="8">
+                                                       <image>
+                                                           <Image url="@../images/pawns/blueStudent.png" />
+                                                       </image>
+                                                   </ImageView>
+                                                   <ImageView id="bs0_0" fitHeight="55.0" fitWidth="81.0" layoutX="330.0" layoutY="425.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="4" GridPane.rowIndex="9">
+                                                       <image>
+                                                           <Image url="@../images/pawns/blueStudent.png" />
+                                                       </image>
+                                                   </ImageView>
+                                               </children>
+                                           </GridPane>
+                                       </children>
+                                   </VBox>
+                                   <HBox prefHeight="52.0" prefWidth="500.0" />
+                                   <VBox prefHeight="149.0" prefWidth="503.0">
+                                       <children>
+                                           <GridPane prefHeight="120.0" prefWidth="502.0">
+                                               <columnConstraints>
+                                                   <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                                   <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                                   <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                                   <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                                   <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                               </columnConstraints>
+                                               <rowConstraints>
+                                                   <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                                   <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                               </rowConstraints>
+                                               <children>
+                                                   <StackPane prefHeight="88.0" prefWidth="97.0">
+                                                       <children>
+                                                           <ImageView id="bse0_0" fitHeight="55.0" fitWidth="81.0" pickOnBounds="true" preserveRatio="true">
+                                                               <image>
+                                                                   <Image url="@../images/pawns/blueStudent.png" />
+                                                               </image>
+                                                           </ImageView>
+                                                           <ImageView id="pse0_0" fitHeight="55.0" fitWidth="81.0" pickOnBounds="true" preserveRatio="true">
+                                                               <image>
+                                                                   <Image url="@../images/pawns/pinkStudent.png" />
+                                                               </image>
+                                                           </ImageView>
+                                                           <ImageView id="yse0_0" fitHeight="55.0" fitWidth="81.0" pickOnBounds="true" preserveRatio="true">
+                                                               <image>
+                                                                   <Image url="@../images/pawns/yellowStudent.png" />
+                                                               </image>
+                                                           </ImageView>
+                                                           <ImageView id="rse0_0" fitHeight="55.0" fitWidth="81.0" pickOnBounds="true" preserveRatio="true">
+                                                               <image>
+                                                                   <Image url="@../images/pawns/redStudent.png" />
+                                                               </image>
+                                                           </ImageView>
+                                                           <ImageView id="gse0_0" fitHeight="55.0" fitWidth="81.0" pickOnBounds="true" preserveRatio="true">
+                                                               <image>
+                                                                   <Image url="@../images/pawns/greenStudent.png" />
+                                                               </image>
+                                                           </ImageView>
+                                                       </children>
+                                                   </StackPane>
+                                                   <StackPane layoutX="10.0" layoutY="10.0" prefHeight="88.0" prefWidth="97.0" GridPane.columnIndex="1">
+                                                       <children>
+                                                           <ImageView id="bse1_0" fitHeight="55.0" fitWidth="81.0" pickOnBounds="true" preserveRatio="true">
+                                                               <image>
+                                                                   <Image url="@../images/pawns/blueStudent.png" />
+                                                               </image>
+                                                           </ImageView>
+                                                           <ImageView id="pse1_0" fitHeight="55.0" fitWidth="81.0" pickOnBounds="true" preserveRatio="true">
+                                                               <image>
+                                                                   <Image url="@../images/pawns/pinkStudent.png" />
+                                                               </image>
+                                                           </ImageView>
+                                                           <ImageView id="yse1_0" fitHeight="55.0" fitWidth="81.0" pickOnBounds="true" preserveRatio="true">
+                                                               <image>
+                                                                   <Image url="@../images/pawns/yellowStudent.png" />
+                                                               </image>
+                                                           </ImageView>
+                                                           <ImageView id="rse1_0" fitHeight="55.0" fitWidth="81.0" pickOnBounds="true" preserveRatio="true">
+                                                               <image>
+                                                                   <Image url="@../images/pawns/redStudent.png" />
+                                                               </image>
+                                                           </ImageView>
+                                                           <ImageView id="gse1_0" fitHeight="55.0" fitWidth="81.0" pickOnBounds="true" preserveRatio="true">
+                                                               <image>
+                                                                   <Image url="@../images/pawns/greenStudent.png" />
+                                                               </image>
+                                                           </ImageView>
+                                                       </children>
+                                                   </StackPane>
+                                                   <StackPane prefHeight="150.0" prefWidth="200.0" GridPane.columnIndex="2">
+                                                       <children>
+                                                           <ImageView id="bse2_0" fitHeight="55.0" fitWidth="81.0" pickOnBounds="true" preserveRatio="true">
+                                                               <image>
+                                                                   <Image url="@../images/pawns/blueStudent.png" />
+                                                               </image>
+                                                           </ImageView>
+                                                           <ImageView id="pse2_0" fitHeight="55.0" fitWidth="81.0" pickOnBounds="true" preserveRatio="true">
+                                                               <image>
+                                                                   <Image url="@../images/pawns/pinkStudent.png" />
+                                                               </image>
+                                                           </ImageView>
+                                                           <ImageView id="yse2_0" fitHeight="55.0" fitWidth="81.0" pickOnBounds="true" preserveRatio="true">
+                                                               <image>
+                                                                   <Image url="@../images/pawns/yellowStudent.png" />
+                                                               </image>
+                                                           </ImageView>
+                                                           <ImageView id="rse2_0" fitHeight="55.0" fitWidth="81.0" pickOnBounds="true" preserveRatio="true">
+                                                               <image>
+                                                                   <Image url="@../images/pawns/redStudent.png" />
+                                                               </image>
+                                                           </ImageView>
+                                                           <ImageView id="gse2_0" fitHeight="55.0" fitWidth="81.0" pickOnBounds="true" preserveRatio="true">
+                                                               <image>
+                                                                   <Image url="@../images/pawns/greenStudent.png" />
+                                                               </image>
+                                                           </ImageView>
+                                                       </children>
+                                                   </StackPane>
+                                                   <StackPane prefHeight="150.0" prefWidth="200.0" GridPane.columnIndex="3">
+                                                       <children>
+                                                           <ImageView id="bse3_0" fitHeight="55.0" fitWidth="81.0" pickOnBounds="true" preserveRatio="true">
+                                                               <image>
+                                                                   <Image url="@../images/pawns/blueStudent.png" />
+                                                               </image>
+                                                           </ImageView>
+                                                           <ImageView id="pse3_0" fitHeight="55.0" fitWidth="81.0" pickOnBounds="true" preserveRatio="true">
+                                                               <image>
+                                                                   <Image url="@../images/pawns/pinkStudent.png" />
+                                                               </image>
+                                                           </ImageView>
+                                                           <ImageView id="yse3_0" fitHeight="55.0" fitWidth="81.0" pickOnBounds="true" preserveRatio="true">
+                                                               <image>
+                                                                   <Image url="@../images/pawns/yellowStudent.png" />
+                                                               </image>
+                                                           </ImageView>
+                                                           <ImageView id="rse3_0" fitHeight="55.0" fitWidth="81.0" pickOnBounds="true" preserveRatio="true">
+                                                               <image>
+                                                                   <Image url="@../images/pawns/redStudent.png" />
+                                                               </image>
+                                                           </ImageView>
+                                                           <ImageView id="gse3_0" fitHeight="55.0" fitWidth="81.0" pickOnBounds="true" preserveRatio="true">
+                                                               <image>
+                                                                   <Image url="@../images/pawns/greenStudent.png" />
+                                                               </image>
+                                                           </ImageView>
+                                                       </children>
+                                                   </StackPane>
+                                                   <StackPane prefHeight="150.0" prefWidth="200.0" GridPane.columnIndex="4">
+                                                       <children>
+                                                           <ImageView id="bse4_0" fitHeight="55.0" fitWidth="81.0" pickOnBounds="true" preserveRatio="true">
+                                                               <image>
+                                                                   <Image url="@../images/pawns/blueStudent.png" />
+                                                               </image>
+                                                           </ImageView>
+                                                           <ImageView id="pse4_0" fitHeight="55.0" fitWidth="81.0" pickOnBounds="true" preserveRatio="true">
+                                                               <image>
+                                                                   <Image url="@../images/pawns/pinkStudent.png" />
+                                                               </image>
+                                                           </ImageView>
+                                                           <ImageView id="yse4_0" fitHeight="55.0" fitWidth="81.0" pickOnBounds="true" preserveRatio="true">
+                                                               <image>
+                                                                   <Image url="@../images/pawns/yellowStudent.png" />
+                                                               </image>
+                                                           </ImageView>
+                                                           <ImageView id="rse4_0" fitHeight="55.0" fitWidth="81.0" pickOnBounds="true" preserveRatio="true">
+                                                               <image>
+                                                                   <Image url="@../images/pawns/redStudent.png" />
+                                                               </image>
+                                                           </ImageView>
+                                                           <ImageView id="gse4_0" fitHeight="55.0" fitWidth="81.0" pickOnBounds="true" preserveRatio="true">
+                                                               <image>
+                                                                   <Image url="@../images/pawns/greenStudent.png" />
+                                                               </image>
+                                                           </ImageView>
+                                                       </children>
+                                                   </StackPane>
+                                                   <StackPane prefHeight="150.0" prefWidth="200.0" GridPane.rowIndex="1">
+                                                   </StackPane>
+                                                   <StackPane prefHeight="150.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                                                       <children>
+                                                           <ImageView id="bse5_0" fitHeight="55.0" fitWidth="81.0" pickOnBounds="true" preserveRatio="true">
+                                                               <image>
+                                                                   <Image url="@../images/pawns/blueStudent.png" />
+                                                               </image>
+                                                           </ImageView>
+                                                           <ImageView id="pse5_0" fitHeight="55.0" fitWidth="81.0" pickOnBounds="true" preserveRatio="true">
+                                                               <image>
+                                                                   <Image url="@../images/pawns/pinkStudent.png" />
+                                                               </image>
+                                                           </ImageView>
+                                                           <ImageView id="yse5_0" fitHeight="55.0" fitWidth="81.0" pickOnBounds="true" preserveRatio="true">
+                                                               <image>
+                                                                   <Image url="@../images/pawns/yellowStudent.png" />
+                                                               </image>
+                                                           </ImageView>
+                                                           <ImageView id="rse5_0" fitHeight="55.0" fitWidth="81.0" pickOnBounds="true" preserveRatio="true">
+                                                               <image>
+                                                                   <Image url="@../images/pawns/redStudent.png" />
+                                                               </image>
+                                                           </ImageView>
+                                                           <ImageView id="gse5_0" fitHeight="55.0" fitWidth="81.0" pickOnBounds="true" preserveRatio="true">
+                                                               <image>
+                                                                   <Image url="@../images/pawns/greenStudent.png" />
+                                                               </image>
+                                                           </ImageView>
+                                                       </children>
+                                                   </StackPane>
+                                                   <StackPane prefHeight="150.0" prefWidth="200.0" GridPane.columnIndex="2" GridPane.rowIndex="1">
+                                                       <children>
+                                                           <ImageView id="bse6_0" fitHeight="55.0" fitWidth="81.0" pickOnBounds="true" preserveRatio="true">
+                                                               <image>
+                                                                   <Image url="@../images/pawns/blueStudent.png" />
+                                                               </image>
+                                                           </ImageView>
+                                                           <ImageView id="pse6_0" fitHeight="55.0" fitWidth="81.0" pickOnBounds="true" preserveRatio="true">
+                                                               <image>
+                                                                   <Image url="@../images/pawns/pinkStudent.png" />
+                                                               </image>
+                                                           </ImageView>
+                                                           <ImageView id="yse6_0" fitHeight="55.0" fitWidth="81.0" pickOnBounds="true" preserveRatio="true">
+                                                               <image>
+                                                                   <Image url="@../images/pawns/yellowStudent.png" />
+                                                               </image>
+                                                           </ImageView>
+                                                           <ImageView id="rse6_0" fitHeight="55.0" fitWidth="81.0" pickOnBounds="true" preserveRatio="true">
+                                                               <image>
+                                                                   <Image url="@../images/pawns/redStudent.png" />
+                                                               </image>
+                                                           </ImageView>
+                                                           <ImageView id="gse6_0" fitHeight="55.0" fitWidth="81.0" pickOnBounds="true" preserveRatio="true">
+                                                               <image>
+                                                                   <Image url="@../images/pawns/greenStudent.png" />
+                                                               </image>
+                                                           </ImageView>
+                                                       </children>
+                                                   </StackPane>
+                                                   <StackPane prefHeight="150.0" prefWidth="200.0" GridPane.columnIndex="3" GridPane.rowIndex="1">
+                                                       <children>
+                                                           <ImageView id="bse7_0" fitHeight="55.0" fitWidth="81.0" pickOnBounds="true" preserveRatio="true">
+                                                               <image>
+                                                                   <Image url="@../images/pawns/blueStudent.png" />
+                                                               </image>
+                                                           </ImageView>
+                                                           <ImageView id="pse7_0" fitHeight="55.0" fitWidth="81.0" pickOnBounds="true" preserveRatio="true">
+                                                               <image>
+                                                                   <Image url="@../images/pawns/pinkStudent.png" />
+                                                               </image>
+                                                           </ImageView>
+                                                           <ImageView id="yse7_0" fitHeight="55.0" fitWidth="81.0" pickOnBounds="true" preserveRatio="true">
+                                                               <image>
+                                                                   <Image url="@../images/pawns/yellowStudent.png" />
+                                                               </image>
+                                                           </ImageView>
+                                                           <ImageView id="rse7_0" fitHeight="55.0" fitWidth="81.0" pickOnBounds="true" preserveRatio="true">
+                                                               <image>
+                                                                   <Image url="@../images/pawns/redStudent.png" />
+                                                               </image>
+                                                           </ImageView>
+                                                           <ImageView id="gse7_0" fitHeight="55.0" fitWidth="81.0" pickOnBounds="true" preserveRatio="true">
+                                                               <image>
+                                                                   <Image url="@../images/pawns/greenStudent.png" />
+                                                               </image>
+                                                           </ImageView>
+                                                       </children>
+                                                   </StackPane>
+                                                   <StackPane prefHeight="150.0" prefWidth="200.0" GridPane.columnIndex="4" GridPane.rowIndex="1">
+                                                       <children>
+                                                           <ImageView id="bse8_1" fitHeight="55.0" fitWidth="81.0" pickOnBounds="true" preserveRatio="true">
+                                                               <image>
+                                                                   <Image url="@../images/pawns/blueStudent.png" />
+                                                               </image>
+                                                           </ImageView>
+                                                           <ImageView id="pse8_0" fitHeight="55.0" fitWidth="81.0" pickOnBounds="true" preserveRatio="true">
+                                                               <image>
+                                                                   <Image url="@../images/pawns/pinkStudent.png" />
+                                                               </image>
+                                                           </ImageView>
+                                                           <ImageView id="yse8_0" fitHeight="55.0" fitWidth="81.0" pickOnBounds="true" preserveRatio="true">
+                                                               <image>
+                                                                   <Image url="@../images/pawns/yellowStudent.png" />
+                                                               </image>
+                                                           </ImageView>
+                                                           <ImageView id="rse8_0" fitHeight="55.0" fitWidth="81.0" pickOnBounds="true" preserveRatio="true">
+                                                               <image>
+                                                                   <Image url="@../images/pawns/redStudent.png" />
+                                                               </image>
+                                                           </ImageView>
+                                                           <ImageView id="gse8_0" fitHeight="55.0" fitWidth="81.0" pickOnBounds="true" preserveRatio="true">
+                                                               <image>
+                                                                   <Image url="@../images/pawns/greenStudent.png" />
+                                                               </image>
+                                                           </ImageView>
+                                                       </children>
+                                                   </StackPane>
+                                               </children>
+                                           </GridPane>
+                                       </children>
+                                   </VBox>
+                               </children>
+                           </VBox>
+                       </children>
+                   </HBox>
+<!--                  <VBox>-->
+<!--                     <children>-->
+<!--                        <HBox prefHeight="350.0" prefWidth="1119.0" BorderPane.alignment="CENTER">-->
+<!--                           <children>-->
+<!--                              <VBox prefHeight="400.0" prefWidth="157.0">-->
+<!--                                 <children>-->
+<!--                                    <GridPane prefHeight="365.0" prefWidth="157.0">-->
+<!--                                      <columnConstraints>-->
+<!--                                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />-->
+<!--                                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />-->
+<!--                                      </columnConstraints>-->
+<!--                                      <rowConstraints>-->
+<!--                                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />-->
+<!--                                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />-->
+<!--                                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />-->
+<!--                                          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />-->
+<!--                                          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />-->
+<!--                                      </rowConstraints>-->
+<!--                                    </GridPane>-->
+<!--                                 </children>-->
+<!--                              </VBox>-->
+<!--                              <VBox prefHeight="200.0" prefWidth="100.0" />-->
+<!--                              <VBox prefHeight="350.0" prefWidth="600.0">-->
+<!--                                 <children>-->
+<!--                                    <GridPane prefHeight="353.0" prefWidth="540.0">-->
+<!--                                      <columnConstraints>-->
+<!--                                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />-->
+<!--                                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />-->
+<!--                                          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />-->
+<!--                                          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />-->
+<!--                                          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />-->
+<!--                                          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />-->
+<!--                                          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />-->
+<!--                                          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />-->
+<!--                                          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />-->
+<!--                                          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />-->
+<!--                                      </columnConstraints>-->
+<!--                                      <rowConstraints>-->
+<!--                                          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />-->
+<!--                                          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />-->
+<!--                                          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />-->
+<!--                                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />-->
+<!--                                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />-->
+<!--                                      </rowConstraints>-->
+<!--                                    </GridPane>-->
+<!--                                 </children>-->
+<!--                              </VBox>-->
+<!--                              <VBox prefHeight="200.0" prefWidth="100.0" />-->
+<!--                              <VBox prefHeight="350.0" prefWidth="76.0">-->
+<!--                                 <children>-->
+<!--                                    <GridPane prefHeight="356.0" prefWidth="158.0">-->
+<!--                                      <columnConstraints>-->
+<!--                                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />-->
+<!--                                      </columnConstraints>-->
+<!--                                      <rowConstraints>-->
+<!--                                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />-->
+<!--                                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />-->
+<!--                                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />-->
+<!--                                          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />-->
+<!--                                          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />-->
+<!--                                      </rowConstraints>-->
+<!--                                       <children>-->
+<!--                                          <ImageView fitHeight="76.0" fitWidth="69.0" pickOnBounds="true" preserveRatio="true" rotate="90.0" GridPane.rowIndex="4">-->
+<!--                                             <image>-->
+<!--                                                <Image url="@../images/pawns/blueProf2D.png" />-->
+<!--                                             </image>-->
+<!--                                          </ImageView>-->
+<!--                                          <ImageView fitHeight="76.0" fitWidth="69.0" pickOnBounds="true" preserveRatio="true" rotate="90.0" GridPane.rowIndex="3">-->
+<!--                                             <image>-->
+<!--                                                <Image url="@../images/pawns/pinkProf2D.png" />-->
+<!--                                             </image>-->
+<!--                                          </ImageView>-->
+<!--                                          <ImageView fitHeight="76.0" fitWidth="69.0" pickOnBounds="true" preserveRatio="true" rotate="90.0" GridPane.rowIndex="2">-->
+<!--                                             <image>-->
+<!--                                                <Image url="@../images/pawns/yellowProf2D.png" />-->
+<!--                                             </image>-->
+<!--                                          </ImageView>-->
+<!--                                          <ImageView fitHeight="74.0" fitWidth="69.0" pickOnBounds="true" preserveRatio="true" rotate="90.0" GridPane.rowIndex="1">-->
+<!--                                             <image>-->
+<!--                                                <Image url="@../images/pawns/redProf2D.png" />-->
+<!--                                             </image>-->
+<!--                                          </ImageView>-->
+<!--                                          <ImageView fitHeight="55.0" fitWidth="69.0" pickOnBounds="true" preserveRatio="true" rotate="90.0">-->
+<!--                                             <image>-->
+<!--                                                <Image url="@../images/pawns/greenProf2D.png" />-->
+<!--                                             </image>-->
+<!--                                          </ImageView>-->
+<!--                                       </children>-->
+<!--                                    </GridPane>-->
+<!--                                 </children>-->
+<!--                              </VBox>-->
+<!--                           </children>-->
+<!--                        </HBox>-->
+<!--                        <HBox prefHeight="10.0" prefWidth="200.0" />-->
+<!--                     </children>-->
+<!--                  </VBox>-->
+               </bottom>
+            </BorderPane>
          </center>
          <left>
             <HBox>
                <children>
                   <VBox prefHeight="986.0" prefWidth="10.0" />
-                  <VBox prefHeight="986.0" prefWidth="400.0" BorderPane.alignment="CENTER">
+                  <VBox prefHeight="986.0" prefWidth="400.0" styleClass="board" BorderPane.alignment="CENTER">
                      <children>
-                        <HBox prefHeight="28.0">
+                        <HBox prefHeight="258.0" prefWidth="401.0">
                            <children>
                               <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Nickname" textAlignment="CENTER" wrappingWidth="400.123046875" />
                            </children>
@@ -222,43 +845,59 @@
                            <children>
                               <GridPane prefHeight="70.0">
                                 <columnConstraints>
-                                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
-                                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
-                                    <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
-                                    <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
-                                    <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
+                                    <ColumnConstraints hgrow="SOMETIMES" maxWidth="97.0" minWidth="10.0" prefWidth="42.0" />
+                                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="112.0" minWidth="10.0" prefWidth="67.0" />
+                                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="106.0" minWidth="10.0" prefWidth="66.0" />
+                                    <ColumnConstraints hgrow="SOMETIMES" maxWidth="97.0" minWidth="10.0" prefWidth="65.0" />
+                                    <ColumnConstraints hgrow="SOMETIMES" maxWidth="97.0" minWidth="10.0" prefWidth="66.0" />
+                                    <ColumnConstraints hgrow="SOMETIMES" maxWidth="103.0" minWidth="10.0" prefWidth="94.0" />
                                 </columnConstraints>
                                 <rowConstraints>
                                   <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                                 </rowConstraints>
                                  <children>
-                                    <ImageView fitHeight="55.0" fitWidth="69.0" pickOnBounds="true" preserveRatio="true">
+                                    <ImageView id="gp_1" fitHeight="44.0" fitWidth="54.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1">
                                        <image>
                                           <Image url="@../images/pawns/greenProf2D.png" />
                                        </image>
                                        <GridPane.margin>
                                           <Insets />
                                        </GridPane.margin>
+                                       <effect>
+                                          <DropShadow />
+                                       </effect>
                                     </ImageView>
-                                    <ImageView fitHeight="74.0" fitWidth="69.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1">
+                                    <ImageView id="rp_1" fitHeight="44.0" fitWidth="54.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="2">
                                        <image>
                                           <Image url="@../images/pawns/redProf2D.png" />
                                        </image>
+                                       <effect>
+                                          <DropShadow />
+                                       </effect>
                                     </ImageView>
-                                    <ImageView fitHeight="76.0" fitWidth="69.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="2">
+                                    <ImageView id="yp_1" fitHeight="44.0" fitWidth="54.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="3">
                                        <image>
                                           <Image url="@../images/pawns/yellowProf2D.png" />
                                        </image>
+                                       <effect>
+                                          <DropShadow />
+                                       </effect>
                                     </ImageView>
-                                    <ImageView fitHeight="76.0" fitWidth="69.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="3">
+                                    <ImageView id="pp_1" fitHeight="44.0" fitWidth="54.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="4">
                                        <image>
                                           <Image url="@../images/pawns/pinkProf2D.png" />
                                        </image>
+                                       <effect>
+                                          <DropShadow />
+                                       </effect>
                                     </ImageView>
-                                    <ImageView fitHeight="76.0" fitWidth="69.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="4">
+                                    <ImageView id="bp_1" fitHeight="44.0" fitWidth="54.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="5">
                                        <image>
                                           <Image url="@../images/pawns/blueProf2D.png" />
                                        </image>
+                                       <effect>
+                                          <DropShadow />
+                                       </effect>
                                     </ImageView>
                                  </children>
                               </GridPane>
@@ -267,13 +906,15 @@
                         <HBox prefHeight="46.0" prefWidth="503.0" />
                         <VBox prefHeight="519.0" prefWidth="400.0">
                            <children>
+                              <Pane prefHeight="50.0" prefWidth="401.0" />
                               <GridPane prefHeight="524.0">
                                 <columnConstraints>
-                                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                                    <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                                    <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                                    <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                    <ColumnConstraints hgrow="SOMETIMES" maxWidth="63.0" minWidth="10.0" prefWidth="48.95452880859375" />
+                                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="89.0" minWidth="10.0" prefWidth="64.0" />
+                                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="117.06080627441406" minWidth="10.0" prefWidth="64.99649047851562" />
+                                    <ColumnConstraints hgrow="SOMETIMES" maxWidth="162.66690063476562" minWidth="10.0" prefWidth="65.50350952148438" />
+                                    <ColumnConstraints hgrow="SOMETIMES" maxWidth="118.75765991210938" minWidth="10.0" prefWidth="66.49649047851562" />
+                                    <ColumnConstraints hgrow="SOMETIMES" maxWidth="93.12353515625" minWidth="10.0" prefWidth="93.12353515625" />
                                 </columnConstraints>
                                 <rowConstraints>
                                   <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
@@ -288,153 +929,259 @@
                                     <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                                 </rowConstraints>
                                  <children>
-                                    <ImageView fitHeight="55.0" pickOnBounds="true" preserveRatio="true">
+                                    <ImageView id="gs9_1" fitHeight="44.0" fitWidth="44.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1">
                                        <image>
                                           <Image url="@../images/pawns/greenStudent.png" />
-                                       </image></ImageView>
-                                    <ImageView fitHeight="55.0" fitWidth="82.0" layoutX="10.0" layoutY="9.0" pickOnBounds="true" preserveRatio="true" GridPane.rowIndex="1">
+                                       </image>
+                                       <effect>
+                                          <DropShadow />
+                                       </effect></ImageView>
+                                    <ImageView id="gs8_1" fitHeight="44.0" fitWidth="44.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                                       <image>
+                                          <Image url="@../images/pawns/greenStudent.png" />
+                                       </image>
+                                       <effect>
+                                          <DropShadow />
+                                       </effect>
+                                    </ImageView>
+                                    <ImageView id="gs7_1" fitHeight="55.0" fitWidth="82.0" layoutX="10.0" layoutY="61.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" GridPane.rowIndex="2">
                                        <image>
                                           <Image url="@../images/pawns/greenStudent.png" />
                                        </image>
                                     </ImageView>
-                                    <ImageView fitHeight="55.0" fitWidth="82.0" layoutX="10.0" layoutY="61.0" pickOnBounds="true" preserveRatio="true" GridPane.rowIndex="2">
+                                    <ImageView id="gs6_1" fitHeight="55.0" fitWidth="82.0" layoutX="10.0" layoutY="113.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" GridPane.rowIndex="3">
                                        <image>
                                           <Image url="@../images/pawns/greenStudent.png" />
                                        </image>
                                     </ImageView>
-                                    <ImageView fitHeight="55.0" fitWidth="82.0" layoutX="10.0" layoutY="113.0" pickOnBounds="true" preserveRatio="true" GridPane.rowIndex="3">
+                                    <ImageView id="gs5_1" fitHeight="55.0" fitWidth="82.0" layoutX="10.0" layoutY="165.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" GridPane.rowIndex="4">
                                        <image>
                                           <Image url="@../images/pawns/greenStudent.png" />
                                        </image>
                                     </ImageView>
-                                    <ImageView fitHeight="55.0" fitWidth="82.0" layoutX="10.0" layoutY="165.0" pickOnBounds="true" preserveRatio="true" GridPane.rowIndex="4">
+                                    <ImageView id="gs4_1" fitHeight="55.0" fitWidth="82.0" layoutX="10.0" layoutY="217.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" GridPane.rowIndex="5">
                                        <image>
                                           <Image url="@../images/pawns/greenStudent.png" />
                                        </image>
                                     </ImageView>
-                                    <ImageView fitHeight="55.0" fitWidth="82.0" layoutX="10.0" layoutY="217.0" pickOnBounds="true" preserveRatio="true" GridPane.rowIndex="5">
+                                    <ImageView id="gs2_1" fitHeight="55.0" fitWidth="82.0" layoutX="10.0" layoutY="269.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" GridPane.rowIndex="7">
                                        <image>
                                           <Image url="@../images/pawns/greenStudent.png" />
                                        </image>
                                     </ImageView>
-                                    <ImageView fitHeight="55.0" fitWidth="82.0" layoutX="10.0" layoutY="269.0" pickOnBounds="true" preserveRatio="true" GridPane.rowIndex="7">
+                                    <ImageView id="gs3_1" fitHeight="55.0" fitWidth="82.0" layoutX="10.0" layoutY="269.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" GridPane.rowIndex="6">
                                        <image>
                                           <Image url="@../images/pawns/greenStudent.png" />
                                        </image>
                                     </ImageView>
-                                    <ImageView fitHeight="55.0" fitWidth="82.0" layoutX="10.0" layoutY="269.0" pickOnBounds="true" preserveRatio="true" GridPane.rowIndex="6">
+                                    <ImageView id="gs1_1" fitHeight="55.0" fitWidth="82.0" layoutX="10.0" layoutY="373.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" GridPane.rowIndex="8">
                                        <image>
                                           <Image url="@../images/pawns/greenStudent.png" />
                                        </image>
                                     </ImageView>
-                                    <ImageView fitHeight="55.0" fitWidth="82.0" layoutX="10.0" layoutY="373.0" pickOnBounds="true" preserveRatio="true" GridPane.rowIndex="8">
+                                    <ImageView id="gs0_1" fitHeight="55.0" fitWidth="82.0" layoutX="10.0" layoutY="425.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" GridPane.rowIndex="9">
                                        <image>
                                           <Image url="@../images/pawns/greenStudent.png" />
                                        </image>
                                     </ImageView>
-                                    <ImageView fitHeight="55.0" fitWidth="82.0" layoutX="10.0" layoutY="425.0" pickOnBounds="true" preserveRatio="true" GridPane.rowIndex="9">
-                                       <image>
-                                          <Image url="@../images/pawns/greenStudent.png" />
-                                       </image>
-                                    </ImageView>
-                                    <ImageView fitHeight="55.0" fitWidth="81.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1">
+                                    <ImageView id="rs9_1" fitHeight="44.0" fitWidth="44.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="2">
                                        <image>
                                           <Image url="@../images/pawns/redStudent.png" />
                                        </image>
                                     </ImageView>
-                                    <ImageView fitHeight="55.0" fitWidth="81.0" layoutX="90.0" layoutY="9.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                                    <ImageView id="rs8_1" fitHeight="55.0" fitWidth="81.0" layoutX="90.0" layoutY="9.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="2" GridPane.rowIndex="1">
                                        <image>
                                           <Image url="@../images/pawns/redStudent.png" />
                                        </image>
                                     </ImageView>
-                                     <ImageView fitHeight="55.0" fitWidth="81.0" layoutX="90.0" layoutY="9.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                                     <ImageView id="rs7_1" fitHeight="55.0" fitWidth="81.0" layoutX="90.0" layoutY="9.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="2" GridPane.rowIndex="2">
                                          <image>
                                              <Image url="@../images/pawns/redStudent.png" />
                                          </image>
                                      </ImageView>
-                                     <ImageView fitHeight="55.0" fitWidth="81.0" layoutX="90.0" layoutY="9.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" GridPane.rowIndex="3">
+                                     <ImageView id="rs6_1" fitHeight="55.0" fitWidth="81.0" layoutX="90.0" layoutY="9.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="2" GridPane.rowIndex="3">
                                          <image>
                                              <Image url="@../images/pawns/redStudent.png" />
                                          </image>
                                      </ImageView>
-                                     <ImageView fitHeight="55.0" fitWidth="81.0" layoutX="90.0" layoutY="9.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" GridPane.rowIndex="4">
+                                     <ImageView id="rs5_1" fitHeight="55.0" fitWidth="81.0" layoutX="90.0" layoutY="9.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="2" GridPane.rowIndex="4">
                                          <image>
                                              <Image url="@../images/pawns/redStudent.png" />
                                          </image>
                                      </ImageView>
-                                     <ImageView fitHeight="55.0" fitWidth="81.0" layoutX="90.0" layoutY="9.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" GridPane.rowIndex="5">
+                                     <ImageView id="rs4_1" fitHeight="55.0" fitWidth="81.0" layoutX="90.0" layoutY="9.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="2" GridPane.rowIndex="5">
                                          <image>
                                              <Image url="@../images/pawns/redStudent.png" />
                                          </image>
                                      </ImageView>
-                                     <ImageView fitHeight="55.0" fitWidth="81.0" layoutX="90.0" layoutY="9.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" GridPane.rowIndex="6">
+                                     <ImageView id="rs3_1" fitHeight="55.0" fitWidth="81.0" layoutX="90.0" layoutY="9.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="2" GridPane.rowIndex="6">
                                          <image>
                                              <Image url="@../images/pawns/redStudent.png" />
                                          </image>
                                      </ImageView>
-                                     <ImageView fitHeight="55.0" fitWidth="81.0" layoutX="90.0" layoutY="9.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" GridPane.rowIndex="7">
+                                     <ImageView id="rs2_1" fitHeight="55.0" fitWidth="81.0" layoutX="90.0" layoutY="9.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="2" GridPane.rowIndex="7">
                                          <image>
                                              <Image url="@../images/pawns/redStudent.png" />
                                          </image>
                                      </ImageView>
-                                     <ImageView fitHeight="55.0" fitWidth="81.0" layoutX="90.0" layoutY="9.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" GridPane.rowIndex="8">
+                                     <ImageView id="rs1_1" fitHeight="55.0" fitWidth="81.0" layoutX="90.0" layoutY="9.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="2" GridPane.rowIndex="8">
                                          <image>
                                              <Image url="@../images/pawns/redStudent.png" />
                                          </image>
                                      </ImageView>
-                                     <ImageView fitHeight="55.0" fitWidth="81.0" layoutX="90.0" layoutY="9.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" GridPane.rowIndex="9">
+                                     <ImageView id="rs0_1" fitHeight="55.0" fitWidth="81.0" layoutX="90.0" layoutY="9.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="2" GridPane.rowIndex="9">
                                          <image>
                                              <Image url="@../images/pawns/redStudent.png" />
                                          </image>
                                      </ImageView>
-                                    <ImageView fitHeight="55.0" fitWidth="81.0" layoutX="90.0" layoutY="476.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="2">
+                                    <ImageView id="ys9_1" fitHeight="44.0" fitWidth="44.0" layoutX="90.0" layoutY="476.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="3">
                                        <image>
                                           <Image url="@../images/pawns/yellowStudent.png" />
                                        </image>
                                     </ImageView>
-                                    <ImageView fitHeight="55.0" fitWidth="81.0" layoutX="170.0" layoutY="9.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="2" GridPane.rowIndex="1">
+                                    <ImageView id="ys8_1" fitHeight="55.0" fitWidth="81.0" layoutX="170.0" layoutY="9.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="3" GridPane.rowIndex="1">
                                        <image>
                                           <Image url="@../images/pawns/yellowStudent.png" />
                                        </image>
                                     </ImageView>
-                                    <ImageView fitHeight="55.0" fitWidth="81.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="2" GridPane.rowIndex="2">
+                                    <ImageView id="ys7_1" fitHeight="55.0" fitWidth="81.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="3" GridPane.rowIndex="2">
                                        <image>
                                           <Image url="@../images/pawns/yellowStudent.png" />
                                        </image>
                                     </ImageView>
-                                    <ImageView fitHeight="55.0" fitWidth="81.0" layoutX="170.0" layoutY="113.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="2" GridPane.rowIndex="3">
+                                    <ImageView id="ys6_1" fitHeight="55.0" fitWidth="81.0" layoutX="170.0" layoutY="113.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="3" GridPane.rowIndex="3">
                                        <image>
                                           <Image url="@../images/pawns/yellowStudent.png" />
                                        </image>
                                     </ImageView>
-                                    <ImageView fitHeight="55.0" fitWidth="81.0" layoutX="170.0" layoutY="113.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="2" GridPane.rowIndex="4">
+                                    <ImageView id="ys5_1" fitHeight="55.0" fitWidth="81.0" layoutX="170.0" layoutY="113.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="3" GridPane.rowIndex="4">
                                        <image>
                                           <Image url="@../images/pawns/yellowStudent.png" />
                                        </image>
                                     </ImageView>
-                                    <ImageView fitHeight="55.0" fitWidth="81.0" layoutX="170.0" layoutY="218.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="2" GridPane.rowIndex="5">
+                                    <ImageView id="ys4_1" fitHeight="55.0" fitWidth="81.0" layoutX="170.0" layoutY="218.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="3" GridPane.rowIndex="5">
                                        <image>
                                           <Image url="@../images/pawns/yellowStudent.png" />
                                        </image>
                                     </ImageView>
-                                    <ImageView fitHeight="55.0" fitWidth="81.0" layoutX="180.0" layoutY="228.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="2" GridPane.rowIndex="6">
+                                    <ImageView id="ys3_1" fitHeight="55.0" fitWidth="81.0" layoutX="180.0" layoutY="228.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="3" GridPane.rowIndex="6">
                                        <image>
                                           <Image url="@../images/pawns/yellowStudent.png" />
                                        </image>
                                     </ImageView>
-                                    <ImageView fitHeight="55.0" fitWidth="81.0" layoutX="170.0" layoutY="271.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="2" GridPane.rowIndex="7">
+                                    <ImageView id="ys2_1" fitHeight="55.0" fitWidth="81.0" layoutX="170.0" layoutY="271.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="3" GridPane.rowIndex="7">
                                        <image>
                                           <Image url="@../images/pawns/yellowStudent.png" />
                                        </image>
                                     </ImageView>
-                                    <ImageView fitHeight="55.0" fitWidth="81.0" layoutX="170.0" layoutY="374.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="2" GridPane.rowIndex="8">
+                                    <ImageView id="ys1_1" fitHeight="55.0" fitWidth="81.0" layoutX="170.0" layoutY="374.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="3" GridPane.rowIndex="8">
                                        <image>
                                           <Image url="@../images/pawns/yellowStudent.png" />
                                        </image>
                                     </ImageView>
-                                    <ImageView fitHeight="55.0" fitWidth="81.0" layoutX="170.0" layoutY="425.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="2" GridPane.rowIndex="9">
+                                    <ImageView id="ys0_1" fitHeight="55.0" fitWidth="81.0" layoutX="170.0" layoutY="425.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="3" GridPane.rowIndex="9">
                                        <image>
                                           <Image url="@../images/pawns/yellowStudent.png" />
+                                       </image>
+                                    </ImageView>
+                                    <ImageView id="ps9_1" fitHeight="44.0" fitWidth="44.0" layoutX="170.0" layoutY="9.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="4">
+                                       <image>
+                                          <Image url="@../images/pawns/pinkStudent.png" />
+                                       </image>
+                                    </ImageView>
+                                    <ImageView id="ps8_1" fitHeight="55.0" fitWidth="81.0" layoutX="250.0" layoutY="9.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="4" GridPane.rowIndex="1">
+                                       <image>
+                                          <Image url="@../images/pawns/pinkStudent.png" />
+                                       </image>
+                                    </ImageView>
+                                    <ImageView id="ps6_1" fitHeight="55.0" fitWidth="81.0" layoutX="250.0" layoutY="61.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="4" GridPane.rowIndex="3">
+                                       <image>
+                                          <Image url="@../images/pawns/pinkStudent.png" />
+                                       </image>
+                                    </ImageView>
+                                    <ImageView id="ps7_1" fitHeight="55.0" fitWidth="81.0" layoutX="250.0" layoutY="61.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="4" GridPane.rowIndex="2">
+                                       <image>
+                                          <Image url="@../images/pawns/pinkStudent.png" />
+                                       </image>
+                                    </ImageView>
+                                    <ImageView id="ps5_1" fitHeight="55.0" fitWidth="81.0" layoutX="250.0" layoutY="113.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="4" GridPane.rowIndex="4">
+                                       <image>
+                                          <Image url="@../images/pawns/pinkStudent.png" />
+                                       </image>
+                                    </ImageView>
+                                    <ImageView id="ps2_1" fitHeight="55.0" fitWidth="81.0" layoutX="250.0" layoutY="217.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="4" GridPane.rowIndex="7">
+                                       <image>
+                                          <Image url="@../images/pawns/pinkStudent.png" />
+                                       </image>
+                                    </ImageView>
+                                    <ImageView id="ps3_1" fitHeight="55.0" fitWidth="81.0" layoutX="250.0" layoutY="217.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="4" GridPane.rowIndex="6">
+                                       <image>
+                                          <Image url="@../images/pawns/pinkStudent.png" />
+                                       </image>
+                                    </ImageView>
+                                    <ImageView id="ps5_1" fitHeight="55.0" fitWidth="81.0" layoutX="250.0" layoutY="217.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="4" GridPane.rowIndex="5">
+                                       <image>
+                                          <Image url="@../images/pawns/pinkStudent.png" />
+                                       </image>
+                                    </ImageView>
+                                    <ImageView id="ps1_1" fitHeight="55.0" fitWidth="81.0" layoutX="250.0" layoutY="269.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="4" GridPane.rowIndex="8">
+                                       <image>
+                                          <Image url="@../images/pawns/pinkStudent.png" />
+                                       </image>
+                                    </ImageView>
+                                    <ImageView id="ps0_1" fitHeight="55.0" fitWidth="81.0" layoutX="250.0" layoutY="425.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="4" GridPane.rowIndex="9">
+                                       <image>
+                                          <Image url="@../images/pawns/pinkStudent.png" />
+                                       </image>
+                                    </ImageView>
+                                    <ImageView id="bs8_1" fitHeight="55.0" fitWidth="81.0" layoutX="250.0" layoutY="476.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="5" GridPane.rowIndex="1">
+                                       <image>
+                                          <Image url="@../images/pawns/blueStudent.png" />
+                                       </image>
+                                    </ImageView>
+                                    <ImageView id="bs9_1" fitHeight="44.0" fitWidth="44.0" layoutX="260.0" layoutY="435.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="5">
+                                       <image>
+                                          <Image url="@../images/pawns/blueStudent.png" />
+                                       </image>
+                                    </ImageView>
+                                    <ImageView id="bs7_1" fitHeight="55.0" fitWidth="81.0" layoutX="330.0" layoutY="61.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="5" GridPane.rowIndex="2">
+                                       <image>
+                                          <Image url="@../images/pawns/blueStudent.png" />
+                                       </image>
+                                    </ImageView>
+                                    <ImageView id="bs5_1" fitHeight="55.0" fitWidth="81.0" layoutX="330.0" layoutY="113.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="5" GridPane.rowIndex="4">
+                                       <image>
+                                          <Image url="@../images/pawns/blueStudent.png" />
+                                       </image>
+                                    </ImageView>
+                                    <ImageView id="bs6_1" fitHeight="55.0" fitWidth="81.0" layoutX="10.0" layoutY="9.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="5" GridPane.rowIndex="3">
+                                       <image>
+                                          <Image url="@../images/pawns/blueStudent.png" />
+                                       </image>
+                                    </ImageView>
+                                    <ImageView id="bs4_1" fitHeight="55.0" fitWidth="81.0" layoutX="330.0" layoutY="165.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="5" GridPane.rowIndex="5">
+                                       <image>
+                                          <Image url="@../images/pawns/blueStudent.png" />
+                                       </image>
+                                    </ImageView>
+                                    <ImageView id="bs3_1" fitHeight="55.0" fitWidth="81.0" layoutX="330.0" layoutY="269.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="5" GridPane.rowIndex="6">
+                                       <image>
+                                          <Image url="@../images/pawns/blueStudent.png" />
+                                       </image>
+                                    </ImageView>
+                                    <ImageView id="bs2_1" fitHeight="55.0" fitWidth="81.0" layoutX="330.0" layoutY="321.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="5" GridPane.rowIndex="7">
+                                       <image>
+                                          <Image url="@../images/pawns/blueStudent.png" />
+                                       </image>
+                                    </ImageView>
+                                    <ImageView id="bs1_1" fitHeight="55.0" fitWidth="81.0" layoutX="330.0" layoutY="373.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="5" GridPane.rowIndex="8">
+                                       <image>
+                                          <Image url="@../images/pawns/blueStudent.png" />
+                                       </image>
+                                    </ImageView>
+                                    <ImageView id="bs0_1" fitHeight="55.0" fitWidth="81.0" layoutX="330.0" layoutY="425.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="5" GridPane.rowIndex="9">
+                                       <image>
+                                          <Image url="@../images/pawns/blueStudent.png" />
                                        </image>
                                     </ImageView>
                                  </children>
@@ -459,21 +1206,266 @@
                                  <children>
                                     <StackPane prefHeight="88.0" prefWidth="97.0">
                                        <children>
-                                          <ImageView fitHeight="58.0" fitWidth="84.0" pickOnBounds="true" preserveRatio="true" />
-                                          <ImageView fitHeight="58.0" fitWidth="84.0" layoutX="19.0" layoutY="11.0" pickOnBounds="true" preserveRatio="true" />
-                                          <ImageView fitHeight="58.0" fitWidth="84.0" layoutX="19.0" layoutY="11.0" pickOnBounds="true" preserveRatio="true" />
-                                          <ImageView fitHeight="58.0" fitWidth="84.0" layoutX="19.0" layoutY="11.0" pickOnBounds="true" preserveRatio="true" />
-                                          <ImageView fitHeight="58.0" fitWidth="84.0" layoutX="19.0" layoutY="11.0" pickOnBounds="true" preserveRatio="true" />
+                                          <ImageView id="bse0_1" fitHeight="55.0" fitWidth="81.0" pickOnBounds="true" preserveRatio="true">
+                                             <image>
+                                                <Image url="@../images/pawns/blueStudent.png" />
+                                             </image>
+                                          </ImageView>
+                                          <ImageView id="pse0_1" fitHeight="55.0" fitWidth="81.0" pickOnBounds="true" preserveRatio="true">
+                                             <image>
+                                                <Image url="@../images/pawns/pinkStudent.png" />
+                                             </image>
+                                          </ImageView>
+                                           <ImageView id="yse0_1" fitHeight="55.0" fitWidth="81.0" pickOnBounds="true" preserveRatio="true">
+                                               <image>
+                                                   <Image url="@../images/pawns/yellowStudent.png" />
+                                               </image>
+                                           </ImageView>
+                                           <ImageView id="rse0_1" fitHeight="55.0" fitWidth="81.0" pickOnBounds="true" preserveRatio="true">
+                                               <image>
+                                                   <Image url="@../images/pawns/redStudent.png" />
+                                               </image>
+                                           </ImageView>
+                                           <ImageView id="gse0_1" fitHeight="55.0" fitWidth="81.0" pickOnBounds="true" preserveRatio="true">
+                                               <image>
+                                                   <Image url="@../images/pawns/greenStudent.png" />
+                                               </image>
+                                           </ImageView>
                                        </children>
                                     </StackPane>
                                     <StackPane layoutX="10.0" layoutY="10.0" prefHeight="88.0" prefWidth="97.0" GridPane.columnIndex="1">
-                                       <children>
-                                          <ImageView fitHeight="58.0" fitWidth="84.0" pickOnBounds="true" preserveRatio="true" />
-                                          <ImageView fitHeight="58.0" fitWidth="84.0" layoutX="19.0" layoutY="11.0" pickOnBounds="true" preserveRatio="true" />
-                                          <ImageView fitHeight="58.0" fitWidth="84.0" layoutX="19.0" layoutY="11.0" pickOnBounds="true" preserveRatio="true" />
-                                          <ImageView fitHeight="58.0" fitWidth="84.0" layoutX="19.0" layoutY="11.0" pickOnBounds="true" preserveRatio="true" />
-                                          <ImageView fitHeight="58.0" fitWidth="84.0" layoutX="19.0" layoutY="11.0" pickOnBounds="true" preserveRatio="true" />
-                                       </children>
+                                        <children>
+                                            <ImageView id="bse1_1" fitHeight="55.0" fitWidth="81.0" pickOnBounds="true" preserveRatio="true">
+                                                <image>
+                                                    <Image url="@../images/pawns/blueStudent.png" />
+                                                </image>
+                                            </ImageView>
+                                            <ImageView id="pse1_1" fitHeight="55.0" fitWidth="81.0" pickOnBounds="true" preserveRatio="true">
+                                                <image>
+                                                    <Image url="@../images/pawns/pinkStudent.png" />
+                                                </image>
+                                            </ImageView>
+                                            <ImageView id="yse1_1" fitHeight="55.0" fitWidth="81.0" pickOnBounds="true" preserveRatio="true">
+                                                <image>
+                                                    <Image url="@../images/pawns/yellowStudent.png" />
+                                                </image>
+                                            </ImageView>
+                                            <ImageView id="rse1_1" fitHeight="55.0" fitWidth="81.0" pickOnBounds="true" preserveRatio="true">
+                                                <image>
+                                                    <Image url="@../images/pawns/redStudent.png" />
+                                                </image>
+                                            </ImageView>
+                                            <ImageView id="gse1_1" fitHeight="55.0" fitWidth="81.0" pickOnBounds="true" preserveRatio="true">
+                                                <image>
+                                                    <Image url="@../images/pawns/greenStudent.png" />
+                                                </image>
+                                            </ImageView>
+                                        </children>
+                                    </StackPane>
+                                    <StackPane prefHeight="150.0" prefWidth="200.0" GridPane.columnIndex="2">
+                                        <children>
+                                            <ImageView id="bse2_1" fitHeight="55.0" fitWidth="81.0" pickOnBounds="true" preserveRatio="true">
+                                                <image>
+                                                    <Image url="@../images/pawns/blueStudent.png" />
+                                                </image>
+                                            </ImageView>
+                                            <ImageView id="pse2_1" fitHeight="55.0" fitWidth="81.0" pickOnBounds="true" preserveRatio="true">
+                                                <image>
+                                                    <Image url="@../images/pawns/pinkStudent.png" />
+                                                </image>
+                                            </ImageView>
+                                            <ImageView id="yse2_1" fitHeight="55.0" fitWidth="81.0" pickOnBounds="true" preserveRatio="true">
+                                                <image>
+                                                    <Image url="@../images/pawns/yellowStudent.png" />
+                                                </image>
+                                            </ImageView>
+                                            <ImageView id="rse2_1" fitHeight="55.0" fitWidth="81.0" pickOnBounds="true" preserveRatio="true">
+                                                <image>
+                                                    <Image url="@../images/pawns/redStudent.png" />
+                                                </image>
+                                            </ImageView>
+                                            <ImageView id="gse2_1" fitHeight="55.0" fitWidth="81.0" pickOnBounds="true" preserveRatio="true">
+                                                <image>
+                                                    <Image url="@../images/pawns/greenStudent.png" />
+                                                </image>
+                                            </ImageView>
+                                        </children>
+                                    </StackPane>
+                                    <StackPane prefHeight="150.0" prefWidth="200.0" GridPane.columnIndex="3">
+                                        <children>
+                                            <ImageView id="bse3_1" fitHeight="55.0" fitWidth="81.0" pickOnBounds="true" preserveRatio="true">
+                                                <image>
+                                                    <Image url="@../images/pawns/blueStudent.png" />
+                                                </image>
+                                            </ImageView>
+                                            <ImageView id="pse3_1" fitHeight="55.0" fitWidth="81.0" pickOnBounds="true" preserveRatio="true">
+                                                <image>
+                                                    <Image url="@../images/pawns/pinkStudent.png" />
+                                                </image>
+                                            </ImageView>
+                                            <ImageView id="yse3_1" fitHeight="55.0" fitWidth="81.0" pickOnBounds="true" preserveRatio="true">
+                                                <image>
+                                                    <Image url="@../images/pawns/yellowStudent.png" />
+                                                </image>
+                                            </ImageView>
+                                            <ImageView id="rse3_1" fitHeight="55.0" fitWidth="81.0" pickOnBounds="true" preserveRatio="true">
+                                                <image>
+                                                    <Image url="@../images/pawns/redStudent.png" />
+                                                </image>
+                                            </ImageView>
+                                            <ImageView id="gse3_1" fitHeight="55.0" fitWidth="81.0" pickOnBounds="true" preserveRatio="true">
+                                                <image>
+                                                    <Image url="@../images/pawns/greenStudent.png" />
+                                                </image>
+                                            </ImageView>
+                                        </children>
+                                    </StackPane>
+                                    <StackPane prefHeight="150.0" prefWidth="200.0" GridPane.columnIndex="4">
+                                        <children>
+                                            <ImageView id="bse4_1" fitHeight="55.0" fitWidth="81.0" pickOnBounds="true" preserveRatio="true">
+                                                <image>
+                                                    <Image url="@../images/pawns/blueStudent.png" />
+                                                </image>
+                                            </ImageView>
+                                            <ImageView id="pse4_1" fitHeight="55.0" fitWidth="81.0" pickOnBounds="true" preserveRatio="true">
+                                                <image>
+                                                    <Image url="@../images/pawns/pinkStudent.png" />
+                                                </image>
+                                            </ImageView>
+                                            <ImageView id="yse4_1" fitHeight="55.0" fitWidth="81.0" pickOnBounds="true" preserveRatio="true">
+                                                <image>
+                                                    <Image url="@../images/pawns/yellowStudent.png" />
+                                                </image>
+                                            </ImageView>
+                                            <ImageView id="rse4_1" fitHeight="55.0" fitWidth="81.0" pickOnBounds="true" preserveRatio="true">
+                                                <image>
+                                                    <Image url="@../images/pawns/redStudent.png" />
+                                                </image>
+                                            </ImageView>
+                                            <ImageView id="gse4_1" fitHeight="55.0" fitWidth="81.0" pickOnBounds="true" preserveRatio="true">
+                                                <image>
+                                                    <Image url="@../images/pawns/greenStudent.png" />
+                                                </image>
+                                            </ImageView>
+                                        </children>
+                                    </StackPane>
+                                    <StackPane prefHeight="150.0" prefWidth="200.0" GridPane.rowIndex="1">
+                                    </StackPane>
+                                    <StackPane prefHeight="150.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                                        <children>
+                                            <ImageView id="bse5_1" fitHeight="55.0" fitWidth="81.0" pickOnBounds="true" preserveRatio="true">
+                                                <image>
+                                                    <Image url="@../images/pawns/blueStudent.png" />
+                                                </image>
+                                            </ImageView>
+                                            <ImageView id="pse5_1" fitHeight="55.0" fitWidth="81.0" pickOnBounds="true" preserveRatio="true">
+                                                <image>
+                                                    <Image url="@../images/pawns/pinkStudent.png" />
+                                                </image>
+                                            </ImageView>
+                                            <ImageView id="yse5_1" fitHeight="55.0" fitWidth="81.0" pickOnBounds="true" preserveRatio="true">
+                                                <image>
+                                                    <Image url="@../images/pawns/yellowStudent.png" />
+                                                </image>
+                                            </ImageView>
+                                            <ImageView id="rse5_1" fitHeight="55.0" fitWidth="81.0" pickOnBounds="true" preserveRatio="true">
+                                                <image>
+                                                    <Image url="@../images/pawns/redStudent.png" />
+                                                </image>
+                                            </ImageView>
+                                            <ImageView id="gse5_1" fitHeight="55.0" fitWidth="81.0" pickOnBounds="true" preserveRatio="true">
+                                                <image>
+                                                    <Image url="@../images/pawns/greenStudent.png" />
+                                                </image>
+                                            </ImageView>
+                                        </children>
+                                    </StackPane>
+                                    <StackPane prefHeight="150.0" prefWidth="200.0" GridPane.columnIndex="2" GridPane.rowIndex="1">
+                                        <children>
+                                            <ImageView id="bse6_1" fitHeight="55.0" fitWidth="81.0" pickOnBounds="true" preserveRatio="true">
+                                                <image>
+                                                    <Image url="@../images/pawns/blueStudent.png" />
+                                                </image>
+                                            </ImageView>
+                                            <ImageView id="pse6_1" fitHeight="55.0" fitWidth="81.0" pickOnBounds="true" preserveRatio="true">
+                                                <image>
+                                                    <Image url="@../images/pawns/pinkStudent.png" />
+                                                </image>
+                                            </ImageView>
+                                            <ImageView id="yse6_1" fitHeight="55.0" fitWidth="81.0" pickOnBounds="true" preserveRatio="true">
+                                                <image>
+                                                    <Image url="@../images/pawns/yellowStudent.png" />
+                                                </image>
+                                            </ImageView>
+                                            <ImageView id="rse6_1" fitHeight="55.0" fitWidth="81.0" pickOnBounds="true" preserveRatio="true">
+                                                <image>
+                                                    <Image url="@../images/pawns/redStudent.png" />
+                                                </image>
+                                            </ImageView>
+                                            <ImageView id="gse6_1" fitHeight="55.0" fitWidth="81.0" pickOnBounds="true" preserveRatio="true">
+                                                <image>
+                                                    <Image url="@../images/pawns/greenStudent.png" />
+                                                </image>
+                                            </ImageView>
+                                        </children>
+                                    </StackPane>
+                                    <StackPane prefHeight="150.0" prefWidth="200.0" GridPane.columnIndex="3" GridPane.rowIndex="1">
+                                        <children>
+                                            <ImageView id="bse7_1" fitHeight="55.0" fitWidth="81.0" pickOnBounds="true" preserveRatio="true">
+                                                <image>
+                                                    <Image url="@../images/pawns/blueStudent.png" />
+                                                </image>
+                                            </ImageView>
+                                            <ImageView id="pse7_1" fitHeight="55.0" fitWidth="81.0" pickOnBounds="true" preserveRatio="true">
+                                                <image>
+                                                    <Image url="@../images/pawns/pinkStudent.png" />
+                                                </image>
+                                            </ImageView>
+                                            <ImageView id="yse7_1" fitHeight="55.0" fitWidth="81.0" pickOnBounds="true" preserveRatio="true">
+                                                <image>
+                                                    <Image url="@../images/pawns/yellowStudent.png" />
+                                                </image>
+                                            </ImageView>
+                                            <ImageView id="rse7_1" fitHeight="55.0" fitWidth="81.0" pickOnBounds="true" preserveRatio="true">
+                                                <image>
+                                                    <Image url="@../images/pawns/redStudent.png" />
+                                                </image>
+                                            </ImageView>
+                                            <ImageView id="gse7_1" fitHeight="55.0" fitWidth="81.0" pickOnBounds="true" preserveRatio="true">
+                                                <image>
+                                                    <Image url="@../images/pawns/greenStudent.png" />
+                                                </image>
+                                            </ImageView>
+                                        </children>
+                                    </StackPane>
+                                    <StackPane prefHeight="150.0" prefWidth="200.0" GridPane.columnIndex="4" GridPane.rowIndex="1">
+                                        <children>
+                                            <ImageView id="bse8_1" fitHeight="55.0" fitWidth="81.0" pickOnBounds="true" preserveRatio="true">
+                                                <image>
+                                                    <Image url="@../images/pawns/blueStudent.png" />
+                                                </image>
+                                            </ImageView>
+                                            <ImageView id="pse8_1" fitHeight="55.0" fitWidth="81.0" pickOnBounds="true" preserveRatio="true">
+                                                <image>
+                                                    <Image url="@../images/pawns/pinkStudent.png" />
+                                                </image>
+                                            </ImageView>
+                                            <ImageView id="yse8_1" fitHeight="55.0" fitWidth="81.0" pickOnBounds="true" preserveRatio="true">
+                                                <image>
+                                                    <Image url="@../images/pawns/yellowStudent.png" />
+                                                </image>
+                                            </ImageView>
+                                            <ImageView id="rse8_1" fitHeight="55.0" fitWidth="81.0" pickOnBounds="true" preserveRatio="true">
+                                                <image>
+                                                    <Image url="@../images/pawns/redStudent.png" />
+                                                </image>
+                                            </ImageView>
+                                            <ImageView id="gse8_1" fitHeight="55.0" fitWidth="81.0" pickOnBounds="true" preserveRatio="true">
+                                                <image>
+                                                    <Image url="@../images/pawns/greenStudent.png" />
+                                                </image>
+                                            </ImageView>
+                                        </children>
                                     </StackPane>
                                  </children>
                               </GridPane>
@@ -485,12 +1477,626 @@
             </HBox>
          </left>
          <right>
-            <HBox>
-               <children>
-                  <VBox prefHeight="986.0" prefWidth="400.0" BorderPane.alignment="CENTER" />
-                  <VBox prefHeight="986.0" prefWidth="10.0" />
-               </children>
-            </HBox>
+             <HBox>
+                 <children>
+                     <VBox prefHeight="986.0" prefWidth="10.0" />
+                     <VBox prefHeight="986.0" prefWidth="400.0" BorderPane.alignment="CENTER">
+                         <children>
+                             <HBox prefHeight="28.0">
+                                 <children>
+                                     <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Nickname" textAlignment="CENTER" wrappingWidth="400.123046875" />
+                                 </children>
+                             </HBox>
+                             <VBox prefHeight="76.0" prefWidth="503.0">
+                                 <children>
+                                     <GridPane prefHeight="70.0">
+                                         <columnConstraints>
+                                             <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
+                                             <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
+                                             <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
+                                             <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
+                                             <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
+                                         </columnConstraints>
+                                         <rowConstraints>
+                                             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                         </rowConstraints>
+                                         <children>
+                                             <ImageView id="gp_2" fitHeight="55.0" fitWidth="69.0" pickOnBounds="true" preserveRatio="true">
+                                                 <image>
+                                                     <Image url="@../images/pawns/greenProf2D.png" />
+                                                 </image>
+                                                 <GridPane.margin>
+                                                     <Insets />
+                                                 </GridPane.margin>
+                                             </ImageView>
+                                             <ImageView id="rp_2" fitHeight="74.0" fitWidth="69.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1">
+                                                 <image>
+                                                     <Image url="@../images/pawns/redProf2D.png" />
+                                                 </image>
+                                             </ImageView>
+                                             <ImageView id="yp_2" fitHeight="76.0" fitWidth="69.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="2">
+                                                 <image>
+                                                     <Image url="@../images/pawns/yellowProf2D.png" />
+                                                 </image>
+                                             </ImageView>
+                                             <ImageView id="pp_2" fitHeight="76.0" fitWidth="69.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="3">
+                                                 <image>
+                                                     <Image url="@../images/pawns/pinkProf2D.png" />
+                                                 </image>
+                                             </ImageView>
+                                             <ImageView id="bp_2" fitHeight="76.0" fitWidth="69.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="4">
+                                                 <image>
+                                                     <Image url="@../images/pawns/blueProf2D.png" />
+                                                 </image>
+                                             </ImageView>
+                                         </children>
+                                     </GridPane>
+                                 </children>
+                             </VBox>
+                             <HBox prefHeight="46.0" prefWidth="503.0" />
+                             <VBox prefHeight="519.0" prefWidth="400.0">
+                                 <children>
+                                     <GridPane prefHeight="524.0">
+                                         <columnConstraints>
+                                             <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                             <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                             <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                             <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                             <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                         </columnConstraints>
+                                         <rowConstraints>
+                                             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                         </rowConstraints>
+                                         <children>
+                                             <ImageView id="gs9_2" fitHeight="55.0" pickOnBounds="true" preserveRatio="true">
+                                                 <image>
+                                                     <Image url="@../images/pawns/greenStudent.png" />
+                                                 </image></ImageView>
+                                             <ImageView id="gs8_2" fitHeight="55.0" fitWidth="82.0" layoutX="10.0" layoutY="9.0" pickOnBounds="true" preserveRatio="true" GridPane.rowIndex="1">
+                                                 <image>
+                                                     <Image url="@../images/pawns/greenStudent.png" />
+                                                 </image>
+                                             </ImageView>
+                                             <ImageView id="gs7_2" fitHeight="55.0" fitWidth="82.0" layoutX="10.0" layoutY="61.0" pickOnBounds="true" preserveRatio="true" GridPane.rowIndex="2">
+                                                 <image>
+                                                     <Image url="@../images/pawns/greenStudent.png" />
+                                                 </image>
+                                             </ImageView>
+                                             <ImageView id="gs6_2" fitHeight="55.0" fitWidth="82.0" layoutX="10.0" layoutY="113.0" pickOnBounds="true" preserveRatio="true" GridPane.rowIndex="3">
+                                                 <image>
+                                                     <Image url="@../images/pawns/greenStudent.png" />
+                                                 </image>
+                                             </ImageView>
+                                             <ImageView id="gs5_2" fitHeight="55.0" fitWidth="82.0" layoutX="10.0" layoutY="165.0" pickOnBounds="true" preserveRatio="true" GridPane.rowIndex="4">
+                                                 <image>
+                                                     <Image url="@../images/pawns/greenStudent.png" />
+                                                 </image>
+                                             </ImageView>
+                                             <ImageView id="gs4_2" fitHeight="55.0" fitWidth="82.0" layoutX="10.0" layoutY="217.0" pickOnBounds="true" preserveRatio="true" GridPane.rowIndex="5">
+                                                 <image>
+                                                     <Image url="@../images/pawns/greenStudent.png" />
+                                                 </image>
+                                             </ImageView>
+                                             <ImageView id="gs2_2" fitHeight="55.0" fitWidth="82.0" layoutX="10.0" layoutY="269.0" pickOnBounds="true" preserveRatio="true" GridPane.rowIndex="7">
+                                                 <image>
+                                                     <Image url="@../images/pawns/greenStudent.png" />
+                                                 </image>
+                                             </ImageView>
+                                             <ImageView id="gs3_2" fitHeight="55.0" fitWidth="82.0" layoutX="10.0" layoutY="269.0" pickOnBounds="true" preserveRatio="true" GridPane.rowIndex="6">
+                                                 <image>
+                                                     <Image url="@../images/pawns/greenStudent.png" />
+                                                 </image>
+                                             </ImageView>
+                                             <ImageView id="gs1_2" fitHeight="55.0" fitWidth="82.0" layoutX="10.0" layoutY="373.0" pickOnBounds="true" preserveRatio="true" GridPane.rowIndex="8">
+                                                 <image>
+                                                     <Image url="@../images/pawns/greenStudent.png" />
+                                                 </image>
+                                             </ImageView>
+                                             <ImageView id="gs0_2" fitHeight="55.0" fitWidth="82.0" layoutX="10.0" layoutY="425.0" pickOnBounds="true" preserveRatio="true" GridPane.rowIndex="9">
+                                                 <image>
+                                                     <Image url="@../images/pawns/greenStudent.png" />
+                                                 </image>
+                                             </ImageView>
+                                             <ImageView id="rs9_2" fitHeight="55.0" fitWidth="81.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1">
+                                                 <image>
+                                                     <Image url="@../images/pawns/redStudent.png" />
+                                                 </image>
+                                             </ImageView>
+                                             <ImageView id="rs8_2" fitHeight="55.0" fitWidth="81.0" layoutX="90.0" layoutY="9.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                                                 <image>
+                                                     <Image url="@../images/pawns/redStudent.png" />
+                                                 </image>
+                                             </ImageView>
+                                             <ImageView id="rs7_2" fitHeight="55.0" fitWidth="81.0" layoutX="90.0" layoutY="9.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                                                 <image>
+                                                     <Image url="@../images/pawns/redStudent.png" />
+                                                 </image>
+                                             </ImageView>
+                                             <ImageView id="rs6_2" fitHeight="55.0" fitWidth="81.0" layoutX="90.0" layoutY="9.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" GridPane.rowIndex="3">
+                                                 <image>
+                                                     <Image url="@../images/pawns/redStudent.png" />
+                                                 </image>
+                                             </ImageView>
+                                             <ImageView id="rs5_2" fitHeight="55.0" fitWidth="81.0" layoutX="90.0" layoutY="9.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" GridPane.rowIndex="4">
+                                                 <image>
+                                                     <Image url="@../images/pawns/redStudent.png" />
+                                                 </image>
+                                             </ImageView>
+                                             <ImageView id="rs4_2" fitHeight="55.0" fitWidth="81.0" layoutX="90.0" layoutY="9.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" GridPane.rowIndex="5">
+                                                 <image>
+                                                     <Image url="@../images/pawns/redStudent.png" />
+                                                 </image>
+                                             </ImageView>
+                                             <ImageView id="rs3_2" fitHeight="55.0" fitWidth="81.0" layoutX="90.0" layoutY="9.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" GridPane.rowIndex="6">
+                                                 <image>
+                                                     <Image url="@../images/pawns/redStudent.png" />
+                                                 </image>
+                                             </ImageView>
+                                             <ImageView id="rs2_2" fitHeight="55.0" fitWidth="81.0" layoutX="90.0" layoutY="9.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" GridPane.rowIndex="7">
+                                                 <image>
+                                                     <Image url="@../images/pawns/redStudent.png" />
+                                                 </image>
+                                             </ImageView>
+                                             <ImageView id="rs1_2" fitHeight="55.0" fitWidth="81.0" layoutX="90.0" layoutY="9.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" GridPane.rowIndex="8">
+                                                 <image>
+                                                     <Image url="@../images/pawns/redStudent.png" />
+                                                 </image>
+                                             </ImageView>
+                                             <ImageView id="rs0_2" fitHeight="55.0" fitWidth="81.0" layoutX="90.0" layoutY="9.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" GridPane.rowIndex="9">
+                                                 <image>
+                                                     <Image url="@../images/pawns/redStudent.png" />
+                                                 </image>
+                                             </ImageView>
+                                             <ImageView id="ys9_2" fitHeight="55.0" fitWidth="81.0" layoutX="90.0" layoutY="476.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="2">
+                                                 <image>
+                                                     <Image url="@../images/pawns/yellowStudent.png" />
+                                                 </image>
+                                             </ImageView>
+                                             <ImageView id="ys8_2" fitHeight="55.0" fitWidth="81.0" layoutX="170.0" layoutY="9.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="2" GridPane.rowIndex="1">
+                                                 <image>
+                                                     <Image url="@../images/pawns/yellowStudent.png" />
+                                                 </image>
+                                             </ImageView>
+                                             <ImageView id="ys7_2" fitHeight="55.0" fitWidth="81.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="2" GridPane.rowIndex="2">
+                                                 <image>
+                                                     <Image url="@../images/pawns/yellowStudent.png" />
+                                                 </image>
+                                             </ImageView>
+                                             <ImageView id="ys6_2" fitHeight="55.0" fitWidth="81.0" layoutX="170.0" layoutY="113.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="2" GridPane.rowIndex="3">
+                                                 <image>
+                                                     <Image url="@../images/pawns/yellowStudent.png" />
+                                                 </image>
+                                             </ImageView>
+                                             <ImageView id="ys5_2" fitHeight="55.0" fitWidth="81.0" layoutX="170.0" layoutY="113.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="2" GridPane.rowIndex="4">
+                                                 <image>
+                                                     <Image url="@../images/pawns/yellowStudent.png" />
+                                                 </image>
+                                             </ImageView>
+                                             <ImageView id="ys4_2" fitHeight="55.0" fitWidth="81.0" layoutX="170.0" layoutY="218.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="2" GridPane.rowIndex="5">
+                                                 <image>
+                                                     <Image url="@../images/pawns/yellowStudent.png" />
+                                                 </image>
+                                             </ImageView>
+                                             <ImageView id="ys3_2" fitHeight="55.0" fitWidth="81.0" layoutX="180.0" layoutY="228.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="2" GridPane.rowIndex="6">
+                                                 <image>
+                                                     <Image url="@../images/pawns/yellowStudent.png" />
+                                                 </image>
+                                             </ImageView>
+                                             <ImageView id="ys2_2" fitHeight="55.0" fitWidth="81.0" layoutX="170.0" layoutY="271.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="2" GridPane.rowIndex="7">
+                                                 <image>
+                                                     <Image url="@../images/pawns/yellowStudent.png" />
+                                                 </image>
+                                             </ImageView>
+                                             <ImageView id="ys1_2" fitHeight="55.0" fitWidth="81.0" layoutX="170.0" layoutY="374.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="2" GridPane.rowIndex="8">
+                                                 <image>
+                                                     <Image url="@../images/pawns/yellowStudent.png" />
+                                                 </image>
+                                             </ImageView>
+                                             <ImageView id="ys0_2" fitHeight="55.0" fitWidth="81.0" layoutX="170.0" layoutY="425.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="2" GridPane.rowIndex="9">
+                                                 <image>
+                                                     <Image url="@../images/pawns/yellowStudent.png" />
+                                                 </image>
+                                             </ImageView>
+                                             <ImageView id="ps9_2" fitHeight="55.0" fitWidth="81.0" layoutX="170.0" layoutY="9.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="3">
+                                                 <image>
+                                                     <Image url="@../images/pawns/pinkStudent.png" />
+                                                 </image>
+                                             </ImageView>
+                                             <ImageView id="ps8_2" fitHeight="55.0" fitWidth="81.0" layoutX="250.0" layoutY="9.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="3" GridPane.rowIndex="1">
+                                                 <image>
+                                                     <Image url="@../images/pawns/pinkStudent.png" />
+                                                 </image>
+                                             </ImageView>
+                                             <ImageView id="ps6_2" fitHeight="55.0" fitWidth="81.0" layoutX="250.0" layoutY="61.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="3" GridPane.rowIndex="3">
+                                                 <image>
+                                                     <Image url="@../images/pawns/pinkStudent.png" />
+                                                 </image>
+                                             </ImageView>
+                                             <ImageView id="ps7_2" fitHeight="55.0" fitWidth="81.0" layoutX="250.0" layoutY="61.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="3" GridPane.rowIndex="2">
+                                                 <image>
+                                                     <Image url="@../images/pawns/pinkStudent.png" />
+                                                 </image>
+                                             </ImageView>
+                                             <ImageView id="ps5_2" fitHeight="55.0" fitWidth="81.0" layoutX="250.0" layoutY="113.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="3" GridPane.rowIndex="4">
+                                                 <image>
+                                                     <Image url="@../images/pawns/pinkStudent.png" />
+                                                 </image>
+                                             </ImageView>
+                                             <ImageView id="ps2_2" fitHeight="55.0" fitWidth="81.0" layoutX="250.0" layoutY="217.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="3" GridPane.rowIndex="7">
+                                                 <image>
+                                                     <Image url="@../images/pawns/pinkStudent.png" />
+                                                 </image>
+                                             </ImageView>
+                                             <ImageView id="ps3_2" fitHeight="55.0" fitWidth="81.0" layoutX="250.0" layoutY="217.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="3" GridPane.rowIndex="6">
+                                                 <image>
+                                                     <Image url="@../images/pawns/pinkStudent.png" />
+                                                 </image>
+                                             </ImageView>
+                                             <ImageView id="ps5_2" fitHeight="55.0" fitWidth="81.0" layoutX="250.0" layoutY="217.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="3" GridPane.rowIndex="5">
+                                                 <image>
+                                                     <Image url="@../images/pawns/pinkStudent.png" />
+                                                 </image>
+                                             </ImageView>
+                                             <ImageView id="ps1_2" fitHeight="55.0" fitWidth="81.0" layoutX="250.0" layoutY="269.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="3" GridPane.rowIndex="8">
+                                                 <image>
+                                                     <Image url="@../images/pawns/pinkStudent.png" />
+                                                 </image>
+                                             </ImageView>
+                                             <ImageView id="ps0_2" fitHeight="55.0" fitWidth="81.0" layoutX="250.0" layoutY="425.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="3" GridPane.rowIndex="9">
+                                                 <image>
+                                                     <Image url="@../images/pawns/pinkStudent.png" />
+                                                 </image>
+                                             </ImageView>
+                                             <ImageView id="bs8_2" fitHeight="55.0" fitWidth="81.0" layoutX="250.0" layoutY="476.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="4" GridPane.rowIndex="1">
+                                                 <image>
+                                                     <Image url="@../images/pawns/blueStudent.png" />
+                                                 </image>
+                                             </ImageView>
+                                             <ImageView id="bs9_2" fitHeight="55.0" fitWidth="81.0" layoutX="260.0" layoutY="435.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="4">
+                                                 <image>
+                                                     <Image url="@../images/pawns/blueStudent.png" />
+                                                 </image>
+                                             </ImageView>
+                                             <ImageView id="bs7_2" fitHeight="55.0" fitWidth="81.0" layoutX="330.0" layoutY="61.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="4" GridPane.rowIndex="2">
+                                                 <image>
+                                                     <Image url="@../images/pawns/blueStudent.png" />
+                                                 </image>
+                                             </ImageView>
+                                             <ImageView id="bs5_2" fitHeight="55.0" fitWidth="81.0" layoutX="330.0" layoutY="113.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="4" GridPane.rowIndex="4">
+                                                 <image>
+                                                     <Image url="@../images/pawns/blueStudent.png" />
+                                                 </image>
+                                             </ImageView>
+                                             <ImageView id="bs6_2" fitHeight="55.0" fitWidth="81.0" layoutX="10.0" layoutY="9.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="4" GridPane.rowIndex="3">
+                                                 <image>
+                                                     <Image url="@../images/pawns/blueStudent.png" />
+                                                 </image>
+                                             </ImageView>
+                                             <ImageView id="bs4_2" fitHeight="55.0" fitWidth="81.0" layoutX="330.0" layoutY="165.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="4" GridPane.rowIndex="5">
+                                                 <image>
+                                                     <Image url="@../images/pawns/blueStudent.png" />
+                                                 </image>
+                                             </ImageView>
+                                             <ImageView id="bs3_2" fitHeight="55.0" fitWidth="81.0" layoutX="330.0" layoutY="269.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="4" GridPane.rowIndex="6">
+                                                 <image>
+                                                     <Image url="@../images/pawns/blueStudent.png" />
+                                                 </image>
+                                             </ImageView>
+                                             <ImageView id="bs2_2" fitHeight="55.0" fitWidth="81.0" layoutX="330.0" layoutY="321.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="4" GridPane.rowIndex="7">
+                                                 <image>
+                                                     <Image url="@../images/pawns/blueStudent.png" />
+                                                 </image>
+                                             </ImageView>
+                                             <ImageView id="bs1_2" fitHeight="55.0" fitWidth="81.0" layoutX="330.0" layoutY="373.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="4" GridPane.rowIndex="8">
+                                                 <image>
+                                                     <Image url="@../images/pawns/blueStudent.png" />
+                                                 </image>
+                                             </ImageView>
+                                             <ImageView id="bs0_2" fitHeight="55.0" fitWidth="81.0" layoutX="330.0" layoutY="425.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="4" GridPane.rowIndex="9">
+                                                 <image>
+                                                     <Image url="@../images/pawns/blueStudent.png" />
+                                                 </image>
+                                             </ImageView>
+                                         </children>
+                                     </GridPane>
+                                 </children>
+                             </VBox>
+                             <HBox prefHeight="52.0" prefWidth="500.0" />
+                             <VBox prefHeight="149.0" prefWidth="503.0">
+                                 <children>
+                                     <GridPane prefHeight="120.0" prefWidth="502.0">
+                                         <columnConstraints>
+                                             <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                             <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                             <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                             <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                             <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                         </columnConstraints>
+                                         <rowConstraints>
+                                             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                         </rowConstraints>
+                                         <children>
+                                             <StackPane prefHeight="88.0" prefWidth="97.0">
+                                                 <children>
+                                                     <ImageView id="bse0_2" fitHeight="55.0" fitWidth="81.0" pickOnBounds="true" preserveRatio="true">
+                                                         <image>
+                                                             <Image url="@../images/pawns/blueStudent.png" />
+                                                         </image>
+                                                     </ImageView>
+                                                     <ImageView id="pse0_2" fitHeight="55.0" fitWidth="81.0" pickOnBounds="true" preserveRatio="true">
+                                                         <image>
+                                                             <Image url="@../images/pawns/pinkStudent.png" />
+                                                         </image>
+                                                     </ImageView>
+                                                     <ImageView id="yse0_2" fitHeight="55.0" fitWidth="81.0" pickOnBounds="true" preserveRatio="true">
+                                                         <image>
+                                                             <Image url="@../images/pawns/yellowStudent.png" />
+                                                         </image>
+                                                     </ImageView>
+                                                     <ImageView id="rse0_2" fitHeight="55.0" fitWidth="81.0" pickOnBounds="true" preserveRatio="true">
+                                                         <image>
+                                                             <Image url="@../images/pawns/redStudent.png" />
+                                                         </image>
+                                                     </ImageView>
+                                                     <ImageView id="gse0_2" fitHeight="55.0" fitWidth="81.0" pickOnBounds="true" preserveRatio="true">
+                                                         <image>
+                                                             <Image url="@../images/pawns/greenStudent.png" />
+                                                         </image>
+                                                     </ImageView>
+                                                 </children>
+                                             </StackPane>
+                                             <StackPane layoutX="10.0" layoutY="10.0" prefHeight="88.0" prefWidth="97.0" GridPane.columnIndex="1">
+                                                 <children>
+                                                     <ImageView id="bse1_2" fitHeight="55.0" fitWidth="81.0" pickOnBounds="true" preserveRatio="true">
+                                                         <image>
+                                                             <Image url="@../images/pawns/blueStudent.png" />
+                                                         </image>
+                                                     </ImageView>
+                                                     <ImageView id="pse1_2" fitHeight="55.0" fitWidth="81.0" pickOnBounds="true" preserveRatio="true">
+                                                         <image>
+                                                             <Image url="@../images/pawns/pinkStudent.png" />
+                                                         </image>
+                                                     </ImageView>
+                                                     <ImageView id="yse1_2" fitHeight="55.0" fitWidth="81.0" pickOnBounds="true" preserveRatio="true">
+                                                         <image>
+                                                             <Image url="@../images/pawns/yellowStudent.png" />
+                                                         </image>
+                                                     </ImageView>
+                                                     <ImageView id="rse1_2" fitHeight="55.0" fitWidth="81.0" pickOnBounds="true" preserveRatio="true">
+                                                         <image>
+                                                             <Image url="@../images/pawns/redStudent.png" />
+                                                         </image>
+                                                     </ImageView>
+                                                     <ImageView id="gse1_2" fitHeight="55.0" fitWidth="81.0" pickOnBounds="true" preserveRatio="true">
+                                                         <image>
+                                                             <Image url="@../images/pawns/greenStudent.png" />
+                                                         </image>
+                                                     </ImageView>
+                                                 </children>
+                                             </StackPane>
+                                             <StackPane prefHeight="150.0" prefWidth="200.0" GridPane.columnIndex="2">
+                                                 <children>
+                                                     <ImageView id="bse2_2" fitHeight="55.0" fitWidth="81.0" pickOnBounds="true" preserveRatio="true">
+                                                         <image>
+                                                             <Image url="@../images/pawns/blueStudent.png" />
+                                                         </image>
+                                                     </ImageView>
+                                                     <ImageView id="pse2_2" fitHeight="55.0" fitWidth="81.0" pickOnBounds="true" preserveRatio="true">
+                                                         <image>
+                                                             <Image url="@../images/pawns/pinkStudent.png" />
+                                                         </image>
+                                                     </ImageView>
+                                                     <ImageView id="yse2_2" fitHeight="55.0" fitWidth="81.0" pickOnBounds="true" preserveRatio="true">
+                                                         <image>
+                                                             <Image url="@../images/pawns/yellowStudent.png" />
+                                                         </image>
+                                                     </ImageView>
+                                                     <ImageView id="rse2_2" fitHeight="55.0" fitWidth="81.0" pickOnBounds="true" preserveRatio="true">
+                                                         <image>
+                                                             <Image url="@../images/pawns/redStudent.png" />
+                                                         </image>
+                                                     </ImageView>
+                                                     <ImageView id="gse2_2" fitHeight="55.0" fitWidth="81.0" pickOnBounds="true" preserveRatio="true">
+                                                         <image>
+                                                             <Image url="@../images/pawns/greenStudent.png" />
+                                                         </image>
+                                                     </ImageView>
+                                                 </children>
+                                             </StackPane>
+                                             <StackPane prefHeight="150.0" prefWidth="200.0" GridPane.columnIndex="3">
+                                                 <children>
+                                                     <ImageView id="bse3_2" fitHeight="55.0" fitWidth="81.0" pickOnBounds="true" preserveRatio="true">
+                                                         <image>
+                                                             <Image url="@../images/pawns/blueStudent.png" />
+                                                         </image>
+                                                     </ImageView>
+                                                     <ImageView id="pse3_2" fitHeight="55.0" fitWidth="81.0" pickOnBounds="true" preserveRatio="true">
+                                                         <image>
+                                                             <Image url="@../images/pawns/pinkStudent.png" />
+                                                         </image>
+                                                     </ImageView>
+                                                     <ImageView id="yse3_2" fitHeight="55.0" fitWidth="81.0" pickOnBounds="true" preserveRatio="true">
+                                                         <image>
+                                                             <Image url="@../images/pawns/yellowStudent.png" />
+                                                         </image>
+                                                     </ImageView>
+                                                     <ImageView id="rse3_2" fitHeight="55.0" fitWidth="81.0" pickOnBounds="true" preserveRatio="true">
+                                                         <image>
+                                                             <Image url="@../images/pawns/redStudent.png" />
+                                                         </image>
+                                                     </ImageView>
+                                                     <ImageView id="gse3_2" fitHeight="55.0" fitWidth="81.0" pickOnBounds="true" preserveRatio="true">
+                                                         <image>
+                                                             <Image url="@../images/pawns/greenStudent.png" />
+                                                         </image>
+                                                     </ImageView>
+                                                 </children>
+                                             </StackPane>
+                                             <StackPane prefHeight="150.0" prefWidth="200.0" GridPane.columnIndex="4">
+                                                 <children>
+                                                     <ImageView id="bse4_2" fitHeight="55.0" fitWidth="81.0" pickOnBounds="true" preserveRatio="true">
+                                                         <image>
+                                                             <Image url="@../images/pawns/blueStudent.png" />
+                                                         </image>
+                                                     </ImageView>
+                                                     <ImageView id="pse4_2" fitHeight="55.0" fitWidth="81.0" pickOnBounds="true" preserveRatio="true">
+                                                         <image>
+                                                             <Image url="@../images/pawns/pinkStudent.png" />
+                                                         </image>
+                                                     </ImageView>
+                                                     <ImageView id="yse4_2" fitHeight="55.0" fitWidth="81.0" pickOnBounds="true" preserveRatio="true">
+                                                         <image>
+                                                             <Image url="@../images/pawns/yellowStudent.png" />
+                                                         </image>
+                                                     </ImageView>
+                                                     <ImageView id="rse4_2" fitHeight="55.0" fitWidth="81.0" pickOnBounds="true" preserveRatio="true">
+                                                         <image>
+                                                             <Image url="@../images/pawns/redStudent.png" />
+                                                         </image>
+                                                     </ImageView>
+                                                     <ImageView id="gse4_2" fitHeight="55.0" fitWidth="81.0" pickOnBounds="true" preserveRatio="true">
+                                                         <image>
+                                                             <Image url="@../images/pawns/greenStudent.png" />
+                                                         </image>
+                                                     </ImageView>
+                                                 </children>
+                                             </StackPane>
+                                             <StackPane prefHeight="150.0" prefWidth="200.0" GridPane.rowIndex="1">
+                                             </StackPane>
+                                             <StackPane prefHeight="150.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                                                 <children>
+                                                     <ImageView id="bse5_2" fitHeight="55.0" fitWidth="81.0" pickOnBounds="true" preserveRatio="true">
+                                                         <image>
+                                                             <Image url="@../images/pawns/blueStudent.png" />
+                                                         </image>
+                                                     </ImageView>
+                                                     <ImageView id="pse5_2" fitHeight="55.0" fitWidth="81.0" pickOnBounds="true" preserveRatio="true">
+                                                         <image>
+                                                             <Image url="@../images/pawns/pinkStudent.png" />
+                                                         </image>
+                                                     </ImageView>
+                                                     <ImageView id="yse5_2" fitHeight="55.0" fitWidth="81.0" pickOnBounds="true" preserveRatio="true">
+                                                         <image>
+                                                             <Image url="@../images/pawns/yellowStudent.png" />
+                                                         </image>
+                                                     </ImageView>
+                                                     <ImageView id="rse5_2" fitHeight="55.0" fitWidth="81.0" pickOnBounds="true" preserveRatio="true">
+                                                         <image>
+                                                             <Image url="@../images/pawns/redStudent.png" />
+                                                         </image>
+                                                     </ImageView>
+                                                     <ImageView id="gse5_2" fitHeight="55.0" fitWidth="81.0" pickOnBounds="true" preserveRatio="true">
+                                                         <image>
+                                                             <Image url="@../images/pawns/greenStudent.png" />
+                                                         </image>
+                                                     </ImageView>
+                                                 </children>
+                                             </StackPane>
+                                             <StackPane prefHeight="150.0" prefWidth="200.0" GridPane.columnIndex="2" GridPane.rowIndex="1">
+                                                 <children>
+                                                     <ImageView id="bse6_2" fitHeight="55.0" fitWidth="81.0" pickOnBounds="true" preserveRatio="true">
+                                                         <image>
+                                                             <Image url="@../images/pawns/blueStudent.png" />
+                                                         </image>
+                                                     </ImageView>
+                                                     <ImageView id="pse6_2" fitHeight="55.0" fitWidth="81.0" pickOnBounds="true" preserveRatio="true">
+                                                         <image>
+                                                             <Image url="@../images/pawns/pinkStudent.png" />
+                                                         </image>
+                                                     </ImageView>
+                                                     <ImageView id="yse6_2" fitHeight="55.0" fitWidth="81.0" pickOnBounds="true" preserveRatio="true">
+                                                         <image>
+                                                             <Image url="@../images/pawns/yellowStudent.png" />
+                                                         </image>
+                                                     </ImageView>
+                                                     <ImageView id="rse6_2" fitHeight="55.0" fitWidth="81.0" pickOnBounds="true" preserveRatio="true">
+                                                         <image>
+                                                             <Image url="@../images/pawns/redStudent.png" />
+                                                         </image>
+                                                     </ImageView>
+                                                     <ImageView id="gse6_2" fitHeight="55.0" fitWidth="81.0" pickOnBounds="true" preserveRatio="true">
+                                                         <image>
+                                                             <Image url="@../images/pawns/greenStudent.png" />
+                                                         </image>
+                                                     </ImageView>
+                                                 </children>
+                                             </StackPane>
+                                             <StackPane prefHeight="150.0" prefWidth="200.0" GridPane.columnIndex="3" GridPane.rowIndex="1">
+                                                 <children>
+                                                     <ImageView id="bse7_2" fitHeight="55.0" fitWidth="81.0" pickOnBounds="true" preserveRatio="true">
+                                                         <image>
+                                                             <Image url="@../images/pawns/blueStudent.png" />
+                                                         </image>
+                                                     </ImageView>
+                                                     <ImageView id="pse7_2" fitHeight="55.0" fitWidth="81.0" pickOnBounds="true" preserveRatio="true">
+                                                         <image>
+                                                             <Image url="@../images/pawns/pinkStudent.png" />
+                                                         </image>
+                                                     </ImageView>
+                                                     <ImageView id="yse7_2" fitHeight="55.0" fitWidth="81.0" pickOnBounds="true" preserveRatio="true">
+                                                         <image>
+                                                             <Image url="@../images/pawns/yellowStudent.png" />
+                                                         </image>
+                                                     </ImageView>
+                                                     <ImageView id="rse7_2" fitHeight="55.0" fitWidth="81.0" pickOnBounds="true" preserveRatio="true">
+                                                         <image>
+                                                             <Image url="@../images/pawns/redStudent.png" />
+                                                         </image>
+                                                     </ImageView>
+                                                     <ImageView id="gse7_2" fitHeight="55.0" fitWidth="81.0" pickOnBounds="true" preserveRatio="true">
+                                                         <image>
+                                                             <Image url="@../images/pawns/greenStudent.png" />
+                                                         </image>
+                                                     </ImageView>
+                                                 </children>
+                                             </StackPane>
+                                             <StackPane prefHeight="150.0" prefWidth="200.0" GridPane.columnIndex="4" GridPane.rowIndex="1">
+                                                 <children>
+                                                     <ImageView id="bse8_2" fitHeight="55.0" fitWidth="81.0" pickOnBounds="true" preserveRatio="true">
+                                                         <image>
+                                                             <Image url="@../images/pawns/blueStudent.png" />
+                                                         </image>
+                                                     </ImageView>
+                                                     <ImageView id="pse8_2" fitHeight="55.0" fitWidth="81.0" pickOnBounds="true" preserveRatio="true">
+                                                         <image>
+                                                             <Image url="@../images/pawns/pinkStudent.png" />
+                                                         </image>
+                                                     </ImageView>
+                                                     <ImageView id="yse8_2" fitHeight="55.0" fitWidth="81.0" pickOnBounds="true" preserveRatio="true">
+                                                         <image>
+                                                             <Image url="@../images/pawns/yellowStudent.png" />
+                                                         </image>
+                                                     </ImageView>
+                                                     <ImageView id="rse8_2" fitHeight="55.0" fitWidth="81.0" pickOnBounds="true" preserveRatio="true">
+                                                         <image>
+                                                             <Image url="@../images/pawns/redStudent.png" />
+                                                         </image>
+                                                     </ImageView>
+                                                     <ImageView id="gse8_2" fitHeight="55.0" fitWidth="81.0" pickOnBounds="true" preserveRatio="true">
+                                                         <image>
+                                                             <Image url="@../images/pawns/greenStudent.png" />
+                                                         </image>
+                                                     </ImageView>
+                                                 </children>
+                                             </StackPane>
+                                         </children>
+                                     </GridPane>
+                                 </children>
+                             </VBox>
+                         </children>
+                     </VBox>
+                 </children>
+             </HBox>
          </right>
         </BorderPane>
     </children>
