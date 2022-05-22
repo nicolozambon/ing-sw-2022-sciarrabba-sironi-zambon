@@ -44,9 +44,9 @@
                     <right>
                         <HBox alignment="CENTER_LEFT" spacing="15.0" BorderPane.alignment="CENTER">
                             <children>
-                                <Label contentDisplay="RIGHT" text="?????">
+                                <Label contentDisplay="RIGHT" text="AVAIABLE TOWERS">
                                     <font>
-                                        <Font name="Avenir Next Condensed Bold" size="13.0" />
+                                        <Font name="Avenir Next Condensed Bold" size="30.0" />
                                     </font>
                                 </Label>
                                 <HBox fx:id="l1Box">
@@ -111,935 +111,975 @@
          <center>
             <BorderPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
                <bottom>
-                   <HBox rotate="90">
-                       <children>
-                           <VBox prefHeight="986.0" prefWidth="628.0" />
-                           <VBox prefHeight="986.0" prefWidth="400.0" styleClass="board" BorderPane.alignment="CENTER">
-                               <children>
-                                   <HBox prefHeight="258.0" prefWidth="401.0">
-                                       <children>
-                                           <Text id="nicknamePlayer0" strokeType="OUTSIDE" strokeWidth="0.0" text="Nickname" textAlignment="CENTER" wrappingWidth="400.123046875">
-                                       <font>
-                                          <Font size="30.0" />
-                                       </font></Text>
-                                       </children>
-                                   </HBox>
-                                   <VBox prefHeight="76.0" prefWidth="503.0">
-                                       <children>
-                                           <GridPane prefHeight="70.0">
-                                               <columnConstraints>
-                                                   <ColumnConstraints hgrow="SOMETIMES" maxWidth="97.0" minWidth="10.0" prefWidth="42.0" />
-                                                   <ColumnConstraints hgrow="SOMETIMES" maxWidth="112.0" minWidth="10.0" prefWidth="67.0" />
-                                                   <ColumnConstraints hgrow="SOMETIMES" maxWidth="106.0" minWidth="10.0" prefWidth="66.0" />
-                                                   <ColumnConstraints hgrow="SOMETIMES" maxWidth="97.0" minWidth="10.0" prefWidth="65.0" />
-                                                   <ColumnConstraints hgrow="SOMETIMES" maxWidth="97.0" minWidth="10.0" prefWidth="66.0" />
-                                                   <ColumnConstraints hgrow="SOMETIMES" maxWidth="103.0" minWidth="10.0" prefWidth="94.0" />
-                                               </columnConstraints>
-                                               <rowConstraints>
-                                                   <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                               </rowConstraints>
-                                               <children>
-                                                   <ImageView id="gp_0" fitHeight="44.0" fitWidth="54.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1">
-                                                       <image>
-                                                           <Image url="@../images/pawns/greenProf2D.png" />
-                                                       </image>
-                                                       <GridPane.margin>
-                                                           <Insets />
-                                                       </GridPane.margin>
-                                                       <effect>
-                                                           <DropShadow />
-                                                       </effect>
-                                                   </ImageView>
-                                                   <ImageView id="rp_0" fitHeight="44.0" fitWidth="54.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="2">
-                                                       <image>
-                                                           <Image url="@../images/pawns/redProf2D.png" />
-                                                       </image>
-                                                       <effect>
-                                                           <DropShadow />
-                                                       </effect>
-                                                   </ImageView>
-                                                   <ImageView id="yp_0" fitHeight="44.0" fitWidth="54.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="3">
-                                                       <image>
-                                                           <Image url="@../images/pawns/yellowProf2D.png" />
-                                                       </image>
-                                                       <effect>
-                                                           <DropShadow />
-                                                       </effect>
-                                                   </ImageView>
-                                                   <ImageView id="pp_0" fitHeight="44.0" fitWidth="54.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="4">
-                                                       <image>
-                                                           <Image url="@../images/pawns/pinkProf2D.png" />
-                                                       </image>
-                                                       <effect>
-                                                           <DropShadow />
-                                                       </effect>
-                                                   </ImageView>
-                                                   <ImageView id="bp_0" fitHeight="44.0" fitWidth="54.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="5">
-                                                       <image>
-                                                           <Image url="@../images/pawns/blueProf2D.png" />
-                                                       </image>
-                                                       <effect>
-                                                           <DropShadow />
-                                                       </effect>
-                                                   </ImageView>
-                                               </children>
-                                           </GridPane>
-                                       </children>
-                                   </VBox>
-                                   <HBox prefHeight="46.0" prefWidth="503.0" />
-                                   <VBox prefHeight="519.0" prefWidth="400.0">
-                                       <children>
-                                           <Pane prefHeight="50.0" prefWidth="401.0" />
-                                           <GridPane prefHeight="524.0">
-                                               <columnConstraints>
-                                                   <ColumnConstraints hgrow="SOMETIMES" maxWidth="63.0" minWidth="10.0" prefWidth="48.95452880859375" />
-                                                   <ColumnConstraints hgrow="SOMETIMES" maxWidth="89.0" minWidth="10.0" prefWidth="64.0" />
-                                                   <ColumnConstraints hgrow="SOMETIMES" maxWidth="117.06080627441406" minWidth="10.0" prefWidth="64.99649047851562" />
-                                                   <ColumnConstraints hgrow="SOMETIMES" maxWidth="162.66690063476562" minWidth="10.0" prefWidth="65.50350952148438" />
-                                                   <ColumnConstraints hgrow="SOMETIMES" maxWidth="118.75765991210938" minWidth="10.0" prefWidth="66.49649047851562" />
-                                                   <ColumnConstraints hgrow="SOMETIMES" maxWidth="93.12353515625" minWidth="10.0" prefWidth="93.12353515625" />
-                                               </columnConstraints>
-                                               <rowConstraints>
-                                                   <RowConstraints maxHeight="47.010650634765625" minHeight="10.0" prefHeight="47.010650634765625" vgrow="SOMETIMES" />
-                                                   <RowConstraints maxHeight="53.51544189453125" minHeight="10.0" prefHeight="44.489349365234375" vgrow="SOMETIMES" />
-                                                   <RowConstraints maxHeight="57.5201416015625" minHeight="10.0" prefHeight="55.04620361328125" vgrow="SOMETIMES" />
-                                                   <RowConstraints maxHeight="73.56036376953125" minHeight="10.0" prefHeight="39.51422119140625" vgrow="SOMETIMES" />
-                                                   <RowConstraints maxHeight="80.5816650390625" minHeight="10.0" prefHeight="47.98577880859375" vgrow="SOMETIMES" />
-                                                   <RowConstraints maxHeight="87.101806640625" minHeight="10.0" prefHeight="54.47747802734375" vgrow="SOMETIMES" />
-                                                   <RowConstraints maxHeight="94.5367431640625" minHeight="10.0" prefHeight="33.459716796875" vgrow="SOMETIMES" />
-                                                   <RowConstraints maxHeight="88.104248046875" minHeight="10.0" prefHeight="62.976318359375" vgrow="SOMETIMES" />
-                                                   <RowConstraints maxHeight="88.53314208984375" minHeight="10.0" prefHeight="32.8720703125" vgrow="SOMETIMES" />
-                                                   <RowConstraints maxHeight="120.0" minHeight="10.0" prefHeight="61.96685791015625" vgrow="SOMETIMES" />
-                                                   <RowConstraints maxHeight="68.078125" minHeight="0.0" prefHeight="14.3922119140625" vgrow="SOMETIMES" />
-                                               </rowConstraints>
-                                               <children>
-                                                   <ImageView id="gs9_0" fitHeight="44.0" fitWidth="44.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1">
-                                                       <image>
-                                                           <Image url="@../images/pawns/greenStudent.png" />
-                                                       </image>
-                                                       <effect>
-                                                           <DropShadow />
-                                                       </effect></ImageView>
-                                                   <ImageView id="gs8_0" fitHeight="44.0" fitWidth="44.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" GridPane.rowIndex="1">
-                                                       <image>
-                                                           <Image url="@../images/pawns/greenStudent.png" />
-                                                       </image>
-                                                       <effect>
-                                                           <DropShadow />
-                                                       </effect>
-                                                   </ImageView>
-                                                   <ImageView id="gs7_0" fitHeight="44.0" fitWidth="44.0" layoutX="10.0" layoutY="61.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" GridPane.rowIndex="2">
-                                                       <image>
-                                                           <Image url="@../images/pawns/greenStudent.png" />
-                                                       </image>
-                                                       <effect>
-                                                           <DropShadow />
-                                                       </effect>
-                                                   </ImageView>
-                                                   <ImageView id="gs6_0" fitHeight="44.0" fitWidth="44.0" layoutX="10.0" layoutY="113.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" GridPane.rowIndex="3">
-                                                       <image>
-                                                           <Image url="@../images/pawns/greenStudent.png" />
-                                                       </image>
-                                                       <effect>
-                                                           <DropShadow />
-                                                       </effect>
-                                                   </ImageView>
-                                                   <ImageView id="gs5_0" fitHeight="44.0" fitWidth="44.0" layoutX="10.0" layoutY="165.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" GridPane.rowIndex="4">
-                                                       <image>
-                                                           <Image url="@../images/pawns/greenStudent.png" />
-                                                       </image>
-                                                       <effect>
-                                                           <DropShadow />
-                                                       </effect>
-                                                   </ImageView>
-                                                   <ImageView id="gs4_0" fitHeight="44.0" fitWidth="44.0" layoutX="10.0" layoutY="217.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" GridPane.rowIndex="5">
-                                                       <image>
-                                                           <Image url="@../images/pawns/greenStudent.png" />
-                                                       </image>
-                                                       <effect>
-                                                           <DropShadow />
-                                                       </effect>
-                                                   </ImageView>
-                                                   <ImageView id="gs2_0" fitHeight="44.0" fitWidth="44.0" layoutX="10.0" layoutY="269.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" GridPane.rowIndex="7">
-                                                       <image>
-                                                           <Image url="@../images/pawns/greenStudent.png" />
-                                                       </image>
-                                                       <effect>
-                                                           <DropShadow />
-                                                       </effect>
-                                                   </ImageView>
-                                                   <ImageView id="gs3_0" fitHeight="44.0" fitWidth="44.0" layoutX="10.0" layoutY="269.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" GridPane.rowIndex="6">
-                                                       <image>
-                                                           <Image url="@../images/pawns/greenStudent.png" />
-                                                       </image>
-                                                       <effect>
-                                                           <DropShadow />
-                                                       </effect>
-                                                   </ImageView>
-                                                   <ImageView id="gs1_0" fitHeight="44.0" fitWidth="44.0" layoutX="10.0" layoutY="373.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" GridPane.rowIndex="8">
-                                                       <image>
-                                                           <Image url="@../images/pawns/greenStudent.png" />
-                                                       </image>
-                                                       <effect>
-                                                           <DropShadow />
-                                                       </effect>
-                                                   </ImageView>
-                                                   <ImageView id="gs0_0" fitHeight="44.0" fitWidth="44.0" layoutX="10.0" layoutY="425.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" GridPane.rowIndex="9">
-                                                       <image>
-                                                           <Image url="@../images/pawns/greenStudent.png" />
-                                                       </image>
-                                                       <effect>
-                                                           <DropShadow />
-                                                       </effect>
-                                                   </ImageView>
-                                                   <ImageView id="rs9_0" fitHeight="44.0" fitWidth="44.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="2">
-                                                       <image>
-                                                           <Image url="@../images/pawns/redStudent.png" />
-                                                       </image>
-                                                       <effect>
-                                                           <DropShadow />
-                                                       </effect>
-                                                   </ImageView>
-                                                   <ImageView id="rs8_0" fitHeight="44.0" fitWidth="44.0" layoutX="90.0" layoutY="9.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="2" GridPane.rowIndex="1">
-                                                       <image>
-                                                           <Image url="@../images/pawns/redStudent.png" />
-                                                       </image>
-                                                       <effect>
-                                                           <DropShadow />
-                                                       </effect>
-                                                   </ImageView>
-                                                   <ImageView id="rs7_0" fitHeight="44.0" fitWidth="44.0" layoutX="90.0" layoutY="9.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="2" GridPane.rowIndex="2">
-                                                       <image>
-                                                           <Image url="@../images/pawns/redStudent.png" />
-                                                       </image>
-                                                       <effect>
-                                                           <DropShadow />
-                                                       </effect>
-                                                   </ImageView>
-                                                   <ImageView id="rs6_0" fitHeight="44.0" fitWidth="44.0" layoutX="90.0" layoutY="9.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="2" GridPane.rowIndex="3">
-                                                       <image>
-                                                           <Image url="@../images/pawns/redStudent.png" />
-                                                       </image>
-                                                       <effect>
-                                                           <DropShadow />
-                                                       </effect>
-                                                   </ImageView>
-                                                   <ImageView id="rs5_0" fitHeight="44.0" fitWidth="44.0" layoutX="90.0" layoutY="9.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="2" GridPane.rowIndex="4">
-                                                       <image>
-                                                           <Image url="@../images/pawns/redStudent.png" />
-                                                       </image>
-                                                       <effect>
-                                                           <DropShadow />
-                                                       </effect>
-                                                   </ImageView>
-                                                   <ImageView id="rs4_0" fitHeight="44.0" fitWidth="44.0" layoutX="90.0" layoutY="9.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="2" GridPane.rowIndex="5">
-                                                       <image>
-                                                           <Image url="@../images/pawns/redStudent.png" />
-                                                       </image>
-                                                       <effect>
-                                                           <DropShadow />
-                                                       </effect>
-                                                   </ImageView>
-                                                   <ImageView id="rs3_0" fitHeight="44.0" fitWidth="44.0" layoutX="90.0" layoutY="9.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="2" GridPane.rowIndex="6">
-                                                       <image>
-                                                           <Image url="@../images/pawns/redStudent.png" />
-                                                       </image>
-                                                       <effect>
-                                                           <DropShadow />
-                                                       </effect>
-                                                   </ImageView>
-                                                   <ImageView id="rs2_0" fitHeight="44.0" fitWidth="44.0" layoutX="90.0" layoutY="9.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="2" GridPane.rowIndex="7">
-                                                       <image>
-                                                           <Image url="@../images/pawns/redStudent.png" />
-                                                       </image>
-                                                       <effect>
-                                                           <DropShadow />
-                                                       </effect>
-                                                   </ImageView>
-                                                   <ImageView id="rs1_0" fitHeight="44.0" fitWidth="44.0" layoutX="90.0" layoutY="9.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="2" GridPane.rowIndex="8">
-                                                       <image>
-                                                           <Image url="@../images/pawns/redStudent.png" />
-                                                       </image>
-                                                       <effect>
-                                                           <DropShadow />
-                                                       </effect>
-                                                   </ImageView>
-                                                   <ImageView id="rs0_0" fitHeight="44.0" fitWidth="44.0" layoutX="90.0" layoutY="9.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="2" GridPane.rowIndex="9">
-                                                       <image>
-                                                           <Image url="@../images/pawns/redStudent.png" />
-                                                       </image>
-                                                       <effect>
-                                                           <DropShadow />
-                                                       </effect>
-                                                   </ImageView>
-                                                   <ImageView id="ys9_0" fitHeight="44.0" fitWidth="44.0" layoutX="90.0" layoutY="476.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="3">
-                                                       <image>
-                                                           <Image url="@../images/pawns/yellowStudent.png" />
-                                                       </image>
-                                                       <effect>
-                                                           <DropShadow />
-                                                       </effect>
-                                                   </ImageView>
-                                                   <ImageView id="ys8_0" fitHeight="44.0" fitWidth="44.0" layoutX="170.0" layoutY="9.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="3" GridPane.rowIndex="1">
-                                                       <image>
-                                                           <Image url="@../images/pawns/yellowStudent.png" />
-                                                       </image>
-                                                       <effect>
-                                                           <DropShadow />
-                                                       </effect>
-                                                   </ImageView>
-                                                   <ImageView id="ys7_0" fitHeight="44.0" fitWidth="44.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="3" GridPane.rowIndex="2">
-                                                       <image>
-                                                           <Image url="@../images/pawns/yellowStudent.png" />
-                                                       </image>
-                                                       <effect>
-                                                           <DropShadow />
-                                                       </effect>
-                                                   </ImageView>
-                                                   <ImageView id="ys6_0" fitHeight="44.0" fitWidth="44.0" layoutX="170.0" layoutY="113.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="3" GridPane.rowIndex="3">
-                                                       <image>
-                                                           <Image url="@../images/pawns/yellowStudent.png" />
-                                                       </image>
-                                                       <effect>
-                                                           <DropShadow />
-                                                       </effect>
-                                                   </ImageView>
-                                                   <ImageView id="ys5_0" fitHeight="44.0" fitWidth="44.0" layoutX="170.0" layoutY="113.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="3" GridPane.rowIndex="4">
-                                                       <image>
-                                                           <Image url="@../images/pawns/yellowStudent.png" />
-                                                       </image>
-                                                       <effect>
-                                                           <DropShadow />
-                                                       </effect>
-                                                   </ImageView>
-                                                   <ImageView id="ys4_0" fitHeight="44.0" fitWidth="44.0" layoutX="170.0" layoutY="218.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="3" GridPane.rowIndex="5">
-                                                       <image>
-                                                           <Image url="@../images/pawns/yellowStudent.png" />
-                                                       </image>
-                                                       <effect>
-                                                           <DropShadow />
-                                                       </effect>
-                                                   </ImageView>
-                                                   <ImageView id="ys3_0" fitHeight="44.0" fitWidth="44.0" layoutX="180.0" layoutY="228.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="3" GridPane.rowIndex="6">
-                                                       <image>
-                                                           <Image url="@../images/pawns/yellowStudent.png" />
-                                                       </image>
-                                                       <effect>
-                                                           <DropShadow />
-                                                       </effect>
-                                                   </ImageView>
-                                                   <ImageView id="ys2_0" fitHeight="44.0" fitWidth="44.0" layoutX="170.0" layoutY="271.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="3" GridPane.rowIndex="7">
-                                                       <image>
-                                                           <Image url="@../images/pawns/yellowStudent.png" />
-                                                       </image>
-                                                       <effect>
-                                                           <DropShadow />
-                                                       </effect>
-                                                   </ImageView>
-                                                   <ImageView id="ys1_0" fitHeight="44.0" fitWidth="44.0" layoutX="170.0" layoutY="374.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="3" GridPane.rowIndex="8">
-                                                       <image>
-                                                           <Image url="@../images/pawns/yellowStudent.png" />
-                                                       </image>
-                                                       <effect>
-                                                           <DropShadow />
-                                                       </effect>
-                                                   </ImageView>
-                                                   <ImageView id="ys0_0" fitHeight="44.0" fitWidth="44.0" layoutX="170.0" layoutY="425.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="3" GridPane.rowIndex="9">
-                                                       <image>
-                                                           <Image url="@../images/pawns/yellowStudent.png" />
-                                                       </image>
-                                                       <effect>
-                                                           <DropShadow />
-                                                       </effect>
-                                                   </ImageView>
-                                                   <ImageView id="ps9_0" fitHeight="44.0" fitWidth="44.0" layoutX="170.0" layoutY="9.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="4">
-                                                       <image>
-                                                           <Image url="@../images/pawns/pinkStudent.png" />
-                                                       </image>
-                                                       <effect>
-                                                           <DropShadow />
-                                                       </effect>
-                                                   </ImageView>
-                                                   <ImageView id="ps8_0" fitHeight="44.0" fitWidth="44.0" layoutX="250.0" layoutY="9.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="4" GridPane.rowIndex="1">
-                                                       <image>
-                                                           <Image url="@../images/pawns/pinkStudent.png" />
-                                                       </image>
-                                                       <effect>
-                                                           <DropShadow />
-                                                       </effect>
-                                                   </ImageView>
-                                                   <ImageView id="ps6_0" fitHeight="44.0" fitWidth="44.0" layoutX="250.0" layoutY="61.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="4" GridPane.rowIndex="3">
-                                                       <image>
-                                                           <Image url="@../images/pawns/pinkStudent.png" />
-                                                       </image>
-                                                       <effect>
-                                                           <DropShadow />
-                                                       </effect>
-                                                   </ImageView>
-                                                   <ImageView id="ps7_0" fitHeight="44.0" fitWidth="44.0" layoutX="250.0" layoutY="61.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="4" GridPane.rowIndex="2">
-                                                       <image>
-                                                           <Image url="@../images/pawns/pinkStudent.png" />
-                                                       </image>
-                                                       <effect>
-                                                           <DropShadow />
-                                                       </effect>
-                                                   </ImageView>
-                                                   <ImageView id="ps5_0" fitHeight="44.0" fitWidth="44.0" layoutX="250.0" layoutY="113.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="4" GridPane.rowIndex="4">
-                                                       <image>
-                                                           <Image url="@../images/pawns/pinkStudent.png" />
-                                                       </image>
-                                                       <effect>
-                                                           <DropShadow />
-                                                       </effect>
-                                                   </ImageView>
-                                                   <ImageView id="ps2_0" fitHeight="44.0" fitWidth="44.0" layoutX="250.0" layoutY="217.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="4" GridPane.rowIndex="7">
-                                                       <image>
-                                                           <Image url="@../images/pawns/pinkStudent.png" />
-                                                       </image>
-                                                       <effect>
-                                                           <DropShadow />
-                                                       </effect>
-                                                   </ImageView>
-                                                   <ImageView id="ps3_0" fitHeight="44.0" fitWidth="44.0" layoutX="250.0" layoutY="217.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="4" GridPane.rowIndex="6">
-                                                       <image>
-                                                           <Image url="@../images/pawns/pinkStudent.png" />
-                                                       </image>
-                                                       <effect>
-                                                           <DropShadow />
-                                                       </effect>
-                                                   </ImageView>
-                                                   <ImageView id="ps5_0" fitHeight="44.0" fitWidth="44.0" layoutX="250.0" layoutY="217.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="4" GridPane.rowIndex="5">
-                                                       <image>
-                                                           <Image url="@../images/pawns/pinkStudent.png" />
-                                                       </image>
-                                                       <effect>
-                                                           <DropShadow />
-                                                       </effect>
-                                                   </ImageView>
-                                                   <ImageView id="ps1_0" fitHeight="44.0" fitWidth="44.0" layoutX="250.0" layoutY="269.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="4" GridPane.rowIndex="8">
-                                                       <image>
-                                                           <Image url="@../images/pawns/pinkStudent.png" />
-                                                       </image>
-                                                       <effect>
-                                                           <DropShadow />
-                                                       </effect>
-                                                   </ImageView>
-                                                   <ImageView id="ps0_0" fitHeight="44.0" fitWidth="44.0" layoutX="250.0" layoutY="425.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="4" GridPane.rowIndex="9">
-                                                       <image>
-                                                           <Image url="@../images/pawns/pinkStudent.png" />
-                                                       </image>
-                                                       <effect>
-                                                           <DropShadow />
-                                                       </effect>
-                                                   </ImageView>
-                                                   <ImageView id="bs8_0" fitHeight="44.0" fitWidth="44.0" layoutX="250.0" layoutY="476.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="5" GridPane.rowIndex="1">
-                                                       <image>
-                                                           <Image url="@../images/pawns/blueStudent.png" />
-                                                       </image>
-                                                       <effect>
-                                                           <DropShadow />
-                                                       </effect>
-                                                   </ImageView>
-                                                   <ImageView id="bs9_0" fitHeight="44.0" fitWidth="44.0" layoutX="260.0" layoutY="435.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="5">
-                                                       <image>
-                                                           <Image url="@../images/pawns/blueStudent.png" />
-                                                       </image>
-                                                       <effect>
-                                                           <DropShadow />
-                                                       </effect>
-                                                   </ImageView>
-                                                   <ImageView id="bs7_0" fitHeight="44.0" fitWidth="44.0" layoutX="330.0" layoutY="61.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="5" GridPane.rowIndex="2">
-                                                       <image>
-                                                           <Image url="@../images/pawns/blueStudent.png" />
-                                                       </image>
-                                                       <effect>
-                                                           <DropShadow />
-                                                       </effect>
-                                                   </ImageView>
-                                                   <ImageView id="bs5_0" fitHeight="44.0" fitWidth="44.0" layoutX="330.0" layoutY="113.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="5" GridPane.rowIndex="4">
-                                                       <image>
-                                                           <Image url="@../images/pawns/blueStudent.png" />
-                                                       </image>
-                                                       <effect>
-                                                           <DropShadow />
-                                                       </effect>
-                                                   </ImageView>
-                                                   <ImageView id="bs6_0" fitHeight="44.0" fitWidth="44.0" layoutX="10.0" layoutY="9.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="5" GridPane.rowIndex="3">
-                                                       <image>
-                                                           <Image url="@../images/pawns/blueStudent.png" />
-                                                       </image>
-                                                       <effect>
-                                                           <DropShadow />
-                                                       </effect>
-                                                   </ImageView>
-                                                   <ImageView id="bs4_0" fitHeight="44.0" fitWidth="44.0" layoutX="330.0" layoutY="165.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="5" GridPane.rowIndex="5">
-                                                       <image>
-                                                           <Image url="@../images/pawns/blueStudent.png" />
-                                                       </image>
-                                                       <effect>
-                                                           <DropShadow />
-                                                       </effect>
-                                                   </ImageView>
-                                                   <ImageView id="bs3_0" fitHeight="44.0" fitWidth="44.0" layoutX="330.0" layoutY="269.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="5" GridPane.rowIndex="6">
-                                                       <image>
-                                                           <Image url="@../images/pawns/blueStudent.png" />
-                                                       </image>
-                                                       <effect>
-                                                           <DropShadow />
-                                                       </effect>
-                                                   </ImageView>
-                                                   <ImageView id="bs2_0" fitHeight="44.0" fitWidth="44.0" layoutX="330.0" layoutY="321.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="5" GridPane.rowIndex="7">
-                                                       <image>
-                                                           <Image url="@../images/pawns/blueStudent.png" />
-                                                       </image>
-                                                       <effect>
-                                                           <DropShadow />
-                                                       </effect>
-                                                   </ImageView>
-                                                   <ImageView id="bs1_0" fitHeight="44.0" fitWidth="44.0" layoutX="330.0" layoutY="373.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="5" GridPane.rowIndex="8">
-                                                       <image>
-                                                           <Image url="@../images/pawns/blueStudent.png" />
-                                                       </image>
-                                                       <effect>
-                                                           <DropShadow />
-                                                       </effect>
-                                                   </ImageView>
-                                                   <ImageView id="bs0_0" fitHeight="44.0" fitWidth="44.0" layoutX="330.0" layoutY="425.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="5" GridPane.rowIndex="9">
-                                                       <image>
-                                                           <Image url="@../images/pawns/blueStudent.png" />
-                                                       </image>
-                                                       <effect>
-                                                           <DropShadow />
-                                                       </effect>
-                                                   </ImageView>
-                                               </children>
-                                           </GridPane>
-                                       </children>
-                                   </VBox>
-                                   <HBox prefHeight="52.0" prefWidth="500.0" />
-                                   <VBox prefHeight="149.0" prefWidth="503.0">
-                                       <children>
-                                           <GridPane prefHeight="120.0" prefWidth="502.0">
-                                               <columnConstraints>
-                                                   <ColumnConstraints hgrow="SOMETIMES" maxWidth="74.49474334716797" minWidth="10.0" prefWidth="37.90671920776367" />
-                                                   <ColumnConstraints hgrow="SOMETIMES" maxWidth="98.8526611328125" minWidth="10.0" prefWidth="56.59328079223633" />
-                                                   <ColumnConstraints hgrow="SOMETIMES" maxWidth="82.37562561035156" minWidth="5.210166931152344" prefWidth="81.885986328125" />
-                                                   <ColumnConstraints hgrow="SOMETIMES" maxWidth="90.10364532470703" minWidth="10.0" prefWidth="50.33416748046875" />
-                                                   <ColumnConstraints hgrow="SOMETIMES" maxWidth="166.45565795898438" minWidth="10.0" prefWidth="80.56219482421875" />
-                                                   <ColumnConstraints hgrow="SOMETIMES" maxWidth="137.10076904296875" minWidth="10.0" prefWidth="40.93780517578125" />
-                                                   <ColumnConstraints hgrow="SOMETIMES" maxWidth="97.04144287109375" minWidth="10.0" prefWidth="54.16583251953125" />
-                                               </columnConstraints>
-                                               <rowConstraints>
-                                                   <RowConstraints maxHeight="55.3157958984375" minHeight="10.0" prefHeight="39.0" vgrow="SOMETIMES" />
-                                                   <RowConstraints maxHeight="84.35791015625" minHeight="10.0" prefHeight="81.0" vgrow="SOMETIMES" />
-                                               </rowConstraints>
-                                               <children>
-                                                   <StackPane prefHeight="88.0" prefWidth="97.0" GridPane.columnIndex="1">
-                                                       <children>
-                                                           <ImageView id="bse0_0" fitHeight="44.0" fitWidth="44.0" pickOnBounds="true" preserveRatio="true">
-                                                               <image>
-                                                                   <Image url="@../images/pawns/blueStudent.png" />
-                                                               </image>
-                                                   <effect>
-                                                      <DropShadow />
-                                                   </effect>
-                                                           </ImageView>
-                                                           <ImageView id="pse0_0" fitHeight="44.0" fitWidth="44.0" pickOnBounds="true" preserveRatio="true">
-                                                               <image>
-                                                                   <Image url="@../images/pawns/pinkStudent.png" />
-                                                               </image>
-                                                   <effect>
-                                                      <DropShadow />
-                                                   </effect>
-                                                           </ImageView>
-                                                           <ImageView id="yse0_0" fitHeight="44.0" fitWidth="44.0" pickOnBounds="true" preserveRatio="true">
-                                                               <image>
-                                                                   <Image url="@../images/pawns/yellowStudent.png" />
-                                                               </image>
-                                                   <effect>
-                                                      <DropShadow />
-                                                   </effect>
-                                                           </ImageView>
-                                                           <ImageView id="rse0_0" fitHeight="44.0" fitWidth="44.0" pickOnBounds="true" preserveRatio="true">
-                                                               <image>
-                                                                   <Image url="@../images/pawns/redStudent.png" />
-                                                               </image>
-                                                   <effect>
-                                                      <DropShadow />
-                                                   </effect>
-                                                           </ImageView>
-                                                           <ImageView id="gse0_0" fitHeight="44.0" fitWidth="44.0" pickOnBounds="true" preserveRatio="true">
-                                                               <image>
-                                                                   <Image url="@../images/pawns/greenStudent.png" />
-                                                               </image>
-                                                   <effect>
-                                                      <DropShadow />
-                                                   </effect>
-                                                           </ImageView>
-                                                       </children>
+                  <VBox prefHeight="1004.0" prefWidth="606.0">
+                     <children>
+                        <VBox prefHeight="89.0" prefWidth="1089.0" />
+                         <HBox prefWidth="880.0" rotate="90">
+                             <children>
+                                 <VBox prefHeight="986.0" prefWidth="628.0">
+                                 <children>
+                                    <GridPane prefHeight="1007.0" prefWidth="566.0">
+                                      <columnConstraints>
+                                          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                      </columnConstraints>
+                                      <rowConstraints>
+                                        <RowConstraints maxHeight="108.9326171875" minHeight="0.0" vgrow="SOMETIMES" />
+                                          <RowConstraints maxHeight="230.0" minHeight="114.7196044921875" vgrow="SOMETIMES" />
+                                          <RowConstraints maxHeight="185.2803955078125" minHeight="76.0673828125" vgrow="SOMETIMES" />
+                                        <RowConstraints maxHeight="333.4036865234375" minHeight="0.0" prefHeight="169.16961669921875" vgrow="SOMETIMES" />
+                                        <RowConstraints maxHeight="374.94354248046875" minHeight="156.28594970703125" prefHeight="183.33038330078125" vgrow="SOMETIMES" />
+                                          <RowConstraints vgrow="SOMETIMES" />
+                                      </rowConstraints>
+                                       <VBox.margin>
+                                          <Insets />
+                                       </VBox.margin>
+                                    </GridPane>
+                                 </children>
+                              </VBox>
+                                 <VBox prefHeight="986.0" prefWidth="400.0" styleClass="board" BorderPane.alignment="CENTER">
+                                     <children>
+                                         <HBox prefHeight="258.0" prefWidth="401.0">
+                                             <children>
+                                                 <Text id="nicknamePlayer0" strokeType="OUTSIDE" strokeWidth="0.0" text="Nickname" textAlignment="CENTER" wrappingWidth="400.123046875">
+                                             <font>
+                                                <Font name="Avenir Next Condensed Bold" size="30.0" />
+                                             </font>
+                                          </Text>
+                                             </children>
+                                         </HBox>
+                                         <VBox prefHeight="76.0" prefWidth="503.0">
+                                             <children>
+                                                 <GridPane prefHeight="70.0">
+                                                     <columnConstraints>
+                                                         <ColumnConstraints hgrow="SOMETIMES" maxWidth="97.0" minWidth="10.0" prefWidth="42.0" />
+                                                         <ColumnConstraints hgrow="SOMETIMES" maxWidth="112.0" minWidth="10.0" prefWidth="67.0" />
+                                                         <ColumnConstraints hgrow="SOMETIMES" maxWidth="106.0" minWidth="10.0" prefWidth="66.0" />
+                                                         <ColumnConstraints hgrow="SOMETIMES" maxWidth="97.0" minWidth="10.0" prefWidth="65.0" />
+                                                         <ColumnConstraints hgrow="SOMETIMES" maxWidth="97.0" minWidth="10.0" prefWidth="66.0" />
+                                                         <ColumnConstraints hgrow="SOMETIMES" maxWidth="103.0" minWidth="10.0" prefWidth="94.0" />
+                                                     </columnConstraints>
+                                                     <rowConstraints>
+                                                         <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                                     </rowConstraints>
+                                                     <children>
+                                                         <ImageView id="gp_0" fitHeight="44.0" fitWidth="54.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1">
+                                                             <image>
+                                                                 <Image url="@../images/pawns/greenProf2D.png" />
+                                                             </image>
+                                                             <GridPane.margin>
+                                                                 <Insets />
+                                                             </GridPane.margin>
+                                                             <effect>
+                                                                 <DropShadow />
+                                                             </effect>
+                                                         </ImageView>
+                                                         <ImageView id="rp_0" fitHeight="44.0" fitWidth="54.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="2">
+                                                             <image>
+                                                                 <Image url="@../images/pawns/redProf2D.png" />
+                                                             </image>
+                                                             <effect>
+                                                                 <DropShadow />
+                                                             </effect>
+                                                         </ImageView>
+                                                         <ImageView id="yp_0" fitHeight="44.0" fitWidth="54.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="3">
+                                                             <image>
+                                                                 <Image url="@../images/pawns/yellowProf2D.png" />
+                                                             </image>
+                                                             <effect>
+                                                                 <DropShadow />
+                                                             </effect>
+                                                         </ImageView>
+                                                         <ImageView id="pp_0" fitHeight="44.0" fitWidth="54.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="4">
+                                                             <image>
+                                                                 <Image url="@../images/pawns/pinkProf2D.png" />
+                                                             </image>
+                                                             <effect>
+                                                                 <DropShadow />
+                                                             </effect>
+                                                         </ImageView>
+                                                         <ImageView id="bp_0" fitHeight="44.0" fitWidth="54.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="5">
+                                                             <image>
+                                                                 <Image url="@../images/pawns/blueProf2D.png" />
+                                                             </image>
+                                                             <effect>
+                                                                 <DropShadow />
+                                                             </effect>
+                                                         </ImageView>
+                                                     </children>
+                                                 </GridPane>
+                                             </children>
+                                         </VBox>
+                                         <HBox prefHeight="46.0" prefWidth="503.0" />
+                                         <VBox prefHeight="519.0" prefWidth="400.0">
+                                             <children>
+                                                 <Pane prefHeight="50.0" prefWidth="401.0" />
+                                                 <GridPane prefHeight="524.0">
+                                                     <columnConstraints>
+                                                         <ColumnConstraints hgrow="SOMETIMES" maxWidth="63.0" minWidth="10.0" prefWidth="48.95452880859375" />
+                                                         <ColumnConstraints hgrow="SOMETIMES" maxWidth="89.0" minWidth="10.0" prefWidth="64.0" />
+                                                         <ColumnConstraints hgrow="SOMETIMES" maxWidth="117.06080627441406" minWidth="10.0" prefWidth="64.99649047851562" />
+                                                         <ColumnConstraints hgrow="SOMETIMES" maxWidth="162.66690063476562" minWidth="10.0" prefWidth="65.50350952148438" />
+                                                         <ColumnConstraints hgrow="SOMETIMES" maxWidth="118.75765991210938" minWidth="10.0" prefWidth="66.49649047851562" />
+                                                         <ColumnConstraints hgrow="SOMETIMES" maxWidth="93.12353515625" minWidth="10.0" prefWidth="93.12353515625" />
+                                                     </columnConstraints>
+                                                     <rowConstraints>
+                                                         <RowConstraints maxHeight="47.010650634765625" minHeight="10.0" prefHeight="47.010650634765625" vgrow="SOMETIMES" />
+                                                         <RowConstraints maxHeight="53.51544189453125" minHeight="10.0" prefHeight="44.489349365234375" vgrow="SOMETIMES" />
+                                                         <RowConstraints maxHeight="57.5201416015625" minHeight="10.0" prefHeight="55.04620361328125" vgrow="SOMETIMES" />
+                                                         <RowConstraints maxHeight="73.56036376953125" minHeight="10.0" prefHeight="39.51422119140625" vgrow="SOMETIMES" />
+                                                         <RowConstraints maxHeight="80.5816650390625" minHeight="10.0" prefHeight="47.98577880859375" vgrow="SOMETIMES" />
+                                                         <RowConstraints maxHeight="87.101806640625" minHeight="10.0" prefHeight="54.47747802734375" vgrow="SOMETIMES" />
+                                                         <RowConstraints maxHeight="94.5367431640625" minHeight="10.0" prefHeight="33.459716796875" vgrow="SOMETIMES" />
+                                                         <RowConstraints maxHeight="88.104248046875" minHeight="10.0" prefHeight="62.976318359375" vgrow="SOMETIMES" />
+                                                         <RowConstraints maxHeight="88.53314208984375" minHeight="10.0" prefHeight="32.8720703125" vgrow="SOMETIMES" />
+                                                         <RowConstraints maxHeight="120.0" minHeight="10.0" prefHeight="61.96685791015625" vgrow="SOMETIMES" />
+                                                         <RowConstraints maxHeight="68.078125" minHeight="0.0" prefHeight="14.3922119140625" vgrow="SOMETIMES" />
+                                                     </rowConstraints>
+                                                     <children>
+                                                         <ImageView id="gs9_0" fitHeight="44.0" fitWidth="44.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1">
+                                                             <image>
+                                                                 <Image url="@../images/pawns/greenStudent.png" />
+                                                             </image>
+                                                             <effect>
+                                                                 <DropShadow />
+                                                             </effect>
+                                                </ImageView>
+                                                         <ImageView id="gs8_0" fitHeight="44.0" fitWidth="44.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                                                             <image>
+                                                                 <Image url="@../images/pawns/greenStudent.png" />
+                                                             </image>
+                                                             <effect>
+                                                                 <DropShadow />
+                                                             </effect>
+                                                         </ImageView>
+                                                         <ImageView id="gs7_0" fitHeight="44.0" fitWidth="44.0" layoutX="10.0" layoutY="61.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                                                             <image>
+                                                                 <Image url="@../images/pawns/greenStudent.png" />
+                                                             </image>
+                                                             <effect>
+                                                                 <DropShadow />
+                                                             </effect>
+                                                         </ImageView>
+                                                         <ImageView id="gs6_0" fitHeight="44.0" fitWidth="44.0" layoutX="10.0" layoutY="113.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" GridPane.rowIndex="3">
+                                                             <image>
+                                                                 <Image url="@../images/pawns/greenStudent.png" />
+                                                             </image>
+                                                             <effect>
+                                                                 <DropShadow />
+                                                             </effect>
+                                                         </ImageView>
+                                                         <ImageView id="gs5_0" fitHeight="44.0" fitWidth="44.0" layoutX="10.0" layoutY="165.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" GridPane.rowIndex="4">
+                                                             <image>
+                                                                 <Image url="@../images/pawns/greenStudent.png" />
+                                                             </image>
+                                                             <effect>
+                                                                 <DropShadow />
+                                                             </effect>
+                                                         </ImageView>
+                                                         <ImageView id="gs4_0" fitHeight="44.0" fitWidth="44.0" layoutX="10.0" layoutY="217.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" GridPane.rowIndex="5">
+                                                             <image>
+                                                                 <Image url="@../images/pawns/greenStudent.png" />
+                                                             </image>
+                                                             <effect>
+                                                                 <DropShadow />
+                                                             </effect>
+                                                         </ImageView>
+                                                         <ImageView id="gs2_0" fitHeight="44.0" fitWidth="44.0" layoutX="10.0" layoutY="269.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" GridPane.rowIndex="7">
+                                                             <image>
+                                                                 <Image url="@../images/pawns/greenStudent.png" />
+                                                             </image>
+                                                             <effect>
+                                                                 <DropShadow />
+                                                             </effect>
+                                                         </ImageView>
+                                                         <ImageView id="gs3_0" fitHeight="44.0" fitWidth="44.0" layoutX="10.0" layoutY="269.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" GridPane.rowIndex="6">
+                                                             <image>
+                                                                 <Image url="@../images/pawns/greenStudent.png" />
+                                                             </image>
+                                                             <effect>
+                                                                 <DropShadow />
+                                                             </effect>
+                                                         </ImageView>
+                                                         <ImageView id="gs1_0" fitHeight="44.0" fitWidth="44.0" layoutX="10.0" layoutY="373.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" GridPane.rowIndex="8">
+                                                             <image>
+                                                                 <Image url="@../images/pawns/greenStudent.png" />
+                                                             </image>
+                                                             <effect>
+                                                                 <DropShadow />
+                                                             </effect>
+                                                         </ImageView>
+                                                         <ImageView id="gs0_0" fitHeight="44.0" fitWidth="44.0" layoutX="10.0" layoutY="425.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" GridPane.rowIndex="9">
+                                                             <image>
+                                                                 <Image url="@../images/pawns/greenStudent.png" />
+                                                             </image>
+                                                             <effect>
+                                                                 <DropShadow />
+                                                             </effect>
+                                                         </ImageView>
+                                                         <ImageView id="rs9_0" fitHeight="44.0" fitWidth="44.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="2">
+                                                             <image>
+                                                                 <Image url="@../images/pawns/redStudent.png" />
+                                                             </image>
+                                                             <effect>
+                                                                 <DropShadow />
+                                                             </effect>
+                                                         </ImageView>
+                                                         <ImageView id="rs8_0" fitHeight="44.0" fitWidth="44.0" layoutX="90.0" layoutY="9.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="2" GridPane.rowIndex="1">
+                                                             <image>
+                                                                 <Image url="@../images/pawns/redStudent.png" />
+                                                             </image>
+                                                             <effect>
+                                                                 <DropShadow />
+                                                             </effect>
+                                                         </ImageView>
+                                                         <ImageView id="rs7_0" fitHeight="44.0" fitWidth="44.0" layoutX="90.0" layoutY="9.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="2" GridPane.rowIndex="2">
+                                                             <image>
+                                                                 <Image url="@../images/pawns/redStudent.png" />
+                                                             </image>
+                                                             <effect>
+                                                                 <DropShadow />
+                                                             </effect>
+                                                         </ImageView>
+                                                         <ImageView id="rs6_0" fitHeight="44.0" fitWidth="44.0" layoutX="90.0" layoutY="9.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="2" GridPane.rowIndex="3">
+                                                             <image>
+                                                                 <Image url="@../images/pawns/redStudent.png" />
+                                                             </image>
+                                                             <effect>
+                                                                 <DropShadow />
+                                                             </effect>
+                                                         </ImageView>
+                                                         <ImageView id="rs5_0" fitHeight="44.0" fitWidth="44.0" layoutX="90.0" layoutY="9.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="2" GridPane.rowIndex="4">
+                                                             <image>
+                                                                 <Image url="@../images/pawns/redStudent.png" />
+                                                             </image>
+                                                             <effect>
+                                                                 <DropShadow />
+                                                             </effect>
+                                                         </ImageView>
+                                                         <ImageView id="rs4_0" fitHeight="44.0" fitWidth="44.0" layoutX="90.0" layoutY="9.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="2" GridPane.rowIndex="5">
+                                                             <image>
+                                                                 <Image url="@../images/pawns/redStudent.png" />
+                                                             </image>
+                                                             <effect>
+                                                                 <DropShadow />
+                                                             </effect>
+                                                         </ImageView>
+                                                         <ImageView id="rs3_0" fitHeight="44.0" fitWidth="44.0" layoutX="90.0" layoutY="9.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="2" GridPane.rowIndex="6">
+                                                             <image>
+                                                                 <Image url="@../images/pawns/redStudent.png" />
+                                                             </image>
+                                                             <effect>
+                                                                 <DropShadow />
+                                                             </effect>
+                                                         </ImageView>
+                                                         <ImageView id="rs2_0" fitHeight="44.0" fitWidth="44.0" layoutX="90.0" layoutY="9.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="2" GridPane.rowIndex="7">
+                                                             <image>
+                                                                 <Image url="@../images/pawns/redStudent.png" />
+                                                             </image>
+                                                             <effect>
+                                                                 <DropShadow />
+                                                             </effect>
+                                                         </ImageView>
+                                                         <ImageView id="rs1_0" fitHeight="44.0" fitWidth="44.0" layoutX="90.0" layoutY="9.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="2" GridPane.rowIndex="8">
+                                                             <image>
+                                                                 <Image url="@../images/pawns/redStudent.png" />
+                                                             </image>
+                                                             <effect>
+                                                                 <DropShadow />
+                                                             </effect>
+                                                         </ImageView>
+                                                         <ImageView id="rs0_0" fitHeight="44.0" fitWidth="44.0" layoutX="90.0" layoutY="9.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="2" GridPane.rowIndex="9">
+                                                             <image>
+                                                                 <Image url="@../images/pawns/redStudent.png" />
+                                                             </image>
+                                                             <effect>
+                                                                 <DropShadow />
+                                                             </effect>
+                                                         </ImageView>
+                                                         <ImageView id="ys9_0" fitHeight="44.0" fitWidth="44.0" layoutX="90.0" layoutY="476.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="3">
+                                                             <image>
+                                                                 <Image url="@../images/pawns/yellowStudent.png" />
+                                                             </image>
+                                                             <effect>
+                                                                 <DropShadow />
+                                                             </effect>
+                                                         </ImageView>
+                                                         <ImageView id="ys8_0" fitHeight="44.0" fitWidth="44.0" layoutX="170.0" layoutY="9.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="3" GridPane.rowIndex="1">
+                                                             <image>
+                                                                 <Image url="@../images/pawns/yellowStudent.png" />
+                                                             </image>
+                                                             <effect>
+                                                                 <DropShadow />
+                                                             </effect>
+                                                         </ImageView>
+                                                         <ImageView id="ys7_0" fitHeight="44.0" fitWidth="44.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="3" GridPane.rowIndex="2">
+                                                             <image>
+                                                                 <Image url="@../images/pawns/yellowStudent.png" />
+                                                             </image>
+                                                             <effect>
+                                                                 <DropShadow />
+                                                             </effect>
+                                                         </ImageView>
+                                                         <ImageView id="ys6_0" fitHeight="44.0" fitWidth="44.0" layoutX="170.0" layoutY="113.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="3" GridPane.rowIndex="3">
+                                                             <image>
+                                                                 <Image url="@../images/pawns/yellowStudent.png" />
+                                                             </image>
+                                                             <effect>
+                                                                 <DropShadow />
+                                                             </effect>
+                                                         </ImageView>
+                                                         <ImageView id="ys5_0" fitHeight="44.0" fitWidth="44.0" layoutX="170.0" layoutY="113.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="3" GridPane.rowIndex="4">
+                                                             <image>
+                                                                 <Image url="@../images/pawns/yellowStudent.png" />
+                                                             </image>
+                                                             <effect>
+                                                                 <DropShadow />
+                                                             </effect>
+                                                         </ImageView>
+                                                         <ImageView id="ys4_0" fitHeight="44.0" fitWidth="44.0" layoutX="170.0" layoutY="218.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="3" GridPane.rowIndex="5">
+                                                             <image>
+                                                                 <Image url="@../images/pawns/yellowStudent.png" />
+                                                             </image>
+                                                             <effect>
+                                                                 <DropShadow />
+                                                             </effect>
+                                                         </ImageView>
+                                                         <ImageView id="ys3_0" fitHeight="44.0" fitWidth="44.0" layoutX="180.0" layoutY="228.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="3" GridPane.rowIndex="6">
+                                                             <image>
+                                                                 <Image url="@../images/pawns/yellowStudent.png" />
+                                                             </image>
+                                                             <effect>
+                                                                 <DropShadow />
+                                                             </effect>
+                                                         </ImageView>
+                                                         <ImageView id="ys2_0" fitHeight="44.0" fitWidth="44.0" layoutX="170.0" layoutY="271.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="3" GridPane.rowIndex="7">
+                                                             <image>
+                                                                 <Image url="@../images/pawns/yellowStudent.png" />
+                                                             </image>
+                                                             <effect>
+                                                                 <DropShadow />
+                                                             </effect>
+                                                         </ImageView>
+                                                         <ImageView id="ys1_0" fitHeight="44.0" fitWidth="44.0" layoutX="170.0" layoutY="374.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="3" GridPane.rowIndex="8">
+                                                             <image>
+                                                                 <Image url="@../images/pawns/yellowStudent.png" />
+                                                             </image>
+                                                             <effect>
+                                                                 <DropShadow />
+                                                             </effect>
+                                                         </ImageView>
+                                                         <ImageView id="ys0_0" fitHeight="44.0" fitWidth="44.0" layoutX="170.0" layoutY="425.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="3" GridPane.rowIndex="9">
+                                                             <image>
+                                                                 <Image url="@../images/pawns/yellowStudent.png" />
+                                                             </image>
+                                                             <effect>
+                                                                 <DropShadow />
+                                                             </effect>
+                                                         </ImageView>
+                                                         <ImageView id="ps9_0" fitHeight="44.0" fitWidth="44.0" layoutX="170.0" layoutY="9.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="4">
+                                                             <image>
+                                                                 <Image url="@../images/pawns/pinkStudent.png" />
+                                                             </image>
+                                                             <effect>
+                                                                 <DropShadow />
+                                                             </effect>
+                                                         </ImageView>
+                                                         <ImageView id="ps8_0" fitHeight="44.0" fitWidth="44.0" layoutX="250.0" layoutY="9.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="4" GridPane.rowIndex="1">
+                                                             <image>
+                                                                 <Image url="@../images/pawns/pinkStudent.png" />
+                                                             </image>
+                                                             <effect>
+                                                                 <DropShadow />
+                                                             </effect>
+                                                         </ImageView>
+                                                         <ImageView id="ps6_0" fitHeight="44.0" fitWidth="44.0" layoutX="250.0" layoutY="61.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="4" GridPane.rowIndex="3">
+                                                             <image>
+                                                                 <Image url="@../images/pawns/pinkStudent.png" />
+                                                             </image>
+                                                             <effect>
+                                                                 <DropShadow />
+                                                             </effect>
+                                                         </ImageView>
+                                                         <ImageView id="ps7_0" fitHeight="44.0" fitWidth="44.0" layoutX="250.0" layoutY="61.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="4" GridPane.rowIndex="2">
+                                                             <image>
+                                                                 <Image url="@../images/pawns/pinkStudent.png" />
+                                                             </image>
+                                                             <effect>
+                                                                 <DropShadow />
+                                                             </effect>
+                                                         </ImageView>
+                                                         <ImageView id="ps5_0" fitHeight="44.0" fitWidth="44.0" layoutX="250.0" layoutY="113.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="4" GridPane.rowIndex="4">
+                                                             <image>
+                                                                 <Image url="@../images/pawns/pinkStudent.png" />
+                                                             </image>
+                                                             <effect>
+                                                                 <DropShadow />
+                                                             </effect>
+                                                         </ImageView>
+                                                         <ImageView id="ps2_0" fitHeight="44.0" fitWidth="44.0" layoutX="250.0" layoutY="217.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="4" GridPane.rowIndex="7">
+                                                             <image>
+                                                                 <Image url="@../images/pawns/pinkStudent.png" />
+                                                             </image>
+                                                             <effect>
+                                                                 <DropShadow />
+                                                             </effect>
+                                                         </ImageView>
+                                                         <ImageView id="ps3_0" fitHeight="44.0" fitWidth="44.0" layoutX="250.0" layoutY="217.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="4" GridPane.rowIndex="6">
+                                                             <image>
+                                                                 <Image url="@../images/pawns/pinkStudent.png" />
+                                                             </image>
+                                                             <effect>
+                                                                 <DropShadow />
+                                                             </effect>
+                                                         </ImageView>
+                                                         <ImageView id="ps5_0" fitHeight="44.0" fitWidth="44.0" layoutX="250.0" layoutY="217.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="4" GridPane.rowIndex="5">
+                                                             <image>
+                                                                 <Image url="@../images/pawns/pinkStudent.png" />
+                                                             </image>
+                                                             <effect>
+                                                                 <DropShadow />
+                                                             </effect>
+                                                         </ImageView>
+                                                         <ImageView id="ps1_0" fitHeight="44.0" fitWidth="44.0" layoutX="250.0" layoutY="269.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="4" GridPane.rowIndex="8">
+                                                             <image>
+                                                                 <Image url="@../images/pawns/pinkStudent.png" />
+                                                             </image>
+                                                             <effect>
+                                                                 <DropShadow />
+                                                             </effect>
+                                                         </ImageView>
+                                                         <ImageView id="ps0_0" fitHeight="44.0" fitWidth="44.0" layoutX="250.0" layoutY="425.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="4" GridPane.rowIndex="9">
+                                                             <image>
+                                                                 <Image url="@../images/pawns/pinkStudent.png" />
+                                                             </image>
+                                                             <effect>
+                                                                 <DropShadow />
+                                                             </effect>
+                                                         </ImageView>
+                                                         <ImageView id="bs8_0" fitHeight="44.0" fitWidth="44.0" layoutX="250.0" layoutY="476.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="5" GridPane.rowIndex="1">
+                                                             <image>
+                                                                 <Image url="@../images/pawns/blueStudent.png" />
+                                                             </image>
+                                                             <effect>
+                                                                 <DropShadow />
+                                                             </effect>
+                                                         </ImageView>
+                                                         <ImageView id="bs9_0" fitHeight="44.0" fitWidth="44.0" layoutX="260.0" layoutY="435.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="5">
+                                                             <image>
+                                                                 <Image url="@../images/pawns/blueStudent.png" />
+                                                             </image>
+                                                             <effect>
+                                                                 <DropShadow />
+                                                             </effect>
+                                                         </ImageView>
+                                                         <ImageView id="bs7_0" fitHeight="44.0" fitWidth="44.0" layoutX="330.0" layoutY="61.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="5" GridPane.rowIndex="2">
+                                                             <image>
+                                                                 <Image url="@../images/pawns/blueStudent.png" />
+                                                             </image>
+                                                             <effect>
+                                                                 <DropShadow />
+                                                             </effect>
+                                                         </ImageView>
+                                                         <ImageView id="bs5_0" fitHeight="44.0" fitWidth="44.0" layoutX="330.0" layoutY="113.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="5" GridPane.rowIndex="4">
+                                                             <image>
+                                                                 <Image url="@../images/pawns/blueStudent.png" />
+                                                             </image>
+                                                             <effect>
+                                                                 <DropShadow />
+                                                             </effect>
+                                                         </ImageView>
+                                                         <ImageView id="bs6_0" fitHeight="44.0" fitWidth="44.0" layoutX="10.0" layoutY="9.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="5" GridPane.rowIndex="3">
+                                                             <image>
+                                                                 <Image url="@../images/pawns/blueStudent.png" />
+                                                             </image>
+                                                             <effect>
+                                                                 <DropShadow />
+                                                             </effect>
+                                                         </ImageView>
+                                                         <ImageView id="bs4_0" fitHeight="44.0" fitWidth="44.0" layoutX="330.0" layoutY="165.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="5" GridPane.rowIndex="5">
+                                                             <image>
+                                                                 <Image url="@../images/pawns/blueStudent.png" />
+                                                             </image>
+                                                             <effect>
+                                                                 <DropShadow />
+                                                             </effect>
+                                                         </ImageView>
+                                                         <ImageView id="bs3_0" fitHeight="44.0" fitWidth="44.0" layoutX="330.0" layoutY="269.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="5" GridPane.rowIndex="6">
+                                                             <image>
+                                                                 <Image url="@../images/pawns/blueStudent.png" />
+                                                             </image>
+                                                             <effect>
+                                                                 <DropShadow />
+                                                             </effect>
+                                                         </ImageView>
+                                                         <ImageView id="bs2_0" fitHeight="44.0" fitWidth="44.0" layoutX="330.0" layoutY="321.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="5" GridPane.rowIndex="7">
+                                                             <image>
+                                                                 <Image url="@../images/pawns/blueStudent.png" />
+                                                             </image>
+                                                             <effect>
+                                                                 <DropShadow />
+                                                             </effect>
+                                                         </ImageView>
+                                                         <ImageView id="bs1_0" fitHeight="44.0" fitWidth="44.0" layoutX="330.0" layoutY="373.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="5" GridPane.rowIndex="8">
+                                                             <image>
+                                                                 <Image url="@../images/pawns/blueStudent.png" />
+                                                             </image>
+                                                             <effect>
+                                                                 <DropShadow />
+                                                             </effect>
+                                                         </ImageView>
+                                                         <ImageView id="bs0_0" fitHeight="44.0" fitWidth="44.0" layoutX="330.0" layoutY="425.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="5" GridPane.rowIndex="9">
+                                                             <image>
+                                                                 <Image url="@../images/pawns/blueStudent.png" />
+                                                             </image>
+                                                             <effect>
+                                                                 <DropShadow />
+                                                             </effect>
+                                                         </ImageView>
+                                                     </children>
+                                                 </GridPane>
+                                             </children>
+                                         </VBox>
+                                         <HBox prefHeight="52.0" prefWidth="500.0" />
+                                         <VBox prefHeight="149.0" prefWidth="503.0">
+                                             <children>
+                                                 <GridPane prefHeight="120.0" prefWidth="502.0">
+                                                     <columnConstraints>
+                                                         <ColumnConstraints hgrow="SOMETIMES" maxWidth="74.49474334716797" minWidth="10.0" prefWidth="37.90671920776367" />
+                                                         <ColumnConstraints hgrow="SOMETIMES" maxWidth="98.8526611328125" minWidth="10.0" prefWidth="56.59328079223633" />
+                                                         <ColumnConstraints hgrow="SOMETIMES" maxWidth="82.37562561035156" minWidth="5.210166931152344" prefWidth="81.885986328125" />
+                                                         <ColumnConstraints hgrow="SOMETIMES" maxWidth="90.10364532470703" minWidth="10.0" prefWidth="50.33416748046875" />
+                                                         <ColumnConstraints hgrow="SOMETIMES" maxWidth="166.45565795898438" minWidth="10.0" prefWidth="80.56219482421875" />
+                                                         <ColumnConstraints hgrow="SOMETIMES" maxWidth="137.10076904296875" minWidth="10.0" prefWidth="40.93780517578125" />
+                                                         <ColumnConstraints hgrow="SOMETIMES" maxWidth="97.04144287109375" minWidth="10.0" prefWidth="54.16583251953125" />
+                                                     </columnConstraints>
+                                                     <rowConstraints>
+                                                         <RowConstraints maxHeight="55.3157958984375" minHeight="10.0" prefHeight="39.0" vgrow="SOMETIMES" />
+                                                         <RowConstraints maxHeight="84.35791015625" minHeight="10.0" prefHeight="81.0" vgrow="SOMETIMES" />
+                                                     </rowConstraints>
+                                                     <children>
+                                                         <StackPane prefHeight="88.0" prefWidth="97.0" GridPane.columnIndex="1">
+                                                             <children>
+                                                                 <ImageView id="bse0_0" fitHeight="44.0" fitWidth="44.0" pickOnBounds="true" preserveRatio="true">
+                                                                     <image>
+                                                                         <Image url="@../images/pawns/blueStudent.png" />
+                                                                     </image>
+                                                         <effect>
+                                                            <DropShadow />
+                                                         </effect>
+                                                                 </ImageView>
+                                                                 <ImageView id="pse0_0" fitHeight="44.0" fitWidth="44.0" pickOnBounds="true" preserveRatio="true">
+                                                                     <image>
+                                                                         <Image url="@../images/pawns/pinkStudent.png" />
+                                                                     </image>
+                                                         <effect>
+                                                            <DropShadow />
+                                                         </effect>
+                                                                 </ImageView>
+                                                                 <ImageView id="yse0_0" fitHeight="44.0" fitWidth="44.0" pickOnBounds="true" preserveRatio="true">
+                                                                     <image>
+                                                                         <Image url="@../images/pawns/yellowStudent.png" />
+                                                                     </image>
+                                                         <effect>
+                                                            <DropShadow />
+                                                         </effect>
+                                                                 </ImageView>
+                                                                 <ImageView id="rse0_0" fitHeight="44.0" fitWidth="44.0" pickOnBounds="true" preserveRatio="true">
+                                                                     <image>
+                                                                         <Image url="@../images/pawns/redStudent.png" />
+                                                                     </image>
+                                                         <effect>
+                                                            <DropShadow />
+                                                         </effect>
+                                                                 </ImageView>
+                                                                 <ImageView id="gse0_0" fitHeight="44.0" fitWidth="44.0" pickOnBounds="true" preserveRatio="true">
+                                                                     <image>
+                                                                         <Image url="@../images/pawns/greenStudent.png" />
+                                                                     </image>
+                                                         <effect>
+                                                            <DropShadow />
+                                                         </effect>
+                                                                 </ImageView>
+                                                             </children>
+                                                         </StackPane>
+                                                         <StackPane layoutX="10.0" layoutY="10.0" prefHeight="88.0" prefWidth="97.0" GridPane.columnIndex="2">
+                                                             <children>
+                                                                 <ImageView id="bse1_0" fitHeight="44.0" fitWidth="44.0" pickOnBounds="true" preserveRatio="true">
+                                                                     <image>
+                                                                         <Image url="@../images/pawns/blueStudent.png" />
+                                                                     </image>
+                                                         <effect>
+                                                            <DropShadow />
+                                                         </effect>
+                                                                 </ImageView>
+                                                                 <ImageView id="pse1_0" fitHeight="44.0" fitWidth="44.0" pickOnBounds="true" preserveRatio="true">
+                                                                     <image>
+                                                                         <Image url="@../images/pawns/pinkStudent.png" />
+                                                                     </image>
+                                                         <effect>
+                                                            <DropShadow />
+                                                         </effect>
+                                                                 </ImageView>
+                                                                 <ImageView id="yse1_0" fitHeight="44.0" fitWidth="44.0" pickOnBounds="true" preserveRatio="true">
+                                                                     <image>
+                                                                         <Image url="@../images/pawns/yellowStudent.png" />
+                                                                     </image>
+                                                         <effect>
+                                                            <DropShadow />
+                                                         </effect>
+                                                                 </ImageView>
+                                                                 <ImageView id="rse1_0" fitHeight="44.0" fitWidth="44.0" pickOnBounds="true" preserveRatio="true">
+                                                                     <image>
+                                                                         <Image url="@../images/pawns/redStudent.png" />
+                                                                     </image>
+                                                         <effect>
+                                                            <DropShadow />
+                                                         </effect>
+                                                                 </ImageView>
+                                                                 <ImageView id="gse1_0" fitHeight="44.0" fitWidth="44.0" pickOnBounds="true" preserveRatio="true">
+                                                                     <image>
+                                                                         <Image url="@../images/pawns/greenStudent.png" />
+                                                                     </image>
+                                                         <effect>
+                                                            <DropShadow />
+                                                         </effect>
+                                                                 </ImageView>
+                                                             </children>
+                                                         </StackPane>
+                                                         <StackPane prefHeight="150.0" prefWidth="200.0" GridPane.columnIndex="3">
+                                                             <children>
+                                                                 <ImageView id="bse2_0" fitHeight="44.0" fitWidth="44.0" pickOnBounds="true" preserveRatio="true">
+                                                                     <image>
+                                                                         <Image url="@../images/pawns/blueStudent.png" />
+                                                                     </image>
+                                                         <effect>
+                                                            <DropShadow />
+                                                         </effect>
+                                                                 </ImageView>
+                                                                 <ImageView id="pse2_0" fitHeight="44.0" fitWidth="44.0" pickOnBounds="true" preserveRatio="true">
+                                                                     <image>
+                                                                         <Image url="@../images/pawns/pinkStudent.png" />
+                                                                     </image>
+                                                         <effect>
+                                                            <DropShadow />
+                                                         </effect>
+                                                                 </ImageView>
+                                                                 <ImageView id="yse2_0" fitHeight="44.0" fitWidth="44.0" pickOnBounds="true" preserveRatio="true">
+                                                                     <image>
+                                                                         <Image url="@../images/pawns/yellowStudent.png" />
+                                                                     </image>
+                                                         <effect>
+                                                            <DropShadow />
+                                                         </effect>
+                                                                 </ImageView>
+                                                                 <ImageView id="rse2_0" fitHeight="44.0" fitWidth="44.0" pickOnBounds="true" preserveRatio="true">
+                                                                     <image>
+                                                                         <Image url="@../images/pawns/redStudent.png" />
+                                                                     </image>
+                                                         <effect>
+                                                            <DropShadow />
+                                                         </effect>
+                                                                 </ImageView>
+                                                                 <ImageView id="gse2_0" fitHeight="44.0" fitWidth="44.0" pickOnBounds="true" preserveRatio="true">
+                                                                     <image>
+                                                                         <Image url="@../images/pawns/greenStudent.png" />
+                                                                     </image>
+                                                         <effect>
+                                                            <DropShadow />
+                                                         </effect>
+                                                                 </ImageView>
+                                                             </children>
+                                                         </StackPane>
+                                                         <StackPane prefHeight="150.0" prefWidth="200.0" GridPane.columnIndex="4">
+                                                             <children>
+                                                                 <ImageView id="bse3_0" fitHeight="44.0" fitWidth="44.0" pickOnBounds="true" preserveRatio="true">
+                                                                     <image>
+                                                                         <Image url="@../images/pawns/blueStudent.png" />
+                                                                     </image>
+                                                         <effect>
+                                                            <DropShadow />
+                                                         </effect>
+                                                                 </ImageView>
+                                                                 <ImageView id="pse3_0" fitHeight="44.0" fitWidth="44.0" pickOnBounds="true" preserveRatio="true">
+                                                                     <image>
+                                                                         <Image url="@../images/pawns/pinkStudent.png" />
+                                                                     </image>
+                                                         <effect>
+                                                            <DropShadow />
+                                                         </effect>
+                                                                 </ImageView>
+                                                                 <ImageView id="yse3_0" fitHeight="44.0" fitWidth="44.0" pickOnBounds="true" preserveRatio="true">
+                                                                     <image>
+                                                                         <Image url="@../images/pawns/yellowStudent.png" />
+                                                                     </image>
+                                                         <effect>
+                                                            <DropShadow />
+                                                         </effect>
+                                                                 </ImageView>
+                                                                 <ImageView id="rse3_0" fitHeight="44.0" fitWidth="44.0" pickOnBounds="true" preserveRatio="true">
+                                                                     <image>
+                                                                         <Image url="@../images/pawns/redStudent.png" />
+                                                                     </image>
+                                                         <effect>
+                                                            <DropShadow />
+                                                         </effect>
+                                                                 </ImageView>
+                                                                 <ImageView id="gse3_0" fitHeight="44.0" fitWidth="44.0" pickOnBounds="true" preserveRatio="true">
+                                                                     <image>
+                                                                         <Image url="@../images/pawns/greenStudent.png" />
+                                                                     </image>
+                                                         <effect>
+                                                            <DropShadow />
+                                                         </effect>
+                                                                 </ImageView>
+                                                             </children>
+                                                         </StackPane>
+                                                         <StackPane prefHeight="150.0" prefWidth="200.0" GridPane.columnIndex="5">
+                                                             <children>
+                                                                 <ImageView id="bse4_0" fitHeight="44.0" fitWidth="44.0" pickOnBounds="true" preserveRatio="true">
+                                                                     <image>
+                                                                         <Image url="@../images/pawns/blueStudent.png" />
+                                                                     </image>
+                                                         <effect>
+                                                            <DropShadow />
+                                                         </effect>
+                                                                 </ImageView>
+                                                                 <ImageView id="pse4_0" fitHeight="44.0" fitWidth="44.0" pickOnBounds="true" preserveRatio="true">
+                                                                     <image>
+                                                                         <Image url="@../images/pawns/pinkStudent.png" />
+                                                                     </image>
+                                                         <effect>
+                                                            <DropShadow />
+                                                         </effect>
+                                                                 </ImageView>
+                                                                 <ImageView id="yse4_0" fitHeight="44.0" fitWidth="44.0" pickOnBounds="true" preserveRatio="true">
+                                                                     <image>
+                                                                         <Image url="@../images/pawns/yellowStudent.png" />
+                                                                     </image>
+                                                         <effect>
+                                                            <DropShadow />
+                                                         </effect>
+                                                                 </ImageView>
+                                                                 <ImageView id="rse4_0" fitHeight="44.0" fitWidth="44.0" pickOnBounds="true" preserveRatio="true">
+                                                                     <image>
+                                                                         <Image url="@../images/pawns/redStudent.png" />
+                                                                     </image>
+                                                         <effect>
+                                                            <DropShadow />
+                                                         </effect>
+                                                                 </ImageView>
+                                                                 <ImageView id="gse4_0" fitHeight="44.0" fitWidth="44.0" pickOnBounds="true" preserveRatio="true">
+                                                                     <image>
+                                                                         <Image url="@../images/pawns/greenStudent.png" />
+                                                                     </image>
+                                                         <effect>
+                                                            <DropShadow />
+                                                         </effect>
+                                                                 </ImageView>
+                                                             </children>
+                                                         </StackPane>
+                                                         <StackPane prefHeight="150.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
                                                    </StackPane>
-                                                   <StackPane layoutX="10.0" layoutY="10.0" prefHeight="88.0" prefWidth="97.0" GridPane.columnIndex="2">
-                                                       <children>
-                                                           <ImageView id="bse1_0" fitHeight="44.0" fitWidth="44.0" pickOnBounds="true" preserveRatio="true">
-                                                               <image>
-                                                                   <Image url="@../images/pawns/blueStudent.png" />
-                                                               </image>
-                                                   <effect>
-                                                      <DropShadow />
-                                                   </effect>
-                                                           </ImageView>
-                                                           <ImageView id="pse1_0" fitHeight="44.0" fitWidth="44.0" pickOnBounds="true" preserveRatio="true">
-                                                               <image>
-                                                                   <Image url="@../images/pawns/pinkStudent.png" />
-                                                               </image>
-                                                   <effect>
-                                                      <DropShadow />
-                                                   </effect>
-                                                           </ImageView>
-                                                           <ImageView id="yse1_0" fitHeight="44.0" fitWidth="44.0" pickOnBounds="true" preserveRatio="true">
-                                                               <image>
-                                                                   <Image url="@../images/pawns/yellowStudent.png" />
-                                                               </image>
-                                                   <effect>
-                                                      <DropShadow />
-                                                   </effect>
-                                                           </ImageView>
-                                                           <ImageView id="rse1_0" fitHeight="44.0" fitWidth="44.0" pickOnBounds="true" preserveRatio="true">
-                                                               <image>
-                                                                   <Image url="@../images/pawns/redStudent.png" />
-                                                               </image>
-                                                   <effect>
-                                                      <DropShadow />
-                                                   </effect>
-                                                           </ImageView>
-                                                           <ImageView id="gse1_0" fitHeight="44.0" fitWidth="44.0" pickOnBounds="true" preserveRatio="true">
-                                                               <image>
-                                                                   <Image url="@../images/pawns/greenStudent.png" />
-                                                               </image>
-                                                   <effect>
-                                                      <DropShadow />
-                                                   </effect>
-                                                           </ImageView>
-                                                       </children>
-                                                   </StackPane>
-                                                   <StackPane prefHeight="150.0" prefWidth="200.0" GridPane.columnIndex="3">
-                                                       <children>
-                                                           <ImageView id="bse2_0" fitHeight="44.0" fitWidth="44.0" pickOnBounds="true" preserveRatio="true">
-                                                               <image>
-                                                                   <Image url="@../images/pawns/blueStudent.png" />
-                                                               </image>
-                                                   <effect>
-                                                      <DropShadow />
-                                                   </effect>
-                                                           </ImageView>
-                                                           <ImageView id="pse2_0" fitHeight="44.0" fitWidth="44.0" pickOnBounds="true" preserveRatio="true">
-                                                               <image>
-                                                                   <Image url="@../images/pawns/pinkStudent.png" />
-                                                               </image>
-                                                   <effect>
-                                                      <DropShadow />
-                                                   </effect>
-                                                           </ImageView>
-                                                           <ImageView id="yse2_0" fitHeight="44.0" fitWidth="44.0" pickOnBounds="true" preserveRatio="true">
-                                                               <image>
-                                                                   <Image url="@../images/pawns/yellowStudent.png" />
-                                                               </image>
-                                                   <effect>
-                                                      <DropShadow />
-                                                   </effect>
-                                                           </ImageView>
-                                                           <ImageView id="rse2_0" fitHeight="44.0" fitWidth="44.0" pickOnBounds="true" preserveRatio="true">
-                                                               <image>
-                                                                   <Image url="@../images/pawns/redStudent.png" />
-                                                               </image>
-                                                   <effect>
-                                                      <DropShadow />
-                                                   </effect>
-                                                           </ImageView>
-                                                           <ImageView id="gse2_0" fitHeight="44.0" fitWidth="44.0" pickOnBounds="true" preserveRatio="true">
-                                                               <image>
-                                                                   <Image url="@../images/pawns/greenStudent.png" />
-                                                               </image>
-                                                   <effect>
-                                                      <DropShadow />
-                                                   </effect>
-                                                           </ImageView>
-                                                       </children>
-                                                   </StackPane>
-                                                   <StackPane prefHeight="150.0" prefWidth="200.0" GridPane.columnIndex="4">
-                                                       <children>
-                                                           <ImageView id="bse3_0" fitHeight="44.0" fitWidth="44.0" pickOnBounds="true" preserveRatio="true">
-                                                               <image>
-                                                                   <Image url="@../images/pawns/blueStudent.png" />
-                                                               </image>
-                                                   <effect>
-                                                      <DropShadow />
-                                                   </effect>
-                                                           </ImageView>
-                                                           <ImageView id="pse3_0" fitHeight="44.0" fitWidth="44.0" pickOnBounds="true" preserveRatio="true">
-                                                               <image>
-                                                                   <Image url="@../images/pawns/pinkStudent.png" />
-                                                               </image>
-                                                   <effect>
-                                                      <DropShadow />
-                                                   </effect>
-                                                           </ImageView>
-                                                           <ImageView id="yse3_0" fitHeight="44.0" fitWidth="44.0" pickOnBounds="true" preserveRatio="true">
-                                                               <image>
-                                                                   <Image url="@../images/pawns/yellowStudent.png" />
-                                                               </image>
-                                                   <effect>
-                                                      <DropShadow />
-                                                   </effect>
-                                                           </ImageView>
-                                                           <ImageView id="rse3_0" fitHeight="44.0" fitWidth="44.0" pickOnBounds="true" preserveRatio="true">
-                                                               <image>
-                                                                   <Image url="@../images/pawns/redStudent.png" />
-                                                               </image>
-                                                   <effect>
-                                                      <DropShadow />
-                                                   </effect>
-                                                           </ImageView>
-                                                           <ImageView id="gse3_0" fitHeight="44.0" fitWidth="44.0" pickOnBounds="true" preserveRatio="true">
-                                                               <image>
-                                                                   <Image url="@../images/pawns/greenStudent.png" />
-                                                               </image>
-                                                   <effect>
-                                                      <DropShadow />
-                                                   </effect>
-                                                           </ImageView>
-                                                       </children>
-                                                   </StackPane>
-                                                   <StackPane prefHeight="150.0" prefWidth="200.0" GridPane.columnIndex="5">
-                                                       <children>
-                                                           <ImageView id="bse4_0" fitHeight="44.0" fitWidth="44.0" pickOnBounds="true" preserveRatio="true">
-                                                               <image>
-                                                                   <Image url="@../images/pawns/blueStudent.png" />
-                                                               </image>
-                                                   <effect>
-                                                      <DropShadow />
-                                                   </effect>
-                                                           </ImageView>
-                                                           <ImageView id="pse4_0" fitHeight="44.0" fitWidth="44.0" pickOnBounds="true" preserveRatio="true">
-                                                               <image>
-                                                                   <Image url="@../images/pawns/pinkStudent.png" />
-                                                               </image>
-                                                   <effect>
-                                                      <DropShadow />
-                                                   </effect>
-                                                           </ImageView>
-                                                           <ImageView id="yse4_0" fitHeight="44.0" fitWidth="44.0" pickOnBounds="true" preserveRatio="true">
-                                                               <image>
-                                                                   <Image url="@../images/pawns/yellowStudent.png" />
-                                                               </image>
-                                                   <effect>
-                                                      <DropShadow />
-                                                   </effect>
-                                                           </ImageView>
-                                                           <ImageView id="rse4_0" fitHeight="44.0" fitWidth="44.0" pickOnBounds="true" preserveRatio="true">
-                                                               <image>
-                                                                   <Image url="@../images/pawns/redStudent.png" />
-                                                               </image>
-                                                   <effect>
-                                                      <DropShadow />
-                                                   </effect>
-                                                           </ImageView>
-                                                           <ImageView id="gse4_0" fitHeight="44.0" fitWidth="44.0" pickOnBounds="true" preserveRatio="true">
-                                                               <image>
-                                                                   <Image url="@../images/pawns/greenStudent.png" />
-                                                               </image>
-                                                   <effect>
-                                                      <DropShadow />
-                                                   </effect>
-                                                           </ImageView>
-                                                       </children>
-                                                   </StackPane>
-                                                   <StackPane prefHeight="150.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
-                                                   </StackPane>
-                                                   <StackPane prefHeight="150.0" prefWidth="200.0" GridPane.columnIndex="2" GridPane.rowIndex="1">
-                                                       <children>
-                                                           <ImageView id="bse5_0" fitHeight="44.0" fitWidth="44.0" pickOnBounds="true" preserveRatio="true">
-                                                               <image>
-                                                                   <Image url="@../images/pawns/blueStudent.png" />
-                                                               </image>
-                                                   <effect>
-                                                      <DropShadow />
-                                                   </effect>
-                                                           </ImageView>
-                                                           <ImageView id="pse5_0" fitHeight="44.0" fitWidth="44.0" pickOnBounds="true" preserveRatio="true">
-                                                               <image>
-                                                                   <Image url="@../images/pawns/pinkStudent.png" />
-                                                               </image>
-                                                   <effect>
-                                                      <DropShadow />
-                                                   </effect>
-                                                           </ImageView>
-                                                           <ImageView id="yse5_0" fitHeight="44.0" fitWidth="44.0" pickOnBounds="true" preserveRatio="true">
-                                                               <image>
-                                                                   <Image url="@../images/pawns/yellowStudent.png" />
-                                                               </image>
-                                                   <effect>
-                                                      <DropShadow />
-                                                   </effect>
-                                                           </ImageView>
-                                                           <ImageView id="rse5_0" fitHeight="44.0" fitWidth="44.0" pickOnBounds="true" preserveRatio="true">
-                                                               <image>
-                                                                   <Image url="@../images/pawns/redStudent.png" />
-                                                               </image>
-                                                   <effect>
-                                                      <DropShadow />
-                                                   </effect>
-                                                           </ImageView>
-                                                           <ImageView id="gse5_0" fitHeight="44.0" fitWidth="44.0" pickOnBounds="true" preserveRatio="true">
-                                                               <image>
-                                                                   <Image url="@../images/pawns/greenStudent.png" />
-                                                               </image>
-                                                   <effect>
-                                                      <DropShadow />
-                                                   </effect>
-                                                           </ImageView>
-                                                       </children>
-                                                   </StackPane>
-                                                   <StackPane prefHeight="150.0" prefWidth="200.0" GridPane.columnIndex="3" GridPane.rowIndex="1">
-                                                       <children>
-                                                           <ImageView id="bse6_0" fitHeight="44.0" fitWidth="44.0" pickOnBounds="true" preserveRatio="true">
-                                                               <image>
-                                                                   <Image url="@../images/pawns/blueStudent.png" />
-                                                               </image>
-                                                   <effect>
-                                                      <DropShadow />
-                                                   </effect>
-                                                           </ImageView>
-                                                           <ImageView id="pse6_0" fitHeight="44.0" fitWidth="44.0" pickOnBounds="true" preserveRatio="true">
-                                                               <image>
-                                                                   <Image url="@../images/pawns/pinkStudent.png" />
-                                                               </image>
-                                                   <effect>
-                                                      <DropShadow />
-                                                   </effect>
-                                                           </ImageView>
-                                                           <ImageView id="yse6_0" fitHeight="44.0" fitWidth="44.0" pickOnBounds="true" preserveRatio="true">
-                                                               <image>
-                                                                   <Image url="@../images/pawns/yellowStudent.png" />
-                                                               </image>
-                                                   <effect>
-                                                      <DropShadow />
-                                                   </effect>
-                                                           </ImageView>
-                                                           <ImageView id="rse6_0" fitHeight="44.0" fitWidth="44.0" pickOnBounds="true" preserveRatio="true">
-                                                               <image>
-                                                                   <Image url="@../images/pawns/redStudent.png" />
-                                                               </image>
-                                                   <effect>
-                                                      <DropShadow />
-                                                   </effect>
-                                                           </ImageView>
-                                                           <ImageView id="gse6_0" fitHeight="44.0" fitWidth="44.0" pickOnBounds="true" preserveRatio="true">
-                                                               <image>
-                                                                   <Image url="@../images/pawns/greenStudent.png" />
-                                                               </image>
-                                                   <effect>
-                                                      <DropShadow />
-                                                   </effect>
-                                                           </ImageView>
-                                                       </children>
-                                                   </StackPane>
-                                                   <StackPane prefHeight="150.0" prefWidth="200.0" GridPane.columnIndex="4" GridPane.rowIndex="1">
-                                                       <children>
-                                                           <ImageView id="bse7_0" fitHeight="44.0" fitWidth="44.0" pickOnBounds="true" preserveRatio="true">
-                                                               <image>
-                                                                   <Image url="@../images/pawns/blueStudent.png" />
-                                                               </image>
-                                                   <effect>
-                                                      <DropShadow />
-                                                   </effect>
-                                                           </ImageView>
-                                                           <ImageView id="pse7_0" fitHeight="44.0" fitWidth="44.0" pickOnBounds="true" preserveRatio="true">
-                                                               <image>
-                                                                   <Image url="@../images/pawns/pinkStudent.png" />
-                                                               </image>
-                                                   <effect>
-                                                      <DropShadow />
-                                                   </effect>
-                                                           </ImageView>
-                                                           <ImageView id="yse7_0" fitHeight="44.0" fitWidth="44.0" pickOnBounds="true" preserveRatio="true">
-                                                               <image>
-                                                                   <Image url="@../images/pawns/yellowStudent.png" />
-                                                               </image>
-                                                   <effect>
-                                                      <DropShadow />
-                                                   </effect>
-                                                           </ImageView>
-                                                           <ImageView id="rse7_0" fitHeight="44.0" fitWidth="44.0" pickOnBounds="true" preserveRatio="true">
-                                                               <image>
-                                                                   <Image url="@../images/pawns/redStudent.png" />
-                                                               </image>
-                                                   <effect>
-                                                      <DropShadow />
-                                                   </effect>
-                                                           </ImageView>
-                                                           <ImageView id="gse7_0" fitHeight="44.0" fitWidth="44.0" pickOnBounds="true" preserveRatio="true">
-                                                               <image>
-                                                                   <Image url="@../images/pawns/greenStudent.png" />
-                                                               </image>
-                                                   <effect>
-                                                      <DropShadow />
-                                                   </effect>
-                                                           </ImageView>
-                                                       </children>
-                                                   </StackPane>
-                                                   <StackPane prefHeight="150.0" prefWidth="200.0" GridPane.columnIndex="5" GridPane.rowIndex="1">
-                                                       <children>
-                                                           <ImageView id="bse8_0" fitHeight="44.0" fitWidth="44.0" pickOnBounds="true" preserveRatio="true">
-                                                               <image>
-                                                                   <Image url="@../images/pawns/blueStudent.png" />
-                                                               </image>
-                                                   <effect>
-                                                      <DropShadow />
-                                                   </effect>
-                                                           </ImageView>
-                                                           <ImageView id="pse8_0" fitHeight="44.0" fitWidth="44.0" pickOnBounds="true" preserveRatio="true">
-                                                               <image>
-                                                                   <Image url="@../images/pawns/pinkStudent.png" />
-                                                               </image>
-                                                   <effect>
-                                                      <DropShadow />
-                                                   </effect>
-                                                           </ImageView>
-                                                           <ImageView id="yse8_0" fitHeight="44.0" fitWidth="44.0" pickOnBounds="true" preserveRatio="true">
-                                                               <image>
-                                                                   <Image url="@../images/pawns/yellowStudent.png" />
-                                                               </image>
-                                                   <effect>
-                                                      <DropShadow />
-                                                   </effect>
-                                                           </ImageView>
-                                                           <ImageView id="rse8_0" fitHeight="44.0" fitWidth="44.0" pickOnBounds="true" preserveRatio="true">
-                                                               <image>
-                                                                   <Image url="@../images/pawns/redStudent.png" />
-                                                               </image>
-                                                   <effect>
-                                                      <DropShadow />
-                                                   </effect>
-                                                           </ImageView>
-                                                           <ImageView id="gse8_0" fitHeight="44.0" fitWidth="44.0" pickOnBounds="true" preserveRatio="true">
-                                                               <image>
-                                                                   <Image url="@../images/pawns/greenStudent.png" />
-                                                               </image>
-                                                   <effect>
-                                                      <DropShadow />
-                                                   </effect>
-                                                           </ImageView>
-                                                       </children>
-                                                   </StackPane>
-                                               </children>
-                                           </GridPane>
-                                       </children>
-                                   </VBox>
-                               </children>
-                           </VBox>
-                       </children>
-                   </HBox>
+                                                         <StackPane prefHeight="150.0" prefWidth="200.0" GridPane.columnIndex="2" GridPane.rowIndex="1">
+                                                             <children>
+                                                                 <ImageView id="bse5_0" fitHeight="44.0" fitWidth="44.0" pickOnBounds="true" preserveRatio="true">
+                                                                     <image>
+                                                                         <Image url="@../images/pawns/blueStudent.png" />
+                                                                     </image>
+                                                         <effect>
+                                                            <DropShadow />
+                                                         </effect>
+                                                                 </ImageView>
+                                                                 <ImageView id="pse5_0" fitHeight="44.0" fitWidth="44.0" pickOnBounds="true" preserveRatio="true">
+                                                                     <image>
+                                                                         <Image url="@../images/pawns/pinkStudent.png" />
+                                                                     </image>
+                                                         <effect>
+                                                            <DropShadow />
+                                                         </effect>
+                                                                 </ImageView>
+                                                                 <ImageView id="yse5_0" fitHeight="44.0" fitWidth="44.0" pickOnBounds="true" preserveRatio="true">
+                                                                     <image>
+                                                                         <Image url="@../images/pawns/yellowStudent.png" />
+                                                                     </image>
+                                                         <effect>
+                                                            <DropShadow />
+                                                         </effect>
+                                                                 </ImageView>
+                                                                 <ImageView id="rse5_0" fitHeight="44.0" fitWidth="44.0" pickOnBounds="true" preserveRatio="true">
+                                                                     <image>
+                                                                         <Image url="@../images/pawns/redStudent.png" />
+                                                                     </image>
+                                                         <effect>
+                                                            <DropShadow />
+                                                         </effect>
+                                                                 </ImageView>
+                                                                 <ImageView id="gse5_0" fitHeight="44.0" fitWidth="44.0" pickOnBounds="true" preserveRatio="true">
+                                                                     <image>
+                                                                         <Image url="@../images/pawns/greenStudent.png" />
+                                                                     </image>
+                                                         <effect>
+                                                            <DropShadow />
+                                                         </effect>
+                                                                 </ImageView>
+                                                             </children>
+                                                         </StackPane>
+                                                         <StackPane prefHeight="150.0" prefWidth="200.0" GridPane.columnIndex="3" GridPane.rowIndex="1">
+                                                             <children>
+                                                                 <ImageView id="bse6_0" fitHeight="44.0" fitWidth="44.0" pickOnBounds="true" preserveRatio="true">
+                                                                     <image>
+                                                                         <Image url="@../images/pawns/blueStudent.png" />
+                                                                     </image>
+                                                         <effect>
+                                                            <DropShadow />
+                                                         </effect>
+                                                                 </ImageView>
+                                                                 <ImageView id="pse6_0" fitHeight="44.0" fitWidth="44.0" pickOnBounds="true" preserveRatio="true">
+                                                                     <image>
+                                                                         <Image url="@../images/pawns/pinkStudent.png" />
+                                                                     </image>
+                                                         <effect>
+                                                            <DropShadow />
+                                                         </effect>
+                                                                 </ImageView>
+                                                                 <ImageView id="yse6_0" fitHeight="44.0" fitWidth="44.0" pickOnBounds="true" preserveRatio="true">
+                                                                     <image>
+                                                                         <Image url="@../images/pawns/yellowStudent.png" />
+                                                                     </image>
+                                                         <effect>
+                                                            <DropShadow />
+                                                         </effect>
+                                                                 </ImageView>
+                                                                 <ImageView id="rse6_0" fitHeight="44.0" fitWidth="44.0" pickOnBounds="true" preserveRatio="true">
+                                                                     <image>
+                                                                         <Image url="@../images/pawns/redStudent.png" />
+                                                                     </image>
+                                                         <effect>
+                                                            <DropShadow />
+                                                         </effect>
+                                                                 </ImageView>
+                                                                 <ImageView id="gse6_0" fitHeight="44.0" fitWidth="44.0" pickOnBounds="true" preserveRatio="true">
+                                                                     <image>
+                                                                         <Image url="@../images/pawns/greenStudent.png" />
+                                                                     </image>
+                                                         <effect>
+                                                            <DropShadow />
+                                                         </effect>
+                                                                 </ImageView>
+                                                             </children>
+                                                         </StackPane>
+                                                         <StackPane prefHeight="150.0" prefWidth="200.0" GridPane.columnIndex="4" GridPane.rowIndex="1">
+                                                             <children>
+                                                                 <ImageView id="bse7_0" fitHeight="44.0" fitWidth="44.0" pickOnBounds="true" preserveRatio="true">
+                                                                     <image>
+                                                                         <Image url="@../images/pawns/blueStudent.png" />
+                                                                     </image>
+                                                         <effect>
+                                                            <DropShadow />
+                                                         </effect>
+                                                                 </ImageView>
+                                                                 <ImageView id="pse7_0" fitHeight="44.0" fitWidth="44.0" pickOnBounds="true" preserveRatio="true">
+                                                                     <image>
+                                                                         <Image url="@../images/pawns/pinkStudent.png" />
+                                                                     </image>
+                                                         <effect>
+                                                            <DropShadow />
+                                                         </effect>
+                                                                 </ImageView>
+                                                                 <ImageView id="yse7_0" fitHeight="44.0" fitWidth="44.0" pickOnBounds="true" preserveRatio="true">
+                                                                     <image>
+                                                                         <Image url="@../images/pawns/yellowStudent.png" />
+                                                                     </image>
+                                                         <effect>
+                                                            <DropShadow />
+                                                         </effect>
+                                                                 </ImageView>
+                                                                 <ImageView id="rse7_0" fitHeight="44.0" fitWidth="44.0" pickOnBounds="true" preserveRatio="true">
+                                                                     <image>
+                                                                         <Image url="@../images/pawns/redStudent.png" />
+                                                                     </image>
+                                                         <effect>
+                                                            <DropShadow />
+                                                         </effect>
+                                                                 </ImageView>
+                                                                 <ImageView id="gse7_0" fitHeight="44.0" fitWidth="44.0" pickOnBounds="true" preserveRatio="true">
+                                                                     <image>
+                                                                         <Image url="@../images/pawns/greenStudent.png" />
+                                                                     </image>
+                                                         <effect>
+                                                            <DropShadow />
+                                                         </effect>
+                                                                 </ImageView>
+                                                             </children>
+                                                         </StackPane>
+                                                         <StackPane prefHeight="150.0" prefWidth="200.0" GridPane.columnIndex="5" GridPane.rowIndex="1">
+                                                             <children>
+                                                                 <ImageView id="bse8_0" fitHeight="44.0" fitWidth="44.0" pickOnBounds="true" preserveRatio="true">
+                                                                     <image>
+                                                                         <Image url="@../images/pawns/blueStudent.png" />
+                                                                     </image>
+                                                         <effect>
+                                                            <DropShadow />
+                                                         </effect>
+                                                                 </ImageView>
+                                                                 <ImageView id="pse8_0" fitHeight="44.0" fitWidth="44.0" pickOnBounds="true" preserveRatio="true">
+                                                                     <image>
+                                                                         <Image url="@../images/pawns/pinkStudent.png" />
+                                                                     </image>
+                                                         <effect>
+                                                            <DropShadow />
+                                                         </effect>
+                                                                 </ImageView>
+                                                                 <ImageView id="yse8_0" fitHeight="44.0" fitWidth="44.0" pickOnBounds="true" preserveRatio="true">
+                                                                     <image>
+                                                                         <Image url="@../images/pawns/yellowStudent.png" />
+                                                                     </image>
+                                                         <effect>
+                                                            <DropShadow />
+                                                         </effect>
+                                                                 </ImageView>
+                                                                 <ImageView id="rse8_0" fitHeight="44.0" fitWidth="44.0" pickOnBounds="true" preserveRatio="true">
+                                                                     <image>
+                                                                         <Image url="@../images/pawns/redStudent.png" />
+                                                                     </image>
+                                                         <effect>
+                                                            <DropShadow />
+                                                         </effect>
+                                                                 </ImageView>
+                                                                 <ImageView id="gse8_0" fitHeight="44.0" fitWidth="44.0" pickOnBounds="true" preserveRatio="true">
+                                                                     <image>
+                                                                         <Image url="@../images/pawns/greenStudent.png" />
+                                                                     </image>
+                                                         <effect>
+                                                            <DropShadow />
+                                                         </effect>
+                                                                 </ImageView>
+                                                             </children>
+                                                         </StackPane>
+                                                     </children>
+                                                 </GridPane>
+                                             </children>
+                                         </VBox>
+                                     </children>
+                                 </VBox>
+                             </children>
+                         </HBox>
+                        <GridPane>
+                          <columnConstraints>
+                            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                          </columnConstraints>
+                          <rowConstraints>
+                            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                          </rowConstraints>
+                        </GridPane>
+                     </children>
+                  </VBox>
                </bottom>
             </BorderPane>
          </center>
@@ -1051,10 +1091,26 @@
                      <children>
                         <HBox prefHeight="258.0" prefWidth="401.0">
                            <children>
-                              <Text id="nicknamePlayer1" strokeType="OUTSIDE" strokeWidth="0.0" text="Nickname" textAlignment="CENTER" wrappingWidth="400.123046875">
-                                 <font>
-                                    <Font size="30.0" />
-                                 </font></Text>
+                              <VBox prefWidth="401.0">
+                                 <children>
+                                    <Text id="nicknamePlayer1" strokeType="OUTSIDE" strokeWidth="0.0" text="Nickname" textAlignment="CENTER" wrappingWidth="400.123046875">
+                                       <font>
+                                          <Font name="Avenir Next Condensed Bold" size="30.0" />
+                                       </font>
+                                    </Text>
+                                    <GridPane>
+                                      <columnConstraints>
+                                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                      </columnConstraints>
+                                      <rowConstraints>
+                                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                      </rowConstraints>
+                                    </GridPane>
+                                 </children>
+                              </VBox>
                            </children>
                         </HBox>
                         <VBox prefHeight="76.0" prefWidth="503.0">
@@ -1972,6 +2028,9 @@
                      </children>
                   </VBox>
                </children>
+               <padding>
+                  <Insets bottom="10.0" />
+               </padding>
             </HBox>
          </left>
          <right>
@@ -1983,7 +2042,7 @@
                                  <children>
                                      <Text id="nicknamePlayer2" strokeType="OUTSIDE" strokeWidth="0.0" text="Nickname" textAlignment="CENTER" wrappingWidth="400.123046875">
                                  <font>
-                                    <Font size="30.0" />
+                                    <Font name="Avenir Next Condensed Bold" size="30.0" />
                                  </font></Text>
                                  </children>
                              </HBox>
@@ -2903,6 +2962,9 @@
                      </VBox>
                      <VBox prefHeight="986.0" prefWidth="15.0" />
                  </children>
+               <padding>
+                  <Insets bottom="10.0" />
+               </padding>
              </HBox>
          </right>
         </BorderPane>
