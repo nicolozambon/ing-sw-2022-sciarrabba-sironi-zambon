@@ -970,6 +970,5 @@
             <Pane prefHeight="200.0" prefWidth="179.0" BorderPane.alignment="CENTER" />
          </left>
         </BorderPane>
-
     </children>
 </AnchorPane>
