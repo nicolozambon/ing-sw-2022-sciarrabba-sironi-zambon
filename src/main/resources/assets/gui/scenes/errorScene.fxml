@@ -6,12 +6,11 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Text?>
 
-
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="170.0" prefWidth="310.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="170.0" prefWidth="310.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="it.polimi.ingsw.client.view.gui.controller.ErrorController">
    <children>
-      <Button layoutX="138.0" layoutY="130.0" mnemonicParsing="false" text="OK" />
-      <Text id="errorMessage" layoutX="116.0" layoutY="82.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Error Message" />
-      <ImageView fitHeight="88.0" fitWidth="55.0" layoutX="21.0" layoutY="50.0" pickOnBounds="true" preserveRatio="true">
+      <Button layoutX="138.0" layoutY="130.0" mnemonicParsing="false" onMouseClicked="#okButtonOnClick" text="OK" />
+      <Text id="errorMessage" fx:id="errorText" layoutX="117.0" layoutY="90.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Error Message" textAlignment="CENTER" />
+      <ImageView fitHeight="88.0" fitWidth="55.0" layoutX="29.0" layoutY="58.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../images/utils/errorIcon.png" />
          </image>

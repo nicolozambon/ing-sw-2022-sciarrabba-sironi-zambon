@@ -1,11 +1,16 @@
-package it.polimi.ingsw.client.view.gui.controllers;
+package it.polimi.ingsw.client.view.gui.controller;
 
 import it.polimi.ingsw.client.view.gui.ViewGUI;
+import it.polimi.ingsw.events.AnswerEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import javafx.scene.image.Image;
+import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import javafx.scene.text.TextFlow;
 
+import javax.swing.text.html.ImageView;
+import java.awt.*;
 import java.util.List;
 
 public class LobbyController implements GUIController {
@@ -13,13 +18,13 @@ public class LobbyController implements GUIController {
     private ViewGUI gui;
 
     @FXML
-    private Button exitButton;
-
+    private VBox playersVBox;
     @FXML
-    private TextFlow playersTextFlow;
+    private ImageView testImageView;
 
     @FXML
     private void exitButtonClicked() {
+        System.out.println("exit");
         try {
             this.gui.stop();
         } catch (Exception e) {
@@ -27,12 +32,14 @@ public class LobbyController implements GUIController {
         }
     }
 
-    public void setLobbyNames(List<String> names) {
-        names.forEach(n -> playersTextFlow.getChildren().add(new Text(n)));
-    }
-
     @Override
     public void setGUI(ViewGUI gui) {
         this.gui = gui;
+    }
+
+    @Override
+    public void optionsHandling(List<String> options) {
+        playersVBox.getChildren().clear();
+        options.forEach(n -> playersVBox.getChildren().add(new Text(n)));
     }
 }

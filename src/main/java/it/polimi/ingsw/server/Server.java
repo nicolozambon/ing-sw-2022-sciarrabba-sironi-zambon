@@ -90,8 +90,7 @@ public class Server {
 
     private void lobby() {
         ConnectionHandler connectionHandler;
-        List<String> first_playerOption = new ArrayList<>();
-        first_playerOption.add("first_player");
+        List<String> first_playerOption = new ArrayList<>(List.of("first_player"));
         ExecutorService gameThreadPool = Executors.newCachedThreadPool();
         while (true) {
 

@@ -12,7 +12,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<Pane xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="it.polimi.ingsw.client.view.gui.controllers.StartMenuController">
+<Pane xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="it.polimi.ingsw.client.view.gui.controller.StartMenuController">
    <children>
       <SplitPane id="mainPane" dividerPositions="0.5" prefHeight="515.0" prefWidth="724.0" style="-fx-background-color: #eee;" stylesheets="@../css/style.css">
         <items>
@@ -59,7 +59,7 @@
                   <TextField id="nicknameTextField" fx:id="nicknameTextField" layoutX="110.0" layoutY="314.0" />
                   <Text fill="#5e5e5e" layoutX="84.0" layoutY="472.0" strokeType="OUTSIDE" strokeWidth="0.0" text="CG27 - Sciarrabba Sironi Zambon" />
                   <Text fill="#5e5e5e" layoutX="58.0" layoutY="488.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Prova Finale di Ingegneria del Software - 2022" />
-                  <Button fx:id="connectButton" layoutX="139.0" layoutY="358.0" mnemonicParsing="false" onMouseClicked="#setConnectButton" text="Connect">
+                  <Button fx:id="connectButton" layoutX="139.0" layoutY="358.0" mnemonicParsing="false" onMouseClicked="#connectButtonOnClick" text="Connect">
                      <font>
                         <Font size="18.0" />
                      </font>
@@ -68,19 +68,19 @@
             </AnchorPane>
         </items>
       </SplitPane>
-      <Pane layoutX="46.0" layoutY="33.0" prefHeight="446.0" prefWidth="628.0" style="-fx-background-color: #eee; visibility: hidden;">
+      <Pane fx:id="firstPlayerPane" layoutX="46.0" layoutY="33.0" prefHeight="446.0" prefWidth="628.0" style="-fx-background-color: #eee; visibility: hidden;">
          <children>
             <Text layoutX="135.0" layoutY="66.0" strokeType="OUTSIDE" strokeWidth="0.0" text="You are the first to connect. Choose the number of players for this match" textAlignment="CENTER" wrappingWidth="358.0">
                <font>
                   <Font size="23.0" />
                </font>
             </Text>
-            <Button layoutX="173.0" layoutY="201.0" mnemonicParsing="false" text="2">
+            <Button fx:id="twoPlayersButton" layoutX="173.0" layoutY="201.0" mnemonicParsing="false" onMouseClicked="#twoPlayersButtonOnClick" text="2">
                <font>
                   <Font size="32.0" />
                </font>
             </Button>
-            <Button layoutX="393.0" layoutY="201.0" mnemonicParsing="false" text="3">
+            <Button fx:id="threePlayersButton" layoutX="393.0" layoutY="201.0" mnemonicParsing="false" onMouseClicked="#threePlayersButtonOnClick" text="3">
                <font>
                   <Font size="32.0" />
                </font>

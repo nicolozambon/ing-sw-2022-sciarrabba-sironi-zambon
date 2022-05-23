@@ -1,13 +1,15 @@
-package it.polimi.ingsw.client.view.gui.controllers;
+package it.polimi.ingsw.client.view.gui.controller;
 
 import it.polimi.ingsw.client.view.gui.ViewGUI;
+import it.polimi.ingsw.events.RequestEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextField;
 import javafx.scene.control.ToggleGroup;
+import javafx.scene.layout.Pane;
 
-import java.io.IOException;
+import java.util.List;
 
 public class StartMenuController implements GUIController{
 
@@ -19,8 +21,6 @@ public class StartMenuController implements GUIController{
     private TextField ipTextField;
     @FXML
     private TextField nicknameTextField;
-
-
     @FXML
     private ToggleGroup toggleRadioButton;
     @FXML
@@ -29,26 +29,54 @@ public class StartMenuController implements GUIController{
     private RadioButton customRadioButton;
     @FXML
     private RadioButton onlineRadioButton;
-
+    @FXML
+    private Pane firstPlayerPane;
+    @FXML
+    private Button twoPlayersButton;
+    @FXML
+    private Button threePlayersButton;
 
     @FXML
     private void toggleSelection() {
         RadioButton rbtn = (RadioButton) toggleRadioButton.getSelectedToggle();
-        if (rbtn.equals(customRadioButton)) ipTextField.setDisable(false);
-        else ipTextField.setDisable(true);
+        ipTextField.setDisable(!rbtn.equals(customRadioButton));
     }
 
     @FXML
-    private void setConnectButton() throws Exception {
+    private void connectButtonOnClick() throws Exception {
         if (customRadioButton.isSelected()) gui.connect(ipTextField.getText(), nicknameTextField.getText());
         if (localhostRadioButton.isSelected()) gui.connect("127.0.0.1",nicknameTextField.getText());
         if (onlineRadioButton.isSelected()) gui.connect("127.0.0.1",nicknameTextField.getText());
-        gui.changeScene();
     }
-
 
     @Override
     public void setGUI(ViewGUI gui) {
         this.gui = gui;
     }
+
+    @Override
+    public void optionsHandling(List<String> options) {
+        if (options.get(0).equals("first_player")) {
+            firstPlayerPane.setVisible(true);
+        }
+    }
+
+    @FXML
+    private void twoPlayersButtonOnClick() {
+        try {
+            gui.fireRequest(new RequestEvent("first_player", gui.getId(), 2));
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    @FXML
+    private void threePlayersButtonOnClick() {
+        try {
+            gui.fireRequest(new RequestEvent("first_player", gui.getId(),3));
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+    }
+
 }

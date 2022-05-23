@@ -1,16 +1,16 @@
 package it.polimi.ingsw.client.view.gui;
 
 import it.polimi.ingsw.client.ClientConnection;
-import it.polimi.ingsw.client.view.gui.controllers.GUIController;
-import it.polimi.ingsw.client.view.gui.controllers.LobbyController;
-import it.polimi.ingsw.client.view.gui.controllers.StartMenuController;
+import it.polimi.ingsw.client.view.gui.controller.GUIController;
 import it.polimi.ingsw.events.AnswerEvent;
 import it.polimi.ingsw.events.RequestEvent;
 import it.polimi.ingsw.listenables.RequestListenable;
 import it.polimi.ingsw.listenables.RequestListenableInterface;
 import it.polimi.ingsw.listeners.AnswerListener;
 import it.polimi.ingsw.listeners.RequestListener;
+import it.polimi.ingsw.model.ThinModel;
 import javafx.application.Application;
+import javafx.application.Platform;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
@@ -34,8 +34,9 @@ public class ViewGUI extends Application implements RequestListenableInterface, 
     private Scene currentScene;
     private GUIController currentController;
 
-    private int id;
+    private int id = -1;
     private String nickname;
+    private ThinModel model;
 
     public ViewGUI() {
         sceneMap =new HashMap<>();
@@ -52,12 +53,12 @@ public class ViewGUI extends Application implements RequestListenableInterface, 
         setup();
         this.stage = stage;
         this.stage.setScene(currentScene);
-        this.stage.setTitle("Start Menu");
+        this.stage.setTitle("Eriantys");
         this.stage.show();
     }
 
     public void setup() {
-        List<String> fxmlScenes = new ArrayList<>(List.of("startMenu", "lobby"));
+        List<String> fxmlScenes = new ArrayList<>(List.of("startMenuScene", "lobbyScene", "errorScene", "boardScene"));
         FXMLLoader loader;
         GUIController controller;
         try {
@@ -72,8 +73,8 @@ public class ViewGUI extends Application implements RequestListenableInterface, 
             e.printStackTrace();
         }
 
-        currentScene = sceneMap.get("startMenu");
-        currentController = controllerMap.get("startMenu");
+        currentScene = sceneMap.get("startMenuScene");
+        currentController = controllerMap.get("startMenuScene");
     }
 
     public void connect(String ip, String nickname) throws Exception {
@@ -82,6 +83,29 @@ public class ViewGUI extends Application implements RequestListenableInterface, 
         clientConnection.addAnswerListener(this);
         this.addRequestListener(clientConnection);
         this.fireRequest(new RequestEvent("nickname", this.id, nickname));
+    }
+
+    public void changeScene(String sceneName) {
+        currentController = controllerMap.get(sceneName);
+        currentScene = sceneMap.get(sceneName);
+        stage.setScene(currentScene);
+        stage.show();
+    }
+
+    public String getNickname() {
+        return nickname;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public ThinModel getModel() {
+        return model;
+    }
+
+    public Stage getStage() {
+        return stage;
     }
 
     @Override
@@ -100,34 +124,36 @@ public class ViewGUI extends Application implements RequestListenableInterface, 
     }
 
     @Override
-    public void onAnswerEvent(AnswerEvent answerEvent) {
-        switch(answerEvent.getPropertyName()) {
-            case "set_nickname" -> this.nickname = answerEvent.getMessage();
-            case "lobby" -> {
-                System.out.println(answerEvent.getOptions());
-                LobbyController controller = (LobbyController) controllerMap.get("lobby");
-                controller.setLobbyNames(answerEvent.getOptions());
+    public synchronized void onAnswerEvent(AnswerEvent answerEvent) {
+        Platform.runLater(() -> {
+            switch(answerEvent.getPropertyName()) {
+                case "set_nickname" -> this.nickname = answerEvent.getMessage();
+                case "set_id" -> this.id = answerEvent.getNum();
+                case "lobby" -> {
+                    if (!currentScene.equals(sceneMap.get("lobbyScene"))) changeScene("lobbyScene");
+                    currentController.optionsHandling(answerEvent.getOptions());
+                }
+                case "options" -> currentController.optionsHandling(answerEvent.getOptions());
+                case "update" -> {
+                    if (!currentScene.equals(sceneMap.get("boardScene"))) changeScene("boardScene");
+                    this.model = new ThinModel(answerEvent.getModel());
+                }
+                case "error" -> {
+                    changeScene("errorScene");
+                    currentController.optionsHandling(new ArrayList<>(List.of(answerEvent.getMessage())));
+                }
+                case "stop" -> {
+                    System.out.println(answerEvent.getMessage());
+                    this.stop();
+                }
+                default -> System.out.println("Answer Error!");
             }
-            case "set_id" -> this.id = answerEvent.getNum();
-            case "options" -> clientConnection.send(new RequestEvent("first_player", 0, 3));
-            case "update" -> System.out.println("todo");
-            case "error" -> System.out.println("todo");
-            case "stop" -> {
-                System.out.println(answerEvent.getMessage());
-                clientConnection.stopClient();
-            }
-            default -> System.out.println("Answer Error!");
-        }
-    }
-
-    public void changeScene() {
-        this.stage.setScene(sceneMap.get("lobby"));
-        this.stage.setTitle("Lobby");
-        this.stage.show();
+        });
     }
 
     @Override
     public void stop() {
         clientConnection.stopClient();
+        this.stage.close();
     }
 }
