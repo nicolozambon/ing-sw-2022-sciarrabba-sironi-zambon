@@ -121,21 +121,134 @@
                                     <GridPane prefHeight="1007.0" prefWidth="566.0">
                                       <columnConstraints>
                                           <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                                          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="324.6125183105469" minWidth="10.0" prefWidth="250.25909423828125" />
+                                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="304.2489013671875" minWidth="10.0" prefWidth="192.24090576171875" />
+                                          <ColumnConstraints hgrow="SOMETIMES" maxWidth="149.71044921875" minWidth="9.7510986328125" prefWidth="9.7510986328125" />
                                       </columnConstraints>
                                       <rowConstraints>
                                         <RowConstraints maxHeight="108.9326171875" minHeight="0.0" vgrow="SOMETIMES" />
-                                          <RowConstraints maxHeight="230.0" minHeight="114.7196044921875" vgrow="SOMETIMES" />
-                                          <RowConstraints maxHeight="185.2803955078125" minHeight="76.0673828125" vgrow="SOMETIMES" />
-                                        <RowConstraints maxHeight="333.4036865234375" minHeight="0.0" prefHeight="169.16961669921875" vgrow="SOMETIMES" />
-                                        <RowConstraints maxHeight="374.94354248046875" minHeight="156.28594970703125" prefHeight="183.33038330078125" vgrow="SOMETIMES" />
+                                          <RowConstraints maxHeight="108.9326171875" minHeight="0.0" vgrow="SOMETIMES" />
+                                          <RowConstraints maxHeight="230.0" prefHeight="60.0" valignment="CENTER" vgrow="SOMETIMES" />
+                                          <RowConstraints maxHeight="230.0" minHeight="10.0" prefHeight="60.0" valignment="CENTER" vgrow="SOMETIMES" />
+                                        <RowConstraints maxHeight="185.2803955078125" prefHeight="60.0" valignment="CENTER" vgrow="SOMETIMES" />
+                                        <RowConstraints maxHeight="333.4036865234375" prefHeight="60.0" valignment="CENTER" vgrow="SOMETIMES" />
+                                          <RowConstraints maxHeight="374.94354248046875" prefHeight="60.0" valignment="CENTER" vgrow="SOMETIMES" />
+                                          <RowConstraints maxHeight="374.94354248046875" prefHeight="60.0" valignment="CENTER" vgrow="SOMETIMES" />
                                           <RowConstraints vgrow="SOMETIMES" />
                                       </rowConstraints>
                                        <VBox.margin>
                                           <Insets />
                                        </VBox.margin>
+                                       <children>
+                                          <StackPane id="island0" prefHeight="150.0" prefWidth="200.0" rotate="-90.0" GridPane.rowIndex="6">
+                                             <children>
+                                                <ImageView fitHeight="149.0" fitWidth="157.0" pickOnBounds="true" preserveRatio="true">
+                                                   <image>
+                                                      <Image url="@../images/islands/island1.png" />
+                                                   </image>
+                                                </ImageView>
+                                             </children>
+                                          </StackPane>
+                                          <StackPane id="island1" layoutX="10.0" layoutY="705.0" prefHeight="150.0" prefWidth="200.0" rotate="-90.0" GridPane.rowIndex="5">
+                                             <children>
+                                                <ImageView fitHeight="149.0" fitWidth="157.0" pickOnBounds="true" preserveRatio="true">
+                                                   <image>
+                                                      <Image url="@../images/islands/island2.png" />
+                                                   </image>
+                                                </ImageView>
+                                             </children>
+                                          </StackPane>
+                                          <StackPane id="island2" layoutX="10.0" layoutY="554.0" prefHeight="150.0" prefWidth="200.0" rotate="-90.0" GridPane.rowIndex="4">
+                                             <children>
+                                                <ImageView fitHeight="149.0" fitWidth="157.0" pickOnBounds="true" preserveRatio="true">
+                                                   <image>
+                                                      <Image url="@../images/islands/island3.png" />
+                                                   </image>
+                                                </ImageView>
+                                             </children>
+                                          </StackPane>
+                                          <StackPane id="island3" layoutX="10.0" layoutY="403.0" prefHeight="150.0" prefWidth="200.0" rotate="-90.0" GridPane.rowIndex="3">
+                                             <children>
+                                                <ImageView fitHeight="149.0" fitWidth="157.0" pickOnBounds="true" preserveRatio="true">
+                                                   <image>
+                                                      <Image url="@../images/islands/island1.png" />
+                                                   </image>
+                                                </ImageView>
+                                             </children>
+                                          </StackPane>
+                                          <StackPane id="island4" layoutX="10.0" layoutY="252.0" prefHeight="150.0" prefWidth="200.0" rotate="-90.0" GridPane.rowIndex="2">
+                                             <children>
+                                                <ImageView fitHeight="149.0" fitWidth="157.0" pickOnBounds="true" preserveRatio="true">
+                                                   <image>
+                                                      <Image url="@../images/islands/island1.png" />
+                                                   </image>
+                                                </ImageView>
+                                             </children>
+                                          </StackPane>
+                                          <StackPane id="island11" layoutX="10.0" layoutY="101.0" prefHeight="150.0" prefWidth="200.0" rotate="-90.0" GridPane.columnIndex="1" GridPane.rowIndex="7">
+                                             <children>
+                                                <ImageView fitHeight="149.0" fitWidth="157.0" pickOnBounds="true" preserveRatio="true">
+                                                   <image>
+                                                      <Image url="@../images/islands/island1.png" />
+                                                   </image>
+                                                </ImageView>
+                                             </children>
+                                          </StackPane>
+                                          <StackPane id="island5" layoutX="167.0" layoutY="738.0" prefHeight="150.0" prefWidth="200.0" rotate="-90.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                                             <children>
+                                                <ImageView fitHeight="149.0" fitWidth="157.0" pickOnBounds="true" preserveRatio="true">
+                                                   <image>
+                                                      <Image url="@../images/islands/island1.png" />
+                                                   </image>
+                                                </ImageView>
+                                             </children>
+                                          </StackPane>
+                                          <StackPane id="island10" layoutX="10.0" layoutY="638.0" prefHeight="150.0" prefWidth="200.0" rotate="-90.0" GridPane.columnIndex="2" GridPane.rowIndex="6">
+                                             <children>
+                                                <ImageView fitHeight="149.0" fitWidth="157.0" pickOnBounds="true" preserveRatio="true">
+                                                   <image>
+                                                      <Image url="@../images/islands/island1.png" />
+                                                   </image>
+                                                </ImageView>
+                                             </children>
+                                          </StackPane>
+                                          <StackPane id="island9" layoutX="324.0" layoutY="638.0" prefHeight="150.0" prefWidth="200.0" rotate="-90.0" GridPane.columnIndex="2" GridPane.rowIndex="5">
+                                             <children>
+                                                <ImageView fitHeight="149.0" fitWidth="157.0" pickOnBounds="true" preserveRatio="true">
+                                                   <image>
+                                                      <Image url="@../images/islands/island1.png" />
+                                                   </image>
+                                                </ImageView>
+                                             </children>
+                                          </StackPane>
+                                          <StackPane id="island8" layoutX="324.0" layoutY="520.0" prefHeight="150.0" prefWidth="200.0" rotate="-90.0" GridPane.columnIndex="2" GridPane.rowIndex="4">
+                                             <children>
+                                                <ImageView fitHeight="149.0" fitWidth="157.0" pickOnBounds="true" preserveRatio="true">
+                                                   <image>
+                                                      <Image url="@../images/islands/island1.png" />
+                                                   </image>
+                                                </ImageView>
+                                             </children>
+                                          </StackPane>
+                                          <StackPane id="island7" layoutX="324.0" layoutY="402.0" prefHeight="150.0" prefWidth="200.0" rotate="-90.0" GridPane.columnIndex="2" GridPane.rowIndex="3">
+                                             <children>
+                                                <ImageView fitHeight="149.0" fitWidth="157.0" pickOnBounds="true" preserveRatio="true">
+                                                   <image>
+                                                      <Image url="@../images/islands/island1.png" />
+                                                   </image>
+                                                </ImageView>
+                                             </children>
+                                          </StackPane>
+                                          <StackPane id="island6" layoutX="324.0" layoutY="284.0" prefHeight="150.0" prefWidth="200.0" rotate="-90.0" GridPane.columnIndex="2" GridPane.rowIndex="2">
+                                             <children>
+                                                <ImageView fitHeight="149.0" fitWidth="157.0" pickOnBounds="true" preserveRatio="true">
+                                                   <image>
+                                                      <Image url="@../images/islands/island1.png" />
+                                                   </image>
+                                                </ImageView>
+                                             </children>
+                                          </StackPane>
+                                       </children>
                                     </GridPane>
                                  </children>
                               </VBox>
@@ -143,11 +256,73 @@
                                      <children>
                                          <HBox prefHeight="258.0" prefWidth="401.0">
                                              <children>
-                                                 <Text id="nicknamePlayer0" strokeType="OUTSIDE" strokeWidth="0.0" text="Nickname" textAlignment="CENTER" wrappingWidth="400.123046875">
-                                             <font>
-                                                <Font name="Avenir Next Condensed Bold" size="30.0" />
-                                             </font>
-                                          </Text>
+                                          <VBox>
+                                             <children>
+                                                       <Text id="nicknamePlayer0" strokeType="OUTSIDE" strokeWidth="0.0" text="Nickname" textAlignment="CENTER" wrappingWidth="400.123046875">
+                                                   <font>
+                                                      <Font name="Avenir Next Condensed Bold" size="30.0" />
+                                                   </font>
+                                                </Text>
+                                                <GridPane prefHeight="177.0" prefWidth="401.0">
+                                                   <columnConstraints>
+                                                      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                                      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                                      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                                      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                                      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                                      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                                   </columnConstraints>
+                                                   <rowConstraints>
+                                                      <RowConstraints maxHeight="65.20018005371094" minHeight="10.0" prefHeight="24.601394653320312" vgrow="SOMETIMES" />
+                                                      <RowConstraints maxHeight="106.39860534667969" minHeight="10.0" prefHeight="61.799835205078125" vgrow="SOMETIMES" />
+                                                      <RowConstraints maxHeight="79.49826049804688" minHeight="0.0" prefHeight="55.700164794921875" vgrow="SOMETIMES" />
+                                                      <RowConstraints maxHeight="41.84942626953125" minHeight="10.0" prefHeight="34.599639892578125" vgrow="SOMETIMES" />
+                                                   </rowConstraints>
+                                                   <children>
+                                                      <ImageView id="whiteTower0" fitHeight="64.0" fitWidth="72.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER">
+                                                         <image>
+                                                            <Image url="@../images/pawns/whiteTower.png" />
+                                                         </image>
+                                                      </ImageView>
+                                                      <ImageView id="whiteTower1" fitHeight="64.0" fitWidth="72.0" layoutX="93.0" layoutY="33.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER">
+                                                         <image>
+                                                            <Image url="@../images/pawns/whiteTower.png" />
+                                                         </image>
+                                                      </ImageView>
+                                                      <ImageView id="whiteTower3" fitHeight="64.0" fitWidth="72.0" layoutX="143.0" layoutY="33.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="4" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER">
+                                                         <image>
+                                                            <Image url="@../images/pawns/whiteTower.png" />
+                                                         </image>
+                                                      </ImageView>
+                                                      <ImageView id="whiteTower2" fitHeight="64.0" fitWidth="72.0" layoutX="10.0" layoutY="-10.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER">
+                                                         <image>
+                                                            <Image url="@../images/pawns/whiteTower.png" />
+                                                         </image>
+                                                      </ImageView>
+                                                      <ImageView id="whiteTower4" fitHeight="64.0" fitWidth="72.0" layoutX="93.0" layoutY="33.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER">
+                                                         <image>
+                                                            <Image url="@../images/pawns/whiteTower.png" />
+                                                         </image>
+                                                      </ImageView>
+                                                      <ImageView id="whiteTower7" fitHeight="64.0" fitWidth="72.0" layoutX="143.0" layoutY="33.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="4" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER">
+                                                         <image>
+                                                            <Image url="@../images/pawns/whiteTower.png" />
+                                                         </image>
+                                                      </ImageView>
+                                                      <ImageView id="whiteTower6" fitHeight="64.0" fitWidth="72.0" layoutX="277.0" layoutY="33.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER">
+                                                         <image>
+                                                            <Image url="@../images/pawns/whiteTower.png" />
+                                                         </image>
+                                                      </ImageView>
+                                                      <ImageView id="whiteTower5" fitHeight="64.0" fitWidth="72.0" layoutX="210.0" layoutY="33.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER">
+                                                         <image>
+                                                            <Image url="@../images/pawns/whiteTower.png" />
+                                                         </image>
+                                                      </ImageView>
+                                                   </children>
+                                                </GridPane>
+                                             </children>
+                                          </VBox>
                                              </children>
                                          </HBox>
                                          <VBox prefHeight="76.0" prefWidth="503.0">
@@ -226,17 +401,17 @@
                                                          <ColumnConstraints hgrow="SOMETIMES" maxWidth="93.12353515625" minWidth="10.0" prefWidth="93.12353515625" />
                                                      </columnConstraints>
                                                      <rowConstraints>
-                                                         <RowConstraints maxHeight="47.010650634765625" minHeight="10.0" prefHeight="47.010650634765625" vgrow="SOMETIMES" />
-                                                         <RowConstraints maxHeight="53.51544189453125" minHeight="10.0" prefHeight="44.489349365234375" vgrow="SOMETIMES" />
-                                                         <RowConstraints maxHeight="57.5201416015625" minHeight="10.0" prefHeight="55.04620361328125" vgrow="SOMETIMES" />
-                                                         <RowConstraints maxHeight="73.56036376953125" minHeight="10.0" prefHeight="39.51422119140625" vgrow="SOMETIMES" />
-                                                         <RowConstraints maxHeight="80.5816650390625" minHeight="10.0" prefHeight="47.98577880859375" vgrow="SOMETIMES" />
-                                                         <RowConstraints maxHeight="87.101806640625" minHeight="10.0" prefHeight="54.47747802734375" vgrow="SOMETIMES" />
-                                                         <RowConstraints maxHeight="94.5367431640625" minHeight="10.0" prefHeight="33.459716796875" vgrow="SOMETIMES" />
-                                                         <RowConstraints maxHeight="88.104248046875" minHeight="10.0" prefHeight="62.976318359375" vgrow="SOMETIMES" />
-                                                         <RowConstraints maxHeight="88.53314208984375" minHeight="10.0" prefHeight="32.8720703125" vgrow="SOMETIMES" />
-                                                         <RowConstraints maxHeight="120.0" minHeight="10.0" prefHeight="61.96685791015625" vgrow="SOMETIMES" />
-                                                         <RowConstraints maxHeight="68.078125" minHeight="0.0" prefHeight="14.3922119140625" vgrow="SOMETIMES" />
+                                                         <RowConstraints maxHeight="69.0701904296875" minHeight="10.0" prefHeight="63.491943359375" vgrow="SOMETIMES" />
+                                                         <RowConstraints maxHeight="62.02423095703125" minHeight="10.0" prefHeight="38.008056640625" vgrow="SOMETIMES" />
+                                                         <RowConstraints maxHeight="57.5201416015625" minHeight="10.0" prefHeight="42.12164306640625" vgrow="SOMETIMES" />
+                                                         <RowConstraints maxHeight="73.56036376953125" minHeight="10.0" prefHeight="44.083740234375" vgrow="SOMETIMES" />
+                                                         <RowConstraints maxHeight="80.5816650390625" minHeight="10.0" prefHeight="47.416259765625" vgrow="SOMETIMES" />
+                                                         <RowConstraints maxHeight="87.101806640625" minHeight="10.0" prefHeight="47.491943359375" vgrow="SOMETIMES" />
+                                                         <RowConstraints maxHeight="94.5367431640625" minHeight="10.0" prefHeight="39.45721435546875" vgrow="SOMETIMES" />
+                                                         <RowConstraints maxHeight="88.104248046875" minHeight="10.0" prefHeight="49.5238037109375" vgrow="SOMETIMES" />
+                                                         <RowConstraints maxHeight="88.53314208984375" minHeight="10.0" prefHeight="38.990478515625" vgrow="SOMETIMES" />
+                                                         <RowConstraints maxHeight="120.0" minHeight="10.0" prefHeight="53.509521484375" vgrow="SOMETIMES" />
+                                                         <RowConstraints maxHeight="68.078125" minHeight="0.0" prefHeight="24.490478515625" vgrow="SOMETIMES" />
                                                      </rowConstraints>
                                                      <children>
                                                          <ImageView id="gs9_0" fitHeight="44.0" fitWidth="44.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1">
@@ -1098,16 +1273,63 @@
                                           <Font name="Avenir Next Condensed Bold" size="30.0" />
                                        </font>
                                     </Text>
-                                    <GridPane>
+                                    <GridPane prefHeight="177.0" prefWidth="401.0">
                                       <columnConstraints>
                                         <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                                         <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                                       </columnConstraints>
                                       <rowConstraints>
-                                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                        <RowConstraints maxHeight="65.20018005371094" minHeight="10.0" prefHeight="24.601394653320312" vgrow="SOMETIMES" />
+                                        <RowConstraints maxHeight="106.39860534667969" minHeight="10.0" prefHeight="61.799835205078125" vgrow="SOMETIMES" />
+                                        <RowConstraints maxHeight="79.49826049804688" minHeight="0.0" prefHeight="55.700164794921875" vgrow="SOMETIMES" />
+                                          <RowConstraints maxHeight="41.84942626953125" minHeight="10.0" prefHeight="34.599639892578125" vgrow="SOMETIMES" />
                                       </rowConstraints>
+                                       <children>
+                                          <ImageView id="blackTower0" fitHeight="64.0" fitWidth="72.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER">
+                                             <image>
+                                                <Image url="@../images/pawns/blackTower.png" />
+                                             </image>
+                                          </ImageView>
+                                          <ImageView id="blackTower1" fitHeight="64.0" fitWidth="72.0" layoutX="93.0" layoutY="33.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER">
+                                             <image>
+                                                <Image url="@../images/pawns/blackTower.png" />
+                                             </image>
+                                          </ImageView>
+                                          <ImageView id="blackTower3" fitHeight="64.0" fitWidth="72.0" layoutX="143.0" layoutY="33.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="4" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER">
+                                             <image>
+                                                <Image url="@../images/pawns/blackTower.png" />
+                                             </image>
+                                          </ImageView>
+                                          <ImageView id="blackTower2" fitHeight="64.0" fitWidth="72.0" layoutX="10.0" layoutY="-10.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER">
+                                             <image>
+                                                <Image url="@../images/pawns/blackTower.png" />
+                                             </image>
+                                          </ImageView>
+                                          <ImageView id="blackTower4" fitHeight="64.0" fitWidth="72.0" layoutX="93.0" layoutY="33.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER">
+                                             <image>
+                                                <Image url="@../images/pawns/blackTower.png" />
+                                             </image>
+                                          </ImageView>
+                                          <ImageView id="blackTower7" fitHeight="64.0" fitWidth="72.0" layoutX="143.0" layoutY="33.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="4" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER">
+                                             <image>
+                                                <Image url="@../images/pawns/blackTower.png" />
+                                             </image>
+                                          </ImageView>
+                                          <ImageView id="blackTower6" fitHeight="64.0" fitWidth="72.0" layoutX="277.0" layoutY="33.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER">
+                                             <image>
+                                                <Image url="@../images/pawns/blackTower.png" />
+                                             </image>
+                                          </ImageView>
+                                          <ImageView id="blackTower5" fitHeight="64.0" fitWidth="72.0" layoutX="210.0" layoutY="33.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER">
+                                             <image>
+                                                <Image url="@../images/pawns/blackTower.png" />
+                                             </image>
+                                          </ImageView>
+                                       </children>
                                     </GridPane>
                                  </children>
                               </VBox>
@@ -2040,10 +2262,73 @@
                          <children>
                              <HBox prefHeight="233.0" prefWidth="401.0">
                                  <children>
-                                     <Text id="nicknamePlayer2" strokeType="OUTSIDE" strokeWidth="0.0" text="Nickname" textAlignment="CENTER" wrappingWidth="400.123046875">
-                                 <font>
-                                    <Font name="Avenir Next Condensed Bold" size="30.0" />
-                                 </font></Text>
+                              <VBox>
+                                 <children>
+                                           <Text id="nicknamePlayer2" strokeType="OUTSIDE" strokeWidth="0.0" text="Nickname" textAlignment="CENTER" wrappingWidth="400.123046875">
+                                       <font>
+                                          <Font name="Avenir Next Condensed Bold" size="30.0" />
+                                       </font>
+                                    </Text>
+                                    <GridPane prefHeight="177.0" prefWidth="401.0">
+                                       <columnConstraints>
+                                          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                       </columnConstraints>
+                                       <rowConstraints>
+                                          <RowConstraints maxHeight="65.20018005371094" minHeight="10.0" prefHeight="24.601394653320312" vgrow="SOMETIMES" />
+                                          <RowConstraints maxHeight="106.39860534667969" minHeight="10.0" prefHeight="61.799835205078125" vgrow="SOMETIMES" />
+                                          <RowConstraints maxHeight="79.49826049804688" minHeight="0.0" prefHeight="55.700164794921875" vgrow="SOMETIMES" />
+                                          <RowConstraints maxHeight="41.84942626953125" minHeight="10.0" prefHeight="34.599639892578125" vgrow="SOMETIMES" />
+                                       </rowConstraints>
+                                       <children>
+                                          <ImageView id="grayTower0" fitHeight="64.0" fitWidth="72.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER">
+                                             <image>
+                                                <Image url="@../images/pawns/grayTower.png" />
+                                             </image>
+                                          </ImageView>
+                                          <ImageView id="blackTower1" fitHeight="64.0" fitWidth="72.0" layoutX="93.0" layoutY="33.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER">
+                                             <image>
+                                                <Image url="@../images/pawns/grayTower.png" />
+                                             </image>
+                                          </ImageView>
+                                          <ImageView id="blackTower3" fitHeight="64.0" fitWidth="72.0" layoutX="143.0" layoutY="33.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="4" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER">
+                                             <image>
+                                                <Image url="@../images/pawns/grayTower.png" />
+                                             </image>
+                                          </ImageView>
+                                          <ImageView id="blackTower2" fitHeight="64.0" fitWidth="72.0" layoutX="10.0" layoutY="-10.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER">
+                                             <image>
+                                                <Image url="@../images/pawns/grayTower.png" />
+                                             </image>
+                                          </ImageView>
+                                          <ImageView id="blackTower4" fitHeight="64.0" fitWidth="72.0" layoutX="93.0" layoutY="33.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER">
+                                             <image>
+                                                <Image url="@../images/pawns/grayTower.png" />
+                                             </image>
+                                          </ImageView>
+                                          <ImageView id="grayTower7" fitHeight="64.0" fitWidth="72.0" layoutX="143.0" layoutY="33.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="4" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER">
+                                             <image>
+                                                <Image url="@../images/pawns/grayTower.png" />
+                                             </image>
+                                          </ImageView>
+                                          <ImageView id="blackTower6" fitHeight="64.0" fitWidth="72.0" layoutX="277.0" layoutY="33.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER">
+                                             <image>
+                                                <Image url="@../images/pawns/grayTower.png" />
+                                             </image>
+                                          </ImageView>
+                                          <ImageView id="blackTower5" fitHeight="64.0" fitWidth="72.0" layoutX="210.0" layoutY="33.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER">
+                                             <image>
+                                                <Image url="@../images/pawns/grayTower.png" />
+                                             </image>
+                                          </ImageView>
+                                       </children>
+                                    </GridPane>
+                                 </children>
+                              </VBox>
                                  </children>
                              </HBox>
                              <VBox prefHeight="76.0" prefWidth="503.0">
