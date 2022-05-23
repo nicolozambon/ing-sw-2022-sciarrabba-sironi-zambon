@@ -125,4 +125,9 @@ public class ViewGUI extends Application implements RequestListenableInterface, 
         this.stage.setTitle("Lobby");
         this.stage.show();
     }
+
+    @Override
+    public void stop() {
+        clientConnection.stopClient();
+    }
 }
