@@ -14,6 +14,7 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.paint.Color?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
@@ -44,11 +45,6 @@
                     <right>
                         <HBox alignment="CENTER_LEFT" spacing="15.0" BorderPane.alignment="CENTER">
                             <children>
-                                <Label contentDisplay="RIGHT" text="AVAIABLE TOWERS">
-                                    <font>
-                                        <Font name="Avenir Next Condensed Bold" size="30.0" />
-                                    </font>
-                                </Label>
                                 <HBox fx:id="l1Box">
                                     <children>
                                         <ImageView fitHeight="68.0" fitWidth="68.0" pickOnBounds="true" preserveRatio="true">
@@ -111,140 +107,290 @@
          <center>
             <BorderPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
                <bottom>
-                  <VBox prefHeight="1004.0" prefWidth="606.0">
+                  <VBox prefHeight="1251.0" prefWidth="1089.0">
                      <children>
                         <VBox prefHeight="89.0" prefWidth="1089.0" />
                          <HBox prefWidth="880.0" rotate="90">
                              <children>
-                                 <VBox prefHeight="986.0" prefWidth="628.0">
+                                 <VBox prefHeight="986.0" prefWidth="724.0">
                                  <children>
-                                    <GridPane prefHeight="1007.0" prefWidth="566.0">
+                                    <GridPane prefHeight="1007.0" prefWidth="419.0">
                                       <columnConstraints>
-                                          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="324.6125183105469" minWidth="10.0" prefWidth="250.25909423828125" />
-                                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="304.2489013671875" minWidth="10.0" prefWidth="192.24090576171875" />
-                                          <ColumnConstraints hgrow="SOMETIMES" maxWidth="149.71044921875" minWidth="9.7510986328125" prefWidth="9.7510986328125" />
+                                          <ColumnConstraints hgrow="SOMETIMES" maxWidth="243.81011962890625" minWidth="0.0" prefWidth="0.0" />
+                                          <ColumnConstraints hgrow="SOMETIMES" maxWidth="243.81011962890625" minWidth="10.0" prefWidth="174.5493927001953" />
+                                          <ColumnConstraints hgrow="SOMETIMES" maxWidth="243.81011962890625" minWidth="4.936492919921875" prefWidth="52.95060729980469" />
+                                          <ColumnConstraints hgrow="SOMETIMES" maxWidth="243.81011962890625" minWidth="10.0" prefWidth="130.55291748046875" />
+                                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="324.6125183105469" minWidth="10.0" prefWidth="134.94708251953125" />
+                                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="304.2489013671875" minWidth="10.0" prefWidth="170.91888427734375" />
+                                          <ColumnConstraints hgrow="SOMETIMES" maxWidth="149.71044921875" minWidth="9.7510986328125" prefWidth="22.92236328125" />
                                       </columnConstraints>
                                       <rowConstraints>
-                                        <RowConstraints maxHeight="108.9326171875" minHeight="0.0" vgrow="SOMETIMES" />
-                                          <RowConstraints maxHeight="108.9326171875" minHeight="0.0" vgrow="SOMETIMES" />
-                                          <RowConstraints maxHeight="230.0" prefHeight="60.0" valignment="CENTER" vgrow="SOMETIMES" />
-                                          <RowConstraints maxHeight="230.0" minHeight="10.0" prefHeight="60.0" valignment="CENTER" vgrow="SOMETIMES" />
-                                        <RowConstraints maxHeight="185.2803955078125" prefHeight="60.0" valignment="CENTER" vgrow="SOMETIMES" />
-                                        <RowConstraints maxHeight="333.4036865234375" prefHeight="60.0" valignment="CENTER" vgrow="SOMETIMES" />
-                                          <RowConstraints maxHeight="374.94354248046875" prefHeight="60.0" valignment="CENTER" vgrow="SOMETIMES" />
-                                          <RowConstraints maxHeight="374.94354248046875" prefHeight="60.0" valignment="CENTER" vgrow="SOMETIMES" />
-                                          <RowConstraints vgrow="SOMETIMES" />
+                                          <RowConstraints maxHeight="152.410400390625" minHeight="0.0" prefHeight="85.1427001953125" vgrow="SOMETIMES" />
+                                          <RowConstraints maxHeight="149.7138671875" minHeight="0.0" prefHeight="27.3572998046875" valignment="CENTER" vgrow="SOMETIMES" />
+                                          <RowConstraints maxHeight="206.6551513671875" minHeight="36.3411865234375" prefHeight="120.6905517578125" valignment="CENTER" vgrow="SOMETIMES" />
+                                          <RowConstraints maxHeight="113.1904296875" minHeight="13.3291015625" prefHeight="63.3094482421875" valignment="CENTER" vgrow="SOMETIMES" />
+                                          <RowConstraints maxHeight="166.070556640625" minHeight="97.2994384765625" prefHeight="166.070556640625" valignment="CENTER" vgrow="SOMETIMES" />
+                                          <RowConstraints maxHeight="92.01763916015625" minHeight="5.9573974609375" prefHeight="83.038818359375" valignment="CENTER" vgrow="SOMETIMES" />
+                                        <RowConstraints maxHeight="140.6708984375" minHeight="75.461181640625" prefHeight="80.44000244140625" valignment="CENTER" vgrow="SOMETIMES" />
+                                          <RowConstraints maxHeight="90.538818359375" minHeight="11.32916259765625" prefHeight="76.9718017578125" valignment="CENTER" vgrow="SOMETIMES" />
+                                        <RowConstraints maxHeight="179.5634765625" minHeight="122.89971923828125" prefHeight="176.17572021484375" valignment="CENTER" vgrow="SOMETIMES" />
+                                          <RowConstraints maxHeight="121.5924072265625" minHeight="0.4329833984375" prefHeight="23.32427978515625" valignment="CENTER" vgrow="SOMETIMES" />
+                                          <RowConstraints maxHeight="146.0426025390625" minHeight="0.0" prefHeight="29.5599365234375" valignment="CENTER" vgrow="SOMETIMES" />
+                                          <RowConstraints maxHeight="51.5" minHeight="10.01409912109375" prefHeight="51.5" vgrow="SOMETIMES" />
                                       </rowConstraints>
                                        <VBox.margin>
                                           <Insets />
                                        </VBox.margin>
                                        <children>
-                                          <StackPane id="island0" prefHeight="150.0" prefWidth="200.0" rotate="-90.0" GridPane.rowIndex="6">
+                                          <StackPane id="island0" prefHeight="150.0" prefWidth="191.0" rotate="-90.0" GridPane.columnIndex="2" GridPane.rowIndex="10">
                                              <children>
-                                                <ImageView fitHeight="149.0" fitWidth="157.0" pickOnBounds="true" preserveRatio="true">
+                                                <ImageView fitHeight="179.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
                                                    <image>
                                                       <Image url="@../images/islands/island1.png" />
                                                    </image>
+                                                   <effect>
+                                                      <DropShadow />
+                                                   </effect>
                                                 </ImageView>
+                                                <GridPane>
+                                                  <columnConstraints>
+                                                    <ColumnConstraints hgrow="SOMETIMES" maxWidth="88.82861328125" minWidth="10.0" prefWidth="88.82861328125" />
+                                                    <ColumnConstraints hgrow="SOMETIMES" maxWidth="78.8643798828125" minWidth="10.0" prefWidth="49.56573486328125" />
+                                                      <ColumnConstraints hgrow="SOMETIMES" maxWidth="134.0" minWidth="10.0" prefWidth="40.93426513671875" />
+                                                      <ColumnConstraints hgrow="SOMETIMES" maxWidth="63.57568359375" minWidth="0.0" prefWidth="25.908447265625" />
+                                                  </columnConstraints>
+                                                  <rowConstraints>
+                                                      <RowConstraints maxHeight="24.717132568359375" minHeight="10.0" prefHeight="15.56573486328125" vgrow="SOMETIMES" />
+                                                    <RowConstraints maxHeight="50.89935302734375" minHeight="10.0" prefHeight="30.5050048828125" vgrow="SOMETIMES" />
+                                                      <RowConstraints maxHeight="45.111480712890625" minHeight="2.10064697265625" prefHeight="23.297821044921875" vgrow="SOMETIMES" />
+                                                      <RowConstraints maxHeight="54.8336181640625" minHeight="6.595672607421875" prefHeight="23.585693359375" vgrow="SOMETIMES" />
+                                                    <RowConstraints maxHeight="74.52081298828125" minHeight="1.51995849609375" prefHeight="23.444244384765625" vgrow="SOMETIMES" />
+                                                    <RowConstraints maxHeight="90.78372192382812" minHeight="10.0" prefHeight="24.7978515625" vgrow="SOMETIMES" />
+                                                      <RowConstraints maxHeight="90.78372192382812" minHeight="10.0" prefHeight="40.2021484375" vgrow="SOMETIMES" />
+                                                  </rowConstraints>
+                                                   <children>
+                                                      <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true" GridPane.halignment="RIGHT" GridPane.rowIndex="1" GridPane.valignment="BOTTOM">
+                                                         <image>
+                                                            <Image url="@../images/pawns/greenStudent.png" />
+                                                         </image>
+                                                         <effect>
+                                                            <DropShadow />
+                                                         </effect>
+                                                      </ImageView>
+                                                      <ImageView fitHeight="20.0" fitWidth="20.0" layoutX="46.0" layoutY="16.0" pickOnBounds="true" preserveRatio="true" GridPane.halignment="RIGHT" GridPane.rowIndex="2" GridPane.valignment="BOTTOM">
+                                                         <image>
+                                                            <Image url="@../images/pawns/redStudent.png" />
+                                                         </image>
+                                                         <effect>
+                                                            <DropShadow />
+                                                         </effect>
+                                                      </ImageView>
+                                                      <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true" GridPane.halignment="RIGHT" GridPane.rowIndex="3" GridPane.valignment="BOTTOM">
+                                                         <image>
+                                                            <Image url="@../images/pawns/yellowStudent.png" />
+                                                         </image>
+                                                         <effect>
+                                                            <DropShadow />
+                                                         </effect>
+                                                      </ImageView>
+                                                      <ImageView fitHeight="20.0" fitWidth="20.0" layoutX="46.0" layoutY="88.0" pickOnBounds="true" preserveRatio="true" GridPane.halignment="RIGHT" GridPane.rowIndex="4" GridPane.valignment="BOTTOM">
+                                                         <image>
+                                                            <Image url="@../images/pawns/pinkStudent.png" />
+                                                         </image>
+                                                         <effect>
+                                                            <DropShadow />
+                                                         </effect>
+                                                      </ImageView>
+                                                      <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true" GridPane.halignment="RIGHT" GridPane.rowIndex="5" GridPane.valignment="BOTTOM">
+                                                         <image>
+                                                            <Image url="@../images/pawns/blueStudent.png" />
+                                                         </image>
+                                                         <effect>
+                                                            <DropShadow />
+                                                         </effect>
+                                                      </ImageView>
+                                                      <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" textAlignment="CENTER" GridPane.columnIndex="1" GridPane.rowIndex="1" GridPane.valignment="BOTTOM">
+                                                         <font>
+                                                            <Font name="Avenir Next Condensed Bold" size="13.0" />
+                                                         </font>
+                                                         <GridPane.margin>
+                                                            <Insets left="5.0" />
+                                                         </GridPane.margin>
+                                                      </Text>
+                                                      <Text fill="WHITE" layoutX="88.0" layoutY="46.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" textAlignment="CENTER" GridPane.columnIndex="1" GridPane.rowIndex="2" GridPane.valignment="BOTTOM">
+                                                         <font>
+                                                            <Font name="Avenir Next Condensed Bold" size="13.0" />
+                                                         </font>
+                                                         <GridPane.margin>
+                                                            <Insets left="5.0" />
+                                                         </GridPane.margin></Text>
+                                                      <Text fill="WHITE" layoutX="88.0" layoutY="74.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" textAlignment="CENTER" GridPane.columnIndex="1" GridPane.rowIndex="3" GridPane.valignment="BOTTOM">
+                                                         <font>
+                                                            <Font name="Avenir Next Condensed Bold" size="13.0" />
+                                                         </font>
+                                                         <GridPane.margin>
+                                                            <Insets left="5.0" />
+                                                         </GridPane.margin></Text>
+                                                      <Text fill="WHITE" layoutX="88.0" layoutY="98.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" textAlignment="CENTER" GridPane.columnIndex="1" GridPane.rowIndex="4" GridPane.valignment="BOTTOM">
+                                                         <font>
+                                                            <Font name="Avenir Next Condensed Bold" size="13.0" />
+                                                         </font>
+                                                         <GridPane.margin>
+                                                            <Insets left="5.0" />
+                                                         </GridPane.margin></Text>
+                                                      <Text fill="WHITE" layoutX="88.0" layoutY="121.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" textAlignment="CENTER" GridPane.columnIndex="1" GridPane.rowIndex="5" GridPane.valignment="BOTTOM">
+                                                         <font>
+                                                            <Font name="Avenir Next Condensed Bold" size="13.0" />
+                                                         </font>
+                                                         <GridPane.margin>
+                                                            <Insets left="5.0" />
+                                                         </GridPane.margin></Text>
+                                                      <ImageView fitHeight="35.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="4" GridPane.valignment="CENTER">
+                                                         <image>
+                                                            <Image url="@../images/pawns/motherNature.png" />
+                                                         </image>
+                                                      </ImageView>
+                                                      <ImageView fitHeight="35.0" fitWidth="20.0" layoutX="142.0" layoutY="102.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="2">
+                                                         <image>
+                                                            <Image url="@../images/pawns/blackTower.png" />
+                                                         </image>
+                                                         <effect>
+                                                            <DropShadow />
+                                                         </effect>
+                                                      </ImageView>
+                                                   </children>
+                                                </GridPane>
                                              </children>
                                           </StackPane>
-                                          <StackPane id="island1" layoutX="10.0" layoutY="705.0" prefHeight="150.0" prefWidth="200.0" rotate="-90.0" GridPane.rowIndex="5">
+                                          <StackPane id="island1" layoutX="10.0" layoutY="705.0" prefHeight="150.0" prefWidth="200.0" rotate="-90.0" GridPane.columnIndex="1" GridPane.rowIndex="8">
                                              <children>
-                                                <ImageView fitHeight="149.0" fitWidth="157.0" pickOnBounds="true" preserveRatio="true">
+                                                <ImageView fitHeight="180.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
                                                    <image>
                                                       <Image url="@../images/islands/island2.png" />
                                                    </image>
+                                                   <effect>
+                                                      <DropShadow />
+                                                   </effect>
                                                 </ImageView>
                                              </children>
                                           </StackPane>
-                                          <StackPane id="island2" layoutX="10.0" layoutY="554.0" prefHeight="150.0" prefWidth="200.0" rotate="-90.0" GridPane.rowIndex="4">
+                                          <StackPane id="island2" layoutX="10.0" layoutY="554.0" prefHeight="150.0" prefWidth="200.0" rotate="-90.0" GridPane.columnIndex="1" GridPane.rowIndex="6">
                                              <children>
-                                                <ImageView fitHeight="149.0" fitWidth="157.0" pickOnBounds="true" preserveRatio="true">
+                                                <ImageView fitHeight="181.0" fitWidth="201.0" pickOnBounds="true" preserveRatio="true">
                                                    <image>
                                                       <Image url="@../images/islands/island3.png" />
                                                    </image>
+                                                   <effect>
+                                                      <DropShadow />
+                                                   </effect>
                                                 </ImageView>
                                              </children>
                                           </StackPane>
-                                          <StackPane id="island3" layoutX="10.0" layoutY="403.0" prefHeight="150.0" prefWidth="200.0" rotate="-90.0" GridPane.rowIndex="3">
+                                          <StackPane id="island3" layoutX="10.0" layoutY="403.0" prefHeight="150.0" prefWidth="200.0" rotate="-90.0" GridPane.columnIndex="1" GridPane.rowIndex="4">
                                              <children>
-                                                <ImageView fitHeight="149.0" fitWidth="157.0" pickOnBounds="true" preserveRatio="true">
+                                                <ImageView fitHeight="180.0" fitWidth="201.0" pickOnBounds="true" preserveRatio="true">
                                                    <image>
                                                       <Image url="@../images/islands/island1.png" />
                                                    </image>
+                                                   <effect>
+                                                      <DropShadow />
+                                                   </effect>
                                                 </ImageView>
                                              </children>
                                           </StackPane>
-                                          <StackPane id="island4" layoutX="10.0" layoutY="252.0" prefHeight="150.0" prefWidth="200.0" rotate="-90.0" GridPane.rowIndex="2">
+                                          <StackPane id="island4" layoutX="10.0" layoutY="252.0" prefHeight="150.0" prefWidth="200.0" rotate="-90.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
                                              <children>
-                                                <ImageView fitHeight="149.0" fitWidth="157.0" pickOnBounds="true" preserveRatio="true">
+                                                <ImageView fitHeight="180.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
                                                    <image>
-                                                      <Image url="@../images/islands/island1.png" />
+                                                      <Image url="@../images/islands/island2.png" />
                                                    </image>
+                                                   <effect>
+                                                      <DropShadow />
+                                                   </effect>
                                                 </ImageView>
                                              </children>
                                           </StackPane>
-                                          <StackPane id="island11" layoutX="10.0" layoutY="101.0" prefHeight="150.0" prefWidth="200.0" rotate="-90.0" GridPane.columnIndex="1" GridPane.rowIndex="7">
+                                          <StackPane id="island11" layoutX="10.0" layoutY="101.0" prefHeight="150.0" prefWidth="197.0" rotate="-90.0" GridPane.columnIndex="4" GridPane.rowIndex="10">
                                              <children>
-                                                <ImageView fitHeight="149.0" fitWidth="157.0" pickOnBounds="true" preserveRatio="true">
+                                                <ImageView fitHeight="180.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
                                                    <image>
-                                                      <Image url="@../images/islands/island1.png" />
+                                                      <Image url="@../images/islands/island3.png" />
                                                    </image>
+                                                   <effect>
+                                                      <DropShadow />
+                                                   </effect>
                                                 </ImageView>
                                              </children>
                                           </StackPane>
-                                          <StackPane id="island5" layoutX="167.0" layoutY="738.0" prefHeight="150.0" prefWidth="200.0" rotate="-90.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                                          <StackPane id="island5" layoutX="167.0" layoutY="738.0" prefHeight="150.0" prefWidth="200.0" rotate="-90.0" GridPane.columnIndex="2">
                                              <children>
-                                                <ImageView fitHeight="149.0" fitWidth="157.0" pickOnBounds="true" preserveRatio="true">
+                                                <ImageView fitHeight="180.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
                                                    <image>
-                                                      <Image url="@../images/islands/island1.png" />
+                                                      <Image url="@../images/islands/island3.png" />
                                                    </image>
+                                                   <effect>
+                                                      <DropShadow />
+                                                   </effect>
                                                 </ImageView>
                                              </children>
                                           </StackPane>
-                                          <StackPane id="island10" layoutX="10.0" layoutY="638.0" prefHeight="150.0" prefWidth="200.0" rotate="-90.0" GridPane.columnIndex="2" GridPane.rowIndex="6">
+                                          <StackPane id="island10" layoutX="324.0" layoutY="638.0" prefHeight="150.0" prefWidth="200.0" rotate="-90.0" GridPane.columnIndex="5" GridPane.rowIndex="8">
                                              <children>
-                                                <ImageView fitHeight="149.0" fitWidth="157.0" pickOnBounds="true" preserveRatio="true">
+                                                <ImageView fitHeight="179.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
                                                    <image>
                                                       <Image url="@../images/islands/island1.png" />
                                                    </image>
+                                                   <effect>
+                                                      <DropShadow />
+                                                   </effect>
                                                 </ImageView>
                                              </children>
                                           </StackPane>
-                                          <StackPane id="island9" layoutX="324.0" layoutY="638.0" prefHeight="150.0" prefWidth="200.0" rotate="-90.0" GridPane.columnIndex="2" GridPane.rowIndex="5">
+                                          <StackPane id="island9" layoutX="324.0" layoutY="520.0" prefHeight="150.0" prefWidth="200.0" rotate="-90.0" GridPane.columnIndex="5" GridPane.rowIndex="6">
                                              <children>
-                                                <ImageView fitHeight="149.0" fitWidth="157.0" pickOnBounds="true" preserveRatio="true">
+                                                <ImageView fitHeight="182.0" fitWidth="201.0" pickOnBounds="true" preserveRatio="true">
                                                    <image>
-                                                      <Image url="@../images/islands/island1.png" />
+                                                      <Image url="@../images/islands/island3.png" />
                                                    </image>
+                                                   <effect>
+                                                      <DropShadow />
+                                                   </effect>
                                                 </ImageView>
                                              </children>
                                           </StackPane>
-                                          <StackPane id="island8" layoutX="324.0" layoutY="520.0" prefHeight="150.0" prefWidth="200.0" rotate="-90.0" GridPane.columnIndex="2" GridPane.rowIndex="4">
+                                          <StackPane id="island8" layoutX="324.0" layoutY="402.0" prefHeight="150.0" prefWidth="200.0" rotate="-90.0" GridPane.columnIndex="5" GridPane.rowIndex="4">
                                              <children>
-                                                <ImageView fitHeight="149.0" fitWidth="157.0" pickOnBounds="true" preserveRatio="true">
+                                                <ImageView fitHeight="180.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
                                                    <image>
-                                                      <Image url="@../images/islands/island1.png" />
+                                                      <Image url="@../images/islands/island2.png" />
                                                    </image>
+                                                   <effect>
+                                                      <DropShadow />
+                                                   </effect>
                                                 </ImageView>
                                              </children>
                                           </StackPane>
-                                          <StackPane id="island7" layoutX="324.0" layoutY="402.0" prefHeight="150.0" prefWidth="200.0" rotate="-90.0" GridPane.columnIndex="2" GridPane.rowIndex="3">
+                                          <StackPane id="island7" layoutX="324.0" layoutY="284.0" prefHeight="150.0" prefWidth="200.0" rotate="-90.0" GridPane.columnIndex="5" GridPane.rowIndex="2">
                                              <children>
-                                                <ImageView fitHeight="149.0" fitWidth="157.0" pickOnBounds="true" preserveRatio="true">
+                                                <ImageView fitHeight="179.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
                                                    <image>
                                                       <Image url="@../images/islands/island1.png" />
                                                    </image>
+                                                   <effect>
+                                                      <DropShadow />
+                                                   </effect>
                                                 </ImageView>
                                              </children>
                                           </StackPane>
-                                          <StackPane id="island6" layoutX="324.0" layoutY="284.0" prefHeight="150.0" prefWidth="200.0" rotate="-90.0" GridPane.columnIndex="2" GridPane.rowIndex="2">
+                                          <StackPane id="island6" layoutX="378.0" layoutY="816.0" prefHeight="150.0" prefWidth="197.0" rotate="-90.0" GridPane.columnIndex="4">
                                              <children>
-                                                <ImageView fitHeight="149.0" fitWidth="157.0" pickOnBounds="true" preserveRatio="true">
+                                                <ImageView fitHeight="180.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
                                                    <image>
-                                                      <Image url="@../images/islands/island1.png" />
+                                                      <Image url="@../images/islands/island3.png" />
                                                    </image>
+                                                   <effect>
+                                                      <DropShadow />
+                                                   </effect>
                                                 </ImageView>
                                              </children>
                                           </StackPane>
@@ -252,7 +398,7 @@
                                     </GridPane>
                                  </children>
                               </VBox>
-                                 <VBox prefHeight="986.0" prefWidth="400.0" styleClass="board" BorderPane.alignment="CENTER">
+                                 <VBox prefHeight="986.0" prefWidth="370.0" styleClass="board" BorderPane.alignment="CENTER">
                                      <children>
                                          <HBox prefHeight="258.0" prefWidth="401.0">
                                              <children>
@@ -1242,17 +1388,6 @@
                                  </VBox>
                              </children>
                          </HBox>
-                        <GridPane>
-                          <columnConstraints>
-                            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                          </columnConstraints>
-                          <rowConstraints>
-                            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                          </rowConstraints>
-                        </GridPane>
                      </children>
                   </VBox>
                </bottom>
@@ -1293,41 +1428,97 @@
                                              <image>
                                                 <Image url="@../images/pawns/blackTower.png" />
                                              </image>
+                                             <effect>
+                                                <DropShadow>
+                                                   <color>
+                                                      <Color red="1.0" green="1.0" blue="1.0" />
+                                                   </color>
+                                                </DropShadow>
+                                             </effect>
                                           </ImageView>
                                           <ImageView id="blackTower1" fitHeight="64.0" fitWidth="72.0" layoutX="93.0" layoutY="33.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER">
                                              <image>
                                                 <Image url="@../images/pawns/blackTower.png" />
                                              </image>
+                                             <effect>
+                                                <DropShadow>
+                                                   <color>
+                                                      <Color red="1.0" green="1.0" blue="1.0" />
+                                                   </color>
+                                                </DropShadow>
+                                             </effect>
                                           </ImageView>
                                           <ImageView id="blackTower3" fitHeight="64.0" fitWidth="72.0" layoutX="143.0" layoutY="33.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="4" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER">
                                              <image>
                                                 <Image url="@../images/pawns/blackTower.png" />
                                              </image>
+                                             <effect>
+                                                <DropShadow>
+                                                   <color>
+                                                      <Color red="1.0" green="1.0" blue="1.0" />
+                                                   </color>
+                                                </DropShadow>
+                                             </effect>
                                           </ImageView>
                                           <ImageView id="blackTower2" fitHeight="64.0" fitWidth="72.0" layoutX="10.0" layoutY="-10.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER">
                                              <image>
                                                 <Image url="@../images/pawns/blackTower.png" />
                                              </image>
+                                             <effect>
+                                                <DropShadow>
+                                                   <color>
+                                                      <Color red="1.0" green="1.0" blue="1.0" />
+                                                   </color>
+                                                </DropShadow>
+                                             </effect>
                                           </ImageView>
                                           <ImageView id="blackTower4" fitHeight="64.0" fitWidth="72.0" layoutX="93.0" layoutY="33.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER">
                                              <image>
                                                 <Image url="@../images/pawns/blackTower.png" />
                                              </image>
+                                             <effect>
+                                                <DropShadow>
+                                                   <color>
+                                                      <Color red="1.0" green="1.0" blue="1.0" />
+                                                   </color>
+                                                </DropShadow>
+                                             </effect>
                                           </ImageView>
                                           <ImageView id="blackTower7" fitHeight="64.0" fitWidth="72.0" layoutX="143.0" layoutY="33.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="4" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER">
                                              <image>
                                                 <Image url="@../images/pawns/blackTower.png" />
                                              </image>
+                                             <effect>
+                                                <DropShadow>
+                                                   <color>
+                                                      <Color red="1.0" green="1.0" blue="1.0" />
+                                                   </color>
+                                                </DropShadow>
+                                             </effect>
                                           </ImageView>
                                           <ImageView id="blackTower6" fitHeight="64.0" fitWidth="72.0" layoutX="277.0" layoutY="33.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER">
                                              <image>
                                                 <Image url="@../images/pawns/blackTower.png" />
                                              </image>
+                                             <effect>
+                                                <DropShadow>
+                                                   <color>
+                                                      <Color red="1.0" green="1.0" blue="1.0" />
+                                                   </color>
+                                                </DropShadow>
+                                             </effect>
                                           </ImageView>
                                           <ImageView id="blackTower5" fitHeight="64.0" fitWidth="72.0" layoutX="210.0" layoutY="33.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER">
                                              <image>
                                                 <Image url="@../images/pawns/blackTower.png" />
                                              </image>
+                                             <effect>
+                                                <DropShadow>
+                                                   <color>
+                                                      <Color red="1.0" green="1.0" blue="1.0" />
+                                                   </color>
+                                                </DropShadow>
+                                             </effect>
                                           </ImageView>
                                        </children>
                                     </GridPane>
@@ -2289,6 +2480,9 @@
                                              <image>
                                                 <Image url="@../images/pawns/grayTower.png" />
                                              </image>
+                                             <effect>
+                                                <DropShadow />
+                                             </effect>
                                           </ImageView>
                                           <ImageView id="blackTower1" fitHeight="64.0" fitWidth="72.0" layoutX="93.0" layoutY="33.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER">
                                              <image>
