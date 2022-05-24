@@ -2,10 +2,8 @@ package it.polimi.ingsw.client.view.gui.controller;
 
 import it.polimi.ingsw.client.view.gui.ViewGUI;
 import javafx.fxml.FXML;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
 import javafx.scene.text.Text;
-import javafx.stage.Stage;
+
 import java.util.List;
 
 public class ErrorController implements GUIController {
@@ -17,8 +15,7 @@ public class ErrorController implements GUIController {
 
     @FXML
     private void okButtonOnClick() {
-        Image image = new Image(getClass().getResourceAsStream("/assets/gui/images/utils/errorIcon.png"));
-        ImageView imageView = new ImageView();
+
     }
 
     @Override

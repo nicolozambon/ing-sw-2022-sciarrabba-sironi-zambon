@@ -30,9 +30,7 @@ public class ViewCLI implements AnswerListener, RequestListenableInterface {
 
     public ViewCLI() {
         this.optionLister = new OptionLister();
-        this.options = new ArrayList<>() {{
-            this.add("nickname");
-        }};
+        this.options = new ArrayList<>(List.of("nickname"));
         this.optionHandler = new OptionHandler();
         this.requestListenable = new RequestListenable();
     }
@@ -46,11 +44,15 @@ public class ViewCLI implements AnswerListener, RequestListenableInterface {
             case "set_id" -> {
                 this.id = answerEvent.getNum();
                 this.optionHandler.setPlayerId(this.id);
-                System.out.println("My id is: " + this.id);
             }
             case "options" -> handleOptions(answerEvent);
             case "update" -> updateModel(answerEvent);
-            //case "wait" -> System.out.println(optionLister.list(answerEvent.getPropertyName()));
+            case "wait" -> {
+                if (this.model != null) System.out.println(this.model);
+                System.out.print(optionLister.list(answerEvent.getPropertyName()));
+                if (answerEvent.getMessage() != null) System.out.print(", it is " + answerEvent.getMessage() + " turn");
+                System.out.print("\n");
+            }
             case "error" -> {
                 System.out.println(answerEvent.getMessage());
                 handleOptions(new AnswerEvent("error", this.options));

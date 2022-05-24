@@ -33,14 +33,14 @@ public class VirtualView implements RequestListener, RequestListenableInterface,
     }
 
     @Override
-    public void fireRequest(RequestEvent requestEvent) throws Exception {
+    public void fireRequest(RequestEvent requestEvent) throws InvocationTargetException, NoSuchMethodException, IllegalAccessException {
         this.requestListenable.fireRequest(requestEvent);
     }
 
     @Override
     public void onRequestEvent(RequestEvent requestEvent) throws IllegalAccessException {
         try {
-            this.requestListenable.fireRequest(requestEvent);
+            fireRequest(requestEvent);
             gameHandler.launchOptionsAnswerEvent();
         } catch (InvocationTargetException e) {
             e.printStackTrace();

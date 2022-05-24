@@ -35,39 +35,32 @@ public class OptionHandler {
         this.playerId = playerId;
     }
 
-    public RequestEvent getRequestEvent(List<String> options) throws InterruptedException{
+    public RequestEvent getRequestEvent(List<String> options) throws InterruptedException {
         if (options.size() > 0) {
             int choice = 1;
             do {
-                if (!options.contains("wait")) {
-                    if (options.size() > 1) {
-                        choice = inputNumber(optionLister.list(options));
-                    }
-                    if (choice <= options.size() && choice > 0) {
-                        choice = choice - 1;
-                        switch (options.get(choice)) {
-                            case "moveStudentToIsland" -> {
-                                return twoInputHandler(options.get(choice));
+                if (options.size() > 1) {
+                    choice = inputNumber(optionLister.list(options));
+                }
+                if (choice <= options.size() && choice > 0) {
+                    choice = choice - 1;
+                    switch (options.get(choice)) {
+                        case "moveStudentToIsland" -> {
+                            return twoInputHandler(options.get(choice));
+                        }
+                        case "endAction" -> {
+                            return noInputHandler(options.get(choice));
+                        }
+                        case "nickname" -> {
+                            return setNickname(options.get(choice));
+                        }
+                        default -> {
+                            if (options.get(choice).matches("card[2,6,7,8]")) {
+                                return extraActionInputHandler(options.get(choice));
                             }
-                            case "endAction" -> {
-                                return noInputHandler(options.get(choice));
-                            }
-                            case "nickname" -> {
-                                return setNickname(options.get(choice));
-                            }
-                            default -> {
-                                if (options.get(choice).matches("card[2,6,7,8]")) {
-                                    return extraActionInputHandler(options.get(choice));
-                                }
-                                return oneInputHandler(options.get(choice));
-                            }
+                            return oneInputHandler(options.get(choice));
                         }
                     }
-                } else {
-                    System.out.print(optionLister.list(options.get(0)));
-                    if (options.size() == 2) System.out.print(", it is " + options.get(1) + " turn");
-                    System.out.print("\n");
-                    return null;
                 }
             } while (choice > options.size() || choice < 1);
 

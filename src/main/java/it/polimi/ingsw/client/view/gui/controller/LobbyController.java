@@ -1,16 +1,10 @@
 package it.polimi.ingsw.client.view.gui.controller;
 
 import it.polimi.ingsw.client.view.gui.ViewGUI;
-import it.polimi.ingsw.events.AnswerEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
-import javafx.scene.image.Image;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
-import javafx.scene.text.TextFlow;
 
-import javax.swing.text.html.ImageView;
-import java.awt.*;
 import java.util.List;
 
 public class LobbyController implements GUIController {
@@ -19,8 +13,6 @@ public class LobbyController implements GUIController {
 
     @FXML
     private VBox playersVBox;
-    @FXML
-    private ImageView testImageView;
 
     @FXML
     private void exitButtonClicked() {

@@ -31,14 +31,14 @@ public class ConnectionHandler implements Runnable, RequestListenableInterface {
 
     private final Gson gson;
 
-    private ExecutorService executorService;
+    private final ExecutorService executorService;
 
     public ConnectionHandler(Socket socket, Server server) {
         this.server = server;
         this.socket = socket;
         this.requestListenable = new RequestListenable();
         this.gson = new Gson();
-        this.executorService = Executors.newSingleThreadExecutor();
+        this.executorService = Executors.newCachedThreadPool();
         startConnection();
     }
 
@@ -55,8 +55,9 @@ public class ConnectionHandler implements Runnable, RequestListenableInterface {
             switch (request.getPropertyName()) {
                 case "nickname" -> {
                     this.nickname = request.getString();
-                    executorService.submit(() -> server.enqueuePlayer(this));
-                    notifyAll();
+                    //executorService.submit(() -> server.enqueuePlayer(this));
+                    //this.notifyAll();
+                    server.enqueuePlayer(this);
                 }
                 case "first_player" -> this.server.setNumPlayers(request.getValues()[0]);
                 default -> fireRequest(request);

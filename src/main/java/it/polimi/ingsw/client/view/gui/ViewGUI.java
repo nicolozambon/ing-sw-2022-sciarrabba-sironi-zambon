@@ -139,8 +139,10 @@ public class ViewGUI extends Application implements RequestListenableInterface, 
                     this.model = new ThinModel(answerEvent.getModel());
                 }
                 case "error" -> {
-                    changeScene("errorScene");
-                    currentController.optionsHandling(new ArrayList<>(List.of(answerEvent.getMessage())));
+                    Stage stage = new Stage();
+                    stage.setScene(sceneMap.get("errorScene"));
+                    stage.show();
+                    controllerMap.get("errorScene").optionsHandling(new ArrayList<>(List.of(answerEvent.getMessage())));
                 }
                 case "stop" -> {
                     System.out.println(answerEvent.getMessage());

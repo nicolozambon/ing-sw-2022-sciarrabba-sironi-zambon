@@ -18,8 +18,6 @@ public class Server {
     private final List<GameHandler> games;
     private final Map<String, ConnectionHandler> players = new HashMap<>();
 
-    private final List<String> waitOption = new ArrayList<>(List.of("wait"));
-
     /**
      * Number of players for the match being built.
      */
@@ -72,19 +70,12 @@ public class Server {
     }
 
     public void enqueuePlayer(ConnectionHandler connectionHandler) {
-        while (!isNicknameUnique(connectionHandler)) {
-            try {
-                synchronized (connectionHandler) {
-                    connectionHandler.wait();
-                }
-            } catch (InterruptedException e) {
-                e.printStackTrace();
+        if (isNicknameUnique(connectionHandler)) {
+            synchronized (queue) {
+                this.queue.add(connectionHandler);
+                connectionHandler.send(new AnswerEvent("wait"));
+                this.queue.notifyAll();
             }
-        }
-        synchronized (queue) {
-            this.queue.add(connectionHandler);
-            connectionHandler.send(new AnswerEvent("options", waitOption));
-            this.queue.notifyAll();
         }
     }
 
@@ -125,7 +116,7 @@ public class Server {
                         e.printStackTrace();
                     }
                 }
-                connectionHandler.send(new AnswerEvent("options", waitOption));
+                connectionHandler.send(new AnswerEvent("wait"));
             }
 
             players.values().forEach(c -> c.send(new AnswerEvent("lobby", players.keySet().stream().toList())));
@@ -148,7 +139,16 @@ public class Server {
     }
 
     private boolean isNicknameUnique(ConnectionHandler connectionHandler) {
+        if (connectionHandler.getNickname() == null) return false;
 
+        if (connectionHandler.getNickname().length() > 12) {
+            connectionHandler.send(new AnswerEvent("error", "Nickname too long"));
+            return false;
+        }
+        if (connectionHandler.getNickname().length() < 1) {
+            connectionHandler.send(new AnswerEvent("error", "Nickname too short"));
+            return false;
+        }
         synchronized (players) {
             if (players.containsKey(connectionHandler.getNickname())) {
                 connectionHandler.send(new AnswerEvent("error", "Nickname already taken!"));
@@ -181,8 +181,10 @@ public class Server {
             queue.remove(connectionHandler);
         }
         synchronized (players) {
-            players.values().stream().filter(c -> !c.equals(connectionHandler)).forEach(this::disconnectConnection);
-            players.clear();
+            if (players.containsValue(connectionHandler)) {
+                players.values().stream().filter(c -> !c.equals(connectionHandler)).forEach(this::disconnectConnection);
+                players.clear();
+            }
         }
         synchronized (games) {
             for (GameHandler game : games) {

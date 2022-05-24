@@ -11,15 +11,14 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import static java.lang.Thread.sleep;
+
 public class GameHandler implements Runnable {
 
     private final Model model;
     private final Controller controller;
     private final Map<Integer, ConnectionHandler> playersConnection;
     private final VirtualView virtualView;
-    private static final List<String> waitOptions = new ArrayList<>() {{
-        this.add("wait");
-    }};
 
     public GameHandler(Map<String, ConnectionHandler> playersConnection) {
         this.playersConnection = new HashMap<>();
@@ -49,18 +48,16 @@ public class GameHandler implements Runnable {
         playersConnection.values().forEach(connectionHandler -> connectionHandler.send(answerEvent));
     }
 
-    public synchronized void launchOptionsAnswerEvent() {
+    public void launchOptionsAnswerEvent() {
         int currentPlayerId = controller.getActivePlayer().getId();
-        waitOptions.add(controller.getActivePlayer().getNickname());
         List<String> options = controller.getOptions();
         for (int id : playersConnection.keySet()) {
             if (currentPlayerId == id) {
                 playersConnection.get(id).send(new AnswerEvent("options", options));
             } else {
-                playersConnection.get(id).send(new AnswerEvent("options", waitOptions));
+                playersConnection.get(id).send(new AnswerEvent("wait", controller.getActivePlayer().getNickname()));
             }
         }
-        waitOptions.remove(controller.getActivePlayer().getNickname());
     }
 
     public synchronized void launchErrorAnswerEvent(int playerId, AnswerEvent answerEvent) {
