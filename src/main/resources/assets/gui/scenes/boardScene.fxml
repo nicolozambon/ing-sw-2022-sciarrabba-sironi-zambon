@@ -1712,7 +1712,7 @@
                                                 <DropShadow />
                                              </effect>
                                              <GridPane.margin>
-                                                <Insets left="-52.0" top="-35.0" />
+                                                <Insets left="-45.0" top="-40.0" />
                                              </GridPane.margin>
                                           </ImageView>
                                           <ImageView fitHeight="39.0" fitWidth="85.0" layoutX="117.0" layoutY="71.0" pickOnBounds="true" preserveRatio="true" rotate="45.0" GridPane.columnIndex="7">
