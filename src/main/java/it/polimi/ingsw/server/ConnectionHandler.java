@@ -15,6 +15,8 @@ import java.net.Socket;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
+import static java.lang.Thread.sleep;
+
 public class ConnectionHandler implements Runnable, RequestListenableInterface {
 
 
@@ -49,19 +51,26 @@ public class ConnectionHandler implements Runnable, RequestListenableInterface {
         }
     }
 
-    public synchronized void read(){
+    private void read(){
         try {
             RequestEvent request = this.gson.fromJson(inputStream.readUTF(), RequestEvent.class);
             switch (request.getPropertyName()) {
                 case "nickname" -> {
                     this.nickname = request.getString();
-                    //executorService.submit(() -> server.enqueuePlayer(this));
-                    //this.notifyAll();
                     server.enqueuePlayer(this);
                 }
                 case "first_player" -> this.server.setNumPlayers(request.getValues()[0]);
-                default -> fireRequest(request);
+                default -> executorService.submit(() -> {
+                    try {
+                        fireRequest(request);
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                        server.removeConnection(this);
+                        stopConnection();
+                    }
+                });
             }
+            sleep(50);
         } catch (OutOfBoundsException e) {
             send(new AnswerEvent("error", "Number of players not possible!"));
         } catch (Exception e) {

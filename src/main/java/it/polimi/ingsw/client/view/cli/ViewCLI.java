@@ -50,7 +50,7 @@ public class ViewCLI implements AnswerListener, RequestListenableInterface {
             case "wait" -> {
                 if (this.model != null) System.out.println(this.model);
                 System.out.print(optionLister.list(answerEvent.getPropertyName()));
-                if (answerEvent.getMessage() != null) System.out.print(", it is " + answerEvent.getMessage() + " turn");
+                if (answerEvent.getMessage() != null) System.out.print(", it is " + answerEvent.getMessage() + "'s turn");
                 System.out.print("\n");
             }
             case "error" -> {

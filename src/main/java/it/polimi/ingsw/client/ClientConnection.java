@@ -15,6 +15,8 @@ import java.net.Socket;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
+import static java.lang.Thread.sleep;
+
 public class ClientConnection implements AnswerListenableInterface, RequestListener, Runnable {
 
     private final String ip;
@@ -59,17 +61,17 @@ public class ClientConnection implements AnswerListenableInterface, RequestListe
         System.out.println("Connection established");
     }
 
-    public synchronized void read() {
+    private void read() {
         try {
             AnswerEvent answer = gson.fromJson(inputStream.readUTF(), AnswerEvent.class);
             executorService.submit(() -> this.fireAnswer(answer));
+            sleep(50);
             //if (answer.getPropertyName().equals("stop")) stopClient();
         } catch (Exception e) {
             e.printStackTrace();
             stopClient();
         }
     }
-
     @Override
     public void run() {
         while (active) {

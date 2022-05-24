@@ -38,7 +38,7 @@ public class VirtualView implements RequestListener, RequestListenableInterface,
     }
 
     @Override
-    public void onRequestEvent(RequestEvent requestEvent) throws IllegalAccessException {
+    public synchronized void onRequestEvent(RequestEvent requestEvent) throws IllegalAccessException {
         try {
             fireRequest(requestEvent);
             gameHandler.launchOptionsAnswerEvent();
