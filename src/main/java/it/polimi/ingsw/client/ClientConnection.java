@@ -31,7 +31,7 @@ public class ClientConnection implements AnswerListenableInterface, RequestListe
 
     private final Gson gson;
 
-    private ExecutorService executorService;
+    private final ExecutorService executorService;
 
     public ClientConnection(String ip) throws IOException {
         this.ip = ip;
@@ -61,6 +61,14 @@ public class ClientConnection implements AnswerListenableInterface, RequestListe
         System.out.println("Connection established");
     }
 
+    @Override
+    public void run() {
+        while (active) {
+            read();
+        }
+        stopClient();
+    }
+
     private void read() {
         try {
             AnswerEvent answer = gson.fromJson(inputStream.readUTF(), AnswerEvent.class);
@@ -72,12 +80,15 @@ public class ClientConnection implements AnswerListenableInterface, RequestListe
             stopClient();
         }
     }
-    @Override
-    public void run() {
-        while (active) {
-            read();
+
+    private void send(RequestEvent request) {
+        try {
+            outputStream.writeUTF(gson.toJson(request));
+            outputStream.flush();
+        }catch(Exception e){
+            e.printStackTrace();
+            stopClient();
         }
-        stopClient();
     }
 
     public void stopClient() {
@@ -90,16 +101,6 @@ public class ClientConnection implements AnswerListenableInterface, RequestListe
             e.printStackTrace();
         } finally {
             active = false;
-        }
-    }
-
-    public void send(RequestEvent request) {
-        try {
-            outputStream.writeUTF(gson.toJson(request));
-            outputStream.flush();
-        }catch(Exception e){
-            e.printStackTrace();
-            stopClient();
         }
     }
 

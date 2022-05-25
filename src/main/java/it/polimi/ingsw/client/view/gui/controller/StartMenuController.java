@@ -16,8 +16,6 @@ public class StartMenuController implements GUIController{
     private ViewGUI gui;
 
     @FXML
-    private Button connectButton;
-    @FXML
     private TextField ipTextField;
     @FXML
     private TextField nicknameTextField;
@@ -31,10 +29,6 @@ public class StartMenuController implements GUIController{
     private RadioButton onlineRadioButton;
     @FXML
     private Pane firstPlayerPane;
-    @FXML
-    private Button twoPlayersButton;
-    @FXML
-    private Button threePlayersButton;
 
     @FXML
     private void toggleSelection() {

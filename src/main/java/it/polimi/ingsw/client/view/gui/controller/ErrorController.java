@@ -11,11 +11,8 @@ public class ErrorController implements GUIController {
     private ViewGUI gui;
 
     @FXML
-    private Text errorText;
-
-    @FXML
     private void okButtonOnClick() {
-
+        gui.getErrorStage().close();
     }
 
     @Override
@@ -25,6 +22,6 @@ public class ErrorController implements GUIController {
 
     @Override
     public void optionsHandling(List<String> options) {
-        errorText.setText(options.get(0));
+
     }
 }
