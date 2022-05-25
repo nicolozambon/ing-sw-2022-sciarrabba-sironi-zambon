@@ -7,6 +7,7 @@ import it.polimi.ingsw.model.card.CharacterCard;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Objects;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -27,9 +28,9 @@ public class CLI {
     private final ArrayList<CharacterCard> characterCards = new ArrayList<>();
     /*
     private ArrayList<AssistantCardContent> = new ArrayList<>();
+    */
 
 
-     */
     public CLI(Integer playersNumber) {
         final AssetsLoader loader = new AssetsLoader();
         this.islandLinkers = loader.getIslandLinkers();
@@ -139,8 +140,9 @@ public class CLI {
         if (placeholder != null) {
             int i = placeholder.get("start_row");
             int j = placeholder.get("start_col");
-            board[i][j] = colorsMap.get(color) + board[i][j].toLowerCase();
-            board[i][j+2] = board[i][j] + ANSI_RESET;
+            board[i][j] = colorsMap.get(color) + pawnsMap.get(identifier.toLowerCase()) + ANSI_RESET;
+            board[i][j+1] = "";
+            board[i][j+2] = "";
 
         } else {
             System.out.println("ERROR. There is no space for a new pawn. (Identifier=" + identifier + ")."); // To be removed --> new Exception
@@ -217,133 +219,89 @@ public class CLI {
         return rotated;
     }
 
-    private String getPrintableBoard(String[][] board, boolean removePlaceholders) {
-        StringBuilder builder = new StringBuilder();
-        int counter = 0;
-        String oldString = null;
-        String identifier = null;
-        for (String[] row : board) {
-            for (String c : row) {
-                // To be changed
-                if (c.length() > 4) {
-                    if (removePlaceholders && (isLetter(c.charAt(5)) || isDigit(c.charAt(5)))) {
-                        if (isLetter(c.charAt(5)) && Character.isLowerCase(c.charAt(5))) {
-                            identifier = String.valueOf(c.charAt(5));
-                            oldString = c;
-                        }
-                        if (identifier != null) {
-                            builder.append(oldString.replace(identifier, String.valueOf(pawnsMap.get(identifier).charAt(counter))));
-                            if(counter < 2) {
-                                counter++;
-                            } else {
-                                identifier = null;
-                                counter = 0;
-                            }
-                        } else {
-                            builder.append(' ');
-                        }
-                    } else {
-                        builder.append(c);
-                    }
-                } else {
-                    if (removePlaceholders && (isLetter(c.charAt(0)) || isDigit(c.charAt(0)))) {
-                        if (isLetter(c.charAt(0)) && Character.isLowerCase(c.charAt(0))) {
-                            identifier = c;
-                        }
-                        if (identifier != null) {
-                            builder.append(pawnsMap.get(identifier).charAt(counter));
-                            if(counter < 2) {
-                                counter++;
-                            } else {
-                                identifier = null;
-                                counter = 0;
-                            }
-                        } else {
-                            builder.append(' ');
-                        }
-                    } else {
-                        builder.append(c);
-                    }
-                }
-
-            }
-            builder.append('\n');
-        }
-
-        int cardTextWidth = 18;
-        int cardTextHeight = 13;
-        int index = 0;
-
-        int builderRowWidth;
-        int previousBuilderRowWidth = 0;
-        boolean isFirst = true;
-        ArrayList<Integer> builderRowsWidth = new ArrayList<>();
+    private String[][] removePlaceholdersFromBoard(String[][] board) {
         for (int i=0; i<board.length; i++) {
-            if (isFirst) {
-                builderRowWidth = builder.indexOf("\n") + 1;
-                isFirst = false;
-            } else {
-                builderRowWidth = builder.indexOf("\n", previousBuilderRowWidth) + 1;
+            for (int j=0; j<board[0].length; j++) {
+                if (board[i][j].length() == 1 && (isLetter(board[i][j].charAt(0)) || isDigit(board[i][j].charAt(0)))) {
+                    board[i][j] = " ";
+                }
             }
-            builderRowsWidth.add(builderRowWidth-previousBuilderRowWidth);
-            previousBuilderRowWidth = builderRowWidth;
         }
+        return board;
+    }
 
+    private String boardMatrixToString(String[][] board) {
+        StringBuilder builder = new StringBuilder();
+        for (int i=0; i<board.length; i++) {
+            for (int j=0; j<board[0].length; j++) {
+                builder.append(board[i][j]);
+            }
+            builder.append("\n");
+        }
+        return builder.toString();
+    }
+
+    private String[][] addCharacterCardsToBoard(String[][] board) {
         String cardTitle = "CARD: 1   COINS: 3";
         String cardText;
         int cardNumber = 0;
+        int cardTextWidth = 18;
+        int cardTextHeight = 13;
 
-
-
-        int charPositionInCard;
-
-        for (int c=0; c<builder.length(); c++) {
-
-            if (builder.charAt(c) == '$') {
-                for (int j=0; j<cardTitle.length(); j++) {
-                    builder.setCharAt(c+j, cardTitle.charAt(j));
-                }
-            }
-
-            if (builder.charAt(c) == '!') {
-
-                cardText = this.characterCards.get(cardNumber).getEffect();
-                // cardText = "Choose an Island and resolve the Island as if Mother Nature had ended her movement there. Mother Nature will still move and the Island where she ends her movement will also be resolved.";
-                Pattern p = Pattern.compile(".{1," + Integer.toString(cardTextWidth) + "}(\\s+|$)");
-                Matcher m = p.matcher(cardText);
-                ArrayList<String> cardTextLines = new ArrayList<>();
-                while(m.find()) {
-                    cardTextLines.add(m.group().trim());
-                }
-
-                cardNumber += 1;
-
-                for (int i=0; i<min(cardTextHeight, cardTextLines.size()); i++) {
-
-
-                    for (int j=0; j<min(cardTextWidth, cardTextLines.get(i).length()); j++) {
-
-                        charPositionInCard = i * cardTextWidth + j;
-                        // index = c + j + charPositionInCard/cardTextWidth * builderRowsWidth.get(i+11);
-                        // index = (c + j) + (i * builderRowsWidth.get(i+11));
-                        index = (c + j);
-                        for (int k=11; k<i+11; k++) {
-                            index += builderRowsWidth.get(k+1);
-                        }
-                        char selectedChar = cardTextLines.get(i).charAt(j);
-
-                        builder.setCharAt(index, selectedChar);
-
-
+        for (int i=0; i<board.length; i++) {
+            for (int j=0; j<board[0].length; j++) {
+                if (Objects.equals(board[i][j], "$")) {
+                    for (int k=0; k<cardTitle.length(); k++) {
+                        board[i][j+k] = String.valueOf(cardTitle.charAt(k));
                     }
-
                 }
+                if (Objects.equals(board[i][j], "!")) {
+                    cardText = this.characterCards.get(cardNumber).getEffect();
+                    Pattern p = Pattern.compile(".{1," + Integer.toString(cardTextWidth) + "}(\\s+|$)");
+                    Matcher m = p.matcher(cardText);
+                    ArrayList<String> cardTextLines = new ArrayList<>();
+                    while(m.find()) {
+                        cardTextLines.add(m.group().trim());
+                    }
+                    cardNumber += 1;
+                    for (int k=0; k<min(cardTextHeight, cardTextLines.size()); k++) {
+                        for (int h=0; h<min(cardTextWidth, cardTextLines.get(k).length()); h++) {
 
+                            board[i+k][j+h] = String.valueOf(cardTextLines.get(k).charAt(h));
+
+                        }
+                    }
+                }
             }
+        }
+        return board;
+    }
 
+    private String getPrintableBoard(String[][] board, boolean removePlaceholders) {
+
+        if (removePlaceholders) {
+            board = this.removePlaceholdersFromBoard(board);
         }
 
-        return builder.toString();
+        System.out.println(this.boardMatrixToString(board));
+
+        /*
+        String[][] test = this.removePlaceholdersFromBoard(board);
+
+        System.out.println(this.boardMatrixToString(board));
+
+        StringBuilder builder = this.boardToString(test, false);
+
+         */
+
+        //StringBuilder builder = this.boardToString(test, removePlaceholders);
+
+        board = this.addCharacterCardsToBoard(board);
+
+
+        System.out.println(this.boardMatrixToString(board));
+
+        return this.boardMatrixToString(board);
     }
 
     private String[][] buildSetOfIslands() {
@@ -602,7 +560,7 @@ public class CLI {
         int cardRowOnSet;
         int cardColOnSet;
         int cardBaseRowOnSet = 39;
-        int cardBaseColOnSet = 150;
+        int cardBaseColOnSet = 158;
 
         String[][] card = this.assistantCardTest;
 
@@ -613,8 +571,6 @@ public class CLI {
                 gameBoard[cardRowOnSet][cardColOnSet] = card[cardRow][cardCol];
             }
         }
-
-
 
         for (int i=0; i<gameBoard.length; i++) {
             for (int j=0; j<gameBoard[i].length; j++) {
@@ -659,6 +615,7 @@ public class CLI {
                         }
                          */
                     }
+
                     mainSchoolOffset = this.schools.get(1)[0].length + space + (setOfIslands[0].length - this.schools.get(0)[0].length) / 2;
                     if (i >= setOfIslands.length && j >= mainSchoolOffset && j < setOfIslands[0].length + space + this.schools.get(1)[0].length) {
                         if (j - mainSchoolOffset < this.schools.get(0)[0].length) {
