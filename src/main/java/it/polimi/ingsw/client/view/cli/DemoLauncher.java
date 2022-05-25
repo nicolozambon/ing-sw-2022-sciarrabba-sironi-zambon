@@ -14,15 +14,21 @@ public class DemoLauncher {
 
         cli.addCharacterCard(1, 5, "lorem ipsum first card");
         cli.addCharacterCard(1, 5, "lorem ipsum second card");
-        cli.addCharacterCard(1, 5, "lorem ipsum third card");
+        cli.addCharacterCard(1, 5, "lorem ipsum third card lorem ipsum lorem ipsum lorem ipsum");
 
         cli.addStudentToSchoolDiningRoom(0, Color.RED);
         cli.addStudentToSchoolDiningRoom(0, Color.BLUE);
         cli.addProfessorToSchool(0, Color.BLUE);
         cli.addStudentToCloud(0, Color.BLUE);
 
+        cli.addStudentToSchoolDiningRoom(2, Color.BLUE);
+        cli.addStudentToSchoolDiningRoom(2, Color.BLUE);
 
-        cli.addStudentToSchoolDiningRoom(1, Color.BLUE);
+        cli.addStudentToSchoolEntrance(0, Color.BLUE);
+        cli.addStudentToSchoolEntrance(0, Color.BLUE);
+        cli.addStudentToSchoolEntrance(0, Color.BLUE);
+        cli.addStudentToSchoolEntrance(0, Color.RED);
+
         cli.addStudentToSchoolDiningRoom(1, Color.BLUE);
         cli.addStudentToSchoolDiningRoom(1, Color.BLUE);
         cli.addStudentToSchoolDiningRoom(1, Color.BLUE);

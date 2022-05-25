@@ -100,11 +100,14 @@ public class CLI {
         this.put("n", " ♟ ");
     }};
 
-    private Map<String, Integer> getFirstAvailablePlaceholder(String[][] board, String identifier, Object color) {
+    private Map<String, Integer> getFirstAvailablePlaceholder(String[][] board, String identifier, Object color, boolean isAllColorsArea) {
         Map<String, Integer> placeholder = new HashMap<>();
         String colorRow = "0";
         if (identifier.equals("S") || identifier.equals("P")) {
             colorRow = String.valueOf(Character.forDigit(positionMap.get(color), 10));
+        }
+        if (isAllColorsArea) {
+            colorRow = "A";
         }
         int counter = 0;
         for (int i = 0; i < board.length; i++) {
@@ -128,14 +131,14 @@ public class CLI {
         return null;
     }
 
-    private void addPawnToBoard(String[][] board, Object color, String identifier) {
+    private void addPawnToBoard(String[][] board, Object color, String identifier, boolean isAllColorsArea) {
         Map<String, Integer> placeholder = null;
         if (!(color instanceof Color) && !(color instanceof TowerColor)) {
             //TODO: handle exception
             System.out.println("Error: not valid color.");
         }
         if (pawnsMap.containsKey(identifier.toLowerCase())) {
-            placeholder = this.getFirstAvailablePlaceholder(board, identifier, color);
+            placeholder = this.getFirstAvailablePlaceholder(board, identifier, color, isAllColorsArea);
         }
         if (placeholder != null) {
             int i = placeholder.get("start_row");
@@ -163,39 +166,39 @@ public class CLI {
     // SCHOOLS METHODS
     protected void addStudentToSchoolDiningRoom(int id, Color color) {
         String[][] board = this.findBoardBy(id, this.schools);
-        this.addPawnToBoard(board, color, "S");
+        this.addPawnToBoard(board, color, "S", false);
     }
     protected void addStudentToSchoolEntrance(int id, Color color) {
         String[][] board = this.findBoardBy(id, this.schools);
-        this.addPawnToBoard(board, color, "E");
+        this.addPawnToBoard(board, color, "S", true);
     }
     protected void addProfessorToSchool(int id, Color color) {
         String[][] board = this.findBoardBy(id, this.schools);
-        this.addPawnToBoard(board, color, "P");
+        this.addPawnToBoard(board, color, "P", false);
     }
     protected void addTowerToSchool(int id, TowerColor color) {
         String[][] board = this.findBoardBy(id, this.schools);
-        this.addPawnToBoard(board, color, "T");
+        this.addPawnToBoard(board, color, "T", false);
     }
 
     // ISLANDS METHODS
     protected void addStudentToIsland(int id, Color color) {
         String[][] board = this.findBoardBy(id, this.islands);
-        this.addPawnToBoard(board, color, "S");
+        this.addPawnToBoard(board, color, "S", true);
     }
     protected void addMotherNatureToIsland(int id) {
         String[][] board = this.findBoardBy(id, this.islands);
-        this.addPawnToBoard(board, Color.RED, "N");
+        this.addPawnToBoard(board, Color.RED, "N", false);
     }
     protected void addTowerToIsland(int id, TowerColor color) {
         String[][] board = this.findBoardBy(id, this.islands);
-        this.addPawnToBoard(board, color, "T");
+        this.addPawnToBoard(board, color, "T", false);
     }
 
     // CLOUDS METHODS
     protected void addStudentToCloud(int id, Color color) {
         String[][] board = this.findBoardBy(id, this.clouds);
-        this.addPawnToBoard(board, color, "S");
+        this.addPawnToBoard(board, color, "S", false);
     }
 
     @Deprecated
@@ -637,7 +640,7 @@ public class CLI {
         // Build game board
         String[][] gameBoard = this.buildGameBoard(setOfIslands);
         // Print game board
-        System.out.println(this.getPrintableBoard(gameBoard, true));
+        System.out.println(this.getPrintableBoard(gameBoard, false));
     }
 
 }
