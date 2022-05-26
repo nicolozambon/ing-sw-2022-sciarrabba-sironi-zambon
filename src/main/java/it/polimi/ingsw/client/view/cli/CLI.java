@@ -33,21 +33,25 @@ public class CLI {
 
     private final int boardCoins;
 
+    private final ArrayList<String> nicknames;
+
     /*
     private ArrayList<AssistantCardContent> = new ArrayList<>();
     */
 
 
-    public CLI(Integer playersNumber) {
+    public CLI(Integer playersNumber, ArrayList<String> nicknames) {
         final AssetsLoader loader = new AssetsLoader();
         this.islandLinkers = loader.getIslandLinkers();
+
+        this.nicknames = nicknames;
 
         // Create schools
         boolean isMain = false;
         String[][] school;
         for (int i=0; i<playersNumber; i++) {
             school = loader.getSchool(isMain);
-            school = this.addCaptionToSchool(school, "nicolo", 5);
+            school = this.addCaptionToSchool(school, "Nicolò", 5);
             this.schools.add(school);
             isMain = true;
         }
@@ -568,7 +572,7 @@ public class CLI {
         int cardBaseRowOnSet = 41;
         int cardBaseColOnSet = 0;
         String[][] block = this.lastPlayedAssistantCardsContainer;
-        String title = "Last played assistant cards";
+        String title = "Last played assistant cards".toUpperCase();
 
         String label = String.valueOf(this.boardCoins);
         while (label.length() < 2) {
