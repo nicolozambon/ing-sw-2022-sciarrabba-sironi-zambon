@@ -1,3 +1,8 @@
 .split-pane-divider {
     -fx-background-color: transparent;
  }
+
+.lobbyBG {
+    -fx-background-image: url("../images/Eriantys_sfocatura.jpg");
+    -fx-background-position: center;
+}
