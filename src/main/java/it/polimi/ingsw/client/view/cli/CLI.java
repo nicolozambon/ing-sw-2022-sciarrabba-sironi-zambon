@@ -184,7 +184,7 @@ public class CLI {
     // ISLANDS METHODS
     protected void addStudentToIsland(int id, Color color) {
         String[][] board = this.findBoardBy(id, this.islands);
-        this.addPawnToBoard(board, color, "S", true);
+        this.addPawnToBoard(board, color, "S", false);
     }
     protected void addMotherNatureToIsland(int id) {
         String[][] board = this.findBoardBy(id, this.islands);
@@ -198,7 +198,7 @@ public class CLI {
     // CLOUDS METHODS
     protected void addStudentToCloud(int id, Color color) {
         String[][] board = this.findBoardBy(id, this.clouds);
-        this.addPawnToBoard(board, color, "S", false);
+        this.addPawnToBoard(board, color, "S", true);
     }
 
     @Deprecated
@@ -222,10 +222,31 @@ public class CLI {
         return rotated;
     }
 
+    private String[][] addStudentsCounterToIsland(String[][] island, Color color, int counter) {
+        String label = String.valueOf(counter);
+        while (label.length() < 2) {
+            label = "0" + label;
+        }
+        label = "x" + label;
+        int offset_x = 5;
+        int offset_y = positionMap.get(color) + 1;
+        island[offset_y][offset_x] = label;
+        island[offset_y][offset_x+1] = "";
+        island[offset_y][offset_x+2] = "";
+        return island;
+    }
+
+    protected void addStudentsToIsland(int id, Color color, int amount) {
+        String[][] board = this.findBoardBy(id, this.islands);
+        board = this.addStudentsCounterToIsland(board, color, amount);
+        this.addPawnToBoard(board, color, "S", false);
+
+    }
+
     private String[][] removePlaceholdersFromBoard(String[][] board) {
         for (int i=0; i<board.length; i++) {
             for (int j=0; j<board[0].length; j++) {
-                if (board[i][j].length() == 1 && (isLetter(board[i][j].charAt(0)) || isDigit(board[i][j].charAt(0)))) {
+                if (board[i][j].length() == 1 && ((isLetter(board[i][j].charAt(0)) && Character.isUpperCase(board[i][j].charAt(0))) || isDigit(board[i][j].charAt(0)))) {
                     board[i][j] = " ";
                 }
             }
@@ -480,6 +501,9 @@ public class CLI {
         int cloudW = this.clouds.get(0)[0].length;
         int cloudVerticalSpace = 1;
 
+        int cloudCounter = 0; // MUST UPDATE THIS VALUE
+        boolean blankLine = false;
+
         int cloudRectangleRows = (cloudH + cloudVerticalSpace) * this.clouds.size() - cloudVerticalSpace;
 
         String[][] cloudsRectangle = new String[cloudRectangleRows][cloudW];
@@ -488,9 +512,14 @@ public class CLI {
             for (int j=0; j<cloudsRectangle[i].length; j++) {
 
                 if (i%(cloudH+cloudVerticalSpace) < cloudH) {
-                    cloudsRectangle[i][j] = this.clouds.get(0)[i%(cloudH+cloudVerticalSpace)][j];
+                    if (blankLine) {
+                        cloudCounter++;
+                        blankLine = false;
+                    }
+                    cloudsRectangle[i][j] = this.clouds.get(cloudCounter)[i%(cloudH+cloudVerticalSpace)][j];
                 } else {
                     cloudsRectangle[i][j] = " ";
+                    blankLine = true;
                 }
 
                 /*
@@ -640,7 +669,7 @@ public class CLI {
         // Build game board
         String[][] gameBoard = this.buildGameBoard(setOfIslands);
         // Print game board
-        System.out.println(this.getPrintableBoard(gameBoard, false));
+        System.out.println(this.getPrintableBoard(gameBoard, true));
     }
 
 }

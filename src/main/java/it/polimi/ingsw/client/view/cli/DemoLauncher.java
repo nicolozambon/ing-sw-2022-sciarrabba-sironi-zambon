@@ -19,7 +19,14 @@ public class DemoLauncher {
         cli.addStudentToSchoolDiningRoom(0, Color.RED);
         cli.addStudentToSchoolDiningRoom(0, Color.BLUE);
         cli.addProfessorToSchool(0, Color.BLUE);
+
         cli.addStudentToCloud(0, Color.BLUE);
+        cli.addStudentToCloud(1, Color.RED);
+        cli.addStudentToCloud(2, Color.YELLOW);
+
+
+        cli.addStudentsToIsland(5, Color.RED, 5);
+
 
         cli.addStudentToSchoolDiningRoom(2, Color.BLUE);
         cli.addStudentToSchoolDiningRoom(2, Color.BLUE);
