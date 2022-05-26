@@ -3,6 +3,7 @@ package it.polimi.ingsw.client.view.cli;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import it.polimi.ingsw.enums.Color;
+import it.polimi.ingsw.enums.Wizard;
 import it.polimi.ingsw.events.RequestEvent;
 
 import java.io.IOException;
@@ -54,6 +55,9 @@ public class OptionHandler {
                         case "nickname" -> {
                             return setNickname(options.get(choice));
                         }
+                        case "chooseWizard" -> {
+                            return chooseWizard(options.get(choice));
+                        }
                         default -> {
                             if (options.get(choice).matches("card[2,6,7,8]")) {
                                 return extraActionInputHandler(options.get(choice));
@@ -66,6 +70,26 @@ public class OptionHandler {
 
         }
         return null;
+    }
+
+    private RequestEvent chooseWizard(String option) throws InterruptedException {
+        int choice = -1;
+        boolean error = true;
+        while (error) {
+            System.out.println(this.optionSelected.get(option));
+            try {
+                while (System.in.available() == 0) {
+                    Thread.sleep(100);
+                }
+                choice = Wizard.valueOf(stdin.nextLine().toUpperCase()).ordinal();
+                error = false;
+            } catch (IllegalArgumentException e) {
+                System.out.println("Not a valid Wizard retry!");
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+        return new RequestEvent("chooseWizard", this.playerId, choice);
     }
 
     private RequestEvent twoInputHandler(String option) throws InterruptedException {
@@ -90,7 +114,7 @@ public class OptionHandler {
             } catch (NumberFormatException e) {
                 System.out.println("Not numbers retry!");
             } catch (IOException e) {
-                throw new RuntimeException(e);
+                e.printStackTrace();
             }
         }
         //System.out.println(student + " " + island);

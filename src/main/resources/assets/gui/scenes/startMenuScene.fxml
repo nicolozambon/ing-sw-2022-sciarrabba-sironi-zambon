@@ -87,5 +87,10 @@
             </Button>
          </children>
       </Pane>
+      <Pane id="waitPane" layoutX="262.0" layoutY="207.5" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="100.0" prefWidth="200.0" style="visibility: false; -fx-background-color: #eee;">
+         <children>
+            <Text layoutX="50.0" layoutY="46.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Please wait it is not your turn!" textAlignment="CENTER" wrappingWidth="100.0" />
+         </children>
+      </Pane>
    </children>
 </Pane>

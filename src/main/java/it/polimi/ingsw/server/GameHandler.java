@@ -6,16 +6,13 @@ import it.polimi.ingsw.model.Model;
 import it.polimi.ingsw.model.ModelBuilder;
 import it.polimi.ingsw.model.Player;
 
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 public class GameHandler implements Runnable {
 
     private final Model model;
     private final Controller controller;
     private final Map<Integer, ConnectionHandler> playersConnection;
-    private final VirtualView virtualView;
 
     public GameHandler(Map<String, ConnectionHandler> playersConnection) {
         this.playersConnection = new HashMap<>();
@@ -25,39 +22,38 @@ public class GameHandler implements Runnable {
             playersConnection.get(player.getNickname()).send(new AnswerEvent("set_id", player.getId()));
             this.playersConnection.put(player.getId(), playersConnection.get(player.getNickname()));
         }
-        this.virtualView = new VirtualView();
     }
 
     @Override
     public void run() {
-        this.model.addAnswerListener(this.virtualView);
+        VirtualView virtualView = new VirtualView(this);
+        this.model.addAnswerListener(virtualView);
 
-        this.virtualView.addRequestListener(this.controller);
+        virtualView.addRequestListener(this.controller);
 
         playersConnection.values().forEach(c -> c.addRequestListener(virtualView));
 
-        this.virtualView.setGameHandler(this);
-        this.launchUpdateAnswerEvent(new AnswerEvent("update", this.model));
-        this.launchOptionsAnswerEvent();
+        launchAnswerEventEveryone(new AnswerEvent("update", this.model));
+        launchAnswerEventEveryone(new AnswerEvent("options", controller.getOptions()));
     }
 
-    public synchronized void launchUpdateAnswerEvent(AnswerEvent answerEvent) {
+    public synchronized void launchAnswerEventEveryone(AnswerEvent answerEvent) {
         playersConnection.values().forEach(connectionHandler -> connectionHandler.send(answerEvent));
     }
 
-    public void launchOptionsAnswerEvent() {
+    public void launchAnswerEventCurrentPlayer(AnswerEvent answerEvent) {
         int currentPlayerId = controller.getActivePlayer().getId();
-        List<String> options = controller.getOptions();
+        AnswerEvent waitEvent = new AnswerEvent("wait", controller.getActivePlayer().getNickname());
         for (int id : playersConnection.keySet()) {
             if (currentPlayerId == id) {
-                playersConnection.get(id).send(new AnswerEvent("options", options));
+                playersConnection.get(id).send(answerEvent);
             } else {
-                playersConnection.get(id).send(new AnswerEvent("wait", controller.getActivePlayer().getNickname()));
+                playersConnection.get(id).send(waitEvent);
             }
         }
     }
 
-    public synchronized void launchErrorAnswerEvent(int playerId, AnswerEvent answerEvent) {
+    public synchronized void launchAnswerEventPlayer(int playerId, AnswerEvent answerEvent) {
         playersConnection.get(playerId).send(answerEvent);
     }
 
@@ -68,5 +64,4 @@ public class GameHandler implements Runnable {
     protected List<ConnectionHandler> getConnections() {
         return playersConnection.values().stream().toList();
     }
-
 }

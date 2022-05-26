@@ -11,15 +11,12 @@ import java.lang.reflect.InvocationTargetException;
 
 public class VirtualView implements RequestListener, RequestListenableInterface, AnswerListener {
 
-    private GameHandler gameHandler;
+    private final GameHandler gameHandler;
     private final RequestListenable requestListenable;
 
-    public VirtualView() {
-        this.requestListenable = new RequestListenable();
-    }
-
-    public void setGameHandler(GameHandler gameHandler) {
+    public VirtualView(GameHandler gameHandler) {
         this.gameHandler = gameHandler;
+        this.requestListenable = new RequestListenable();
     }
 
     @Override
@@ -41,19 +38,22 @@ public class VirtualView implements RequestListener, RequestListenableInterface,
     public synchronized void onRequestEvent(RequestEvent requestEvent) throws IllegalAccessException {
         try {
             fireRequest(requestEvent);
-            gameHandler.launchOptionsAnswerEvent();
         } catch (InvocationTargetException e) {
             e.printStackTrace();
-            gameHandler.launchErrorAnswerEvent(requestEvent.getPlayerId(), new AnswerEvent("error", e.getCause().getMessage()));
+            gameHandler.launchAnswerEventPlayer(requestEvent.getPlayerId(), new AnswerEvent("error", e.getCause().getMessage()));
         } catch (NoSuchMethodException e) {
             e.printStackTrace();
-            gameHandler.launchErrorAnswerEvent(requestEvent.getPlayerId(), new AnswerEvent("error", "Bad Request! Retry"));
+            gameHandler.launchAnswerEventPlayer(requestEvent.getPlayerId(), new AnswerEvent("error", "Bad Request! Retry"));
         }
 
     }
 
     @Override
     public void onAnswerEvent(AnswerEvent answerEvent) {
-        gameHandler.launchUpdateAnswerEvent(answerEvent);
+        switch (answerEvent.getPropertyName()) {
+            case "update" -> gameHandler.launchAnswerEventEveryone(answerEvent);
+            case "options" -> gameHandler.launchAnswerEventCurrentPlayer(answerEvent);
+            case "wait" -> gameHandler.launchAnswerEventPlayer(answerEvent.getNum(), new AnswerEvent(answerEvent.getPropertyName()));
+        }
     }
 }

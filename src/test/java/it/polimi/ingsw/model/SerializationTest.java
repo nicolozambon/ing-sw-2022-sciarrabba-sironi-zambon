@@ -19,8 +19,6 @@ public class SerializationTest {
         names.add("Pippo");
         Model model = new ModelBuilder().buildModel(names);
         String string = gson.toJson(model);
-        VirtualView vv = new VirtualView();
-        model.addAnswerListener(vv);
 
         Tower tower = model.getPlayers().get(0).getSchool().getTowersBoard().getPawns().get(0);
         System.out.println(string);

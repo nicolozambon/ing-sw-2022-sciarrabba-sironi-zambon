@@ -2,6 +2,7 @@ package it.polimi.ingsw.model;
 
 import it.polimi.ingsw.enums.Color;
 import it.polimi.ingsw.enums.TowerColor;
+import it.polimi.ingsw.enums.Wizard;
 import it.polimi.ingsw.exceptions.CardException;
 import it.polimi.ingsw.exceptions.InvalidActionException;
 import it.polimi.ingsw.exceptions.NotEnoughCoinsException;
@@ -23,6 +24,8 @@ public class Player {
 
     private final Deck<AssistantCard> assistantCardDeck;
     private final Deck<AssistantCard> discardPileDeck;
+
+    private Wizard wizard;
 
 
     protected Player(int id, String nickname, List<Student> students, List<Tower> towers, Deck<AssistantCard> assistantCardDeck) {
@@ -115,6 +118,14 @@ public class Player {
 
     protected int getAssistantCardDeckSize() {
         return this.assistantCardDeck.getCards().size();
+    }
+
+    protected Wizard getWizard() {
+        return wizard;
+    }
+
+    protected void setWizard(Wizard wizard) {
+        this.wizard = wizard;
     }
 
     public boolean equals(Object o) {

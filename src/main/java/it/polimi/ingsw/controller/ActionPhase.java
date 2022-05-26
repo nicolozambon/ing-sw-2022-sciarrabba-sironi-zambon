@@ -14,7 +14,7 @@ import java.util.Map;
 
 public class ActionPhase {
 
-    private final Model model;
+    private transient final Model model;
     private final Player currentPlayer;
     private final Map<String, Integer> callableMethod;
 

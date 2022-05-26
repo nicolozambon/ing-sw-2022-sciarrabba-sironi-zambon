@@ -2,6 +2,8 @@
   "nickname" : "Set your nickname",
   "first_player" : "Set number of player to play with",
 
+  "chooseWizard" : "Choose your Wizard",
+
   "playAssistantCard" : "Play an assistant card",
   "moveStudentToDiningRoom" : "Move student to dining room",
   "moveStudentToIsland" : "Move student to an island",
