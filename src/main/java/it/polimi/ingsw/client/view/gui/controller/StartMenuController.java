@@ -3,7 +3,6 @@ package it.polimi.ingsw.client.view.gui.controller;
 import it.polimi.ingsw.client.view.gui.ViewGUI;
 import it.polimi.ingsw.events.RequestEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextField;
 import javafx.scene.control.ToggleGroup;
@@ -39,8 +38,8 @@ public class StartMenuController implements GUIController{
     @FXML
     private void connectButtonOnClick() throws Exception {
         if (customRadioButton.isSelected()) gui.connect(ipTextField.getText(), nicknameTextField.getText());
-        if (localhostRadioButton.isSelected()) gui.connect("127.0.0.1",nicknameTextField.getText());
-        if (onlineRadioButton.isSelected()) gui.connect("127.0.0.1",nicknameTextField.getText());
+        if (localhostRadioButton.isSelected()) gui.connect("127.0.0.1", nicknameTextField.getText());
+        if (onlineRadioButton.isSelected()) gui.connect("127.0.0.1", nicknameTextField.getText());
     }
 
     @Override

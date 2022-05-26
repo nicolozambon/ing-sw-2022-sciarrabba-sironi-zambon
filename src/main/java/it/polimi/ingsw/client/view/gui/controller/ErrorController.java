@@ -2,7 +2,6 @@ package it.polimi.ingsw.client.view.gui.controller;
 
 import it.polimi.ingsw.client.view.gui.ViewGUI;
 import javafx.fxml.FXML;
-import javafx.scene.text.Text;
 
 import java.util.List;
 
