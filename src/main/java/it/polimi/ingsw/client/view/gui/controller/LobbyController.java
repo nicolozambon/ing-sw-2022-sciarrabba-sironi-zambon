@@ -34,4 +34,14 @@ public class LobbyController implements GUIController {
         playersVBox.getChildren().clear();
         options.forEach(n -> playersVBox.getChildren().add(new Text(n)));
     }
+
+    @Override
+    public void onWaitEvent(String name) {
+
+    }
+
+    @Override
+    public void onWaitEvent() {
+
+    }
 }

@@ -12,7 +12,7 @@ import java.util.Map;
 
 public class PlanningPhase {
 
-    private final Model model;
+    private transient final Model model;
     private final Player currentPlayer;
     private final Map<String, Integer> callableMethod;
 

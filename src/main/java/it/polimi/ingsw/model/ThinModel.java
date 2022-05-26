@@ -2,6 +2,7 @@ package it.polimi.ingsw.model;
 
 import it.polimi.ingsw.enums.Color;
 import it.polimi.ingsw.enums.TowerColor;
+import it.polimi.ingsw.enums.Wizard;
 import it.polimi.ingsw.model.card.AssistantCard;
 import it.polimi.ingsw.model.card.CharacterCard;
 
@@ -14,6 +15,7 @@ public final class ThinModel {
 
     //Players State
     private List<String> nicknames;
+    private List<Wizard> wizards;
     private List<SchoolSerializable> schools;
     private List<Integer> coins;
     private List<List<AssistantCard>> assistantsCards;
@@ -30,6 +32,7 @@ public final class ThinModel {
         schools = new ArrayList<>();
         coins = new ArrayList<>();
         assistantsCards = new ArrayList<>();
+        wizards = new ArrayList<>();
 
         coinReserve = model.getCoinReserve();
         islands = new ArrayList<>();
@@ -43,6 +46,7 @@ public final class ThinModel {
             schools.add(player.getId(), new SchoolSerializable(player.getSchool(), player.getTowerColor()));
             coins.add(player.getId(), player.getCoins());
             assistantsCards.add(player.getId(), player.getAssistantCards());
+            wizards.add(player.getId(), player.getWizard());
         }
 
         for (Island island : model.getIslands()) {
@@ -127,6 +131,9 @@ public final class ThinModel {
         return new HashMap<>(islands.get(id).students);
     }
 
+    public List<Wizard> getWizards() {
+        return new ArrayList<>(wizards);
+    }
 
     private class SchoolSerializable { //A SchoolSerializable for all players.
 

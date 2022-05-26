@@ -31,15 +31,14 @@ public class StartMenuController implements GUIController{
 
     @FXML
     private void toggleSelection() {
-        RadioButton rbtn = (RadioButton) toggleRadioButton.getSelectedToggle();
-        ipTextField.setDisable(!rbtn.equals(customRadioButton));
+        ipTextField.setDisable(!toggleRadioButton.getSelectedToggle().equals(customRadioButton));
     }
 
     @FXML
     private void connectButtonOnClick() throws Exception {
         if (customRadioButton.isSelected()) gui.connect(ipTextField.getText(), nicknameTextField.getText());
         if (localhostRadioButton.isSelected()) gui.connect("127.0.0.1", nicknameTextField.getText());
-        if (onlineRadioButton.isSelected()) gui.connect("127.0.0.1", nicknameTextField.getText());
+        if (onlineRadioButton.isSelected()) gui.connect("127.0.0.1", nicknameTextField.getText());//TODO online server
     }
 
     @Override
@@ -50,8 +49,21 @@ public class StartMenuController implements GUIController{
     @Override
     public void optionsHandling(List<String> options) {
         if (options.get(0).equals("first_player")) {
+            gui.getStage().getScene().lookup("#mainPane").setVisible(false);
+            gui.getStage().getScene().lookup("#waitPane").setVisible(false);
             firstPlayerPane.setVisible(true);
         }
+    }
+
+    @Override
+    public void onWaitEvent(String name) {
+
+    }
+
+    @Override
+    public void onWaitEvent() {
+        firstPlayerPane.setVisible(false);
+        this.gui.getStage().getScene().lookup("#waitPane").setVisible(true);
     }
 
     @FXML

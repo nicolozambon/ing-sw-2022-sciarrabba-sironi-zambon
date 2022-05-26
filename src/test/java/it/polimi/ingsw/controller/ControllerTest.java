@@ -31,7 +31,7 @@ class ControllerTest {
     }
 
     @Test
-    void playAssistantCard() throws CardException, NotPlayerTurnException {
+    void playAssistantCard() throws CardException, NotPlayerTurnException, InvalidActionException {
 
         Player current;
 
@@ -66,7 +66,7 @@ class ControllerTest {
 
 
 
-    private void playPlanningPhase() throws CardException, NotPlayerTurnException {
+    private void playPlanningPhase() throws CardException, NotPlayerTurnException, InvalidActionException {
         controller.playAssistantCard(0, 10);
         controller.playAssistantCard(1, 8);
         controller.playAssistantCard(2, 6);
@@ -231,7 +231,7 @@ class ControllerTest {
     @Test
     void getOptions() {
         assertEquals(1, controller.getOptions().size());
-        assertTrue(controller.getOptions().contains("playAssistantCard"));
+        assertTrue(controller.getOptions().contains("chooseWizard"));
         assertEquals(0, controller.getActivePlayer().getId());
         assertEquals(3, controller.getPlayersToPlay().size());
         assertEquals(0, controller.getPlayersHavePlayed().size());
@@ -259,6 +259,18 @@ class ControllerTest {
         assertEquals(2, players.get(0).getId());
         assertEquals(1, players.get(1).getId());
         assertEquals(0, players.get(2).getId());
+    }
+
+    @Test
+    void chooseWizardTest() throws InvalidActionException {
+        controller.chooseWizard(0, 0);
+        controller.chooseWizard(1, 1);
+        assertThrows(InvalidActionException.class, () -> controller.chooseWizard(2, 0));
+        controller.chooseWizard(2, 2);
+        ThinModel thinModel = new ThinModel(this.model);
+        assertEquals(thinModel.getWizards().get(0).ordinal(), 0);
+        assertEquals(thinModel.getWizards().get(1).ordinal(), 1);
+        assertEquals(thinModel.getWizards().get(2).ordinal(), 2);
     }
 
 }

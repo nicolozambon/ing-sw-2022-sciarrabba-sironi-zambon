@@ -3,6 +3,7 @@ package it.polimi.ingsw.model;
 import com.google.gson.Gson;
 import it.polimi.ingsw.controller.Controller;
 import it.polimi.ingsw.enums.Color;
+import it.polimi.ingsw.enums.Wizard;
 import it.polimi.ingsw.events.AnswerEvent;
 import it.polimi.ingsw.exceptions.*;
 import it.polimi.ingsw.listenables.AnswerListenable;
@@ -26,14 +27,13 @@ public class Model implements AnswerListenableInterface {
     private final StudentBag bag;
     private final int numStudentToMove;
 
-    private transient Controller controller;
-    private transient Handler handler;
+    private Controller controller;
+    private Handler handler;
 
     private boolean isThereWinner;
     private Player winner;
 
     private transient final AnswerListenable answerListenable;
-    private transient final Gson gson;
 
 
     protected Model(List<Player> players, List<Island> islands, List<Cloud> clouds, MotherNature motherNature,
@@ -55,7 +55,6 @@ public class Model implements AnswerListenableInterface {
         this.winner = null;
 
         this.answerListenable = new AnswerListenable();
-        this.gson = new Gson();
     }
 
     public void playAssistantCard(int playerId, int choice) throws CardException {
@@ -126,6 +125,10 @@ public class Model implements AnswerListenableInterface {
     public void extraAction(int playerId, int ... values) throws Exception {
         this.handler.extraAction(players.get(playerId), this, values);
         fireAnswer(new AnswerEvent("update", this));
+    }
+
+    public void setWizard(int playerId, Wizard wizard) {
+        players.get(playerId).setWizard(wizard);
     }
 
     protected MotherNature getMotherNature() {

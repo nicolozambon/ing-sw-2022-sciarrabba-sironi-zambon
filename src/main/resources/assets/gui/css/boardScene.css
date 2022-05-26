@@ -1,9 +1,12 @@
 .anchor {
     -fx-background-image: url("../images/background/Sky_sfocatura.png");
     -fx-background-color: transparent;
+    -fx-background-size: stretch;
+    -fx-background-repeat: NO_REPEAT;
 }
 
 .board {
     -fx-background-image: url("../images/Plancia_Gioco.png");
     -fx-background-size: stretch;
+    -fx-background-repeat: NO_REPEAT;
 }

@@ -161,10 +161,9 @@ public class ViewGUI extends Application implements RequestListenableInterface, 
                     this.model = new ThinModel(answerEvent.getModel());
                 }
                 case "wait" -> {
-                    if (this.model != null) System.out.println(this.model);
-                    new OptionLister().list(answerEvent.getPropertyName());
-                    if (answerEvent.getMessage() != null) System.out.print(", it is " + answerEvent.getMessage() + "'s turn");
-                    System.out.print("\n");
+                    //if (this.model != null) System.out.println(this.model);
+                    if (answerEvent.getMessage() != null) currentController.onWaitEvent(answerEvent.getMessage());
+                    else currentController.onWaitEvent();
                 }
                 case "error" -> {
                     errorStage.close();
