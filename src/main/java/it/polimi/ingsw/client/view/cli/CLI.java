@@ -37,8 +37,11 @@ public class CLI {
 
         // Create schools
         boolean isMain = false;
+        String[][] school;
         for (int i=0; i<playersNumber; i++) {
-            this.schools.add(loader.getSchool(isMain));
+            school = loader.getSchool(isMain);
+            school = this.addCaptionToSchool(school, "nicolo", 5);
+            this.schools.add(school);
             isMain = true;
         }
 
@@ -182,10 +185,20 @@ public class CLI {
     }
 
     // ISLANDS METHODS
+    /*
     protected void addStudentToIsland(int id, Color color) {
         String[][] board = this.findBoardBy(id, this.islands);
         this.addPawnToBoard(board, color, "S", false);
     }
+    */
+
+    protected void addStudentsToIsland(int id, Color color, int amount) {
+        String[][] board = this.findBoardBy(id, this.islands);
+        board = this.addStudentsCounterToIsland(board, color, amount);
+        this.addPawnToBoard(board, color, "S", false);
+
+    }
+
     protected void addMotherNatureToIsland(int id) {
         String[][] board = this.findBoardBy(id, this.islands);
         this.addPawnToBoard(board, Color.RED, "N", false);
@@ -222,6 +235,14 @@ public class CLI {
         return rotated;
     }
 
+    private String[][] writeTextInMatrix(String[][] board, String text, int offset_x, int offset_y) {
+        board[offset_y][offset_x] = text;
+        for (int i=offset_x+1; i<offset_x+text.length(); i++) {
+            board[offset_y][i] = "";
+        }
+        return board;
+    }
+
     private String[][] addStudentsCounterToIsland(String[][] island, Color color, int counter) {
         String label = String.valueOf(counter);
         while (label.length() < 2) {
@@ -230,17 +251,25 @@ public class CLI {
         label = "x" + label;
         int offset_x = 5;
         int offset_y = positionMap.get(color) + 1;
-        island[offset_y][offset_x] = label;
-        island[offset_y][offset_x+1] = "";
-        island[offset_y][offset_x+2] = "";
+        island = this.writeTextInMatrix(island, label, offset_x, offset_y);
         return island;
     }
 
-    protected void addStudentsToIsland(int id, Color color, int amount) {
-        String[][] board = this.findBoardBy(id, this.islands);
-        board = this.addStudentsCounterToIsland(board, color, amount);
-        this.addPawnToBoard(board, color, "S", false);
+    private String[][] addCaptionToSchool(String[][] school, String nickname, int coins) {
+        String label = String.valueOf(coins);
+        while (label.length() < 2) {
+            label = "0" + label;
+        }
+        label = "$:" + label;
+        while (label.length() + nickname.length() < school[0].length - 6) {
+            label = " " + label;
+        }
+        label = nickname + label;
 
+        int offset_x = 3;
+        int offset_y = school.length - 2;
+        school = this.writeTextInMatrix(school, label, offset_x, offset_y);
+        return school;
     }
 
     private String[][] removePlaceholdersFromBoard(String[][] board) {
@@ -585,8 +614,6 @@ public class CLI {
         }
 
         int mainSchoolOffset;
-
-
 
         // Assistant card
         int cardRowOnSet;

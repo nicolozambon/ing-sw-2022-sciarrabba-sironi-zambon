@@ -79,18 +79,18 @@ public class DemoLauncher {
         cli.addLinkToNextIsland(3);
         cli.addLinkToNextIsland(4);
 
-        cli.addStudentToIsland(0, Color.BLUE);
-        cli.addStudentToIsland(0, Color.YELLOW);
-        cli.addStudentToIsland(0, Color.GREEN);
-        cli.addStudentToIsland(0, Color.RED);
-        cli.addStudentToIsland(0, Color.PINK);
+        cli.addStudentsToIsland(0, Color.BLUE, 2);
+        cli.addStudentsToIsland(0, Color.YELLOW, 3);
+        cli.addStudentsToIsland(0, Color.GREEN, 4);
+        cli.addStudentsToIsland(0, Color.RED, 4);
+        cli.addStudentsToIsland(0, Color.PINK, 10);
 
         cli.addMotherNatureToIsland(0);
         cli.addTowerToIsland(0, TowerColor.WHITE);
 
         cli.addMotherNatureToIsland(0);
         cli.addTowerToIsland(0, TowerColor.WHITE);
-        cli.addStudentToIsland(0, Color.GREEN);
+        cli.addStudentsToIsland(0, Color.GREEN, 5);
 
         // Show updated game board
         cli.showGameBoard();
