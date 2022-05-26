@@ -14,15 +14,28 @@ public class DemoLauncher {
 
         cli.addCharacterCard(1, 5, "lorem ipsum first card");
         cli.addCharacterCard(1, 5, "lorem ipsum second card");
-        cli.addCharacterCard(1, 5, "lorem ipsum third card");
+        cli.addCharacterCard(1, 5, "lorem ipsum third card lorem ipsum lorem ipsum lorem ipsum");
 
         cli.addStudentToSchoolDiningRoom(0, Color.RED);
         cli.addStudentToSchoolDiningRoom(0, Color.BLUE);
         cli.addProfessorToSchool(0, Color.BLUE);
+
         cli.addStudentToCloud(0, Color.BLUE);
+        cli.addStudentToCloud(1, Color.RED);
+        cli.addStudentToCloud(2, Color.YELLOW);
 
 
-        cli.addStudentToSchoolDiningRoom(1, Color.BLUE);
+        cli.addStudentsToIsland(5, Color.RED, 5);
+
+
+        cli.addStudentToSchoolDiningRoom(2, Color.BLUE);
+        cli.addStudentToSchoolDiningRoom(2, Color.BLUE);
+
+        cli.addStudentToSchoolEntrance(0, Color.BLUE);
+        cli.addStudentToSchoolEntrance(0, Color.BLUE);
+        cli.addStudentToSchoolEntrance(0, Color.BLUE);
+        cli.addStudentToSchoolEntrance(0, Color.RED);
+
         cli.addStudentToSchoolDiningRoom(1, Color.BLUE);
         cli.addStudentToSchoolDiningRoom(1, Color.BLUE);
         cli.addStudentToSchoolDiningRoom(1, Color.BLUE);
@@ -66,18 +79,18 @@ public class DemoLauncher {
         cli.addLinkToNextIsland(3);
         cli.addLinkToNextIsland(4);
 
-        cli.addStudentToIsland(0, Color.BLUE);
-        cli.addStudentToIsland(0, Color.YELLOW);
-        cli.addStudentToIsland(0, Color.GREEN);
-        cli.addStudentToIsland(0, Color.RED);
-        cli.addStudentToIsland(0, Color.PINK);
+        cli.addStudentsToIsland(0, Color.BLUE, 2);
+        cli.addStudentsToIsland(0, Color.YELLOW, 3);
+        cli.addStudentsToIsland(0, Color.GREEN, 4);
+        cli.addStudentsToIsland(0, Color.RED, 4);
+        cli.addStudentsToIsland(0, Color.PINK, 10);
 
         cli.addMotherNatureToIsland(0);
         cli.addTowerToIsland(0, TowerColor.WHITE);
 
         cli.addMotherNatureToIsland(0);
         cli.addTowerToIsland(0, TowerColor.WHITE);
-        cli.addStudentToIsland(0, Color.GREEN);
+        cli.addStudentsToIsland(0, Color.GREEN, 5);
 
         // Show updated game board
         cli.showGameBoard();
