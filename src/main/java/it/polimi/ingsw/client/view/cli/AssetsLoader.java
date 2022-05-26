@@ -66,6 +66,10 @@ public class AssetsLoader {
         return this.readMatrixFromFile("assistant_card");
     }
 
+    protected String[][] getLastPlayedAssistantCards() {
+        return this.readMatrixFromFile("last_played_assistant_cards");
+    }
+
     protected String[][] getCloud() {
         return this.readMatrixFromFile("cloud");
     }
