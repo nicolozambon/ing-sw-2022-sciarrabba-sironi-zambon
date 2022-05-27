@@ -1,6 +1,5 @@
 package it.polimi.ingsw.model;
 
-import com.google.gson.Gson;
 import it.polimi.ingsw.controller.Controller;
 import it.polimi.ingsw.enums.Color;
 import it.polimi.ingsw.enums.Wizard;
