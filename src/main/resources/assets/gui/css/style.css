@@ -6,3 +6,8 @@
     -fx-background-image: url("../images/Eriantys_sfocatura.jpg");
     -fx-background-position: center;
 }
+
+.firstPlayer {
+	-fx-background-image: url("../images/background/Sky_sfocatura.png");
+	-fx-background-size: cover;
+}
