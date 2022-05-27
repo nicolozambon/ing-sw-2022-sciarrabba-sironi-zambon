@@ -2,6 +2,7 @@ package it.polimi.ingsw.client.view.gui;
 
 import it.polimi.ingsw.client.ClientConnection;
 import it.polimi.ingsw.client.view.gui.controller.GUIController;
+import it.polimi.ingsw.client.view.gui.controller.MainController;
 import it.polimi.ingsw.events.AnswerEvent;
 import it.polimi.ingsw.events.RequestEvent;
 import it.polimi.ingsw.listenables.RequestListenable;
