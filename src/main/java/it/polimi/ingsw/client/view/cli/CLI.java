@@ -16,16 +16,16 @@ import static java.lang.Math.min;
 public class CLI {
 
     private final Map<String, String[][]> islandLinkers;
-    private final ArrayList<String[][]> schools = new ArrayList<>();
-    private final ArrayList<String[][]> islands = new ArrayList<>();
-    private final ArrayList<String[][]> clouds = new ArrayList<>();
-    private final ArrayList<Boolean> islandsLinkedToNext = new ArrayList<>();
+    private final List<String[][]> schools = new ArrayList<>();
+    private final List<String[][]> islands = new ArrayList<>();
+    private final List<String[][]> clouds = new ArrayList<>();
+    private final List<Boolean> islandsLinkedToNext = new ArrayList<>();
 
     private final String[][] characterCardTest;
     private final String[][] assistantCardTest;
-    private final ArrayList<CharacterCard> characterCards = new ArrayList<>();
+    private final List<CharacterCard> characterCards = new ArrayList<>();
 
-    private final ArrayList<AssistantCard> lastPlayedAssistantCards = new ArrayList<>();
+    private final List<AssistantCard> lastPlayedAssistantCards = new ArrayList<>();
     private final String[][] lastPlayedAssistantCardsContainer;
 
     private final int boardCoins;
@@ -37,7 +37,9 @@ public class CLI {
     */
 
 
-    public CLI(Integer playersNumber, List<String> nicknames) {
+    public CLI(List<String> nicknames) {
+        int playersNumber = nicknames.size();
+
         final AssetsLoader loader = new AssetsLoader();
         this.islandLinkers = loader.getIslandLinkers();
 
@@ -171,7 +173,7 @@ public class CLI {
         }
     }
 
-    private String[][] findBoardBy(int id, ArrayList<String[][]> boardList) {
+    private String[][] findBoardBy(int id, List<String[][]> boardList) {
         return boardList.get(id);
     }
 
@@ -566,17 +568,22 @@ public class CLI {
         int cardBaseRowOnSet = 39;
         int cardBaseColOnSet = 152;
         String[][] card = this.assistantCardTest;
+        int offset = 0;
 
-        /*
         for (int cardRow=0; cardRow<card.length; cardRow++) {
             for (int cardCol=0; cardCol<card[0].length; cardCol++) {
+
                 if (Objects.equals(card[cardRow][cardCol], "^")) {
+
                     String label = "Val=1 $=5";
-                    this.writeTextInMatrix(card, label, cardRow-1, cardCol-1);
+                    this.writeTextInMatrix(card, label, 2 + offset, cardRow);
+                    offset += label.length() + 7;
+
                 }
+
             }
+            offset = 0;
         }
-        */
 
         for (int cardRow=0; cardRow<card.length; cardRow++) {
             for (int cardCol=0; cardCol<card[0].length; cardCol++) {
