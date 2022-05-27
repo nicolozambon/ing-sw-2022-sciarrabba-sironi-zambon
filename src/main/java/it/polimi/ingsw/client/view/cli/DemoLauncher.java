@@ -6,17 +6,18 @@ import it.polimi.ingsw.enums.TowerColor;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.List;
 
 public class DemoLauncher {
 
     public static void main(String[] args) throws IOException {
 
-        ArrayList<String> nicknames = new ArrayList<>();
+        List<String> nicknames = new ArrayList<>();
         nicknames.add("Nicolò");
         nicknames.add("Alessandro");
         nicknames.add("Jonathan");
 
-        CLI cli = new CLI(3, nicknames);
+        CLI cli = new CLI(nicknames);
 
         cli.addCharacterCard(1, 5, "lorem ipsum first card");
         cli.addCharacterCard(1, 5, "lorem ipsum second card");
