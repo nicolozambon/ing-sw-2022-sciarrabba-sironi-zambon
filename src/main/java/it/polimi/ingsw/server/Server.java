@@ -71,9 +71,12 @@ public class Server {
 
     public void enqueuePlayer(ConnectionHandler connectionHandler) {
         if (isNicknameUnique(connectionHandler)) {
+            connectionHandler.send(new AnswerEvent("set_nickname", connectionHandler.getNickname()));
             synchronized (queue) {
                 this.queue.add(connectionHandler);
-                connectionHandler.send(new AnswerEvent("wait"));
+                synchronized (players) {
+                    if (players.size() > 0) connectionHandler.send(new AnswerEvent("wait"));
+                }
                 this.queue.notifyAll();
             }
         }
@@ -101,7 +104,6 @@ public class Server {
             synchronized(players) {
                 players.put(connectionHandler.getNickname(), connectionHandler);
             }
-            connectionHandler.send(new AnswerEvent("set_nickname", connectionHandler.getNickname()));
             System.out.println("added player to a game");
 
             if (players.size() == 1) {

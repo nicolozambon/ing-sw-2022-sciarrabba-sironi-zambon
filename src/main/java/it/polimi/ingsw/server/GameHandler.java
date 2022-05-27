@@ -6,7 +6,9 @@ import it.polimi.ingsw.model.Model;
 import it.polimi.ingsw.model.ModelBuilder;
 import it.polimi.ingsw.model.Player;
 
-import java.util.*;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 public class GameHandler implements Runnable {
 

@@ -37,6 +37,9 @@ class ControllerTest {
 
         current = controller.getActivePlayer();
         assertEquals(0, current.getId());
+        controller.chooseWizard(0, 0);
+        controller.chooseWizard(1, 1);
+        controller.chooseWizard(2, 2);
 
         controller.playAssistantCard(0, 6);
 
@@ -67,6 +70,10 @@ class ControllerTest {
 
 
     private void playPlanningPhase() throws CardException, NotPlayerTurnException, InvalidActionException {
+        controller.chooseWizard(0, 0);
+        controller.chooseWizard(1, 1);
+        controller.chooseWizard(2, 2);
+
         controller.playAssistantCard(0, 10);
         controller.playAssistantCard(1, 8);
         controller.playAssistantCard(2, 6);
@@ -222,6 +229,10 @@ class ControllerTest {
     @Test
     void requestPlayAssistantCard() throws Exception{
         //playPlanningPhase();
+        controller.chooseWizard(0, 0);
+        controller.chooseWizard(1, 1);
+        controller.chooseWizard(2, 2);
+
         Player currentPlayer = controller.getActivePlayer();
         assertEquals(0, currentPlayer.getId());
         controller.onRequestEvent(new RequestEvent("playAssistantCard", 0, 2));

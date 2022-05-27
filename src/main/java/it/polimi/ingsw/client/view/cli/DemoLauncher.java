@@ -5,12 +5,18 @@ import it.polimi.ingsw.enums.Color;
 import it.polimi.ingsw.enums.TowerColor;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
 public class DemoLauncher {
 
     public static void main(String[] args) throws IOException {
 
-        CLI cli = new CLI(3);
+        ArrayList<String> nicknames = new ArrayList<>();
+        nicknames.add("Nicolò");
+        nicknames.add("Alessandro");
+        nicknames.add("Jonathan");
+
+        CLI cli = new CLI(3, nicknames);
 
         cli.addCharacterCard(1, 5, "lorem ipsum first card");
         cli.addCharacterCard(1, 5, "lorem ipsum second card");
@@ -78,12 +84,67 @@ public class DemoLauncher {
         cli.addLinkToNextIsland(2);
         cli.addLinkToNextIsland(3);
         cli.addLinkToNextIsland(4);
+        cli.addLinkToNextIsland(5);
+        cli.addLinkToNextIsland(6);
+        cli.addLinkToNextIsland(7);
+        cli.addLinkToNextIsland(8);
+        cli.addLinkToNextIsland(9);
+        cli.addLinkToNextIsland(10);
+        cli.addLinkToNextIsland(11);
+
+        cli.addStudentsToIsland(5, Color.BLUE, 2);
+        cli.addStudentsToIsland(5, Color.YELLOW, 3);
+        cli.addStudentsToIsland(5, Color.RED, 4);
+        cli.addStudentsToIsland(5, Color.PINK, 10);
+
+        cli.addStudentsToIsland(9, Color.BLUE, 2);
+        cli.addStudentsToIsland(9, Color.YELLOW, 3);
+        cli.addStudentsToIsland(9, Color.GREEN, 4);
+        cli.addStudentsToIsland(9, Color.PINK, 10);
 
         cli.addStudentsToIsland(0, Color.BLUE, 2);
         cli.addStudentsToIsland(0, Color.YELLOW, 3);
         cli.addStudentsToIsland(0, Color.GREEN, 4);
         cli.addStudentsToIsland(0, Color.RED, 4);
         cli.addStudentsToIsland(0, Color.PINK, 10);
+
+        cli.addStudentToSchoolDiningRoom(2, Color.RED);
+        cli.addStudentToSchoolDiningRoom(2, Color.RED);
+        cli.addStudentToSchoolDiningRoom(2, Color.RED);
+        cli.addStudentToSchoolDiningRoom(2, Color.RED);
+        cli.addStudentToSchoolDiningRoom(2, Color.RED);
+        cli.addStudentToSchoolDiningRoom(2, Color.RED);
+        cli.addStudentToSchoolDiningRoom(2, Color.RED);
+        cli.addStudentToSchoolDiningRoom(2, Color.RED);
+        cli.addStudentToSchoolDiningRoom(2, Color.YELLOW);
+        cli.addStudentToSchoolDiningRoom(2, Color.YELLOW);
+        cli.addStudentToSchoolDiningRoom(2, Color.YELLOW);
+        cli.addStudentToSchoolDiningRoom(2, Color.YELLOW);
+        cli.addStudentToSchoolDiningRoom(2, Color.YELLOW);
+        cli.addStudentToSchoolDiningRoom(2, Color.YELLOW);
+        cli.addStudentToSchoolDiningRoom(2, Color.YELLOW);
+        cli.addStudentToSchoolDiningRoom(2, Color.GREEN);
+        cli.addStudentToSchoolDiningRoom(2, Color.GREEN);
+        cli.addStudentToSchoolDiningRoom(2, Color.GREEN);
+        cli.addStudentToSchoolDiningRoom(2, Color.GREEN);
+        cli.addStudentToSchoolDiningRoom(2, Color.GREEN);
+        cli.addStudentToSchoolDiningRoom(2, Color.GREEN);
+        cli.addStudentToSchoolDiningRoom(2, Color.GREEN);
+        cli.addStudentToSchoolDiningRoom(2, Color.GREEN);
+        cli.addStudentToSchoolDiningRoom(2, Color.GREEN);
+        cli.addStudentToSchoolDiningRoom(2, Color.BLUE);
+        cli.addStudentToSchoolDiningRoom(2, Color.BLUE);
+        cli.addStudentToSchoolDiningRoom(2, Color.BLUE);
+        cli.addStudentToSchoolDiningRoom(2, Color.BLUE);
+        cli.addStudentToSchoolDiningRoom(2, Color.BLUE);
+        cli.addStudentToSchoolDiningRoom(2, Color.BLUE);
+        cli.addStudentToSchoolDiningRoom(2, Color.BLUE);
+        cli.addStudentToSchoolDiningRoom(2, Color.PINK);
+        cli.addStudentToSchoolDiningRoom(2, Color.PINK);
+        cli.addStudentToSchoolDiningRoom(2, Color.PINK);
+        cli.addStudentToSchoolDiningRoom(2, Color.PINK);
+        cli.addStudentToSchoolDiningRoom(2, Color.PINK);
+        cli.addStudentToSchoolDiningRoom(2, Color.PINK);
 
         cli.addMotherNatureToIsland(0);
         cli.addTowerToIsland(0, TowerColor.WHITE);
