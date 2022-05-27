@@ -26,7 +26,7 @@ class HandlerTest {
         playersNames.add("player0");
         playersNames.add("player1");
         playersNames.add("player2");
-        model = modelBuilder.buildModel(playersNames);
+        model = modelBuilder.buildModel(playersNames, true);
         handler = new HandlerFactory().buildHandler(model.getPlayers());
     }
 

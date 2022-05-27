@@ -28,9 +28,10 @@ public class CLIBuilder {
             nicknamesCLI.add(nicknames.get((currentId + i) % nicknames.size()));
         }
 
-        CLI cli = new CLI(model.getNumPlayers(), nicknamesCLI);
+        CLI cli = new CLI(nicknamesCLI);
         buildIsland(cli, model);
         buildCloud(cli, model);
+        buildCharacterCards(cli, model);
 
         return cli;
     }
@@ -41,6 +42,7 @@ public class CLIBuilder {
             for (Color color : Color.values()) {
                 cli.addStudentsToIsland(i, color, studentsMap.get(color));
             }
+            if (model.getTowerColorOnIsland(i) != null) cli.addTowerToIsland(i, model.getTowerColorOnIsland(i));
         }
         cli.addMotherNatureToIsland(model.getMNPosition());
 
@@ -49,7 +51,6 @@ public class CLIBuilder {
     private void buildCloud(CLI cli, ThinModel model) {
         for (int i = 0; i < model.getNumClouds(); i++) {
             List<Color> students = model.getStudentOnCloud(i);
-            System.out.println(students);
             for (Color color : students) {
                 cli.addStudentToCloud(i, color);
             }
@@ -57,8 +58,16 @@ public class CLIBuilder {
     }
 
     private void buildCharacterCards(CLI cli, ThinModel model) {
+        /*for (CharacterCard card : model.getCharacterCards()) {
+            cli.addCharacterCard(card);
+        }*/
+    }
+
+    private void buildAssistantCards(CLI cli, ThinModel model) {
 
     }
+
+
 
 
 

@@ -19,7 +19,7 @@ public class GameHandlerTest {
         List<String> names = new ArrayList<>();
         names.add("Pluto");
         names.add("Pippo");
-        Model model = new ModelBuilder().buildModel(names);
+        Model model = new ModelBuilder().buildModel(names, false);
 
         ThinModel ms1 = new ThinModel(model);
         //System.out.println(ms1);

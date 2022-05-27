@@ -8,15 +8,13 @@ import org.junit.jupiter.api.Test;
 import java.util.ArrayList;
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.*;
-
 class CLIBuilderTest {
 
     @Test
     void nicknamesOrderingTest() {
         List<String> nicknames = new ArrayList<>(List.of("player0", "player1", "player2"));
         CLIBuilder cliBuilder = new CLIBuilder();
-        Model model = new ModelBuilder().buildModel(nicknames);
+        Model model = new ModelBuilder().buildModel(nicknames, false);
         model.getController();
         ThinModel thinModel = new ThinModel(model);
         CLI cli;

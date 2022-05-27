@@ -21,7 +21,11 @@ public class ModelBuilder {
         this.put(4, 3);
     }};
 
-    public Model buildModel(List<String> names) {
+    private boolean allCharacterCards;
+
+    public Model buildModel(List<String> names, boolean allCharacterCards) {
+
+        this.allCharacterCards = allCharacterCards;
 
         List<Island> islands = buildIslands();
         List<Cloud> clouds = buildClouds(names.size());
@@ -152,7 +156,7 @@ public class ModelBuilder {
             characterCards.add(factory.setSubclass(characters.get(index)));
         }
 
-        return new ArrayList<>(characters); //TODO Only for testing purpose!
-        //return new ArrayList<>(characterCards);
+        if (allCharacterCards) return new ArrayList<>(characters); //TODO Only for testing purpose!
+        return new ArrayList<>(characterCards);
     }
 }

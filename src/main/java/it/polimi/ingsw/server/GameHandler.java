@@ -18,7 +18,8 @@ public class GameHandler implements Runnable {
 
     public GameHandler(Map<String, ConnectionHandler> playersConnection) {
         this.playersConnection = new HashMap<>();
-        this.model = new ModelBuilder().buildModel(playersConnection.keySet().stream().toList());
+        //TODO: change to false to have only 3 Character cards
+        this.model = new ModelBuilder().buildModel(playersConnection.keySet().stream().toList(), true);
         this.controller = model.getController();
         for (Player player : controller.getPlayersToPlay()) {
             playersConnection.get(player.getNickname()).send(new AnswerEvent("set_id", player.getId()));

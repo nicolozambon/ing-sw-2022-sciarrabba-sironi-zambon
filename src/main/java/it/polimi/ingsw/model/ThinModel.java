@@ -91,10 +91,6 @@ public final class ThinModel {
         return new ArrayList<>(clouds.get(cloudId).students);
     }
 
-    public int getCharacterCardCost(int characterId) {
-        return characterCards.stream().filter(x -> x.getId() == characterId).findAny().get().getCoins();
-    }
-
     public int getMNPosition() {
         for (IslandSerializable i : islands) {
             if (i.motherNaturePresence) return islands.indexOf(i);
@@ -126,6 +122,9 @@ public final class ThinModel {
         return new ArrayList<>(characterCards);
     }
 
+    public TowerColor getTowerColorOnIsland(int islandId) {
+        return islands.get(islandId).towerColor;
+    }
 
 
 
@@ -186,15 +185,14 @@ public final class ThinModel {
     private static class IslandSerializable {
 
         Map<Color, Integer> students;
-        boolean towerPresence;
-        TowerColor color;
+
+        TowerColor towerColor;
         boolean motherNaturePresence;
         boolean isLinkedPrev;
         boolean isLinkedNext;
 
         IslandSerializable(Island island) {
             this.students = new HashMap<>();
-            this.towerPresence = false;
             this.motherNaturePresence = false;
             this.isLinkedPrev = island.isUnifyPrev();
             this.isLinkedNext = island.isUnifyNext();
@@ -204,8 +202,7 @@ public final class ThinModel {
             }
 
             if (island.getTower() != null) {
-                towerPresence = true;
-                color = island.getTower().getColor();
+                towerColor = island.getTower().getColor();
             }
         }
 
@@ -213,8 +210,7 @@ public final class ThinModel {
         public String toString() {
             return "\n{" +
                     "students = " + students +
-                    ", towerPresence = " + towerPresence +
-                    ", color = " + color +
+                    ", color = " + towerColor +
                     ", motherNaturePresence = " + motherNaturePresence +
                     ", linkedPrev = " + isLinkedPrev +
                     ", linkedNext = " + isLinkedNext +
