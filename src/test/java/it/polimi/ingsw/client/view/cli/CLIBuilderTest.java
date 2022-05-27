@@ -5,13 +5,14 @@ import it.polimi.ingsw.model.ModelBuilder;
 import it.polimi.ingsw.model.ThinModel;
 import org.junit.jupiter.api.Test;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
 class CLIBuilderTest {
 
     @Test
-    void nicknamesOrderingTest() {
+    void nicknamesOrderingTest() throws IOException {
         List<String> nicknames = new ArrayList<>(List.of("player0", "player1", "player2"));
         CLIBuilder cliBuilder = new CLIBuilder();
         Model model = new ModelBuilder().buildModel(nicknames, false);

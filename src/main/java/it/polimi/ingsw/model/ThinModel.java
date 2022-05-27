@@ -67,20 +67,12 @@ public final class ThinModel {
         return new ArrayList<>(schools.get(playerId).entrance);
     }
 
-    public int getDRByPlayerAndColor(int playerId, Color color) {
-        return schools.get(playerId).diningRoom.get(color);
-    }
-
     public int getStudentOnIslandById(int islandId) {
         int value = 0;
         for (Color color : Color.values()) {
             value += islands.get(islandId).students.get(color);
         }
         return value;
-    }
-
-    public int getNumStudentOnCloud(int cloudId) {
-        return clouds.get(cloudId).students.size();
     }
 
     public int getNumClouds() {
@@ -96,10 +88,6 @@ public final class ThinModel {
             if (i.motherNaturePresence) return islands.indexOf(i);
         }
         return -1;
-    }
-
-    public int getNumPlayers() {
-        return schools.size();
     }
 
     public List<String> getNicknames() {
@@ -126,7 +114,29 @@ public final class ThinModel {
         return islands.get(islandId).towerColor;
     }
 
+    public List<Color> getEntranceById(int playerId) {
+        return new ArrayList<>(schools.get(playerId).entrance);
+    }
 
+    public Map<Color, Integer> getDiningRoomById(int playerId) {
+        return new HashMap<>(schools.get(playerId).diningRoom);
+    }
+
+    public int getNumTowerByPlayer(int playerId) {
+        return schools.get(playerId).numTowers;
+    }
+
+    public TowerColor getTowerColorByPlayer(int playerId) {
+        return schools.get(playerId).towerColor;
+    }
+
+    public boolean isIslandLinkedNext(int islandId) {
+        return islands.get(islandId).isLinkedNext;
+    }
+
+    public List<Color> getProfessorsByPlayer(int playerId) {
+        return new ArrayList<>(schools.get(playerId).profTable);
+    }
 
     @Override
     public String toString() {

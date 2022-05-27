@@ -3,7 +3,6 @@ package it.polimi.ingsw.client.view.gui.controller;
 import it.polimi.ingsw.client.view.gui.ViewGUI;
 import it.polimi.ingsw.enums.Color;
 import it.polimi.ingsw.enums.TowerColor;
-import javafx.fxml.FXML;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 

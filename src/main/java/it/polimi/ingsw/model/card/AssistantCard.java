@@ -1,13 +1,9 @@
 package it.polimi.ingsw.model.card;
 
-import java.io.Serial;
-import java.io.Serializable;
 import java.util.Objects;
 
-public class AssistantCard implements Serializable {
+public class AssistantCard {
 
-    @Serial
-    private static final long serialVersionUID = 987654321L;
     private final int value;
     private final int steps;
 
