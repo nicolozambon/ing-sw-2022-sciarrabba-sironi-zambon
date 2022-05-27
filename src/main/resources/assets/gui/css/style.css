@@ -7,6 +7,11 @@
     -fx-background-position: center;
 }
 
+.lobbyText {
+    -fx-font-family: "Avenir Next Condensed";
+    -fx-font-size: 18px;
+}
+
 .firstPlayer {
 	-fx-background-image: url("../images/background/Sky_sfocatura.png");
 	-fx-background-size: cover;
