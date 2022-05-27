@@ -57,8 +57,11 @@ public class CLI {
         }
 
         // Create twelve islands
-        for (int i=0; i<12; i++) {
-            this.islands.add(loader.getIsland());
+        String[][] island;
+        for (int i=1; i<=12; i++) {
+            island = loader.getIsland();
+            island = this.addNumberToIsland(island, i);
+            this.islands.add(island);
             this.islandsLinkedToNext.add(false);
         }
 
@@ -265,6 +268,17 @@ public class CLI {
         label = "x" + label;
         int offset_x = 5;
         int offset_y = positionMap.get(color) + 1;
+        island = this.writeTextInMatrix(island, label, offset_x, offset_y);
+        return island;
+    }
+
+    private String[][] addNumberToIsland(String[][] island, int id) {
+        String label = String.valueOf(id);
+        while (label.length() < 2) {
+            label = "0" + label;
+        }
+        int offset_x = 18;
+        int offset_y = 1;
         island = this.writeTextInMatrix(island, label, offset_x, offset_y);
         return island;
     }

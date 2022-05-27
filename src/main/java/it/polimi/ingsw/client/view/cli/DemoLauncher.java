@@ -81,8 +81,13 @@ public class DemoLauncher {
 
         cli.addLinkToNextIsland(0);
         cli.addLinkToNextIsland(1);
+        cli.addLinkToNextIsland(2);
         cli.addLinkToNextIsland(3);
         cli.addLinkToNextIsland(4);
+        cli.addLinkToNextIsland(5);
+        cli.addLinkToNextIsland(6);
+        cli.addLinkToNextIsland(7);
+        cli.addLinkToNextIsland(8);
         cli.addLinkToNextIsland(9);
         cli.addLinkToNextIsland(10);
         cli.addLinkToNextIsland(11);
@@ -102,6 +107,44 @@ public class DemoLauncher {
         cli.addStudentsToIsland(0, Color.GREEN, 4);
         cli.addStudentsToIsland(0, Color.RED, 4);
         cli.addStudentsToIsland(0, Color.PINK, 10);
+
+        cli.addStudentToSchoolDiningRoom(2, Color.RED);
+        cli.addStudentToSchoolDiningRoom(2, Color.RED);
+        cli.addStudentToSchoolDiningRoom(2, Color.RED);
+        cli.addStudentToSchoolDiningRoom(2, Color.RED);
+        cli.addStudentToSchoolDiningRoom(2, Color.RED);
+        cli.addStudentToSchoolDiningRoom(2, Color.RED);
+        cli.addStudentToSchoolDiningRoom(2, Color.RED);
+        cli.addStudentToSchoolDiningRoom(2, Color.RED);
+        cli.addStudentToSchoolDiningRoom(2, Color.YELLOW);
+        cli.addStudentToSchoolDiningRoom(2, Color.YELLOW);
+        cli.addStudentToSchoolDiningRoom(2, Color.YELLOW);
+        cli.addStudentToSchoolDiningRoom(2, Color.YELLOW);
+        cli.addStudentToSchoolDiningRoom(2, Color.YELLOW);
+        cli.addStudentToSchoolDiningRoom(2, Color.YELLOW);
+        cli.addStudentToSchoolDiningRoom(2, Color.YELLOW);
+        cli.addStudentToSchoolDiningRoom(2, Color.GREEN);
+        cli.addStudentToSchoolDiningRoom(2, Color.GREEN);
+        cli.addStudentToSchoolDiningRoom(2, Color.GREEN);
+        cli.addStudentToSchoolDiningRoom(2, Color.GREEN);
+        cli.addStudentToSchoolDiningRoom(2, Color.GREEN);
+        cli.addStudentToSchoolDiningRoom(2, Color.GREEN);
+        cli.addStudentToSchoolDiningRoom(2, Color.GREEN);
+        cli.addStudentToSchoolDiningRoom(2, Color.GREEN);
+        cli.addStudentToSchoolDiningRoom(2, Color.GREEN);
+        cli.addStudentToSchoolDiningRoom(2, Color.BLUE);
+        cli.addStudentToSchoolDiningRoom(2, Color.BLUE);
+        cli.addStudentToSchoolDiningRoom(2, Color.BLUE);
+        cli.addStudentToSchoolDiningRoom(2, Color.BLUE);
+        cli.addStudentToSchoolDiningRoom(2, Color.BLUE);
+        cli.addStudentToSchoolDiningRoom(2, Color.BLUE);
+        cli.addStudentToSchoolDiningRoom(2, Color.BLUE);
+        cli.addStudentToSchoolDiningRoom(2, Color.PINK);
+        cli.addStudentToSchoolDiningRoom(2, Color.PINK);
+        cli.addStudentToSchoolDiningRoom(2, Color.PINK);
+        cli.addStudentToSchoolDiningRoom(2, Color.PINK);
+        cli.addStudentToSchoolDiningRoom(2, Color.PINK);
+        cli.addStudentToSchoolDiningRoom(2, Color.PINK);
 
         cli.addMotherNatureToIsland(0);
         cli.addTowerToIsland(0, TowerColor.WHITE);
