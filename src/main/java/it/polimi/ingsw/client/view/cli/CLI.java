@@ -51,7 +51,7 @@ public class CLI {
         String[][] school;
         for (int i=0; i<playersNumber; i++) {
             school = loader.getSchool(isMain);
-            school = this.addCaptionToSchool(school, "Nicolò", 5);
+            school = this.addCaptionToSchool(school, this.nicknames.get(i), 5);
             this.schools.add(school);
             isMain = true;
         }
@@ -567,8 +567,20 @@ public class CLI {
         int cardRowOnSet;
         int cardColOnSet;
         int cardBaseRowOnSet = 39;
-        int cardBaseColOnSet = 158;
+        int cardBaseColOnSet = 152;
         String[][] card = this.assistantCardTest;
+
+        /*
+        for (int cardRow=0; cardRow<card.length; cardRow++) {
+            for (int cardCol=0; cardCol<card[0].length; cardCol++) {
+                if (Objects.equals(card[cardRow][cardCol], "^")) {
+                    String label = "Val=1 $=5";
+                    this.writeTextInMatrix(card, label, cardRow-1, cardCol-1);
+                }
+            }
+        }
+        */
+
         for (int cardRow=0; cardRow<card.length; cardRow++) {
             for (int cardCol=0; cardCol<card[0].length; cardCol++) {
                 cardRowOnSet = cardBaseRowOnSet + cardRow;
@@ -586,8 +598,8 @@ public class CLI {
         int cardBaseRowOnSet = 41;
         int cardBaseColOnSet = 0;
         String[][] block = this.lastPlayedAssistantCardsContainer;
-        String title = "Last played assistant cards".toUpperCase();
 
+        String title = "Last played assistant cards".toUpperCase();
         String label = String.valueOf(this.boardCoins);
         while (label.length() < 2) {
             label = "0" + label;
@@ -597,10 +609,21 @@ public class CLI {
             label = " " + label;
         }
         label = title + label;
-
         int offset_x = 3;
         int offset_y = 1;
         block = this.writeTextInMatrix(block, label, offset_x, offset_y);
+
+
+        int offset = 0;
+        for (String nickname : this.nicknames) {
+            StringBuilder nicknameBuilder = new StringBuilder(nickname);
+            while (nicknameBuilder.length() < 12) {
+                nicknameBuilder.append(" ");
+            }
+            nickname = nicknameBuilder.toString();
+            block = this.writeTextInMatrix(block, nickname, 2 + offset, 3);
+            offset += 15;
+        }
 
         for (int cardRow=0; cardRow<block.length; cardRow++) {
             for (int cardCol=0; cardCol<block[0].length; cardCol++) {
