@@ -7,6 +7,7 @@ import java.io.IOException;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.*;
+import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
@@ -16,7 +17,7 @@ public class Server {
 
     private final Queue<ConnectionHandler> queue;
     private final List<GameHandler> games;
-    private final Map<String, ConnectionHandler> players = new HashMap<>();
+    private final Map<String, ConnectionHandler> players;
 
     /**
      * Number of players for the match being built.
@@ -25,6 +26,7 @@ public class Server {
 
     public Server(){
         this.queue = new ArrayDeque<>();
+        this.players = new ConcurrentHashMap<>();
         this.games = new ArrayList<>();
     }
 
@@ -74,9 +76,7 @@ public class Server {
             connectionHandler.send(new AnswerEvent("set_nickname", connectionHandler.getNickname()));
             synchronized (queue) {
                 this.queue.add(connectionHandler);
-                synchronized (players) {
-                    if (players.size() > 0) connectionHandler.send(new AnswerEvent("wait"));
-                }
+                if (players.size() > 0) connectionHandler.send(new AnswerEvent("wait"));
                 this.queue.notifyAll();
             }
         }
@@ -101,9 +101,8 @@ public class Server {
             synchronized (queue) {
                 connectionHandler = queue.remove();
             }
-            synchronized(players) {
-                players.put(connectionHandler.getNickname(), connectionHandler);
-            }
+
+            players.put(connectionHandler.getNickname(), connectionHandler);
             System.out.println("added player to a game");
 
             if (players.size() == 1) {
@@ -151,12 +150,12 @@ public class Server {
             connectionHandler.send(new AnswerEvent("error", "Nickname too short"));
             return false;
         }
-        synchronized (players) {
-            if (players.containsKey(connectionHandler.getNickname())) {
-                connectionHandler.send(new AnswerEvent("error", "Nickname already taken!"));
-                return false;
-            }
+
+        if (players.containsKey(connectionHandler.getNickname())) {
+            connectionHandler.send(new AnswerEvent("error", "Nickname already taken!"));
+            return false;
         }
+
         synchronized (games) {
             for (GameHandler game : games) {
                 if (game.getNicknames().contains(connectionHandler.getNickname())) {
