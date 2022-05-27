@@ -37,7 +37,10 @@
                         <Font name="Avenir Book" size="24.0" />
                      </font>
                   </Text>
-                  <VBox fx:id="playersVBox" alignment="TOP_CENTER" layoutX="302.0" layoutY="64.0" prefHeight="386.0" prefWidth="100.0" />
+                  <VBox fx:id="playersVBox" alignment="TOP_CENTER" layoutX="302.0" layoutY="64.0" prefHeight="386.0" prefWidth="100.0">
+                     <padding>
+                        <Insets top="25.0" />
+                     </padding></VBox>
                </children>
             </Pane>
          </center>

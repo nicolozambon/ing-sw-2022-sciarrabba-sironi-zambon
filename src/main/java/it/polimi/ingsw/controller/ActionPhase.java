@@ -69,7 +69,7 @@ public class ActionPhase {
             }
         }
     }
-
+    //TODO: add check enough students
     public void takeStudentsFromCloud(int choice) throws CloudException {
         if(callableMethod.get("takeStudentsFromCloud") > 0) {
             this.model.takeStudentsFromCloud(this.currentPlayer.getId(), choice);
