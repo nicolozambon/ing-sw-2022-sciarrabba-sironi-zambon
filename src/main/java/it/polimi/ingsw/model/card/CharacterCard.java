@@ -80,4 +80,13 @@ public class CharacterCard {
         return Objects.hash(coins, effect, category, params);
     }
 
+    @Override
+    public String toString() {
+        return "\n{" +
+                "id = " + id +
+                ", effect = " + effect + '\'' +
+                ", cost = " + coins +
+                "}";
+    }
+
 }

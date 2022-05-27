@@ -14,18 +14,18 @@ import java.util.Map;
 public final class ThinModel {
 
     //Players State
-    private List<String> nicknames;
-    private List<Wizard> wizards;
-    private List<SchoolSerializable> schools;
-    private List<Integer> coins;
-    private List<List<AssistantCard>> assistantsCards;
+    private final List<String> nicknames;
+    private final List<Wizard> wizards;
+    private final List<SchoolSerializable> schools;
+    private final List<Integer> coins;
+    private final List<List<AssistantCard>> assistantsCards;
 
     //Game State
-    private int coinReserve;
-    private List<IslandSerializable> islands;
-    private List<CloudSerializable> clouds;
-    private List<CharacterCardSerializable> characterCards;
-    private List<Color> professors;
+    private final int coinReserve;
+    private final List<IslandSerializable> islands;
+    private final List<CloudSerializable> clouds;
+    private final List<CharacterCard> characterCards;
+    private final List<Color> professors;
 
     public ThinModel(Model model) {
         nicknames = model.getPlayers().stream().map(Player::getNickname).toList();
@@ -37,10 +37,8 @@ public final class ThinModel {
         coinReserve = model.getCoinReserve();
         islands = new ArrayList<>();
         clouds = new ArrayList<>();
-        characterCards = new ArrayList<>();
+        characterCards = new ArrayList<>(model.getCharacterCards());
         professors = new ArrayList<>();
-
-
 
         for (Player player : model.getPlayers()) {
             schools.add(player.getId(), new SchoolSerializable(player.getSchool(), player.getTowerColor()));
@@ -55,10 +53,6 @@ public final class ThinModel {
 
         for (Cloud cloud : model.getClouds()) {
             clouds.add(new CloudSerializable(cloud));
-        }
-
-        for (CharacterCard card : model.getCharacterCards()) {
-            characterCards.add(new CharacterCardSerializable(card));
         }
 
         for (Professor professor : model.getProfessors()) {
@@ -85,12 +79,20 @@ public final class ThinModel {
         return value;
     }
 
-    public int getStudentOnCloud(int cloudId) {
+    public int getNumStudentOnCloud(int cloudId) {
         return clouds.get(cloudId).students.size();
     }
 
+    public int getNumClouds() {
+        return clouds.size();
+    }
+
+    public List<Color> getStudentOnCloud(int cloudId) {
+        return new ArrayList<>(clouds.get(cloudId).students);
+    }
+
     public int getCharacterCardCost(int characterId) {
-        return characterCards.stream().filter(x -> x.id == characterId).findAny().get().cost;
+        return characterCards.stream().filter(x -> x.getId() == characterId).findAny().get().getCoins();
     }
 
     public int getMNPosition() {
@@ -112,10 +114,17 @@ public final class ThinModel {
         return new HashMap<>(islands.get(id).students);
     }
 
+    public int getNumIslands() {
+        return islands.size();
+    }
+
     public List<Wizard> getWizards() {
         return new ArrayList<>(wizards);
     }
 
+    public List<CharacterCard> getCharacterCards() {
+        return new ArrayList<>(characterCards);
+    }
 
 
 
@@ -139,7 +148,7 @@ public final class ThinModel {
         return first + second + third;
     }
 
-    private class SchoolSerializable { //A SchoolSerializable for all players.
+    private static class SchoolSerializable { //A SchoolSerializable for all players.
 
         Map<Color, Integer> diningRoom = new HashMap<>();
         List<Color> entrance = new ArrayList<>(); //Ordered by #Position of Entrance in the board.
@@ -209,28 +218,6 @@ public final class ThinModel {
                     ", motherNaturePresence = " + motherNaturePresence +
                     ", linkedPrev = " + isLinkedPrev +
                     ", linkedNext = " + isLinkedNext +
-                    "}";
-        }
-    }
-
-    private static class CharacterCardSerializable {
-
-        int id;
-        String effect;
-        int cost;
-
-        CharacterCardSerializable(CharacterCard card) {
-            this.id = card.getId();
-            this.effect = card.getEffect();
-            this.cost = card.getCoins();
-        }
-
-        @Override
-        public String toString() {
-            return "\n{" +
-                    "id = " + id +
-                    ", effect = " + effect + '\'' +
-                    ", cost = " + cost +
                     "}";
         }
     }

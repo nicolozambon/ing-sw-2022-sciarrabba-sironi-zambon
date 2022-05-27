@@ -189,7 +189,7 @@ class ControllerTest {
 
         controller.takeStudentsFromCloud(2, 1);
         ThinModel thinModel = new ThinModel(this.model);
-        assertEquals(0, thinModel.getStudentOnCloud(0));
+        assertEquals(0, thinModel.getNumStudentOnCloud(0));
         assertEquals(9, thinModel.getEntranceByPlayerId(0).size());
 
     }
