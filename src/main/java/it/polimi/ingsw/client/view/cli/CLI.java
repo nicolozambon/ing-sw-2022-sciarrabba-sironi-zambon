@@ -5,10 +5,7 @@ import it.polimi.ingsw.enums.TowerColor;
 import it.polimi.ingsw.model.card.AssistantCard;
 import it.polimi.ingsw.model.card.CharacterCard;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Objects;
+import java.util.*;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -33,14 +30,14 @@ public class CLI {
 
     private final int boardCoins;
 
-    private final ArrayList<String> nicknames;
+    private final List<String> nicknames;
 
     /*
     private ArrayList<AssistantCardContent> = new ArrayList<>();
     */
 
 
-    public CLI(Integer playersNumber, ArrayList<String> nicknames) {
+    public CLI(Integer playersNumber, List<String> nicknames) {
         final AssetsLoader loader = new AssetsLoader();
         this.islandLinkers = loader.getIslandLinkers();
 

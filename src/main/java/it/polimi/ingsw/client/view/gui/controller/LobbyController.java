@@ -32,7 +32,13 @@ public class LobbyController implements GUIController {
     @Override
     public void optionsHandling(List<String> options) {
         playersVBox.getChildren().clear();
-        options.forEach(n -> playersVBox.getChildren().add(new Text(n)));
+        Text text;
+        for (String option : options) {
+            text = new Text(option);
+            text.getStyleClass().add("lobbyText");
+            playersVBox.getChildren().add(text);
+        }
+
     }
 
     @Override
