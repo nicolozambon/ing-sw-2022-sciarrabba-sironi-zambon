@@ -69,25 +69,6 @@ public final class ThinModel {
 
     }
 
-    @Override
-    public String toString() {
-        String first = "ModelSerializable{" +
-                "\n\nschools = " + schools +
-                ",\n\nplayer's coin = " + coins;
-        String second = ",\n\nassistantsCards = ";
-        for (List<AssistantCard> ac : assistantsCards) {
-            second = second + "\n" + ac;
-        }
-
-        String third = ",\n\ncoinReserve = " + coinReserve +
-                ",\n\nislands = " + islands +
-                ",\n\nclouds = " + clouds +
-                ",\n\ncharacterCards = " + characterCards +
-                ",\n\nprofessors = " + professors +
-                "\n}";
-        return first + second + third;
-    }
-
     public List<Color> getEntranceByPlayerId(int playerId) {
         return new ArrayList<>(schools.get(playerId).entrance);
     }
@@ -123,8 +104,8 @@ public final class ThinModel {
         return schools.size();
     }
 
-    public int getNumIslands() {
-        return islands.size();
+    public List<String> getNicknames() {
+        return new ArrayList<>(nicknames);
     }
 
     public Map<Color, Integer> getStudentOnIsland(int id) {
@@ -133,6 +114,29 @@ public final class ThinModel {
 
     public List<Wizard> getWizards() {
         return new ArrayList<>(wizards);
+    }
+
+
+
+
+
+    @Override
+    public String toString() {
+        String first = "ModelSerializable{" +
+                "\n\nschools = " + schools +
+                ",\n\nplayer's coin = " + coins;
+        String second = ",\n\nassistantsCards = ";
+        for (List<AssistantCard> ac : assistantsCards) {
+            second = second + "\n" + ac;
+        }
+
+        String third = ",\n\ncoinReserve = " + coinReserve +
+                ",\n\nislands = " + islands +
+                ",\n\nclouds = " + clouds +
+                ",\n\ncharacterCards = " + characterCards +
+                ",\n\nprofessors = " + professors +
+                "\n}";
+        return first + second + third;
     }
 
     private class SchoolSerializable { //A SchoolSerializable for all players.

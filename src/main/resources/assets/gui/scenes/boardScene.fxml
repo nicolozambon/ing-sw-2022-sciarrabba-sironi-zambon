@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
 <?import javafx.scene.effect.DropShadow?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
@@ -79,6 +80,7 @@
                               </VBox>
                                     </children>
                                 </HBox>
+                        <Button mnemonicParsing="false" text="END TURN" />
                             </children>
                         </HBox>
                     </right>
@@ -105,14 +107,6 @@
                                           <Font name="Avenir Next Condensed Bold" size="20.0" />
                                        </font>
                                     </Text>
-                                    <ImageView fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
-                                       <image>
-                                          <Image url="@../images/coin.png" />
-                                       </image>
-                                       <VBox.margin>
-                                          <Insets left="5.0" top="-75.0" />
-                                       </VBox.margin>
-                                    </ImageView>
                                  </children>
                               </VBox>
                            </children>
@@ -131,14 +125,6 @@
                                           <Font name="Avenir Next Condensed Bold" size="20.0" />
                                        </font>
                                     </Text>
-                                    <ImageView fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
-                                       <image>
-                                          <Image url="@../images/coin.png" />
-                                       </image>
-                                       <VBox.margin>
-                                          <Insets left="5.0" top="-75.0" />
-                                       </VBox.margin>
-                                    </ImageView>
                                  </children>
                               </VBox>
                            </children>
@@ -157,14 +143,6 @@
                                           <Font name="Avenir Next Condensed Bold" size="20.0" />
                                        </font>
                                     </Text>
-                                    <ImageView fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
-                                       <image>
-                                          <Image url="@../images/coin.png" />
-                                       </image>
-                                       <VBox.margin>
-                                          <Insets left="5.0" top="-75.0" />
-                                       </VBox.margin>
-                                    </ImageView>
                                  </children>
                               </VBox>
                            </children>
@@ -214,6 +192,34 @@
                                           <Insets />
                                        </VBox.margin>
                                        <children>
+                                          <StackPane prefHeight="150.0" prefWidth="200.0" GridPane.columnIndex="4" GridPane.rowIndex="4">
+                                             <children>
+                                                <ImageView fitHeight="185.0" fitWidth="145.0" pickOnBounds="true" preserveRatio="true" rotate="-110.0">
+                                                   <StackPane.margin>
+                                                      <Insets bottom="50.0" right="-50.0" />
+                                                   </StackPane.margin>
+                                                   <image>
+                                                      <Image url="@../images/cards/CharacterCard/CharacterCard_1.jpg" />
+                                                   </image>
+                                                </ImageView>
+                                                <ImageView fitHeight="185.0" fitWidth="145.0" pickOnBounds="true" preserveRatio="true" rotate="-100.0">
+                                                   <StackPane.margin>
+                                                      <Insets bottom="50.0" right="-50.0" />
+                                                   </StackPane.margin>
+                                                   <image>
+                                                      <Image url="@../images/cards/CharacterCard/CharacterCard_2.jpg" />
+                                                   </image>
+                                                </ImageView>
+                                                <ImageView fitHeight="185.0" fitWidth="145.0" pickOnBounds="true" preserveRatio="true" rotate="-90.0">
+                                                   <StackPane.margin>
+                                                      <Insets bottom="50.0" right="-50.0" />
+                                                   </StackPane.margin>
+                                                   <image>
+                                                      <Image url="@../images/cards/CharacterCard/CharacterCard_3.jpg" />
+                                                   </image>
+                                                </ImageView>
+                                             </children>
+                                          </StackPane>
                                           <StackPane id="island0" prefHeight="150.0" prefWidth="191.0" rotate="-90.0" GridPane.columnIndex="2" GridPane.rowIndex="10">
                                              <children>
                                                 <ImageView fitHeight="179.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
@@ -1832,6 +1838,7 @@
                                                 <RowConstraints maxHeight="131.0" minHeight="10.0" prefHeight="73.0" vgrow="SOMETIMES" />
                                                 <RowConstraints maxHeight="95.0" minHeight="10.0" prefHeight="74.0" vgrow="SOMETIMES" />
                                                 <RowConstraints maxHeight="95.0" minHeight="10.0" prefHeight="74.0" vgrow="SOMETIMES" />
+                                                <RowConstraints maxHeight="95.0" minHeight="10.0" prefHeight="74.0" vgrow="SOMETIMES" />
                                              </rowConstraints>
                                              <children>
                                                 <ImageView fitHeight="151.0" fitWidth="120.0" pickOnBounds="true" preserveRatio="true" GridPane.rowIndex="1">
@@ -1844,7 +1851,7 @@
                                                       <Image url="@../images/pawns/blueStudent.png" />
                                                    </image>
                                                    <GridPane.margin>
-                                                      <Insets top="-35.0" />
+                                                      <Insets left="5.0" top="-35.0" />
                                                    </GridPane.margin>
                                                 </ImageView>
                                                 <ImageView fitHeight="57.0" fitWidth="35.0" layoutX="31.0" layoutY="48.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="3" GridPane.rowIndex="1">
@@ -1855,12 +1862,20 @@
                                                       <Insets top="-35.0" />
                                                    </GridPane.margin>
                                                 </ImageView>
-                                                <ImageView fitHeight="57.0" fitWidth="35.0" layoutX="52.0" layoutY="86.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="2" GridPane.rowIndex="2">
+                                                <ImageView fitHeight="57.0" fitWidth="35.0" layoutX="52.0" layoutY="86.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="3" GridPane.rowIndex="2">
                                                    <image>
                                                       <Image url="@../images/pawns/blueStudent.png" />
                                                    </image>
                                                    <GridPane.margin>
                                                       <Insets top="-35.0" />
+                                                   </GridPane.margin>
+                                                </ImageView>
+                                                <ImageView fitHeight="57.0" fitWidth="35.0" layoutX="50.0" layoutY="97.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                                                   <image>
+                                                      <Image url="@../images/pawns/blueStudent.png" />
+                                                   </image>
+                                                   <GridPane.margin>
+                                                      <Insets left="5.0" top="-30.0" />
                                                    </GridPane.margin>
                                                 </ImageView>
                                              </children>
@@ -1884,7 +1899,7 @@
                                                       <Image url="@../images/cloud.png" />
                                                    </image>
                                                 </ImageView>
-                                                <ImageView fitHeight="57.0" fitWidth="35.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                                                <ImageView fitHeight="57.0" fitWidth="35.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" GridPane.rowIndex="1">
                                                    <image>
                                                       <Image url="@../images/pawns/blueStudent.png" />
                                                    </image>
@@ -1905,7 +1920,15 @@
                                                       <Image url="@../images/pawns/blueStudent.png" />
                                                    </image>
                                                    <GridPane.margin>
-                                                      <Insets />
+                                                      <Insets top="-20.0" />
+                                                   </GridPane.margin>
+                                                </ImageView>
+                                                <ImageView fitHeight="57.0" fitWidth="35.0" layoutX="64.0" layoutY="89.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" GridPane.rowIndex="3">
+                                                   <image>
+                                                      <Image url="@../images/pawns/blueStudent.png" />
+                                                   </image>
+                                                   <GridPane.margin>
+                                                      <Insets top="-20.0" />
                                                    </GridPane.margin>
                                                 </ImageView>
                                              </children>
@@ -1929,7 +1952,7 @@
                                                       <Image url="@../images/cloud.png" />
                                                    </image>
                                                 </ImageView>
-                                                <ImageView fitHeight="57.0" fitWidth="35.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="2" GridPane.rowIndex="2">
+                                                <ImageView fitHeight="57.0" fitWidth="35.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="2" GridPane.rowIndex="1">
                                                    <image>
                                                       <Image url="@../images/pawns/blueStudent.png" />
                                                    </image>
@@ -1945,12 +1968,20 @@
                                                       <Insets />
                                                    </GridPane.margin>
                                                 </ImageView>
-                                                <ImageView fitHeight="57.0" fitWidth="35.0" layoutX="52.0" layoutY="86.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" GridPane.rowIndex="3">
+                                                <ImageView fitHeight="57.0" fitWidth="35.0" layoutX="52.0" layoutY="86.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" GridPane.rowIndex="2">
                                                    <image>
                                                       <Image url="@../images/pawns/blueStudent.png" />
                                                    </image>
                                                    <GridPane.margin>
-                                                      <Insets />
+                                                      <Insets top="25.0" />
+                                                   </GridPane.margin>
+                                                </ImageView>
+                                                <ImageView fitHeight="57.0" fitWidth="35.0" layoutX="37.0" layoutY="97.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="2" GridPane.rowIndex="2">
+                                                   <image>
+                                                      <Image url="@../images/pawns/blueStudent.png" />
+                                                   </image>
+                                                   <GridPane.margin>
+                                                      <Insets top="25.0" />
                                                    </GridPane.margin>
                                                 </ImageView>
                                              </children>
@@ -3190,7 +3221,8 @@
                                        </image>
                                        <effect>
                                           <DropShadow />
-                                       </effect></ImageView>
+                                       </effect>
+                                    </ImageView>
                                     <ImageView id="gs8_1" fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" GridPane.rowIndex="1">
                                        <image>
                                           <Image url="@../images/pawns/greenStudent.png" />

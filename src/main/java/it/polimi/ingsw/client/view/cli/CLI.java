@@ -40,9 +40,7 @@ public class CLI {
     */
 
 
-    public CLI(ArrayList<String> nicknames) {
-        int playersNumber = nicknames.size();
-
+    public CLI(Integer playersNumber, ArrayList<String> nicknames) {
         final AssetsLoader loader = new AssetsLoader();
         this.islandLinkers = loader.getIslandLinkers();
 
@@ -571,22 +569,17 @@ public class CLI {
         int cardBaseRowOnSet = 39;
         int cardBaseColOnSet = 152;
         String[][] card = this.assistantCardTest;
-        int offset = 0;
 
+        /*
         for (int cardRow=0; cardRow<card.length; cardRow++) {
             for (int cardCol=0; cardCol<card[0].length; cardCol++) {
-
                 if (Objects.equals(card[cardRow][cardCol], "^")) {
-
                     String label = "Val=1 $=5";
-                    this.writeTextInMatrix(card, label, 2 + offset, cardRow);
-                    offset += label.length() + 7;
-
+                    this.writeTextInMatrix(card, label, cardRow-1, cardCol-1);
                 }
-
             }
-            offset = 0;
         }
+        */
 
         for (int cardRow=0; cardRow<card.length; cardRow++) {
             for (int cardCol=0; cardCol<card[0].length; cardCol++) {
