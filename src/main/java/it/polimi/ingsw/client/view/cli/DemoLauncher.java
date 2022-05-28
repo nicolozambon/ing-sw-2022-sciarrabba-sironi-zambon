@@ -17,7 +17,7 @@ public class DemoLauncher {
         List<String> nicknames = new ArrayList<>();
         nicknames.add("Nicolò");
         nicknames.add("Alessandro");
-        nicknames.add("Jonathan");
+        //nicknames.add("Jonathan");
 
         CLI cli = new CLI(nicknames);
 
@@ -54,8 +54,8 @@ public class DemoLauncher {
         cli.addStudentsToIsland(5, Color.RED, 5);
 
 
-        cli.addStudentToSchoolDiningRoom(2, Color.BLUE);
-        cli.addStudentToSchoolDiningRoom(2, Color.BLUE);
+        //cli.addStudentToSchoolDiningRoom(2, Color.BLUE);
+        //cli.addStudentToSchoolDiningRoom(2, Color.BLUE);
 
         cli.addStudentToSchoolEntrance(0, Color.BLUE);
         cli.addStudentToSchoolEntrance(0, Color.BLUE);
@@ -128,6 +128,7 @@ public class DemoLauncher {
         cli.addStudentsToIsland(0, Color.RED, 4);
         cli.addStudentsToIsland(0, Color.PINK, 10);
 
+        /*
         cli.addStudentToSchoolDiningRoom(2, Color.RED);
         cli.addStudentToSchoolDiningRoom(2, Color.RED);
         cli.addStudentToSchoolDiningRoom(2, Color.RED);
@@ -165,6 +166,7 @@ public class DemoLauncher {
         cli.addStudentToSchoolDiningRoom(2, Color.PINK);
         cli.addStudentToSchoolDiningRoom(2, Color.PINK);
         cli.addStudentToSchoolDiningRoom(2, Color.PINK);
+        */
 
         cli.addMotherNatureToIsland(0);
         cli.addTowerToIsland(0, TowerColor.WHITE);
