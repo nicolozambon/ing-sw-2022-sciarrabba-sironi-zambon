@@ -1,6 +1,7 @@
 package it.polimi.ingsw.client;
 
 import it.polimi.ingsw.client.view.cli.ViewCLI;
+import it.polimi.ingsw.client.view.gui.ViewGUI;
 
 import java.io.IOException;
 
@@ -13,8 +14,12 @@ public class Client {
                 view.startCLI();
             }
             if (args[0].equals("-gui")) {
-                System.out.println("Feature not implemented yet!");
+                ViewGUI viewGUI = new ViewGUI();
+                viewGUI.main(args);
             }
+        } else {
+            ViewGUI viewGUI = new ViewGUI();
+            viewGUI.main(args);
         }
     }
 
