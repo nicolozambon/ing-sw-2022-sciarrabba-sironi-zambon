@@ -24,7 +24,7 @@ public class CLI {
     private final String[][] characterCardTest;
     private final String[][] assistantCardTest;
     private final List<CharacterCard> characterCards = new ArrayList<>();
-
+    private final List<AssistantCard> assistantCards = new ArrayList<>();
     private final List<AssistantCard> lastPlayedAssistantCards = new ArrayList<>();
     private final String[][] lastPlayedAssistantCardsContainer;
 
@@ -177,9 +177,16 @@ public class CLI {
         return boardList.get(id);
     }
 
-    protected void addCharacterCard(int id, int coins, String effect) {
-        CharacterCard card = new CharacterCard(id, coins, effect);
+    protected void addCharacterCard(CharacterCard card) {
         this.characterCards.add(card);
+    }
+
+    protected void addAssistantCard(AssistantCard card) {
+        this.assistantCards.add(card);
+    }
+
+    protected void addLastPlayedAssistantCard(AssistantCard card) {
+        this.lastPlayedAssistantCards.add(card);
     }
 
     // SCHOOLS METHODS
@@ -566,21 +573,35 @@ public class CLI {
         int cardRowOnSet;
         int cardColOnSet;
         int cardBaseRowOnSet = 39;
-        int cardBaseColOnSet = 152;
+        int cardBaseColOnSet = 151;
         String[][] card = this.assistantCardTest;
         int offset = 0;
+        int assistantCardIndex = 0;
+        String value;
+        String steps;
 
         for (int cardRow=0; cardRow<card.length; cardRow++) {
             for (int cardCol=0; cardCol<card[0].length; cardCol++) {
-
                 if (Objects.equals(card[cardRow][cardCol], "^")) {
-
-                    String label = "Val=1 $=5";
-                    this.writeTextInMatrix(card, label, 2 + offset, cardRow);
-                    offset += label.length() + 7;
-
+                    if (assistantCardIndex < this.assistantCards.size()) {
+                        value = String.valueOf(this.assistantCards.get(assistantCardIndex).getValue());
+                        steps = String.valueOf(this.assistantCards.get(assistantCardIndex).getSteps());
+                        while (value.length() < 2) {
+                            value = "0" + value;
+                        }
+                        while (steps.length() < 2) {
+                            steps = "0" + steps;
+                        }
+                        String label = "VAL:" + value + "   S:" +steps;
+                        this.writeTextInMatrix(card, label, 2 + offset, cardRow);
+                        offset += label.length() + 3;
+                        assistantCardIndex++;
+                    } else {
+                        String label = "-------------";
+                        this.writeTextInMatrix(card, label, 2 + offset, cardRow);
+                        offset += label.length() + 3;
+                    }
                 }
-
             }
             offset = 0;
         }
@@ -626,7 +647,38 @@ public class CLI {
             }
             nickname = nicknameBuilder.toString();
             block = this.writeTextInMatrix(block, nickname, 2 + offset, 3);
-            offset += 15;
+            offset += 16;
+        }
+
+        offset = 0;
+        int assistantCardIndex = 0;
+        String value;
+        String steps;
+
+        for (int cardRow=0; cardRow<block.length; cardRow++) {
+            for (int cardCol=0; cardCol<block[0].length; cardCol++) {
+                if (Objects.equals(block[cardRow][cardCol], "^")) {
+                    if (assistantCardIndex < this.lastPlayedAssistantCards.size()) {
+                        value = String.valueOf(this.lastPlayedAssistantCards.get(assistantCardIndex).getValue());
+                        steps = String.valueOf(this.lastPlayedAssistantCards.get(assistantCardIndex).getSteps());
+                        while (value.length() < 2) {
+                            value = "0" + value;
+                        }
+                        while (steps.length() < 2) {
+                            steps = "0" + steps;
+                        }
+                        label = "VAL:" + value + "   S:" +steps;
+                        this.writeTextInMatrix(block, label, 2 + offset, cardRow);
+                        offset += label.length() + 3;
+                        assistantCardIndex++;
+                    } else {
+                        label = "-------------";
+                        this.writeTextInMatrix(block, label, 2 + offset, cardRow);
+                        offset += label.length() + 3;
+                    }
+                }
+            }
+            offset = 0;
         }
 
         for (int cardRow=0; cardRow<block.length; cardRow++) {

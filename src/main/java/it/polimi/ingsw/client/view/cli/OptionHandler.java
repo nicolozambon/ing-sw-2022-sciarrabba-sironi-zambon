@@ -28,7 +28,7 @@ public class OptionHandler {
         this.optionLister = new OptionLister();
         this.stdin = new Scanner(System.in);
         Gson gson = new Gson();
-        InputStream inputStream = getClass().getResourceAsStream("/assets/cli/options_selected.json");
+        InputStream inputStream = getClass().getResourceAsStream("/assets/cli/json/options_selected.json");
         this.optionSelected = gson.fromJson(new InputStreamReader(inputStream), new TypeToken<Map<String, String>>(){}.getType());
     }
 
