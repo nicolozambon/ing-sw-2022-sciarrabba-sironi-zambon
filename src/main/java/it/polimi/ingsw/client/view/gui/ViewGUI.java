@@ -13,7 +13,6 @@ import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
 import javafx.scene.layout.StackPane;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
@@ -158,7 +157,7 @@ public class ViewGUI extends Application implements RequestListenableInterface, 
                         stage.setResizable(false);
                         stage.setFullScreen(true);
                     }
-                    this.model = new ThinModel(answerEvent.getModel());
+                    this.model = answerEvent.getModel();
                 }
                 case "wait" -> {
                     //if (this.model != null) System.out.println(this.model);

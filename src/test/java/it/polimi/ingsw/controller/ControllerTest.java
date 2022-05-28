@@ -26,7 +26,7 @@ class ControllerTest {
         names.add("player0");
         names.add("player1");
         names.add("player2");
-        model = new ModelBuilder().buildModel(names);
+        model = new ModelBuilder().buildModel(names, true);
         controller = model.getController();
     }
 
@@ -103,7 +103,7 @@ class ControllerTest {
 
         int numStudentInDining = 0;
         for (Color color : Color.values()) {
-            numStudentInDining += thinModel.getDRByPlayerAndColor(player.getId(), color);
+            numStudentInDining += thinModel.getDiningRoomById(player.getId()).get(color);
         }
         assertEquals(4, numStudentInDining);
     }
@@ -189,7 +189,7 @@ class ControllerTest {
 
         controller.takeStudentsFromCloud(2, 1);
         ThinModel thinModel = new ThinModel(this.model);
-        assertEquals(0, thinModel.getStudentOnCloud(0));
+        assertEquals(0, thinModel.getStudentOnCloud(0).size());
         assertEquals(9, thinModel.getEntranceByPlayerId(0).size());
 
     }
@@ -201,10 +201,10 @@ class ControllerTest {
         controller.takeStudentsFromCloud(2, 1);
 
         ThinModel thinModel = new ThinModel(this.model);
-        int prev = thinModel.getCharacterCardCost(3);
+        int prev = thinModel.getCharacterCards().stream().filter(x -> x.getId() == 3).findFirst().get().getCoins();
         controller.playCharacterCard(2, 3);
         thinModel = new ThinModel(this.model);
-        assertEquals(prev + 1, thinModel.getCharacterCardCost(3));
+        assertEquals(prev + 1, thinModel.getCharacterCards().stream().filter(x -> x.getId() == 3).findFirst().get().getCoins());
     }
 
     @Test

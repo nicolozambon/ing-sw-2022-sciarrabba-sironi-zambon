@@ -80,7 +80,7 @@ public class ViewCLI implements AnswerListener, RequestListenableInterface {
     }
 
     private void updateModel(AnswerEvent answerEvent) {
-        this.model = new ThinModel(answerEvent.getModel());
+        this.model = answerEvent.getModel();
     }
 
     //TODO default loopback ip for testing purpose

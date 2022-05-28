@@ -14,18 +14,18 @@ import java.util.Map;
 public final class ThinModel {
 
     //Players State
-    private List<String> nicknames;
-    private List<Wizard> wizards;
-    private List<SchoolSerializable> schools;
-    private List<Integer> coins;
-    private List<List<AssistantCard>> assistantsCards;
+    private final List<String> nicknames;
+    private final List<Wizard> wizards;
+    private final List<SchoolSerializable> schools;
+    private final List<Integer> coins;
+    private final List<List<AssistantCard>> assistantsCards;
 
     //Game State
-    private int coinReserve;
-    private List<IslandSerializable> islands;
-    private List<CloudSerializable> clouds;
-    private List<CharacterCardSerializable> characterCards;
-    private List<Color> professors;
+    private final int coinReserve;
+    private final List<IslandSerializable> islands;
+    private final List<CloudSerializable> clouds;
+    private final List<CharacterCard> characterCards;
+    private final List<Color> professors;
 
     public ThinModel(Model model) {
         nicknames = model.getPlayers().stream().map(Player::getNickname).toList();
@@ -37,10 +37,8 @@ public final class ThinModel {
         coinReserve = model.getCoinReserve();
         islands = new ArrayList<>();
         clouds = new ArrayList<>();
-        characterCards = new ArrayList<>();
+        characterCards = new ArrayList<>(model.getCharacterCards());
         professors = new ArrayList<>();
-
-
 
         for (Player player : model.getPlayers()) {
             schools.add(player.getId(), new SchoolSerializable(player.getSchool(), player.getTowerColor()));
@@ -57,10 +55,6 @@ public final class ThinModel {
             clouds.add(new CloudSerializable(cloud));
         }
 
-        for (CharacterCard card : model.getCharacterCards()) {
-            characterCards.add(new CharacterCardSerializable(card));
-        }
-
         for (Professor professor : model.getProfessors()) {
             professors.add(professor.getColor());
         }
@@ -73,10 +67,6 @@ public final class ThinModel {
         return new ArrayList<>(schools.get(playerId).entrance);
     }
 
-    public int getDRByPlayerAndColor(int playerId, Color color) {
-        return schools.get(playerId).diningRoom.get(color);
-    }
-
     public int getStudentOnIslandById(int islandId) {
         int value = 0;
         for (Color color : Color.values()) {
@@ -85,12 +75,12 @@ public final class ThinModel {
         return value;
     }
 
-    public int getStudentOnCloud(int cloudId) {
-        return clouds.get(cloudId).students.size();
+    public int getNumClouds() {
+        return clouds.size();
     }
 
-    public int getCharacterCardCost(int characterId) {
-        return characterCards.stream().filter(x -> x.id == characterId).findAny().get().cost;
+    public List<Color> getStudentOnCloud(int cloudId) {
+        return new ArrayList<>(clouds.get(cloudId).students);
     }
 
     public int getMNPosition() {
@@ -98,10 +88,6 @@ public final class ThinModel {
             if (i.motherNaturePresence) return islands.indexOf(i);
         }
         return -1;
-    }
-
-    public int getNumPlayers() {
-        return schools.size();
     }
 
     public List<String> getNicknames() {
@@ -112,13 +98,45 @@ public final class ThinModel {
         return new HashMap<>(islands.get(id).students);
     }
 
+    public int getNumIslands() {
+        return islands.size();
+    }
+
     public List<Wizard> getWizards() {
         return new ArrayList<>(wizards);
     }
 
+    public List<CharacterCard> getCharacterCards() {
+        return new ArrayList<>(characterCards);
+    }
 
+    public TowerColor getTowerColorOnIsland(int islandId) {
+        return islands.get(islandId).towerColor;
+    }
 
+    public List<Color> getEntranceById(int playerId) {
+        return new ArrayList<>(schools.get(playerId).entrance);
+    }
 
+    public Map<Color, Integer> getDiningRoomById(int playerId) {
+        return new HashMap<>(schools.get(playerId).diningRoom);
+    }
+
+    public int getNumTowerByPlayer(int playerId) {
+        return schools.get(playerId).numTowers;
+    }
+
+    public TowerColor getTowerColorByPlayer(int playerId) {
+        return schools.get(playerId).towerColor;
+    }
+
+    public boolean isIslandLinkedNext(int islandId) {
+        return islands.get(islandId).isLinkedNext;
+    }
+
+    public List<Color> getProfessorsByPlayer(int playerId) {
+        return new ArrayList<>(schools.get(playerId).profTable);
+    }
 
     @Override
     public String toString() {
@@ -139,7 +157,7 @@ public final class ThinModel {
         return first + second + third;
     }
 
-    private class SchoolSerializable { //A SchoolSerializable for all players.
+    private static class SchoolSerializable { //A SchoolSerializable for all players.
 
         Map<Color, Integer> diningRoom = new HashMap<>();
         List<Color> entrance = new ArrayList<>(); //Ordered by #Position of Entrance in the board.
@@ -177,15 +195,14 @@ public final class ThinModel {
     private static class IslandSerializable {
 
         Map<Color, Integer> students;
-        boolean towerPresence;
-        TowerColor color;
+
+        TowerColor towerColor;
         boolean motherNaturePresence;
         boolean isLinkedPrev;
         boolean isLinkedNext;
 
         IslandSerializable(Island island) {
             this.students = new HashMap<>();
-            this.towerPresence = false;
             this.motherNaturePresence = false;
             this.isLinkedPrev = island.isUnifyPrev();
             this.isLinkedNext = island.isUnifyNext();
@@ -195,8 +212,7 @@ public final class ThinModel {
             }
 
             if (island.getTower() != null) {
-                towerPresence = true;
-                color = island.getTower().getColor();
+                towerColor = island.getTower().getColor();
             }
         }
 
@@ -204,33 +220,10 @@ public final class ThinModel {
         public String toString() {
             return "\n{" +
                     "students = " + students +
-                    ", towerPresence = " + towerPresence +
-                    ", color = " + color +
+                    ", color = " + towerColor +
                     ", motherNaturePresence = " + motherNaturePresence +
                     ", linkedPrev = " + isLinkedPrev +
                     ", linkedNext = " + isLinkedNext +
-                    "}";
-        }
-    }
-
-    private static class CharacterCardSerializable {
-
-        int id;
-        String effect;
-        int cost;
-
-        CharacterCardSerializable(CharacterCard card) {
-            this.id = card.getId();
-            this.effect = card.getEffect();
-            this.cost = card.getCoins();
-        }
-
-        @Override
-        public String toString() {
-            return "\n{" +
-                    "id = " + id +
-                    ", effect = " + effect + '\'' +
-                    ", cost = " + cost +
                     "}";
         }
     }

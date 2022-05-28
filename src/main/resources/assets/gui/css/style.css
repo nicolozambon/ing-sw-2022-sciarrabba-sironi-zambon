@@ -10,6 +10,7 @@
 .lobbyText {
     -fx-font-family: "Avenir Next Condensed";
     -fx-font-size: 18px;
+    -fx-fill: white;
 }
 
 .firstPlayer {

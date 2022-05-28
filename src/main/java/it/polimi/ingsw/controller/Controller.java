@@ -18,18 +18,14 @@ import java.util.stream.Collectors;
 
 public class Controller implements RequestListener {
 
+    private transient final Model model;
+    private final int numStudentToMove;
+    private final List<Wizard> wizards;
     private List<Player> playersToPlay;
     private List<Player> playersHavePlayed;
-
-    private transient final Model model;
-
     private PlanningPhase planning;
     private ActionPhase action;
-
     private boolean isPlanningFinished;
-    private final int numStudentToMove;
-
-    private final List<Wizard> wizards;
 
     public Controller(List<Player> players, Model model, int numStudentToMove) {
 
@@ -142,7 +138,7 @@ public class Controller implements RequestListener {
         } else throw new InvalidActionException("Not valid action!");
     }
 
-    public void extraAction(int playerId, int ... values) throws Exception {
+    public void extraAction(int playerId, int... values) throws Exception {
         if (isPlanningFinished && playersToPlay.size() > 0 && wizards.isEmpty()) {
             Player player = playersToPlay.get(0);
             if (player.getId() == playerId) {
@@ -178,7 +174,7 @@ public class Controller implements RequestListener {
             model.setWizard(playerId, wizard);
             wizards.remove(wizard);
             this.model.fireAnswer(new AnswerEvent("wait", playerId));
-            if ((playersToPlay.size() == 3 && wizards.size() == 1) || (playersToPlay.size() == 2 && wizards.size() == 2) ) {
+            if ((playersToPlay.size() == 3 && wizards.size() == 1) || (playersToPlay.size() == 2 && wizards.size() == 2)) {
                 wizards.clear();
                 this.model.fireAnswer(new AnswerEvent("update", this.model));
                 this.model.fireAnswer(new AnswerEvent("options", getOptions()));
@@ -196,7 +192,7 @@ public class Controller implements RequestListener {
 
     }
 
-    private boolean isRoundEnded(){
+    private boolean isRoundEnded() {
         return playersToPlay.size() == 0 && isPlanningFinished;
     }
 
@@ -222,11 +218,11 @@ public class Controller implements RequestListener {
         }
     }
 
-    private void orderPlayersForAction(){
+    private void orderPlayersForAction() {
         this.playersHavePlayed =
                 this.playersHavePlayed.stream()
-                .sorted(Comparator.comparingInt(x -> x.getLastAssistantCard().getValue()))
-                .collect(Collectors.toList());
+                        .sorted(Comparator.comparingInt(x -> x.getLastAssistantCard().getValue()))
+                        .collect(Collectors.toList());
         playersToPlay = playersHavePlayed;
         playersHavePlayed = new ArrayList<>();
         isPlanningFinished = true;
@@ -234,7 +230,7 @@ public class Controller implements RequestListener {
         action = new ActionPhase(playersToPlay.get(0), this.numStudentToMove, this.model);
     }
 
-    private void orderPlayersForNextRound(){
+    private void orderPlayersForNextRound() {
         List<Player> temp = new ArrayList<>();
         orderPlayersForAction();
         int firstPlayerId;
@@ -269,7 +265,7 @@ public class Controller implements RequestListener {
     public void onRequestEvent(RequestEvent requestEvent) throws NoSuchMethodException, InvocationTargetException, IllegalAccessException {
         String methodName = requestEvent.getPropertyName();
         int[] values = requestEvent.getValues();
-        switch(methodName) {
+        switch (methodName) {
 
             case "moveStudentToIsland" -> {
                 Method method = Controller.class.getDeclaredMethod(methodName, int.class, int.class, int.class);
@@ -278,7 +274,7 @@ public class Controller implements RequestListener {
 
             case "extraAction" -> {
                 Method method = Controller.class.getDeclaredMethod(methodName, int.class, int[].class);
-                method.invoke(this, requestEvent.getPlayerId(), (Object) values);
+                method.invoke(this, requestEvent.getPlayerId(), values);
             }
 
             case "endAction" -> {

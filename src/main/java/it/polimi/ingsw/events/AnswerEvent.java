@@ -1,6 +1,7 @@
 package it.polimi.ingsw.events;
 
 import it.polimi.ingsw.model.Model;
+import it.polimi.ingsw.model.ThinModel;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -11,7 +12,7 @@ public class AnswerEvent {
     private final String message;
     private final List<String> options;
     private final int num;
-    private final Model model;
+    private final ThinModel model;
 
 
     public AnswerEvent(String propertyName) {
@@ -34,7 +35,7 @@ public class AnswerEvent {
         this.propertyName = propertyName;
         this.message = null;
         this.options = null;
-        this.model = model;
+        this.model = new ThinModel(model);
         this.num = -1;
     }
 
@@ -71,7 +72,7 @@ public class AnswerEvent {
         return num;
     }
 
-    public Model getModel() {
+    public ThinModel getModel() {
         return model;
     }
 }

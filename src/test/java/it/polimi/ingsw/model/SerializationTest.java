@@ -1,7 +1,6 @@
 package it.polimi.ingsw.model;
 
 import com.google.gson.Gson;
-import it.polimi.ingsw.server.VirtualView;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
@@ -17,7 +16,7 @@ public class SerializationTest {
         List<String> names = new ArrayList<>();
         names.add("Pluto");
         names.add("Pippo");
-        Model model = new ModelBuilder().buildModel(names);
+        Model model = new ModelBuilder().buildModel(names, false);
         String string = gson.toJson(model);
 
         Tower tower = model.getPlayers().get(0).getSchool().getTowersBoard().getPawns().get(0);
