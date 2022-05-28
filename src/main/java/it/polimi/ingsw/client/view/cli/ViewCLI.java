@@ -50,7 +50,7 @@ public class ViewCLI implements AnswerListener, RequestListenableInterface {
             case "options" -> handleOptions(answerEvent);
             case "update" -> updateModel(answerEvent);
             case "wait" -> {
-                if (this.model != null) cliBuilder.buildCLI(model, nickname);
+                if (this.model != null) cliBuilder.buildCLI(model, nickname).showGameBoard();
                 System.out.print(optionLister.list(answerEvent.getPropertyName()));
                 if (answerEvent.getMessage() != null) System.out.print(", it is " + answerEvent.getMessage() + "'s turn");
                 System.out.print("\n");
