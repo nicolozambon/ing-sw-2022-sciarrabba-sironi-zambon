@@ -18,7 +18,8 @@ public final class ThinModel {
     private final List<Wizard> wizards;
     private final List<SchoolSerializable> schools;
     private final List<Integer> coins;
-    private final List<List<AssistantCard>> assistantsCards;
+    private final Map<Integer, List<AssistantCard>> assistantsCards;
+    private final List<AssistantCard> lastPlayedAssistantCard;
 
     //Game State
     private final int coinReserve;
@@ -31,8 +32,9 @@ public final class ThinModel {
         nicknames = model.getPlayers().stream().map(Player::getNickname).toList();
         schools = new ArrayList<>();
         coins = new ArrayList<>();
-        assistantsCards = new ArrayList<>();
+        assistantsCards = new HashMap<>();
         wizards = new ArrayList<>();
+        lastPlayedAssistantCard = new ArrayList<>();
 
         coinReserve = model.getCoinReserve();
         islands = new ArrayList<>();
@@ -43,8 +45,9 @@ public final class ThinModel {
         for (Player player : model.getPlayers()) {
             schools.add(player.getId(), new SchoolSerializable(player.getSchool(), player.getTowerColor()));
             coins.add(player.getId(), player.getCoins());
-            assistantsCards.add(player.getId(), player.getAssistantCards());
+            assistantsCards.put(player.getId(), player.getAssistantCards());
             wizards.add(player.getId(), player.getWizard());
+            lastPlayedAssistantCard.add(player.getId(), player.getLastAssistantCard());
         }
 
         for (Island island : model.getIslands()) {
@@ -138,16 +141,32 @@ public final class ThinModel {
         return new ArrayList<>(schools.get(playerId).profTable);
     }
 
+    public List<AssistantCard> getAssistantCardsByPlayer(int playerId) {
+        return new ArrayList<>(assistantsCards.get(playerId));
+    }
+
+    public AssistantCard getLastAssistantCardByPlayer(int playerId) {
+        return lastPlayedAssistantCard.get(playerId);
+    }
+
+    public int getCoinByPlayer(int playerId) {
+        return coins.get(playerId);
+    }
+
+    public int getCoinReserve() {
+        return coinReserve;
+    }
+
     @Override
     public String toString() {
         String first = "ModelSerializable{" +
                 "\n\nschools = " + schools +
                 ",\n\nplayer's coin = " + coins;
         String second = ",\n\nassistantsCards = ";
-        for (List<AssistantCard> ac : assistantsCards) {
-            second = second + "\n" + ac;
+        for (Integer i : assistantsCards.keySet()) {
+            second = second + "\n" + assistantsCards.get(i);
         }
-
+        second = second + "\n" + lastPlayedAssistantCard;
         String third = ",\n\ncoinReserve = " + coinReserve +
                 ",\n\nislands = " + islands +
                 ",\n\nclouds = " + clouds +

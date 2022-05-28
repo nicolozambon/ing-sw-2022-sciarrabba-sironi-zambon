@@ -3,6 +3,8 @@ package it.polimi.ingsw.client.view.cli;
 import it.polimi.ingsw.enums.Color;
 import it.polimi.ingsw.enums.TowerColor;
 import it.polimi.ingsw.model.ThinModel;
+import it.polimi.ingsw.model.card.AssistantCard;
+import it.polimi.ingsw.model.card.CharacterCard;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -11,6 +13,7 @@ import java.util.Map;
 
 public class CLIBuilder {
 
+    //Map model id to cli id
     private final Map<Integer, Integer> idMap;
 
     public CLIBuilder() {
@@ -20,20 +23,28 @@ public class CLIBuilder {
     public CLI buildCLI(ThinModel model, String nickname) {
         List<String> nicknames = model.getNicknames();
         List<String> nicknamesCLI = new ArrayList<>();
+        List<Integer> coins = new ArrayList<>();
+        List<AssistantCard> lastAssistantCards = new ArrayList<>();
         int currentId = nicknames.indexOf(nickname);
         this.idMap.put(currentId, 0);
         nicknamesCLI.add(nickname);
+        coins.add(model.getCoinByPlayer(currentId));
+        lastAssistantCards.add(model.getLastAssistantCardByPlayer(currentId));
 
         for (int i = 1; i < nicknames.size(); i++) {
-            this.idMap.put((currentId + i) % nicknames.size(), i);
-            nicknamesCLI.add(nicknames.get((currentId + i) % nicknames.size()));
+            int nextPlayerId = (currentId + i) % nicknames.size();
+            this.idMap.put(nextPlayerId, i);
+            nicknamesCLI.add(nicknames.get(nextPlayerId));
+            coins.add(model.getCoinByPlayer(nextPlayerId));
+            lastAssistantCards.add(model.getLastAssistantCardByPlayer(nextPlayerId));
         }
 
-        CLI cli = new CLI(nicknamesCLI);
+        CLI cli = new CLI(nicknamesCLI, coins);
+        lastAssistantCards.forEach(cli::addLastPlayedAssistantCard);
+        cli.setBoardCoins(model.getCoinReserve());
         buildIsland(cli, model);
         buildCloud(cli, model);
         buildCharacterCards(cli, model);
-        buildAssistantCards(cli, model);
         buildSchool(cli, model);
 
         return cli;
@@ -61,20 +72,21 @@ public class CLIBuilder {
         }
     }
 
-    //TODO build character card
     private void buildCharacterCards(CLI cli, ThinModel model) {
-        /*for (CharacterCard card : model.getCharacterCards()) {
-            cli.addCharacterCard(card);
-        }*/
-    }
-
-    //TODO: build assistant card
-    private void buildAssistantCards(CLI cli, ThinModel model) {
-
+        List<CharacterCard> cards = model.getCharacterCards();
+        for (int i = 0; i < 3; i++) {
+            cli.addCharacterCard(cards.get(i));
+        }
     }
 
     private void buildSchool(CLI cli, ThinModel model) {
         for (Integer id : idMap.keySet()) {
+            //AssistantCard
+            if (idMap.get(id) == 0) {
+                for (AssistantCard card : model.getAssistantCardsByPlayer(id)) {
+                    cli.addAssistantCard(card);
+                }
+            }
             //Entrance
             for (Color color : model.getEntranceById(id)) {
                 cli.addStudentToSchoolEntrance(idMap.get(id), color);

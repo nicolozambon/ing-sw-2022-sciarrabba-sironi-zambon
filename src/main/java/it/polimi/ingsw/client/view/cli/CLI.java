@@ -28,7 +28,7 @@ public class CLI {
     private final List<AssistantCard> lastPlayedAssistantCards = new ArrayList<>();
     private final String[][] lastPlayedAssistantCardsContainer;
     private final int playersNumber;
-    private final int boardCoins;
+    private int boardCoins;
 
     private final List<String> nicknames;
 
@@ -37,7 +37,7 @@ public class CLI {
     */
 
 
-    public CLI(List<String> nicknames) {
+    public CLI(List<String> nicknames, List<Integer> coins) {
         this.playersNumber = nicknames.size();
 
         final AssetsLoader loader = new AssetsLoader();
@@ -50,7 +50,7 @@ public class CLI {
         String[][] school;
         for (int i=0; i<playersNumber; i++) {
             school = loader.getSchool(isMain);
-            school = this.addCaptionToSchool(school, this.nicknames.get(i), 5);
+            school = this.addCaptionToSchool(school, this.nicknames.get(i), coins.get(i));
             this.schools.add(school);
             isMain = true;
         }
@@ -73,8 +73,12 @@ public class CLI {
         this.assistantCardTest = loader.getAssistantCardContainer();
         this.lastPlayedAssistantCardsContainer = loader.getLastPlayedAssistantCards();
 
-        this.boardCoins = 21;
+        this.boardCoins = 0;
 
+    }
+
+    public void setBoardCoins(int boardCoins) {
+        this.boardCoins = boardCoins;
     }
 
     public void addLinkToNextIsland(int islandId) {
@@ -358,6 +362,8 @@ public class CLI {
                     }
 
                      */
+                    cardNumber++;
+                    if (cardNumber > 2) cardNumber = 0;
                 }
                 if (Objects.equals(board[i][j], "!")) {
                     cardText = this.characterCards.get(cardNumber).getEffect();
@@ -367,12 +373,13 @@ public class CLI {
                     while(m.find()) {
                         cardTextLines.add(m.group().trim());
                     }
-                    cardNumber += 1;
                     for (int k=0; k<min(cardTextHeight, cardTextLines.size()); k++) {
                         for (int h=0; h<min(cardTextWidth, cardTextLines.get(k).length()); h++) {
                             board[i+k][j+h] = String.valueOf(cardTextLines.get(k).charAt(h));
                         }
                     }
+                    cardNumber++;
+                    if (cardNumber > 2) cardNumber = 0;
                 }
             }
         }
@@ -673,7 +680,7 @@ public class CLI {
         for (int cardRow=0; cardRow<block.length; cardRow++) {
             for (int cardCol=0; cardCol<block[0].length; cardCol++) {
                 if (Objects.equals(block[cardRow][cardCol], "^")) {
-                    if (assistantCardIndex < this.lastPlayedAssistantCards.size()) {
+                    if (assistantCardIndex < this.lastPlayedAssistantCards.size() && this.lastPlayedAssistantCards.get(assistantCardIndex) != null) {
                         value = String.valueOf(this.lastPlayedAssistantCards.get(assistantCardIndex).getValue());
                         steps = String.valueOf(this.lastPlayedAssistantCards.get(assistantCardIndex).getSteps());
                         while (value.length() < 2) {
@@ -685,12 +692,12 @@ public class CLI {
                         label = "VAL:" + value + "   S:" +steps;
                         this.writeTextInMatrix(block, label, 2 + offset, cardRow);
                         offset += label.length() + 3;
-                        assistantCardIndex++;
                     } else {
                         label = "-------------";
                         this.writeTextInMatrix(block, label, 2 + offset, cardRow);
                         offset += label.length() + 3;
                     }
+                    assistantCardIndex++;
                 }
             }
             offset = 0;

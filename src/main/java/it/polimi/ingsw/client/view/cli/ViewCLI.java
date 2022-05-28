@@ -27,12 +27,14 @@ public class ViewCLI implements AnswerListener, RequestListenableInterface {
     private final RequestListenable requestListenable;
 
     private ThinModel model = null;
+    private final CLIBuilder cliBuilder;
 
     public ViewCLI() {
         this.optionLister = new OptionLister();
         this.options = new ArrayList<>(List.of("nickname"));
         this.optionHandler = new OptionHandler();
         this.requestListenable = new RequestListenable();
+        this.cliBuilder = new CLIBuilder();
     }
 
 
@@ -48,7 +50,7 @@ public class ViewCLI implements AnswerListener, RequestListenableInterface {
             case "options" -> handleOptions(answerEvent);
             case "update" -> updateModel(answerEvent);
             case "wait" -> {
-                if (this.model != null) System.out.println(this.model);
+                if (this.model != null) cliBuilder.buildCLI(model, nickname);
                 System.out.print(optionLister.list(answerEvent.getPropertyName()));
                 if (answerEvent.getMessage() != null) System.out.print(", it is " + answerEvent.getMessage() + "'s turn");
                 System.out.print("\n");
@@ -69,7 +71,7 @@ public class ViewCLI implements AnswerListener, RequestListenableInterface {
 
     private void handleOptions(AnswerEvent answerEvent) {
         this.options = answerEvent.getOptions();
-        if (this.model != null && !answerEvent.getPropertyName().equals("error")) System.out.println(this.model);
+        if (this.model != null && !answerEvent.getPropertyName().equals("error")) cliBuilder.buildCLI(this.model, nickname).showGameBoard();
         RequestEvent requestEvent = null;
         try {
             requestEvent = optionHandler.getRequestEvent(this.options);

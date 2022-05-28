@@ -84,7 +84,8 @@ public class Player {
     }
 
     public AssistantCard getLastAssistantCard() {
-        return discardPileDeck.getCards().get(discardPileDeck.getCards().size()-1);
+        if (discardPileDeck.getCards().size() > 0) return discardPileDeck.getCards().get(discardPileDeck.getCards().size()-1);
+        return null;
     }
 
     protected boolean moveStudentDiningRoom(Student student, int coinReserve) throws InvalidActionException {

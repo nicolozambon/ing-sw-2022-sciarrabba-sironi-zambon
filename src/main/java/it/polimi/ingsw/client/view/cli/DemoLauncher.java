@@ -19,11 +19,11 @@ public class DemoLauncher {
         nicknames.add("Alessandro");
         //nicknames.add("Jonathan");
 
-        CLI cli = new CLI(nicknames);
+        CLI cli = new CLI(nicknames, new ArrayList<>(List.of(5,5,5)));
 
-        CharacterCard characterCard = new CharacterCard(1, 5, "lorem ipsum");
+        CharacterCard characterCard = new CharacterCard(2, 5, "lorem ipsum");
         cli.addCharacterCard(characterCard);
-        cli.addCharacterCard(characterCard);
+        cli.addCharacterCard(new CharacterCard(3, 10, "effetto in mezzo"));
         cli.addCharacterCard(characterCard);
 
         AssistantCard assistantCard = new AssistantCard(1, 1);
@@ -39,7 +39,7 @@ public class DemoLauncher {
         //cli.addAssistantCard(assistantCard);
 
         cli.addLastPlayedAssistantCard(assistantCard);
-        cli.addLastPlayedAssistantCard(assistantCard);
+        cli.addLastPlayedAssistantCard(null);
 
         cli.addStudentToSchoolDiningRoom(0, Color.RED);
         cli.addStudentToSchoolDiningRoom(0, Color.BLUE);

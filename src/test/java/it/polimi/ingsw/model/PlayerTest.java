@@ -64,7 +64,7 @@ class PlayerTest {
 
     @Test
     void AssistantCard() throws CardException {
-        assertThrows(IndexOutOfBoundsException.class, () -> player.getLastAssistantCard());
+        assertNull(player.getLastAssistantCard());
         player.playAssistantCard(1);
         assertEquals(player.getLastAssistantCard().getValue(), 1);
         player.playAssistantCard(2);
