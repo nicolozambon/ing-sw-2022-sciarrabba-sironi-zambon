@@ -1,6 +1,6 @@
 package it.polimi.ingsw;
 
-import it.polimi.ingsw.client.view.cli.ViewCLI;
+import it.polimi.ingsw.client.Client;
 import it.polimi.ingsw.server.Server;
 
 import java.io.IOException;
@@ -24,8 +24,8 @@ public class Eriantys {
                 break;
             case 2:
                 try {
-                    ViewCLI view = new ViewCLI();
-                    view.startCLI();
+                    Client client = new Client();
+                    client.main(args);
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
