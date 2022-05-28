@@ -3,6 +3,8 @@ package it.polimi.ingsw.client.view.cli;
 
 import it.polimi.ingsw.enums.Color;
 import it.polimi.ingsw.enums.TowerColor;
+import it.polimi.ingsw.model.card.AssistantCard;
+import it.polimi.ingsw.model.card.CharacterCard;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -15,13 +17,29 @@ public class DemoLauncher {
         List<String> nicknames = new ArrayList<>();
         nicknames.add("Nicolò");
         nicknames.add("Alessandro");
-        nicknames.add("Jonathan");
+        //nicknames.add("Jonathan");
 
         CLI cli = new CLI(nicknames);
 
-        cli.addCharacterCard(1, 5, "lorem ipsum first card");
-        cli.addCharacterCard(1, 5, "lorem ipsum second card");
-        cli.addCharacterCard(1, 5, "lorem ipsum third card lorem ipsum lorem ipsum lorem ipsum");
+        CharacterCard characterCard = new CharacterCard(1, 5, "lorem ipsum");
+        cli.addCharacterCard(characterCard);
+        cli.addCharacterCard(characterCard);
+        cli.addCharacterCard(characterCard);
+
+        AssistantCard assistantCard = new AssistantCard(1, 1);
+        cli.addAssistantCard(assistantCard);
+        cli.addAssistantCard(assistantCard);
+        cli.addAssistantCard(assistantCard);
+        cli.addAssistantCard(assistantCard);
+        cli.addAssistantCard(assistantCard);
+        cli.addAssistantCard(assistantCard);
+        cli.addAssistantCard(assistantCard);
+        cli.addAssistantCard(assistantCard);
+        cli.addAssistantCard(assistantCard);
+        //cli.addAssistantCard(assistantCard);
+
+        cli.addLastPlayedAssistantCard(assistantCard);
+        cli.addLastPlayedAssistantCard(assistantCard);
 
         cli.addStudentToSchoolDiningRoom(0, Color.RED);
         cli.addStudentToSchoolDiningRoom(0, Color.BLUE);
@@ -36,8 +54,8 @@ public class DemoLauncher {
         cli.addStudentsToIsland(5, Color.RED, 5);
 
 
-        cli.addStudentToSchoolDiningRoom(2, Color.BLUE);
-        cli.addStudentToSchoolDiningRoom(2, Color.BLUE);
+        //cli.addStudentToSchoolDiningRoom(2, Color.BLUE);
+        //cli.addStudentToSchoolDiningRoom(2, Color.BLUE);
 
         cli.addStudentToSchoolEntrance(0, Color.BLUE);
         cli.addStudentToSchoolEntrance(0, Color.BLUE);
@@ -110,6 +128,7 @@ public class DemoLauncher {
         cli.addStudentsToIsland(0, Color.RED, 4);
         cli.addStudentsToIsland(0, Color.PINK, 10);
 
+        /*
         cli.addStudentToSchoolDiningRoom(2, Color.RED);
         cli.addStudentToSchoolDiningRoom(2, Color.RED);
         cli.addStudentToSchoolDiningRoom(2, Color.RED);
@@ -147,6 +166,7 @@ public class DemoLauncher {
         cli.addStudentToSchoolDiningRoom(2, Color.PINK);
         cli.addStudentToSchoolDiningRoom(2, Color.PINK);
         cli.addStudentToSchoolDiningRoom(2, Color.PINK);
+        */
 
         cli.addMotherNatureToIsland(0);
         cli.addTowerToIsland(0, TowerColor.WHITE);

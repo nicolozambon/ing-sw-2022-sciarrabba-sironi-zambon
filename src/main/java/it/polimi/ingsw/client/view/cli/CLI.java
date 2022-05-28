@@ -24,10 +24,10 @@ public class CLI {
     private final String[][] characterCardTest;
     private final String[][] assistantCardTest;
     private final List<CharacterCard> characterCards = new ArrayList<>();
-
+    private final List<AssistantCard> assistantCards = new ArrayList<>();
     private final List<AssistantCard> lastPlayedAssistantCards = new ArrayList<>();
     private final String[][] lastPlayedAssistantCardsContainer;
-
+    private final int playersNumber;
     private final int boardCoins;
 
     private final List<String> nicknames;
@@ -38,7 +38,7 @@ public class CLI {
 
 
     public CLI(List<String> nicknames) {
-        int playersNumber = nicknames.size();
+        this.playersNumber = nicknames.size();
 
         final AssetsLoader loader = new AssetsLoader();
         this.islandLinkers = loader.getIslandLinkers();
@@ -177,9 +177,16 @@ public class CLI {
         return boardList.get(id);
     }
 
-    protected void addCharacterCard(int id, int coins, String effect) {
-        CharacterCard card = new CharacterCard(id, coins, effect);
+    protected void addCharacterCard(CharacterCard card) {
         this.characterCards.add(card);
+    }
+
+    protected void addAssistantCard(AssistantCard card) {
+        this.assistantCards.add(card);
+    }
+
+    protected void addLastPlayedAssistantCard(AssistantCard card) {
+        this.lastPlayedAssistantCards.add(card);
     }
 
     // SCHOOLS METHODS
@@ -322,22 +329,39 @@ public class CLI {
     }
 
     private String[][] addCharacterCardsToBoard(String[][] board) {
-        String cardTitle = "CARD: 1   COINS: 3";
+        String cardTitle;
         String cardText;
         int cardNumber = 0;
         int cardTextWidth = 18;
         int cardTextHeight = 13;
 
+        String id;
+        String coins;
+
         for (int i=0; i<board.length; i++) {
             for (int j=0; j<board[0].length; j++) {
                 if (Objects.equals(board[i][j], "$")) {
+                    id = String.valueOf(this.characterCards.get(cardNumber).getId());
+                    coins = String.valueOf(this.characterCards.get(cardNumber).getCoins());
+                    while (id.length() < 2) {
+                        id = "0" + id;
+                    }
+                    while (coins.length() < 2) {
+                        coins = "0" + coins;
+                    }
+                    //cardTitle = "CARD:" + id + "   COINS:" + coins;
+                    cardTitle = "CARD:" + id + "       $:" + coins;
+                    this.writeTextInMatrix(board, cardTitle, j, i);
+                    /*
                     for (int k=0; k<cardTitle.length(); k++) {
                         board[i][j+k] = String.valueOf(cardTitle.charAt(k));
                     }
+
+                     */
                 }
                 if (Objects.equals(board[i][j], "!")) {
                     cardText = this.characterCards.get(cardNumber).getEffect();
-                    Pattern p = Pattern.compile(".{1," + Integer.toString(cardTextWidth) + "}(\\s+|$)");
+                    Pattern p = Pattern.compile(".{1," + cardTextWidth + "}(\\s+|$)");
                     Matcher m = p.matcher(cardText);
                     ArrayList<String> cardTextLines = new ArrayList<>();
                     while(m.find()) {
@@ -346,9 +370,7 @@ public class CLI {
                     cardNumber += 1;
                     for (int k=0; k<min(cardTextHeight, cardTextLines.size()); k++) {
                         for (int h=0; h<min(cardTextWidth, cardTextLines.get(k).length()); h++) {
-
                             board[i+k][j+h] = String.valueOf(cardTextLines.get(k).charAt(h));
-
                         }
                     }
                 }
@@ -566,21 +588,35 @@ public class CLI {
         int cardRowOnSet;
         int cardColOnSet;
         int cardBaseRowOnSet = 39;
-        int cardBaseColOnSet = 152;
+        int cardBaseColOnSet = 151;
         String[][] card = this.assistantCardTest;
         int offset = 0;
+        int assistantCardIndex = 0;
+        String value;
+        String steps;
 
         for (int cardRow=0; cardRow<card.length; cardRow++) {
             for (int cardCol=0; cardCol<card[0].length; cardCol++) {
-
                 if (Objects.equals(card[cardRow][cardCol], "^")) {
-
-                    String label = "Val=1 $=5";
-                    this.writeTextInMatrix(card, label, 2 + offset, cardRow);
-                    offset += label.length() + 7;
-
+                    if (assistantCardIndex < this.assistantCards.size()) {
+                        value = String.valueOf(this.assistantCards.get(assistantCardIndex).getValue());
+                        steps = String.valueOf(this.assistantCards.get(assistantCardIndex).getSteps());
+                        while (value.length() < 2) {
+                            value = "0" + value;
+                        }
+                        while (steps.length() < 2) {
+                            steps = "0" + steps;
+                        }
+                        String label = "VAL:" + value + "   S:" +steps;
+                        this.writeTextInMatrix(card, label, 2 + offset, cardRow);
+                        offset += label.length() + 3;
+                        assistantCardIndex++;
+                    } else {
+                        String label = "-------------";
+                        this.writeTextInMatrix(card, label, 2 + offset, cardRow);
+                        offset += label.length() + 3;
+                    }
                 }
-
             }
             offset = 0;
         }
@@ -626,7 +662,38 @@ public class CLI {
             }
             nickname = nicknameBuilder.toString();
             block = this.writeTextInMatrix(block, nickname, 2 + offset, 3);
-            offset += 15;
+            offset += 16;
+        }
+
+        offset = 0;
+        int assistantCardIndex = 0;
+        String value;
+        String steps;
+
+        for (int cardRow=0; cardRow<block.length; cardRow++) {
+            for (int cardCol=0; cardCol<block[0].length; cardCol++) {
+                if (Objects.equals(block[cardRow][cardCol], "^")) {
+                    if (assistantCardIndex < this.lastPlayedAssistantCards.size()) {
+                        value = String.valueOf(this.lastPlayedAssistantCards.get(assistantCardIndex).getValue());
+                        steps = String.valueOf(this.lastPlayedAssistantCards.get(assistantCardIndex).getSteps());
+                        while (value.length() < 2) {
+                            value = "0" + value;
+                        }
+                        while (steps.length() < 2) {
+                            steps = "0" + steps;
+                        }
+                        label = "VAL:" + value + "   S:" +steps;
+                        this.writeTextInMatrix(block, label, 2 + offset, cardRow);
+                        offset += label.length() + 3;
+                        assistantCardIndex++;
+                    } else {
+                        label = "-------------";
+                        this.writeTextInMatrix(block, label, 2 + offset, cardRow);
+                        offset += label.length() + 3;
+                    }
+                }
+            }
+            offset = 0;
         }
 
         for (int cardRow=0; cardRow<block.length; cardRow++) {
@@ -644,8 +711,7 @@ public class CLI {
         int space = 4;
         int height = Math.max((setOfIslands.length + this.schools.get(0).length), this.schools.get(1).length);
 
-        // int width = setOfIslands[0].length + this.schools.get(1)[0].length + space;
-        int width = setOfIslands[0].length + this.schools.get(1)[0].length + space + this.schools.get(2)[0].length + space;
+        int width = setOfIslands[0].length + (this.schools.get(1)[0].length + space) * 2;
 
         String[][] gameBoard = new String[height][width];
         for (int i=0; i<gameBoard.length; i++) {
@@ -661,57 +727,25 @@ public class CLI {
 
         for (int i=0; i<gameBoard.length; i++) {
             for (int j=0; j<gameBoard[i].length; j++) {
-
-                mainSchoolOffset = (setOfIslands[0].length - schools.get(0)[0].length) / 2;
-
-                if (this.schools.size() == 2) {
-                    if (i < setOfIslands.length && j < setOfIslands[0].length) {
-                        gameBoard[i][j] = setOfIslands[i][j];
-                    } else if (j-setOfIslands[0].length >= space && j-setOfIslands[0].length < this.schools.get(1)[i].length+space) {
-                        gameBoard[i][j] = this.schools.get(1)[i][j-setOfIslands[0].length-space].toString();
-                    }
-
-                    // Main school
-                    if (i >= setOfIslands.length && j < setOfIslands[0].length) {
-                        if (j >= mainSchoolOffset && j-mainSchoolOffset < this.schools.get(0)[0].length) {
-                            gameBoard[i][j] = this.schools.get(0)[i-setOfIslands.length][j-mainSchoolOffset].toString();
-                        }
-                    }
-
-                } else {
-
-                    if (i < this.schools.get(1).length) {
-
-
-                        if (j < this.schools.get(1)[i].length) {
-                            gameBoard[i][j] = this.schools.get(1)[i][j];
-                        } else if (j >= this.schools.get(1)[i].length + space && j - this.schools.get(1)[i].length - space < setOfIslands[0].length && i < setOfIslands.length) {
-                            gameBoard[i][j] = setOfIslands[i][j - this.schools.get(1)[i].length - space];
-                        } else if (j >= (this.schools.get(1)[i].length + space) + setOfIslands[0].length + space && j - this.schools.get(1)[i].length - space - setOfIslands[0].length - space < this.schools.get(1)[i].length && i < this.schools.get(1).length) {
-
+                if (i < this.schools.get(1).length) {
+                    if (j < this.schools.get(1)[i].length) {
+                        gameBoard[i][j] = this.schools.get(1)[i][j];
+                    } else if (j >= this.schools.get(1)[i].length + space && j - this.schools.get(1)[i].length - space < setOfIslands[0].length && i < setOfIslands.length) {
+                        gameBoard[i][j] = setOfIslands[i][j - this.schools.get(1)[i].length - space];
+                    } else if (j >= (this.schools.get(1)[i].length + space) + setOfIslands[0].length + space && j - this.schools.get(1)[i].length - space - setOfIslands[0].length - space < this.schools.get(1)[i].length && i < this.schools.get(1).length) {
+                        if (this.schools.size() == 3) {
                             gameBoard[i][j] = this.schools.get(2)[i][j - this.schools.get(1)[i].length - space - setOfIslands[0].length - space];
-                        }
-
-                        /*
-                        if (i >= setOfIslands.length && j < setOfIslands[0].length) {
-                            if (j >= mainSchoolOffset && j-mainSchoolOffset < this.schools.get(0)[0].length) {
-                                gameBoard[i][j] = this.schools.get(0)[i-setOfIslands.length][j-mainSchoolOffset].toString();
-                            } else {
-                                gameBoard[i][j] = "+";
-                            }
-                        }
-                         */
-                    }
-
-                    mainSchoolOffset = this.schools.get(1)[0].length + space + (setOfIslands[0].length - this.schools.get(0)[0].length) / 2;
-                    if (i >= setOfIslands.length && j >= mainSchoolOffset && j < setOfIslands[0].length + space + this.schools.get(1)[0].length) {
-                        if (j - mainSchoolOffset < this.schools.get(0)[0].length) {
-                            gameBoard[i][j] = this.schools.get(0)[i - setOfIslands.length][j - mainSchoolOffset].toString();
+                        } else {
+                            gameBoard[i][j] = " ";
                         }
                     }
-
                 }
-
+                mainSchoolOffset = this.schools.get(1)[0].length + space + (setOfIslands[0].length - this.schools.get(0)[0].length) / 2;
+                if (i >= setOfIslands.length && j >= mainSchoolOffset && j < setOfIslands[0].length + space + this.schools.get(1)[0].length) {
+                    if (j - mainSchoolOffset < this.schools.get(0)[0].length) {
+                        gameBoard[i][j] = this.schools.get(0)[i - setOfIslands.length][j - mainSchoolOffset];
+                    }
+                }
             }
         }
 
