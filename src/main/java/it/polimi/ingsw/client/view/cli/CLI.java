@@ -329,22 +329,39 @@ public class CLI {
     }
 
     private String[][] addCharacterCardsToBoard(String[][] board) {
-        String cardTitle = "CARD: 1   COINS: 3";
+        String cardTitle;
         String cardText;
         int cardNumber = 0;
         int cardTextWidth = 18;
         int cardTextHeight = 13;
 
+        String id;
+        String coins;
+
         for (int i=0; i<board.length; i++) {
             for (int j=0; j<board[0].length; j++) {
                 if (Objects.equals(board[i][j], "$")) {
+                    id = String.valueOf(this.characterCards.get(cardNumber).getId());
+                    coins = String.valueOf(this.characterCards.get(cardNumber).getCoins());
+                    while (id.length() < 2) {
+                        id = "0" + id;
+                    }
+                    while (coins.length() < 2) {
+                        coins = "0" + coins;
+                    }
+                    //cardTitle = "CARD:" + id + "   COINS:" + coins;
+                    cardTitle = "CARD:" + id + "       $:" + coins;
+                    this.writeTextInMatrix(board, cardTitle, j, i);
+                    /*
                     for (int k=0; k<cardTitle.length(); k++) {
                         board[i][j+k] = String.valueOf(cardTitle.charAt(k));
                     }
+
+                     */
                 }
                 if (Objects.equals(board[i][j], "!")) {
                     cardText = this.characterCards.get(cardNumber).getEffect();
-                    Pattern p = Pattern.compile(".{1," + Integer.toString(cardTextWidth) + "}(\\s+|$)");
+                    Pattern p = Pattern.compile(".{1," + cardTextWidth + "}(\\s+|$)");
                     Matcher m = p.matcher(cardText);
                     ArrayList<String> cardTextLines = new ArrayList<>();
                     while(m.find()) {
@@ -353,9 +370,7 @@ public class CLI {
                     cardNumber += 1;
                     for (int k=0; k<min(cardTextHeight, cardTextLines.size()); k++) {
                         for (int h=0; h<min(cardTextWidth, cardTextLines.get(k).length()); h++) {
-
                             board[i+k][j+h] = String.valueOf(cardTextLines.get(k).charAt(h));
-
                         }
                     }
                 }
