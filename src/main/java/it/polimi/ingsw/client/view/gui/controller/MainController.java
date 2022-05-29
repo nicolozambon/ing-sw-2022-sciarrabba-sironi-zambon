@@ -3,8 +3,13 @@ package it.polimi.ingsw.client.view.gui.controller;
 import it.polimi.ingsw.client.view.gui.ViewGUI;
 import it.polimi.ingsw.enums.Color;
 import it.polimi.ingsw.enums.TowerColor;
+import javafx.application.Platform;
+import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
+import javafx.scene.Node;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.text.Text;
 
 import java.util.List;
 
@@ -155,13 +160,81 @@ public class MainController implements GUIController {
     }
 
     private void moveMotherNature (int islandStartID, int islandDestID) {
-        hidePawn(getMotherNatureID(islandStartID));
-        showPawn(getMotherNatureID(islandDestID));
+        hidePawn(getMotherNatureFXID(islandStartID));
+        showPawn(getMotherNatureFXID(islandDestID));
     }
 
-    private String getMotherNatureID (int positionID) {
+    private String getMotherNatureFXID (int positionID) {
         String id = "mn" + positionID;
         return id;
+    }
+
+    private String getAssistantCardPath (int id) {
+        String path = "../images/cards/AssistantCard/Assistente_" + id + ".png";
+        return path;
+    }
+
+    private String getCharacterCardPath (int id) {
+        String path = "../images/cards/CharacterCard/CharacterCard_" + id + ".jpg";
+        return path;
+    }
+
+    private void changePlayedAssistantCard(int IDPlayer, int IDAssistantCard) { //TODO: Implement rotation of playerID and player0,1,2 in scene. % 3
+        modifyImage(getAssistantCardPath(IDAssistantCard), getImageViewFromFXID(getAssistantCardPlayedFXID(IDPlayer)));
+    }
+
+    private String getAssistantCardPlayedFXID (int IDPlayer) { //TODO: Implement rotation of playerID and player0,1,2 in scene. % 3
+        String id = "assistantCard" + IDPlayer;
+        return id;
+    }
+
+    private ImageView getImageViewFromFXID (String fxid) {
+        try {
+            return (ImageView) gui.getStage().getScene().lookup(fxid);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    private String getTowerOnIslandFXID (int islandID) {
+        return "island" + islandID + "Tower";
+    }
+
+    /**
+     * Shows bridge to unify islands.
+     * @param islandID1 left island to unify.
+     * @param islandID2 right island to unify.
+     */
+    private void unifyIslands (int islandID1, int islandID2) {
+        showPawn(getBridgeFXID(islandID1, islandID2));
+    }
+
+    private String getBridgeFXID (int islandID1, int islandID2) {
+        return "bridge" + islandID1 + "_" + islandID2;
+    }
+
+    private void changeCoinSizeByPlayer (int playerID, int newCoinSize) { //TODO: Implement rotation of playerID and player0,1,2 in scene. % 3
+        String ID = "coinPlayer" + playerID;
+        String coinSize = String.valueOf(newCoinSize);
+        ((Text) gui.getStage().getScene().lookup(ID)).setText(coinSize);
+    }
+
+    private void changeNumOfPawnsInIslandByColor (int numOfPawns, Color color, int islandID) {
+        String ID = colorIDHelper(color) + islandID + "Num";
+        ((Text) gui.getStage().getScene().lookup(ID)).setText(String.valueOf(numOfPawns));
+    }
+
+    @FXML
+    private void exitGame(ActionEvent event) {
+        Platform.exit();
+    }
+
+    @FXML
+    private void glowElement (ActionEvent event) {
+        //((Node) event.getSource()).setStyle("-fx-effect: dropshadow(three-pass-box, yellow, 21.0, 21.0, 10.0, 0.0, 0.0, 0.0)");
+        System.out.println("Mouse hovered over " + ((Node)event.getSource()));
+        Platform.exit();
     }
 
 }
