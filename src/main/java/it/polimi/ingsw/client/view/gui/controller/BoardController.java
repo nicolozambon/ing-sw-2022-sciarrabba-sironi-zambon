@@ -13,10 +13,10 @@ import javafx.scene.text.Text;
 
 import java.util.List;
 
-public class MainController implements GUIController {
+public class BoardController implements GUIController {
     private ViewGUI gui;
 
-    public MainController() {
+    public BoardController() {
 
     }
     @Override
