@@ -764,6 +764,11 @@ public class CLI {
         String[][] setOfIslands = this.buildSetOfIslands();
         // Build game board
         String[][] gameBoard = this.buildGameBoard(setOfIslands);
+
+        // Clear terminal
+        System.out.print("\033[H\033[2J");
+        System.out.flush();
+
         // Print game board
         System.out.println(this.getPrintableBoard(gameBoard, true));
     }
