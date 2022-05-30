@@ -179,7 +179,7 @@ public class DemoLauncher {
         cli.addTowerToIsland(0, TowerColor.WHITE);
         cli.addStudentsToIsland(0, Color.GREEN, 5);
         cli.addTowerToSchool(0, TowerColor.BLACK);
-
+        cli.addTowerToSchool(0, TowerColor.GREY);
         // Show updated game board
         cli.showGameBoard();
     }

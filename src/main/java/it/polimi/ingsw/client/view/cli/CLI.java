@@ -89,7 +89,7 @@ public class CLI {
     public static final String ANSI_RESET = "\u001B[0m";
 
     private static final Map<Object, String> colorsMap = new HashMap<>(){{
-        this.put(Color.YELLOW, "\u001B[93m");
+        this.put(Color.YELLOW, "\u001B[33m");
         this.put(Color.GREEN, "\u001B[32m");
         this.put(Color.BLUE, "\u001B[34m");
         this.put(Color.RED, "\u001B[31m");
@@ -118,10 +118,10 @@ public class CLI {
     }};
 
     private static final Map<String, String> pawnsMap = new HashMap<>(){{
-        this.put("s", " ● ");
-        this.put("p", " ⏹ ");
-        this.put("t", " ♜ ");
-        this.put("n", " ♟ ");
+        this.put("s", "●");
+        this.put("p", "■");
+        this.put("t", "♜");
+        this.put("n", "♟");
     }};
 
     private Map<String, Integer> getFirstAvailablePlaceholder(String[][] board, String identifier, Object color, boolean isAllColorsArea) {
@@ -167,7 +167,7 @@ public class CLI {
         if (placeholder != null) {
             int i = placeholder.get("start_row");
             int j = placeholder.get("start_col");
-            board[i][j] = colorsMap.get(color) + pawnsMap.get(identifier.toLowerCase()) + ANSI_RESET;
+            board[i][j] =  " " + colorsMap.get(color) + pawnsMap.get(identifier.toLowerCase()) + ANSI_RESET + " ";
             board[i][j+1] = "";
             board[i][j+2] = "";
 
@@ -766,13 +766,15 @@ public class CLI {
         // Build game board
         String[][] gameBoard = this.buildGameBoard(setOfIslands);
 
+        AnsiConsole.systemInstall();
+
         // Clear terminal
         System.out.print("\033[H\033[2J");
         System.out.flush();
 
         // Print game board
-        AnsiConsole.systemInstall();
         System.out.println(this.getPrintableBoard(gameBoard, true));
+
         AnsiConsole.systemUninstall();
     }
 
