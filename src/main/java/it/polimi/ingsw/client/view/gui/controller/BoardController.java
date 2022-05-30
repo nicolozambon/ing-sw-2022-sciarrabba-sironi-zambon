@@ -22,13 +22,7 @@ public class BoardController implements GUIController {
     private ViewGUI gui;
     private Map<Integer, Integer> idMap = null;
     private Map<Integer, Map<String, Map<String, ImageView>>> schools = null;
-    private static final Map<Object, Integer> positionMap = new HashMap<>(){{
-        this.put(Color.GREEN, 0);
-        this.put(Color.RED, 1);
-        this.put(Color.YELLOW, 2);
-        this.put(Color.PINK, 3);
-        this.put(Color.BLUE, 4);
-    }};
+    private Map<Integer, Map<String, Map<String, ImageView>>> islands = null;
 
     public BoardController() {
 
@@ -58,6 +52,7 @@ public class BoardController implements GUIController {
     public void updateModel(ThinModel model) {
         this.defineIdMap(model);
         this.defineSchoolsMap(model);
+        this.defineIslandsMap(model);
         if (model.getNicknames().size() == 2) {
             this.hideThirdSchool(model);
         }
@@ -128,6 +123,21 @@ public class BoardController implements GUIController {
         }
     }
 
+    private void defineIslandsMap(ThinModel model) {
+        this.islands = new HashMap<>();
+        for (int i=0; i<12; i++) {
+            Map<String, Map<String, ImageView>> islandMap = new HashMap<>();
+
+            Map<String, ImageView> motherNature = new HashMap<>();
+
+            // TODO add code here
+
+            islandMap.put("motherNature", motherNature);
+
+            this.islands.put(i, islandMap);
+        }
+    }
+
     private void hideThirdSchool(ThinModel model) {
         HBox value = (HBox) this.gui.getStage().getScene().lookup("#board2");
         value.setVisible(false);
@@ -188,8 +198,6 @@ public class BoardController implements GUIController {
             }
 
         }
-
-        // TODO add all
     }
 
 
