@@ -156,12 +156,10 @@ public class ViewGUI extends Application implements RequestListenableInterface, 
                 case "update" -> {
                     if (!currentScene.equals(sceneMap.get("boardScene"))) {
                         changeScene("boardScene");
-                        Scale scale = new Scale(0.8,0.8);
-                        currentScene.getRoot().getTransforms().setAll(scale);
-                        stage.setMaxWidth(currentScene.getHeight());
-                        stage.setMinWidth(currentScene.getWidth());
-                        stage.setMaxHeight(currentScene.getHeight());
-                        stage.setMinHeight(currentScene.getHeight());
+                        //Scale scale = new Scale(0.8,0.8);
+                        //currentScene.getRoot().getTransforms().setAll(scale);
+                        //stage.setWidth(1440);
+                        //stage.setHeight(900);
                         stage.setResizable(false);
                     }
                     this.model = answerEvent.getModel();
