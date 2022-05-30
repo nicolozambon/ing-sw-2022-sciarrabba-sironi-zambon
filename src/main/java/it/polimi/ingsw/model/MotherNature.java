@@ -20,4 +20,8 @@ public class MotherNature {
             position = position.getNextIsland();
         }
     }
+
+    protected void setPosition(Island island) {
+        this.position = island;
+    }
 }

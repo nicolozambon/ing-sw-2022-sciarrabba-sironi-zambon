@@ -1,8 +1,11 @@
 package it.polimi.ingsw.model;
 
 import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import it.polimi.ingsw.enums.Color;
 import it.polimi.ingsw.enums.TowerColor;
+import it.polimi.ingsw.json.HandlerDeserializer;
+import it.polimi.ingsw.json.HandlerSerializer;
 import it.polimi.ingsw.model.card.AssistantCard;
 import it.polimi.ingsw.model.card.CharacterCard;
 import it.polimi.ingsw.model.card.CharacterCardFactory;
@@ -22,6 +25,29 @@ public class ModelBuilder {
     }};
 
     private boolean allCharacterCards;
+
+    public Model buildModel(InputStream inputStream) {
+        GsonBuilder gsonBuilder = new GsonBuilder();
+        gsonBuilder.registerTypeAdapter(Handler.class, new HandlerSerializer());
+        gsonBuilder.registerTypeAdapter(Handler.class, new HandlerDeserializer());
+        Gson gson = gsonBuilder.create();
+
+        Model model = gson.fromJson(new InputStreamReader(inputStream), Model.class);
+
+        model.resetAnswerListenable();
+        model.getHandler().setPlayers(model.getPlayers());
+        model.getController().restoreAfterDeserialization(model);
+
+        List<Island> islands = model.getIslands();
+        for (Island island : islands) {
+            island.setNextIsland(islands.get((island.getId() + 1) % islands.size()));
+            island.setPrevIsland(islands.get((island.getId() + islands.size() - 1) % islands.size()));
+        }
+
+        model.getMotherNature().setPosition(islands.get(model.getMotherNature().getPosition().getId()));
+
+        return model;
+    }
 
     public Model buildModel(List<String> names, boolean allCharacterCards) {
 

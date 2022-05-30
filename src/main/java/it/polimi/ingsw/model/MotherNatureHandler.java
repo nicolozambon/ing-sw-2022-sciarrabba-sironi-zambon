@@ -8,7 +8,7 @@ import java.util.List;
 
 public class MotherNatureHandler extends Handler {
 
-    private final MotherNatureCharacterCard card;
+    private MotherNatureCharacterCard card;
 
     protected MotherNatureHandler(List<Player> players, MotherNatureCharacterCard card) {
         super(players);
@@ -52,4 +52,10 @@ public class MotherNatureHandler extends Handler {
     public int getCardId() {
         return this.card.getId();
     }
+
+    @Override
+    public String getCategory() {
+        return this.card.getCategory();
+    }
+
 }

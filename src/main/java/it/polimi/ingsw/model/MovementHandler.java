@@ -10,7 +10,7 @@ import java.util.List;
 
 public class MovementHandler extends Handler {
 
-    private final MovementCharacterCard card;
+    private MovementCharacterCard card;
 
     protected MovementHandler(List<Player> players, MovementCharacterCard card) {
         super(players);
@@ -48,12 +48,12 @@ public class MovementHandler extends Handler {
                         .sorted(Comparator.comparingInt(x -> getNumStudentsDR(x, color)))
                         .toList();
 
-        int size = players.size() - 1;
+        int last = players.size() - 1;
 
-        if (getNumStudentsDR(players.get(size), color) > getNumStudentsDR(players.get(size - 1), color)) {
-            players.get(size).getSchool().setProfessor(professor, professorBoard);
+        if (getNumStudentsDR(players.get(last), color) > getNumStudentsDR(players.get(last - 1), color)) {
+            players.get(last).getSchool().setProfessor(professor, professorBoard);
         } else if (card.getExtraControl() == 1 &&
-                getNumStudentsDR(players.get(size), color) == getNumStudentsDR(currentPlayer, color)) {
+                getNumStudentsDR(players.get(last), color) == getNumStudentsDR(currentPlayer, color)) {
             currentPlayer.getSchool().setProfessor(professor, professorBoard);
         }
     }
@@ -61,5 +61,10 @@ public class MovementHandler extends Handler {
     @Override
     public int getCardId() {
         return this.card.getId();
+    }
+
+    @Override
+    public String getCategory() {
+        return this.card.getCategory();
     }
 }

@@ -6,6 +6,7 @@ import it.polimi.ingsw.model.Model;
 import it.polimi.ingsw.model.ModelBuilder;
 import it.polimi.ingsw.model.Player;
 
+import java.io.InputStream;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -19,7 +20,13 @@ public class GameHandler implements Runnable {
     public GameHandler(Map<String, ConnectionHandler> playersConnection) {
         this.playersConnection = new HashMap<>();
         //TODO: change to false to have only 3 Character cards
-        this.model = new ModelBuilder().buildModel(playersConnection.keySet().stream().toList(), true);
+
+        if (playersConnection.containsKey("player0") && playersConnection.containsKey("player1") && playersConnection.containsKey("player2")) {
+            InputStream inputStream = getClass().getResourceAsStream("/config/model_finishing.json");
+            this.model = new ModelBuilder().buildModel(inputStream);
+        } else {
+            this.model = new ModelBuilder().buildModel(playersConnection.keySet().stream().toList(), true);
+        }
         this.controller = model.getController();
         for (Player player : controller.getPlayersToPlay()) {
             playersConnection.get(player.getNickname()).send(new AnswerEvent("set_id", player.getId()));
@@ -30,14 +37,14 @@ public class GameHandler implements Runnable {
     @Override
     public void run() {
         VirtualView virtualView = new VirtualView(this);
+
         this.model.addAnswerListener(virtualView);
-
         virtualView.addRequestListener(this.controller);
-
         playersConnection.values().forEach(c -> c.addRequestListener(virtualView));
 
         launchAnswerEventEveryone(new AnswerEvent("update", this.model));
-        launchAnswerEventEveryone(new AnswerEvent("options", controller.getOptions()));
+        if (controller.getOptions().contains("chooseWizard")) launchAnswerEventEveryone(new AnswerEvent("options", controller.getOptions()));
+        else launchAnswerEventCurrentPlayer(new AnswerEvent("options", controller.getOptions()));
     }
 
     public synchronized void launchAnswerEventEveryone(AnswerEvent answerEvent) {

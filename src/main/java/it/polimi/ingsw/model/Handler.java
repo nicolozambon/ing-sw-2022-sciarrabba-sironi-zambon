@@ -8,7 +8,7 @@ import java.util.*;
 
 public class Handler {
 
-    protected List<Player> players;
+    protected transient List<Player> players;
 
     protected Handler(List<Player> players) {
         this.players = new ArrayList<>(players);
@@ -186,4 +186,11 @@ public class Handler {
         return -1;
     }
 
+    public String getCategory() {
+        return "default";
+    }
+
+    protected void setPlayers(List<Player> players) {
+        this.players = new ArrayList<>(players);
+    }
 }
