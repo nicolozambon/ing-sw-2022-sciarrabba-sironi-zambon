@@ -2853,7 +2853,7 @@
                                   <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                                 </rowConstraints>
                                  <children>
-                                    <ImageView fx:id="gp_1" fitHeight="44.0" fitWidth="54.0" pickOnBounds="true" preserveRatio="true" styleClass="borderOnHover" GridPane.columnIndex="1">
+                                    <ImageView fx:id="gp_1" fitHeight="44.0" fitWidth="54.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1">
                                        <image>
                                           <Image url="@../images/pawns/greenProf2D.png" />
                                        </image>
@@ -2864,7 +2864,7 @@
                                           <DropShadow />
                                        </effect>
                                     </ImageView>
-                                    <ImageView fx:id="rp_1" fitHeight="44.0" fitWidth="54.0" pickOnBounds="true" preserveRatio="true" styleClass="borderOnHover" GridPane.columnIndex="2">
+                                    <ImageView fx:id="rp_1" fitHeight="44.0" fitWidth="54.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="2">
                                        <image>
                                           <Image url="@../images/pawns/redProf2D.png" />
                                        </image>
@@ -2872,7 +2872,7 @@
                                           <DropShadow />
                                        </effect>
                                     </ImageView>
-                                    <ImageView fx:id="yp_1" fitHeight="44.0" fitWidth="54.0" pickOnBounds="true" preserveRatio="true" styleClass="borderOnHover" GridPane.columnIndex="3">
+                                    <ImageView fx:id="yp_1" fitHeight="44.0" fitWidth="54.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="3">
                                        <image>
                                           <Image url="@../images/pawns/yellowProf2D.png" />
                                        </image>
@@ -2880,7 +2880,7 @@
                                           <DropShadow />
                                        </effect>
                                     </ImageView>
-                                    <ImageView fx:id="pp_1" fitHeight="44.0" fitWidth="54.0" pickOnBounds="true" preserveRatio="true" styleClass="borderOnHover" GridPane.columnIndex="4">
+                                    <ImageView fx:id="pp_1" fitHeight="44.0" fitWidth="54.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="4">
                                        <image>
                                           <Image url="@../images/pawns/pinkProf2D.png" />
                                        </image>
@@ -2888,7 +2888,7 @@
                                           <DropShadow />
                                        </effect>
                                     </ImageView>
-                                    <ImageView fx:id="bp_1" fitHeight="44.0" fitWidth="54.0" pickOnBounds="true" preserveRatio="true" styleClass="borderOnHover" GridPane.columnIndex="5">
+                                    <ImageView fx:id="bp_1" fitHeight="44.0" fitWidth="54.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="5">
                                        <image>
                                           <Image url="@../images/pawns/blueProf2D.png" />
                                        </image>

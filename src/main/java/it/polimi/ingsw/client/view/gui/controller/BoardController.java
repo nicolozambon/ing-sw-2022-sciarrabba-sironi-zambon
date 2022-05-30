@@ -20,7 +20,7 @@ import java.util.Map;
 public class BoardController implements GUIController {
     private ViewGUI gui;
     private Map<Integer, Integer> idMap = null;
-    private Map<Integer, Map<String, Map<String, ImageView>>> schools = null;
+    private Map<Integer, Map<String, ImageView>> schools = null;
 
     public BoardController() {
 
@@ -54,52 +54,20 @@ public class BoardController implements GUIController {
     }
 
     private void defineSchoolsMap(ThinModel model) {
-        // TODO check if model.getDiningRoomById(i).size() is the right convention
-
         this.schools = new HashMap<>();
         for (int i=0; i<model.getNicknames().size(); i++) {
-            Map<String, Map<String, ImageView>> schoolMap = new HashMap<>();
-
-            Map<String, ImageView> dining = new HashMap<>();
-            Map<String, ImageView> entrance = new HashMap<>();
-            Map<String, ImageView> towers = new HashMap<>();
-            Map<String, ImageView> professors = new HashMap<>();
-
+            Map<String, ImageView> schoolMap = new HashMap<>();
             for (Color color : Color.values()) {
-                for (int j=0; j<model.getDiningRoomById(i).size(); j++) {
+                for (int j=0; j<10; j++) {
                     String key = this.getStudentFXID(j, true, color, i);
                     ImageView value = (ImageView) this.gui.getStage().getScene().lookup("#" + key);
-                    dining.put(key, value);
-                    value.setVisible(false);
-                }
-                for (int j=0; j<model.getEntranceById(i).size(); j++) {
-                    String key = this.getStudentFXID(j, false, null, i);
-                    ImageView value = (ImageView) this.gui.getStage().getScene().lookup("#" + key);
-                    entrance.put(key, value);
-                    value.setVisible(false);
-                }
-                for (int j=0; j<model.getProfessorsByPlayer(i).size(); j++) {
-                    String key = this.getProfessorFXID(j, color);
-                    ImageView value = (ImageView) this.gui.getStage().getScene().lookup("#" + key);
-                    professors.put(key, value);
+                    schoolMap.put(key, value);
+                    System.out.println(key);
                     value.setVisible(false);
                 }
             }
-            for (TowerColor color : TowerColor.values()) {
-                for (int j=0; j<model.getNumTowerByPlayer(i); j++) {
-                    String key = this.getTowerFXID(color, j);
-                    ImageView value = (ImageView) this.gui.getStage().getScene().lookup("#" + key);
-                    towers.put(key, value);
-                    value.setVisible(false);
-                }
-            }
-            schoolMap.put("dining", dining);
-            schoolMap.put("entrance", entrance);
-            schoolMap.put("towers", towers);
-            schoolMap.put("professors", professors);
-
-
-            //this.schools.put(i, schoolMap);
+            System.out.println("\n");
+            this.schools.put(i, schoolMap);
         }
     }
 
@@ -125,10 +93,8 @@ public class BoardController implements GUIController {
      * @return FX:ID of a student in scene
      */
     private String getStudentFXID (int position, boolean diningRoom, Color color, int boardID) {
-        String id = null;
-        if (diningRoom) {
-            id = colorIDHelper(color);
-        }
+        String id;
+        id = colorIDHelper(color);
         id = id + "s";
         if (!diningRoom) { //if pawn is in entrance
             id = id + "e";
