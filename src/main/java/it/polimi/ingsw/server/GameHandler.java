@@ -22,7 +22,7 @@ public class GameHandler implements Runnable {
         //TODO: change to false to have only 3 Character cards
 
         if (playersConnection.containsKey("player0") && playersConnection.containsKey("player1") && playersConnection.containsKey("player2")) {
-            InputStream inputStream = getClass().getResourceAsStream("/config/model.json");
+            InputStream inputStream = getClass().getResourceAsStream("/config/model_finishing.json");
             this.model = new ModelBuilder().buildModel(inputStream);
         } else {
             this.model = new ModelBuilder().buildModel(playersConnection.keySet().stream().toList(), true);
@@ -37,10 +37,9 @@ public class GameHandler implements Runnable {
     @Override
     public void run() {
         VirtualView virtualView = new VirtualView(this);
-        System.out.println("here");
+
         this.model.addAnswerListener(virtualView);
         virtualView.addRequestListener(this.controller);
-
         playersConnection.values().forEach(c -> c.addRequestListener(virtualView));
 
         launchAnswerEventEveryone(new AnswerEvent("update", this.model));
