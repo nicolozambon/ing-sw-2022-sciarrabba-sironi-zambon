@@ -12,14 +12,18 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.text.Text;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class BoardController implements GUIController {
     private ViewGUI gui;
+    private Map<Integer, Integer> idMap = null;
 
     public BoardController() {
 
     }
+
     @Override
     public void optionsHandling(List<String> options) {
 
@@ -42,8 +46,22 @@ public class BoardController implements GUIController {
 
     @Override
     public void updateModel(ThinModel model) {
+        this.defineIdMap(model);
         //TODO
     }
+
+    private void defineIdMap(ThinModel model) {
+        if (this.idMap == null) {
+            this.idMap = new HashMap<>();
+            int currentId = this.gui.getId();
+            this.idMap.put(currentId, 0);
+            for (int i = 1; i < model.getNicknames().size(); i++) {
+                int nextPlayerId = (currentId + i) % model.getNicknames().size();
+                this.idMap.put(nextPlayerId, i);
+            }
+        }
+    }
+
 
     /**
      * Generate FX:ID of a student.
@@ -184,11 +202,13 @@ public class BoardController implements GUIController {
         return path;
     }
 
-    private void changePlayedAssistantCard(int IDPlayer, int IDAssistantCard) { //TODO: Implement rotation of playerID and player0,1,2 in scene. % 3
+    private void changePlayedAssistantCard(int IDPlayer, int IDAssistantCard) {
+        IDPlayer = this.idMap.get(IDPlayer);
         modifyImage(getAssistantCardPath(IDAssistantCard), getImageViewFromFXID(getAssistantCardPlayedFXID(IDPlayer)));
     }
 
-    private String getAssistantCardPlayedFXID (int IDPlayer) { //TODO: Implement rotation of playerID and player0,1,2 in scene. % 3
+    private String getAssistantCardPlayedFXID (int IDPlayer) {
+        IDPlayer = this.idMap.get(IDPlayer);
         String id = "assistantCard" + IDPlayer;
         return id;
     }
@@ -219,8 +239,9 @@ public class BoardController implements GUIController {
         return "bridge" + islandID1 + "_" + islandID2;
     }
 
-    private void changeCoinSizeByPlayer (int playerID, int newCoinSize) { //TODO: Implement rotation of playerID and player0,1,2 in scene. % 3
-        String ID = "coinPlayer" + playerID;
+    private void changeCoinSizeByPlayer (int IDPlayer, int newCoinSize) {
+        IDPlayer = this.idMap.get(IDPlayer);
+        String ID = "coinPlayer" + IDPlayer;
         String coinSize = String.valueOf(newCoinSize);
         ((Text) gui.getStage().getScene().lookup(ID)).setText(coinSize);
     }
