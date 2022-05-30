@@ -11,6 +11,7 @@ import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.HBox;
 import javafx.scene.text.Text;
 
 import java.util.HashMap;
@@ -21,6 +22,13 @@ public class BoardController implements GUIController {
     private ViewGUI gui;
     private Map<Integer, Integer> idMap = null;
     private Map<Integer, Map<String, Map<String, ImageView>>> schools = null;
+    private static final Map<Object, Integer> positionMap = new HashMap<>(){{
+        this.put(Color.GREEN, 0);
+        this.put(Color.RED, 1);
+        this.put(Color.YELLOW, 2);
+        this.put(Color.PINK, 3);
+        this.put(Color.BLUE, 4);
+    }};
 
     public BoardController() {
 
@@ -50,6 +58,11 @@ public class BoardController implements GUIController {
     public void updateModel(ThinModel model) {
         this.defineIdMap(model);
         this.defineSchoolsMap(model);
+        if (model.getNicknames().size() == 2) {
+            this.hideThirdSchool(model);
+        }
+        this.setNicknamesOnSchools(model);
+        this.setupGameBoard(model);
         //TODO
     }
 
@@ -90,12 +103,14 @@ public class BoardController implements GUIController {
             // Get all towers
             for (TowerColor color : TowerColor.values()) {
                 for (int j = 0; j < 8; j++) {
-                    String key = this.getTowerFXID(color, j);
-                    ImageView value = (ImageView) this.gui.getStage().getScene().lookup("#" + key);
-                    if (j < model.getNumTowerByPlayer(i)) {
-                        towers.put(key, value);
+                    if (color == model.getTowerColorByPlayer(i)) {
+                        String key = this.getTowerFXID(color, j);
+                        ImageView value = (ImageView) this.gui.getStage().getScene().lookup("#" + key);
+                        if (j < model.getNumTowerByPlayer(i)) {
+                            towers.put(key, value);
+                        }
+                        value.setVisible(false);
                     }
-                    value.setVisible(false);
                 }
             }
             schoolMap.put("towers", towers);
@@ -103,7 +118,6 @@ public class BoardController implements GUIController {
             // Get all professors
             for (Color color : Color.values()) {
                 String key = this.getProfessorFXID(i, color);
-                System.out.println(key);
                 ImageView value = (ImageView) this.gui.getStage().getScene().lookup("#" + key);
                 professors.put(key, value);
                 value.setVisible(false);
@@ -111,6 +125,20 @@ public class BoardController implements GUIController {
             schoolMap.put("professors", professors);
 
             this.schools.put(i, schoolMap);
+        }
+    }
+
+    private void hideThirdSchool(ThinModel model) {
+        HBox value = (HBox) this.gui.getStage().getScene().lookup("#board2");
+        value.setVisible(false);
+    }
+
+    private void setNicknamesOnSchools(ThinModel model) {
+        int i = 0;
+        for (String nickname : model.getNicknames()) {
+            Text value = (Text) this.gui.getStage().getScene().lookup("#nicknamePlayer" + String.valueOf(i));
+            value.setText(nickname);
+            i++;
         }
     }
 
@@ -124,6 +152,44 @@ public class BoardController implements GUIController {
                 this.idMap.put(nextPlayerId, i);
             }
         }
+    }
+
+    private void setupGameBoard(ThinModel model) {
+        for (int i=0; i<model.getNicknames().size(); i++) {
+
+            // Add towers
+            for (int j=0; j<8; j++) {
+                String identifier = this.getTowerFXID(model.getTowerColorByPlayer(i), j);
+                ImageView tower = this.schools.get(i).get("towers").get(identifier);
+                tower.setVisible(true);
+            }
+
+            // Add professors
+            for (Color professorColor : model.getProfessorsByPlayer(i)) {
+                String identifier = this.getProfessorFXID(i, professorColor);
+                ImageView professor = this.schools.get(i).get("professors").get(identifier);
+                professor.setVisible(true);
+            }
+
+            // Add dining room
+            for (Color color : Color.values()) {
+                for (int j=0; j<model.getDiningRoomById(i).get(color); j++) {
+                    String identifier = this.getStudentFXID(j, true, color, i);
+                    ImageView student = this.schools.get(i).get("dining").get(identifier);
+                    student.setVisible(true);
+                }
+            }
+
+            // Add entrance
+            for (int j=0; j<model.getEntranceById(i).size(); j++) {
+                String identifier = this.getStudentFXID(j, false, null, i);
+                ImageView student = this.schools.get(i).get("entrance").get(identifier);
+                student.setVisible(true);
+            }
+
+        }
+
+        // TODO add all
     }
 
 
