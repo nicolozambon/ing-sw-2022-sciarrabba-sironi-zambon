@@ -2451,7 +2451,7 @@
                                                                  <DropShadow />
                                                              </effect>
                                                          </ImageView>
-                                                         <ImageView fx:id="ps5_0" fitHeight="40.0" fitWidth="40.0" layoutX="250.0" layoutY="217.0" pickOnBounds="true" preserveRatio="true" styleClass="borderOnHover" GridPane.columnIndex="4" GridPane.rowIndex="5">
+                                                         <ImageView fx:id="ps4_0" fitHeight="40.0" fitWidth="40.0" layoutX="250.0" layoutY="217.0" pickOnBounds="true" preserveRatio="true" styleClass="borderOnHover" GridPane.columnIndex="4" GridPane.rowIndex="5">
                                                              <image>
                                                                  <Image url="@../images/pawns/pinkStudent.png" />
                                                              </image>
@@ -3223,7 +3223,7 @@
                                           <DropShadow />
                                        </effect>
                                     </ImageView>
-                                    <ImageView fx:id="ps5_1" fitHeight="40.0" fitWidth="40.0" layoutX="250.0" layoutY="217.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="4" GridPane.rowIndex="5">
+                                    <ImageView fx:id="ps4_1" fitHeight="40.0" fitWidth="40.0" layoutX="250.0" layoutY="217.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="4" GridPane.rowIndex="5">
                                        <image>
                                           <Image url="@../images/pawns/pinkStudent.png" />
                                        </image>
@@ -3934,7 +3934,7 @@
                                           <DropShadow />
                                        </effect>
                                              </ImageView>
-                                             <ImageView fx:id="ps5_2" fitHeight="40.0" fitWidth="40.0" layoutX="250.0" layoutY="217.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="4" GridPane.rowIndex="5">
+                                             <ImageView fx:id="ps4_2" fitHeight="40.0" fitWidth="40.0" layoutX="250.0" layoutY="217.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="4" GridPane.rowIndex="5">
                                                  <image>
                                                      <Image url="@../images/pawns/pinkStudent.png" />
                                                  </image>

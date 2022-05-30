@@ -49,10 +49,12 @@ public class BoardController implements GUIController {
     @Override
     public void updateModel(ThinModel model) {
         this.defineIdMap(model);
+        this.defineSchoolsMap(model);
         //TODO
     }
 
     private void defineSchoolsMap(ThinModel model) {
+        this.schools = new HashMap<>();
         for (int i=0; i<model.getNicknames().size(); i++) {
             Map<String, ImageView> schoolMap = new HashMap<>();
             for (Color color : Color.values()) {
@@ -60,9 +62,12 @@ public class BoardController implements GUIController {
                     String key = this.getStudentFXID(j, true, color, i);
                     ImageView value = (ImageView) this.gui.getStage().getScene().lookup("#" + key);
                     schoolMap.put(key, value);
+                    System.out.println(key);
+                    value.setVisible(false);
                 }
             }
-            this.schools.put(0, schoolMap);
+            System.out.println("\n");
+            this.schools.put(i, schoolMap);
         }
     }
 
