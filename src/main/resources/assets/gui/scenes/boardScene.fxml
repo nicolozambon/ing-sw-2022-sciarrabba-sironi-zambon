@@ -2579,7 +2579,7 @@
                                                      <children>
                                                          <StackPane prefHeight="88.0" prefWidth="97.0" GridPane.columnIndex="1">
                                                              <children>
-                                                                 <ImageView fx:id="gse0_0" fitHeight="44.0" fitWidth="44.0" pickOnBounds="true" preserveRatio="true" styleClass="borderOnHover">
+                                                                 <ImageView fx:id="se0_0" fitHeight="44.0" fitWidth="44.0" pickOnBounds="true" preserveRatio="true" styleClass="borderOnHover">
                                                                      <image>
                                                                          <Image url="@../images/pawns/greenStudent.png" />
                                                                      </image>
@@ -2591,7 +2591,7 @@
                                                          </StackPane>
                                                          <StackPane layoutX="10.0" layoutY="10.0" prefHeight="88.0" prefWidth="97.0" GridPane.columnIndex="2">
                                                              <children>
-                                                                 <ImageView fx:id="gse1_0" fitHeight="44.0" fitWidth="44.0" pickOnBounds="true" preserveRatio="true" styleClass="borderOnHover">
+                                                                 <ImageView fx:id="se1_0" fitHeight="44.0" fitWidth="44.0" pickOnBounds="true" preserveRatio="true" styleClass="borderOnHover">
                                                                      <image>
                                                                          <Image url="@../images/pawns/greenStudent.png" />
                                                                      </image>
@@ -2603,7 +2603,7 @@
                                                          </StackPane>
                                                          <StackPane prefHeight="150.0" prefWidth="200.0" GridPane.columnIndex="3">
                                                              <children>
-                                                                 <ImageView fx:id="gse2_0" fitHeight="44.0" fitWidth="44.0" pickOnBounds="true" preserveRatio="true" styleClass="borderOnHover">
+                                                                 <ImageView fx:id="se2_0" fitHeight="44.0" fitWidth="44.0" pickOnBounds="true" preserveRatio="true" styleClass="borderOnHover">
                                                                      <image>
                                                                          <Image url="@../images/pawns/greenStudent.png" />
                                                                      </image>
@@ -2615,7 +2615,7 @@
                                                          </StackPane>
                                                          <StackPane prefHeight="150.0" prefWidth="200.0" GridPane.columnIndex="4">
                                                              <children>
-                                                                 <ImageView fx:id="gse3_0" fitHeight="44.0" fitWidth="44.0" pickOnBounds="true" preserveRatio="true" styleClass="borderOnHover">
+                                                                 <ImageView fx:id="se3_0" fitHeight="44.0" fitWidth="44.0" pickOnBounds="true" preserveRatio="true" styleClass="borderOnHover">
                                                                      <image>
                                                                          <Image url="@../images/pawns/greenStudent.png" />
                                                                      </image>
@@ -2627,7 +2627,7 @@
                                                          </StackPane>
                                                          <StackPane prefHeight="150.0" prefWidth="200.0" GridPane.columnIndex="5">
                                                              <children>
-                                                                 <ImageView fx:id="gse4_0" fitHeight="44.0" fitWidth="44.0" pickOnBounds="true" preserveRatio="true" styleClass="borderOnHover">
+                                                                 <ImageView fx:id="se4_0" fitHeight="44.0" fitWidth="44.0" pickOnBounds="true" preserveRatio="true" styleClass="borderOnHover">
                                                                      <image>
                                                                          <Image url="@../images/pawns/greenStudent.png" />
                                                                      </image>
@@ -2641,7 +2641,7 @@
                                                    </StackPane>
                                                          <StackPane prefHeight="150.0" prefWidth="200.0" GridPane.columnIndex="2" GridPane.rowIndex="1">
                                                              <children>
-                                                                 <ImageView fx:id="gse5_0" fitHeight="44.0" fitWidth="44.0" pickOnBounds="true" preserveRatio="true" styleClass="borderOnHover">
+                                                                 <ImageView fx:id="se5_0" fitHeight="44.0" fitWidth="44.0" pickOnBounds="true" preserveRatio="true" styleClass="borderOnHover">
                                                                      <image>
                                                                          <Image url="@../images/pawns/greenStudent.png" />
                                                                      </image>
@@ -2653,7 +2653,7 @@
                                                          </StackPane>
                                                          <StackPane prefHeight="150.0" prefWidth="200.0" GridPane.columnIndex="3" GridPane.rowIndex="1">
                                                              <children>
-                                                                 <ImageView fx:id="gse6_0" fitHeight="44.0" fitWidth="44.0" pickOnBounds="true" preserveRatio="true" styleClass="borderOnHover">
+                                                                 <ImageView fx:id="se6_0" fitHeight="44.0" fitWidth="44.0" pickOnBounds="true" preserveRatio="true" styleClass="borderOnHover">
                                                                      <image>
                                                                          <Image url="@../images/pawns/greenStudent.png" />
                                                                      </image>
@@ -2665,7 +2665,7 @@
                                                          </StackPane>
                                                          <StackPane prefHeight="150.0" prefWidth="200.0" GridPane.columnIndex="4" GridPane.rowIndex="1">
                                                              <children>
-                                                                 <ImageView fx:id="gse7_0" fitHeight="44.0" fitWidth="44.0" pickOnBounds="true" preserveRatio="true" styleClass="borderOnHover">
+                                                                 <ImageView fx:id="se7_0" fitHeight="44.0" fitWidth="44.0" pickOnBounds="true" preserveRatio="true" styleClass="borderOnHover">
                                                                      <image>
                                                                          <Image url="@../images/pawns/greenStudent.png" />
                                                                      </image>
@@ -2677,7 +2677,7 @@
                                                          </StackPane>
                                                          <StackPane prefHeight="150.0" prefWidth="200.0" GridPane.columnIndex="5" GridPane.rowIndex="1">
                                                              <children>
-                                                                 <ImageView fx:id="gse8_0" fitHeight="44.0" fitWidth="44.0" pickOnBounds="true" preserveRatio="true" styleClass="borderOnHover">
+                                                                 <ImageView fx:id="se8_0" fitHeight="44.0" fitWidth="44.0" pickOnBounds="true" preserveRatio="true" styleClass="borderOnHover">
                                                                      <image>
                                                                          <Image url="@../images/pawns/greenStudent.png" />
                                                                      </image>
@@ -3351,7 +3351,7 @@
                                  <children>
                                     <StackPane prefHeight="88.0" prefWidth="97.0" GridPane.columnIndex="1">
                                        <children>
-                                           <ImageView fx:id="gse0_1" fitHeight="44.0" fitWidth="44.0" pickOnBounds="true" preserveRatio="true">
+                                           <ImageView fx:id="se0_1" fitHeight="44.0" fitWidth="44.0" pickOnBounds="true" preserveRatio="true">
                                                <image>
                                                    <Image url="@../images/pawns/greenStudent.png" />
                                                </image>
@@ -3363,7 +3363,7 @@
                                     </StackPane>
                                     <StackPane layoutX="10.0" layoutY="10.0" prefHeight="88.0" prefWidth="97.0" GridPane.columnIndex="2">
                                         <children>
-                                            <ImageView fx:id="gse1_1" fitHeight="44.0" fitWidth="44.0" pickOnBounds="true" preserveRatio="true">
+                                            <ImageView fx:id="se1_1" fitHeight="44.0" fitWidth="44.0" pickOnBounds="true" preserveRatio="true">
                                                 <image>
                                                     <Image url="@../images/pawns/greenStudent.png" />
                                                 </image>
@@ -3375,7 +3375,7 @@
                                     </StackPane>
                                     <StackPane prefHeight="150.0" prefWidth="200.0" GridPane.columnIndex="3">
                                         <children>
-                                            <ImageView fx:id="gse2_1" fitHeight="44.0" fitWidth="44.0" pickOnBounds="true" preserveRatio="true">
+                                            <ImageView fx:id="se2_1" fitHeight="44.0" fitWidth="44.0" pickOnBounds="true" preserveRatio="true">
                                                 <image>
                                                     <Image url="@../images/pawns/greenStudent.png" />
                                                 </image>
@@ -3387,7 +3387,7 @@
                                     </StackPane>
                                     <StackPane prefHeight="150.0" prefWidth="200.0" GridPane.columnIndex="4">
                                         <children>
-                                            <ImageView fx:id="gse3_1" fitHeight="44.0" fitWidth="44.0" pickOnBounds="true" preserveRatio="true">
+                                            <ImageView fx:id="se3_1" fitHeight="44.0" fitWidth="44.0" pickOnBounds="true" preserveRatio="true">
                                                 <image>
                                                     <Image url="@../images/pawns/greenStudent.png" />
                                                 </image>
@@ -3399,7 +3399,7 @@
                                     </StackPane>
                                     <StackPane prefHeight="150.0" prefWidth="200.0" GridPane.columnIndex="5">
                                         <children>
-                                            <ImageView fx:id="gse4_1" fitHeight="44.0" fitWidth="44.0" pickOnBounds="true" preserveRatio="true">
+                                            <ImageView fx:id="se4_1" fitHeight="44.0" fitWidth="44.0" pickOnBounds="true" preserveRatio="true">
                                                 <image>
                                                     <Image url="@../images/pawns/greenStudent.png" />
                                                 </image>
@@ -3413,7 +3413,7 @@
                                     </StackPane>
                                     <StackPane prefHeight="150.0" prefWidth="200.0" GridPane.columnIndex="2" GridPane.rowIndex="1">
                                         <children>
-                                            <ImageView fx:id="gse5_1" fitHeight="44.0" fitWidth="44.0" pickOnBounds="true" preserveRatio="true">
+                                            <ImageView fx:id="se5_1" fitHeight="44.0" fitWidth="44.0" pickOnBounds="true" preserveRatio="true">
                                                 <image>
                                                     <Image url="@../images/pawns/greenStudent.png" />
                                                 </image>
@@ -3425,7 +3425,7 @@
                                     </StackPane>
                                     <StackPane prefHeight="150.0" prefWidth="200.0" GridPane.columnIndex="3" GridPane.rowIndex="1">
                                         <children>
-                                            <ImageView fx:id="gse6_1" fitHeight="44.0" fitWidth="44.0" pickOnBounds="true" preserveRatio="true">
+                                            <ImageView fx:id="se6_1" fitHeight="44.0" fitWidth="44.0" pickOnBounds="true" preserveRatio="true">
                                                 <image>
                                                     <Image url="@../images/pawns/greenStudent.png" />
                                                 </image>
@@ -3437,7 +3437,7 @@
                                     </StackPane>
                                     <StackPane prefHeight="150.0" prefWidth="200.0" GridPane.columnIndex="4" GridPane.rowIndex="1">
                                         <children>
-                                            <ImageView fx:id="gse7_1" fitHeight="44.0" fitWidth="44.0" pickOnBounds="true" preserveRatio="true">
+                                            <ImageView fx:id="se7_1" fitHeight="44.0" fitWidth="44.0" pickOnBounds="true" preserveRatio="true">
                                                 <image>
                                                     <Image url="@../images/pawns/greenStudent.png" />
                                                 </image>
@@ -3449,7 +3449,7 @@
                                     </StackPane>
                                     <StackPane prefHeight="150.0" prefWidth="200.0" GridPane.columnIndex="5" GridPane.rowIndex="1">
                                         <children>
-                                            <ImageView fx:id="gse8_1" fitHeight="44.0" fitWidth="44.0" pickOnBounds="true" preserveRatio="true">
+                                            <ImageView fx:id="se8_1" fitHeight="44.0" fitWidth="44.0" pickOnBounds="true" preserveRatio="true">
                                                 <image>
                                                     <Image url="@../images/pawns/greenStudent.png" />
                                                 </image>
@@ -3509,22 +3509,22 @@
                                                 <DropShadow />
                                              </effect>
                                           </ImageView>
-                                          <ImageView fx:id="blackTower1" fitHeight="64.0" fitWidth="72.0" layoutX="93.0" layoutY="33.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER">
+                                          <ImageView fx:id="grayTower1" fitHeight="64.0" fitWidth="72.0" layoutX="93.0" layoutY="33.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER">
                                              <image>
                                                 <Image url="@../images/pawns/grayTower.png" />
                                              </image>
                                           </ImageView>
-                                          <ImageView fx:id="blackTower3" fitHeight="64.0" fitWidth="72.0" layoutX="143.0" layoutY="33.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="4" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER">
+                                          <ImageView fx:id="grayTower3" fitHeight="64.0" fitWidth="72.0" layoutX="143.0" layoutY="33.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="4" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER">
                                              <image>
                                                 <Image url="@../images/pawns/grayTower.png" />
                                              </image>
                                           </ImageView>
-                                          <ImageView fx:id="blackTower2" fitHeight="64.0" fitWidth="72.0" layoutX="10.0" layoutY="-10.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER">
+                                          <ImageView fx:id="grayTower2" fitHeight="64.0" fitWidth="72.0" layoutX="10.0" layoutY="-10.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER">
                                              <image>
                                                 <Image url="@../images/pawns/grayTower.png" />
                                              </image>
                                           </ImageView>
-                                          <ImageView fx:id="blackTower4" fitHeight="64.0" fitWidth="72.0" layoutX="93.0" layoutY="33.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER">
+                                          <ImageView fx:id="grayTower4" fitHeight="64.0" fitWidth="72.0" layoutX="93.0" layoutY="33.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER">
                                              <image>
                                                 <Image url="@../images/pawns/grayTower.png" />
                                              </image>
@@ -3534,12 +3534,12 @@
                                                 <Image url="@../images/pawns/grayTower.png" />
                                              </image>
                                           </ImageView>
-                                          <ImageView fx:id="blackTower6" fitHeight="64.0" fitWidth="72.0" layoutX="277.0" layoutY="33.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER">
+                                          <ImageView fx:id="grayTower6" fitHeight="64.0" fitWidth="72.0" layoutX="277.0" layoutY="33.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER">
                                              <image>
                                                 <Image url="@../images/pawns/grayTower.png" />
                                              </image>
                                           </ImageView>
-                                          <ImageView fx:id="blackTower5" fitHeight="64.0" fitWidth="72.0" layoutX="210.0" layoutY="33.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER">
+                                          <ImageView fx:id="grayTower5" fitHeight="64.0" fitWidth="72.0" layoutX="210.0" layoutY="33.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER">
                                              <image>
                                                 <Image url="@../images/pawns/grayTower.png" />
                                              </image>
@@ -4063,7 +4063,7 @@
                                          <children>
                                              <StackPane prefHeight="88.0" prefWidth="97.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
                                                  <children>
-                                                     <ImageView fx:id="gse0_2" fitHeight="44.0" fitWidth="44.0" pickOnBounds="true" preserveRatio="true">
+                                                     <ImageView fx:id="se0_2" fitHeight="44.0" fitWidth="44.0" pickOnBounds="true" preserveRatio="true">
                                                          <image>
                                                              <Image url="@../images/pawns/greenStudent.png" />
                                                          </image>
@@ -4075,7 +4075,7 @@
                                              </StackPane>
                                              <StackPane layoutX="10.0" layoutY="10.0" prefHeight="88.0" prefWidth="97.0" GridPane.columnIndex="2" GridPane.rowIndex="1">
                                                  <children>
-                                                     <ImageView fx:id="gse1_2" fitHeight="44.0" fitWidth="44.0" pickOnBounds="true" preserveRatio="true">
+                                                     <ImageView fx:id="se1_2" fitHeight="44.0" fitWidth="44.0" pickOnBounds="true" preserveRatio="true">
                                                          <image>
                                                              <Image url="@../images/pawns/greenStudent.png" />
                                                          </image>
@@ -4087,7 +4087,7 @@
                                              </StackPane>
                                              <StackPane prefHeight="150.0" prefWidth="200.0" GridPane.columnIndex="3" GridPane.rowIndex="1">
                                                  <children>
-                                                     <ImageView fx:id="gse2_2" fitHeight="44.0" fitWidth="44.0" pickOnBounds="true" preserveRatio="true">
+                                                     <ImageView fx:id="se2_2" fitHeight="44.0" fitWidth="44.0" pickOnBounds="true" preserveRatio="true">
                                                          <image>
                                                              <Image url="@../images/pawns/greenStudent.png" />
                                                          </image>
@@ -4099,7 +4099,7 @@
                                              </StackPane>
                                              <StackPane prefHeight="150.0" prefWidth="200.0" GridPane.columnIndex="4" GridPane.rowIndex="1">
                                                  <children>
-                                                     <ImageView fx:id="gse3_2" fitHeight="44.0" fitWidth="44.0" pickOnBounds="true" preserveRatio="true">
+                                                     <ImageView fx:id="se3_2" fitHeight="44.0" fitWidth="44.0" pickOnBounds="true" preserveRatio="true">
                                                          <image>
                                                              <Image url="@../images/pawns/greenStudent.png" />
                                                          </image>
@@ -4111,7 +4111,7 @@
                                              </StackPane>
                                              <StackPane prefHeight="150.0" prefWidth="200.0" GridPane.columnIndex="5" GridPane.rowIndex="1">
                                                  <children>
-                                                     <ImageView fx:id="gse4_2" fitHeight="44.0" fitWidth="44.0" pickOnBounds="true" preserveRatio="true">
+                                                     <ImageView fx:id="se4_2" fitHeight="44.0" fitWidth="44.0" pickOnBounds="true" preserveRatio="true">
                                                          <image>
                                                              <Image url="@../images/pawns/greenStudent.png" />
                                                          </image>
@@ -4125,7 +4125,7 @@
                                              </StackPane>
                                              <StackPane prefHeight="150.0" prefWidth="200.0" GridPane.columnIndex="2" GridPane.rowIndex="2">
                                                  <children>
-                                                     <ImageView fx:id="gse5_2" fitHeight="44.0" fitWidth="44.0" pickOnBounds="true" preserveRatio="true">
+                                                     <ImageView fx:id="se5_2" fitHeight="44.0" fitWidth="44.0" pickOnBounds="true" preserveRatio="true">
                                                          <image>
                                                              <Image url="@../images/pawns/greenStudent.png" />
                                                          </image>
@@ -4137,7 +4137,7 @@
                                              </StackPane>
                                              <StackPane prefHeight="150.0" prefWidth="200.0" GridPane.columnIndex="3" GridPane.rowIndex="2">
                                                  <children>
-                                                     <ImageView fx:id="gse6_2" fitHeight="44.0" fitWidth="44.0" pickOnBounds="true" preserveRatio="true">
+                                                     <ImageView fx:id="se6_2" fitHeight="44.0" fitWidth="44.0" pickOnBounds="true" preserveRatio="true">
                                                          <image>
                                                              <Image url="@../images/pawns/greenStudent.png" />
                                                          </image>
@@ -4149,7 +4149,7 @@
                                              </StackPane>
                                              <StackPane prefHeight="150.0" prefWidth="200.0" GridPane.columnIndex="4" GridPane.rowIndex="2">
                                                  <children>
-                                                     <ImageView fx:id="gse7_2" fitHeight="44.0" fitWidth="44.0" pickOnBounds="true" preserveRatio="true">
+                                                     <ImageView fx:id="se7_2" fitHeight="44.0" fitWidth="44.0" pickOnBounds="true" preserveRatio="true">
                                                          <image>
                                                              <Image url="@../images/pawns/greenStudent.png" />
                                                          </image>
@@ -4161,7 +4161,7 @@
                                              </StackPane>
                                              <StackPane prefHeight="150.0" prefWidth="200.0" GridPane.columnIndex="5" GridPane.rowIndex="2">
                                                  <children>
-                                                     <ImageView fx:id="gse8_2" fitHeight="44.0" fitWidth="44.0" pickOnBounds="true" preserveRatio="true">
+                                                     <ImageView fx:id="se8_2" fitHeight="44.0" fitWidth="44.0" pickOnBounds="true" preserveRatio="true">
                                                          <image>
                                                              <Image url="@../images/pawns/greenStudent.png" />
                                                          </image>
