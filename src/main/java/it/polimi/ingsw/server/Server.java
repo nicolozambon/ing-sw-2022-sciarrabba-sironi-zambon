@@ -43,7 +43,6 @@ public class Server {
         ExecutorService connectionThreadPool = Executors.newCachedThreadPool();
         ServerSocket serverSocket = new ServerSocket();
 
-
         try {
             serverSocket = new ServerSocket(port);
         } catch (IOException e){

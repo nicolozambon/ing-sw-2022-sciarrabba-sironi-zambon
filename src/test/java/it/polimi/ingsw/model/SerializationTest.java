@@ -1,32 +1,47 @@
 package it.polimi.ingsw.model;
 
 import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import it.polimi.ingsw.enums.Wizard;
+import it.polimi.ingsw.json.HandlerDeserializer;
+import it.polimi.ingsw.json.HandlerSerializer;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-
 public class SerializationTest {
 
     @Test
-    void serializationTest() {
-        Gson gson = new Gson();
-        List<String> names = new ArrayList<>();
-        names.add("Pluto");
-        names.add("Pippo");
-        Model model = new ModelBuilder().buildModel(names, false);
+    void serializationTest() throws Exception{
+        List<String> nicknames = new ArrayList<>(List.of("player0", "player1", "player2"));
+        Model model = new ModelBuilder().buildModel(nicknames, true);
+        model.getController();
+
+
+        model.setWizard(0, Wizard.WIZARD);
+        model.setWizard(1, Wizard.PIXIE);
+        model.setWizard(2, Wizard.KING);
+
+        model.playAssistantCard(0, 1);
+        model.playAssistantCard(0, 2);
+        model.playAssistantCard(0, 3);
+
+        model.playCharacterCard(0, 7);
+
+
+        GsonBuilder gsonBuilder = new GsonBuilder();
+
+        gsonBuilder.registerTypeAdapter(Handler.class, new HandlerSerializer());
+        gsonBuilder.registerTypeAdapter(Handler.class, new HandlerDeserializer());
+        Gson gson = gsonBuilder.create();
+
         String string = gson.toJson(model);
 
-        Tower tower = model.getPlayers().get(0).getSchool().getTowersBoard().getPawns().get(0);
-        System.out.println(string);
+        Model model1 = gson.fromJson(string, Model.class);
 
-        Model model1  = gson.fromJson(string, Model.class);
-
-        Tower tower1 = model1.getPlayers().get(0).getSchool().getTowersBoard().getPawns().get(0);
-
-        assertEquals(tower.getColor(), tower1.getColor());
+        System.out.println(model.getHandler().getCategory());
+        System.out.println(model1.getHandler().getCategory());
 
     }
 }

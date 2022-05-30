@@ -12,8 +12,8 @@ import java.util.Map;
 
 public class PlanningPhase {
 
-    private transient final Model model;
-    private final Player currentPlayer;
+    private transient Model model;
+    private transient Player currentPlayer;
     private final Map<String, Integer> callableMethod;
 
     public PlanningPhase (Player currentPlayer, Model model) {
@@ -65,6 +65,11 @@ public class PlanningPhase {
         return new ArrayList<>(callableMethod.entrySet().stream()
                 .filter(x -> x.getValue() > 0)
                 .map(Map.Entry::getKey).toList());
+    }
+
+    protected void setModel(Model model, Player currentPlayer) {
+        this.model = model;
+        this.currentPlayer = currentPlayer;
     }
 
 }

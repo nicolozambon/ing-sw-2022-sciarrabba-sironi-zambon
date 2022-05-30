@@ -13,7 +13,6 @@ import it.polimi.ingsw.model.card.CharacterCard;
 import java.util.ArrayList;
 import java.util.List;
 
-
 public class Model implements AnswerListenableInterface {
 
     private final List<Player> players;
@@ -32,8 +31,7 @@ public class Model implements AnswerListenableInterface {
     private boolean isThereWinner;
     private Player winner;
 
-    private transient final AnswerListenable answerListenable;
-
+    private transient AnswerListenable answerListenable;
 
     protected Model(List<Player> players, List<Island> islands, List<Cloud> clouds, MotherNature motherNature,
                  List<CharacterCard> characterCards, int coinReserve, Board<Professor> startingProfessorBoard, StudentBag bag, int numStudentToMove) {
@@ -146,7 +144,7 @@ public class Model implements AnswerListenableInterface {
         return new ArrayList<>(characterCards);
     }
 
-    protected List<Player> getPlayers() {
+    public List<Player> getPlayers() {
         return new ArrayList<>(players);
     }
 
@@ -171,10 +169,10 @@ public class Model implements AnswerListenableInterface {
 
     protected void exchangeStudentsDiningRoomEntrance(int playerId, int entrancePawnPosition, Color color) throws InvalidActionException {
         Player player = players.get(playerId);
+        Color entranceStudentColor = player.getSchool().getEntrance().getPawns().get(entrancePawnPosition).getColor();
         player.exchangeStudentsDiningRoomEntrance(entrancePawnPosition, color);
 
         this.handler.professorControl(player, color, startingProfessorBoard);
-        Color entranceStudentColor = player.getSchool().getEntrance().getPawns().get(entrancePawnPosition).getColor();
         this.handler.professorControl(player, entranceStudentColor, startingProfessorBoard);
 
         if (player.getSchool().getDiningRoomByColor(entranceStudentColor).getNumPawns() % 3 == 0) {
@@ -347,8 +345,12 @@ public class Model implements AnswerListenableInterface {
         return handler;
     }
 
-    public int getCharacterCardIdByHandler() {
+    public int getCharacterCardIdFromHandler() {
         return this.handler.getCardId();
+    }
+
+    protected void resetAnswerListenable() {
+        this.answerListenable = new AnswerListenable();
     }
 
     @Override

@@ -51,7 +51,10 @@ public class VirtualView implements RequestListener, RequestListenableInterface,
     @Override
     public void onAnswerEvent(AnswerEvent answerEvent) {
         switch (answerEvent.getPropertyName()) {
-            case "update" -> gameHandler.launchAnswerEventEveryone(answerEvent);
+            case "update" -> {
+                System.out.println(answerEvent.getModel());
+                gameHandler.launchAnswerEventEveryone(answerEvent);
+            }
             case "options" -> gameHandler.launchAnswerEventCurrentPlayer(answerEvent);
             case "wait" -> gameHandler.launchAnswerEventPlayer(answerEvent.getNum(), new AnswerEvent(answerEvent.getPropertyName()));
         }

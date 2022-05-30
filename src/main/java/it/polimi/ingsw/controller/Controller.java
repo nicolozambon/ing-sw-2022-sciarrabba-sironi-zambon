@@ -18,7 +18,7 @@ import java.util.stream.Collectors;
 
 public class Controller implements RequestListener {
 
-    private transient final Model model;
+    private transient Model model;
     private final int numStudentToMove;
     private final List<Wizard> wizards;
     private List<Player> playersToPlay;
@@ -287,5 +287,27 @@ public class Controller implements RequestListener {
                 method.invoke(this, requestEvent.getPlayerId(), values[0]);
             }
         }
+    }
+
+    public void restoreAfterDeserialization(Model model) {
+        this.model = model;
+        rebuildPlayer(model.getPlayers());
+
+        if (action != null) action.setModel(this.model, playersToPlay.get(0));
+        if (planning != null) planning.setModel(this.model, playersToPlay.get(0));
+    }
+
+    private void rebuildPlayer(List<Player> players) {
+        List<Player> temp = new ArrayList<>();
+        for (int i = 0; i < playersToPlay.size(); i++) {
+            temp.add(players.get(playersToPlay.get(i).getId()));
+        }
+        playersToPlay = temp;
+
+        temp = new ArrayList<>();
+        for (int i = 0; i < playersHavePlayed.size(); i++) {
+            temp.add(players.get(playersHavePlayed.get(i).getId()));
+        }
+        playersHavePlayed = temp;
     }
 }

@@ -14,8 +14,8 @@ import java.util.Map;
 
 public class ActionPhase {
 
-    private transient final Model model;
-    private final Player currentPlayer;
+    private transient Model model;
+    private transient Player currentPlayer;
     private final Map<String, Integer> callableMethod;
 
 
@@ -40,7 +40,7 @@ public class ActionPhase {
             callableMethod.put("playCharacterCard", callableMethod.get("playCharacterCard") - 1);
             if (this.model.getCharacterCards().get(choice-1).getHasExtraAction()) {
                 callableMethod.put("extraAction", 1);
-                if (this.model.getCharacterCardIdByHandler() == 7) callableMethod.put("extraAction", 2);
+                if (this.model.getCharacterCardIdFromHandler() == 7) callableMethod.put("extraAction", 2);
 
             }
         }
@@ -115,9 +115,14 @@ public class ActionPhase {
                                                         .map(Map.Entry::getKey).toList());
         if (options.contains("extraAction")) {
             options.remove("extraAction");
-            options.add("card" + model.getCharacterCardIdByHandler());
+            options.add("card" + model.getCharacterCardIdFromHandler());
         }
         return options;
+    }
+
+    protected void setModel(Model model, Player currentPlayer) {
+        this.model = model;
+        this.currentPlayer = currentPlayer;
     }
 
 }
