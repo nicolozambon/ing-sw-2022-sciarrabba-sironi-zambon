@@ -63,7 +63,7 @@ public class BoardController implements GUIController {
                     ImageView value = (ImageView) this.gui.getStage().getScene().lookup("#" + key);
                     schoolMap.put(key, value);
                     System.out.println(key);
-                    value.setVisible(false);
+                    //value.setVisible(false);
                 }
             }
             System.out.println("\n");
