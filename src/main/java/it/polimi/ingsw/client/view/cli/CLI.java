@@ -4,6 +4,7 @@ import it.polimi.ingsw.enums.Color;
 import it.polimi.ingsw.enums.TowerColor;
 import it.polimi.ingsw.model.card.AssistantCard;
 import it.polimi.ingsw.model.card.CharacterCard;
+import org.fusesource.jansi.AnsiConsole;
 
 import java.util.*;
 import java.util.regex.Matcher;
@@ -93,9 +94,9 @@ public class CLI {
         this.put(Color.BLUE, "\u001B[34m");
         this.put(Color.RED, "\u001B[31m");
         this.put(Color.PINK, "\u001B[95m");
-        this.put(TowerColor.BLACK, "\u001B[30m");
-        this.put(TowerColor.GREY, "\u001B[90m");
-        this.put(TowerColor.WHITE, "\u001B[37m");
+        this.put(TowerColor.BLACK, "\u001B[0;30;47m");
+        this.put(TowerColor.GREY, "\u001B[0;90m");
+        this.put(TowerColor.WHITE, "\u001B[0;37m");
     }};
 
     private static final Map<Object, Integer> positionMap = new HashMap<>(){{
@@ -118,7 +119,7 @@ public class CLI {
 
     private static final Map<String, String> pawnsMap = new HashMap<>(){{
         this.put("s", " ● ");
-        this.put("p", " ⬢ ");
+        this.put("p", " ⏹ ");
         this.put("t", " ♜ ");
         this.put("n", " ♟ ");
     }};
@@ -765,7 +766,9 @@ public class CLI {
         // Build game board
         String[][] gameBoard = this.buildGameBoard(setOfIslands);
         // Print game board
+        AnsiConsole.systemInstall();
         System.out.println(this.getPrintableBoard(gameBoard, true));
+        AnsiConsole.systemUninstall();
     }
 
 }

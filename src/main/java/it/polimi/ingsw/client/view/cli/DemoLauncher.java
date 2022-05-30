@@ -5,6 +5,7 @@ import it.polimi.ingsw.enums.Color;
 import it.polimi.ingsw.enums.TowerColor;
 import it.polimi.ingsw.model.card.AssistantCard;
 import it.polimi.ingsw.model.card.CharacterCard;
+import org.fusesource.jansi.AnsiConsole;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -13,7 +14,10 @@ import java.util.List;
 public class DemoLauncher {
 
     public static void main(String[] args) throws IOException {
+        AnsiConsole.systemInstall();
 
+        System.out.println("\033[31mCIAO\033[0m");
+        AnsiConsole.systemUninstall();
         List<String> nicknames = new ArrayList<>();
         nicknames.add("Nicolò");
         nicknames.add("Alessandro");
@@ -174,6 +178,7 @@ public class DemoLauncher {
         cli.addMotherNatureToIsland(0);
         cli.addTowerToIsland(0, TowerColor.WHITE);
         cli.addStudentsToIsland(0, Color.GREEN, 5);
+        cli.addTowerToSchool(0, TowerColor.BLACK);
 
         // Show updated game board
         cli.showGameBoard();
