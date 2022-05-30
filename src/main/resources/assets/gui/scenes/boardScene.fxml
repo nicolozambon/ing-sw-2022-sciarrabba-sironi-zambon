@@ -5,7 +5,6 @@
 <?import javafx.scene.effect.DropShadow?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
-<?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
@@ -18,9 +17,10 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane fx:id="wrapperBoards" minHeight="1080.0" minWidth="1920.0" styleClass="anchor" stylesheets="@../css/boardScene.css" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="it.polimi.ingsw.client.view.gui.controller.BoardController">
-    <children>
-        <BorderPane minHeight="768.0" minWidth="1280.0" prefHeight="768.0" prefWidth="1280.0" style="-fx-background-color: transparent;" stylesheets="@../css/style.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+
+<Pane minHeight="810.0" minWidth="1440.0" prefHeight="810.0" prefWidth="1440.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="it.polimi.ingsw.client.view.gui.controller.BoardController">
+   <children>
+        <BorderPane layoutX="-313.0" layoutY="-174.0" minHeight="1080.0" minWidth="1920.0" prefHeight="1160.0" prefWidth="2067.0" scaleX="0.7" scaleY="0.7" style="-fx-background-color: transparent;" styleClass="anchor" stylesheets="@../css/boardScene.css">
             <top>
                 <BorderPane prefWidth="1900.0" BorderPane.alignment="CENTER">
                     <right>
@@ -157,7 +157,7 @@
                <bottom>
                   <VBox prefHeight="1251.0" prefWidth="1089.0">
                      <children>
-                        <VBox prefHeight="89.0" prefWidth="1089.0" />
+                        <VBox prefHeight="140.0" prefWidth="1239.0" />
                          <HBox prefWidth="1072.0" rotate="90">
                              <children>
                                  <VBox prefHeight="986.0" prefWidth="724.0">
@@ -301,28 +301,32 @@
                                                          </font>
                                                          <GridPane.margin>
                                                             <Insets left="5.0" />
-                                                         </GridPane.margin></Text>
+                                                         </GridPane.margin>
+                                                      </Text>
                                                       <Text fx:id="y0Num" fill="WHITE" layoutX="88.0" layoutY="74.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" textAlignment="CENTER" GridPane.columnIndex="1" GridPane.rowIndex="3" GridPane.valignment="BOTTOM">
                                                          <font>
                                                             <Font name="Avenir Next Condensed Bold" size="13.0" />
                                                          </font>
                                                          <GridPane.margin>
                                                             <Insets left="5.0" />
-                                                         </GridPane.margin></Text>
+                                                         </GridPane.margin>
+                                                      </Text>
                                                       <Text fx:id="p0Num" fill="WHITE" layoutX="88.0" layoutY="98.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" textAlignment="CENTER" GridPane.columnIndex="1" GridPane.rowIndex="4" GridPane.valignment="BOTTOM">
                                                          <font>
                                                             <Font name="Avenir Next Condensed Bold" size="13.0" />
                                                          </font>
                                                          <GridPane.margin>
                                                             <Insets left="5.0" />
-                                                         </GridPane.margin></Text>
+                                                         </GridPane.margin>
+                                                      </Text>
                                                       <Text fx:id="b0Num" fill="WHITE" layoutX="88.0" layoutY="121.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" textAlignment="CENTER" GridPane.columnIndex="1" GridPane.rowIndex="5" GridPane.valignment="BOTTOM">
                                                          <font>
                                                             <Font name="Avenir Next Condensed Bold" size="13.0" />
                                                          </font>
                                                          <GridPane.margin>
                                                             <Insets left="5.0" />
-                                                         </GridPane.margin></Text>
+                                                         </GridPane.margin>
+                                                      </Text>
                                                       <ImageView fx:id="mn0" fitHeight="35.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="4" GridPane.valignment="CENTER">
                                                          <image>
                                                             <Image url="@../images/pawns/motherNature.png" />
@@ -3645,7 +3649,8 @@
                                                  </image>
                                        <effect>
                                           <DropShadow />
-                                       </effect></ImageView>
+                                       </effect>
+                                    </ImageView>
                                              <ImageView fx:id="gs8_2" fitHeight="40.0" fitWidth="40.0" layoutX="10.0" layoutY="9.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" GridPane.rowIndex="1">
                                                  <image>
                                                      <Image url="@../images/pawns/greenStudent.png" />
@@ -4184,5 +4189,5 @@
              </HBox>
          </right>
         </BorderPane>
-    </children>
-</AnchorPane>
+   </children>
+</Pane>
