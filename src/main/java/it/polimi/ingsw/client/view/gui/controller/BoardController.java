@@ -20,7 +20,7 @@ import java.util.Map;
 public class BoardController implements GUIController {
     private ViewGUI gui;
     private Map<Integer, Integer> idMap = null;
-    private Map<Integer, Map<String, ImageView>> schools = null;
+    private Map<Integer, Map<String, Map<String, ImageView>>> schools = null;
 
     public BoardController() {
 
@@ -54,19 +54,62 @@ public class BoardController implements GUIController {
     }
 
     private void defineSchoolsMap(ThinModel model) {
+        // TODO check if model.getDiningRoomById(i).size() is the right convention
+
         this.schools = new HashMap<>();
         for (int i=0; i<model.getNicknames().size(); i++) {
-            Map<String, ImageView> schoolMap = new HashMap<>();
+            Map<String, Map<String, ImageView>> schoolMap = new HashMap<>();
+
+            Map<String, ImageView> dining = new HashMap<>();
+            Map<String, ImageView> entrance = new HashMap<>();
+            Map<String, ImageView> towers = new HashMap<>();
+            Map<String, ImageView> professors = new HashMap<>();
+
+            // Get all students in dining room
             for (Color color : Color.values()) {
                 for (int j=0; j<10; j++) {
                     String key = this.getStudentFXID(j, true, color, i);
                     ImageView value = (ImageView) this.gui.getStage().getScene().lookup("#" + key);
-                    schoolMap.put(key, value);
-                    System.out.println(key);
-                    //value.setVisible(false);
+                    dining.put(key, value);
+                    value.setVisible(false);
                 }
             }
-            System.out.println("\n");
+            schoolMap.put("dining", dining);
+
+            // Get all students in entrance
+            for (int j=0; j<9; j++) {
+                String key = this.getStudentFXID(j, false, null, i);
+                ImageView value = (ImageView) this.gui.getStage().getScene().lookup("#" + key);
+                if (j < model.getEntranceById(i).size()) {
+                    entrance.put(key, value);
+                }
+                value.setVisible(false);
+            }
+            schoolMap.put("entrance", entrance);
+
+            // Get all towers
+            for (TowerColor color : TowerColor.values()) {
+                for (int j = 0; j < 8; j++) {
+                    String key = this.getTowerFXID(color, j);
+                    ImageView value = (ImageView) this.gui.getStage().getScene().lookup("#" + key);
+                    if (j < model.getNumTowerByPlayer(i)) {
+                        towers.put(key, value);
+                    }
+                    value.setVisible(false);
+                }
+            }
+            schoolMap.put("towers", towers);
+
+            // Get all professors
+            for (Color color : Color.values()) {
+                String key = this.getProfessorFXID(i, color);
+                System.out.println(key);
+                ImageView value = (ImageView) this.gui.getStage().getScene().lookup("#" + key);
+                professors.put(key, value);
+                value.setVisible(false);
+            }
+            schoolMap.put("professors", professors);
+
             this.schools.put(i, schoolMap);
         }
     }
@@ -93,8 +136,10 @@ public class BoardController implements GUIController {
      * @return FX:ID of a student in scene
      */
     private String getStudentFXID (int position, boolean diningRoom, Color color, int boardID) {
-        String id;
-        id = colorIDHelper(color);
+        String id = "";
+        if (diningRoom) {
+            id = colorIDHelper(color);
+        }
         id = id + "s";
         if (!diningRoom) { //if pawn is in entrance
             id = id + "e";
@@ -110,10 +155,7 @@ public class BoardController implements GUIController {
      * @return FX:ID of a professor in scene.
      */
     private String getProfessorFXID (int boardID, Color color) {
-        String id;
-        id = colorIDHelper(color);
-        id = id + "p" + "_" + boardID;
-        return id;
+        return colorIDHelper(color) + "p" + "_" + boardID;
     }
 
     /**
@@ -146,7 +188,7 @@ public class BoardController implements GUIController {
             case GREY -> id = "gray";
             case WHITE -> id = "white";
         }
-        id = id + position;
+        id = id + "Tower" + position;
 
         return id;
     }
