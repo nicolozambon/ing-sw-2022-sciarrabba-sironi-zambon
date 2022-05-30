@@ -3,6 +3,7 @@ package it.polimi.ingsw.client.view.gui.controller;
 import it.polimi.ingsw.client.view.gui.ViewGUI;
 import it.polimi.ingsw.enums.Color;
 import it.polimi.ingsw.enums.TowerColor;
+import it.polimi.ingsw.model.ThinModel;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -39,6 +40,10 @@ public class BoardController implements GUIController {
         this.gui = gui;
     }
 
+    @Override
+    public void updateModel(ThinModel model) {
+        //TODO
+    }
 
     /**
      * Generate FX:ID of a student.

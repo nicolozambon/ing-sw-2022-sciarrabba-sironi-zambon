@@ -158,6 +158,7 @@ public class ViewGUI extends Application implements RequestListenableInterface, 
                         stage.setFullScreen(true);
                     }
                     this.model = answerEvent.getModel();
+                    currentController.updateModel(this.model);
                 }
                 case "wait" -> {
                     //if (this.model != null) System.out.println(this.model);
