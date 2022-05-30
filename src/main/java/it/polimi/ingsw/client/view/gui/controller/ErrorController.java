@@ -1,6 +1,7 @@
 package it.polimi.ingsw.client.view.gui.controller;
 
 import it.polimi.ingsw.client.view.gui.ViewGUI;
+import it.polimi.ingsw.model.ThinModel;
 import javafx.fxml.FXML;
 
 import java.util.List;
@@ -31,6 +32,11 @@ public class ErrorController implements GUIController {
 
     @Override
     public void onWaitEvent() {
+
+    }
+
+    @Override
+    public void updateModel(ThinModel model) {
 
     }
 

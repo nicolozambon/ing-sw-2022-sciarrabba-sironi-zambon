@@ -1,6 +1,7 @@
 package it.polimi.ingsw.client.view.gui.controller;
 
 import it.polimi.ingsw.client.view.gui.ViewGUI;
+import it.polimi.ingsw.model.ThinModel;
 import javafx.fxml.FXML;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
@@ -48,6 +49,11 @@ public class LobbyController implements GUIController {
 
     @Override
     public void onWaitEvent() {
+
+    }
+
+    @Override
+    public void updateModel(ThinModel model) {
 
     }
 }

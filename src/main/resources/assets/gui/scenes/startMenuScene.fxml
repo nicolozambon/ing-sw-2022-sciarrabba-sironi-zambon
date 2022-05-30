@@ -59,7 +59,7 @@
                   <TextField id="nicknameTextField" fx:id="nicknameTextField" layoutX="110.0" layoutY="314.0" />
                   <Text fill="#5e5e5e" layoutX="84.0" layoutY="472.0" strokeType="OUTSIDE" strokeWidth="0.0" text="CG27 - Sciarrabba Sironi Zambon" />
                   <Text fill="#5e5e5e" layoutX="58.0" layoutY="488.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Prova Finale di Ingegneria del Software - 2022" />
-                  <Button layoutX="139.0" layoutY="358.0" mnemonicParsing="false" onMouseClicked="#connectButtonOnClick" text="Connect">
+                  <Button fx:id="test" layoutX="139.0" layoutY="358.0" mnemonicParsing="false" onMouseClicked="#connectButtonOnClick" text="Connect">
                      <font>
                         <Font size="18.0" />
                      </font>

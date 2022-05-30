@@ -8,6 +8,7 @@ import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
+import javafx.scene.control.Button;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.text.Text;
@@ -19,6 +20,7 @@ import java.util.Map;
 public class BoardController implements GUIController {
     private ViewGUI gui;
     private Map<Integer, Integer> idMap = null;
+    private Map<Integer, Map<String, ImageView>> schools = null;
 
     public BoardController() {
 
@@ -48,6 +50,20 @@ public class BoardController implements GUIController {
     public void updateModel(ThinModel model) {
         this.defineIdMap(model);
         //TODO
+    }
+
+    private void defineSchoolsMap(ThinModel model) {
+        for (int i=0; i<model.getNicknames().size(); i++) {
+            Map<String, ImageView> schoolMap = new HashMap<>();
+            for (Color color : Color.values()) {
+                for (int j=0; j<10; j++) {
+                    String key = this.getStudentFXID(j, true, color, i);
+                    ImageView value = (ImageView) this.gui.getStage().getScene().lookup("#" + key);
+                    schoolMap.put(key, value);
+                }
+            }
+            this.schools.put(0, schoolMap);
+        }
     }
 
     private void defineIdMap(ThinModel model) {
