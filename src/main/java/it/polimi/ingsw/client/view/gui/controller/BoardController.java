@@ -3,22 +3,29 @@ package it.polimi.ingsw.client.view.gui.controller;
 import it.polimi.ingsw.client.view.gui.ViewGUI;
 import it.polimi.ingsw.enums.Color;
 import it.polimi.ingsw.enums.TowerColor;
+import it.polimi.ingsw.model.ThinModel;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
+import javafx.scene.control.Button;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.text.Text;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class BoardController implements GUIController {
     private ViewGUI gui;
+    private Map<Integer, Integer> idMap = null;
+    private Map<Integer, Map<String, Map<String, ImageView>>> schools = null;
 
     public BoardController() {
 
     }
+
     @Override
     public void optionsHandling(List<String> options) {
 
@@ -39,6 +46,86 @@ public class BoardController implements GUIController {
         this.gui = gui;
     }
 
+    @Override
+    public void updateModel(ThinModel model) {
+        this.defineIdMap(model);
+        this.defineSchoolsMap(model);
+        //TODO
+    }
+
+    private void defineSchoolsMap(ThinModel model) {
+        // TODO check if model.getDiningRoomById(i).size() is the right convention
+
+        this.schools = new HashMap<>();
+        for (int i=0; i<model.getNicknames().size(); i++) {
+            Map<String, Map<String, ImageView>> schoolMap = new HashMap<>();
+
+            Map<String, ImageView> dining = new HashMap<>();
+            Map<String, ImageView> entrance = new HashMap<>();
+            Map<String, ImageView> towers = new HashMap<>();
+            Map<String, ImageView> professors = new HashMap<>();
+
+            // Get all students in dining room
+            for (Color color : Color.values()) {
+                for (int j=0; j<10; j++) {
+                    String key = this.getStudentFXID(j, true, color, i);
+                    ImageView value = (ImageView) this.gui.getStage().getScene().lookup("#" + key);
+                    dining.put(key, value);
+                    value.setVisible(false);
+                }
+            }
+            schoolMap.put("dining", dining);
+
+            // Get all students in entrance
+            for (int j=0; j<9; j++) {
+                String key = this.getStudentFXID(j, false, null, i);
+                ImageView value = (ImageView) this.gui.getStage().getScene().lookup("#" + key);
+                if (j < model.getEntranceById(i).size()) {
+                    entrance.put(key, value);
+                }
+                value.setVisible(false);
+            }
+            schoolMap.put("entrance", entrance);
+
+            // Get all towers
+            for (TowerColor color : TowerColor.values()) {
+                for (int j = 0; j < 8; j++) {
+                    String key = this.getTowerFXID(color, j);
+                    ImageView value = (ImageView) this.gui.getStage().getScene().lookup("#" + key);
+                    if (j < model.getNumTowerByPlayer(i)) {
+                        towers.put(key, value);
+                    }
+                    value.setVisible(false);
+                }
+            }
+            schoolMap.put("towers", towers);
+
+            // Get all professors
+            for (Color color : Color.values()) {
+                String key = this.getProfessorFXID(i, color);
+                System.out.println(key);
+                ImageView value = (ImageView) this.gui.getStage().getScene().lookup("#" + key);
+                professors.put(key, value);
+                value.setVisible(false);
+            }
+            schoolMap.put("professors", professors);
+
+            this.schools.put(i, schoolMap);
+        }
+    }
+
+    private void defineIdMap(ThinModel model) {
+        if (this.idMap == null) {
+            this.idMap = new HashMap<>();
+            int currentId = this.gui.getId();
+            this.idMap.put(currentId, 0);
+            for (int i = 1; i < model.getNicknames().size(); i++) {
+                int nextPlayerId = (currentId + i) % model.getNicknames().size();
+                this.idMap.put(nextPlayerId, i);
+            }
+        }
+    }
+
 
     /**
      * Generate FX:ID of a student.
@@ -49,8 +136,10 @@ public class BoardController implements GUIController {
      * @return FX:ID of a student in scene
      */
     private String getStudentFXID (int position, boolean diningRoom, Color color, int boardID) {
-        String id;
-        id = colorIDHelper(color);
+        String id = "";
+        if (diningRoom) {
+            id = colorIDHelper(color);
+        }
         id = id + "s";
         if (!diningRoom) { //if pawn is in entrance
             id = id + "e";
@@ -66,10 +155,7 @@ public class BoardController implements GUIController {
      * @return FX:ID of a professor in scene.
      */
     private String getProfessorFXID (int boardID, Color color) {
-        String id;
-        id = colorIDHelper(color);
-        id = id + "p" + "_" + boardID;
-        return id;
+        return colorIDHelper(color) + "p" + "_" + boardID;
     }
 
     /**
@@ -102,7 +188,7 @@ public class BoardController implements GUIController {
             case GREY -> id = "gray";
             case WHITE -> id = "white";
         }
-        id = id + position;
+        id = id + "Tower" + position;
 
         return id;
     }
@@ -179,11 +265,13 @@ public class BoardController implements GUIController {
         return path;
     }
 
-    private void changePlayedAssistantCard(int IDPlayer, int IDAssistantCard) { //TODO: Implement rotation of playerID and player0,1,2 in scene. % 3
+    private void changePlayedAssistantCard(int IDPlayer, int IDAssistantCard) {
+        IDPlayer = this.idMap.get(IDPlayer);
         modifyImage(getAssistantCardPath(IDAssistantCard), getImageViewFromFXID(getAssistantCardPlayedFXID(IDPlayer)));
     }
 
-    private String getAssistantCardPlayedFXID (int IDPlayer) { //TODO: Implement rotation of playerID and player0,1,2 in scene. % 3
+    private String getAssistantCardPlayedFXID (int IDPlayer) {
+        IDPlayer = this.idMap.get(IDPlayer);
         String id = "assistantCard" + IDPlayer;
         return id;
     }
@@ -214,8 +302,9 @@ public class BoardController implements GUIController {
         return "bridge" + islandID1 + "_" + islandID2;
     }
 
-    private void changeCoinSizeByPlayer (int playerID, int newCoinSize) { //TODO: Implement rotation of playerID and player0,1,2 in scene. % 3
-        String ID = "coinPlayer" + playerID;
+    private void changeCoinSizeByPlayer (int IDPlayer, int newCoinSize) {
+        IDPlayer = this.idMap.get(IDPlayer);
+        String ID = "coinPlayer" + IDPlayer;
         String coinSize = String.valueOf(newCoinSize);
         ((Text) gui.getStage().getScene().lookup(ID)).setText(coinSize);
     }

@@ -2,7 +2,9 @@ package it.polimi.ingsw.client.view.gui.controller;
 
 import it.polimi.ingsw.client.view.gui.ViewGUI;
 import it.polimi.ingsw.events.RequestEvent;
+import it.polimi.ingsw.model.ThinModel;
 import javafx.fxml.FXML;
+import javafx.scene.control.Button;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextField;
 import javafx.scene.control.ToggleGroup;
@@ -64,6 +66,11 @@ public class StartMenuController implements GUIController{
     public void onWaitEvent() {
         firstPlayerPane.setVisible(false);
         this.gui.getStage().getScene().lookup("#waitPane").setVisible(true);
+    }
+
+    @Override
+    public void updateModel(ThinModel model) {
+
     }
 
     @FXML

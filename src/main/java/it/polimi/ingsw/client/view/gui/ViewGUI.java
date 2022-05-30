@@ -15,8 +15,10 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.layout.StackPane;
 import javafx.scene.text.Text;
+import javafx.scene.transform.Scale;
 import javafx.stage.Stage;
 
+import java.awt.*;
 import java.io.IOException;
 import java.io.PrintStream;
 import java.util.ArrayList;
@@ -154,10 +156,14 @@ public class ViewGUI extends Application implements RequestListenableInterface, 
                 case "update" -> {
                     if (!currentScene.equals(sceneMap.get("boardScene"))) {
                         changeScene("boardScene");
+                        //Scale scale = new Scale(0.8,0.8);
+                        //currentScene.getRoot().getTransforms().setAll(scale);
+                        //stage.setWidth(1440);
+                        //stage.setHeight(900);
                         stage.setResizable(false);
-                        stage.setFullScreen(true);
                     }
                     this.model = answerEvent.getModel();
+                    currentController.updateModel(this.model);
                 }
                 case "wait" -> {
                     //if (this.model != null) System.out.println(this.model);
