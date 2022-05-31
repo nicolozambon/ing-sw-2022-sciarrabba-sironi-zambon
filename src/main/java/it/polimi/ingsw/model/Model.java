@@ -11,6 +11,7 @@ import it.polimi.ingsw.listeners.AnswerListener;
 import it.polimi.ingsw.model.card.CharacterCard;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 
 public class Model implements AnswerListenableInterface {
@@ -28,7 +29,9 @@ public class Model implements AnswerListenableInterface {
     private Controller controller;
     private Handler handler;
 
-    private Player winner;
+    private List<String> winner;
+
+    private boolean isLastRound;
 
     private transient AnswerListenable answerListenable;
 
@@ -47,7 +50,9 @@ public class Model implements AnswerListenableInterface {
 
         this.controller = null;
         this.numStudentToMove = numStudentToMove;
-        this.winner = null;
+        this.winner = new ArrayList<>();
+
+        this.isLastRound = false;
 
         this.answerListenable = new AnswerListenable();
     }
@@ -58,6 +63,7 @@ public class Model implements AnswerListenableInterface {
 
     public void playAssistantCard(int playerId, int choice) throws CardException {
         players.get(playerId).playAssistantCard(choice);
+        if (players.get(playerId).getAssistantCards().isEmpty()) isLastRound = true;
         update();
     }
 
@@ -102,10 +108,12 @@ public class Model implements AnswerListenableInterface {
     public void moveMotherNature(int playerId, int stepsChoice) throws MotherNatureStepsException {
         try {
             this.handler.motherNatureMovement(players.get(playerId), motherNature, stepsChoice);
+            if (groupOfIslands() <= 3) {
+                findWinner();
+            }
         } catch (WinnerException e) {
             //e.printStackTrace();
-            this.winner = players.get(e.getPlayerId());
-            System.out.println("Winner is player " + players.get(e.getPlayerId()).getNickname());
+            this.winner = new ArrayList<>(List.of(players.get(e.getPlayerId()).getNickname()));
         } finally {
             update();
         }
@@ -113,10 +121,14 @@ public class Model implements AnswerListenableInterface {
     }
 
     public void addStudentsToClouds() {
-        for (Cloud cloud : clouds) {
-            for (int i = 0; i < numStudentToMove; i++) {
-                bag.extractStudentAndMove(cloud);
+        try {
+            for (Cloud cloud : clouds) {
+                for (int i = 0; i < numStudentToMove; i++) {
+                    bag.extractStudentAndMove(cloud);
+                }
             }
+        } catch (IndexOutOfBoundsException e) {
+            isLastRound = true;
         }
         update();
     }
@@ -150,6 +162,10 @@ public class Model implements AnswerListenableInterface {
         if (player.getSchool().getDiningRoomByColor(entranceStudentColor).getNumPawns() % 3 == 0) {
             player.increaseCoinBy(1);
         }
+    }
+
+    public boolean isLastRound() {
+        return isLastRound;
     }
 
     protected MotherNature getMotherNature() {
@@ -199,17 +215,41 @@ public class Model implements AnswerListenableInterface {
         this.handler = new Handler(this.players);
     }
 
-    public Player getWinner() {
-        return winner;
+    public boolean isThereWinner() {
+        return winner.size() > 0;
     }
 
     private void update() {
         fireAnswer(new AnswerEvent("update", this));
-        if (winner != null) fireAnswer(new AnswerEvent("winner", winner.getNickname()));
+        if (isThereWinner()) fireAnswer(new AnswerEvent("winner", winner));
     }
 
-    protected void resetAnswerListenable() {
+    protected void resumeFromDisk() {
         this.answerListenable = new AnswerListenable();
+        this.winner = new ArrayList<>();
+    }
+
+    private int groupOfIslands() {
+        int num = 12;
+        for (Island island : islands) {
+            if (island.isUnifyNext()) num--;
+        }
+        return num;
+    }
+
+    protected void findWinner() {
+        List<Player> temp = new ArrayList<>(players);
+        temp = temp.stream().sorted(Comparator.comparingInt(this::getPlayerWinningRanking)).toList();
+        winner = new ArrayList<>();
+        winner.add(temp.get(temp.size() - 1).getNickname());
+        if (getPlayerWinningRanking(temp.get(temp.size() - 2)) == getPlayerWinningRanking(temp.get(temp.size() - 1))) {
+            winner.add(temp.get(temp.size() - 1).getNickname());
+        }
+    }
+
+    private int getPlayerWinningRanking(Player player) {
+        School school = player.getSchool();
+        return school.getProfessorsTable().getNumPawns() - school.getTowersBoard().getNumPawns();
     }
 
     @Override

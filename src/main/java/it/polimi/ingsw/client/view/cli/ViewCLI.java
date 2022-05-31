@@ -65,9 +65,9 @@ public class ViewCLI implements AnswerListener, RequestListenableInterface {
             }
             case "winner" -> {
                 if (this.model != null) cliBuilder.buildCLI(model, nickname).showGameBoard();
-                String winner = answerEvent.getMessage() + " has";
-                if (answerEvent.getMessage().equals(nickname)) winner = "You have";
-                System.out.println(winner + " win this game!");
+                List<String> winners = answerEvent.getOptions();
+                if (winners.contains(nickname)) winners.set(winners.indexOf(nickname), "You");
+                System.out.println("Winners of this game: " + winners);
                 fireRequest(new RequestEvent("end", id));
                 //clientConnection.stopClient();
             }

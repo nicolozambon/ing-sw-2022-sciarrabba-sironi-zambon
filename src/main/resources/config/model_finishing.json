@@ -61,9 +61,6 @@
               "color": "BLUE"
             },
             {
-              "color": "PINK"
-            },
-            {
               "color": "GREEN"
             },
             {
@@ -181,23 +178,31 @@
             "pawns": []
           },
           "PINK": {
-            "pawns": []
+            "pawns": [
+              {
+                "color": "PINK"
+              },
+              {
+                "color": "PINK"
+              },
+              {
+                "color": "PINK"
+              },
+              {
+                "color": "PINK"
+              }
+            ]
           }
         },
         "professorsTable": {
-          "pawns": []
+          "pawns": [
+            {
+              "color": "PINK"
+            }
+          ]
         },
         "towersBoard": {
           "pawns": [
-            {
-              "color": "WHITE"
-            },
-            {
-              "color": "WHITE"
-            },
-            {
-              "color": "WHITE"
-            },
             {
               "color": "WHITE"
             },
@@ -320,15 +325,6 @@
         },
         "towersBoard": {
           "pawns": [
-            {
-              "color": "GREY"
-            },
-            {
-              "color": "GREY"
-            },
-            {
-              "color": "GREY"
-            },
             {
               "color": "GREY"
             },
@@ -480,9 +476,13 @@
     {
       "id": 5,
       "towerBoard": {
-        "pawns": []
+        "pawns": [
+          {
+            "color": "GREY"
+          }
+        ]
       },
-      "unifyNext": false,
+      "unifyNext": true,
       "unifyPrev": false,
       "pawns": [
         {
@@ -493,10 +493,14 @@
     {
       "id": 6,
       "towerBoard": {
-        "pawns": []
+        "pawns": [
+          {
+            "color": "GREY"
+          }
+        ]
       },
-      "unifyNext": false,
-      "unifyPrev": false,
+      "unifyNext": true,
+      "unifyPrev": true,
       "pawns": [
         {
           "color": "RED"
@@ -506,18 +510,26 @@
     {
       "id": 7,
       "towerBoard": {
-        "pawns": []
+        "pawns": [
+          {
+            "color": "GREY"
+          }
+        ]
       },
       "unifyNext": false,
-      "unifyPrev": false,
+      "unifyPrev": true,
       "pawns": []
     },
     {
       "id": 8,
       "towerBoard": {
-        "pawns": []
+        "pawns": [
+          {
+            "color": "WHITE"
+          }
+        ]
       },
-      "unifyNext": false,
+      "unifyNext": true,
       "unifyPrev": false,
       "pawns": [
         {
@@ -528,10 +540,14 @@
     {
       "id": 9,
       "towerBoard": {
-        "pawns": []
+        "pawns": [
+          {
+            "color": "WHITE"
+          }
+        ]
       },
-      "unifyNext": false,
-      "unifyPrev": false,
+      "unifyNext": true,
+      "unifyPrev": true,
       "pawns": [
         {
           "color": "GREEN"
@@ -541,10 +557,14 @@
     {
       "id": 10,
       "towerBoard": {
-        "pawns": []
+        "pawns": [
+          {
+            "color": "WHITE"
+          }
+        ]
       },
       "unifyNext": false,
-      "unifyPrev": false,
+      "unifyPrev": true,
       "pawns": [
         {
           "color": "GREEN"
@@ -959,18 +979,7 @@
       {
         "color": "PINK"
       },
-      {
-        "color": "PINK"
-      },
-      {
-        "color": "PINK"
-      },
-      {
-        "color": "PINK"
-      },
-      {
-        "color": "PINK"
-      }
+      {}
     ]
   },
   "numStudentToMove": 4,

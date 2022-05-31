@@ -27,7 +27,12 @@ public class DemoLauncher {
 
         controller.playCharacterCard(0, 7);
 
-        FileWriter fileWriter = new FileWriter("model.json");
+
+        Path path = Path.of("./saves");
+        Files.createDirectory(path);
+        File file = new File("saves/model.json");
+
+        FileWriter fileWriter = new FileWriter(file);
         fileWriter.write(gson.toJson(model));
         fileWriter.close();*/
 
@@ -38,9 +43,7 @@ public class DemoLauncher {
         map.put(1, str1);
         map.put(2, str2);
         map.put(3, str3);
-        System.out.println(map);
-        map.values().remove(str1);
-        System.out.println(map);
+        System.out.println(map.values().stream().sorted().toList());
     }
 
 }

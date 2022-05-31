@@ -27,18 +27,17 @@ public class Island extends Board<Student> {
 
     protected void setTower(Player player) throws WinnerException {
         Board<Tower> sourceTowerBoard = player.getSchool().getTowersBoard();;
-        if (towerBoard.getNumPawns() > 0) {
-            Tower oldTower = this.getTower();
-            Board<Tower> oldTowerBoard = oldTower.getOwner().getSchool().getTowersBoard();
-
-            oldTowerBoard.moveInPawn(oldTower, towerBoard);
-        }
         if (sourceTowerBoard.getNumPawns() > 0) {
+            if (towerBoard.getNumPawns() > 0) {
+                Tower oldTower = this.getTower();
+                Board<Tower> oldTowerBoard = oldTower.getOwner().getSchool().getTowersBoard();
+                oldTowerBoard.moveInPawn(oldTower, towerBoard);
+            }
             towerBoard.moveInPawn(sourceTowerBoard.getPawns().get(0), sourceTowerBoard);
             if (sourceTowerBoard.getNumPawns() < 1) {
                 throw new WinnerException(player.getId());
             }
-        }
+        } else throw new WinnerException(player.getId());
     }
 
     protected Tower getTower() {
