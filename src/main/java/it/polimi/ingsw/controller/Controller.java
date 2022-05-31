@@ -214,6 +214,7 @@ public class Controller implements RequestListener {
             action = new ActionPhase(playersToPlay.get(0), numStudentToMove, model);
         }
         if (isRoundEnded()) {
+            if (model.isLastRound()) model.findWinner();
             orderPlayersForNextRound();
         }
     }
