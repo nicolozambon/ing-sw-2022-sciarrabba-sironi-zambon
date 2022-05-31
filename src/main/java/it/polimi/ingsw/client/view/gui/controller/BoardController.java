@@ -96,7 +96,7 @@ public class BoardController implements GUIController {
 
             // Get all towers
             for (TowerColor color : TowerColor.values()) {
-                for (int j = 0; j < 8; j++) {
+                for (int j = 0; j < model.getNumTowerByPlayer(i); j++) {
                     if (color == model.getTowerColorByPlayer(i)) {
                         String key = this.getTowerFXID(color, j);
                         ImageView value = (ImageView) this.gui.getStage().getScene().lookup("#" + key);
@@ -127,6 +127,7 @@ public class BoardController implements GUIController {
         for (int i=0; i<12; i++) {
             Map<String, Object> islandMap = new HashMap<>();
 
+            Map<String, ImageView> island = new HashMap<>();
             Map<String, ImageView> motherNature = new HashMap<>();
             Map<String, ImageView> tower = new HashMap<>();
             Map<String, ImageView> studentsPawns = new HashMap<>();
@@ -195,7 +196,7 @@ public class BoardController implements GUIController {
         for (int i=0; i<model.getNicknames().size(); i++) {
 
             // Add towers
-            for (int j=0; j<8; j++) {
+            for (int j=0; j<model.getNumTowerByPlayer(i); j++) {
                 String identifier = this.getTowerFXID(model.getTowerColorByPlayer(i), j);
                 ImageView tower = this.schools.get(i).get("towers").get(identifier);
                 tower.setVisible(true);
