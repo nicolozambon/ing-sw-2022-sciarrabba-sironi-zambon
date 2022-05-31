@@ -12,3 +12,12 @@
 .borderOnHover:hover {
     -fx-effect: dropshadow(three-pass-box, #ffff00, 2.0, 1.0, 0, 0);
 }
+
+.valid_island {
+    -fx-effect: dropshadow(three-pass-box, rgba(94, 255, 0, 0.7), 10.0, 1.0, 0, 0);
+}
+
+.invalid_island {
+    -fx-effect: dropshadow(three-pass-box, rgba(87, 87, 87, 0.7), 10.0, 1.0, 0, 0);
+    -fx-opacity: 0.5;
+}

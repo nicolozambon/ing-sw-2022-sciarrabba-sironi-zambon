@@ -124,9 +124,10 @@ public class BoardController implements GUIController {
     }
 
     private void defineIslandsMap(ThinModel model) {
+        /*
         this.islands = new HashMap<>();
         for (int i=0; i<12; i++) {
-            Map<String, Map<String, ImageView>> islandMap = new HashMap<>();
+            Map<String, Object> islandMap = new HashMap<>();
 
             Map<String, ImageView> motherNature = new HashMap<>();
 
@@ -136,6 +137,8 @@ public class BoardController implements GUIController {
 
             this.islands.put(i, islandMap);
         }
+
+         */
     }
 
     private void hideThirdSchool(ThinModel model) {
