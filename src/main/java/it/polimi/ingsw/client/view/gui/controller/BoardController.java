@@ -250,6 +250,16 @@ public class BoardController implements GUIController {
     }
 
     /**
+     * Generate FX:ID of a cloud.
+     * @param IDCloud ID of the cloud
+     * @return FX:ID of the cloud
+     */
+    private String getCloudFXID (int IDCloud) {
+        String id = "cloud" + IDCloud;
+        return id;
+    }
+
+    /**
      * Generate FX:ID of a professor.
      * @param boardID 0: own board, bottom; 1: board left to player; 2: board right to player.
      * @param color Color value
