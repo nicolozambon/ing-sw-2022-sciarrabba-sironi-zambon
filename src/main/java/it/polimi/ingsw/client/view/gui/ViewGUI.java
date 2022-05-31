@@ -47,7 +47,7 @@ public class ViewGUI extends Application implements RequestListenableInterface, 
     private final PrintStream stdout = System.out;
 
     public ViewGUI() {
-        sceneMap =new HashMap<>();
+        sceneMap = new HashMap<>();
         controllerMap = new HashMap<>();
         requestListenable =new RequestListenable();
     }
@@ -71,7 +71,7 @@ public class ViewGUI extends Application implements RequestListenableInterface, 
     }
 
     public void setup() {
-        List<String> fxmlScenes = new ArrayList<>(List.of("startMenuScene", "lobbyScene", "errorScene", "boardScene"));
+        List<String> fxmlScenes = new ArrayList<>(List.of("startMenuScene", "lobbyScene", "errorScene", "boardScene", "assistantCardSelector"));
         FXMLLoader loader;
         GUIController controller;
         try {
@@ -88,6 +88,10 @@ public class ViewGUI extends Application implements RequestListenableInterface, 
 
         currentScene = sceneMap.get("startMenuScene");
         currentController = controllerMap.get("startMenuScene");
+    }
+
+    public HashMap<String, Scene> getScenes() {
+        return new HashMap<>(this.sceneMap);
     }
 
     public void connect(String ip, String nickname) throws Exception {

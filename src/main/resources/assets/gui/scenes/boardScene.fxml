@@ -223,7 +223,7 @@
                                                       <Image url="@../images/buttons/normalBtn.png" />
                                                    </image>
                                                 </ImageView>
-                                                <Button mnemonicParsing="false" onAction="#exitGame" prefHeight="49.0" prefWidth="181.0" rotate="-90.0" style="-fx-background-color: transparent;" text="ACTION" textFill="WHITE">
+                                                <Button mnemonicParsing="false" onAction="#openAssistantCard" prefHeight="49.0" prefWidth="181.0" rotate="-90.0" style="-fx-background-color: transparent;" text="ACTION" textFill="WHITE">
                                                    <font>
                                                       <Font name="Avenir Next Condensed Bold" size="28.0" />
                                                    </font>

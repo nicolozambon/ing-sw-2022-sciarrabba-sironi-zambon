@@ -8,10 +8,13 @@ import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
+import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
 import javafx.scene.text.Text;
+import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 
 import java.util.HashMap;
 import java.util.List;
@@ -29,7 +32,12 @@ public class BoardController implements GUIController {
 
     @Override
     public void optionsHandling(List<String> options) {
-
+        if (options.contains("playAssistantCard")) {
+            Stage stage = new Stage();
+            stage.setScene(gui.getScenes().get("assistantCardSelector"));
+            stage.initStyle(StageStyle.UNDECORATED);
+            stage.show();
+        }
     }
 
     @Override
@@ -57,6 +65,7 @@ public class BoardController implements GUIController {
         }
         this.setNicknamesOnSchools(model);
         this.setupGameBoard(model);
+
         //TODO
     }
 
@@ -457,6 +466,14 @@ public class BoardController implements GUIController {
     @FXML
     private void exitGame(ActionEvent event) {
         Platform.exit();
+    }
+
+    @FXML
+    private void openAssistantCard() {
+        Stage stage = new Stage();
+        stage.setScene(gui.getScenes().get("assistantCardSelector"));
+        //stage.initStyle(StageStyle.UNDECORATED);
+        stage.show();
     }
 
 }
