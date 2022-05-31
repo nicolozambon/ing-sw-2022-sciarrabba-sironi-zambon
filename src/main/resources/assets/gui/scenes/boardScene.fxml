@@ -214,35 +214,21 @@
                                        </VBox.margin>
                                        <children>
                                           <StackPane prefHeight="150.0" prefWidth="200.0" GridPane.columnIndex="4" GridPane.rowIndex="3">
-                                             <children>
-                                                <ImageView fitHeight="185.0" fitWidth="145.0" pickOnBounds="true" preserveRatio="true" rotate="-110.0">
-                                                   <StackPane.margin>
-                                                      <Insets bottom="50.0" right="-50.0" />
-                                                   </StackPane.margin>
-                                                   <image>
-                                                      <Image url="@../images/cards/CharacterCard/CharacterCard_1.jpg" />
-                                                   </image>
-                                                </ImageView>
-                                                <ImageView fitHeight="185.0" fitWidth="145.0" pickOnBounds="true" preserveRatio="true" rotate="-100.0">
-                                                   <StackPane.margin>
-                                                      <Insets bottom="50.0" right="-50.0" />
-                                                   </StackPane.margin>
-                                                   <image>
-                                                      <Image url="@../images/cards/CharacterCard/CharacterCard_2.jpg" />
-                                                   </image>
-                                                </ImageView>
-                                                <ImageView fx:id="characterCard0Visible" fitHeight="185.0" fitWidth="145.0" pickOnBounds="true" preserveRatio="true" rotate="-90.0">
-                                                   <StackPane.margin>
-                                                      <Insets bottom="50.0" right="-50.0" />
-                                                   </StackPane.margin>
-                                                   <image>
-                                                      <Image url="@../images/cards/CharacterCard/CharacterCard_3.jpg" />
-                                                   </image>
-                                                </ImageView>
-                                             </children>
                                              <GridPane.margin>
-                                                <Insets top="50.0" />
+                                                <Insets left="-50.0" top="50.0" />
                                              </GridPane.margin>
+                                             <children>
+                                                <ImageView fitHeight="120.0" fitWidth="181.0" pickOnBounds="true" preserveRatio="true" rotate="-90.0">
+                                                   <image>
+                                                      <Image url="@../images/buttons/normalBtn.png" />
+                                                   </image>
+                                                </ImageView>
+                                                <Button mnemonicParsing="false" onAction="#exitGame" prefHeight="49.0" prefWidth="181.0" rotate="-90.0" style="-fx-background-color: transparent;" text="ACTION" textFill="WHITE">
+                                                   <font>
+                                                      <Font name="Avenir Next Condensed Bold" size="28.0" />
+                                                   </font>
+                                                </Button>
+                                             </children>
                                           </StackPane>
                                           <StackPane fx:id="island11" prefHeight="150.0" prefWidth="191.0" rotate="-90.0" GridPane.columnIndex="2" GridPane.rowIndex="10">
                                              <children>

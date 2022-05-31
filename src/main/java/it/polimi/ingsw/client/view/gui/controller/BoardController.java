@@ -273,6 +273,10 @@ public class BoardController implements GUIController {
         return id;
     }
 
+    private String getIslandFXID (int IDIsland) {
+        return "island" + IDIsland;
+    }
+
     /**
      * Generate FX:ID of a cloud.
      * @param IDCloud ID of the cloud
