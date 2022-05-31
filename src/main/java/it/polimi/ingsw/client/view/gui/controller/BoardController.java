@@ -459,11 +459,4 @@ public class BoardController implements GUIController {
         Platform.exit();
     }
 
-    @FXML
-    private void exitBtn (ActionEvent event) {
-        //((Node) event.getSource()).setStyle("-fx-effect: dropshadow(three-pass-box, yellow, 21.0, 21.0, 10.0, 0.0, 0.0, 0.0)");
-        System.out.println("Mouse hovered over " + ((Node)event.getSource()));
-        Platform.exit();
-    }
-
 }
