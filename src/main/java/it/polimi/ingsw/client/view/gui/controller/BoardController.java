@@ -11,6 +11,7 @@ import javafx.scene.Node;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.StackPane;
 import javafx.scene.text.Text;
 
 import java.util.HashMap;
@@ -96,7 +97,7 @@ public class BoardController implements GUIController {
 
             // Get all towers
             for (TowerColor color : TowerColor.values()) {
-                for (int j = 0; j < model.getNumTowerByPlayer(i); j++) {
+                for (int j = 0; j < 8; j++) {
                     if (color == model.getTowerColorByPlayer(i)) {
                         String key = this.getTowerFXID(color, j);
                         ImageView value = (ImageView) this.gui.getStage().getScene().lookup("#" + key);
@@ -127,11 +128,16 @@ public class BoardController implements GUIController {
         for (int i=0; i<12; i++) {
             Map<String, Object> islandMap = new HashMap<>();
 
-            Map<String, ImageView> island = new HashMap<>();
+            Map<String, StackPane> island = new HashMap<>();
             Map<String, ImageView> motherNature = new HashMap<>();
             Map<String, ImageView> tower = new HashMap<>();
             Map<String, ImageView> studentsPawns = new HashMap<>();
             Map<String, Text> studentsLabels = new HashMap<>();
+            Map<String, ImageView> bridge = new HashMap<>();
+
+            String islandKey = this.getIslandFXID(i);
+            StackPane islandValue = (StackPane) this.gui.getStage().getScene().lookup("#" + islandKey);
+            island.put(islandKey, islandValue);
 
             String motherNatureKey = this.getMotherNatureFXID(i);
             ImageView motherNatureValue = (ImageView) this.gui.getStage().getScene().lookup("#" + motherNatureKey);
@@ -157,10 +163,21 @@ public class BoardController implements GUIController {
                 studentsLabels.put(studentLabelKey, studentLabelValue);
             }
 
+            int destinationIsland = i+1;
+            if (destinationIsland == 12) {
+                destinationIsland = 0;
+            }
+            String bridgeKey = this.getBridgeFXID(i, destinationIsland);
+            ImageView bridgeValue = (ImageView) this.gui.getStage().getScene().lookup("#" + bridgeKey);
+            bridgeValue.setVisible(false);
+            bridge.put(bridgeKey, bridgeValue);
+
+            islandMap.put("island", island);
             islandMap.put("motherNature", motherNature);
             islandMap.put("tower", tower);
             islandMap.put("studentsPawns", studentsPawns);
             islandMap.put("studentsLabels", studentsLabels);
+            islandMap.put("bridge", bridge);
 
             this.islands.put(i, islandMap);
         }
@@ -193,6 +210,11 @@ public class BoardController implements GUIController {
     }
 
     private void setupGameBoard(ThinModel model) {
+        this.setupSchools(model);
+        this.setupIslands(model);
+    }
+
+    private void setupSchools(ThinModel model) {
         for (int i=0; i<model.getNicknames().size(); i++) {
 
             // Add towers
@@ -224,6 +246,35 @@ public class BoardController implements GUIController {
                 ImageView student = this.schools.get(i).get("entrance").get(identifier);
                 student.setVisible(true);
             }
+        }
+    }
+
+    private void setupIslands(ThinModel model) {
+        for (int i=0; i<12; i++) {
+
+            // Show mother nature
+            if (model.getMNPosition() == i) {
+                String identifier = this.getMotherNatureFXID(i);
+                ImageView motherNature = ((Map<String, ImageView>) this.islands.get(i).get("motherNature")).get(identifier);
+                motherNature.setVisible(true);
+            }
+
+            // Show students
+            for (Color color : Color.values()) {
+                Integer numberOfStudents = model.getStudentOnIsland(i).get(color);
+                if (numberOfStudents > 0) {
+                    // Set label
+                    String labelIdentifier = this.getStudentNumberFXIDOnIsland(i, color);
+                    Text label = ((Map<String, Text>) this.islands.get(i).get("studentsLabels")).get(labelIdentifier);
+                    label.setText("x" + numberOfStudents.toString());
+
+                    // Show pawn
+                    String pawnIdentifier = this.getStudentFXIDOnIsland(i, color);
+                    ImageView pawn = ((Map<String, ImageView>) this.islands.get(i).get("studentsPawns")).get(pawnIdentifier);
+                    pawn.setVisible(true);
+                }
+            }
+
 
         }
     }
