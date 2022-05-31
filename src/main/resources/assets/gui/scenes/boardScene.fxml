@@ -1869,7 +1869,7 @@
                                                 <RowConstraints maxHeight="95.0" minHeight="10.0" prefHeight="74.0" vgrow="SOMETIMES" />
                                              </rowConstraints>
                                              <children>
-                                                <ImageView fitHeight="151.0" fitWidth="120.0" pickOnBounds="true" preserveRatio="true" scaleX="1.2" scaleY="1.2" styleClass="borderOnHover" GridPane.rowIndex="1">
+                                                <ImageView fx:id="cloud0" fitHeight="151.0" fitWidth="120.0" pickOnBounds="true" preserveRatio="true" scaleX="1.2" scaleY="1.2" styleClass="borderOnHover" GridPane.rowIndex="1">
                                                    <image>
                                                       <Image url="@../images/cloud.png" />
                                                    </image>
@@ -1922,7 +1922,7 @@
                                                 <RowConstraints maxHeight="95.0" minHeight="10.0" prefHeight="74.0" vgrow="SOMETIMES" />
                                              </rowConstraints>
                                              <children>
-                                                <ImageView fitHeight="151.0" fitWidth="120.0" pickOnBounds="true" preserveRatio="true" scaleX="1.2" scaleY="1.2" styleClass="borderOnHover" GridPane.rowIndex="2">
+                                                <ImageView fx:id="cloud1" fitHeight="151.0" fitWidth="120.0" pickOnBounds="true" preserveRatio="true" scaleX="1.2" scaleY="1.2" styleClass="borderOnHover" GridPane.rowIndex="2">
                                                    <image>
                                                       <Image url="@../images/cloud.png" />
                                                    </image>
@@ -1975,7 +1975,7 @@
                                                 <RowConstraints maxHeight="95.0" minHeight="10.0" prefHeight="74.0" vgrow="SOMETIMES" />
                                              </rowConstraints>
                                              <children>
-                                                <ImageView fitHeight="151.0" fitWidth="120.0" pickOnBounds="true" preserveRatio="true" scaleX="1.2" scaleY="1.2" styleClass="borderOnHover" GridPane.rowIndex="2">
+                                                <ImageView fx:id="cloud2" fitHeight="151.0" fitWidth="120.0" pickOnBounds="true" preserveRatio="true" scaleX="1.2" scaleY="1.2" styleClass="borderOnHover" GridPane.rowIndex="2">
                                                    <image>
                                                       <Image url="@../images/cloud.png" />
                                                    </image>
