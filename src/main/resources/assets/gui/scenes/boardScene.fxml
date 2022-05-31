@@ -1303,7 +1303,7 @@
                                                             <DropShadow />
                                                          </effect>
                                                       </ImageView>
-                                                      <Text fx:id="g9Num" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" textAlignment="CENTER" GridPane.columnIndex="1" GridPane.rowIndex="1" GridPane.valignment="BOTTOM">
+                                                      <Text fx:id="g8Num" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" textAlignment="CENTER" GridPane.columnIndex="1" GridPane.rowIndex="1" GridPane.valignment="BOTTOM">
                                                          <font>
                                                             <Font name="Avenir Next Condensed Bold" size="13.0" />
                                                          </font>
@@ -1311,7 +1311,7 @@
                                                             <Insets left="5.0" />
                                                          </GridPane.margin>
                                                       </Text>
-                                                      <Text fx:id="r9Num" fill="WHITE" layoutX="88.0" layoutY="46.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" textAlignment="CENTER" GridPane.columnIndex="1" GridPane.rowIndex="2" GridPane.valignment="BOTTOM">
+                                                      <Text fx:id="r8Num" fill="WHITE" layoutX="88.0" layoutY="46.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" textAlignment="CENTER" GridPane.columnIndex="1" GridPane.rowIndex="2" GridPane.valignment="BOTTOM">
                                                          <font>
                                                             <Font name="Avenir Next Condensed Bold" size="13.0" />
                                                          </font>
@@ -1319,7 +1319,7 @@
                                                             <Insets left="5.0" />
                                                          </GridPane.margin>
                                                       </Text>
-                                                      <Text fx:id="y9Num" fill="WHITE" layoutX="88.0" layoutY="74.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" textAlignment="CENTER" GridPane.columnIndex="1" GridPane.rowIndex="3" GridPane.valignment="BOTTOM">
+                                                      <Text fx:id="y8Num" fill="WHITE" layoutX="88.0" layoutY="74.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" textAlignment="CENTER" GridPane.columnIndex="1" GridPane.rowIndex="3" GridPane.valignment="BOTTOM">
                                                          <font>
                                                             <Font name="Avenir Next Condensed Bold" size="13.0" />
                                                          </font>
@@ -1327,7 +1327,7 @@
                                                             <Insets left="5.0" />
                                                          </GridPane.margin>
                                                       </Text>
-                                                      <Text fx:id="p9Num" fill="WHITE" layoutX="88.0" layoutY="98.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" textAlignment="CENTER" GridPane.columnIndex="1" GridPane.rowIndex="4" GridPane.valignment="BOTTOM">
+                                                      <Text fx:id="p8Num" fill="WHITE" layoutX="88.0" layoutY="98.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" textAlignment="CENTER" GridPane.columnIndex="1" GridPane.rowIndex="4" GridPane.valignment="BOTTOM">
                                                          <font>
                                                             <Font name="Avenir Next Condensed Bold" size="13.0" />
                                                          </font>
@@ -1335,7 +1335,7 @@
                                                             <Insets left="5.0" />
                                                          </GridPane.margin>
                                                       </Text>
-                                                      <Text fx:id="b9Num" fill="WHITE" layoutX="88.0" layoutY="121.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" textAlignment="CENTER" GridPane.columnIndex="1" GridPane.rowIndex="5" GridPane.valignment="BOTTOM">
+                                                      <Text fx:id="b8Num" fill="WHITE" layoutX="88.0" layoutY="121.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" textAlignment="CENTER" GridPane.columnIndex="1" GridPane.rowIndex="5" GridPane.valignment="BOTTOM">
                                                          <font>
                                                             <Font name="Avenir Next Condensed Bold" size="13.0" />
                                                          </font>
