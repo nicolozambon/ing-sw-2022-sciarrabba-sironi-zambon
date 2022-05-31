@@ -312,6 +312,6 @@ public class Controller implements RequestListener {
     }
 
     private void fireOptionEvent() {
-        if (this.model.getWinner() == null) this.model.fireAnswer(new AnswerEvent("options", getOptions()));
+        if (!this.model.isThereWinner()) this.model.fireAnswer(new AnswerEvent("options", getOptions()));
     }
 }
