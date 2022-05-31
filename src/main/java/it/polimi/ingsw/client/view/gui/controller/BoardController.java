@@ -17,6 +17,7 @@ import javafx.scene.text.Text;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 
 public class BoardController implements GUIController {
     private ViewGUI gui;
@@ -244,6 +245,9 @@ public class BoardController implements GUIController {
             for (int j=0; j<model.getEntranceById(i).size(); j++) {
                 String identifier = this.getStudentFXID(j, false, null, i);
                 ImageView student = this.schools.get(i).get("entrance").get(identifier);
+                System.out.println(this.getStudentPath(model.getEntranceById(i).get(j)));
+                Image studentPawn = new Image(Objects.requireNonNull(getClass().getResourceAsStream(this.getStudentPath(model.getEntranceById(i).get(j)))));
+                student.setImage(studentPawn);
                 student.setVisible(true);
             }
         }
@@ -398,7 +402,7 @@ public class BoardController implements GUIController {
     }
 
     private String getStudentPath(Color color) {
-        String path = "../images/pawns/";
+        String path = "/assets/gui/images/pawns/";
         switch (color) {
             case GREEN -> path = path + "greenStudent.png";
             case RED -> path = path + "redStudent.png";
@@ -410,7 +414,7 @@ public class BoardController implements GUIController {
     }
 
     private String getProfessorPath (Color color) {
-        String path = "../images/pawns/";
+        String path = "/assets/gui/images/pawns/";
         switch (color) {
             case GREEN -> path = path + "greenProfessor.png";
             case RED -> path = path + "redProfessor.png";
@@ -422,7 +426,7 @@ public class BoardController implements GUIController {
     }
 
     private String getTowerPath (TowerColor color) {
-        String path = "../images/pawns/";
+        String path = "/assets/gui/images/pawns/";
         switch (color) {
             case BLACK -> path = path + "blackTower.png";
             case WHITE -> path = path + "whiteTower.png";
@@ -447,12 +451,12 @@ public class BoardController implements GUIController {
     }
 
     private String getAssistantCardPath (int id) {
-        String path = "../images/cards/AssistantCard/Assistente_" + id + ".png";
+        String path = "/assets/gui/images/cards/AssistantCard/Assistente_" + id + ".png";
         return path;
     }
 
     private String getCharacterCardPath (int id) {
-        String path = "../images/cards/CharacterCard/CharacterCard_" + id + ".jpg";
+        String path = "/assets/gui/images/cards/CharacterCard/CharacterCard_" + id + ".jpg";
         return path;
     }
 
