@@ -8,7 +8,6 @@ import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
-import javafx.scene.control.Button;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
@@ -22,7 +21,7 @@ public class BoardController implements GUIController {
     private ViewGUI gui;
     private Map<Integer, Integer> idMap = null;
     private Map<Integer, Map<String, Map<String, ImageView>>> schools = null;
-    private Map<Integer, Map<String, Map<String, ImageView>>> islands = null;
+    private Map<Integer, Map<String, Object>> islands = null;
 
     public BoardController() {
 
@@ -97,7 +96,7 @@ public class BoardController implements GUIController {
 
             // Get all towers
             for (TowerColor color : TowerColor.values()) {
-                for (int j = 0; j < 8; j++) {
+                for (int j = 0; j < model.getNumTowerByPlayer(i); j++) {
                     if (color == model.getTowerColorByPlayer(i)) {
                         String key = this.getTowerFXID(color, j);
                         ImageView value = (ImageView) this.gui.getStage().getScene().lookup("#" + key);
@@ -126,13 +125,42 @@ public class BoardController implements GUIController {
     private void defineIslandsMap(ThinModel model) {
         this.islands = new HashMap<>();
         for (int i=0; i<12; i++) {
-            Map<String, Map<String, ImageView>> islandMap = new HashMap<>();
+            Map<String, Object> islandMap = new HashMap<>();
 
+            Map<String, ImageView> island = new HashMap<>();
             Map<String, ImageView> motherNature = new HashMap<>();
+            Map<String, ImageView> tower = new HashMap<>();
+            Map<String, ImageView> studentsPawns = new HashMap<>();
+            Map<String, Text> studentsLabels = new HashMap<>();
 
-            // TODO add code here
+            String motherNatureKey = this.getMotherNatureFXID(i);
+            ImageView motherNatureValue = (ImageView) this.gui.getStage().getScene().lookup("#" + motherNatureKey);
+            motherNatureValue.setVisible(false);
+            motherNature.put(motherNatureKey, motherNatureValue);
+
+            String towerKey = this.getTowerOnIslandFXID(i);
+            ImageView towerValue = (ImageView) this.gui.getStage().getScene().lookup("#" + towerKey);
+            towerValue.setVisible(false);
+            tower.put(towerKey, towerValue);
+
+            for (Color color: Color.values()) {
+                String studentPawnKey = this.getStudentFXIDOnIsland(i, color);
+                ImageView studentPawnValue = (ImageView) this.gui.getStage().getScene().lookup("#" + studentPawnKey);
+                studentPawnValue.setVisible(false);
+                studentsPawns.put(studentPawnKey, studentPawnValue);
+            }
+
+            for (Color color: Color.values()) {
+                String studentLabelKey = this.getStudentNumberFXIDOnIsland(i, color);
+                Text studentLabelValue = (Text) this.gui.getStage().getScene().lookup("#" + studentLabelKey);
+                studentLabelValue.setText(null);
+                studentsLabels.put(studentLabelKey, studentLabelValue);
+            }
 
             islandMap.put("motherNature", motherNature);
+            islandMap.put("tower", tower);
+            islandMap.put("studentsPawns", studentsPawns);
+            islandMap.put("studentsLabels", studentsLabels);
 
             this.islands.put(i, islandMap);
         }
@@ -168,7 +196,7 @@ public class BoardController implements GUIController {
         for (int i=0; i<model.getNicknames().size(); i++) {
 
             // Add towers
-            for (int j=0; j<8; j++) {
+            for (int j=0; j<model.getNumTowerByPlayer(i); j++) {
                 String identifier = this.getTowerFXID(model.getTowerColorByPlayer(i), j);
                 ImageView tower = this.schools.get(i).get("towers").get(identifier);
                 tower.setVisible(true);
@@ -219,6 +247,44 @@ public class BoardController implements GUIController {
             id = id + "e";
         }
         id = id + position + "_" + boardID;
+        return id;
+    }
+
+    /**
+     * Generate FX:ID of a student on an island
+     * @param IDIsland ID of the island.
+     * @param color color of the student.
+     * @return FX:ID of the student on the set island.
+     */
+    private String getStudentFXIDOnIsland(int IDIsland, Color color) {
+        String id = colorIDHelper(color);
+        id = id + "si_" + IDIsland;
+        return id;
+    }
+
+    /**
+     * Generate FX:ID of the text indicating the number of students on an island.
+     * @param IDIsland ID of the island
+     * @param color color of the student
+     * @return FX:ID of the text on the island of that color.
+     */
+    private String getStudentNumberFXIDOnIsland (int IDIsland, Color color) {
+        String id = colorIDHelper(color);
+        id = id + IDIsland + "Num";
+        return id;
+    }
+
+    private String getIslandFXID (int IDIsland) {
+        return "island" + IDIsland;
+    }
+
+    /**
+     * Generate FX:ID of a cloud.
+     * @param IDCloud ID of the cloud
+     * @return FX:ID of the cloud
+     */
+    private String getCloudFXID (int IDCloud) {
+        String id = "cloud" + IDCloud;
         return id;
     }
 
@@ -394,7 +460,7 @@ public class BoardController implements GUIController {
     }
 
     @FXML
-    private void glowElement (ActionEvent event) {
+    private void exitBtn (ActionEvent event) {
         //((Node) event.getSource()).setStyle("-fx-effect: dropshadow(three-pass-box, yellow, 21.0, 21.0, 10.0, 0.0, 0.0, 0.0)");
         System.out.println("Mouse hovered over " + ((Node)event.getSource()));
         Platform.exit();
