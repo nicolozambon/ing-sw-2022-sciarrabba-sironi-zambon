@@ -53,25 +53,26 @@
           }
         },
         "professorsTable": {
-          "pawns": []
+          "pawns": [
+            {
+              "color": "RED"
+            },
+            {
+              "color": "BLUE"
+            },
+            {
+              "color": "PINK"
+            },
+            {
+              "color": "GREEN"
+            },
+            {
+              "color": "YELLOW"
+            }
+          ]
         },
         "towersBoard": {
           "pawns": [
-            {
-              "color": "BLACK"
-            },
-            {
-              "color": "BLACK"
-            },
-            {
-              "color": "BLACK"
-            },
-            {
-              "color": "BLACK"
-            },
-            {
-              "color": "BLACK"
-            },
             {
               "color": "BLACK"
             }
@@ -398,9 +399,13 @@
     {
       "id": 0,
       "towerBoard": {
-        "pawns": []
+        "pawns": [
+          {
+            "color": "BLACK"
+          }
+        ]
       },
-      "unifyNext": false,
+      "unifyNext": true,
       "unifyPrev": false,
       "pawns": [
         {
@@ -411,19 +416,27 @@
     {
       "id": 1,
       "towerBoard": {
-        "pawns": []
+        "pawns": [
+          {
+            "color": "BLACK"
+          }
+        ]
       },
-      "unifyNext": false,
-      "unifyPrev": false,
+      "unifyNext": true,
+      "unifyPrev": true,
       "pawns": []
     },
     {
       "id": 2,
       "towerBoard": {
-        "pawns": []
+        "pawns": [
+          {
+            "color": "BLACK"
+          }
+        ]
       },
-      "unifyNext": false,
-      "unifyPrev": false,
+      "unifyNext": true,
+      "unifyPrev": true,
       "pawns": [
         {
           "color": "RED"
@@ -433,10 +446,14 @@
     {
       "id": 3,
       "towerBoard": {
-        "pawns": []
+        "pawns": [
+          {
+            "color": "BLACK"
+          }
+        ]
       },
-      "unifyNext": false,
-      "unifyPrev": false,
+      "unifyNext": true,
+      "unifyPrev": true,
       "pawns": [
         {
           "color": "YELLOW"
@@ -446,10 +463,14 @@
     {
       "id": 4,
       "towerBoard": {
-        "pawns": []
+        "pawns": [
+          {
+            "color": "BLACK"
+          }
+        ]
       },
       "unifyNext": false,
-      "unifyPrev": false,
+      "unifyPrev": true,
       "pawns": [
         {
           "color": "YELLOW"
@@ -703,23 +724,7 @@
   ],
   "coinReserve": 17,
   "startingProfessorBoard": {
-    "pawns": [
-      {
-        "color": "YELLOW"
-      },
-      {
-        "color": "GREEN"
-      },
-      {
-        "color": "BLUE"
-      },
-      {
-        "color": "RED"
-      },
-      {
-        "color": "PINK"
-      }
-    ]
+    "pawns": []
   },
   "bag": {
     "pawns": [

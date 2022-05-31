@@ -143,9 +143,4 @@ class ModelTest {
             i++;
         }
     }
-
-    @Test
-    void modelGetterTest() {
-        assertNull(model.isThereWinner());
-    }
 }

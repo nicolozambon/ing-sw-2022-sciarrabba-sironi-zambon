@@ -2,6 +2,7 @@ package it.polimi.ingsw.model;
 
 import it.polimi.ingsw.enums.Color;
 import it.polimi.ingsw.exceptions.MotherNatureStepsException;
+import it.polimi.ingsw.exceptions.WinnerException;
 
 import java.util.*;
 
@@ -31,7 +32,7 @@ public class Handler {
         }
     }
 
-    protected void motherNatureMovement(Player currentPlayer, MotherNature motherNature, int stepsChoice) throws MotherNatureStepsException {
+    protected void motherNatureMovement(Player currentPlayer, MotherNature motherNature, int stepsChoice) throws MotherNatureStepsException, WinnerException {
         Player mostInfluentialPlayer = null;
         if(stepsChoice > 0 && stepsChoice <= currentPlayer.getLastAssistantCard().getSteps()) {
             motherNature.stepsToMove(stepsChoice);
@@ -108,7 +109,7 @@ public class Handler {
      * @param island
      * @param newOwner
      */
-    protected void switchTowers (Island island, Player newOwner) {
+    protected void switchTowers (Island island, Player newOwner) throws WinnerException {
         while (island.isUnifyPrev()) {
             island = island.getPrevIsland();
         }

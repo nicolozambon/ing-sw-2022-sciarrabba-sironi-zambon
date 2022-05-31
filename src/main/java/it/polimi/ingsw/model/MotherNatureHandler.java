@@ -2,6 +2,7 @@ package it.polimi.ingsw.model;
 
 import it.polimi.ingsw.exceptions.IslandException;
 import it.polimi.ingsw.exceptions.MotherNatureStepsException;
+import it.polimi.ingsw.exceptions.WinnerException;
 import it.polimi.ingsw.model.card.MotherNatureCharacterCard;
 
 import java.util.List;
@@ -16,7 +17,7 @@ public class MotherNatureHandler extends Handler {
     }
 
     @Override
-    protected void motherNatureMovement(Player currentPlayer, MotherNature motherNature, int stepsChoice) throws MotherNatureStepsException {
+    protected void motherNatureMovement(Player currentPlayer, MotherNature motherNature, int stepsChoice) throws MotherNatureStepsException, WinnerException {
         Player mostInfluentialPlayer = null;
         if(stepsChoice > 0 && stepsChoice <= currentPlayer.getLastAssistantCard().getSteps() + card.getExtraMovement()) {
             motherNature.stepsToMove(stepsChoice);
@@ -31,7 +32,7 @@ public class MotherNatureHandler extends Handler {
     }
 
     @Override
-    protected void extraAction(Player currentPlayer, Model model, int ...values) throws IslandException {
+    protected void extraAction(Player currentPlayer, Model model, int ...values) throws IslandException, WinnerException {
         if (card.isExtraResolving()) {
             try {
                 Island island = model.getIslands().get(values[0] - 1);

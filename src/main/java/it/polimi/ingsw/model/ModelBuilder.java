@@ -34,6 +34,15 @@ public class ModelBuilder {
 
         Model model = gson.fromJson(new InputStreamReader(inputStream), Model.class);
 
+        Map<TowerColor, Player> towerColorPlayerMap = new HashMap<>();
+
+        for (Player p : model.getPlayers()) {
+            towerColorPlayerMap.put(p.getTowerColor(), p);
+            for (Tower t : p.getSchool().getTowersBoard().getPawns()) {
+                t.setOwner(p);
+            }
+        }
+
         model.resetAnswerListenable();
         model.getHandler().setPlayers(model.getPlayers());
         model.getController().restoreAfterDeserialization(model);
@@ -42,6 +51,7 @@ public class ModelBuilder {
         for (Island island : islands) {
             island.setNextIsland(islands.get((island.getId() + 1) % islands.size()));
             island.setPrevIsland(islands.get((island.getId() + islands.size() - 1) % islands.size()));
+            if (island.getTower() != null) island.getTower().setOwner(towerColorPlayerMap.get(island.getTower().getColor()));
         }
 
         model.getMotherNature().setPosition(islands.get(model.getMotherNature().getPosition().getId()));
