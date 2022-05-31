@@ -43,7 +43,7 @@ public class ModelBuilder {
             }
         }
 
-        model.resetAnswerListenable();
+        model.resumeFromDisk();
         model.getHandler().setPlayers(model.getPlayers());
         model.getController().restoreAfterDeserialization(model);
 
