@@ -32,6 +32,7 @@ public class Model implements AnswerListenableInterface {
     private List<String> winner;
 
     private boolean isLastRound;
+    private boolean isTakeCloud;
 
     private transient AnswerListenable answerListenable;
 
@@ -52,6 +53,7 @@ public class Model implements AnswerListenableInterface {
         this.numStudentToMove = numStudentToMove;
         this.winner = new ArrayList<>();
 
+        this.isTakeCloud = true;
         this.isLastRound = false;
 
         this.answerListenable = new AnswerListenable();
@@ -129,8 +131,10 @@ public class Model implements AnswerListenableInterface {
             }
         } catch (IndexOutOfBoundsException e) {
             isLastRound = true;
+            isTakeCloud = false;
+        } finally {
+            update();
         }
-        update();
     }
 
     public void takeStudentsFromCloud(int playerId, int choice) throws CloudException {
@@ -148,6 +152,13 @@ public class Model implements AnswerListenableInterface {
         for (Player player : players) {
             player.returnStudentsToBag(bag, color, num);
         }
+        if (bag.getNumPawns() > 0 && isLastRound) {
+            boolean check = true;
+            for (Player p : players) {
+                if (p.getAssistantCards().isEmpty()) check = false;
+            }
+            if (check) isLastRound = false;
+        }
     }
 
     protected void exchangeStudentsDiningRoomEntrance(int playerId, int entrancePawnPosition, Color color) throws InvalidActionException {
@@ -162,6 +173,10 @@ public class Model implements AnswerListenableInterface {
         if (player.getSchool().getDiningRoomByColor(entranceStudentColor).getNumPawns() % 3 == 0) {
             player.increaseCoinBy(1);
         }
+    }
+
+    public boolean isTakeCloud() {
+        return isTakeCloud;
     }
 
     public boolean isLastRound() {
@@ -237,19 +252,32 @@ public class Model implements AnswerListenableInterface {
         return num;
     }
 
-    protected void findWinner() {
-        List<Player> temp = new ArrayList<>(players);
-        temp = temp.stream().sorted(Comparator.comparingInt(this::getPlayerWinningRanking)).toList();
-        winner = new ArrayList<>();
-        winner.add(temp.get(temp.size() - 1).getNickname());
-        if (getPlayerWinningRanking(temp.get(temp.size() - 2)) == getPlayerWinningRanking(temp.get(temp.size() - 1))) {
-            winner.add(temp.get(temp.size() - 1).getNickname());
+    public void findWinner() {
+        if (isLastRound) {
+            List<Player> temp = new ArrayList<>(players);
+            temp = temp.stream().sorted(Comparator.comparingInt(this::getPlayerNumTowers)).toList();
+            if (getPlayerNumTowers(temp.get(temp.size() - 2)) == getPlayerNumTowers(temp.get(temp.size() - 1))) {
+                temp = new ArrayList<>(players);
+                temp = temp.stream().sorted(Comparator.comparingInt(this::getPlayerWinningRanking)).toList();
+                winner = new ArrayList<>();
+                winner.add(temp.get(temp.size() - 1).getNickname());
+                if (getPlayerWinningRanking(temp.get(temp.size() - 2)) == getPlayerWinningRanking(temp.get(temp.size() - 1))) {
+                    winner.add(temp.get(temp.size() - 1).getNickname());
+                }
+            } else {
+                winner = new ArrayList<>();
+                winner.add(temp.get(temp.size() - 1).getNickname());
+            }
         }
     }
 
     private int getPlayerWinningRanking(Player player) {
         School school = player.getSchool();
         return school.getProfessorsTable().getNumPawns() - school.getTowersBoard().getNumPawns();
+    }
+
+    private int getPlayerNumTowers(Player player) {
+        return player.getSchool().getTowersBoard().getNumPawns();
     }
 
     @Override

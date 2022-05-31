@@ -65,7 +65,8 @@ public class ActionPhase {
             this.model.moveMotherNature(this.currentPlayer.getId(), stepsChoice);
             callableMethod.put("moveMotherNature", callableMethod.get("moveMotherNature") - 1);
             if (callableMethod.get("moveMotherNature") < 1) {
-                callableMethod.put("takeStudentsFromCloud", 1);
+                if (model.isTakeCloud()) callableMethod.put("takeStudentsFromCloud", 1);
+                else callableMethod.put("endAction", 1);
             }
         }
     }
