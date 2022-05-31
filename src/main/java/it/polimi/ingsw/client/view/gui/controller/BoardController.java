@@ -8,7 +8,6 @@ import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
-import javafx.scene.control.Button;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
@@ -127,17 +126,30 @@ public class BoardController implements GUIController {
         /*
         this.islands = new HashMap<>();
         for (int i=0; i<12; i++) {
-            Map<String, Object> islandMap = new HashMap<>();
+            Map<String, Map<String, ImageView>> islandMap = new HashMap<>();
 
             Map<String, ImageView> motherNature = new HashMap<>();
+            Map<String, ImageView> tower = new HashMap<>();
+            Map<String, ImageView> studentsPawns = new HashMap<>();
+            Map<String, ImageView> studentsLabels = new HashMap<>();
 
-            // TODO add code here
+            String motherNatureKey = this.getMotherNatureFXID(i);
+            ImageView motherNatureValue = (ImageView) this.gui.getStage().getScene().lookup("#" + motherNatureKey);
+            motherNature.put(motherNatureKey, motherNatureValue);
+
+            String towerKey = this.getTowerOnIslandFXID(i);
+            ImageView towerValue = (ImageView) this.gui.getStage().getScene().lookup("#" + towerKey);
+            tower.put(towerKey, towerValue);
+
+
 
             islandMap.put("motherNature", motherNature);
+            islandMap.put("tower", tower);
+            islandMap.put("studentsPawns", studentsPawns);
+            islandMap.put("studentsLabels", studentsLabels);
 
             this.islands.put(i, islandMap);
         }
-
          */
     }
 
