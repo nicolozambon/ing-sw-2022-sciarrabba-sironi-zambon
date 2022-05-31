@@ -51,7 +51,7 @@ public class Controller implements RequestListener {
                 if (planning.isEnded()) {
                     endPlayerPlanning(player);
                 }
-                this.model.fireAnswer(new AnswerEvent("options", getOptions()));
+                fireOptionEvent();
             } else {
                 throw new NotPlayerTurnException();
             }
@@ -66,7 +66,7 @@ public class Controller implements RequestListener {
                 if (action.isEnded()) {
                     endPlayerAction(player);
                 }
-                this.model.fireAnswer(new AnswerEvent("options", getOptions()));
+                fireOptionEvent();
             } else {
                 throw new NotPlayerTurnException();
             }
@@ -82,7 +82,7 @@ public class Controller implements RequestListener {
                 if (action.isEnded()) {
                     endPlayerAction(player);
                 }
-                this.model.fireAnswer(new AnswerEvent("options", getOptions()));
+                fireOptionEvent();
             } else {
                 throw new NotPlayerTurnException();
             }
@@ -100,7 +100,7 @@ public class Controller implements RequestListener {
                 if (action.isEnded()) {
                     endPlayerAction(player);
                 }
-                this.model.fireAnswer(new AnswerEvent("options", getOptions()));
+                fireOptionEvent();
             } else {
                 throw new NotPlayerTurnException();
             }
@@ -115,7 +115,7 @@ public class Controller implements RequestListener {
                 if (action.isEnded()) {
                     endPlayerAction(player);
                 }
-                this.model.fireAnswer(new AnswerEvent("options", getOptions()));
+                fireOptionEvent();
             } else {
                 throw new NotPlayerTurnException();
             }
@@ -131,7 +131,7 @@ public class Controller implements RequestListener {
                 if (action.isEnded()) {
                     endPlayerAction(player);
                 }
-                this.model.fireAnswer(new AnswerEvent("options", getOptions()));
+                fireOptionEvent();
             } else {
                 throw new NotPlayerTurnException();
             }
@@ -146,7 +146,7 @@ public class Controller implements RequestListener {
                 if (action.isEnded()) {
                     endPlayerAction(player);
                 }
-                this.model.fireAnswer(new AnswerEvent("options", getOptions()));
+                fireOptionEvent();
             } else {
                 throw new NotPlayerTurnException();
             }
@@ -161,7 +161,7 @@ public class Controller implements RequestListener {
                 if (action.isEnded()) {
                     endPlayerAction(player);
                 }
-                this.model.fireAnswer(new AnswerEvent("options", getOptions()));
+                fireOptionEvent();
             } else {
                 throw new NotPlayerTurnException();
             }
@@ -173,12 +173,12 @@ public class Controller implements RequestListener {
         if (wizards.contains(wizard)) {
             model.setWizard(playerId, wizard);
             wizards.remove(wizard);
-            this.model.fireAnswer(new AnswerEvent("wait", playerId));
+
             if ((playersToPlay.size() == 3 && wizards.size() == 1) || (playersToPlay.size() == 2 && wizards.size() == 2)) {
                 wizards.clear();
                 this.model.fireAnswer(new AnswerEvent("update", this.model));
-                this.model.fireAnswer(new AnswerEvent("options", getOptions()));
-            }
+                fireOptionEvent();
+            } else this.model.fireAnswer(new AnswerEvent("wait", playerId));
         } else throw new InvalidActionException("Wizard already taken! Retry");
     }
 
@@ -309,5 +309,9 @@ public class Controller implements RequestListener {
             temp.add(players.get(playersHavePlayed.get(i).getId()));
         }
         playersHavePlayed = temp;
+    }
+
+    private void fireOptionEvent() {
+        if (this.model.getWinner() == null) this.model.fireAnswer(new AnswerEvent("options", getOptions()));
     }
 }

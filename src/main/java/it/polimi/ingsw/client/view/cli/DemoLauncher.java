@@ -1,23 +1,13 @@
 package it.polimi.ingsw.client.view.cli;
 
 
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
-import it.polimi.ingsw.controller.Controller;
-import it.polimi.ingsw.json.HandlerDeserializer;
-import it.polimi.ingsw.json.HandlerSerializer;
-import it.polimi.ingsw.model.Handler;
-import it.polimi.ingsw.model.Model;
-import it.polimi.ingsw.model.ModelBuilder;
-
-import java.io.FileWriter;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashMap;
+import java.util.Map;
 
 public class DemoLauncher {
 
     public static void main(String[] args) throws Exception {
-        List<String> nicknames = new ArrayList<>(List.of("player0", "player1", "player2"));
+        /*List<String> nicknames = new ArrayList<>(List.of("player0", "player1", "player2"));
 
         GsonBuilder gsonBuilder = new GsonBuilder();
         gsonBuilder.registerTypeAdapter(Handler.class, new HandlerSerializer());
@@ -39,7 +29,18 @@ public class DemoLauncher {
 
         FileWriter fileWriter = new FileWriter("model.json");
         fileWriter.write(gson.toJson(model));
-        fileWriter.close();
+        fileWriter.close();*/
+
+        Map<Integer, String> map = new HashMap<>();
+        String str1 = "pippo";
+        String str2 = "pluto";
+        String str3 = "cip";
+        map.put(1, str1);
+        map.put(2, str2);
+        map.put(3, str3);
+        System.out.println(map);
+        map.values().remove(str1);
+        System.out.println(map);
     }
 
 }

@@ -175,14 +175,28 @@ public class Server {
         }
     }
 
-    protected void removeConnection(ConnectionHandler connectionHandler) {
+    protected void endGame(ConnectionHandler connectionHandler) {
+
+        synchronized (games) {
+            GameHandler currentGame = null;
+            for (GameHandler game : games) {
+                if (game.getNicknames().contains(connectionHandler.getNickname())) {
+                    game.removeConnection(connectionHandler);
+                    currentGame = game;
+                }
+            }
+            if (currentGame != null && currentGame.getConnections().isEmpty()) games.remove(currentGame);
+        }
+    }
+
+    protected void unexpectedDisconnection(ConnectionHandler connectionHandler) {
         System.out.println("removing connection");
         synchronized (queue) {
             queue.remove(connectionHandler);
         }
         synchronized (players) {
             if (players.containsValue(connectionHandler)) {
-                players.values().stream().filter(c -> !c.equals(connectionHandler)).forEach(this::disconnectConnection);
+                players.values().stream().filter(c -> !c.equals(connectionHandler)).forEach(this::stopConnection);
                 players.clear();
             }
         }
@@ -192,7 +206,7 @@ public class Server {
                     game.getConnections()
                             .stream()
                             .filter(c -> !c.equals(connectionHandler))
-                            .forEach(this::disconnectConnection);
+                            .forEach(this::stopConnection);
                     games.remove(game);
                 }
             }
@@ -202,7 +216,7 @@ public class Server {
         }
     }
 
-    private void disconnectConnection(ConnectionHandler connectionHandler) {
+    private void stopConnection(ConnectionHandler connectionHandler) {
         connectionHandler.send(new AnswerEvent("stop", "A client has disconnected, closing the game"));
         connectionHandler.stopConnection();
     }

@@ -1,9 +1,8 @@
 package it.polimi.ingsw.model;
 
 import it.polimi.ingsw.enums.Color;
-import it.polimi.ingsw.exceptions.CardException;
 import it.polimi.ingsw.exceptions.InvalidActionException;
-import it.polimi.ingsw.exceptions.MotherNatureStepsException;
+import it.polimi.ingsw.exceptions.WinnerException;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -90,7 +89,7 @@ class HandlerTest {
     }
 
     @Test
-    void checkTowerPositioning() throws MotherNatureStepsException, CardException, InvalidActionException {
+    void checkTowerPositioning() throws Exception {
 
         initialization();
         int num = 4;
@@ -145,7 +144,7 @@ class HandlerTest {
     }
 
     @Test
-    void unifyIslandAndTowerSwitch() {
+    void unifyIslandAndTowerSwitch() throws WinnerException {
         //initialization();
         List<Island> islands = model.getIslands();
 

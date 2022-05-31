@@ -60,12 +60,16 @@ public class ConnectionHandler implements Runnable, RequestListenableInterface {
                     server.enqueuePlayer(this);
                 }
                 case "first_player" -> this.server.setNumPlayers(request.getValues()[0]);
+                case "end" -> {
+                    this.server.endGame(this);
+                    stopConnection();
+                }
                 default -> executorService.submit(() -> {
                     try {
                         fireRequest(request);
                     } catch (Exception e) {
                         e.printStackTrace();
-                        server.removeConnection(this);
+                        server.unexpectedDisconnection(this);
                         stopConnection();
                     }
                 });
@@ -75,7 +79,7 @@ public class ConnectionHandler implements Runnable, RequestListenableInterface {
             send(new AnswerEvent("error", "Number of players not possible!"));
         } catch (Exception e) {
             e.printStackTrace();
-            server.removeConnection(this);
+            server.unexpectedDisconnection(this);
             stopConnection();
         }
     }
@@ -86,7 +90,7 @@ public class ConnectionHandler implements Runnable, RequestListenableInterface {
             outputStream.flush();
         } catch (IOException e) {
             e.printStackTrace();
-            server.removeConnection(this);
+            server.unexpectedDisconnection(this);
             stopConnection();
         }
     }
@@ -98,7 +102,7 @@ public class ConnectionHandler implements Runnable, RequestListenableInterface {
             this.active = true;
         } catch (IOException e) {
             e.printStackTrace();
-            server.removeConnection(this);
+            server.unexpectedDisconnection(this);
             stopConnection();
         }
     }

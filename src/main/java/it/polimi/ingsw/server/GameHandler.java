@@ -74,4 +74,8 @@ public class GameHandler implements Runnable {
     protected List<ConnectionHandler> getConnections() {
         return playersConnection.values().stream().toList();
     }
+
+    protected void removeConnection(ConnectionHandler connectionHandler) {
+        playersConnection.values().remove(connectionHandler);
+    }
 }

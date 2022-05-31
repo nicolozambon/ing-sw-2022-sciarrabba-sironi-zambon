@@ -1,6 +1,7 @@
 package it.polimi.ingsw.model;
 
 import it.polimi.ingsw.enums.Color;
+import it.polimi.ingsw.exceptions.WinnerException;
 
 import java.util.Objects;
 
@@ -24,7 +25,7 @@ public class Island extends Board<Student> {
         unifyNext = false;
     }
 
-    protected void setTower(Player player) {
+    protected void setTower(Player player) throws WinnerException {
         Board<Tower> sourceTowerBoard = player.getSchool().getTowersBoard();;
         if (towerBoard.getNumPawns() > 0) {
             Tower oldTower = this.getTower();
@@ -32,7 +33,12 @@ public class Island extends Board<Student> {
 
             oldTowerBoard.moveInPawn(oldTower, towerBoard);
         }
-        if (sourceTowerBoard.getNumPawns() > 0) towerBoard.moveInPawn(sourceTowerBoard.getPawns().get(0), sourceTowerBoard);
+        if (sourceTowerBoard.getNumPawns() > 0) {
+            towerBoard.moveInPawn(sourceTowerBoard.getPawns().get(0), sourceTowerBoard);
+            if (sourceTowerBoard.getNumPawns() < 1) {
+                throw new WinnerException(player.getId());
+            }
+        }
     }
 
     protected Tower getTower() {
