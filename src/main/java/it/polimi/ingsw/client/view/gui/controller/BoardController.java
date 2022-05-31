@@ -21,7 +21,7 @@ public class BoardController implements GUIController {
     private ViewGUI gui;
     private Map<Integer, Integer> idMap = null;
     private Map<Integer, Map<String, Map<String, ImageView>>> schools = null;
-    private Map<Integer, Map<String, Map<String, ImageView>>> islands = null;
+    private Map<Integer, Map<String, Object>> islands = null;
 
     public BoardController() {
 
@@ -123,25 +123,38 @@ public class BoardController implements GUIController {
     }
 
     private void defineIslandsMap(ThinModel model) {
-        /*
         this.islands = new HashMap<>();
         for (int i=0; i<12; i++) {
-            Map<String, Map<String, ImageView>> islandMap = new HashMap<>();
+            Map<String, Object> islandMap = new HashMap<>();
 
             Map<String, ImageView> motherNature = new HashMap<>();
             Map<String, ImageView> tower = new HashMap<>();
             Map<String, ImageView> studentsPawns = new HashMap<>();
-            Map<String, ImageView> studentsLabels = new HashMap<>();
+            Map<String, Text> studentsLabels = new HashMap<>();
 
             String motherNatureKey = this.getMotherNatureFXID(i);
             ImageView motherNatureValue = (ImageView) this.gui.getStage().getScene().lookup("#" + motherNatureKey);
+            motherNatureValue.setVisible(false);
             motherNature.put(motherNatureKey, motherNatureValue);
 
             String towerKey = this.getTowerOnIslandFXID(i);
             ImageView towerValue = (ImageView) this.gui.getStage().getScene().lookup("#" + towerKey);
+            towerValue.setVisible(false);
             tower.put(towerKey, towerValue);
 
+            for (Color color: Color.values()) {
+                String studentPawnKey = this.getStudentFXIDOnIsland(i, color);
+                ImageView studentPawnValue = (ImageView) this.gui.getStage().getScene().lookup("#" + studentPawnKey);
+                studentPawnValue.setVisible(false);
+                studentsPawns.put(studentPawnKey, studentPawnValue);
+            }
 
+            for (Color color: Color.values()) {
+                String studentLabelKey = this.getStudentNumberFXIDOnIsland(i, color);
+                Text studentLabelValue = (Text) this.gui.getStage().getScene().lookup("#" + studentLabelKey);
+                studentLabelValue.setText(null);
+                studentsLabels.put(studentLabelKey, studentLabelValue);
+            }
 
             islandMap.put("motherNature", motherNature);
             islandMap.put("tower", tower);
@@ -150,7 +163,6 @@ public class BoardController implements GUIController {
 
             this.islands.put(i, islandMap);
         }
-         */
     }
 
     private void hideThirdSchool(ThinModel model) {
