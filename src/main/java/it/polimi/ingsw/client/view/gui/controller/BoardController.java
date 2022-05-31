@@ -238,6 +238,30 @@ public class BoardController implements GUIController {
     }
 
     /**
+     * Generate FX:ID of a student on an island
+     * @param IDIsland ID of the island.
+     * @param color color of the student.
+     * @return FX:ID of the student on the set island.
+     */
+    private String getStudentFXIDOnIsland(int IDIsland, Color color) {
+        String id = colorIDHelper(color);
+        id = id + "si_" + IDIsland;
+        return id;
+    }
+
+    /**
+     * Generate FX:ID of the text indicating the number of students on an island.
+     * @param IDIsland ID of the island
+     * @param color color of the student
+     * @return FX:ID of the text on the island of that color.
+     */
+    private String getStudentNumberFXIDOnIsland (int IDIsland, Color color) {
+        String id = colorIDHelper(color);
+        id = id + IDIsland + "Num";
+        return id;
+    }
+
+    /**
      * Generate FX:ID of a professor.
      * @param boardID 0: own board, bottom; 1: board left to player; 2: board right to player.
      * @param color Color value
@@ -409,7 +433,7 @@ public class BoardController implements GUIController {
     }
 
     @FXML
-    private void glowElement (ActionEvent event) {
+    private void exitBtn (ActionEvent event) {
         //((Node) event.getSource()).setStyle("-fx-effect: dropshadow(three-pass-box, yellow, 21.0, 21.0, 10.0, 0.0, 0.0, 0.0)");
         System.out.println("Mouse hovered over " + ((Node)event.getSource()));
         Platform.exit();
