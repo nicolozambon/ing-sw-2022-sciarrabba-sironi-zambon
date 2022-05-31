@@ -17,3 +17,9 @@
 	-fx-background-image: url("../images/background/Sky_sfocatura.png");
 	-fx-background-size: cover;
 }
+
+.winnerBG {
+    -fx-background-image: url("../images/background/Sky_sfocatura.png");
+    -fx-background-size: cover;
+    -fx-background-position: center;
+}

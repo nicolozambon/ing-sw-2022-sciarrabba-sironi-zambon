@@ -940,22 +940,20 @@
                                     <children>
                                         <ImageView fitWidth="200.0" pickOnBounds="true" preserveRatio="true" StackPane.alignment="CENTER">
                                             <image>
-                                                <Image url="@../images/pawns/blueStudent.png" />
+                                                <Image url="@../images/buttons/normalBtn.png" />
                                             </image>
                                         </ImageView>
-                                        <Button fx:id="confirmButton" defaultButton="true" mnemonicParsing="false" prefHeight="75.0" prefWidth="194.0" style="-fx-background-color: transparent;" text="CONFIRM" textFill="WHITE" StackPane.alignment="CENTER">
+                                        <Button fx:id="confirmButton" defaultButton="true" mnemonicParsing="false" prefHeight="94.0" prefWidth="190.0" style="-fx-background-color: transparent;" text="CONFIRM" textFill="WHITE" StackPane.alignment="CENTER">
                                             <cursor>
                                                 <Cursor fx:constant="HAND" />
                                             </cursor>
                                             <font>
-                                                <Font name="System Bold Italic" size="25.0" />
+                                                <Font name="Avenir Next Condensed Bold" size="33.0" />
                                             </font>
                                             <StackPane.margin>
                                                 <Insets bottom="10.0" />
                                             </StackPane.margin>
                                         </Button>
-                                        <Pane blendMode="MULTIPLY" disable="true" maxHeight="70.0" opacity="0.6" prefHeight="75.0" prefWidth="200.0" styleClass="glow-back-pane" visible="false" StackPane.alignment="CENTER" />
-                                        <Pane blendMode="MULTIPLY" maxHeight="70.0" styleClass="card-unavailable-overlay" />
                                     </children>
                                 </StackPane>
                             </children>
