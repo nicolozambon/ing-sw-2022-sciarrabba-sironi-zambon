@@ -279,6 +279,7 @@ public class BoardController implements GUIController {
                 }
             }
 
+            // TODO add elements here
 
         }
     }
