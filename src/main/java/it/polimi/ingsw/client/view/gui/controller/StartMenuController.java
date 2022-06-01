@@ -52,14 +52,10 @@ public class StartMenuController implements GUIController{
 
     @Override
     public void onWaitEvent(String name) {
-
-    }
-
-    @Override
-    public void onWaitEvent() {
         firstPlayerStackPane.setVisible(false);
         this.gui.getStage().getScene().lookup("#waitPane").setVisible(true);
     }
+
 
     @Override
     public void updateModel(ThinModel model) {

@@ -31,11 +31,6 @@ public class ErrorController implements GUIController {
     }
 
     @Override
-    public void onWaitEvent() {
-
-    }
-
-    @Override
     public void updateModel(ThinModel model) {
 
     }

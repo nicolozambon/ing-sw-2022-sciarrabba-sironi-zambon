@@ -13,10 +13,10 @@ import javafx.fxml.FXML;
 import javafx.scene.Node;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
 import javafx.scene.text.Text;
-import javafx.stage.Stage;
 
 import java.util.HashMap;
 import java.util.List;
@@ -30,28 +30,27 @@ public class BoardController implements GUIController {
     private Map<Integer, Map<String, Map<String, ImageView>>> schools = null;
     private Map<Integer, Map<String, Object>> islands = null;
 
-    public BoardController() {
-
-    }
+    @FXML
+    private BorderPane wizardBorderPane;
+    @FXML
+    private BorderPane assistantBorderPane;
 
     @Override
     public void optionsHandling(List<String> options) {
+        wizardBorderPane.setVisible(false);
+        assistantBorderPane.setVisible(false);
         if (options.size() == 1) {
             switch (options.get(0)) {
-                case "chooseWizard" -> gui.getScenes().get("boardScene").lookup("#wizardBorderPane").setVisible(true);
-                case "playAssistantCard" -> openAssistantCard();
+                case "chooseWizard" -> wizardBorderPane.setVisible(true);
+                case "playAssistantCard" -> assistantBorderPane.setVisible(true);
             }
         }
     }
 
     @Override
     public void onWaitEvent(String name) {
-
-    }
-
-    @Override
-    public void onWaitEvent() {
-
+        assistantBorderPane.setVisible(false);
+        wizardBorderPane.setVisible(false);
     }
 
     @Override
@@ -527,23 +526,20 @@ public class BoardController implements GUIController {
     }
 
     @FXML
-    private void openAssistantCard() {
-        //gui.getScenes().get("boardScene").lookup("#wizardBorderPane").setVisible(false);
-        Stage stage = new Stage();
-        stage.setScene(gui.getScenes().get("assistantCardSelector"));
-        AssistantCardController controller = (AssistantCardController) gui.getControllers().get("assistantCardSelector");
-        controller.setMyStage(stage);
-        stage.show();
-        controller.setAssistantCards(this.gui.getModel().getAssistantCardsByPlayer(this.gui.getId()));
-    }
-
-    @FXML
     private void chooseWizard(Event event) {
-        gui.getScenes().get("boardScene").lookup("#wizardBorderPane").setVisible(false);
         String id = ((Node) event.getSource()).getId();
         id = id.substring(0, id.length() - 5);
         this.gui.fireRequest(new RequestEvent("chooseWizard", this.gui.getId(), Wizard.valueOf(id.toUpperCase()).ordinal()));
         System.out.println(Wizard.valueOf(id.toUpperCase()));
+    }
+
+    @FXML
+    private void chooseAssistantCard(Event event) {
+        String id = ((Node) event.getSource()).getId();
+        id = id.substring(id.length() - 2);
+        System.out.println(id);
+        assistantBorderPane.setVisible(false); //remove from here
+        gui.fireRequest(new RequestEvent("playAssistantCard", gui.getId(), Integer.parseInt(id)));
     }
 
 }

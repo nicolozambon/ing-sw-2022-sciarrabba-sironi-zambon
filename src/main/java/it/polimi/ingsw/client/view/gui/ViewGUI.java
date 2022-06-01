@@ -69,7 +69,7 @@ public class ViewGUI extends Application implements RequestListenableInterface, 
     }
 
     public void setup() {
-        List<String> fxmlScenes = new ArrayList<>(List.of("startMenuScene", "lobbyScene", "errorScene", "boardScene", "assistantCardSelector"));
+        List<String> fxmlScenes = new ArrayList<>(List.of("startMenuScene", "lobbyScene", "errorScene", "boardScene"));
         FXMLLoader loader;
         GUIController controller;
         try {
@@ -191,8 +191,7 @@ public class ViewGUI extends Application implements RequestListenableInterface, 
                 case "wait" -> {
                     //if (this.model != null) System.out.println(this.model);
                     this.options = null;
-                    if (answerEvent.getMessage() != null) currentController.onWaitEvent(answerEvent.getMessage());
-                    else currentController.onWaitEvent();
+                    currentController.onWaitEvent(answerEvent.getMessage());
                 }
                 case "error" -> {
                     errorStage.close();
