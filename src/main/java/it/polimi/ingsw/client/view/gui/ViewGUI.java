@@ -18,7 +18,7 @@ import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
 import java.io.IOException;
-import java.io.PrintStream;
+import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -41,8 +41,7 @@ public class ViewGUI extends Application implements RequestListenableInterface, 
     private int id = -1;
     private String nickname;
     private ThinModel model;
-
-    private final PrintStream stdout = System.out;
+    private List<String> options;
 
     public ViewGUI() {
         sceneMap = new HashMap<>();
@@ -59,6 +58,7 @@ public class ViewGUI extends Application implements RequestListenableInterface, 
         setup();
         this.errorStage = new Stage();
         this.errorStage.setScene(sceneMap.get("errorScene"));
+        this.errorStage.setResizable(false);
         this.errorStage.setTitle("Error");
 
         this.stage = stage;
@@ -92,14 +92,28 @@ public class ViewGUI extends Application implements RequestListenableInterface, 
         return new HashMap<>(this.sceneMap);
     }
 
-    public void connect(String ip, String nickname) throws Exception {
-        if (clientConnection == null ) {
-            clientConnection = new ClientConnection(ip);
-            new Thread (clientConnection).start();
-            clientConnection.addAnswerListener(this);
-            this.addRequestListener(clientConnection);
+    public Map<String, GUIController> getControllers() {
+        return new HashMap<>(controllerMap);
+    }
+
+    public void connect(String ip, String nickname) {
+        try {
+            if (clientConnection == null ) {
+                clientConnection = new ClientConnection(ip);
+                new Thread (clientConnection).start();
+                clientConnection.addAnswerListener(this);
+                this.addRequestListener(clientConnection);
+            }
+            this.fireRequest(new RequestEvent("nickname", this.id, nickname));
+        } catch (Exception e) {
+            errorStage.close();
+            Text text = (Text) errorStage.getScene().lookup("#errorMessage");
+            StackPane stackPane = (StackPane) errorStage.getScene().lookup("#stackPane");
+            text.setText("Server not found!");
+            stackPane.setPrefHeight(text.getBoundsInLocal().getHeight()*2);
+            errorStage.show();
         }
-        this.fireRequest(new RequestEvent("nickname", this.id, nickname));
+
     }
 
     public void changeScene(String sceneName) {
@@ -140,8 +154,16 @@ public class ViewGUI extends Application implements RequestListenableInterface, 
     }
 
     @Override
-    public void fireRequest(RequestEvent requestEvent) throws Exception {
-        this.requestListenable.fireRequest(requestEvent);
+    public synchronized void fireRequest(RequestEvent requestEvent) {
+        try {
+            this.requestListenable.fireRequest(requestEvent);
+        } catch (InvocationTargetException e) {
+            throw new RuntimeException(e);
+        } catch (NoSuchMethodException e) {
+            throw new RuntimeException(e);
+        } catch (IllegalAccessException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     @Override
@@ -154,14 +176,13 @@ public class ViewGUI extends Application implements RequestListenableInterface, 
                     if (!currentScene.equals(sceneMap.get("lobbyScene"))) changeScene("lobbyScene");
                     currentController.optionsHandling(answerEvent.getOptions());
                 }
-                case "options" -> currentController.optionsHandling(answerEvent.getOptions());
+                case "options" -> {
+                    this.options = answerEvent.getOptions();
+                    currentController.optionsHandling(answerEvent.getOptions());
+                }
                 case "update" -> {
                     if (!currentScene.equals(sceneMap.get("boardScene"))) {
                         changeScene("boardScene");
-                        //Scale scale = new Scale(0.8,0.8);
-                        //currentScene.getRoot().getTransforms().setAll(scale);
-                        //stage.setWidth(1440);
-                        //stage.setHeight(900);
                         stage.setResizable(false);
                     }
                     this.model = answerEvent.getModel();
@@ -169,6 +190,7 @@ public class ViewGUI extends Application implements RequestListenableInterface, 
                 }
                 case "wait" -> {
                     //if (this.model != null) System.out.println(this.model);
+                    this.options = null;
                     if (answerEvent.getMessage() != null) currentController.onWaitEvent(answerEvent.getMessage());
                     else currentController.onWaitEvent();
                 }
@@ -178,8 +200,8 @@ public class ViewGUI extends Application implements RequestListenableInterface, 
                     StackPane stackPane = (StackPane) errorStage.getScene().lookup("#stackPane");
                     text.setText(answerEvent.getMessage());
                     stackPane.setPrefHeight(text.getBoundsInLocal().getHeight()*2);
-                    errorStage.setResizable(false);
                     errorStage.show();
+                    if (options != null) currentController.optionsHandling(this.options);
                 }
                 case "stop" -> {
                     System.out.println(answerEvent.getMessage());

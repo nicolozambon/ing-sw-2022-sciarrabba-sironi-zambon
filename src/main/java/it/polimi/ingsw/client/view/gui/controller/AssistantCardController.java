@@ -4,33 +4,67 @@ import it.polimi.ingsw.client.view.gui.ViewGUI;
 import it.polimi.ingsw.events.RequestEvent;
 import it.polimi.ingsw.model.ThinModel;
 import it.polimi.ingsw.model.card.AssistantCard;
-import javafx.event.ActionEvent;
+import javafx.event.Event;
 import javafx.fxml.FXML;
-import javafx.scene.image.ImageView;
-import javafx.scene.input.MouseEvent;
+import javafx.scene.Node;
+import javafx.scene.Scene;
+import javafx.stage.Stage;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 public class AssistantCardController implements GUIController {
+
     private ViewGUI gui;
-    private HashMap<String, ImageView> assistantCards;
+
+    private List<Node> assistantCards;
     private int assistantCardSelectedID = -1;
 
-    private void defineAssistantCardsMap (ThinModel model) {
-        for (int i = 0; i < 10; i++) {
-            String key = getCardFXID(i);
-            ImageView value = (ImageView) this.gui.getStage().getScene().lookup("#" + key);
-            this.assistantCards.put(key, value);
-            value.setVisible(false);
+    private Stage myStage;
+
+    private void setAssistantCards() {
+        Scene scene = gui.getScenes().get("assistantCardSelector");
+        this.assistantCards = new ArrayList<>();
+        for (int i = 1; i < 11; i++) {
+            Node card = scene.lookup("#" + getCardFXID(i));
+            card.setVisible(false);
+            this.assistantCards.add(card);
         }
     }
 
-    @Override
-    public void setGUI(ViewGUI gui) {
-        this.gui = gui;
+    public void setAssistantCards(List<AssistantCard> cards) {
+        setAssistantCards();
+        for (int i = 0; i < assistantCards.size(); i++) {
+            assistantCards.get(i).setVisible(false);
+            this.assistantCards.get(cards.get(i).getValue() - 1).setVisible(true);
+        }
+    }
+
+    private String getCardFXID (int id) {
+        String string = Integer.toString(id);
+        if (string.length() < 2) string = "0" + string;
+        return "acard" + string;
+    }
+
+    @FXML
+    private void chooseAssistantCard(Event event) {
+        assistantCardSelectedID = assistantCards.indexOf((Node) event.getSource());
+        System.out.println(assistantCardSelectedID);
+        if (this.assistantCardSelectedID != -1) {
+            assistantCards.get(assistantCardSelectedID).setStyle("-fx-effect: dropshadow(three-pass-box, #ffff00, 2.0, 1.0, 0, 0);");
+            for (int i = 0; i < assistantCards.size(); i++) {
+                if (i != assistantCardSelectedID) assistantCards.get(i).setStyle("");
+            }
+        }
+    }
+
+    @FXML
+    private void playAssistantCardConfirmBtn() throws Exception {
+        if (this.assistantCardSelectedID > 0) {
+            gui.fireRequest(new RequestEvent("playAssistantCard", gui.getId(), this.assistantCardSelectedID));
+            assistantCardSelectedID = -1;
+        }
+        if (myStage != null) myStage.close();
     }
 
     @Override
@@ -50,40 +84,14 @@ public class AssistantCardController implements GUIController {
 
     @Override
     public void updateModel(ThinModel model) {
-        this.defineAssistantCardsMap(model);
-        this.showAvailableCards(model);
     }
 
-    private void showAvailableCards(ThinModel model) {
-        List<AssistantCard> assistantCardsModel = model.getAssistantCardsByPlayer(gui.getId());
-        for (AssistantCard card : assistantCardsModel) {
-            this.assistantCards.get(card.getValue()).setVisible(true);
-        }
+    @Override
+    public void setGUI(ViewGUI gui) {
+        this.gui = gui;
     }
 
-    private String getCardFXID (int ID) {
-        return "acard" + ID;
-    }
-
-    @FXML
-    private void chooseAssistantCard (MouseEvent event) throws Exception {
-        ImageView eventSource = (ImageView) event.getSource();
-        String id = eventSource.getId();
-        System.out.println("eventSource: " + id);
-        eventSource.setStyle("-fx-effect: dropshadow(three-pass-box, #ffff00, 2.0, 1.0, 0, 0);");
-        if (this.assistantCardSelectedID != -1) {
-            ImageView imageView = (ImageView) gui.getStage().getScene().lookup(getCardFXID(this.assistantCardSelectedID));
-            imageView.setEffect(null);
-        }
-        this.assistantCardSelectedID = Integer.parseInt(String.valueOf(id.charAt(id.length() - 1)));
-    }
-
-    @FXML
-    private void playAssistantCardConfirmBtn() throws Exception {
-        if (this.assistantCardSelectedID > 0) {
-            gui.fireRequest(new RequestEvent("playAssistantCard", gui.getId(), this.assistantCardSelectedID));
-            gui.getStage().close();
-        }
-        assistantCardSelectedID = -1;
+    public void setMyStage(Stage stage) {
+        this.myStage = stage;
     }
 }

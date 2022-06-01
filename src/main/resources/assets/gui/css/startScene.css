@@ -18,6 +18,10 @@
 	-fx-background-size: cover;
 }
 
+.onHover:hover {
+	-fx-effect: dropshadow(three-pass-box, #ffff00, 2.0, 1.0, 0, 0);
+}
+
 .winnerBG {
     -fx-background-image: url("../images/background/Sky_sfocatura.png");
     -fx-background-size: cover;

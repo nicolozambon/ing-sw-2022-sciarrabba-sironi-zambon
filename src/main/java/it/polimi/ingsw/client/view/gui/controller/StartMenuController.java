@@ -3,11 +3,14 @@ package it.polimi.ingsw.client.view.gui.controller;
 import it.polimi.ingsw.client.view.gui.ViewGUI;
 import it.polimi.ingsw.events.RequestEvent;
 import it.polimi.ingsw.model.ThinModel;
+import javafx.event.Event;
 import javafx.fxml.FXML;
+import javafx.scene.Node;
+import javafx.scene.control.CheckBox;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextField;
 import javafx.scene.control.ToggleGroup;
-import javafx.scene.layout.Pane;
+import javafx.scene.layout.StackPane;
 
 import java.util.List;
 
@@ -27,20 +30,12 @@ public class StartMenuController implements GUIController{
     private RadioButton customRadioButton;
     @FXML
     private RadioButton onlineRadioButton;
-    @FXML
-    private Pane firstPlayerPane;
 
     @FXML
-    private void toggleSelection() {
-        ipTextField.setDisable(!toggleRadioButton.getSelectedToggle().equals(customRadioButton));
-    }
+    private StackPane firstPlayerStackPane;
 
     @FXML
-    private void connectButtonOnClick() throws Exception {
-        if (customRadioButton.isSelected()) gui.connect(ipTextField.getText(), nicknameTextField.getText());
-        if (localhostRadioButton.isSelected()) gui.connect("127.0.0.1", nicknameTextField.getText());
-        if (onlineRadioButton.isSelected()) gui.connect("10.8.0.1", nicknameTextField.getText());//TODO online server
-    }
+    private CheckBox expertCheckBox;
 
     @Override
     public void setGUI(ViewGUI gui) {
@@ -50,9 +45,8 @@ public class StartMenuController implements GUIController{
     @Override
     public void optionsHandling(List<String> options) {
         if (options.get(0).equals("firstPlayer")) {
-            gui.getStage().getScene().lookup("#mainPane").setVisible(false);
             gui.getStage().getScene().lookup("#waitPane").setVisible(false);
-            firstPlayerPane.setVisible(true);
+            firstPlayerStackPane.setVisible(true);
         }
     }
 
@@ -63,7 +57,7 @@ public class StartMenuController implements GUIController{
 
     @Override
     public void onWaitEvent() {
-        firstPlayerPane.setVisible(false);
+        firstPlayerStackPane.setVisible(false);
         this.gui.getStage().getScene().lookup("#waitPane").setVisible(true);
     }
 
@@ -73,21 +67,29 @@ public class StartMenuController implements GUIController{
     }
 
     @FXML
-    private void twoPlayersButtonOnClick() {
+    private void toggleSelection() {
+        ipTextField.setDisable(!toggleRadioButton.getSelectedToggle().equals(customRadioButton));
+    }
+
+    @FXML
+    private void numPlayerOnClick(Event event) {
+        int expert = 0;
+        if (expertCheckBox.isSelected()) expert = 1;
+        String sourceId =  ((Node) event.getSource()).getId();
+        int num = Integer.parseInt(sourceId.substring(sourceId.length()-1));
         try {
-            gui.fireRequest(new RequestEvent("firstPlayer", gui.getId(), 2,1));
+            gui.fireRequest(new RequestEvent("firstPlayer", gui.getId(), num,expert));
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
     }
 
     @FXML
-    private void threePlayersButtonOnClick() {
-        try {
-            gui.fireRequest(new RequestEvent("firstPlayer", gui.getId(),3,1));
-        } catch (Exception e) {
-            throw new RuntimeException(e);
-        }
+    private void connectImageViewOnClick(Event event) {
+        if (customRadioButton.isSelected()) gui.connect(ipTextField.getText(), nicknameTextField.getText());
+        if (localhostRadioButton.isSelected()) gui.connect("127.0.0.1", nicknameTextField.getText());
+        if (onlineRadioButton.isSelected()) gui.connect("10.8.0.1", nicknameTextField.getText());
+        event.consume();
     }
 
 }

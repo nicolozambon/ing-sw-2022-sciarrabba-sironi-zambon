@@ -2,3 +2,7 @@
     -fx-background-image: url("../images/background/Sky_sfocatura.png");
     -fx-background-color: transparent;
 }
+
+.flow-pane {
+    -fx-background-color: transparent;
+}

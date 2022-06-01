@@ -3,17 +3,20 @@ package it.polimi.ingsw.client.view.gui.controller;
 import it.polimi.ingsw.client.view.gui.ViewGUI;
 import it.polimi.ingsw.enums.Color;
 import it.polimi.ingsw.enums.TowerColor;
+import it.polimi.ingsw.enums.Wizard;
+import it.polimi.ingsw.events.RequestEvent;
 import it.polimi.ingsw.model.ThinModel;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
+import javafx.event.Event;
 import javafx.fxml.FXML;
+import javafx.scene.Node;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
-import javafx.stage.StageStyle;
 
 import java.util.HashMap;
 import java.util.List;
@@ -21,6 +24,7 @@ import java.util.Map;
 import java.util.Objects;
 
 public class BoardController implements GUIController {
+
     private ViewGUI gui;
     private Map<Integer, Integer> idMap = null;
     private Map<Integer, Map<String, Map<String, ImageView>>> schools = null;
@@ -32,11 +36,11 @@ public class BoardController implements GUIController {
 
     @Override
     public void optionsHandling(List<String> options) {
-        if (options.contains("playAssistantCard")) {
-            Stage stage = new Stage();
-            stage.setScene(gui.getScenes().get("assistantCardSelector"));
-            stage.initStyle(StageStyle.UNDECORATED);
-            stage.show();
+        if (options.size() == 1) {
+            switch (options.get(0)) {
+                case "chooseWizard" -> gui.getScenes().get("boardScene").lookup("#wizardBorderPane").setVisible(true);
+                case "playAssistantCard" -> openAssistantCard();
+            }
         }
     }
 
@@ -524,10 +528,22 @@ public class BoardController implements GUIController {
 
     @FXML
     private void openAssistantCard() {
+        //gui.getScenes().get("boardScene").lookup("#wizardBorderPane").setVisible(false);
         Stage stage = new Stage();
         stage.setScene(gui.getScenes().get("assistantCardSelector"));
-        //stage.initStyle(StageStyle.UNDECORATED);
+        AssistantCardController controller = (AssistantCardController) gui.getControllers().get("assistantCardSelector");
+        controller.setMyStage(stage);
         stage.show();
+        controller.setAssistantCards(this.gui.getModel().getAssistantCardsByPlayer(this.gui.getId()));
+    }
+
+    @FXML
+    private void chooseWizard(Event event) {
+        gui.getScenes().get("boardScene").lookup("#wizardBorderPane").setVisible(false);
+        String id = ((Node) event.getSource()).getId();
+        id = id.substring(0, id.length() - 5);
+        this.gui.fireRequest(new RequestEvent("chooseWizard", this.gui.getId(), Wizard.valueOf(id.toUpperCase()).ordinal()));
+        System.out.println(Wizard.valueOf(id.toUpperCase()));
     }
 
 }
