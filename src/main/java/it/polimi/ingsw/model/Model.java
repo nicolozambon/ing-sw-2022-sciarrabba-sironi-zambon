@@ -33,11 +33,14 @@ public class Model implements AnswerListenableInterface {
 
     private boolean isLastRound;
     private boolean isTakeCloud;
+    private boolean completeRule;
 
     private transient AnswerListenable answerListenable;
 
     protected Model(List<Player> players, List<Island> islands, List<Cloud> clouds, MotherNature motherNature,
-                 List<CharacterCard> characterCards, int coinReserve, Board<Professor> startingProfessorBoard, StudentBag bag, int numStudentToMove) {
+                    List<CharacterCard> characterCards, int coinReserve, Board<Professor> startingProfessorBoard,
+                    StudentBag bag, int numStudentToMove, boolean completeRule) {
+
         this.players = players;
         this.islands = islands;
         this.clouds = clouds;
@@ -55,6 +58,7 @@ public class Model implements AnswerListenableInterface {
 
         this.isTakeCloud = true;
         this.isLastRound = false;
+        this.completeRule = completeRule;
 
         this.answerListenable = new AnswerListenable();
     }
@@ -181,6 +185,10 @@ public class Model implements AnswerListenableInterface {
 
     public boolean isLastRound() {
         return isLastRound;
+    }
+
+    public boolean isCompleteRule() {
+        return completeRule;
     }
 
     protected MotherNature getMotherNature() {

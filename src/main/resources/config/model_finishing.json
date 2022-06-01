@@ -1412,5 +1412,7 @@
       "hasExtraAction": true
     }
   },
-  "isThereWinner": false
+  "isLastRound": false,
+  "isTakeCloud": true,
+  "completeRule": true
 }

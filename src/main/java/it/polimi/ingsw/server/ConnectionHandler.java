@@ -3,7 +3,7 @@ package it.polimi.ingsw.server;
 import com.google.gson.Gson;
 import it.polimi.ingsw.events.AnswerEvent;
 import it.polimi.ingsw.events.RequestEvent;
-import it.polimi.ingsw.exceptions.OutOfBoundsException;
+import it.polimi.ingsw.exceptions.WrongSetupException;
 import it.polimi.ingsw.listenables.RequestListenable;
 import it.polimi.ingsw.listenables.RequestListenableInterface;
 import it.polimi.ingsw.listeners.RequestListener;
@@ -59,7 +59,7 @@ public class ConnectionHandler implements Runnable, RequestListenableInterface {
                     this.nickname = request.getString();
                     server.enqueuePlayer(this);
                 }
-                case "first_player" -> this.server.setNumPlayers(request.getValues()[0]);
+                case "firstPlayer" -> this.server.firstPlayerSetup(request.getValues()[0], request.getValues()[1]);
                 case "end" -> {
                     this.server.endGame(this);
                     stopConnection();
@@ -75,8 +75,8 @@ public class ConnectionHandler implements Runnable, RequestListenableInterface {
                 });
             }
             sleep(50);
-        } catch (OutOfBoundsException e) {
-            send(new AnswerEvent("error", "Number of players not possible!"));
+        } catch (WrongSetupException e) {
+            send(new AnswerEvent("error", "Number of players not possible or complete rules wrong choice!"));
         } catch (Exception e) {
             e.printStackTrace();
             server.unexpectedDisconnection(this);

@@ -17,7 +17,7 @@ public class GameHandler implements Runnable {
     private final Controller controller;
     private final Map<Integer, ConnectionHandler> playersConnection;
 
-    public GameHandler(Map<String, ConnectionHandler> playersConnection) {
+    public GameHandler(Map<String, ConnectionHandler> playersConnection, boolean completeRule) {
         this.playersConnection = new HashMap<>();
         //TODO: change to false to have only 3 Character cards
 
@@ -25,7 +25,7 @@ public class GameHandler implements Runnable {
             InputStream inputStream = getClass().getResourceAsStream("/config/model2.json");
             this.model = new ModelBuilder().buildModel(inputStream);
         } else {
-            this.model = new ModelBuilder().buildModel(playersConnection.keySet().stream().toList(), true);
+            this.model = new ModelBuilder().buildModel(playersConnection.keySet().stream().toList(), true, completeRule);
         }
         this.controller = model.getController();
         for (Player player : controller.getPlayersToPlay()) {

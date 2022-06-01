@@ -12,7 +12,7 @@ class ThinModelTest {
         List<String> names = new ArrayList<>();
         names.add("P1");
         names.add("P2");
-        Model model = new ModelBuilder().buildModel(names, false);
+        Model model = new ModelBuilder().buildModel(names, false, true);
         ThinModel thinModel = new ThinModel(model);
         System.out.println(thinModel);
     }

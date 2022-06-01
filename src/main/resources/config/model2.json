@@ -1198,5 +1198,6 @@
     }
   },
   "isLastRound": false,
-  "isTakeCloud": true
+  "isTakeCloud": true,
+  "completeRule": true
 }

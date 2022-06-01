@@ -46,7 +46,7 @@ public class OptionHandler {
                 if (choice <= options.size() && choice > 0) {
                     choice = choice - 1;
                     switch (options.get(choice)) {
-                        case "moveStudentToIsland" -> {
+                        case "moveStudentToIsland", "firstPlayer" -> {
                             return twoInputHandler(options.get(choice));
                         }
                         case "endAction" -> {
@@ -94,8 +94,8 @@ public class OptionHandler {
 
     private RequestEvent twoInputHandler(String option) throws InterruptedException {
         String[] input;
-        int student = 0;
-        int island = 0;
+        int num1 = 0;
+        int num2 = 0;
         boolean error = true;
         while (error) {
             System.out.println(this.optionSelected.get(option));
@@ -105,8 +105,8 @@ public class OptionHandler {
                 }
                 input = stdin.nextLine().split(",");
                 if (input.length == 2) {
-                    student = Integer.parseInt(input[0]);
-                    island = Integer.parseInt(input[1]);
+                    num1 = Integer.parseInt(input[0]);
+                    num2 = Integer.parseInt(input[1]);
                     error = false;
                 } else {
                     System.out.println("Wrong numbers of arguments!");
@@ -118,7 +118,7 @@ public class OptionHandler {
             }
         }
         //System.out.println(student + " " + island);
-        return new RequestEvent(option, this.playerId, student, island);
+        return new RequestEvent(option, this.playerId, num1, num2);
     }
 
     private RequestEvent oneInputHandler(String option) throws InterruptedException {

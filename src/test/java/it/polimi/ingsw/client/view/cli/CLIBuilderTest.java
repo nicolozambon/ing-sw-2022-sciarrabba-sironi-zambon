@@ -15,7 +15,7 @@ class CLIBuilderTest {
     void nicknamesOrderingTest() throws IOException {
         List<String> nicknames = new ArrayList<>(List.of("player0", "player1", "player2"));
         CLIBuilder cliBuilder = new CLIBuilder();
-        Model model = new ModelBuilder().buildModel(nicknames, true);
+        Model model = new ModelBuilder().buildModel(nicknames, true, true);
         model.getController();
         ThinModel thinModel = new ThinModel(model);
         CLI cli;

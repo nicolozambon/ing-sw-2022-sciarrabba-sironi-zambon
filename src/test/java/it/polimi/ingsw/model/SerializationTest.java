@@ -15,7 +15,7 @@ public class SerializationTest {
     @Test
     void serializationTest() throws Exception{
         List<String> nicknames = new ArrayList<>(List.of("player0", "player1", "player2"));
-        Model model = new ModelBuilder().buildModel(nicknames, true);
+        Model model = new ModelBuilder().buildModel(nicknames, true, true);
         model.getController();
 
 

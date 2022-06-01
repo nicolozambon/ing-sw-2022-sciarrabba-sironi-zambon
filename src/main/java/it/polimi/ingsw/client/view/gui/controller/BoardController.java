@@ -7,8 +7,6 @@ import it.polimi.ingsw.model.ThinModel;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.Node;
-import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
@@ -98,7 +96,7 @@ public class BoardController implements GUIController {
             for (int j=0; j<9; j++) {
                 String key = this.getStudentFXID(j, false, null, i);
                 ImageView value = (ImageView) this.gui.getStage().getScene().lookup("#" + key);
-                if (j < model.getEntranceById(i).size()) {
+                if (j < model.getEntranceByPlayer(i).size()) {
                     entrance.put(key, value);
                 }
                 value.setVisible(false);
@@ -243,7 +241,7 @@ public class BoardController implements GUIController {
 
             // Add dining room
             for (Color color : Color.values()) {
-                for (int j=0; j<model.getDiningRoomById(i).get(color); j++) {
+                for (int j = 0; j<model.getDiningRoomByPlayer(i).get(color); j++) {
                     String identifier = this.getStudentFXID(j, true, color, i);
                     ImageView student = this.schools.get(i).get("dining").get(identifier);
                     student.setVisible(true);
@@ -251,11 +249,11 @@ public class BoardController implements GUIController {
             }
 
             // Add entrance
-            for (int j=0; j<model.getEntranceById(i).size(); j++) {
+            for (int j = 0; j<model.getEntranceByPlayer(i).size(); j++) {
                 String identifier = this.getStudentFXID(j, false, null, i);
                 ImageView student = this.schools.get(i).get("entrance").get(identifier);
-                System.out.println(this.getStudentPath(model.getEntranceById(i).get(j)));
-                Image studentPawn = new Image(Objects.requireNonNull(getClass().getResourceAsStream(this.getStudentPath(model.getEntranceById(i).get(j)))));
+                System.out.println(this.getStudentPath(model.getEntranceByPlayer(i).get(j)));
+                Image studentPawn = new Image(Objects.requireNonNull(getClass().getResourceAsStream(this.getStudentPath(model.getEntranceByPlayer(i).get(j)))));
                 student.setImage(studentPawn);
                 student.setVisible(true);
             }

@@ -59,7 +59,7 @@ public class Controller implements RequestListener {
     }
 
     public void playCharacterCard(int playerId, int choice) throws NotPlayerTurnException, NotEnoughCoinsException, CardException, InvalidActionException {
-        if (isPlanningFinished && playersToPlay.size() > 0 && wizards.isEmpty()) {
+        if (isPlanningFinished && playersToPlay.size() > 0 && wizards.isEmpty() && model.isCompleteRule()) {
             Player player = playersToPlay.get(0);
             if (player.getId() == playerId) {
                 action.playCharacterCard(choice);
@@ -123,7 +123,7 @@ public class Controller implements RequestListener {
     }
 
     public void takeStudentsFromCloud(int playerId, int choice) throws NotPlayerTurnException, CloudException, InvalidActionException {
-        if (isPlanningFinished && playersToPlay.size() > 0 && wizards.isEmpty()) {
+        if (isPlanningFinished && playersToPlay.size() > 0 && wizards.isEmpty() && model.isTakeCloud()) {
             Player player = playersToPlay.get(0);
             if (player.getId() == playerId) {
                 choice--;

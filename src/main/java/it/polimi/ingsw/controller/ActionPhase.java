@@ -23,15 +23,17 @@ public class ActionPhase {
         this.currentPlayer = currentPlayer;
         this.model = model;
 
-        callableMethod = new HashMap<>(){{
+        this.callableMethod = new HashMap<>(){{
             this.put("moveStudentToDiningRoom", numOfStudentToMove);
             this.put("moveStudentToIsland", numOfStudentToMove);
             this.put("moveMotherNature", 0);
-            this.put("playCharacterCard", 1);
             this.put("takeStudentsFromCloud", 0);
             this.put("extraAction", 0);
             this.put("endAction", 0);
         }};
+
+        if (this.model.isCompleteRule()) this.callableMethod.put("playCharacterCard", 1);
+        else this.callableMethod.put("playCharacterCard", 0);
     }
 
     public void playCharacterCard(int choice) throws NotEnoughCoinsException, CardException {
@@ -70,7 +72,7 @@ public class ActionPhase {
             }
         }
     }
-    //TODO: add check enough students
+
     public void takeStudentsFromCloud(int choice) throws CloudException {
         if(callableMethod.get("takeStudentsFromCloud") > 0) {
             this.model.takeStudentsFromCloud(this.currentPlayer.getId(), choice);

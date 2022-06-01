@@ -22,7 +22,7 @@ class InfluenceHandlerTest {
         playersNames.add("player0");
         playersNames.add("player1");
         playersNames.add("player2");
-        model = modelBuilder.buildModel(playersNames, true);
+        model = modelBuilder.buildModel(playersNames, true, true);
         handler = new HandlerFactory().buildHandler(model.getPlayers());
 
     }

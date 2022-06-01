@@ -15,10 +15,8 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.layout.StackPane;
 import javafx.scene.text.Text;
-import javafx.scene.transform.Scale;
 import javafx.stage.Stage;
 
-import java.awt.*;
 import java.io.IOException;
 import java.io.PrintStream;
 import java.util.ArrayList;
@@ -194,7 +192,7 @@ public class ViewGUI extends Application implements RequestListenableInterface, 
 
     @Override
     public void stop() {
-        clientConnection.stopClient();
+        if (clientConnection != null) clientConnection.stopClient();
         this.stage.close();
         this.errorStage.close();
     }

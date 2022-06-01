@@ -73,9 +73,11 @@ public class CLIBuilder {
     }
 
     private void buildCharacterCards(CLI cli, ThinModel model) {
-        List<CharacterCard> cards = model.getCharacterCards();
-        for (int i = 0; i < 3; i++) {
-            cli.addCharacterCard(cards.get(i));
+        if (model.isCompleteRule()) {
+            List<CharacterCard> cards = model.getCharacterCards();
+            for (int i = 0; i < 3; i++) {
+                cli.addCharacterCard(cards.get(i));
+            }
         }
     }
 
@@ -88,11 +90,11 @@ public class CLIBuilder {
                 }
             }
             //Entrance
-            for (Color color : model.getEntranceById(id)) {
+            for (Color color : model.getEntranceByPlayer(id)) {
                 cli.addStudentToSchoolEntrance(idMap.get(id), color);
             }
             //DiningRoom
-            Map<Color, Integer> diningRoom = model.getDiningRoomById(id);
+            Map<Color, Integer> diningRoom = model.getDiningRoomByPlayer(id);
             for (Color color : diningRoom.keySet()) {
                 for (int i = 0; i < diningRoom.get(color); i++) {
                     cli.addStudentToSchoolDiningRoom(idMap.get(id), color);

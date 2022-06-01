@@ -342,45 +342,46 @@ public class CLI {
 
         String id;
         String coins;
-
-        for (int i=0; i<board.length; i++) {
-            for (int j=0; j<board[0].length; j++) {
-                if (Objects.equals(board[i][j], "$")) {
-                    id = String.valueOf(this.characterCards.get(cardNumber).getId());
-                    coins = String.valueOf(this.characterCards.get(cardNumber).getCoins());
-                    while (id.length() < 2) {
-                        id = "0" + id;
-                    }
-                    while (coins.length() < 2) {
-                        coins = "0" + coins;
-                    }
-                    //cardTitle = "CARD:" + id + "   COINS:" + coins;
-                    cardTitle = "CARD:" + id + "       $:" + coins;
-                    this.writeTextInMatrix(board, cardTitle, j, i);
+        if (this.characterCards.size() == 3) {
+            for (int i = 0; i < board.length; i++) {
+                for (int j = 0; j < board[0].length; j++) {
+                    if (Objects.equals(board[i][j], "$")) {
+                        id = String.valueOf(this.characterCards.get(cardNumber).getId());
+                        coins = String.valueOf(this.characterCards.get(cardNumber).getCoins());
+                        while (id.length() < 2) {
+                            id = "0" + id;
+                        }
+                        while (coins.length() < 2) {
+                            coins = "0" + coins;
+                        }
+                        //cardTitle = "CARD:" + id + "   COINS:" + coins;
+                        cardTitle = "CARD:" + id + "       $:" + coins;
+                        this.writeTextInMatrix(board, cardTitle, j, i);
                     /*
                     for (int k=0; k<cardTitle.length(); k++) {
                         board[i][j+k] = String.valueOf(cardTitle.charAt(k));
                     }
 
                      */
-                    cardNumber++;
-                    if (cardNumber > 2) cardNumber = 0;
-                }
-                if (Objects.equals(board[i][j], "!")) {
-                    cardText = this.characterCards.get(cardNumber).getEffect();
-                    Pattern p = Pattern.compile(".{1," + cardTextWidth + "}(\\s+|$)");
-                    Matcher m = p.matcher(cardText);
-                    ArrayList<String> cardTextLines = new ArrayList<>();
-                    while(m.find()) {
-                        cardTextLines.add(m.group().trim());
+                        cardNumber++;
+                        if (cardNumber > 2) cardNumber = 0;
                     }
-                    for (int k=0; k<min(cardTextHeight, cardTextLines.size()); k++) {
-                        for (int h=0; h<min(cardTextWidth, cardTextLines.get(k).length()); h++) {
-                            board[i+k][j+h] = String.valueOf(cardTextLines.get(k).charAt(h));
+                    if (Objects.equals(board[i][j], "!")) {
+                        cardText = this.characterCards.get(cardNumber).getEffect();
+                        Pattern p = Pattern.compile(".{1," + cardTextWidth + "}(\\s+|$)");
+                        Matcher m = p.matcher(cardText);
+                        ArrayList<String> cardTextLines = new ArrayList<>();
+                        while (m.find()) {
+                            cardTextLines.add(m.group().trim());
                         }
+                        for (int k = 0; k < min(cardTextHeight, cardTextLines.size()); k++) {
+                            for (int h = 0; h < min(cardTextWidth, cardTextLines.get(k).length()); h++) {
+                                board[i + k][j + h] = String.valueOf(cardTextLines.get(k).charAt(h));
+                            }
+                        }
+                        cardNumber++;
+                        if (cardNumber > 2) cardNumber = 0;
                     }
-                    cardNumber++;
-                    if (cardNumber > 2) cardNumber = 0;
                 }
             }
         }

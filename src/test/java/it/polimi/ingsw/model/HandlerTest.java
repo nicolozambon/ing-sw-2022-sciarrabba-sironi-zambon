@@ -25,8 +25,8 @@ class HandlerTest {
         playersNames.add("player0");
         playersNames.add("player1");
         playersNames.add("player2");
-        model = modelBuilder.buildModel(playersNames, true);
-        handler = new HandlerFactory().buildHandler(model.getPlayers());
+        model = modelBuilder.buildModel(playersNames, true, true);
+        handler = model.getHandler();
     }
 
     @Test
@@ -179,7 +179,11 @@ class HandlerTest {
         assertFalse(islands.get(1).isUnifyNext());
 
         int num = new Random().nextInt(model.getPlayers().size());
-        handler.switchTowers(islands.get(0), model.getPlayers().get(num));
+        try {
+            handler.switchTowers(islands.get(0), model.getPlayers().get(num));
+        } catch (WinnerException e) {
+            System.out.println(new ThinModel(model));
+        }
         assertFalse(islands.get(11).isUnifyPrev());
         assertTrue(islands.get(11).isUnifyNext());
         assertTrue(islands.get(0).isUnifyPrev());

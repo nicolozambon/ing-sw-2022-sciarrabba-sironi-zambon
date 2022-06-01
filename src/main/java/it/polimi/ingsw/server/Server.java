@@ -1,7 +1,7 @@
 package it.polimi.ingsw.server;
 
 import it.polimi.ingsw.events.AnswerEvent;
-import it.polimi.ingsw.exceptions.OutOfBoundsException;
+import it.polimi.ingsw.exceptions.WrongSetupException;
 
 import java.io.IOException;
 import java.net.ServerSocket;
@@ -23,6 +23,7 @@ public class Server {
      * Number of players for the match being built.
      */
     private int numPlayers = -1;
+    private boolean completeRule = true;
 
     public Server(){
         this.queue = new ArrayDeque<>();
@@ -83,7 +84,7 @@ public class Server {
 
     private void lobby() {
         ConnectionHandler connectionHandler;
-        List<String> first_playerOption = new ArrayList<>(List.of("first_player"));
+        List<String> first_playerOption = new ArrayList<>(List.of("firstPlayer"));
         ExecutorService gameThreadPool = Executors.newCachedThreadPool();
         while (true) {
 
@@ -122,7 +123,7 @@ public class Server {
             players.values().forEach(c -> c.send(new AnswerEvent("lobby", players.keySet().stream().toList())));
 
             if (players.size() == numPlayers) {
-                GameHandler game = new GameHandler(players);
+                GameHandler game = new GameHandler(players, completeRule);
                 gameThreadPool.submit(game);
                 synchronized (games) {
                     games.add(game);
@@ -166,11 +167,12 @@ public class Server {
         return true;
     }
 
-    public synchronized void setNumPlayers (int num) throws OutOfBoundsException {
-        if (num != 2 && num != 3) {
-            throw new OutOfBoundsException();
+    public synchronized void firstPlayerSetup(int num, int completeRule) throws WrongSetupException {
+        if ((num != 2 && num != 3) || (completeRule != 1 && completeRule != 0)) {
+            throw new WrongSetupException();
         } else {
             this.numPlayers = num;
+            this.completeRule = completeRule == 1;
             notifyAll();
         }
     }

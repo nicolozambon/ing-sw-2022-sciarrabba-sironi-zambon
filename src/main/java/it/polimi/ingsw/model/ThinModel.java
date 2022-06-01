@@ -27,6 +27,7 @@ public final class ThinModel {
     private final List<CloudSerializable> clouds;
     private final List<CharacterCard> characterCards;
     private final List<Color> professors;
+    private final boolean completeRule;
 
     public ThinModel(Model model) {
         nicknames = model.getPlayers().stream().map(Player::getNickname).toList();
@@ -41,6 +42,8 @@ public final class ThinModel {
         clouds = new ArrayList<>();
         characterCards = new ArrayList<>(model.getCharacterCards());
         professors = new ArrayList<>();
+
+        completeRule = model.isCompleteRule();
 
         for (Player player : model.getPlayers()) {
             schools.add(player.getId(), new SchoolSerializable(player.getSchool(), player.getTowerColor()));
@@ -66,11 +69,7 @@ public final class ThinModel {
 
     }
 
-    public List<Color> getEntranceByPlayerId(int playerId) {
-        return new ArrayList<>(schools.get(playerId).entrance);
-    }
-
-    public int getStudentOnIslandById(int islandId) {
+    public int getNumStudentOnIsland(int islandId) {
         int value = 0;
         for (Color color : Color.values()) {
             value += islands.get(islandId).students.get(color);
@@ -107,7 +106,7 @@ public final class ThinModel {
 
     public List<Wizard> getWizards() {
         return new ArrayList<>(wizards);
-    }
+    } //ordered by player id
 
     public List<CharacterCard> getCharacterCards() {
         return new ArrayList<>(characterCards);
@@ -117,11 +116,11 @@ public final class ThinModel {
         return islands.get(islandId).towerColor;
     }
 
-    public List<Color> getEntranceById(int playerId) {
+    public List<Color> getEntranceByPlayer(int playerId) {
         return new ArrayList<>(schools.get(playerId).entrance);
     }
 
-    public Map<Color, Integer> getDiningRoomById(int playerId) {
+    public Map<Color, Integer> getDiningRoomByPlayer(int playerId) {
         return new HashMap<>(schools.get(playerId).diningRoom);
     }
 
@@ -157,6 +156,10 @@ public final class ThinModel {
         return coinReserve;
     }
 
+    public boolean isCompleteRule() {
+        return completeRule;
+    }
+
     @Override
     public String toString() {
         String first = "ModelSerializable{" +
@@ -166,7 +169,7 @@ public final class ThinModel {
         for (Integer i : assistantsCards.keySet()) {
             second = second + "\n" + assistantsCards.get(i);
         }
-        second = second + "\n" + lastPlayedAssistantCard;
+        second = second + "\n\nLastPlayedAssistantCard = " + lastPlayedAssistantCard;
         String third = ",\n\ncoinReserve = " + coinReserve +
                 ",\n\nislands = " + islands +
                 ",\n\nclouds = " + clouds +

@@ -26,7 +26,7 @@ class ControllerTest {
         names.add("player0");
         names.add("player1");
         names.add("player2");
-        model = new ModelBuilder().buildModel(names, true);
+        model = new ModelBuilder().buildModel(names, true, true);
         controller = model.getController();
     }
 
@@ -91,7 +91,7 @@ class ControllerTest {
         Player player = controller.getActivePlayer();
         assertEquals(2, player.getId());
         ThinModel thinModel = new ThinModel(this.model);
-        int initialSize =  thinModel.getEntranceByPlayerId(player.getId()).size();
+        int initialSize =  thinModel.getEntranceByPlayer(player.getId()).size();
 
         controller.moveStudentToDiningRoom(2, 1);
         controller.moveStudentToDiningRoom(2, 1);
@@ -99,11 +99,11 @@ class ControllerTest {
         controller.moveStudentToDiningRoom(2, 1);
 
         thinModel = new ThinModel(this.model);
-        assertEquals(initialSize-4, thinModel.getEntranceByPlayerId(player.getId()).size());
+        assertEquals(initialSize-4, thinModel.getEntranceByPlayer(player.getId()).size());
 
         int numStudentInDining = 0;
         for (Color color : Color.values()) {
-            numStudentInDining += thinModel.getDiningRoomById(player.getId()).get(color);
+            numStudentInDining += thinModel.getDiningRoomByPlayer(player.getId()).get(color);
         }
         assertEquals(4, numStudentInDining);
     }
@@ -117,36 +117,36 @@ class ControllerTest {
         Player player = controller.getActivePlayer();
         assertEquals(2, player.getId());
         ThinModel thinModel = new ThinModel(this.model);
-        int initialSize =  thinModel.getEntranceByPlayerId(player.getId()).size();
+        int initialSize =  thinModel.getEntranceByPlayer(player.getId()).size();
 
         assertThrows(IslandException.class, () -> controller.moveStudentToIsland(2, 0, 13));
         assertThrows(IslandException.class, () -> controller.moveStudentToIsland(2, 0, -1));
 
         thinModel = new ThinModel(this.model);
-        int prevSize = thinModel.getStudentOnIslandById(6);
+        int prevSize = thinModel.getNumStudentOnIsland(6);
         controller.moveStudentToIsland(2, 4, 7);
         thinModel = new ThinModel(this.model);
-        assertEquals(prevSize + 1, thinModel.getStudentOnIslandById(6));
+        assertEquals(prevSize + 1, thinModel.getNumStudentOnIsland(6));
 
         thinModel = new ThinModel(this.model);
-        prevSize = thinModel.getStudentOnIslandById(9);
+        prevSize = thinModel.getNumStudentOnIsland(9);
         controller.moveStudentToIsland(2, 1, 10);
         thinModel = new ThinModel(this.model);
-        assertEquals(prevSize + 1, thinModel.getStudentOnIslandById(9));
+        assertEquals(prevSize + 1, thinModel.getNumStudentOnIsland(9));
 
         thinModel = new ThinModel(this.model);
-        prevSize = thinModel.getStudentOnIslandById(2);
+        prevSize = thinModel.getNumStudentOnIsland(2);
         controller.moveStudentToIsland(2, 1, 3);
         thinModel = new ThinModel(this.model);
-        assertEquals(prevSize + 1, thinModel.getStudentOnIslandById(2));
+        assertEquals(prevSize + 1, thinModel.getNumStudentOnIsland(2));
 
         thinModel = new ThinModel(this.model);
-        prevSize = thinModel.getStudentOnIslandById(7);
+        prevSize = thinModel.getNumStudentOnIsland(7);
         controller.moveStudentToIsland(2, 1, 8);
         thinModel = new ThinModel(this.model);
-        assertEquals(prevSize + 1, thinModel.getStudentOnIslandById(7));
+        assertEquals(prevSize + 1, thinModel.getNumStudentOnIsland(7));
 
-        assertEquals(initialSize-4, thinModel.getEntranceByPlayerId(player.getId()).size());
+        assertEquals(initialSize-4, thinModel.getEntranceByPlayer(player.getId()).size());
 
     }
 
@@ -190,7 +190,7 @@ class ControllerTest {
         controller.takeStudentsFromCloud(2, 1);
         ThinModel thinModel = new ThinModel(this.model);
         assertEquals(0, thinModel.getStudentOnCloud(0).size());
-        assertEquals(9, thinModel.getEntranceByPlayerId(0).size());
+        assertEquals(9, thinModel.getEntranceByPlayer(0).size());
 
     }
 

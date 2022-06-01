@@ -1,6 +1,6 @@
 {
   "nickname" : "Choose a nickname:",
-  "first_player" : "You are the first player, choose how many players this game will have (2-3):",
+  "firstPlayer" : "You are the first player!\nChoose how many players this game will have (2-3) and which mode (0 - beginner, 1 - expert)\n(es. 3,1):",
 
   "chooseWizard" : "Choose your Wizard (KING, PIXIE, SORCERER, WIZARD):",
 

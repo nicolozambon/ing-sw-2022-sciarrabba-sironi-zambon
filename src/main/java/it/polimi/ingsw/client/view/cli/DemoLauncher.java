@@ -1,15 +1,21 @@
 package it.polimi.ingsw.client.view.cli;
 
 
-import java.util.HashMap;
-import java.util.Map;
+import it.polimi.ingsw.model.Model;
+import it.polimi.ingsw.model.ModelBuilder;
+import it.polimi.ingsw.model.ThinModel;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class DemoLauncher {
 
     public static void main(String[] args) throws Exception {
-        /*List<String> nicknames = new ArrayList<>(List.of("player0", "player1", "player2"));
+        List<String> nicknames = new ArrayList<>(List.of("player0", "player1"));
 
-        GsonBuilder gsonBuilder = new GsonBuilder();
+        Model model = new ModelBuilder().buildModel(nicknames, true, true);
+        System.out.println(new ThinModel(model));
+        /*GsonBuilder gsonBuilder = new GsonBuilder();
         gsonBuilder.registerTypeAdapter(Handler.class, new HandlerSerializer());
         gsonBuilder.registerTypeAdapter(Handler.class, new HandlerDeserializer());
         Gson gson = gsonBuilder.create();
@@ -36,14 +42,6 @@ public class DemoLauncher {
         fileWriter.write(gson.toJson(model));
         fileWriter.close();*/
 
-        Map<Integer, String> map = new HashMap<>();
-        String str1 = "pippo";
-        String str2 = "pluto";
-        String str3 = "cip";
-        map.put(1, str1);
-        map.put(2, str2);
-        map.put(3, str3);
-        System.out.println(map.values().stream().sorted().toList());
     }
 
 }
