@@ -50,8 +50,8 @@ public class ViewGUI extends Application implements RequestListenableInterface, 
         requestListenable =new RequestListenable();
     }
 
-    public static void main(String[] args) {
-        launch(args);
+    public void startGUI() {
+        launch();
     }
 
     @Override

@@ -12,6 +12,7 @@ import it.polimi.ingsw.model.ThinModel;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Scanner;
 
 public class ViewCLI implements AnswerListener, RequestListenableInterface {
 
@@ -95,11 +96,10 @@ public class ViewCLI implements AnswerListener, RequestListenableInterface {
 
     //TODO default loopback ip for testing purpose
     public void startCLI() throws IOException {
-        /*Scanner stdin = new Scanner(System.in);
+        Scanner stdin = new Scanner(System.in);
         System.out.println("Server IP:");
         String ip = stdin.nextLine();
-        this.client = new Client(ip);*/
-        this.clientConnection = new ClientConnection();
+        this.clientConnection = new ClientConnection(ip);
         this.clientConnection.addAnswerListener(this);
         this.addRequestListener(this.clientConnection);
         new Thread(this.clientConnection).start();

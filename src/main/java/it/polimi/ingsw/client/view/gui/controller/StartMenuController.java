@@ -49,7 +49,7 @@ public class StartMenuController implements GUIController{
 
     @Override
     public void optionsHandling(List<String> options) {
-        if (options.get(0).equals("first_player")) {
+        if (options.get(0).equals("firstPlayer")) {
             gui.getStage().getScene().lookup("#mainPane").setVisible(false);
             gui.getStage().getScene().lookup("#waitPane").setVisible(false);
             firstPlayerPane.setVisible(true);
@@ -75,7 +75,7 @@ public class StartMenuController implements GUIController{
     @FXML
     private void twoPlayersButtonOnClick() {
         try {
-            gui.fireRequest(new RequestEvent("first_player", gui.getId(), 2));
+            gui.fireRequest(new RequestEvent("firstPlayer", gui.getId(), 2,1));
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
@@ -84,7 +84,7 @@ public class StartMenuController implements GUIController{
     @FXML
     private void threePlayersButtonOnClick() {
         try {
-            gui.fireRequest(new RequestEvent("first_player", gui.getId(),3));
+            gui.fireRequest(new RequestEvent("firstPlayer", gui.getId(),3,1));
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
