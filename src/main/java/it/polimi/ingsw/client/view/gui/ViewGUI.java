@@ -14,6 +14,8 @@ import javafx.application.Platform;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.layout.StackPane;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
@@ -42,6 +44,12 @@ public class ViewGUI extends Application implements RequestListenableInterface, 
     private String nickname;
     private ThinModel model;
     private List<String> options;
+
+    public Media soundtrack;
+    public Media clickEffect;
+    public MediaPlayer mediaPlayer;
+
+    public MediaPlayer mediaPlayerEffect;
 
     public ViewGUI() {
         sceneMap = new HashMap<>();
@@ -121,7 +129,27 @@ public class ViewGUI extends Application implements RequestListenableInterface, 
         currentScene = sceneMap.get(sceneName);
         stage.setScene(currentScene);
         stage.show();
+        if (sceneName.equals("boardScene")) {
+            music();
+        }
     }
+
+    protected void music() {
+        //Media media = new Media(getClass().getResource("/assets/gui/music/track.mp3").toExternalForm());
+        //MediaPlayer mediaPlayer = new MediaPlayer(media);
+        this.soundtrack = new Media(getClass().getResource("/assets/gui/music/track.mp3").toExternalForm());
+        this.mediaPlayer = new MediaPlayer(this.soundtrack);
+        this.clickEffect = new Media(getClass().getResource("/assets/gui/music/pop.mp3").toExternalForm());
+        this.mediaPlayerEffect = new MediaPlayer(this.clickEffect);
+        mediaPlayer.setAutoPlay(true);
+        mediaPlayer.setCycleCount(MediaPlayer.INDEFINITE);
+    }
+
+    public void playPopEffect() {
+        mediaPlayerEffect.seek(mediaPlayerEffect.getStartTime());
+        mediaPlayerEffect.play();
+    }
+
 
     public String getNickname() {
         return nickname;

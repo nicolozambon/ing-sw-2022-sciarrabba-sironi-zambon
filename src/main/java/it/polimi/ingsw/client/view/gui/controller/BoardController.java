@@ -11,11 +11,14 @@ import javafx.event.ActionEvent;
 import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
+import javafx.scene.control.ToggleButton;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
 import javafx.scene.text.Text;
 
 import java.util.HashMap;
@@ -471,6 +474,11 @@ public class BoardController implements GUIController {
         return path;
     }
 
+    private String getVolumeIconPath (boolean muted) {
+        if (muted) return "/assets/gui/images/utils/muted.png";
+        else return "/assets/gui/images/utils/unmuted.png";
+    }
+
     private void changePlayedAssistantCard(int IDPlayer, int IDAssistantCard) {
         IDPlayer = this.idMap.get(IDPlayer);
         modifyImage(getAssistantCardPath(IDAssistantCard), getImageViewFromFXID(getAssistantCardPlayedFXID(IDPlayer)));
@@ -542,4 +550,20 @@ public class BoardController implements GUIController {
         gui.fireRequest(new RequestEvent("playAssistantCard", gui.getId(), Integer.parseInt(id)));
     }
 
+    @FXML
+    private void playStopMusic(Event event) {
+        if (((ToggleButton) event.getSource()).isSelected()) {
+            gui.mediaPlayer.pause();
+            getImageViewFromFXID("#volumeIcon").setImage(new Image(getVolumeIconPath(true)));
+        }
+        else {
+            gui.mediaPlayer.play();
+            getImageViewFromFXID("#volumeIcon").setImage(new Image(getVolumeIconPath(false)));
+        }
+    }
+
+    @FXML
+    private void openCharacterCardSelector (Event event) {
+        gui.playPopEffect();
+    }
 }
