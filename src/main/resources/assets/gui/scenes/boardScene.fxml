@@ -115,7 +115,7 @@
                               </ImageView>
                               <Text accessibleRole="BUTTON" disable="true" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="EXIT" textAlignment="CENTER" wrappingWidth="135.0" StackPane.alignment="TOP_CENTER">
                                  <font>
-                                    <Font size="24.0" />
+                                    <Font name="Avenir Next Condensed Bold" size="27.0" />
                                  </font>
                                  <StackPane.margin>
                                     <Insets top="12.0" />
