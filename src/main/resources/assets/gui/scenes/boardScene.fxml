@@ -1,13 +1,28 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.*?>
-<?import javafx.scene.effect.*?>
-<?import javafx.scene.image.*?>
-<?import javafx.scene.layout.*?>
-<?import javafx.scene.paint.*?>
-<?import javafx.scene.text.*?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.SplitPane?>
+<?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.FlowPane?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.TilePane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.paint.Color?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
 <Pane minHeight="810.0" minWidth="1440.0" prefHeight="810.0" prefWidth="1440.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="it.polimi.ingsw.client.view.gui.controller.BoardController">
    <children>
         <BorderPane layoutX="-313.0" layoutY="-174.0" minHeight="1080.0" minWidth="1920.0" prefHeight="1160.0" prefWidth="2067.0" scaleX="0.7" scaleY="0.7" styleClass="anchor" stylesheets="@../css/boardScene.css">
@@ -83,6 +98,9 @@
                                  </font>
                               </Button>
                            </children>
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
                         </StackPane>
                             </children>
                         </HBox>
@@ -1991,6 +2009,9 @@
                                                    <font>
                                                       <Font name="Avenir Next Condensed Bold" size="30.0" />
                                                    </font>
+                                                   <effect>
+                                                      <DropShadow />
+                                                   </effect>
                                                 </Text>
                                                 <GridPane prefHeight="177.0" prefWidth="401.0">
                                                    <columnConstraints>
@@ -2707,6 +2728,9 @@
                                        <font>
                                           <Font name="Avenir Next Condensed Bold" size="30.0" />
                                        </font>
+                                       <effect>
+                                          <DropShadow />
+                                       </effect>
                                     </Text>
                                     <GridPane prefHeight="177.0" prefWidth="401.0">
                                       <columnConstraints>
@@ -3472,6 +3496,9 @@
                                        <font>
                                           <Font name="Avenir Next Condensed Bold" size="30.0" />
                                        </font>
+                                       <effect>
+                                          <DropShadow />
+                                       </effect>
                                     </Text>
                                     <GridPane prefHeight="177.0" prefWidth="401.0">
                                        <columnConstraints>
@@ -4227,6 +4254,16 @@
                </BorderPane.margin>
             </HBox>
          </center>
+         <top>
+            <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Choose your wizard:" BorderPane.alignment="CENTER">
+               <font>
+                  <Font name="Avenir Next Condensed Bold" size="40.0" />
+               </font>
+               <BorderPane.margin>
+                  <Insets top="50.0" />
+               </BorderPane.margin>
+            </Text>
+         </top>
       </BorderPane>
       <BorderPane fx:id="assistantBorderPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="810.0" prefWidth="1440.0" style="visibility: false;" styleClass="anchor" stylesheets="@../css/cardSelector.css">
          <center>
