@@ -8,7 +8,6 @@ import it.polimi.ingsw.events.RequestEvent;
 import it.polimi.ingsw.model.ThinModel;
 import it.polimi.ingsw.model.card.AssistantCard;
 import javafx.application.Platform;
-import javafx.event.ActionEvent;
 import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.scene.Cursor;
@@ -556,7 +555,7 @@ public class BoardController implements GUIController {
     }
 
     @FXML
-    private void exitGame(ActionEvent event) {
+    private void exitGame(Event event) {
         Platform.exit();
     }
 
