@@ -36,12 +36,12 @@ public class IslandTest {
         Student student1 = new Student(Color.GREEN);
         Student student2 = new Student(Color.GREEN);
         Student student3 = new Student(Color.BLUE);
-        ArrayList<Student> arrayList = new ArrayList<Student>();
+        ArrayList<Student> arrayList = new ArrayList<>();
         arrayList.add(student1);
         arrayList.add(student2);
         arrayList.add(student3);
 
-        Board board1 = new Board(arrayList);
+        Board<Student> board1 = new Board<>(arrayList);
 
 
         island1.moveInPawn(student1, board1);

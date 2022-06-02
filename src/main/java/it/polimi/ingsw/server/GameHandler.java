@@ -22,7 +22,7 @@ public class GameHandler implements Runnable {
         //TODO: change to false to have only 3 Character cards
 
         if (playersConnection.containsKey("player0") && playersConnection.containsKey("player1") && playersConnection.containsKey("player2")) {
-            InputStream inputStream = getClass().getResourceAsStream("/config/model_finishing.json");
+            InputStream inputStream = getClass().getResourceAsStream("/config/model.json");
             this.model = new ModelBuilder().buildModel(inputStream);
         } else {
             this.model = new ModelBuilder().buildModel(playersConnection.keySet().stream().toList(), true, completeRule);

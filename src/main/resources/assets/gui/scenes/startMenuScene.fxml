@@ -53,8 +53,11 @@
          <StackPane.margin>
             <Insets bottom="80.0" right="130.0" />
          </StackPane.margin>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
       </ImageView>
-      <Text fx:id="connectText" accessibleRole="BUTTON" fill="WHITE" onMouseClicked="#connectImageViewOnClick" strokeType="OUTSIDE" strokeWidth="0.0" text="Connect" textAlignment="CENTER" wrappingWidth="200.0" StackPane.alignment="BOTTOM_RIGHT">
+      <Text fx:id="connectText" accessibleRole="BUTTON" disable="true" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Connect" textAlignment="CENTER" wrappingWidth="200.0" StackPane.alignment="BOTTOM_RIGHT">
          <font>
             <Font size="24.0" />
          </font>
