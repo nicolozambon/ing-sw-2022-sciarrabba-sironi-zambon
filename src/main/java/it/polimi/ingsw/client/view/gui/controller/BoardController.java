@@ -19,8 +19,6 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
-import javafx.scene.media.Media;
-import javafx.scene.media.MediaPlayer;
 import javafx.scene.text.Text;
 
 import java.util.*;
@@ -548,12 +546,14 @@ public class BoardController implements GUIController {
     public void setAssistantCards(List<AssistantCard> cards) {
         if (assistantCards == null) setupAssistantCards();
         for (Node assistantCard : assistantCards) {
+            assistantCard.setDisable(true);
             assistantCard.setCursor(Cursor.DEFAULT);
             assistantCard.setOpacity(0.30);
             assistantCard.getStyleClass().remove("cardOnHover");
         }
         for (AssistantCard card : cards) {
             Node node = assistantCards.get(card.getValue() - 1);
+            node.setDisable(false);
             node.setCursor(Cursor.HAND);
             node.setOpacity(1.0);
             node.getStyleClass().add("cardOnHover");
