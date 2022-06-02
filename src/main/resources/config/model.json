@@ -84,36 +84,12 @@
       "assistantCardDeck": {
         "cards": [
           {
-            "value": 2,
-            "steps": 1
-          },
-          {
-            "value": 3,
-            "steps": 2
-          },
-          {
-            "value": 4,
-            "steps": 2
-          },
-          {
             "value": 5,
-            "steps": 3
-          },
-          {
-            "value": 6,
             "steps": 3
           },
           {
             "value": 7,
             "steps": 4
-          },
-          {
-            "value": 8,
-            "steps": 4
-          },
-          {
-            "value": 9,
-            "steps": 5
           },
           {
             "value": 10,
@@ -1368,18 +1344,12 @@
       }
     ],
     "playersHavePlayed": [],
-    "action": {
+    "planning": {
       "callableMethod": {
-        "moveStudentToIsland": 4,
-        "endAction": 0,
-        "extraAction": 2,
-        "moveMotherNature": 0,
-        "takeStudentsFromCloud": 0,
-        "moveStudentToDiningRoom": 4,
-        "playCharacterCard": 0
+        "playAssistantCard": 1
       }
     },
-    "isPlanningFinished": true
+    "isPlanningFinished": false
   },
   "handler": {
     "card": {

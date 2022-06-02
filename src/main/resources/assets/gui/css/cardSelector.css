@@ -11,7 +11,7 @@
     -fx-effect: dropshadow(three-pass-box, #000000, 8.0, 0.0, 0, 0);
 }
 
-.card:hover {
+.cardOnHover:hover {
     -fx-effect: dropshadow(three-pass-box, #ffff00, 8.0, 3.0, 0, 0);
     
 }

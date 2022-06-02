@@ -8,6 +8,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.paint.*?>
 <?import javafx.scene.text.*?>
+<?import java.lang.*?>
 <Pane minHeight="810.0" minWidth="1440.0" prefHeight="810.0" prefWidth="1440.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="it.polimi.ingsw.client.view.gui.controller.BoardController">
    <children>
         <BorderPane layoutX="-313.0" layoutY="-174.0" minHeight="1080.0" minWidth="1920.0" prefHeight="1160.0" prefWidth="2067.0" scaleX="0.7" scaleY="0.7" styleClass="anchor" stylesheets="@../css/boardScene.css">
@@ -4228,347 +4229,7 @@
             </HBox>
          </center>
       </BorderPane>
-      <BorderPane fx:id="assistantBorderPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="810.0" prefWidth="1440.0" style="visibility: false;" styleClass="anchor" stylesheets="@../css/cardSelector.css">
-         <center>
-            <VBox alignment="TOP_CENTER" spacing="5.0" BorderPane.alignment="CENTER">
-               <children>
-                  <HBox alignment="CENTER">
-                     <children>
-                        <Text fill="#023c6f" strokeType="OUTSIDE" strokeWidth="0.0" text="Assistant Cards" textAlignment="CENTER" wrappingWidth="880">
-                           <font>
-                              <Font name="Avenir Next Condensed Bold" size="40.0" />
-                           </font>
-                        </Text>
-                     </children>
-                  </HBox>
-                  <StackPane prefHeight="656.0" prefWidth="864.0">
-                     <children>
-                        <TilePane fx:id="cardChoiceTilePane" alignment="CENTER" styleClass="player-tile-pane" visible="false" />
-                        <TilePane alignment="CENTER" layoutX="10.0" layoutY="10.0" styleClass="player-tile-pane" visible="false">
-                           <children>
-                              <HBox alignment="CENTER" spacing="30.0">
-                                 <children>
-                                    <StackPane prefHeight="150.0" prefWidth="200.0">
-                                       <children>
-                                          <Pane opacity="0.6" prefHeight="200.0" prefWidth="200.0" styleClass="glow-back-pane" visible="false" />
-                                          <VBox alignment="TOP_CENTER" spacing="15.0" styleClass="player-choise-vbox" visible="false">
-                                             <children>
-                                                <ImageView disable="true" fitWidth="250.0" pickOnBounds="true" preserveRatio="true">
-                                                   <image>
-                                                      <Image url="@../images/pawns/blueStudent.png" />
-                                                   </image>
-                                                   <cursor>
-                                                      <Cursor fx:constant="HAND" />
-                                                   </cursor>
-                                                </ImageView>
-                                                <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
-                                                   <children>
-                                                      <Text strokeType="OUTSIDE" strokeWidth="0.0" text="PlayerName" textAlignment="CENTER" wrappingWidth="244.0">
-                                                         <font>
-                                                            <Font name="System Bold" size="33.0" />
-                                                         </font>
-                                                      </Text>
-                                                   </children>
-                                                </VBox>
-                                             </children>
-                                             <padding>
-                                                <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
-                                             </padding>
-                                             <cursor>
-                                                <Cursor fx:constant="HAND" />
-                                             </cursor>
-                                          </VBox>
-                                          <Pane opacity="0.6" prefHeight="200.0" prefWidth="200.0" styleClass="card-unavailable-overlay" visible="false" />
-                                       </children>
-                                    </StackPane>
-                                    <StackPane prefHeight="150.0" prefWidth="200.0">
-                                       <children>
-                                          <Pane opacity="0.6" prefHeight="200.0" prefWidth="200.0" styleClass="glow-back-pane" visible="false" />
-                                          <Pane opacity="0.6" prefHeight="200.0" prefWidth="200.0" styleClass="card-unavailable-overlay" visible="false" />
-                                       </children>
-                                    </StackPane>
-                                    <StackPane prefHeight="150.0" prefWidth="200.0">
-                                       <children>
-                                          <Pane opacity="0.6" prefHeight="200.0" prefWidth="200.0" styleClass="glow-back-pane" visible="false" />
-                                          <Pane opacity="0.6" prefHeight="200.0" prefWidth="200.0" styleClass="card-unavailable-overlay" visible="false" />
-                                       </children>
-                                    </StackPane>
-                                 </children>
-                              </HBox>
-                           </children>
-                        </TilePane>
-                        <ScrollPane fitToHeight="true" fitToWidth="true" hbarPolicy="NEVER" minHeight="660.0" minWidth="920.0" prefWidth="1149.0" styleClass="flow-pane">
-                           <padding>
-                              <Insets top="10.0" />
-                           </padding>
-                           <content>
-                              <FlowPane alignment="TOP_CENTER" hgap="10.0" prefWidth="857.0" style="-fx-background-color: transparent;" styleClass="flow-pane" vgap="10.0">
-                                 <children>
-                                    <StackPane prefHeight="150.0" prefWidth="200.0" style="-fx-background-color: transparent;">
-                                       <children>
-                                          <HBox alignment="CENTER" spacing="12.0" styleClass="challenger-card-hbox">
-                                             <children>
-                                                <ImageView fx:id="acard01" accessibleRole="BUTTON" fitHeight="217.0" onMouseClicked="#chooseAssistantCard" pickOnBounds="true" preserveRatio="true" styleClass="card">
-                                                   <image>
-                                                      <Image url="@../images/cards/AssistantCard/Assistente_1.png" />
-                                                   </image>
-                                                   <cursor>
-                                                      <Cursor fx:constant="HAND" />
-                                                   </cursor>
-                                                </ImageView>
-                                             </children>
-                                             <padding>
-                                                <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
-                                             </padding>
-                                             <opaqueInsets>
-                                                <Insets right="10.0" />
-                                             </opaqueInsets>
-                                             <cursor>
-                                                <Cursor fx:constant="HAND" />
-                                             </cursor>
-                                          </HBox>
-                                       </children>
-                                    </StackPane>
-                                    <StackPane layoutX="329.0" layoutY="15.0" prefHeight="150.0" prefWidth="200.0">
-                                       <children>
-                                          <HBox alignment="CENTER" spacing="12.0" styleClass="challenger-card-hbox">
-                                             <children>
-                                                <ImageView fx:id="acard02" accessibleRole="BUTTON" fitHeight="217.0" onMouseClicked="#chooseAssistantCard" pickOnBounds="true" preserveRatio="true" styleClass="card">
-                                                   <image>
-                                                      <Image url="@../images/cards/AssistantCard/Assistente_2.png" />
-                                                   </image>
-                                                   <cursor>
-                                                      <Cursor fx:constant="HAND" />
-                                                   </cursor>
-                                                </ImageView>
-                                             </children>
-                                             <padding>
-                                                <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
-                                             </padding>
-                                             <opaqueInsets>
-                                                <Insets right="10.0" />
-                                             </opaqueInsets>
-                                             <cursor>
-                                                <Cursor fx:constant="HAND" />
-                                             </cursor>
-                                          </HBox>
-                                       </children>
-                                    </StackPane>
-                                    <StackPane layoutX="183.0" layoutY="15.0" prefHeight="150.0" prefWidth="200.0">
-                                       <children>
-                                          <HBox alignment="CENTER" spacing="12.0" styleClass="challenger-card-hbox">
-                                             <children>
-                                                <ImageView fx:id="acard03" accessibleRole="BUTTON" fitHeight="217.0" onMouseClicked="#chooseAssistantCard" pickOnBounds="true" preserveRatio="true" styleClass="card">
-                                                   <image>
-                                                      <Image url="@../images/cards/AssistantCard/Assistente_3.png" />
-                                                   </image>
-                                                   <cursor>
-                                                      <Cursor fx:constant="HAND" />
-                                                   </cursor>
-                                                </ImageView>
-                                             </children>
-                                             <padding>
-                                                <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
-                                             </padding>
-                                             <opaqueInsets>
-                                                <Insets right="10.0" />
-                                             </opaqueInsets>
-                                             <cursor>
-                                                <Cursor fx:constant="HAND" />
-                                             </cursor>
-                                          </HBox>
-                                       </children>
-                                    </StackPane>
-                                    <StackPane layoutX="475.0" layoutY="15.0" prefHeight="150.0" prefWidth="200.0">
-                                       <children>
-                                          <HBox alignment="CENTER" spacing="12.0" styleClass="challenger-card-hbox">
-                                             <children>
-                                                <ImageView fx:id="acard04" accessibleRole="BUTTON" fitHeight="217.0" onMouseClicked="#chooseAssistantCard" pickOnBounds="true" preserveRatio="true" styleClass="card">
-                                                   <image>
-                                                      <Image url="@../images/cards/AssistantCard/Assistente_4.png" />
-                                                   </image>
-                                                   <cursor>
-                                                      <Cursor fx:constant="HAND" />
-                                                   </cursor>
-                                                </ImageView>
-                                             </children>
-                                             <padding>
-                                                <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
-                                             </padding>
-                                             <opaqueInsets>
-                                                <Insets right="10.0" />
-                                             </opaqueInsets>
-                                             <cursor>
-                                                <Cursor fx:constant="HAND" />
-                                             </cursor>
-                                          </HBox>
-                                       </children>
-                                    </StackPane>
-                                    <StackPane layoutX="37.0" layoutY="15.0" prefHeight="150.0" prefWidth="200.0">
-                                       <children>
-                                          <HBox alignment="CENTER" spacing="12.0" styleClass="challenger-card-hbox">
-                                             <children>
-                                                <ImageView fx:id="acard05" accessibleRole="BUTTON" fitHeight="217.0" onMouseClicked="#chooseAssistantCard" pickOnBounds="true" preserveRatio="true" styleClass="card">
-                                                   <image>
-                                                      <Image url="@../images/cards/AssistantCard/Assistente_5.png" />
-                                                   </image>
-                                                   <cursor>
-                                                      <Cursor fx:constant="HAND" />
-                                                   </cursor>
-                                                </ImageView>
-                                             </children>
-                                             <padding>
-                                                <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
-                                             </padding>
-                                             <opaqueInsets>
-                                                <Insets right="10.0" />
-                                             </opaqueInsets>
-                                             <cursor>
-                                                <Cursor fx:constant="HAND" />
-                                             </cursor>
-                                          </HBox>
-                                       </children>
-                                    </StackPane>
-                                    <StackPane layoutX="329.0" layoutY="15.0" prefHeight="150.0" prefWidth="200.0">
-                                       <children>
-                                          <HBox alignment="CENTER" spacing="12.0" styleClass="challenger-card-hbox">
-                                             <children>
-                                                <ImageView fx:id="acard06" accessibleRole="BUTTON" fitHeight="217.0" onMouseClicked="#chooseAssistantCard" pickOnBounds="true" preserveRatio="true" styleClass="card">
-                                                   <image>
-                                                      <Image url="@../images/cards/AssistantCard/Assistente_6.png" />
-                                                   </image>
-                                                   <cursor>
-                                                      <Cursor fx:constant="HAND" />
-                                                   </cursor>
-                                                </ImageView>
-                                             </children>
-                                             <padding>
-                                                <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
-                                             </padding>
-                                             <opaqueInsets>
-                                                <Insets right="10.0" />
-                                             </opaqueInsets>
-                                             <cursor>
-                                                <Cursor fx:constant="HAND" />
-                                             </cursor>
-                                          </HBox>
-                                       </children>
-                                    </StackPane>
-                                    <StackPane layoutX="621.0" layoutY="15.0" prefHeight="150.0" prefWidth="200.0">
-                                       <children>
-                                          <HBox alignment="CENTER" spacing="12.0" styleClass="challenger-card-hbox">
-                                             <children>
-                                                <ImageView fx:id="acard07" accessibleRole="BUTTON" fitHeight="217.0" onMouseClicked="#chooseAssistantCard" pickOnBounds="true" preserveRatio="true" styleClass="card">
-                                                   <image>
-                                                      <Image url="@../images/cards/AssistantCard/Assistente_7.png" />
-                                                   </image>
-                                                   <cursor>
-                                                      <Cursor fx:constant="HAND" />
-                                                   </cursor>
-                                                </ImageView>
-                                             </children>
-                                             <padding>
-                                                <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
-                                             </padding>
-                                             <opaqueInsets>
-                                                <Insets right="10.0" />
-                                             </opaqueInsets>
-                                             <cursor>
-                                                <Cursor fx:constant="HAND" />
-                                             </cursor>
-                                          </HBox>
-                                       </children>
-                                    </StackPane>
-                                    <StackPane layoutX="329.0" layoutY="262.0" prefHeight="150.0" prefWidth="200.0">
-                                       <children>
-                                          <HBox alignment="CENTER" spacing="12.0" styleClass="challenger-card-hbox">
-                                             <children>
-                                                <ImageView fx:id="acard08" accessibleRole="BUTTON" fitHeight="217.0" onMouseClicked="#chooseAssistantCard" pickOnBounds="true" preserveRatio="true" styleClass="card">
-                                                   <image>
-                                                      <Image url="@../images/cards/AssistantCard/Assistente_8.png" />
-                                                   </image>
-                                                   <cursor>
-                                                      <Cursor fx:constant="HAND" />
-                                                   </cursor>
-                                                </ImageView>
-                                             </children>
-                                             <padding>
-                                                <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
-                                             </padding>
-                                             <opaqueInsets>
-                                                <Insets right="10.0" />
-                                             </opaqueInsets>
-                                             <cursor>
-                                                <Cursor fx:constant="HAND" />
-                                             </cursor>
-                                          </HBox>
-                                       </children>
-                                    </StackPane>
-                                    <StackPane layoutX="37.0" layoutY="15.0" prefHeight="150.0" prefWidth="200.0">
-                                       <children>
-                                          <HBox alignment="CENTER" spacing="12.0" styleClass="challenger-card-hbox">
-                                             <children>
-                                                <ImageView fx:id="acard09" accessibleRole="BUTTON" fitHeight="217.0" onMouseClicked="#chooseAssistantCard" pickOnBounds="true" preserveRatio="true" styleClass="card">
-                                                   <image>
-                                                      <Image url="@../images/cards/AssistantCard/Assistente_9.png" />
-                                                   </image>
-                                                   <cursor>
-                                                      <Cursor fx:constant="HAND" />
-                                                   </cursor>
-                                                </ImageView>
-                                             </children>
-                                             <padding>
-                                                <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
-                                             </padding>
-                                             <opaqueInsets>
-                                                <Insets right="10.0" />
-                                             </opaqueInsets>
-                                             <cursor>
-                                                <Cursor fx:constant="HAND" />
-                                             </cursor>
-                                          </HBox>
-                                       </children>
-                                    </StackPane>
-                                    <StackPane layoutX="329.0" layoutY="15.0" prefHeight="150.0" prefWidth="200.0">
-                                       <children>
-                                          <HBox alignment="CENTER" spacing="12.0" styleClass="challenger-card-hbox">
-                                             <children>
-                                                <ImageView fx:id="acard10" accessibleRole="BUTTON" fitHeight="217.0" onMouseClicked="#chooseAssistantCard" pickOnBounds="true" preserveRatio="true" styleClass="card">
-                                                   <image>
-                                                      <Image url="@../images/cards/AssistantCard/Assistente_10.png" />
-                                                   </image>
-                                                   <cursor>
-                                                      <Cursor fx:constant="HAND" />
-                                                   </cursor>
-                                                </ImageView>
-                                             </children>
-                                             <padding>
-                                                <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
-                                             </padding>
-                                             <opaqueInsets>
-                                                <Insets right="10.0" />
-                                             </opaqueInsets>
-                                             <cursor>
-                                                <Cursor fx:constant="HAND" />
-                                             </cursor>
-                                          </HBox>
-                                       </children>
-                                    </StackPane>
-                                 </children>
-                                 <padding>
-                                    <Insets left="5.0" right="5.0" top="5.0" />
-                                 </padding>
-                              </FlowPane>
-                           </content>
-                        </ScrollPane>
-                     </children>
-                  </StackPane>
-               </children>
-               <padding>
-                  <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
-               </padding>
-            </VBox>
-         </center>
+      <BorderPane fx:id="assistantBorderPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="810.0" prefWidth="1440.0" style="visibility: true;" styleClass="anchor" stylesheets="@../css/cardSelector.css">
          <right>
             <SplitPane opacity="0.85" orientation="VERTICAL" styleClass="right-pane" BorderPane.alignment="CENTER">
                <items>
@@ -4675,6 +4336,147 @@
          <left>
             <Pane prefHeight="200.0" prefWidth="179.0" BorderPane.alignment="CENTER" />
          </left>
+         <center>
+            <StackPane prefHeight="150.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+               <children>
+                  <FlowPane alignment="TOP_CENTER" hgap="10.0" maxHeight="-Infinity" minHeight="-Infinity" style="-fx-background-color: transparent;" styleClass="flow-pane" vgap="10.0">
+                     <children>
+                        <ImageView fx:id="acard01" accessibleRole="BUTTON" fitHeight="217.0" onMouseClicked="#chooseAssistantCard" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../images/cards/AssistantCard/Assistente_1.png" />
+                           </image>
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
+                           <styleClass>
+                              <String fx:value="card" />
+                              <String fx:value="cardOnHover" />
+                           </styleClass>
+                        </ImageView>
+                        <ImageView fx:id="acard02" accessibleRole="BUTTON" fitHeight="217.0" onMouseClicked="#chooseAssistantCard" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../images/cards/AssistantCard/Assistente_2.png" />
+                           </image>
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
+                           <styleClass>
+                              <String fx:value="card" />
+                              <String fx:value="cardOnHover" />
+                           </styleClass>
+                        </ImageView>
+                        <ImageView fx:id="acard03" accessibleRole="BUTTON" fitHeight="217.0" onMouseClicked="#chooseAssistantCard" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../images/cards/AssistantCard/Assistente_3.png" />
+                           </image>
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
+                           <styleClass>
+                              <String fx:value="card" />
+                              <String fx:value="cardOnHover" />
+                           </styleClass>
+                        </ImageView>
+                        <ImageView fx:id="acard04" accessibleRole="BUTTON" fitHeight="217.0" onMouseClicked="#chooseAssistantCard" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../images/cards/AssistantCard/Assistente_4.png" />
+                           </image>
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
+                           <styleClass>
+                              <String fx:value="card" />
+                              <String fx:value="cardOnHover" />
+                           </styleClass>
+                        </ImageView>
+                        <ImageView fx:id="acard05" accessibleRole="BUTTON" fitHeight="217.0" onMouseClicked="#chooseAssistantCard" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../images/cards/AssistantCard/Assistente_5.png" />
+                           </image>
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
+                           <styleClass>
+                              <String fx:value="card" />
+                              <String fx:value="cardOnHover" />
+                           </styleClass>
+                        </ImageView>
+                        <ImageView fx:id="acard06" accessibleRole="BUTTON" fitHeight="217.0" onMouseClicked="#chooseAssistantCard" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../images/cards/AssistantCard/Assistente_6.png" />
+                           </image>
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
+                           <styleClass>
+                              <String fx:value="card" />
+                              <String fx:value="cardOnHover" />
+                           </styleClass>
+                        </ImageView>
+                        <ImageView fx:id="acard07" accessibleRole="BUTTON" fitHeight="217.0" onMouseClicked="#chooseAssistantCard" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../images/cards/AssistantCard/Assistente_7.png" />
+                           </image>
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
+                           <styleClass>
+                              <String fx:value="card" />
+                              <String fx:value="cardOnHover" />
+                           </styleClass>
+                        </ImageView>
+                        <ImageView fx:id="acard08" accessibleRole="BUTTON" fitHeight="217.0" onMouseClicked="#chooseAssistantCard" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../images/cards/AssistantCard/Assistente_8.png" />
+                           </image>
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
+                           <styleClass>
+                              <String fx:value="card" />
+                              <String fx:value="cardOnHover" />
+                           </styleClass>
+                        </ImageView>
+                        <ImageView fx:id="acard09" accessibleRole="BUTTON" fitHeight="217.0" onMouseClicked="#chooseAssistantCard" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../images/cards/AssistantCard/Assistente_9.png" />
+                           </image>
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
+                           <styleClass>
+                              <String fx:value="card" />
+                              <String fx:value="cardOnHover" />
+                           </styleClass>
+                        </ImageView>
+                        <ImageView fx:id="acard10" accessibleRole="BUTTON" fitHeight="217.0" onMouseClicked="#chooseAssistantCard" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../images/cards/AssistantCard/Assistente_10.png" />
+                           </image>
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
+                           <styleClass>
+                              <String fx:value="card" />
+                              <String fx:value="cardOnHover" />
+                           </styleClass>
+                        </ImageView>
+                     </children>
+                     <padding>
+                        <Insets left="5.0" right="5.0" top="5.0" />
+                     </padding>
+                  </FlowPane>
+                  <Text fill="#023c6f" strokeType="OUTSIDE" strokeWidth="0.0" text="Assistant Cards" textAlignment="CENTER" wrappingWidth="880" StackPane.alignment="TOP_CENTER">
+                     <font>
+                        <Font name="Avenir Next Condensed Bold" size="40.0" />
+                     </font>
+                  </Text>
+               </children>
+               <BorderPane.margin>
+                  <Insets top="10.0" />
+               </BorderPane.margin>
+            </StackPane>
+         </center>
       </BorderPane>
    </children>
 </Pane>

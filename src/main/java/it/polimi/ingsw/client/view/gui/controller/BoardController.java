@@ -6,11 +6,14 @@ import it.polimi.ingsw.enums.TowerColor;
 import it.polimi.ingsw.enums.Wizard;
 import it.polimi.ingsw.events.RequestEvent;
 import it.polimi.ingsw.model.ThinModel;
+import it.polimi.ingsw.model.card.AssistantCard;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.event.Event;
 import javafx.fxml.FXML;
+import javafx.scene.Cursor;
 import javafx.scene.Node;
+import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.BorderPane;
@@ -18,10 +21,7 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
 import javafx.scene.text.Text;
 
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.Objects;
+import java.util.*;
 
 public class BoardController implements GUIController {
 
@@ -29,6 +29,8 @@ public class BoardController implements GUIController {
     private Map<Integer, Integer> idMap = null;
     private Map<Integer, Map<String, Map<String, ImageView>>> schools = null;
     private Map<Integer, Map<String, Object>> islands = null;
+
+    private List<Node> assistantCards;
 
     @FXML
     private BorderPane wizardBorderPane;
@@ -42,7 +44,7 @@ public class BoardController implements GUIController {
         if (options.size() == 1) {
             switch (options.get(0)) {
                 case "chooseWizard" -> wizardBorderPane.setVisible(true);
-                case "playAssistantCard" -> assistantBorderPane.setVisible(true);
+                case "playAssistantCard" -> setAssistantCards(this.gui.getModel().getAssistantCardsByPlayer(gui.getId()));
             }
         }
     }
@@ -68,6 +70,7 @@ public class BoardController implements GUIController {
         }
         this.setNicknamesOnSchools(model);
         this.setupGameBoard(model);
+
 
         //TODO
     }
@@ -520,6 +523,38 @@ public class BoardController implements GUIController {
         ((Text) gui.getStage().getScene().lookup(ID)).setText(String.valueOf(numOfPawns));
     }
 
+    private void setupAssistantCards() {
+        Scene scene = gui.getScenes().get("boardScene");
+        this.assistantCards = new ArrayList<>();
+        for (int i = 1; i < 11; i++) {
+            Node card = scene.lookup("#" + getCardFXID(i));
+            this.assistantCards.add(card);
+        }
+    }
+    private String getCardFXID (int id) {
+        String string = Integer.toString(id);
+        if (string.length() < 2) string = "0" + string;
+        return "acard" + string;
+    }
+
+
+    public void setAssistantCards(List<AssistantCard> cards) {
+        if (assistantCards == null) setupAssistantCards();
+        for (Node assistantCard : assistantCards) {
+            assistantCard.setCursor(Cursor.DEFAULT);
+            assistantCard.setOpacity(0.30);
+            assistantCard.getStyleClass().remove("cardOnHover");
+        }
+        for (AssistantCard card : cards) {
+            Node node = assistantCards.get(card.getValue() - 1);
+            node.setCursor(Cursor.HAND);
+            node.setOpacity(1.0);
+            node.getStyleClass().add("cardOnHover");
+            node.setVisible(true);
+        }
+        assistantBorderPane.setVisible(true);
+    }
+
     @FXML
     private void exitGame(ActionEvent event) {
         Platform.exit();
@@ -530,14 +565,14 @@ public class BoardController implements GUIController {
         String id = ((Node) event.getSource()).getId();
         id = id.substring(0, id.length() - 5);
         this.gui.fireRequest(new RequestEvent("chooseWizard", this.gui.getId(), Wizard.valueOf(id.toUpperCase()).ordinal()));
-        System.out.println(Wizard.valueOf(id.toUpperCase()));
+        //System.out.println(Wizard.valueOf(id.toUpperCase()));
     }
 
     @FXML
     private void chooseAssistantCard(Event event) {
         String id = ((Node) event.getSource()).getId();
         id = id.substring(id.length() - 2);
-        System.out.println(id);
+        //System.out.println(id);
         assistantBorderPane.setVisible(false); //remove from here
         gui.fireRequest(new RequestEvent("playAssistantCard", gui.getId(), Integer.parseInt(id)));
     }
