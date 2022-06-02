@@ -7,11 +7,17 @@
     -fx-background-color: transparent;
 }
 
-.card {
+.cardValid {
     -fx-effect: dropshadow(three-pass-box, #000000, 8.0, 0.0, 0, 0);
+	-fx-cursor: HAND;
 }
 
-.cardOnHover:hover {
+.cardValid:hover {
     -fx-effect: dropshadow(three-pass-box, #ffff00, 8.0, 3.0, 0, 0);
-    
+}
+
+.cardInvalid {
+	-fx-effect: dropshadow(three-pass-box, #000000, 8.0, 0.0, 0, 0);
+	-fx-opacity: 0.3;
+	-fx-cursor: DEFAULT;
 }

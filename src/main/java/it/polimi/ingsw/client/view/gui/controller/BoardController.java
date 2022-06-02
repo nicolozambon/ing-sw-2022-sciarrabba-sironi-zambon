@@ -10,7 +10,6 @@ import it.polimi.ingsw.model.card.AssistantCard;
 import javafx.application.Platform;
 import javafx.event.Event;
 import javafx.fxml.FXML;
-import javafx.scene.Cursor;
 import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.ToggleButton;
@@ -542,22 +541,18 @@ public class BoardController implements GUIController {
         return "acard" + string;
     }
 
-
     public void setAssistantCards(List<AssistantCard> cards) {
         if (assistantCards == null) setupAssistantCards();
         for (Node assistantCard : assistantCards) {
+            assistantCard.getStyleClass().clear();
+            assistantCard.getStyleClass().add("cardInvalid");
             assistantCard.setDisable(true);
-            assistantCard.setCursor(Cursor.DEFAULT);
-            assistantCard.setOpacity(0.30);
-            assistantCard.getStyleClass().remove("cardOnHover");
         }
         for (AssistantCard card : cards) {
             Node node = assistantCards.get(card.getValue() - 1);
+            node.getStyleClass().clear();
+            node.getStyleClass().add("cardValid");
             node.setDisable(false);
-            node.setCursor(Cursor.HAND);
-            node.setOpacity(1.0);
-            node.getStyleClass().add("cardOnHover");
-            node.setVisible(true);
         }
         assistantBorderPane.setVisible(true);
     }

@@ -1,27 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.String?>
-<?import javafx.geometry.Insets?>
-<?import javafx.scene.Cursor?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.control.SplitPane?>
-<?import javafx.scene.control.ToggleButton?>
-<?import javafx.scene.effect.DropShadow?>
-<?import javafx.scene.image.Image?>
-<?import javafx.scene.image.ImageView?>
-<?import javafx.scene.layout.BorderPane?>
-<?import javafx.scene.layout.ColumnConstraints?>
-<?import javafx.scene.layout.FlowPane?>
-<?import javafx.scene.layout.GridPane?>
-<?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.Pane?>
-<?import javafx.scene.layout.RowConstraints?>
-<?import javafx.scene.layout.StackPane?>
-<?import javafx.scene.layout.VBox?>
-<?import javafx.scene.paint.Color?>
-<?import javafx.scene.text.Font?>
-<?import javafx.scene.text.Text?>
-
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.effect.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.paint.*?>
+<?import javafx.scene.text.*?>
 <Pane minHeight="810.0" minWidth="1440.0" prefHeight="810.0" prefWidth="1440.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="it.polimi.ingsw.client.view.gui.controller.BoardController">
    <children>
         <BorderPane layoutX="-313.0" layoutY="-174.0" minHeight="1080.0" minWidth="1920.0" prefHeight="1160.0" prefWidth="2067.0" scaleX="0.7" scaleY="0.7" styleClass="anchor" stylesheets="@../css/boardScene.css">
@@ -4420,125 +4406,85 @@
                <children>
                   <FlowPane alignment="TOP_CENTER" hgap="10.0" maxHeight="-Infinity" minHeight="-Infinity" style="-fx-background-color: transparent;" styleClass="flow-pane" vgap="10.0">
                      <children>
-                        <ImageView fx:id="acard01" accessibleRole="BUTTON" fitHeight="217.0" onMouseClicked="#chooseAssistantCard" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fx:id="acard01" accessibleRole="BUTTON" fitHeight="217.0" onMouseClicked="#chooseAssistantCard" pickOnBounds="true" preserveRatio="true" styleClass="cardValid">
                            <image>
                               <Image url="@../images/cards/AssistantCard/Assistente_1.png" />
                            </image>
                            <cursor>
-                              <Cursor fx:constant="HAND" />
+                              <Cursor fx:constant="DEFAULT" />
                            </cursor>
-                           <styleClass>
-                              <String fx:value="card" />
-                              <String fx:value="cardOnHover" />
-                           </styleClass>
                         </ImageView>
-                        <ImageView fx:id="acard02" accessibleRole="BUTTON" fitHeight="217.0" onMouseClicked="#chooseAssistantCard" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fx:id="acard02" accessibleRole="BUTTON" fitHeight="217.0" onMouseClicked="#chooseAssistantCard" pickOnBounds="true" preserveRatio="true" styleClass="cardValid">
                            <image>
                               <Image url="@../images/cards/AssistantCard/Assistente_2.png" />
                            </image>
                            <cursor>
-                              <Cursor fx:constant="HAND" />
+                              <Cursor fx:constant="DEFAULT" />
                            </cursor>
-                           <styleClass>
-                              <String fx:value="card" />
-                              <String fx:value="cardOnHover" />
-                           </styleClass>
                         </ImageView>
-                        <ImageView fx:id="acard03" accessibleRole="BUTTON" fitHeight="217.0" onMouseClicked="#chooseAssistantCard" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fx:id="acard03" accessibleRole="BUTTON" fitHeight="217.0" onMouseClicked="#chooseAssistantCard" pickOnBounds="true" preserveRatio="true" styleClass="cardValid">
                            <image>
                               <Image url="@../images/cards/AssistantCard/Assistente_3.png" />
                            </image>
                            <cursor>
-                              <Cursor fx:constant="HAND" />
+                              <Cursor fx:constant="DEFAULT" />
                            </cursor>
-                           <styleClass>
-                              <String fx:value="card" />
-                              <String fx:value="cardOnHover" />
-                           </styleClass>
                         </ImageView>
-                        <ImageView fx:id="acard04" accessibleRole="BUTTON" fitHeight="217.0" onMouseClicked="#chooseAssistantCard" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fx:id="acard04" accessibleRole="BUTTON" fitHeight="217.0" onMouseClicked="#chooseAssistantCard" pickOnBounds="true" preserveRatio="true" styleClass="cardValid">
                            <image>
                               <Image url="@../images/cards/AssistantCard/Assistente_4.png" />
                            </image>
                            <cursor>
-                              <Cursor fx:constant="HAND" />
+                              <Cursor fx:constant="DEFAULT" />
                            </cursor>
-                           <styleClass>
-                              <String fx:value="card" />
-                              <String fx:value="cardOnHover" />
-                           </styleClass>
                         </ImageView>
-                        <ImageView fx:id="acard05" accessibleRole="BUTTON" fitHeight="217.0" onMouseClicked="#chooseAssistantCard" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fx:id="acard05" accessibleRole="BUTTON" fitHeight="217.0" onMouseClicked="#chooseAssistantCard" pickOnBounds="true" preserveRatio="true" styleClass="cardValid">
                            <image>
                               <Image url="@../images/cards/AssistantCard/Assistente_5.png" />
                            </image>
                            <cursor>
-                              <Cursor fx:constant="HAND" />
+                              <Cursor fx:constant="DEFAULT" />
                            </cursor>
-                           <styleClass>
-                              <String fx:value="card" />
-                              <String fx:value="cardOnHover" />
-                           </styleClass>
                         </ImageView>
-                        <ImageView fx:id="acard06" accessibleRole="BUTTON" fitHeight="217.0" onMouseClicked="#chooseAssistantCard" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fx:id="acard06" accessibleRole="BUTTON" fitHeight="217.0" onMouseClicked="#chooseAssistantCard" pickOnBounds="true" preserveRatio="true" styleClass="cardValid">
                            <image>
                               <Image url="@../images/cards/AssistantCard/Assistente_6.png" />
                            </image>
                            <cursor>
-                              <Cursor fx:constant="HAND" />
+                              <Cursor fx:constant="DEFAULT" />
                            </cursor>
-                           <styleClass>
-                              <String fx:value="card" />
-                              <String fx:value="cardOnHover" />
-                           </styleClass>
                         </ImageView>
-                        <ImageView fx:id="acard07" accessibleRole="BUTTON" fitHeight="217.0" onMouseClicked="#chooseAssistantCard" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fx:id="acard07" accessibleRole="BUTTON" fitHeight="217.0" onMouseClicked="#chooseAssistantCard" pickOnBounds="true" preserveRatio="true" styleClass="cardValid">
                            <image>
                               <Image url="@../images/cards/AssistantCard/Assistente_7.png" />
                            </image>
                            <cursor>
-                              <Cursor fx:constant="HAND" />
+                              <Cursor fx:constant="DEFAULT" />
                            </cursor>
-                           <styleClass>
-                              <String fx:value="card" />
-                              <String fx:value="cardOnHover" />
-                           </styleClass>
                         </ImageView>
-                        <ImageView fx:id="acard08" accessibleRole="BUTTON" fitHeight="217.0" onMouseClicked="#chooseAssistantCard" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fx:id="acard08" accessibleRole="BUTTON" fitHeight="217.0" onMouseClicked="#chooseAssistantCard" pickOnBounds="true" preserveRatio="true" styleClass="cardValid">
                            <image>
                               <Image url="@../images/cards/AssistantCard/Assistente_8.png" />
                            </image>
                            <cursor>
-                              <Cursor fx:constant="HAND" />
+                              <Cursor fx:constant="DEFAULT" />
                            </cursor>
-                           <styleClass>
-                              <String fx:value="card" />
-                              <String fx:value="cardOnHover" />
-                           </styleClass>
                         </ImageView>
-                        <ImageView fx:id="acard09" accessibleRole="BUTTON" fitHeight="217.0" onMouseClicked="#chooseAssistantCard" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fx:id="acard09" accessibleRole="BUTTON" fitHeight="217.0" onMouseClicked="#chooseAssistantCard" pickOnBounds="true" preserveRatio="true" styleClass="cardValid">
                            <image>
                               <Image url="@../images/cards/AssistantCard/Assistente_9.png" />
                            </image>
                            <cursor>
-                              <Cursor fx:constant="HAND" />
+                              <Cursor fx:constant="DEFAULT" />
                            </cursor>
-                           <styleClass>
-                              <String fx:value="card" />
-                              <String fx:value="cardOnHover" />
-                           </styleClass>
                         </ImageView>
-                        <ImageView fx:id="acard10" accessibleRole="BUTTON" fitHeight="217.0" onMouseClicked="#chooseAssistantCard" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fx:id="acard10" accessibleRole="BUTTON" fitHeight="217.0" onMouseClicked="#chooseAssistantCard" pickOnBounds="true" preserveRatio="true" styleClass="cardValid">
                            <image>
                               <Image url="@../images/cards/AssistantCard/Assistente_10.png" />
                            </image>
                            <cursor>
-                              <Cursor fx:constant="HAND" />
+                              <Cursor fx:constant="DEFAULT" />
                            </cursor>
-                           <styleClass>
-                              <String fx:value="card" />
-                              <String fx:value="cardOnHover" />
-                           </styleClass>
                         </ImageView>
                      </children>
                      <padding>
