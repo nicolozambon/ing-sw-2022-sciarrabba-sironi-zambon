@@ -638,11 +638,12 @@ public class BoardController implements GUIController {
      * @param ID 1, 2, 3 of the card in game
      * @return FX:ID generated.
      */
-    private String getCharacterCardSelectorID (int ID, boolean coin, boolean cost) {
+    private String getCharacterCardSelectorID (int ID, boolean coin, boolean cost, boolean text) {
         String id = "";
         if (coin) id = "coin";
         if (cost) id = "cost";
-        id = id + "characterCard" + ID;
+        if (text) id = "text";
+        id = id + "CharacterCard" + ID;
 
         return id;
     }
