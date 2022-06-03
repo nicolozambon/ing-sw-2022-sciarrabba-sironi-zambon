@@ -23,12 +23,8 @@ public class Eriantys {
                 }
                 break;
             case 2:
-                try {
-                    Client client = new Client();
-                    client.main(args);
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
+                Client client = new Client();
+                client.main(args);
                 break;
         }
 
