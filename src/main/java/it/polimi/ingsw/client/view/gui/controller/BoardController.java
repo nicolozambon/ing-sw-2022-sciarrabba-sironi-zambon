@@ -16,11 +16,11 @@ import javafx.scene.control.ToggleButton;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.HBox;
-import javafx.scene.layout.StackPane;
 import javafx.scene.text.Text;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Objects;
 
 public class BoardController implements GUIController {
 
@@ -211,8 +211,8 @@ public class BoardController implements GUIController {
 
     @FXML
     private void chooseCharacterCard (Event event) {
-        String id = ((Node) event.getSource()).getId();
-        id = id.substring(id.length() - 1);
+        String id = ((ImageView) event.getSource()).getImage().getUrl();
+        id = Character.toString(id.charAt(id.length() - 5));
         gui.fireRequest(new RequestEvent("playCharacterCard", gui.getId(), Integer.parseInt(id)));
         closeCharacterCardSelector();
         gui.playPopEffect();
