@@ -17,6 +17,7 @@ public class LobbyController implements GUIController {
 
     @FXML
     private void exitButtonClicked() {
+        gui.playPopEffect();
         System.out.println("exit");
         try {
             this.gui.stop();
