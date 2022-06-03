@@ -2229,7 +2229,7 @@
                                          <VBox prefHeight="519.0" prefWidth="400.0">
                                              <children>
                                                  <Pane prefHeight="16.0" prefWidth="401.0" />
-                                          <HBox prefHeight="451.0" prefWidth="399.0">
+                                          <HBox fx:id="diningRoom" accessibleRole="BUTTON" onMouseClicked="#dgOnClick" prefHeight="451.0" prefWidth="399.0">
                                              <children>
                                                 <VBox prefHeight="451.0" prefWidth="48.0" />
                                                 <VBox fx:id="dgGreen" accessibleRole="BUTTON" onMouseClicked="#dgOnClick" styleClass="borderOnHover">
