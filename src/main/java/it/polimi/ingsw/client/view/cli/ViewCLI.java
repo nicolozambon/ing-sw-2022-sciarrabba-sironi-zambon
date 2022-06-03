@@ -95,15 +95,20 @@ public class ViewCLI implements AnswerListener, RequestListenableInterface {
     }
 
     //TODO default loopback ip for testing purpose
-    public void startCLI() throws IOException {
+    public void startCLI() {
         Scanner stdin = new Scanner(System.in);
         System.out.println("Server IP:");
         String ip = stdin.nextLine();
-        this.clientConnection = new ClientConnection(ip);
-        this.clientConnection.addAnswerListener(this);
-        this.addRequestListener(this.clientConnection);
-        new Thread(this.clientConnection).start();
-        handleOptions(new AnswerEvent("options", this.options));
+        try {
+            this.clientConnection = new ClientConnection(ip);
+            this.clientConnection.addAnswerListener(this);
+            this.addRequestListener(this.clientConnection);
+            new Thread(this.clientConnection).start();
+            handleOptions(new AnswerEvent("options", this.options));
+        } catch (IOException e) {
+            System.out.println("Server not found!");
+        }
+
     }
 
     @Override

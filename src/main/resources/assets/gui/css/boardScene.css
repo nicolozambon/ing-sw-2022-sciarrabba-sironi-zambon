@@ -13,14 +13,6 @@
     -fx-effect: dropshadow(three-pass-box, #ffff00, 2.0, 1.0, 0, 0);
 }
 
-.wizardCard:hover {
-    -fx-effect: dropshadow(three-pass-box, #ffff00, 8.0, 3.0, 0, 0);
-}
-
-.wizardCard {
-    -fx-effect: dropshadow(three-pass-box, #000000, 8.0, 0.0, 0, 0);
-}
-
 .valid_island {
     -fx-effect: dropshadow(three-pass-box, rgba(94, 255, 0, 0.7), 10.0, 1.0, 0, 0);
 }

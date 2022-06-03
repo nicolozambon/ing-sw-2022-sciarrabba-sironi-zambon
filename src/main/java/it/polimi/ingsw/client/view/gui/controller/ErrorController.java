@@ -12,6 +12,7 @@ public class ErrorController implements GUIController {
 
     @FXML
     private void okButtonOnClick() {
+        gui.playPopEffect();
         gui.getErrorStage().close();
     }
 

@@ -43,6 +43,11 @@
                                           <Font name="Avenir Next Condensed Bold" size="20.0" />
                                        </font>
                                     </Text>
+                                    <Text fx:id="coinPlayer01" fill="WHITE" layoutX="10.0" layoutY="98.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Player 1" textAlignment="CENTER" wrappingWidth="68.0">
+                                       <font>
+                                          <Font name="Avenir Next Condensed Bold" size="20.0" />
+                                       </font>
+                                    </Text>
                                  </children>
                               </VBox>
                            </children>
@@ -61,6 +66,11 @@
                                           <Font name="Avenir Next Condensed Bold" size="20.0" />
                                        </font>
                                     </Text>
+                                    <Text fx:id="coinPlayer011" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Player 2" textAlignment="CENTER" wrappingWidth="68.0">
+                                       <font>
+                                          <Font name="Avenir Next Condensed Bold" size="20.0" />
+                                       </font>
+                                    </Text>
                                  </children>
                               </VBox>
                            </children>
@@ -75,6 +85,11 @@
                                                   </image>
                                               </ImageView>
                                     <Text fx:id="coinPlayer2" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="COIN" textAlignment="CENTER" wrappingWidth="68.0">
+                                       <font>
+                                          <Font name="Avenir Next Condensed Bold" size="20.0" />
+                                       </font>
+                                    </Text>
+                                    <Text fx:id="coinPlayer012" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Player 3" textAlignment="CENTER" wrappingWidth="68.0">
                                        <font>
                                           <Font name="Avenir Next Condensed Bold" size="20.0" />
                                        </font>
@@ -4237,11 +4252,11 @@
              </HBox>
          </right>
         </BorderPane>
-      <BorderPane fx:id="wizardBorderPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="810.0" prefWidth="1440.0" style="visibility: false;" styleClass="anchor" stylesheets="@../css/boardScene.css">
+      <BorderPane fx:id="wizardBorderPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="810.0" prefWidth="1440.0" style="visibility: false;" styleClass="anchor" stylesheets="@../css/cardSelector.css">
          <center>
             <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" BorderPane.alignment="CENTER">
                <children>
-                  <ImageView fx:id="kingImage" accessibleRole="BUTTON" fitHeight="386.0" fitWidth="340.0" onMouseClicked="#chooseWizard" pickOnBounds="true" preserveRatio="true" styleClass="wizardCard">
+                  <ImageView fx:id="kingImage" accessibleRole="BUTTON" fitHeight="386.0" fitWidth="340.0" onMouseClicked="#chooseWizard" pickOnBounds="true" preserveRatio="true" styleClass="cardValid">
                      <image>
                         <Image url="@../images/cards/AssistantCard/wizardBack/king.png" />
                      </image>
@@ -4252,7 +4267,7 @@
                         <Cursor fx:constant="HAND" />
                      </cursor>
                   </ImageView>
-                  <ImageView fx:id="pixieImage" accessibleRole="BUTTON" fitHeight="386.0" fitWidth="340.0" onMouseClicked="#chooseWizard" pickOnBounds="true" preserveRatio="true" styleClass="wizardCard">
+                  <ImageView fx:id="pixieImage" accessibleRole="BUTTON" fitHeight="386.0" fitWidth="340.0" onMouseClicked="#chooseWizard" pickOnBounds="true" preserveRatio="true" styleClass="cardValid">
                      <image>
                         <Image url="@../images/cards/AssistantCard/wizardBack/pixie.png" />
                      </image>
@@ -4263,7 +4278,7 @@
                         <Cursor fx:constant="HAND" />
                      </cursor>
                   </ImageView>
-                  <ImageView fx:id="sorcererImage" accessibleRole="BUTTON" fitHeight="386.0" fitWidth="340.0" onMouseClicked="#chooseWizard" pickOnBounds="true" preserveRatio="true" styleClass="wizardCard">
+                  <ImageView fx:id="sorcererImage" accessibleRole="BUTTON" fitHeight="386.0" fitWidth="340.0" onMouseClicked="#chooseWizard" pickOnBounds="true" preserveRatio="true" styleClass="cardValid">
                      <image>
                         <Image url="@../images/cards/AssistantCard/wizardBack/sorcerer.png" />
                      </image>
@@ -4274,7 +4289,7 @@
                         <Cursor fx:constant="HAND" />
                      </cursor>
                   </ImageView>
-                  <ImageView fx:id="wizardImage" accessibleRole="BUTTON" fitHeight="386.0" fitWidth="340.0" onMouseClicked="#chooseWizard" pickOnBounds="true" preserveRatio="true" styleClass="wizardCard">
+                  <ImageView fx:id="wizardImage" accessibleRole="BUTTON" fitHeight="386.0" fitWidth="340.0" onMouseClicked="#chooseWizard" pickOnBounds="true" preserveRatio="true" styleClass="cardValid">
                      <image>
                         <Image url="@../images/cards/AssistantCard/wizardBack/wizard.png" />
                      </image>
@@ -4525,102 +4540,156 @@
                <children>
                   <FlowPane alignment="TOP_CENTER" hgap="10.0" maxHeight="-Infinity" minHeight="-Infinity" prefWidth="1192.0" style="-fx-background-color: transparent;" styleClass="flow-pane" vgap="10.0">
                      <children>
-                        <StackPane>
+                        <VBox>
                            <children>
-                              <ImageView fx:id="characterCard1" accessibleRole="BUTTON" fitHeight="272.0" fitWidth="200.0" onMouseClicked="#chooseCharacterCard" pickOnBounds="true" preserveRatio="true" styleClass="cardValid">
-                                 <image>
-                                    <Image url="@../images/cards/CharacterCard/CharacterCard_1.jpg" />
-                                 </image>
+                              <StackPane>
+                                 <children>
+                                    <ImageView fx:id="CharacterCard1" accessibleRole="BUTTON" fitHeight="272.0" fitWidth="200.0" onMouseClicked="#chooseCharacterCard" pickOnBounds="true" preserveRatio="true" styleClass="cardValid">
+                                       <image>
+                                          <Image url="@../images/cards/CharacterCard/CharacterCard_1.jpg" />
+                                       </image>
+                                       <cursor>
+                                          <Cursor fx:constant="HAND" />
+                                       </cursor>
+                                    </ImageView>
+                                    <ImageView fx:id="coinCharacterCard1" fitHeight="84.0" fitWidth="52.0" pickOnBounds="true" preserveRatio="true" StackPane.alignment="BOTTOM_LEFT">
+                                       <image>
+                                          <Image url="@../images/coin.png" />
+                                       </image>
+                                       <StackPane.margin>
+                                          <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                       </StackPane.margin>
+                                       <effect>
+                                          <DropShadow />
+                                       </effect>
+                                    </ImageView>
+                                    <Text fx:id="costCharacterCard1" disable="true" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" StackPane.alignment="BOTTOM_CENTER">
+                                       <font>
+                                          <Font name="Avenir Next Condensed Bold" size="35.0" />
+                                       </font>
+                                       <effect>
+                                          <DropShadow />
+                                       </effect>
+                                    </Text>
+                                 </children>
                                  <cursor>
-                                    <Cursor fx:constant="DEFAULT" />
+                                    <Cursor fx:constant="HAND" />
                                  </cursor>
-                              </ImageView>
-                              <ImageView fx:id="coinCharacterCard1" fitHeight="84.0" fitWidth="52.0" pickOnBounds="true" preserveRatio="true" StackPane.alignment="BOTTOM_LEFT">
-                                 <image>
-                                    <Image url="@../images/coin.png" />
-                                 </image>
-                                 <StackPane.margin>
-                                    <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
-                                 </StackPane.margin>
-                                 <effect>
-                                    <DropShadow />
-                                 </effect>
-                              </ImageView>
-                              <Text fx:id="costCharacterCard1" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" StackPane.alignment="BOTTOM_CENTER">
+                              </StackPane>
+                              <Text fx:id="textCharacterCard1" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Choose an Island and resolve the Island as if Mother Nature had ended her movement there. Mother Nature will still move and the Island where she ends her movement will also be resolved." textAlignment="CENTER" wrappingWidth="185.9853515625">
+                                 <VBox.margin>
+                                    <Insets top="10.0" />
+                                 </VBox.margin>
                                  <font>
-                                    <Font name="Avenir Next Condensed Bold" size="35.0" />
+                                    <Font name="Avenir Next Bold" size="16.0" />
                                  </font>
                                  <effect>
                                     <DropShadow />
                                  </effect>
                               </Text>
                            </children>
-                        </StackPane>
-                        <StackPane>
+                        </VBox>
+                        <VBox>
                            <children>
-                              <ImageView fx:id="characterCard2" accessibleRole="BUTTON" fitHeight="272.0" fitWidth="200.0" onMouseClicked="#chooseCharacterCard" pickOnBounds="true" preserveRatio="true" styleClass="cardValid">
-                                 <image>
-                                    <Image url="@../images/cards/CharacterCard/CharacterCard_2.jpg" />
-                                 </image>
+                              <StackPane>
+                                 <children>
+                                    <ImageView fx:id="CharacterCard2" accessibleRole="BUTTON" fitHeight="272.0" fitWidth="200.0" onMouseClicked="#chooseCharacterCard" pickOnBounds="true" preserveRatio="true" styleClass="cardValid">
+                                       <image>
+                                          <Image url="@../images/cards/CharacterCard/CharacterCard_2.jpg" />
+                                       </image>
+                                       <cursor>
+                                          <Cursor fx:constant="HAND" />
+                                       </cursor>
+                                    </ImageView>
+                                    <ImageView fx:id="coinCharacterCard2" fitHeight="84.0" fitWidth="52.0" pickOnBounds="true" preserveRatio="true" StackPane.alignment="BOTTOM_LEFT">
+                                       <image>
+                                          <Image url="@../images/coin.png" />
+                                       </image>
+                                       <effect>
+                                          <DropShadow />
+                                       </effect>
+                                       <StackPane.margin>
+                                          <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                       </StackPane.margin>
+                                    </ImageView>
+                                    <Text fx:id="costCharacterCard2" disable="true" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" StackPane.alignment="BOTTOM_CENTER">
+                                       <font>
+                                          <Font name="Avenir Next Condensed Bold" size="35.0" />
+                                       </font>
+                                       <effect>
+                                          <DropShadow />
+                                       </effect>
+                                    </Text>
+                                 </children>
                                  <cursor>
-                                    <Cursor fx:constant="DEFAULT" />
+                                    <Cursor fx:constant="HAND" />
                                  </cursor>
-                              </ImageView>
-                              <ImageView fx:id="coinCharacterCard2" fitHeight="84.0" fitWidth="52.0" pickOnBounds="true" preserveRatio="true" StackPane.alignment="BOTTOM_LEFT">
-                                 <image>
-                                    <Image url="@../images/coin.png" />
-                                 </image>
-                                 <effect>
-                                    <DropShadow />
-                                 </effect>
-                                 <StackPane.margin>
-                                    <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
-                                 </StackPane.margin>
-                              </ImageView>
-                              <Text fx:id="costCharacterCard2" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" StackPane.alignment="BOTTOM_CENTER">
+                              </StackPane>
+                              <Text fx:id="textCharacterCard2" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="During this turn, you take control of any number of Professors even if you have the same number of Students as the player who currently controls them." textAlignment="CENTER" wrappingWidth="185.9853515625">
                                  <font>
-                                    <Font name="Avenir Next Condensed Bold" size="35.0" />
+                                    <Font name="Avenir Next Bold" size="16.0" />
                                  </font>
+                                 <VBox.margin>
+                                    <Insets top="10.0" />
+                                 </VBox.margin>
                                  <effect>
                                     <DropShadow />
                                  </effect>
                               </Text>
                            </children>
-                        </StackPane>
-                        <StackPane>
+                        </VBox>
+                        <VBox>
                            <children>
-                              <ImageView fx:id="characterCard3" accessibleRole="BUTTON" fitHeight="272.0" fitWidth="200.0" onMouseClicked="#chooseCharacterCard" pickOnBounds="true" preserveRatio="true" styleClass="cardValid">
-                                 <image>
-                                    <Image url="@../images/cards/CharacterCard/CharacterCard_3.jpg" />
-                                 </image>
+                              <StackPane>
+                                 <children>
+                                    <ImageView fx:id="CharacterCard3" accessibleRole="BUTTON" fitHeight="272.0" fitWidth="200.0" onMouseClicked="#chooseCharacterCard" pickOnBounds="true" preserveRatio="true" styleClass="cardValid">
+                                       <image>
+                                          <Image url="@../images/cards/CharacterCard/CharacterCard_3.jpg" />
+                                       </image>
+                                       <cursor>
+                                          <Cursor fx:constant="HAND" />
+                                       </cursor>
+                                    </ImageView>
+                                    <ImageView fx:id="coinCharacterCard3" fitHeight="84.0" fitWidth="52.0" pickOnBounds="true" preserveRatio="true" StackPane.alignment="BOTTOM_LEFT">
+                                       <image>
+                                          <Image url="@../images/coin.png" />
+                                       </image>
+                                       <effect>
+                                          <DropShadow />
+                                       </effect>
+                                       <StackPane.margin>
+                                          <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                       </StackPane.margin>
+                                    </ImageView>
+                                    <Text fx:id="costCharacterCard3" disable="true" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" StackPane.alignment="BOTTOM_CENTER">
+                                       <font>
+                                          <Font name="Avenir Next Condensed Bold" size="35.0" />
+                                       </font>
+                                       <effect>
+                                          <DropShadow />
+                                       </effect>
+                                    </Text>
+                                 </children>
                                  <cursor>
-                                    <Cursor fx:constant="DEFAULT" />
+                                    <Cursor fx:constant="HAND" />
                                  </cursor>
-                              </ImageView>
-                              <ImageView fx:id="coinCharacterCard3" fitHeight="84.0" fitWidth="52.0" pickOnBounds="true" preserveRatio="true" StackPane.alignment="BOTTOM_LEFT">
-                                 <image>
-                                    <Image url="@../images/coin.png" />
-                                 </image>
-                                 <effect>
-                                    <DropShadow />
-                                 </effect>
-                                 <StackPane.margin>
-                                    <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
-                                 </StackPane.margin>
-                              </ImageView>
-                              <Text fx:id="costCharacterCard3" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" StackPane.alignment="BOTTOM_CENTER">
+                              </StackPane>
+                              <Text fx:id="textCharacterCard3" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Choose a type of Student: every player (including yourself) must return 3 Students of that type from their Dining Room to the bag. If any player has fewer than 3 Students of that type, return as many Students as they have." textAlignment="CENTER" wrappingWidth="185.9853515625">
                                  <font>
-                                    <Font name="Avenir Next Condensed Bold" size="35.0" />
+                                    <Font name="Avenir Next Bold" size="16.0" />
                                  </font>
+                                 <VBox.margin>
+                                    <Insets top="10.0" />
+                                 </VBox.margin>
                                  <effect>
                                     <DropShadow />
                                  </effect>
                               </Text>
                            </children>
-                        </StackPane>
+                        </VBox>
                      </children>
                      <padding>
-                        <Insets left="5.0" right="5.0" top="5.0" />
+                        <Insets left="5.0" right="5.0" top="200.0" />
                      </padding>
                   </FlowPane>
                   <Text fill="#023c6f" strokeType="OUTSIDE" strokeWidth="0.0" text="Character Cards" textAlignment="CENTER" wrappingWidth="880" StackPane.alignment="TOP_CENTER">
@@ -4628,7 +4697,7 @@
                         <Font name="Avenir Next Condensed Bold" size="40.0" />
                      </font>
                      <StackPane.margin>
-                        <Insets top="25.0" />
+                        <Insets top="15.0" />
                      </StackPane.margin>
                   </Text>
                </children>
@@ -4640,7 +4709,19 @@
          <right>
             <Pane prefHeight="200.0" prefWidth="179.0" BorderPane.alignment="CENTER">
                <children>
-                  <Pane prefHeight="200.0" prefWidth="179.0" />
+                  <ImageView fx:id="characterCardSelectBtn1" accessibleRole="BUTTON" fitHeight="52.0" fitWidth="134.0" layoutX="33.0" layoutY="23.0" onMouseClicked="#closeCharacterCardSelector" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/buttons/normalBtn.png" />
+                     </image>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </ImageView>
+                  <Text disable="true" fill="WHITE" layoutX="70.0" layoutY="55.0" strokeType="OUTSIDE" strokeWidth="0.0" text="EXIT">
+                     <font>
+                        <Font name="Avenir Next Bold" size="18.0" />
+                     </font>
+                  </Text>
                </children>
             </Pane>
          </right>

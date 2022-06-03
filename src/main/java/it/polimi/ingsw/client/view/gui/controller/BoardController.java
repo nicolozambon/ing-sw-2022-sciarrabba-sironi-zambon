@@ -206,6 +206,16 @@ public class BoardController implements GUIController {
         //System.out.println(id);
         assistantBorderPane.setVisible(false); //remove from here
         gui.fireRequest(new RequestEvent("playAssistantCard", gui.getId(), Integer.parseInt(id)));
+        gui.playPopEffect();
+    }
+
+    @FXML
+    private void chooseCharacterCard (Event event) {
+        String id = ((Node) event.getSource()).getId();
+        id = id.substring(id.length() - 1);
+        gui.fireRequest(new RequestEvent("playCharacterCard", gui.getId(), Integer.parseInt(id)));
+        closeCharacterCardSelector();
+        gui.playPopEffect();
     }
 
     @FXML
@@ -221,7 +231,29 @@ public class BoardController implements GUIController {
     }
 
     @FXML
-    private void openCharacterCardSelector (Event event) {
+    private void openCharacterCardSelector () {
+        gui.getStage().getScene().lookup("#characterBorderPane").setVisible(true);
         gui.playPopEffect();
+    }
+
+    @FXML
+    private void closeCharacterCardSelector () {
+        gui.getStage().getScene().lookup("#characterBorderPane").setVisible(false);
+        gui.playPopEffect();
+    }
+
+    /**
+     * Generates FX:ID of CharacterCard in the selector pane.
+     * @param ID 1, 2, 3 of the card in game
+     * @return FX:ID generated.
+     */
+    private String getCharacterCardSelectorID (int ID, boolean coin, boolean cost, boolean text) {
+        String id = "";
+        if (coin) id = "coin";
+        if (cost) id = "cost";
+        if (text) id = "text";
+        id = id + "CharacterCard" + ID;
+
+        return id;
     }
 }

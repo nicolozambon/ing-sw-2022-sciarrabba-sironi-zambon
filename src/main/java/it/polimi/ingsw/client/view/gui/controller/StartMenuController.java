@@ -75,6 +75,7 @@ public class StartMenuController implements GUIController{
         int num = Integer.parseInt(sourceId.substring(sourceId.length()-1));
         try {
             gui.fireRequest(new RequestEvent("firstPlayer", gui.getId(), num,expert));
+            gui.playPopEffect();
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
@@ -85,6 +86,7 @@ public class StartMenuController implements GUIController{
         if (customRadioButton.isSelected()) gui.connect(ipTextField.getText(), nicknameTextField.getText());
         if (localhostRadioButton.isSelected()) gui.connect("127.0.0.1", nicknameTextField.getText());
         if (onlineRadioButton.isSelected()) gui.connect("10.8.0.1", nicknameTextField.getText());
+        gui.playPopEffect();
         event.consume();
     }
 
