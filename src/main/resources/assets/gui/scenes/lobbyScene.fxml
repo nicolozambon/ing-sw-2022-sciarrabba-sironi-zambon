@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.geometry.Insets?>
-<?import javafx.scene.control.Button?>
+<?import javafx.scene.Cursor?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.*?>
@@ -22,16 +22,19 @@
                   </Text>
                   <StackPane layoutX="589.0" prefHeight="45.0" prefWidth="115.0">
                      <children>
-                        <ImageView fitHeight="45.0" fitWidth="141.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fx:id="exitButton" fitHeight="45.0" fitWidth="141.0" onMouseClicked="#exitButtonClicked" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@../images/buttons/normalBtn.png" />
                            </image>
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
                         </ImageView>
-                        <Button id="exitFromLobbyBtn" fx:id="exitButton" mnemonicParsing="false" onMouseClicked="#exitButtonClicked" prefHeight="42.0" prefWidth="98.0" style="-fx-background-color: transparent;" text="EXIT" textFill="WHITE">
+                        <Text disable="true" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="EXIT">
                            <font>
-                              <Font name="Avenir Next Condensed Bold" size="24.0" />
+                              <Font size="24.0" />
                            </font>
-                        </Button>
+                        </Text>
                      </children>
                   </StackPane>
                </children>

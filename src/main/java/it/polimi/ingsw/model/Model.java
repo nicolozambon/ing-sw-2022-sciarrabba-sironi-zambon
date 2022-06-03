@@ -129,7 +129,8 @@ public class Model implements AnswerListenableInterface {
     public void addStudentsToClouds() {
         try {
             for (Cloud cloud : clouds) {
-                for (int i = 0; i < numStudentToMove; i++) {
+                int num = cloud.getNumPawns();
+                for (int i = 0; i < numStudentToMove - num; i++) {
                     bag.extractStudentAndMove(cloud);
                 }
             }

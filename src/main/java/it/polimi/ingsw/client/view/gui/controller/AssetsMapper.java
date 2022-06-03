@@ -3,15 +3,12 @@ package it.polimi.ingsw.client.view.gui.controller;
 import it.polimi.ingsw.enums.Color;
 import it.polimi.ingsw.enums.TowerColor;
 import it.polimi.ingsw.model.ThinModel;
-import javafx.scene.Node;
 import javafx.scene.Scene;
-import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
 import javafx.scene.text.Text;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -57,6 +54,10 @@ public class AssetsMapper {
     public ImageView getStudentInEntrance(int schoolId, int position) {
         String identifier = this.getStudentFXID(position, false, null, schoolId);
         return this.schools.get(schoolId).get("entrance").get(identifier);
+    }
+
+    public Map<String, ImageView> getStudentsInEntrance() {
+        return this.schools.get(0).get("entrance");
     }
 
     public ImageView getMotherNature(int islandId) {

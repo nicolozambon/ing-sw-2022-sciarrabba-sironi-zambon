@@ -1,26 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.Insets?>
-<?import javafx.scene.Cursor?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.control.SplitPane?>
-<?import javafx.scene.control.ToggleButton?>
-<?import javafx.scene.effect.DropShadow?>
-<?import javafx.scene.image.Image?>
-<?import javafx.scene.image.ImageView?>
-<?import javafx.scene.layout.BorderPane?>
-<?import javafx.scene.layout.ColumnConstraints?>
-<?import javafx.scene.layout.FlowPane?>
-<?import javafx.scene.layout.GridPane?>
-<?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.Pane?>
-<?import javafx.scene.layout.RowConstraints?>
-<?import javafx.scene.layout.StackPane?>
-<?import javafx.scene.layout.VBox?>
-<?import javafx.scene.paint.Color?>
-<?import javafx.scene.text.Font?>
-<?import javafx.scene.text.Text?>
-
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.effect.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.paint.*?>
+<?import javafx.scene.text.*?>
 <Pane minHeight="810.0" minWidth="1440.0" prefHeight="810.0" prefWidth="1440.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="it.polimi.ingsw.client.view.gui.controller.BoardController">
    <children>
         <BorderPane layoutX="-313.0" layoutY="-174.0" minHeight="1080.0" minWidth="1920.0" prefHeight="1160.0" prefWidth="2067.0" scaleX="0.7" scaleY="0.7" styleClass="anchor" stylesheets="@../css/boardScene.css">
@@ -111,7 +98,7 @@
                                     <Cursor fx:constant="HAND" />
                                  </cursor>
                               </ImageView>
-                              <ToggleButton mnemonicParsing="false" onAction="#playStopMusic" prefHeight="67.0" prefWidth="78.0" style="-fx-background-color: transparent;">
+                              <ToggleButton fx:id="musicButton" mnemonicParsing="false" onMouseClicked="#playStopMusic" prefHeight="67.0" prefWidth="78.0" style="-fx-background-color: transparent;">
                                  <cursor>
                                     <Cursor fx:constant="HAND" />
                                  </cursor></ToggleButton>
@@ -119,7 +106,7 @@
                         </StackPane>
                         <StackPane alignment="TOP_CENTER" prefHeight="229.0" prefWidth="114.0">
                            <children>
-                              <ImageView accessibleRole="BUTTON" fitHeight="73.0" fitWidth="135.0" onMouseClicked="#exitGame" pickOnBounds="true" preserveRatio="true" StackPane.alignment="TOP_CENTER">
+                              <ImageView fx:id="quitButton" accessibleRole="BUTTON" fitHeight="73.0" fitWidth="135.0" onMouseClicked="#exitGame" pickOnBounds="true" preserveRatio="true" StackPane.alignment="TOP_CENTER">
                                  <image>
                                     <Image url="@../images/buttons/normalBtn.png" />
                                  </image>
@@ -133,6 +120,22 @@
                                  </font>
                                  <StackPane.margin>
                                     <Insets top="12.0" />
+                                 </StackPane.margin>
+                              </Text>
+                              <ImageView fx:id="endActionButton" accessibleRole="BUTTON" fitHeight="73.0" fitWidth="135.0" onMouseClicked="#endActionOnClick" pickOnBounds="true" preserveRatio="true" StackPane.alignment="CENTER">
+                                 <image>
+                                    <Image url="@../images/buttons/normalBtn.png" />
+                                 </image>
+                                 <cursor>
+                                    <Cursor fx:constant="HAND" />
+                                 </cursor>
+                              </ImageView>
+                              <Text accessibleRole="BUTTON" disable="true" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="End Action" textAlignment="CENTER" wrappingWidth="135.0" StackPane.alignment="CENTER">
+                                 <font>
+                                    <Font size="24.0" />
+                                 </font>
+                                 <StackPane.margin>
+                                    <Insets bottom="2.0" />
                                  </StackPane.margin>
                               </Text>
                            </children>
@@ -638,7 +641,7 @@
                                                 <Cursor fx:constant="HAND" />
                                              </cursor>
                                           </StackPane>
-                                          <StackPane fx:id="island3" accessibleRole="BUTTON" layoutX="10.0" layoutY="403.0" onMouseClicked="#islandOnClick" prefHeight="150.0" prefWidth="200.0" rotate="-90.0" styleClass="borderOnHover" GridPane.columnIndex="1" GridPane.rowIndex="4">
+                                          <StackPane fx:id="island2" accessibleRole="BUTTON" layoutX="10.0" layoutY="403.0" onMouseClicked="#islandOnClick" prefHeight="150.0" prefWidth="200.0" rotate="-90.0" styleClass="borderOnHover" GridPane.columnIndex="1" GridPane.rowIndex="4">
                                              <children>
                                                 <ImageView fitHeight="180.0" fitWidth="201.0" pickOnBounds="true" preserveRatio="true">
                                                    <image>
@@ -2068,10 +2071,13 @@
                                           </GridPane>
                                           <StackPane prefHeight="150.0" prefWidth="9.0" rotate="-90.0" GridPane.columnIndex="4" GridPane.rowIndex="3">
                                              <children>
-                                                <ImageView fx:id="characterCardSelectBtn" accessibleRole="BUTTON" fitHeight="92.0" fitWidth="160.0" onMouseClicked="#openCharacterCardSelector" pickOnBounds="true" preserveRatio="true">
+                                                <ImageView fx:id="characterCardButton" accessibleRole="BUTTON" fitHeight="92.0" fitWidth="160.0" onMouseClicked="#openCharacterCardSelector" pickOnBounds="true" preserveRatio="true">
                                                    <image>
                                                       <Image url="@../images/buttons/normalBtn.png" />
                                                    </image>
+                                                   <cursor>
+                                                      <Cursor fx:constant="HAND" />
+                                                   </cursor>
                                                 </ImageView>
                                                 <Text disable="true" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Character Card">
                                                    <font>
@@ -2178,7 +2184,7 @@
                                                          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                                                      </rowConstraints>
                                                      <children>
-                                                         <ImageView fx:id="gp_0" fitHeight="44.0" fitWidth="54.0" pickOnBounds="true" preserveRatio="true" styleClass="borderOnHover" GridPane.columnIndex="1">
+                                                         <ImageView fx:id="gp_0" disable="true" fitHeight="44.0" fitWidth="54.0" pickOnBounds="true" preserveRatio="true" styleClass="borderOnHover" GridPane.columnIndex="1">
                                                              <image>
                                                                  <Image url="@../images/pawns/greenProf2D.png" />
                                                              </image>
@@ -2189,7 +2195,7 @@
                                                                  <DropShadow />
                                                              </effect>
                                                          </ImageView>
-                                                         <ImageView fx:id="rp_0" fitHeight="44.0" fitWidth="54.0" pickOnBounds="true" preserveRatio="true" styleClass="borderOnHover" GridPane.columnIndex="2">
+                                                         <ImageView fx:id="rp_0" disable="true" fitHeight="44.0" fitWidth="54.0" pickOnBounds="true" preserveRatio="true" styleClass="borderOnHover" GridPane.columnIndex="2">
                                                              <image>
                                                                  <Image url="@../images/pawns/redProf2D.png" />
                                                              </image>
@@ -2197,7 +2203,7 @@
                                                                  <DropShadow />
                                                              </effect>
                                                          </ImageView>
-                                                         <ImageView fx:id="yp_0" fitHeight="44.0" fitWidth="54.0" pickOnBounds="true" preserveRatio="true" styleClass="borderOnHover" GridPane.columnIndex="3">
+                                                         <ImageView fx:id="yp_0" disable="true" fitHeight="44.0" fitWidth="54.0" pickOnBounds="true" preserveRatio="true" styleClass="borderOnHover" GridPane.columnIndex="3">
                                                              <image>
                                                                  <Image url="@../images/pawns/yellowProf2D.png" />
                                                              </image>
@@ -2205,7 +2211,7 @@
                                                                  <DropShadow />
                                                              </effect>
                                                          </ImageView>
-                                                         <ImageView fx:id="pp_0" fitHeight="44.0" fitWidth="54.0" pickOnBounds="true" preserveRatio="true" styleClass="borderOnHover" GridPane.columnIndex="4">
+                                                         <ImageView fx:id="pp_0" disable="true" fitHeight="44.0" fitWidth="54.0" pickOnBounds="true" preserveRatio="true" styleClass="borderOnHover" GridPane.columnIndex="4">
                                                              <image>
                                                                  <Image url="@../images/pawns/pinkProf2D.png" />
                                                              </image>
@@ -2213,7 +2219,7 @@
                                                                  <DropShadow />
                                                              </effect>
                                                          </ImageView>
-                                                         <ImageView fx:id="bp_0" fitHeight="44.0" fitWidth="54.0" pickOnBounds="true" preserveRatio="true" styleClass="borderOnHover" GridPane.columnIndex="5">
+                                                         <ImageView fx:id="bp_0" disable="true" fitHeight="44.0" fitWidth="54.0" pickOnBounds="true" preserveRatio="true" styleClass="borderOnHover" GridPane.columnIndex="5">
                                                              <image>
                                                                  <Image url="@../images/pawns/blueProf2D.png" />
                                                              </image>
@@ -2229,7 +2235,7 @@
                                          <VBox prefHeight="519.0" prefWidth="400.0">
                                              <children>
                                                  <Pane prefHeight="16.0" prefWidth="401.0" />
-                                          <HBox fx:id="diningRoom" accessibleRole="BUTTON" onMouseClicked="#dgOnClick" prefHeight="451.0" prefWidth="399.0">
+                                          <HBox fx:id="diningRoom" accessibleRole="BUTTON" onMouseClicked="#dgOnClick" prefHeight="451.0" prefWidth="399.0" styleClass="borderOnHover">
                                              <children>
                                                 <VBox prefHeight="451.0" prefWidth="48.0" />
                                                 <VBox fx:id="dgGreen" accessibleRole="BUTTON" onMouseClicked="#dgOnClick" styleClass="borderOnHover">

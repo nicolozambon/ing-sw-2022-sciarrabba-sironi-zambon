@@ -16,8 +16,10 @@ import javafx.scene.control.ToggleButton;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.HBox;
 import javafx.scene.text.Text;
 
+import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
@@ -32,19 +34,40 @@ public class BoardController implements GUIController {
     @FXML
     private BorderPane assistantBorderPane;
 
+    @FXML
+    private BorderPane mainPane;
+
+    @FXML
+    private HBox diningRoom;
+    @FXML
+    private Node dgGreen;
+    @FXML
+    private Node dgRed;
+    @FXML
+    private Node dgYellow;
+    @FXML
+    private Node dgBlue;
+    @FXML
+    private Node dgPink;
+
+    @FXML
+    private Node endActionButton;
+
     private String sourceID;
     private String destinationID;
 
     @Override
     public void optionsHandling(List<String> options) {
-        wizardBorderPane.setVisible(false);
-        assistantBorderPane.setVisible(false);
-        if (options.size() == 1) {
-            switch (options.get(0)) {
-                case "chooseWizard" -> wizardBorderPane.setVisible(true);
-                case "playAssistantCard" -> setAssistantCards(this.gui.getModel().getAssistantCardsByPlayer(gui.getId()));
+        for (String option : options) {
+            try {
+                Method method = BoardController.class.getDeclaredMethod(option);
+                method.setAccessible(true);
+                method.invoke(this);
+            } catch (Exception e){
+                e.printStackTrace();
             }
         }
+        if (options.size() == 1 && options.contains("endAction")) endActionOnClick(null);
     }
 
     @Override
@@ -68,8 +91,10 @@ public class BoardController implements GUIController {
                     this.gui.getId()
             );
         }
+        disableAll();
         this.setNicknamesOnSchools(model);
         this.setupGameBoard(model);
+
         //TODO
     }
 
@@ -150,11 +175,7 @@ public class BoardController implements GUIController {
 
             // Show mother nature
             ImageView motherNature = this.assetsMapper.getMotherNature(i);
-            if (model.getMNPosition() == i) {
-                motherNature.setVisible(true);
-            } else {
-                motherNature.setVisible(true);
-            }
+            motherNature.setVisible(model.getMNPosition() == i);
 
             // Show students
             for (Color color : Color.values()) {
@@ -251,6 +272,75 @@ public class BoardController implements GUIController {
         gui.fireRequest(new RequestEvent("playCharacterCard", gui.getId(), Integer.parseInt(id)));
         closeCharacterCardSelector();
         gui.playPopEffect();
+    }
+
+    @FXML
+    private void endActionOnClick(Event event) {
+        this.gui.fireRequest(new RequestEvent("endAction", this.gui.getId()));
+    }
+
+    private void chooseWizard() {
+        wizardBorderPane.setVisible(true);
+    }
+
+    private void playAssistantCard() {
+        setAssistantCards(this.gui.getModel().getAssistantCardsByPlayer(gui.getId()));
+    }
+
+    private void moveStudentToDiningRoom() {
+        diningRoom.setDisable(false);
+        diningRoom.getChildren().forEach(n -> n.setDisable(true));
+        assetsMapper.getStudentsInEntrance().values().forEach(n -> n.setDisable(false));
+    }
+
+    private void moveStudentToIsland() {
+
+    }
+
+    private void moveMotherNature() {
+
+    }
+
+    private void playCharacterCard() {
+
+    }
+    private void takeStudentsFromCloud() {
+
+    }
+
+    private void endAction() {
+        this.gui.getScenes().get("boardScene").lookup("#endActionButton").setDisable(false);
+    }
+
+    private void card2() {
+
+    }
+
+    private void card6() {
+
+    }
+    private void card7() {
+
+    }
+
+    private void card8() {
+
+    }
+
+    private void disableAll() {
+        this.gui.getScenes().get("boardScene").lookup("#quitButton").setDisable(false);
+        this.gui.getScenes().get("boardScene").lookup("#musicButton").setDisable(false);
+        this.gui.getScenes().get("boardScene").lookup("#endActionButton").setDisable(true);
+        wizardBorderPane.setVisible(false);
+        assistantBorderPane.setVisible(false);
+        diningRoom.setDisable(true);
+        diningRoom.getChildren().forEach(n -> n.setDisable(false));
+        assetsMapper.getStudentsInEntrance().values().forEach(n -> n.setDisable(true));
+        for (int i = 0; i < 12; i++) {
+            String string = "#island" + i;
+            this.gui.getScenes().get("boardScene").lookup(string).setDisable(true);
+        }
+        this.gui.getScenes().get("boardScene").lookup("#characterCardButton").setDisable(true);
     }
 
     @FXML
