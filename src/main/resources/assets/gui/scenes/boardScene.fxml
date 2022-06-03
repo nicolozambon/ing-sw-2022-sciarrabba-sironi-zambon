@@ -257,7 +257,7 @@
                                           <Insets />
                                        </VBox.margin>
                                        <children>
-                                          <StackPane fx:id="island11" prefHeight="150.0" prefWidth="191.0" rotate="-90.0" GridPane.columnIndex="2" GridPane.rowIndex="10">
+                                          <StackPane fx:id="island11" accessibleRole="BUTTON" onMouseClicked="#islandOnClick" prefHeight="150.0" prefWidth="191.0" rotate="-90.0" styleClass="borderOnHover" GridPane.columnIndex="2" GridPane.rowIndex="10">
                                              <children>
                                                 <ImageView fitHeight="179.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
                                                    <image>
@@ -380,8 +380,11 @@
                                                    </children>
                                                 </GridPane>
                                              </children>
+                                             <cursor>
+                                                <Cursor fx:constant="HAND" />
+                                             </cursor>
                                           </StackPane>
-                                          <StackPane fx:id="island0" layoutX="10.0" layoutY="705.0" prefHeight="150.0" prefWidth="188.0" rotate="-90.0" GridPane.columnIndex="1" GridPane.rowIndex="8">
+                                          <StackPane fx:id="island0" accessibleRole="BUTTON" layoutX="10.0" layoutY="705.0" onMouseClicked="#islandOnClick" prefHeight="150.0" prefWidth="188.0" rotate="-90.0" styleClass="borderOnHover" GridPane.columnIndex="1" GridPane.rowIndex="8">
                                              <children>
                                                 <ImageView fitHeight="180.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
                                                    <image>
@@ -504,8 +507,11 @@
                                                    </children>
                                                 </GridPane>
                                              </children>
+                                             <cursor>
+                                                <Cursor fx:constant="HAND" />
+                                             </cursor>
                                           </StackPane>
-                                          <StackPane fx:id="island1" layoutX="10.0" layoutY="554.0" prefHeight="150.0" prefWidth="200.0" rotate="-90.0" GridPane.columnIndex="1" GridPane.rowIndex="6">
+                                          <StackPane fx:id="island1" accessibleRole="BUTTON" layoutX="10.0" layoutY="554.0" onMouseClicked="#islandOnClick" prefHeight="150.0" prefWidth="200.0" rotate="-90.0" styleClass="borderOnHover" GridPane.columnIndex="1" GridPane.rowIndex="6">
                                              <children>
                                                 <ImageView fitHeight="181.0" fitWidth="201.0" pickOnBounds="true" preserveRatio="true">
                                                    <image>
@@ -628,8 +634,11 @@
                                                    </children>
                                                 </GridPane>
                                              </children>
+                                             <cursor>
+                                                <Cursor fx:constant="HAND" />
+                                             </cursor>
                                           </StackPane>
-                                          <StackPane fx:id="island3" layoutX="10.0" layoutY="403.0" prefHeight="150.0" prefWidth="200.0" rotate="-90.0" GridPane.columnIndex="1" GridPane.rowIndex="4">
+                                          <StackPane fx:id="island3" accessibleRole="BUTTON" layoutX="10.0" layoutY="403.0" onMouseClicked="#islandOnClick" prefHeight="150.0" prefWidth="200.0" rotate="-90.0" styleClass="borderOnHover" GridPane.columnIndex="1" GridPane.rowIndex="4">
                                              <children>
                                                 <ImageView fitHeight="180.0" fitWidth="201.0" pickOnBounds="true" preserveRatio="true">
                                                    <image>
@@ -752,8 +761,11 @@
                                                    </children>
                                                 </GridPane>
                                              </children>
+                                             <cursor>
+                                                <Cursor fx:constant="HAND" />
+                                             </cursor>
                                           </StackPane>
-                                          <StackPane fx:id="island3" layoutX="10.0" layoutY="252.0" prefHeight="150.0" prefWidth="200.0" rotate="-90.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                                          <StackPane fx:id="island3" accessibleRole="BUTTON" layoutX="10.0" layoutY="252.0" onMouseClicked="#islandOnClick" prefHeight="150.0" prefWidth="200.0" rotate="-90.0" styleClass="borderOnHover" GridPane.columnIndex="1" GridPane.rowIndex="2">
                                              <children>
                                                 <ImageView fitHeight="180.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
                                                    <image>
@@ -876,8 +888,11 @@
                                                    </children>
                                                 </GridPane>
                                              </children>
+                                             <cursor>
+                                                <Cursor fx:constant="HAND" />
+                                             </cursor>
                                           </StackPane>
-                                          <StackPane fx:id="island10" layoutX="10.0" layoutY="101.0" prefHeight="150.0" prefWidth="197.0" rotate="-90.0" GridPane.columnIndex="5" GridPane.rowIndex="10">
+                                          <StackPane fx:id="island10" accessibleRole="BUTTON" layoutX="10.0" layoutY="101.0" onMouseClicked="#islandOnClick" prefHeight="150.0" prefWidth="197.0" rotate="-90.0" styleClass="borderOnHover" GridPane.columnIndex="5" GridPane.rowIndex="10">
                                              <children>
                                                 <ImageView fitHeight="180.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
                                                    <image>
@@ -1000,8 +1015,11 @@
                                                    </children>
                                                 </GridPane>
                                              </children>
+                                             <cursor>
+                                                <Cursor fx:constant="HAND" />
+                                             </cursor>
                                           </StackPane>
-                                          <StackPane fx:id="island4" layoutX="167.0" layoutY="738.0" prefHeight="150.0" prefWidth="200.0" rotate="-90.0" GridPane.columnIndex="2">
+                                          <StackPane fx:id="island4" accessibleRole="BUTTON" layoutX="167.0" layoutY="738.0" onMouseClicked="#islandOnClick" prefHeight="150.0" prefWidth="200.0" rotate="-90.0" styleClass="borderOnHover" GridPane.columnIndex="2">
                                              <children>
                                                 <ImageView fitHeight="180.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
                                                    <image>
@@ -1124,8 +1142,11 @@
                                                    </children>
                                                 </GridPane>
                                              </children>
+                                             <cursor>
+                                                <Cursor fx:constant="HAND" />
+                                             </cursor>
                                           </StackPane>
-                                          <StackPane fx:id="island9" layoutX="324.0" layoutY="638.0" prefHeight="150.0" prefWidth="200.0" rotate="-90.0" GridPane.columnIndex="7" GridPane.rowIndex="8">
+                                          <StackPane fx:id="island9" accessibleRole="BUTTON" layoutX="324.0" layoutY="638.0" onMouseClicked="#islandOnClick" prefHeight="150.0" prefWidth="200.0" rotate="-90.0" styleClass="borderOnHover" GridPane.columnIndex="7" GridPane.rowIndex="8">
                                              <children>
                                                 <ImageView fitHeight="179.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
                                                    <image>
@@ -1248,8 +1269,11 @@
                                                    </children>
                                                 </GridPane>
                                              </children>
+                                             <cursor>
+                                                <Cursor fx:constant="HAND" />
+                                             </cursor>
                                           </StackPane>
-                                          <StackPane fx:id="island8" layoutX="324.0" layoutY="520.0" prefHeight="150.0" prefWidth="200.0" rotate="-90.0" GridPane.columnIndex="7" GridPane.rowIndex="6">
+                                          <StackPane fx:id="island8" accessibleRole="BUTTON" layoutX="324.0" layoutY="520.0" onMouseClicked="#islandOnClick" prefHeight="150.0" prefWidth="200.0" rotate="-90.0" styleClass="borderOnHover" GridPane.columnIndex="7" GridPane.rowIndex="6">
                                              <children>
                                                 <ImageView fitHeight="182.0" fitWidth="201.0" pickOnBounds="true" preserveRatio="true">
                                                    <image>
@@ -1372,8 +1396,11 @@
                                                    </children>
                                                 </GridPane>
                                              </children>
+                                             <cursor>
+                                                <Cursor fx:constant="HAND" />
+                                             </cursor>
                                           </StackPane>
-                                          <StackPane fx:id="island7" layoutX="324.0" layoutY="402.0" prefHeight="150.0" prefWidth="200.0" rotate="-90.0" GridPane.columnIndex="7" GridPane.rowIndex="4">
+                                          <StackPane fx:id="island7" accessibleRole="BUTTON" layoutX="324.0" layoutY="402.0" onMouseClicked="#islandOnClick" prefHeight="150.0" prefWidth="200.0" rotate="-90.0" styleClass="borderOnHover" GridPane.columnIndex="7" GridPane.rowIndex="4">
                                              <children>
                                                 <ImageView fitHeight="180.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
                                                    <image>
@@ -1496,8 +1523,11 @@
                                                    </children>
                                                 </GridPane>
                                              </children>
+                                             <cursor>
+                                                <Cursor fx:constant="HAND" />
+                                             </cursor>
                                           </StackPane>
-                                          <StackPane fx:id="island6" layoutX="324.0" layoutY="284.0" prefHeight="150.0" prefWidth="200.0" rotate="-90.0" GridPane.columnIndex="7" GridPane.rowIndex="2">
+                                          <StackPane fx:id="island6" accessibleRole="BUTTON" layoutX="324.0" layoutY="284.0" onMouseClicked="#islandOnClick" prefHeight="150.0" prefWidth="200.0" rotate="-90.0" styleClass="borderOnHover" GridPane.columnIndex="7" GridPane.rowIndex="2">
                                              <children>
                                                 <ImageView fitHeight="179.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
                                                    <image>
@@ -1620,8 +1650,11 @@
                                                    </children>
                                                 </GridPane>
                                              </children>
+                                             <cursor>
+                                                <Cursor fx:constant="HAND" />
+                                             </cursor>
                                           </StackPane>
-                                          <StackPane fx:id="island5" layoutX="378.0" layoutY="816.0" prefHeight="150.0" prefWidth="197.0" rotate="-90.0" GridPane.columnIndex="5">
+                                          <StackPane fx:id="island5" accessibleRole="BUTTON" layoutX="378.0" layoutY="816.0" onMouseClicked="#islandOnClick" prefHeight="150.0" prefWidth="197.0" rotate="-90.0" styleClass="borderOnHover" GridPane.columnIndex="5">
                                              <children>
                                                 <ImageView fitHeight="180.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
                                                    <image>
@@ -1744,6 +1777,9 @@
                                                    </children>
                                                 </GridPane>
                                              </children>
+                                             <cursor>
+                                                <Cursor fx:constant="HAND" />
+                                             </cursor>
                                           </StackPane>
                                           <ImageView fx:id="bridge0_1" fitHeight="39.0" fitWidth="85.0" pickOnBounds="true" preserveRatio="true" rotate="90.0" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="7" GridPane.valignment="CENTER">
                                              <image>
@@ -1882,7 +1918,7 @@
                                                 <RowConstraints maxHeight="95.0" minHeight="10.0" prefHeight="74.0" vgrow="SOMETIMES" />
                                              </rowConstraints>
                                              <children>
-                                                <ImageView fx:id="cloud0" fitHeight="151.0" fitWidth="120.0" pickOnBounds="true" preserveRatio="true" scaleX="1.2" scaleY="1.2" styleClass="borderOnHover" GridPane.rowIndex="1">
+                                                <ImageView fx:id="cloud0" accessibleRole="BUTTON" fitHeight="151.0" fitWidth="120.0" onMouseClicked="#cloudOnClick" pickOnBounds="true" preserveRatio="true" scaleX="1.2" scaleY="1.2" styleClass="borderOnHover" GridPane.rowIndex="1">
                                                    <image>
                                                       <Image url="@../images/cloud.png" />
                                                    </image>
@@ -1935,7 +1971,7 @@
                                                 <RowConstraints maxHeight="95.0" minHeight="10.0" prefHeight="74.0" vgrow="SOMETIMES" />
                                              </rowConstraints>
                                              <children>
-                                                <ImageView fx:id="cloud1" fitHeight="151.0" fitWidth="120.0" pickOnBounds="true" preserveRatio="true" scaleX="1.2" scaleY="1.2" styleClass="borderOnHover" GridPane.rowIndex="2">
+                                                <ImageView fx:id="cloud1" accessibleRole="BUTTON" fitHeight="151.0" fitWidth="120.0" onMouseClicked="#cloudOnClick" pickOnBounds="true" preserveRatio="true" scaleX="1.2" scaleY="1.2" styleClass="borderOnHover" GridPane.rowIndex="2">
                                                    <image>
                                                       <Image url="@../images/cloud.png" />
                                                    </image>
@@ -1988,7 +2024,7 @@
                                                 <RowConstraints maxHeight="95.0" minHeight="10.0" prefHeight="74.0" vgrow="SOMETIMES" />
                                              </rowConstraints>
                                              <children>
-                                                <ImageView fx:id="cloud2" fitHeight="151.0" fitWidth="120.0" pickOnBounds="true" preserveRatio="true" scaleX="1.2" scaleY="1.2" styleClass="borderOnHover" GridPane.rowIndex="2">
+                                                <ImageView fx:id="cloud2" accessibleRole="BUTTON" fitHeight="151.0" fitWidth="120.0" onMouseClicked="#cloudOnClick" pickOnBounds="true" preserveRatio="true" scaleX="1.2" scaleY="1.2" styleClass="borderOnHover" GridPane.rowIndex="2">
                                                    <image>
                                                       <Image url="@../images/cloud.png" />
                                                    </image>
@@ -2192,432 +2228,594 @@
                                          <HBox prefHeight="46.0" prefWidth="503.0" />
                                          <VBox prefHeight="519.0" prefWidth="400.0">
                                              <children>
-                                                 <Pane prefHeight="50.0" prefWidth="401.0" />
-                                                 <GridPane prefHeight="524.0">
-                                                     <columnConstraints>
-                                                         <ColumnConstraints hgrow="SOMETIMES" maxWidth="63.0" minWidth="10.0" prefWidth="48.95452880859375" />
-                                                         <ColumnConstraints hgrow="SOMETIMES" maxWidth="89.0" minWidth="10.0" prefWidth="67.43317413330078" />
-                                                         <ColumnConstraints hgrow="SOMETIMES" maxWidth="117.06080627441406" minWidth="10.0" prefWidth="64.56682586669922" />
-                                                         <ColumnConstraints hgrow="SOMETIMES" maxWidth="162.66690063476562" minWidth="10.0" prefWidth="65.20054626464844" />
-                                                         <ColumnConstraints hgrow="SOMETIMES" maxWidth="118.75765991210938" minWidth="10.0" prefWidth="63.29945373535156" />
-                                                         <ColumnConstraints hgrow="SOMETIMES" maxWidth="93.12353515625" minWidth="10.0" prefWidth="93.12353515625" />
-                                                     </columnConstraints>
-                                                     <rowConstraints>
-                                                         <RowConstraints maxHeight="69.0701904296875" minHeight="10.0" prefHeight="48.834320068359375" vgrow="SOMETIMES" />
-                                                         <RowConstraints maxHeight="62.02423095703125" minHeight="10.0" prefHeight="46.165679931640625" vgrow="SOMETIMES" />
-                                                         <RowConstraints maxHeight="57.5201416015625" minHeight="10.0" prefHeight="44.866363525390625" vgrow="SOMETIMES" />
-                                                         <RowConstraints maxHeight="73.56036376953125" minHeight="10.0" prefHeight="46.633636474609375" vgrow="SOMETIMES" />
-                                                         <RowConstraints maxHeight="80.5816650390625" minHeight="10.0" prefHeight="47.5" vgrow="SOMETIMES" />
-                                                         <RowConstraints maxHeight="87.101806640625" minHeight="10.0" prefHeight="47.5" vgrow="SOMETIMES" />
-                                                         <RowConstraints maxHeight="94.5367431640625" minHeight="10.0" prefHeight="42.8663330078125" vgrow="SOMETIMES" />
-                                                         <RowConstraints maxHeight="88.104248046875" minHeight="10.0" prefHeight="44.165771484375" vgrow="SOMETIMES" />
-                                                         <RowConstraints maxHeight="88.53314208984375" minHeight="10.0" prefHeight="51.334228515625" vgrow="SOMETIMES" />
-                                                         <RowConstraints maxHeight="120.0" minHeight="10.0" prefHeight="56.93316650390625" vgrow="SOMETIMES" />
-                                                         <RowConstraints maxHeight="68.078125" minHeight="0.0" prefHeight="14.56683349609375" vgrow="SOMETIMES" />
-                                                     </rowConstraints>
-                                                     <children>
-                                                         <ImageView fx:id="gs9_0" fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true" styleClass="borderOnHover" GridPane.columnIndex="1">
-                                                             <image>
-                                                                 <Image url="@../images/pawns/greenStudent.png" />
-                                                             </image>
-                                                             <effect>
-                                                                 <DropShadow />
-                                                             </effect>
-                                                </ImageView>
-                                                         <ImageView fx:id="gs8_0" fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true" styleClass="borderOnHover" GridPane.columnIndex="1" GridPane.rowIndex="1">
-                                                             <image>
-                                                                 <Image url="@../images/pawns/greenStudent.png" />
-                                                             </image>
-                                                             <effect>
-                                                                 <DropShadow />
-                                                             </effect>
-                                                         </ImageView>
-                                                         <ImageView fx:id="gs7_0" fitHeight="40.0" fitWidth="40.0" layoutX="10.0" layoutY="61.0" pickOnBounds="true" preserveRatio="true" styleClass="borderOnHover" GridPane.columnIndex="1" GridPane.rowIndex="2">
-                                                             <image>
-                                                                 <Image url="@../images/pawns/greenStudent.png" />
-                                                             </image>
-                                                             <effect>
-                                                                 <DropShadow />
-                                                             </effect>
-                                                         </ImageView>
-                                                         <ImageView fx:id="gs6_0" fitHeight="40.0" fitWidth="40.0" layoutX="10.0" layoutY="113.0" pickOnBounds="true" preserveRatio="true" styleClass="borderOnHover" GridPane.columnIndex="1" GridPane.rowIndex="3">
-                                                             <image>
-                                                                 <Image url="@../images/pawns/greenStudent.png" />
-                                                             </image>
-                                                             <effect>
-                                                                 <DropShadow />
-                                                             </effect>
-                                                         </ImageView>
-                                                         <ImageView fx:id="gs5_0" fitHeight="40.0" fitWidth="40.0" layoutX="10.0" layoutY="165.0" pickOnBounds="true" preserveRatio="true" styleClass="borderOnHover" GridPane.columnIndex="1" GridPane.rowIndex="4">
-                                                             <image>
-                                                                 <Image url="@../images/pawns/greenStudent.png" />
-                                                             </image>
-                                                             <effect>
-                                                                 <DropShadow />
-                                                             </effect>
-                                                         </ImageView>
-                                                         <ImageView fx:id="gs4_0" fitHeight="40.0" fitWidth="40.0" layoutX="10.0" layoutY="217.0" pickOnBounds="true" preserveRatio="true" styleClass="borderOnHover" GridPane.columnIndex="1" GridPane.rowIndex="5">
-                                                             <image>
-                                                                 <Image url="@../images/pawns/greenStudent.png" />
-                                                             </image>
-                                                             <effect>
-                                                                 <DropShadow />
-                                                             </effect>
-                                                         </ImageView>
-                                                         <ImageView fx:id="gs2_0" fitHeight="40.0" fitWidth="40.0" layoutX="10.0" layoutY="269.0" pickOnBounds="true" preserveRatio="true" styleClass="borderOnHover" GridPane.columnIndex="1" GridPane.rowIndex="7">
-                                                             <image>
-                                                                 <Image url="@../images/pawns/greenStudent.png" />
-                                                             </image>
-                                                             <effect>
-                                                                 <DropShadow />
-                                                             </effect>
-                                                         </ImageView>
-                                                         <ImageView fx:id="gs3_0" fitHeight="40.0" fitWidth="40.0" layoutX="10.0" layoutY="269.0" pickOnBounds="true" preserveRatio="true" styleClass="borderOnHover" GridPane.columnIndex="1" GridPane.rowIndex="6">
-                                                             <image>
-                                                                 <Image url="@../images/pawns/greenStudent.png" />
-                                                             </image>
-                                                             <effect>
-                                                                 <DropShadow />
-                                                             </effect>
-                                                         </ImageView>
-                                                         <ImageView fx:id="gs1_0" fitHeight="40.0" fitWidth="40.0" layoutX="10.0" layoutY="373.0" pickOnBounds="true" preserveRatio="true" styleClass="borderOnHover" GridPane.columnIndex="1" GridPane.rowIndex="8">
-                                                             <image>
-                                                                 <Image url="@../images/pawns/greenStudent.png" />
-                                                             </image>
-                                                             <effect>
-                                                                 <DropShadow />
-                                                             </effect>
-                                                         </ImageView>
-                                                         <ImageView fx:id="gs0_0" fitHeight="40.0" fitWidth="40.0" layoutX="10.0" layoutY="425.0" pickOnBounds="true" preserveRatio="true" styleClass="borderOnHover" GridPane.columnIndex="1" GridPane.rowIndex="9">
-                                                             <image>
-                                                                 <Image url="@../images/pawns/greenStudent.png" />
-                                                             </image>
-                                                             <effect>
-                                                                 <DropShadow />
-                                                             </effect>
-                                                         </ImageView>
-                                                         <ImageView fx:id="rs9_0" fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true" styleClass="borderOnHover" GridPane.columnIndex="2">
-                                                             <image>
-                                                                 <Image url="@../images/pawns/redStudent.png" />
-                                                             </image>
-                                                             <effect>
-                                                                 <DropShadow />
-                                                             </effect>
-                                                         </ImageView>
-                                                         <ImageView fx:id="rs8_0" fitHeight="40.0" fitWidth="40.0" layoutX="90.0" layoutY="9.0" pickOnBounds="true" preserveRatio="true" styleClass="borderOnHover" GridPane.columnIndex="2" GridPane.rowIndex="1">
-                                                             <image>
-                                                                 <Image url="@../images/pawns/redStudent.png" />
-                                                             </image>
-                                                             <effect>
-                                                                 <DropShadow />
-                                                             </effect>
-                                                         </ImageView>
-                                                         <ImageView fx:id="rs7_0" fitHeight="40.0" fitWidth="40.0" layoutX="90.0" layoutY="9.0" pickOnBounds="true" preserveRatio="true" styleClass="borderOnHover" GridPane.columnIndex="2" GridPane.rowIndex="2">
-                                                             <image>
-                                                                 <Image url="@../images/pawns/redStudent.png" />
-                                                             </image>
-                                                             <effect>
-                                                                 <DropShadow />
-                                                             </effect>
-                                                         </ImageView>
-                                                         <ImageView fx:id="rs6_0" fitHeight="40.0" fitWidth="40.0" layoutX="90.0" layoutY="9.0" pickOnBounds="true" preserveRatio="true" styleClass="borderOnHover" GridPane.columnIndex="2" GridPane.rowIndex="3">
-                                                             <image>
-                                                                 <Image url="@../images/pawns/redStudent.png" />
-                                                             </image>
-                                                             <effect>
-                                                                 <DropShadow />
-                                                             </effect>
-                                                         </ImageView>
-                                                         <ImageView fx:id="rs5_0" fitHeight="40.0" fitWidth="40.0" layoutX="90.0" layoutY="9.0" pickOnBounds="true" preserveRatio="true" styleClass="borderOnHover" GridPane.columnIndex="2" GridPane.rowIndex="4">
-                                                             <image>
-                                                                 <Image url="@../images/pawns/redStudent.png" />
-                                                             </image>
-                                                             <effect>
-                                                                 <DropShadow />
-                                                             </effect>
-                                                         </ImageView>
-                                                         <ImageView fx:id="rs4_0" fitHeight="40.0" fitWidth="40.0" layoutX="90.0" layoutY="9.0" pickOnBounds="true" preserveRatio="true" styleClass="borderOnHover" GridPane.columnIndex="2" GridPane.rowIndex="5">
-                                                             <image>
-                                                                 <Image url="@../images/pawns/redStudent.png" />
-                                                             </image>
-                                                             <effect>
-                                                                 <DropShadow />
-                                                             </effect>
-                                                         </ImageView>
-                                                         <ImageView fx:id="rs3_0" fitHeight="40.0" fitWidth="40.0" layoutX="90.0" layoutY="9.0" pickOnBounds="true" preserveRatio="true" styleClass="borderOnHover" GridPane.columnIndex="2" GridPane.rowIndex="6">
-                                                             <image>
-                                                                 <Image url="@../images/pawns/redStudent.png" />
-                                                             </image>
-                                                             <effect>
-                                                                 <DropShadow />
-                                                             </effect>
-                                                         </ImageView>
-                                                         <ImageView fx:id="rs2_0" fitHeight="40.0" fitWidth="40.0" layoutX="90.0" layoutY="9.0" pickOnBounds="true" preserveRatio="true" styleClass="borderOnHover" GridPane.columnIndex="2" GridPane.rowIndex="7">
-                                                             <image>
-                                                                 <Image url="@../images/pawns/redStudent.png" />
-                                                             </image>
-                                                             <effect>
-                                                                 <DropShadow />
-                                                             </effect>
-                                                         </ImageView>
-                                                         <ImageView fx:id="rs1_0" fitHeight="40.0" fitWidth="40.0" layoutX="90.0" layoutY="9.0" pickOnBounds="true" preserveRatio="true" styleClass="borderOnHover" GridPane.columnIndex="2" GridPane.rowIndex="8">
-                                                             <image>
-                                                                 <Image url="@../images/pawns/redStudent.png" />
-                                                             </image>
-                                                             <effect>
-                                                                 <DropShadow />
-                                                             </effect>
-                                                         </ImageView>
-                                                         <ImageView fx:id="rs0_0" fitHeight="40.0" fitWidth="40.0" layoutX="90.0" layoutY="9.0" pickOnBounds="true" preserveRatio="true" styleClass="borderOnHover" GridPane.columnIndex="2" GridPane.rowIndex="9">
-                                                             <image>
-                                                                 <Image url="@../images/pawns/redStudent.png" />
-                                                             </image>
-                                                             <effect>
-                                                                 <DropShadow />
-                                                             </effect>
-                                                         </ImageView>
-                                                         <ImageView fx:id="ys9_0" fitHeight="40.0" fitWidth="40.0" layoutX="90.0" layoutY="476.0" pickOnBounds="true" preserveRatio="true" styleClass="borderOnHover" GridPane.columnIndex="3">
-                                                             <image>
-                                                                 <Image url="@../images/pawns/yellowStudent.png" />
-                                                             </image>
-                                                             <effect>
-                                                                 <DropShadow />
-                                                             </effect>
-                                                         </ImageView>
-                                                         <ImageView fx:id="ys8_0" fitHeight="40.0" fitWidth="40.0" layoutX="170.0" layoutY="9.0" pickOnBounds="true" preserveRatio="true" styleClass="borderOnHover" GridPane.columnIndex="3" GridPane.rowIndex="1">
-                                                             <image>
-                                                                 <Image url="@../images/pawns/yellowStudent.png" />
-                                                             </image>
-                                                             <effect>
-                                                                 <DropShadow />
-                                                             </effect>
-                                                         </ImageView>
-                                                         <ImageView fx:id="ys7_0" fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true" styleClass="borderOnHover" GridPane.columnIndex="3" GridPane.rowIndex="2">
-                                                             <image>
-                                                                 <Image url="@../images/pawns/yellowStudent.png" />
-                                                             </image>
-                                                             <effect>
-                                                                 <DropShadow />
-                                                             </effect>
-                                                         </ImageView>
-                                                         <ImageView fx:id="ys6_0" fitHeight="40.0" fitWidth="40.0" layoutX="170.0" layoutY="113.0" pickOnBounds="true" preserveRatio="true" styleClass="borderOnHover" GridPane.columnIndex="3" GridPane.rowIndex="3">
-                                                             <image>
-                                                                 <Image url="@../images/pawns/yellowStudent.png" />
-                                                             </image>
-                                                             <effect>
-                                                                 <DropShadow />
-                                                             </effect>
-                                                         </ImageView>
-                                                         <ImageView fx:id="ys5_0" fitHeight="40.0" fitWidth="40.0" layoutX="170.0" layoutY="113.0" pickOnBounds="true" preserveRatio="true" styleClass="borderOnHover" GridPane.columnIndex="3" GridPane.rowIndex="4">
-                                                             <image>
-                                                                 <Image url="@../images/pawns/yellowStudent.png" />
-                                                             </image>
-                                                             <effect>
-                                                                 <DropShadow />
-                                                             </effect>
-                                                         </ImageView>
-                                                         <ImageView fx:id="ys4_0" fitHeight="40.0" fitWidth="40.0" layoutX="170.0" layoutY="218.0" pickOnBounds="true" preserveRatio="true" styleClass="borderOnHover" GridPane.columnIndex="3" GridPane.rowIndex="5">
-                                                             <image>
-                                                                 <Image url="@../images/pawns/yellowStudent.png" />
-                                                             </image>
-                                                             <effect>
-                                                                 <DropShadow />
-                                                             </effect>
-                                                         </ImageView>
-                                                         <ImageView fx:id="ys3_0" fitHeight="40.0" fitWidth="40.0" layoutX="180.0" layoutY="228.0" pickOnBounds="true" preserveRatio="true" styleClass="borderOnHover" GridPane.columnIndex="3" GridPane.rowIndex="6">
-                                                             <image>
-                                                                 <Image url="@../images/pawns/yellowStudent.png" />
-                                                             </image>
-                                                             <effect>
-                                                                 <DropShadow />
-                                                             </effect>
-                                                         </ImageView>
-                                                         <ImageView fx:id="ys2_0" fitHeight="40.0" fitWidth="40.0" layoutX="170.0" layoutY="271.0" pickOnBounds="true" preserveRatio="true" styleClass="borderOnHover" GridPane.columnIndex="3" GridPane.rowIndex="7">
-                                                             <image>
-                                                                 <Image url="@../images/pawns/yellowStudent.png" />
-                                                             </image>
-                                                             <effect>
-                                                                 <DropShadow />
-                                                             </effect>
-                                                         </ImageView>
-                                                         <ImageView fx:id="ys1_0" fitHeight="40.0" fitWidth="40.0" layoutX="170.0" layoutY="374.0" pickOnBounds="true" preserveRatio="true" styleClass="borderOnHover" GridPane.columnIndex="3" GridPane.rowIndex="8">
-                                                             <image>
-                                                                 <Image url="@../images/pawns/yellowStudent.png" />
-                                                             </image>
-                                                             <effect>
-                                                                 <DropShadow />
-                                                             </effect>
-                                                         </ImageView>
-                                                         <ImageView fx:id="ys0_0" fitHeight="40.0" fitWidth="40.0" layoutX="170.0" layoutY="425.0" pickOnBounds="true" preserveRatio="true" styleClass="borderOnHover" GridPane.columnIndex="3" GridPane.rowIndex="9">
-                                                             <image>
-                                                                 <Image url="@../images/pawns/yellowStudent.png" />
-                                                             </image>
-                                                             <effect>
-                                                                 <DropShadow />
-                                                             </effect>
-                                                         </ImageView>
-                                                         <ImageView fx:id="ps9_0" fitHeight="40.0" fitWidth="40.0" layoutX="170.0" layoutY="9.0" pickOnBounds="true" preserveRatio="true" styleClass="borderOnHover" GridPane.columnIndex="4">
-                                                             <image>
-                                                                 <Image url="@../images/pawns/pinkStudent.png" />
-                                                             </image>
-                                                             <effect>
-                                                                 <DropShadow />
-                                                             </effect>
-                                                         </ImageView>
-                                                         <ImageView fx:id="ps8_0" fitHeight="40.0" fitWidth="40.0" layoutX="250.0" layoutY="9.0" pickOnBounds="true" preserveRatio="true" styleClass="borderOnHover" GridPane.columnIndex="4" GridPane.rowIndex="1">
-                                                             <image>
-                                                                 <Image url="@../images/pawns/pinkStudent.png" />
-                                                             </image>
-                                                             <effect>
-                                                                 <DropShadow />
-                                                             </effect>
-                                                         </ImageView>
-                                                         <ImageView fx:id="ps6_0" fitHeight="40.0" fitWidth="40.0" layoutX="250.0" layoutY="61.0" pickOnBounds="true" preserveRatio="true" styleClass="borderOnHover" GridPane.columnIndex="4" GridPane.rowIndex="3">
-                                                             <image>
-                                                                 <Image url="@../images/pawns/pinkStudent.png" />
-                                                             </image>
-                                                             <effect>
-                                                                 <DropShadow />
-                                                             </effect>
-                                                         </ImageView>
-                                                         <ImageView fx:id="ps7_0" fitHeight="40.0" fitWidth="40.0" layoutX="250.0" layoutY="61.0" pickOnBounds="true" preserveRatio="true" styleClass="borderOnHover" GridPane.columnIndex="4" GridPane.rowIndex="2">
-                                                             <image>
-                                                                 <Image url="@../images/pawns/pinkStudent.png" />
-                                                             </image>
-                                                             <effect>
-                                                                 <DropShadow />
-                                                             </effect>
-                                                         </ImageView>
-                                                         <ImageView fx:id="ps5_0" fitHeight="40.0" fitWidth="40.0" layoutX="250.0" layoutY="113.0" pickOnBounds="true" preserveRatio="true" styleClass="borderOnHover" GridPane.columnIndex="4" GridPane.rowIndex="4">
-                                                             <image>
-                                                                 <Image url="@../images/pawns/pinkStudent.png" />
-                                                             </image>
-                                                             <effect>
-                                                                 <DropShadow />
-                                                             </effect>
-                                                         </ImageView>
-                                                         <ImageView fx:id="ps2_0" fitHeight="40.0" fitWidth="40.0" layoutX="250.0" layoutY="217.0" pickOnBounds="true" preserveRatio="true" styleClass="borderOnHover" GridPane.columnIndex="4" GridPane.rowIndex="7">
-                                                             <image>
-                                                                 <Image url="@../images/pawns/pinkStudent.png" />
-                                                             </image>
-                                                             <effect>
-                                                                 <DropShadow />
-                                                             </effect>
-                                                         </ImageView>
-                                                         <ImageView fx:id="ps3_0" fitHeight="40.0" fitWidth="40.0" layoutX="250.0" layoutY="217.0" pickOnBounds="true" preserveRatio="true" styleClass="borderOnHover" GridPane.columnIndex="4" GridPane.rowIndex="6">
-                                                             <image>
-                                                                 <Image url="@../images/pawns/pinkStudent.png" />
-                                                             </image>
-                                                             <effect>
-                                                                 <DropShadow />
-                                                             </effect>
-                                                         </ImageView>
-                                                         <ImageView fx:id="ps4_0" fitHeight="40.0" fitWidth="40.0" layoutX="250.0" layoutY="217.0" pickOnBounds="true" preserveRatio="true" styleClass="borderOnHover" GridPane.columnIndex="4" GridPane.rowIndex="5">
-                                                             <image>
-                                                                 <Image url="@../images/pawns/pinkStudent.png" />
-                                                             </image>
-                                                             <effect>
-                                                                 <DropShadow />
-                                                             </effect>
-                                                         </ImageView>
-                                                         <ImageView fx:id="ps1_0" fitHeight="40.0" fitWidth="40.0" layoutX="250.0" layoutY="269.0" pickOnBounds="true" preserveRatio="true" styleClass="borderOnHover" GridPane.columnIndex="4" GridPane.rowIndex="8">
-                                                             <image>
-                                                                 <Image url="@../images/pawns/pinkStudent.png" />
-                                                             </image>
-                                                             <effect>
-                                                                 <DropShadow />
-                                                             </effect>
-                                                         </ImageView>
-                                                         <ImageView fx:id="ps0_0" fitHeight="40.0" fitWidth="40.0" layoutX="250.0" layoutY="425.0" pickOnBounds="true" preserveRatio="true" styleClass="borderOnHover" GridPane.columnIndex="4" GridPane.rowIndex="9">
-                                                             <image>
-                                                                 <Image url="@../images/pawns/pinkStudent.png" />
-                                                             </image>
-                                                             <effect>
-                                                                 <DropShadow />
-                                                             </effect>
-                                                         </ImageView>
-                                                         <ImageView fx:id="bs8_0" fitHeight="40.0" fitWidth="40.0" layoutX="250.0" layoutY="476.0" pickOnBounds="true" preserveRatio="true" styleClass="borderOnHover" GridPane.columnIndex="5" GridPane.rowIndex="1">
-                                                             <image>
-                                                                 <Image url="@../images/pawns/blueStudent.png" />
-                                                             </image>
-                                                             <effect>
-                                                                 <DropShadow />
-                                                             </effect>
-                                                         </ImageView>
-                                                         <ImageView fx:id="bs9_0" fitHeight="40.0" fitWidth="40.0" layoutX="260.0" layoutY="435.0" pickOnBounds="true" preserveRatio="true" styleClass="borderOnHover" GridPane.columnIndex="5">
-                                                             <image>
-                                                                 <Image url="@../images/pawns/blueStudent.png" />
-                                                             </image>
-                                                             <effect>
-                                                                 <DropShadow />
-                                                             </effect>
-                                                         </ImageView>
-                                                         <ImageView fx:id="bs7_0" fitHeight="40.0" fitWidth="40.0" layoutX="330.0" layoutY="61.0" pickOnBounds="true" preserveRatio="true" styleClass="borderOnHover" GridPane.columnIndex="5" GridPane.rowIndex="2">
-                                                             <image>
-                                                                 <Image url="@../images/pawns/blueStudent.png" />
-                                                             </image>
-                                                             <effect>
-                                                                 <DropShadow />
-                                                             </effect>
-                                                         </ImageView>
-                                                         <ImageView fx:id="bs5_0" fitHeight="40.0" fitWidth="40.0" layoutX="330.0" layoutY="113.0" pickOnBounds="true" preserveRatio="true" styleClass="borderOnHover" GridPane.columnIndex="5" GridPane.rowIndex="4">
-                                                             <image>
-                                                                 <Image url="@../images/pawns/blueStudent.png" />
-                                                             </image>
-                                                             <effect>
-                                                                 <DropShadow />
-                                                             </effect>
-                                                         </ImageView>
-                                                         <ImageView fx:id="bs6_0" fitHeight="40.0" fitWidth="40.0" layoutX="10.0" layoutY="9.0" pickOnBounds="true" preserveRatio="true" styleClass="borderOnHover" GridPane.columnIndex="5" GridPane.rowIndex="3">
-                                                             <image>
-                                                                 <Image url="@../images/pawns/blueStudent.png" />
-                                                             </image>
-                                                             <effect>
-                                                                 <DropShadow />
-                                                             </effect>
-                                                         </ImageView>
-                                                         <ImageView fx:id="bs4_0" fitHeight="40.0" fitWidth="40.0" layoutX="330.0" layoutY="165.0" pickOnBounds="true" preserveRatio="true" styleClass="borderOnHover" GridPane.columnIndex="5" GridPane.rowIndex="5">
-                                                             <image>
-                                                                 <Image url="@../images/pawns/blueStudent.png" />
-                                                             </image>
-                                                             <effect>
-                                                                 <DropShadow />
-                                                             </effect>
-                                                         </ImageView>
-                                                         <ImageView fx:id="bs3_0" fitHeight="40.0" fitWidth="40.0" layoutX="330.0" layoutY="269.0" pickOnBounds="true" preserveRatio="true" styleClass="borderOnHover" GridPane.columnIndex="5" GridPane.rowIndex="6">
-                                                             <image>
-                                                                 <Image url="@../images/pawns/blueStudent.png" />
-                                                             </image>
-                                                             <effect>
-                                                                 <DropShadow />
-                                                             </effect>
-                                                         </ImageView>
-                                                         <ImageView fx:id="bs2_0" fitHeight="40.0" fitWidth="40.0" layoutX="330.0" layoutY="321.0" pickOnBounds="true" preserveRatio="true" styleClass="borderOnHover" GridPane.columnIndex="5" GridPane.rowIndex="7">
-                                                             <image>
-                                                                 <Image url="@../images/pawns/blueStudent.png" />
-                                                             </image>
-                                                             <effect>
-                                                                 <DropShadow />
-                                                             </effect>
-                                                         </ImageView>
-                                                         <ImageView fx:id="bs1_0" fitHeight="40.0" fitWidth="40.0" layoutX="330.0" layoutY="373.0" pickOnBounds="true" preserveRatio="true" styleClass="borderOnHover" GridPane.columnIndex="5" GridPane.rowIndex="8">
-                                                             <image>
-                                                                 <Image url="@../images/pawns/blueStudent.png" />
-                                                             </image>
-                                                             <effect>
-                                                                 <DropShadow />
-                                                             </effect>
-                                                         </ImageView>
-                                                         <ImageView fx:id="bs0_0" fitHeight="40.0" fitWidth="40.0" layoutX="330.0" layoutY="425.0" pickOnBounds="true" preserveRatio="true" styleClass="borderOnHover" GridPane.columnIndex="5" GridPane.rowIndex="9">
-                                                             <image>
-                                                                 <Image url="@../images/pawns/blueStudent.png" />
-                                                             </image>
-                                                             <effect>
-                                                                 <DropShadow />
-                                                             </effect>
-                                                         </ImageView>
-                                                     </children>
-                                                 </GridPane>
+                                                 <Pane prefHeight="16.0" prefWidth="401.0" />
+                                          <HBox prefHeight="451.0" prefWidth="399.0">
+                                             <children>
+                                                <VBox prefHeight="451.0" prefWidth="48.0" />
+                                                <VBox accessibleRole="BUTTON" onMouseClicked="#dgOnClick" styleClass="borderOnHover">
+                                                   <children>
+                                                      <ImageView fx:id="gs9_0" disable="true" fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true" styleClass="borderOnHover">
+                                                         <image>
+                                                            <Image url="@../images/pawns/greenStudent.png" />
+                                                         </image>
+                                                         <effect>
+                                                            <DropShadow />
+                                                         </effect>
+                                                      </ImageView>
+                                                      <ImageView fx:id="gs8_0" disable="true" fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true" styleClass="borderOnHover">
+                                                         <image>
+                                                            <Image url="@../images/pawns/greenStudent.png" />
+                                                         </image>
+                                                         <effect>
+                                                            <DropShadow />
+                                                         </effect>
+                                                         <VBox.margin>
+                                                            <Insets top="7.0" />
+                                                         </VBox.margin>
+                                                      </ImageView>
+                                                      <ImageView fx:id="gs7_0" disable="true" fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true" styleClass="borderOnHover">
+                                                         <image>
+                                                            <Image url="@../images/pawns/greenStudent.png" />
+                                                         </image>
+                                                         <effect>
+                                                            <DropShadow />
+                                                         </effect>
+                                                         <VBox.margin>
+                                                            <Insets top="7.0" />
+                                                         </VBox.margin>
+                                                      </ImageView>
+                                                      <ImageView fx:id="gs6_0" disable="true" fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true" styleClass="borderOnHover">
+                                                         <image>
+                                                            <Image url="@../images/pawns/greenStudent.png" />
+                                                         </image>
+                                                         <effect>
+                                                            <DropShadow />
+                                                         </effect>
+                                                         <VBox.margin>
+                                                            <Insets top="7.0" />
+                                                         </VBox.margin>
+                                                      </ImageView>
+                                                      <ImageView fx:id="gs5_0" disable="true" fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true" styleClass="borderOnHover">
+                                                         <image>
+                                                            <Image url="@../images/pawns/greenStudent.png" />
+                                                         </image>
+                                                         <effect>
+                                                            <DropShadow />
+                                                         </effect>
+                                                         <VBox.margin>
+                                                            <Insets top="7.0" />
+                                                         </VBox.margin>
+                                                      </ImageView>
+                                                      <ImageView fx:id="gs4_0" disable="true" fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true" styleClass="borderOnHover">
+                                                         <image>
+                                                            <Image url="@../images/pawns/greenStudent.png" />
+                                                         </image>
+                                                         <effect>
+                                                            <DropShadow />
+                                                         </effect>
+                                                         <VBox.margin>
+                                                            <Insets top="7.0" />
+                                                         </VBox.margin>
+                                                      </ImageView>
+                                                      <ImageView fx:id="gs2_0" disable="true" fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true" styleClass="borderOnHover">
+                                                         <image>
+                                                            <Image url="@../images/pawns/greenStudent.png" />
+                                                         </image>
+                                                         <effect>
+                                                            <DropShadow />
+                                                         </effect>
+                                                         <VBox.margin>
+                                                            <Insets top="7.0" />
+                                                         </VBox.margin>
+                                                      </ImageView>
+                                                      <ImageView fx:id="gs3_0" disable="true" fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true" styleClass="borderOnHover">
+                                                         <image>
+                                                            <Image url="@../images/pawns/greenStudent.png" />
+                                                         </image>
+                                                         <effect>
+                                                            <DropShadow />
+                                                         </effect>
+                                                         <VBox.margin>
+                                                            <Insets top="7.0" />
+                                                         </VBox.margin>
+                                                      </ImageView>
+                                                      <ImageView fx:id="gs1_0" disable="true" fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true" styleClass="borderOnHover">
+                                                         <image>
+                                                            <Image url="@../images/pawns/greenStudent.png" />
+                                                         </image>
+                                                         <effect>
+                                                            <DropShadow />
+                                                         </effect>
+                                                         <VBox.margin>
+                                                            <Insets top="7.0" />
+                                                         </VBox.margin>
+                                                      </ImageView>
+                                                      <ImageView fx:id="gs0_0" disable="true" fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true" styleClass="borderOnHover">
+                                                         <image>
+                                                            <Image url="@../images/pawns/greenStudent.png" />
+                                                         </image>
+                                                         <effect>
+                                                            <DropShadow />
+                                                         </effect>
+                                                         <VBox.margin>
+                                                            <Insets top="7.0" />
+                                                         </VBox.margin>
+                                                      </ImageView>
+                                                   </children>
+                                                   <HBox.margin>
+                                                      <Insets right="15.0" />
+                                                   </HBox.margin>
+                                                </VBox>
+                                                <VBox accessibleRole="BUTTON" layoutX="10.0" layoutY="10.0" onMouseClicked="#dgOnClick" styleClass="borderOnHover">
+                                                   <children>
+                                                      <ImageView fx:id="rs9_0" disable="true" fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true" styleClass="borderOnHover">
+                                                         <image>
+                                                            <Image url="@../images/pawns/redStudent.png" />
+                                                         </image>
+                                                         <effect>
+                                                            <DropShadow />
+                                                         </effect>
+                                                         <VBox.margin>
+                                                            <Insets left="10.0" />
+                                                         </VBox.margin>
+                                                      </ImageView>
+                                                      <ImageView fx:id="rs8_0" disable="true" fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true" styleClass="borderOnHover">
+                                                         <image>
+                                                            <Image url="@../images/pawns/redStudent.png" />
+                                                         </image>
+                                                         <effect>
+                                                            <DropShadow />
+                                                         </effect>
+                                                         <VBox.margin>
+                                                            <Insets left="10.0" top="7.0" />
+                                                         </VBox.margin>
+                                                      </ImageView>
+                                                      <ImageView fx:id="rs7_0" disable="true" fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true" styleClass="borderOnHover">
+                                                         <image>
+                                                            <Image url="@../images/pawns/redStudent.png" />
+                                                         </image>
+                                                         <effect>
+                                                            <DropShadow />
+                                                         </effect>
+                                                         <VBox.margin>
+                                                            <Insets left="10.0" top="7.0" />
+                                                         </VBox.margin>
+                                                      </ImageView>
+                                                      <ImageView fx:id="rs6_0" disable="true" fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true" styleClass="borderOnHover">
+                                                         <image>
+                                                            <Image url="@../images/pawns/redStudent.png" />
+                                                         </image>
+                                                         <effect>
+                                                            <DropShadow />
+                                                         </effect>
+                                                         <VBox.margin>
+                                                            <Insets left="10.0" top="7.0" />
+                                                         </VBox.margin>
+                                                      </ImageView>
+                                                      <ImageView fx:id="rs5_0" disable="true" fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true" styleClass="borderOnHover">
+                                                         <image>
+                                                            <Image url="@../images/pawns/redStudent.png" />
+                                                         </image>
+                                                         <effect>
+                                                            <DropShadow />
+                                                         </effect>
+                                                         <VBox.margin>
+                                                            <Insets left="10.0" top="7.0" />
+                                                         </VBox.margin>
+                                                      </ImageView>
+                                                      <ImageView fx:id="rs4_0" disable="true" fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true" styleClass="borderOnHover">
+                                                         <image>
+                                                            <Image url="@../images/pawns/redStudent.png" />
+                                                         </image>
+                                                         <effect>
+                                                            <DropShadow />
+                                                         </effect>
+                                                         <VBox.margin>
+                                                            <Insets left="10.0" top="7.0" />
+                                                         </VBox.margin>
+                                                      </ImageView>
+                                                      <ImageView fx:id="rs3_0" disable="true" fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true" styleClass="borderOnHover">
+                                                         <image>
+                                                            <Image url="@../images/pawns/redStudent.png" />
+                                                         </image>
+                                                         <effect>
+                                                            <DropShadow />
+                                                         </effect>
+                                                         <VBox.margin>
+                                                            <Insets left="10.0" top="7.0" />
+                                                         </VBox.margin>
+                                                      </ImageView>
+                                                      <ImageView fx:id="rs2_0" disable="true" fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true" styleClass="borderOnHover">
+                                                         <image>
+                                                            <Image url="@../images/pawns/redStudent.png" />
+                                                         </image>
+                                                         <effect>
+                                                            <DropShadow />
+                                                         </effect>
+                                                         <VBox.margin>
+                                                            <Insets left="10.0" top="7.0" />
+                                                         </VBox.margin>
+                                                      </ImageView>
+                                                      <ImageView fx:id="rs1_0" disable="true" fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true" styleClass="borderOnHover">
+                                                         <image>
+                                                            <Image url="@../images/pawns/redStudent.png" />
+                                                         </image>
+                                                         <effect>
+                                                            <DropShadow />
+                                                         </effect>
+                                                         <VBox.margin>
+                                                            <Insets left="10.0" top="7.0" />
+                                                         </VBox.margin>
+                                                      </ImageView>
+                                                      <ImageView fx:id="rs0_0" disable="true" fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true" styleClass="borderOnHover">
+                                                         <image>
+                                                            <Image url="@../images/pawns/redStudent.png" />
+                                                         </image>
+                                                         <effect>
+                                                            <DropShadow />
+                                                         </effect>
+                                                         <VBox.margin>
+                                                            <Insets left="10.0" top="7.0" />
+                                                         </VBox.margin>
+                                                      </ImageView>
+                                                   </children>
+                                                   <HBox.margin>
+                                                      <Insets right="15.0" />
+                                                   </HBox.margin>
+                                                </VBox>
+                                                <VBox accessibleRole="BUTTON" layoutX="110.0" layoutY="10.0" onMouseClicked="#dgOnClick" styleClass="borderOnHover">
+                                                   <children>
+                                                      <ImageView fx:id="ys9_0" disable="true" fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true" styleClass="borderOnHover">
+                                                         <image>
+                                                            <Image url="@../images/pawns/yellowStudent.png" />
+                                                         </image>
+                                                         <effect>
+                                                            <DropShadow />
+                                                         </effect>
+                                                         <VBox.margin>
+                                                            <Insets left="10.0" />
+                                                         </VBox.margin>
+                                                      </ImageView>
+                                                      <ImageView fx:id="ys8_0" disable="true" fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true" styleClass="borderOnHover">
+                                                         <image>
+                                                            <Image url="@../images/pawns/yellowStudent.png" />
+                                                         </image>
+                                                         <effect>
+                                                            <DropShadow />
+                                                         </effect>
+                                                         <VBox.margin>
+                                                            <Insets left="10.0" top="7.0" />
+                                                         </VBox.margin>
+                                                      </ImageView>
+                                                      <ImageView fx:id="ys7_0" disable="true" fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true" styleClass="borderOnHover">
+                                                         <image>
+                                                            <Image url="@../images/pawns/yellowStudent.png" />
+                                                         </image>
+                                                         <effect>
+                                                            <DropShadow />
+                                                         </effect>
+                                                         <VBox.margin>
+                                                            <Insets left="10.0" top="7.0" />
+                                                         </VBox.margin>
+                                                      </ImageView>
+                                                      <ImageView fx:id="ys6_0" disable="true" fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true" styleClass="borderOnHover">
+                                                         <image>
+                                                            <Image url="@../images/pawns/yellowStudent.png" />
+                                                         </image>
+                                                         <effect>
+                                                            <DropShadow />
+                                                         </effect>
+                                                         <VBox.margin>
+                                                            <Insets left="10.0" top="7.0" />
+                                                         </VBox.margin>
+                                                      </ImageView>
+                                                      <ImageView fx:id="ys5_0" disable="true" fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true" styleClass="borderOnHover">
+                                                         <image>
+                                                            <Image url="@../images/pawns/yellowStudent.png" />
+                                                         </image>
+                                                         <effect>
+                                                            <DropShadow />
+                                                         </effect>
+                                                         <VBox.margin>
+                                                            <Insets left="10.0" top="7.0" />
+                                                         </VBox.margin>
+                                                      </ImageView>
+                                                      <ImageView fx:id="ys4_0" disable="true" fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true" styleClass="borderOnHover">
+                                                         <image>
+                                                            <Image url="@../images/pawns/yellowStudent.png" />
+                                                         </image>
+                                                         <effect>
+                                                            <DropShadow />
+                                                         </effect>
+                                                         <VBox.margin>
+                                                            <Insets left="10.0" top="7.0" />
+                                                         </VBox.margin>
+                                                      </ImageView>
+                                                      <ImageView fx:id="ys3_0" disable="true" fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true" styleClass="borderOnHover">
+                                                         <image>
+                                                            <Image url="@../images/pawns/yellowStudent.png" />
+                                                         </image>
+                                                         <effect>
+                                                            <DropShadow />
+                                                         </effect>
+                                                         <VBox.margin>
+                                                            <Insets left="10.0" top="7.0" />
+                                                         </VBox.margin>
+                                                      </ImageView>
+                                                      <ImageView fx:id="ys2_0" disable="true" fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true" styleClass="borderOnHover">
+                                                         <image>
+                                                            <Image url="@../images/pawns/yellowStudent.png" />
+                                                         </image>
+                                                         <effect>
+                                                            <DropShadow />
+                                                         </effect>
+                                                         <VBox.margin>
+                                                            <Insets left="10.0" top="7.0" />
+                                                         </VBox.margin>
+                                                      </ImageView>
+                                                      <ImageView fx:id="ys1_0" disable="true" fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true" styleClass="borderOnHover">
+                                                         <image>
+                                                            <Image url="@../images/pawns/yellowStudent.png" />
+                                                         </image>
+                                                         <effect>
+                                                            <DropShadow />
+                                                         </effect>
+                                                         <VBox.margin>
+                                                            <Insets left="10.0" top="7.0" />
+                                                         </VBox.margin>
+                                                      </ImageView>
+                                                      <ImageView fx:id="ys0_0" disable="true" fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true" styleClass="borderOnHover">
+                                                         <image>
+                                                            <Image url="@../images/pawns/yellowStudent.png" />
+                                                         </image>
+                                                         <effect>
+                                                            <DropShadow />
+                                                         </effect>
+                                                         <VBox.margin>
+                                                            <Insets left="10.0" top="7.0" />
+                                                         </VBox.margin>
+                                                      </ImageView>
+                                                   </children>
+                                                   <HBox.margin>
+                                                      <Insets right="15.0" />
+                                                   </HBox.margin>
+                                                </VBox>
+                                                <VBox accessibleRole="BUTTON" layoutX="210.0" layoutY="10.0" onMouseClicked="#dgOnClick" styleClass="borderOnHover">
+                                                   <children>
+                                                      <ImageView fx:id="ps9_0" disable="true" fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true" styleClass="borderOnHover">
+                                                         <image>
+                                                            <Image url="@../images/pawns/pinkStudent.png" />
+                                                         </image>
+                                                         <effect>
+                                                            <DropShadow />
+                                                         </effect>
+                                                         <VBox.margin>
+                                                            <Insets left="10.0" />
+                                                         </VBox.margin>
+                                                      </ImageView>
+                                                      <ImageView fx:id="ps8_0" disable="true" fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true" styleClass="borderOnHover">
+                                                         <image>
+                                                            <Image url="@../images/pawns/pinkStudent.png" />
+                                                         </image>
+                                                         <effect>
+                                                            <DropShadow />
+                                                         </effect>
+                                                         <VBox.margin>
+                                                            <Insets left="10.0" top="7.0" />
+                                                         </VBox.margin>
+                                                      </ImageView>
+                                                      <ImageView fx:id="ps6_0" disable="true" fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true" styleClass="borderOnHover">
+                                                         <image>
+                                                            <Image url="@../images/pawns/pinkStudent.png" />
+                                                         </image>
+                                                         <effect>
+                                                            <DropShadow />
+                                                         </effect>
+                                                         <VBox.margin>
+                                                            <Insets left="10.0" top="7.0" />
+                                                         </VBox.margin>
+                                                      </ImageView>
+                                                      <ImageView fx:id="ps7_0" disable="true" fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true" styleClass="borderOnHover">
+                                                         <image>
+                                                            <Image url="@../images/pawns/pinkStudent.png" />
+                                                         </image>
+                                                         <effect>
+                                                            <DropShadow />
+                                                         </effect>
+                                                         <VBox.margin>
+                                                            <Insets left="10.0" top="7.0" />
+                                                         </VBox.margin>
+                                                      </ImageView>
+                                                      <ImageView fx:id="ps5_0" disable="true" fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true" styleClass="borderOnHover">
+                                                         <image>
+                                                            <Image url="@../images/pawns/pinkStudent.png" />
+                                                         </image>
+                                                         <effect>
+                                                            <DropShadow />
+                                                         </effect>
+                                                         <VBox.margin>
+                                                            <Insets left="10.0" top="7.0" />
+                                                         </VBox.margin>
+                                                      </ImageView>
+                                                      <ImageView fx:id="ps2_0" disable="true" fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true" styleClass="borderOnHover">
+                                                         <image>
+                                                            <Image url="@../images/pawns/pinkStudent.png" />
+                                                         </image>
+                                                         <effect>
+                                                            <DropShadow />
+                                                         </effect>
+                                                         <VBox.margin>
+                                                            <Insets left="10.0" top="7.0" />
+                                                         </VBox.margin>
+                                                      </ImageView>
+                                                      <ImageView fx:id="ps3_0" disable="true" fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true" styleClass="borderOnHover">
+                                                         <image>
+                                                            <Image url="@../images/pawns/pinkStudent.png" />
+                                                         </image>
+                                                         <effect>
+                                                            <DropShadow />
+                                                         </effect>
+                                                         <VBox.margin>
+                                                            <Insets left="10.0" top="7.0" />
+                                                         </VBox.margin>
+                                                      </ImageView>
+                                                      <ImageView fx:id="ps4_0" disable="true" fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true" styleClass="borderOnHover">
+                                                         <image>
+                                                            <Image url="@../images/pawns/pinkStudent.png" />
+                                                         </image>
+                                                         <effect>
+                                                            <DropShadow />
+                                                         </effect>
+                                                         <VBox.margin>
+                                                            <Insets left="10.0" top="7.0" />
+                                                         </VBox.margin>
+                                                      </ImageView>
+                                                      <ImageView fx:id="ps1_0" disable="true" fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true" styleClass="borderOnHover">
+                                                         <image>
+                                                            <Image url="@../images/pawns/pinkStudent.png" />
+                                                         </image>
+                                                         <effect>
+                                                            <DropShadow />
+                                                         </effect>
+                                                         <VBox.margin>
+                                                            <Insets left="10.0" top="7.0" />
+                                                         </VBox.margin>
+                                                      </ImageView>
+                                                      <ImageView fx:id="ps0_0" disable="true" fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true" styleClass="borderOnHover">
+                                                         <image>
+                                                            <Image url="@../images/pawns/pinkStudent.png" />
+                                                         </image>
+                                                         <effect>
+                                                            <DropShadow />
+                                                         </effect>
+                                                         <VBox.margin>
+                                                            <Insets left="10.0" top="7.0" />
+                                                         </VBox.margin>
+                                                      </ImageView>
+                                                   </children>
+                                                   <HBox.margin>
+                                                      <Insets right="15.0" />
+                                                   </HBox.margin>
+                                                </VBox>
+                                                <VBox accessibleRole="BUTTON" layoutX="310.0" layoutY="10.0" onMouseClicked="#dgOnClick" styleClass="borderOnHover">
+                                                   <children>
+                                                      <ImageView fx:id="bs8_0" disable="true" fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true" styleClass="borderOnHover">
+                                                         <image>
+                                                            <Image url="@../images/pawns/blueStudent.png" />
+                                                         </image>
+                                                         <effect>
+                                                            <DropShadow />
+                                                         </effect>
+                                                         <VBox.margin>
+                                                            <Insets left="10.0" />
+                                                         </VBox.margin>
+                                                      </ImageView>
+                                                      <ImageView fx:id="bs9_0" disable="true" fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true" styleClass="borderOnHover">
+                                                         <image>
+                                                            <Image url="@../images/pawns/blueStudent.png" />
+                                                         </image>
+                                                         <effect>
+                                                            <DropShadow />
+                                                         </effect>
+                                                         <VBox.margin>
+                                                            <Insets left="10.0" top="7.0" />
+                                                         </VBox.margin>
+                                                      </ImageView>
+                                                      <ImageView fx:id="bs7_0" disable="true" fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true" styleClass="borderOnHover">
+                                                         <image>
+                                                            <Image url="@../images/pawns/blueStudent.png" />
+                                                         </image>
+                                                         <effect>
+                                                            <DropShadow />
+                                                         </effect>
+                                                         <VBox.margin>
+                                                            <Insets left="10.0" top="7.0" />
+                                                         </VBox.margin>
+                                                      </ImageView>
+                                                      <ImageView fx:id="bs5_0" disable="true" fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true" styleClass="borderOnHover">
+                                                         <image>
+                                                            <Image url="@../images/pawns/blueStudent.png" />
+                                                         </image>
+                                                         <effect>
+                                                            <DropShadow />
+                                                         </effect>
+                                                         <VBox.margin>
+                                                            <Insets left="10.0" top="7.0" />
+                                                         </VBox.margin>
+                                                      </ImageView>
+                                                      <ImageView fx:id="bs6_0" disable="true" fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true" styleClass="borderOnHover">
+                                                         <image>
+                                                            <Image url="@../images/pawns/blueStudent.png" />
+                                                         </image>
+                                                         <effect>
+                                                            <DropShadow />
+                                                         </effect>
+                                                         <VBox.margin>
+                                                            <Insets left="10.0" top="7.0" />
+                                                         </VBox.margin>
+                                                      </ImageView>
+                                                      <ImageView fx:id="bs4_0" disable="true" fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true" styleClass="borderOnHover">
+                                                         <image>
+                                                            <Image url="@../images/pawns/blueStudent.png" />
+                                                         </image>
+                                                         <effect>
+                                                            <DropShadow />
+                                                         </effect>
+                                                         <VBox.margin>
+                                                            <Insets left="10.0" top="7.0" />
+                                                         </VBox.margin>
+                                                      </ImageView>
+                                                      <ImageView fx:id="bs3_0" disable="true" fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true" styleClass="borderOnHover">
+                                                         <image>
+                                                            <Image url="@../images/pawns/blueStudent.png" />
+                                                         </image>
+                                                         <effect>
+                                                            <DropShadow />
+                                                         </effect>
+                                                         <VBox.margin>
+                                                            <Insets left="10.0" top="7.0" />
+                                                         </VBox.margin>
+                                                      </ImageView>
+                                                      <ImageView fx:id="bs2_0" disable="true" fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true" styleClass="borderOnHover">
+                                                         <image>
+                                                            <Image url="@../images/pawns/blueStudent.png" />
+                                                         </image>
+                                                         <effect>
+                                                            <DropShadow />
+                                                         </effect>
+                                                         <VBox.margin>
+                                                            <Insets left="10.0" top="7.0" />
+                                                         </VBox.margin>
+                                                      </ImageView>
+                                                      <ImageView fx:id="bs1_0" disable="true" fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true" styleClass="borderOnHover">
+                                                         <image>
+                                                            <Image url="@../images/pawns/blueStudent.png" />
+                                                         </image>
+                                                         <effect>
+                                                            <DropShadow />
+                                                         </effect>
+                                                         <VBox.margin>
+                                                            <Insets left="10.0" top="7.0" />
+                                                         </VBox.margin>
+                                                      </ImageView>
+                                                      <ImageView fx:id="bs0_0" disable="true" fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true" styleClass="borderOnHover">
+                                                         <image>
+                                                            <Image url="@../images/pawns/blueStudent.png" />
+                                                         </image>
+                                                         <effect>
+                                                            <DropShadow />
+                                                         </effect>
+                                                         <VBox.margin>
+                                                            <Insets left="10.0" top="7.0" />
+                                                         </VBox.margin>
+                                                      </ImageView>
+                                                   </children>
+                                                   <HBox.margin>
+                                                      <Insets right="15.0" />
+                                                   </HBox.margin>
+                                                </VBox>
+                                             </children>
+                                          </HBox>
                                              </children>
                                          </VBox>
                                          <HBox prefHeight="52.0" prefWidth="500.0" />
@@ -2640,7 +2838,7 @@
                                                      <children>
                                                          <StackPane prefHeight="88.0" prefWidth="97.0" GridPane.columnIndex="1">
                                                              <children>
-                                                                 <ImageView fx:id="se0_0" fitHeight="44.0" fitWidth="44.0" pickOnBounds="true" preserveRatio="true" styleClass="borderOnHover">
+                                                                 <ImageView fx:id="se0_0" accessibleRole="BUTTON" fitHeight="44.0" fitWidth="44.0" onMouseClicked="#entranceStudentOnClick" pickOnBounds="true" preserveRatio="true" styleClass="borderOnHover">
                                                                      <image>
                                                                          <Image url="@../images/pawns/greenStudent.png" />
                                                                      </image>
@@ -2652,7 +2850,7 @@
                                                          </StackPane>
                                                          <StackPane layoutX="10.0" layoutY="10.0" prefHeight="88.0" prefWidth="97.0" GridPane.columnIndex="2">
                                                              <children>
-                                                                 <ImageView fx:id="se1_0" fitHeight="44.0" fitWidth="44.0" pickOnBounds="true" preserveRatio="true" styleClass="borderOnHover">
+                                                                 <ImageView fx:id="se1_0" accessibleRole="BUTTON" fitHeight="44.0" fitWidth="44.0" onMouseClicked="#entranceStudentOnClick" pickOnBounds="true" preserveRatio="true" styleClass="borderOnHover">
                                                                      <image>
                                                                          <Image url="@../images/pawns/greenStudent.png" />
                                                                      </image>
@@ -2664,7 +2862,7 @@
                                                          </StackPane>
                                                          <StackPane prefHeight="150.0" prefWidth="200.0" GridPane.columnIndex="3">
                                                              <children>
-                                                                 <ImageView fx:id="se2_0" fitHeight="44.0" fitWidth="44.0" pickOnBounds="true" preserveRatio="true" styleClass="borderOnHover">
+                                                                 <ImageView fx:id="se2_0" accessibleRole="BUTTON" fitHeight="44.0" fitWidth="44.0" onMouseClicked="#entranceStudentOnClick" pickOnBounds="true" preserveRatio="true" styleClass="borderOnHover">
                                                                      <image>
                                                                          <Image url="@../images/pawns/greenStudent.png" />
                                                                      </image>
@@ -2676,7 +2874,7 @@
                                                          </StackPane>
                                                          <StackPane prefHeight="150.0" prefWidth="200.0" GridPane.columnIndex="4">
                                                              <children>
-                                                                 <ImageView fx:id="se3_0" fitHeight="44.0" fitWidth="44.0" pickOnBounds="true" preserveRatio="true" styleClass="borderOnHover">
+                                                                 <ImageView fx:id="se3_0" accessibleRole="BUTTON" fitHeight="44.0" fitWidth="44.0" onMouseClicked="#entranceStudentOnClick" pickOnBounds="true" preserveRatio="true" styleClass="borderOnHover">
                                                                      <image>
                                                                          <Image url="@../images/pawns/greenStudent.png" />
                                                                      </image>
@@ -2688,7 +2886,7 @@
                                                          </StackPane>
                                                          <StackPane prefHeight="150.0" prefWidth="200.0" GridPane.columnIndex="5">
                                                              <children>
-                                                                 <ImageView fx:id="se4_0" fitHeight="44.0" fitWidth="44.0" pickOnBounds="true" preserveRatio="true" styleClass="borderOnHover">
+                                                                 <ImageView fx:id="se4_0" accessibleRole="BUTTON" fitHeight="44.0" fitWidth="44.0" onMouseClicked="#entranceStudentOnClick" pickOnBounds="true" preserveRatio="true" styleClass="borderOnHover">
                                                                      <image>
                                                                          <Image url="@../images/pawns/greenStudent.png" />
                                                                      </image>
@@ -2702,7 +2900,7 @@
                                                    </StackPane>
                                                          <StackPane prefHeight="150.0" prefWidth="200.0" GridPane.columnIndex="2" GridPane.rowIndex="1">
                                                              <children>
-                                                                 <ImageView fx:id="se5_0" fitHeight="44.0" fitWidth="44.0" pickOnBounds="true" preserveRatio="true" styleClass="borderOnHover">
+                                                                 <ImageView fx:id="se5_0" accessibleRole="BUTTON" fitHeight="44.0" fitWidth="44.0" onMouseClicked="#entranceStudentOnClick" pickOnBounds="true" preserveRatio="true" styleClass="borderOnHover">
                                                                      <image>
                                                                          <Image url="@../images/pawns/greenStudent.png" />
                                                                      </image>
@@ -2714,7 +2912,7 @@
                                                          </StackPane>
                                                          <StackPane prefHeight="150.0" prefWidth="200.0" GridPane.columnIndex="3" GridPane.rowIndex="1">
                                                              <children>
-                                                                 <ImageView fx:id="se6_0" fitHeight="44.0" fitWidth="44.0" pickOnBounds="true" preserveRatio="true" styleClass="borderOnHover">
+                                                                 <ImageView fx:id="se6_0" accessibleRole="BUTTON" fitHeight="44.0" fitWidth="44.0" onMouseClicked="#entranceStudentOnClick" pickOnBounds="true" preserveRatio="true" styleClass="borderOnHover">
                                                                      <image>
                                                                          <Image url="@../images/pawns/greenStudent.png" />
                                                                      </image>
@@ -2726,7 +2924,7 @@
                                                          </StackPane>
                                                          <StackPane prefHeight="150.0" prefWidth="200.0" GridPane.columnIndex="4" GridPane.rowIndex="1">
                                                              <children>
-                                                                 <ImageView fx:id="se7_0" fitHeight="44.0" fitWidth="44.0" pickOnBounds="true" preserveRatio="true" styleClass="borderOnHover">
+                                                                 <ImageView fx:id="se7_0" accessibleRole="BUTTON" fitHeight="44.0" fitWidth="44.0" onMouseClicked="#entranceStudentOnClick" pickOnBounds="true" preserveRatio="true" styleClass="borderOnHover">
                                                                      <image>
                                                                          <Image url="@../images/pawns/greenStudent.png" />
                                                                      </image>
@@ -2738,7 +2936,7 @@
                                                          </StackPane>
                                                          <StackPane prefHeight="150.0" prefWidth="200.0" GridPane.columnIndex="5" GridPane.rowIndex="1">
                                                              <children>
-                                                                 <ImageView fx:id="se8_0" fitHeight="44.0" fitWidth="44.0" pickOnBounds="true" preserveRatio="true" styleClass="borderOnHover">
+                                                                 <ImageView fx:id="se8_0" accessibleRole="BUTTON" fitHeight="44.0" fitWidth="44.0" onMouseClicked="#entranceStudentOnClick" pickOnBounds="true" preserveRatio="true" styleClass="borderOnHover">
                                                                      <image>
                                                                          <Image url="@../images/pawns/greenStudent.png" />
                                                                      </image>
