@@ -603,7 +603,7 @@ public class BoardController implements GUIController {
     @FXML
     private void chooseCharacterCard (Event event) {
         String id = ((Node) event.getSource()).getId();
-        id = id.substring(id.length() - 2);
+        id = id.substring(id.length() - 1);
         gui.fireRequest(new RequestEvent("playCharacterCard", gui.getId(), Integer.parseInt(id)));
         closeCharacterCardSelector();
         gui.playPopEffect();
