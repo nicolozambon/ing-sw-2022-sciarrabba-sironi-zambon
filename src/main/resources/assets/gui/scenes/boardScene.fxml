@@ -127,7 +127,7 @@
                                     <Cursor fx:constant="HAND" />
                                  </cursor>
                               </ImageView>
-                              <Text accessibleRole="BUTTON" disable="true" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="EXIT" textAlignment="CENTER" wrappingWidth="135.0" StackPane.alignment="TOP_CENTER">
+                              <Text accessibleRole="BUTTON" disable="true" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="QUIT" textAlignment="CENTER" wrappingWidth="135.0" StackPane.alignment="TOP_CENTER">
                                  <font>
                                     <Font name="Avenir Next Condensed Bold" size="27.0" />
                                  </font>
