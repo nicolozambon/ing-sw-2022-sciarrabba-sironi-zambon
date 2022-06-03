@@ -2117,42 +2117,42 @@
                                                       <RowConstraints maxHeight="41.84942626953125" minHeight="10.0" prefHeight="34.599639892578125" vgrow="SOMETIMES" />
                                                    </rowConstraints>
                                                    <children>
-                                                      <ImageView fx:id="whiteTower0" fitHeight="64.0" fitWidth="72.0" pickOnBounds="true" preserveRatio="true" styleClass="borderOnHover" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER">
+                                                      <ImageView fx:id="whiteTower0" fitHeight="64.0" fitWidth="72.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER">
                                                          <image>
                                                             <Image url="@../images/pawns/whiteTower.png" />
                                                          </image>
                                                       </ImageView>
-                                                      <ImageView fx:id="whiteTower1" fitHeight="64.0" fitWidth="72.0" layoutX="93.0" layoutY="33.0" pickOnBounds="true" preserveRatio="true" styleClass="borderOnHover" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER">
+                                                      <ImageView fx:id="whiteTower1" fitHeight="64.0" fitWidth="72.0" layoutX="93.0" layoutY="33.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER">
                                                          <image>
                                                             <Image url="@../images/pawns/whiteTower.png" />
                                                          </image>
                                                       </ImageView>
-                                                      <ImageView fx:id="whiteTower3" fitHeight="64.0" fitWidth="72.0" layoutX="143.0" layoutY="33.0" pickOnBounds="true" preserveRatio="true" styleClass="borderOnHover" GridPane.columnIndex="4" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER">
+                                                      <ImageView fx:id="whiteTower3" fitHeight="64.0" fitWidth="72.0" layoutX="143.0" layoutY="33.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="4" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER">
                                                          <image>
                                                             <Image url="@../images/pawns/whiteTower.png" />
                                                          </image>
                                                       </ImageView>
-                                                      <ImageView fx:id="whiteTower2" fitHeight="64.0" fitWidth="72.0" layoutX="10.0" layoutY="-10.0" pickOnBounds="true" preserveRatio="true" styleClass="borderOnHover" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER">
+                                                      <ImageView fx:id="whiteTower2" fitHeight="64.0" fitWidth="72.0" layoutX="10.0" layoutY="-10.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER">
                                                          <image>
                                                             <Image url="@../images/pawns/whiteTower.png" />
                                                          </image>
                                                       </ImageView>
-                                                      <ImageView fx:id="whiteTower4" fitHeight="64.0" fitWidth="72.0" layoutX="93.0" layoutY="33.0" pickOnBounds="true" preserveRatio="true" styleClass="borderOnHover" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER">
+                                                      <ImageView fx:id="whiteTower4" fitHeight="64.0" fitWidth="72.0" layoutX="93.0" layoutY="33.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER">
                                                          <image>
                                                             <Image url="@../images/pawns/whiteTower.png" />
                                                          </image>
                                                       </ImageView>
-                                                      <ImageView fx:id="whiteTower7" fitHeight="64.0" fitWidth="72.0" layoutX="143.0" layoutY="33.0" pickOnBounds="true" preserveRatio="true" styleClass="borderOnHover" GridPane.columnIndex="4" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER">
+                                                      <ImageView fx:id="whiteTower7" fitHeight="64.0" fitWidth="72.0" layoutX="143.0" layoutY="33.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="4" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER">
                                                          <image>
                                                             <Image url="@../images/pawns/whiteTower.png" />
                                                          </image>
                                                       </ImageView>
-                                                      <ImageView fx:id="whiteTower6" fitHeight="64.0" fitWidth="72.0" layoutX="277.0" layoutY="33.0" pickOnBounds="true" preserveRatio="true" styleClass="borderOnHover" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER">
+                                                      <ImageView fx:id="whiteTower6" fitHeight="64.0" fitWidth="72.0" layoutX="277.0" layoutY="33.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER">
                                                          <image>
                                                             <Image url="@../images/pawns/whiteTower.png" />
                                                          </image>
                                                       </ImageView>
-                                                      <ImageView fx:id="whiteTower5" fitHeight="64.0" fitWidth="72.0" layoutX="210.0" layoutY="33.0" pickOnBounds="true" preserveRatio="true" styleClass="borderOnHover" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER">
+                                                      <ImageView fx:id="whiteTower5" fitHeight="64.0" fitWidth="72.0" layoutX="210.0" layoutY="33.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER">
                                                          <image>
                                                             <Image url="@../images/pawns/whiteTower.png" />
                                                          </image>
