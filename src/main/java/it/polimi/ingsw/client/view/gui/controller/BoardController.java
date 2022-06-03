@@ -16,8 +16,6 @@ import javafx.scene.control.ToggleButton;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.HBox;
-import javafx.scene.layout.StackPane;
 import javafx.scene.text.Text;
 
 import java.util.*;
@@ -31,6 +29,9 @@ public class BoardController implements GUIController {
     private BorderPane wizardBorderPane;
     @FXML
     private BorderPane assistantBorderPane;
+
+    private String sourceID;
+    private String destinationID;
 
     @Override
     public void optionsHandling(List<String> options) {
@@ -286,6 +287,23 @@ public class BoardController implements GUIController {
         if (text) id = "text";
         id = id + "CharacterCard" + ID;
 
+        return id;
+    }
+
+    /**
+     * Generates FX:ID of the table of the dining room (by color) of the player (Board 0)
+     * @param color Color of the dining room students.
+     * @return FX:ID of the table of the dining room.
+     */
+    private String getDRSelectorID (Color color) {
+        String id = "dg";
+        switch (color) {
+            case YELLOW -> id = id + "Yellow";
+            case RED -> id = id + "Red";
+            case BLUE -> id = id + "Blue";
+            case GREEN -> id = id + "Green";
+            case PINK -> id = id + "Pink";
+        }
         return id;
     }
 
