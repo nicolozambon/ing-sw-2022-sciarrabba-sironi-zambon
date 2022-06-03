@@ -257,7 +257,6 @@ public class BoardController implements GUIController {
             for (int j = 0; j<model.getEntranceByPlayer(i).size(); j++) {
                 String identifier = this.getStudentFXID(j, false, null, i);
                 ImageView student = this.schools.get(i).get("entrance").get(identifier);
-                System.out.println(this.getStudentPath(model.getEntranceByPlayer(i).get(j)));
                 Image studentPawn = new Image(Objects.requireNonNull(getClass().getResourceAsStream(this.getStudentPath(model.getEntranceByPlayer(i).get(j)))));
                 student.setImage(studentPawn);
                 student.setVisible(true);
@@ -289,6 +288,27 @@ public class BoardController implements GUIController {
                     ImageView pawn = ((Map<String, ImageView>) this.islands.get(i).get("studentsPawns")).get(pawnIdentifier);
                     pawn.setVisible(true);
                 }
+            }
+
+            // Show bridge
+            int destinationIsland = i+1;
+            if (destinationIsland == 12) {
+                destinationIsland = 0;
+            }
+            if (model.isIslandLinkedNext(i)) {
+                String identifier = this.getBridgeFXID(i, destinationIsland);
+                ImageView bridge = ((Map<String, ImageView>) this.islands.get(i).get("bridge")).get(identifier);
+                bridge.setVisible(true);
+            }
+
+            // Show tower
+            TowerColor towerColor = model.getTowerColorOnIsland(i);
+            if (towerColor != null) {
+                String towerKey = this.getTowerOnIslandFXID(i);
+                ImageView towerImageView = ((Map<String, ImageView>) this.islands.get(i).get("tower")).get(towerKey);
+                Image towerImage = new Image(Objects.requireNonNull(getClass().getResourceAsStream(this.getTowerPath(towerColor))));
+                towerImageView.setImage(towerImage);
+                towerImageView.setVisible(true);
             }
 
             // TODO add elements here
