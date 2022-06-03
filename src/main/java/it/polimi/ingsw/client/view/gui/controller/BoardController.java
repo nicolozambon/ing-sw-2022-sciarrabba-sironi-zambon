@@ -288,4 +288,24 @@ public class BoardController implements GUIController {
 
         return id;
     }
+
+    @FXML
+    private void entranceStudentOnClick(Event event) {
+
+    }
+
+    @FXML
+    private void cloudOnClick(Event event) {
+
+    }
+
+    @FXML
+    private void islandOnClick(Event event) {
+
+    }
+
+    @FXML
+    private void dgOnClick(Event event) {
+
+    }
 }
