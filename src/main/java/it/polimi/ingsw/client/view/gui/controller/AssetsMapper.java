@@ -37,6 +37,10 @@ public class AssetsMapper {
         }
     }
 
+    public void hideAllPawns() {
+
+    }
+
     public ImageView getTowerOnSchool(int schoolId, TowerColor color, int position) {
         String identifier = this.getTowerFXID(color, position);
         return this.schools.get(schoolId).get("towers").get(identifier);
