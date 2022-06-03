@@ -20,6 +20,7 @@ public class AssetsMapper {
     private Map<Integer, Integer> idMap = null;
     private Map<Integer, Map<String, Map<String, ImageView>>> schools = null;
     private Map<Integer, Map<String, Object>> islands = null;
+    private Map<Integer, Map<String, Object>> clouds = null;
     private final Scene scene;
     private final Integer playersNumber;
     private final Integer currentId;
@@ -30,6 +31,7 @@ public class AssetsMapper {
         this.currentId = currentId;
         this.defineIslandsMap();
         this.defineSchoolsMap(model);
+        this.defineCloudsMap();
         this.defineIdMap();
         if (playersNumber == 2) {
             HBox value = (HBox) scene.lookup("#board2");
@@ -84,6 +86,35 @@ public class AssetsMapper {
     public ImageView getTowerOnIsland(int islandId) {
         String identifier = this.getTowerOnIslandFXID(islandId);
         return ((Map<String, ImageView>) this.islands.get(islandId).get("tower")).get(identifier);
+    }
+
+    private void defineCloudsMap() {
+        this.clouds = new HashMap<>();
+        int cloudsNumber = 2;
+        int maxStudentsOnCloud = 3;
+        if (this.playersNumber == 3) {
+            cloudsNumber = 3;
+            maxStudentsOnCloud = 4;
+        }
+
+        for (int i=0; i<3; i++) {
+            Map<String, Object> cloudMap = new HashMap<>();
+
+            for (int j=0; j<4; j++) {
+                String key = this.getStudentsOnCloudFXID(i, j);
+                ImageView value = (ImageView) this.scene.lookup("#" + key);
+                value.setVisible(false);
+                if (i < cloudsNumber && j < maxStudentsOnCloud) {
+                    cloudMap.put(key, value);
+                }
+            }
+
+            this.islands.put(i, cloudMap);
+        }
+    }
+
+    private void setupClouds() {
+
     }
 
     private void defineIslandsMap() {
