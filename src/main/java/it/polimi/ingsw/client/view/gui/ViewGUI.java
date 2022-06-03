@@ -92,6 +92,8 @@ public class ViewGUI extends Application implements RequestListenableInterface, 
             e.printStackTrace();
         }
 
+        initMusicPlayers();
+
         currentScene = sceneMap.get("startMenuScene");
         currentController = controllerMap.get("startMenuScene");
     }
@@ -134,13 +136,13 @@ public class ViewGUI extends Application implements RequestListenableInterface, 
         }
     }
 
-    protected void music() {
-        //Media media = new Media(getClass().getResource("/assets/gui/music/track.mp3").toExternalForm());
-        //MediaPlayer mediaPlayer = new MediaPlayer(media);
+    protected void initMusicPlayers() {
         this.soundtrack = new Media(getClass().getResource("/assets/gui/music/track.mp3").toExternalForm());
         this.mediaPlayer = new MediaPlayer(this.soundtrack);
         this.clickEffect = new Media(getClass().getResource("/assets/gui/music/pop.mp3").toExternalForm());
         this.mediaPlayerEffect = new MediaPlayer(this.clickEffect);
+    }
+    protected void music() {
         mediaPlayer.setAutoPlay(true);
         mediaPlayer.setCycleCount(MediaPlayer.INDEFINITE);
     }
