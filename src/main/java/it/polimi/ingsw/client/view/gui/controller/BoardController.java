@@ -87,34 +87,58 @@ public class BoardController implements GUIController {
     private void setupSchools(ThinModel model) {
         for (int i=0; i<model.getNicknames().size(); i++) {
 
+            int maxTowers = 8;
+            int maxEntrance = 7;
+            if (model.getNicknames().size() == 3) {
+                maxTowers = 6;
+                maxEntrance = 9;
+            }
+
             // Add towers
-            for (int j=0; j<model.getNumTowerByPlayer(i); j++) {
+            for (int j=0; j<maxTowers; j++) {
                 ImageView tower = this.assetsMapper.getTowerOnSchool(i, model.getTowerColorByPlayer(i), j);
-                tower.setVisible(true);
+                if (j < model.getNumTowerByPlayer(i)) {
+                    tower.setVisible(true);
+                } else {
+                    tower.setVisible(false);
+                }
             }
 
             // Add professors
-            for (Color professorColor : model.getProfessorsByPlayer(i)) {
+            for (Color professorColor : Color.values()) {
                 ImageView professor = this.assetsMapper.getProfessorOnSchool(i, professorColor);
-                professor.setVisible(true);
+                if (model.getProfessorsByPlayer(i).contains(professorColor)) {
+                    professor.setVisible(true);
+                } else {
+                    professor.setVisible(false);
+                }
             }
 
             // Add dining room
             for (Color color : Color.values()) {
-                for (int j = 0; j<model.getDiningRoomByPlayer(i).get(color); j++) {
+                for (int j = 0; j < 10; j++) {
                     ImageView student = this.assetsMapper.getStudentInDiningRoom(i, j, color);
-                    student.setVisible(true);
+                    if (j < model.getDiningRoomByPlayer(i).get(color)) {
+                        student.setVisible(true);
+                    } else {
+                        student.setVisible(false);
+                    }
                 }
             }
 
             // Add entrance
-            for (int j = 0; j<model.getEntranceByPlayer(i).size(); j++) {
+            for (int j = 0; j < maxEntrance; j++) {
                 ImageView student = this.assetsMapper.getStudentInEntrance(i, j);
-                String path = this.assetsMapper.getStudentPath(model.getEntranceByPlayer(i).get(j));
-                Image studentPawn = new Image(Objects.requireNonNull(getClass().getResourceAsStream(path)));
-                student.setImage(studentPawn);
-                student.setVisible(true);
+                if (j<model.getEntranceByPlayer(i).size()) {
+                    String path = this.assetsMapper.getStudentPath(model.getEntranceByPlayer(i).get(j));
+                    Image studentPawn = new Image(Objects.requireNonNull(getClass().getResourceAsStream(path)));
+                    student.setImage(studentPawn);
+                    student.setVisible(true);
+                } else {
+                    student.setVisible(false);
+                }
             }
+
         }
     }
 
@@ -122,38 +146,46 @@ public class BoardController implements GUIController {
         for (int i=0; i<12; i++) {
 
             // Show mother nature
+            ImageView motherNature = this.assetsMapper.getMotherNature(i);
             if (model.getMNPosition() == i) {
-                ImageView motherNature = this.assetsMapper.getMotherNature(i);
+                motherNature.setVisible(true);
+            } else {
                 motherNature.setVisible(true);
             }
 
             // Show students
             for (Color color : Color.values()) {
                 Integer numberOfStudents = model.getStudentOnIsland(i).get(color);
+                Text label = this.assetsMapper.getStudentLabel(i, color);
+                ImageView pawn = this.assetsMapper.getStudentPawn(i, color);
                 if (numberOfStudents > 0) {
                     // Set label
-                    Text label = this.assetsMapper.getStudentLabel(i, color);
                     label.setText("x" + numberOfStudents.toString());
-
                     // Show pawn
-                    ImageView pawn = this.assetsMapper.getStudentPawn(i, color);
                     pawn.setVisible(true);
+                } else {
+                    label.setText(null);
+                    pawn.setVisible(false);
                 }
             }
 
             // Show bridge
+            ImageView bridge = this.assetsMapper.getBridgeOnIsland(i);
             if (model.isIslandLinkedNext(i)) {
-                ImageView bridge = this.assetsMapper.getBridgeOnIsland(i);
                 bridge.setVisible(true);
+            } else {
+                bridge.setVisible(false);
             }
 
             // Show tower
             TowerColor towerColor = model.getTowerColorOnIsland(i);
+            ImageView tower = this.assetsMapper.getTowerOnIsland(i);
             if (towerColor != null) {
-                ImageView tower = this.assetsMapper.getTowerOnIsland(i);
                 Image towerImage = new Image(Objects.requireNonNull(getClass().getResourceAsStream(this.assetsMapper.getTowerPath(towerColor))));
                 tower.setImage(towerImage);
                 tower.setVisible(true);
+            } else {
+                tower.setVisible(false);
             }
 
             // TODO add elements here
