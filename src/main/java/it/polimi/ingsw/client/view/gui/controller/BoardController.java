@@ -29,6 +29,9 @@ public class BoardController implements GUIController {
     private ViewGUI gui;
     private List<Node> assistantCards;
     private AssetsMapper assetsMapper = null;
+
+    private ThinModel model;
+
     @FXML
     private BorderPane wizardBorderPane;
     @FXML
@@ -83,6 +86,7 @@ public class BoardController implements GUIController {
 
     @Override
     public void updateModel(ThinModel model) {
+        this.model = model;
         if (this.assetsMapper == null) {
             assetsMapper = new AssetsMapper(
                     model,
@@ -288,24 +292,23 @@ public class BoardController implements GUIController {
     }
 
     private void moveStudentToDiningRoom() {
-        diningRoom.setDisable(false);
-        diningRoom.getChildren().forEach(n -> n.setDisable(true));
         assetsMapper.getStudentsInEntrance().values().forEach(n -> n.setDisable(false));
     }
 
     private void moveStudentToIsland() {
-
+        assetsMapper.getStudentsInEntrance().values().forEach(n -> n.setDisable(false));
     }
 
     private void moveMotherNature() {
-
+        assetsMapper.getMotherNature(model.getMNPosition()).setDisable(false);
     }
 
     private void playCharacterCard() {
-
+        this.gui.getScenes().get("boardScene").lookup("#characterCardButton").setDisable(false);
     }
-    private void takeStudentsFromCloud() {
 
+    private void takeStudentsFromCloud() {
+        assetsMapper.getClouds().forEach(n -> n.setDisable(false));
     }
 
     private void endAction() {
@@ -328,18 +331,16 @@ public class BoardController implements GUIController {
     }
 
     private void disableAll() {
-        this.gui.getScenes().get("boardScene").lookup("#quitButton").setDisable(false);
-        this.gui.getScenes().get("boardScene").lookup("#musicButton").setDisable(false);
+        //this.gui.getScenes().get("boardScene").lookup("#quitButton").setDisable(false);
+        //this.gui.getScenes().get("boardScene").lookup("#musicButton").setDisable(false);
         this.gui.getScenes().get("boardScene").lookup("#endActionButton").setDisable(true);
         wizardBorderPane.setVisible(false);
         assistantBorderPane.setVisible(false);
         diningRoom.setDisable(true);
         diningRoom.getChildren().forEach(n -> n.setDisable(false));
         assetsMapper.getStudentsInEntrance().values().forEach(n -> n.setDisable(true));
-        for (int i = 0; i < 12; i++) {
-            String string = "#island" + i;
-            this.gui.getScenes().get("boardScene").lookup(string).setDisable(true);
-        }
+        assetsMapper.getIslands().forEach(n -> n.setDisable(true));
+        assetsMapper.getClouds().forEach(n -> n.setDisable(true));
         this.gui.getScenes().get("boardScene").lookup("#characterCardButton").setDisable(true);
     }
 

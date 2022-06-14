@@ -102,10 +102,6 @@ public class ViewGUI extends Application implements RequestListenableInterface, 
         return new HashMap<>(this.sceneMap);
     }
 
-    public Map<String, GUIController> getControllers() {
-        return new HashMap<>(controllerMap);
-    }
-
     public void connect(String ip, String nickname) {
         try {
             if (clientConnection == null ) {
@@ -136,13 +132,13 @@ public class ViewGUI extends Application implements RequestListenableInterface, 
         }
     }
 
-    protected void initMusicPlayers() {
+    private void initMusicPlayers() {
         this.soundtrack = new Media(getClass().getResource("/assets/gui/music/track.mp3").toExternalForm());
         this.mediaPlayer = new MediaPlayer(this.soundtrack);
         this.clickEffect = new Media(getClass().getResource("/assets/gui/music/pop.mp3").toExternalForm());
         this.mediaPlayerEffect = new MediaPlayer(this.clickEffect);
     }
-    protected void music() {
+    private void music() {
         mediaPlayer.setAutoPlay(true);
         mediaPlayer.setCycleCount(MediaPlayer.INDEFINITE);
     }
@@ -187,11 +183,7 @@ public class ViewGUI extends Application implements RequestListenableInterface, 
     public synchronized void fireRequest(RequestEvent requestEvent) {
         try {
             this.requestListenable.fireRequest(requestEvent);
-        } catch (InvocationTargetException e) {
-            throw new RuntimeException(e);
-        } catch (NoSuchMethodException e) {
-            throw new RuntimeException(e);
-        } catch (IllegalAccessException e) {
+        } catch (InvocationTargetException | NoSuchMethodException | IllegalAccessException e) {
             throw new RuntimeException(e);
         }
     }
@@ -246,5 +238,6 @@ public class ViewGUI extends Application implements RequestListenableInterface, 
         if (clientConnection != null) clientConnection.stopClient();
         this.stage.close();
         this.errorStage.close();
+        //TODO better disconnection handling
     }
 }

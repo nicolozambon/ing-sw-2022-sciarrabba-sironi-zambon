@@ -3,20 +3,23 @@ package it.polimi.ingsw.client.view.gui.controller;
 import it.polimi.ingsw.enums.Color;
 import it.polimi.ingsw.enums.TowerColor;
 import it.polimi.ingsw.model.ThinModel;
+import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
 import javafx.scene.text.Text;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class AssetsMapper {
 
     private Map<Integer, Integer> idMap = null;
     private Map<Integer, Map<String, Map<String, ImageView>>> schools = null;
-    private Map<Integer, Map<String, Object>> islands = null;
+    private Map<Integer, Map<String, Map<String, Node>>> islands = null;
     private Map<Integer, Map<String, Object>> clouds = null;
     private final Scene scene;
     private final Integer playersNumber;
@@ -62,17 +65,17 @@ public class AssetsMapper {
 
     public ImageView getMotherNature(int islandId) {
         String identifier = this.getMotherNatureFXID(islandId);
-        return ((Map<String, ImageView>) this.islands.get(islandId).get("motherNature")).get(identifier);
+        return (ImageView) this.islands.get(islandId).get("motherNature").get(identifier);
     }
 
     public Text getStudentLabel(int islandId, Color color) {
         String identifier = this.getStudentNumberFXIDOnIsland(islandId, color);
-        return ((Map<String, Text>) this.islands.get(islandId).get("studentsLabels")).get(identifier);
+        return (Text) this.islands.get(islandId).get("studentsLabels").get(identifier);
     }
 
     public ImageView getStudentPawn(int islandId, Color color) {
         String identifier = this.getStudentFXIDOnIsland(islandId, color);
-        return ((Map<String, ImageView>) this.islands.get(islandId).get("studentsPawns")).get(identifier);
+        return (ImageView) this.islands.get(islandId).get("studentsPawns").get(identifier);
     }
 
     public ImageView getBridgeOnIsland(int startingIsland) {
@@ -81,12 +84,12 @@ public class AssetsMapper {
             destinationIsland = 0;
         }
         String identifier = this.getBridgeFXID(startingIsland, destinationIsland);
-        return ((Map<String, ImageView>) this.islands.get(startingIsland).get("bridge")).get(identifier);
+        return  (ImageView) this.islands.get(startingIsland).get("bridge").get(identifier);
     }
 
     public ImageView getTowerOnIsland(int islandId) {
         String identifier = this.getTowerOnIslandFXID(islandId);
-        return ((Map<String, ImageView>) this.islands.get(islandId).get("tower")).get(identifier);
+        return (ImageView) this.islands.get(islandId).get("tower").get(identifier);
     }
 
     private void defineCloudsMap() {
@@ -110,7 +113,7 @@ public class AssetsMapper {
                 }
             }
 
-            this.islands.put(i, cloudMap);
+            this.clouds.put(i, cloudMap);
         }
     }
 
@@ -118,17 +121,33 @@ public class AssetsMapper {
 
     }
 
+    protected List<Node> getIslands() {
+        List<Node> islands = new ArrayList<>();
+        for (int i = 0; i < 12; i++) {
+            islands.add(this.scene.lookup("#" + this.getIslandFXID(i)));
+        }
+        return islands;
+    }
+
+    protected List<Node> getClouds() {
+        List<Node> clouds = new ArrayList<>();
+        for (int i = 0; i < 3; i++) {
+            clouds.add(this.scene.lookup("#" + this.getCloudFXID(i)));
+        }
+        return clouds;
+    }
+
     private void defineIslandsMap() {
         this.islands = new HashMap<>();
         for (int i=0; i<12; i++) {
-            Map<String, Object> islandMap = new HashMap<>();
+            Map<String, Map<String, Node>> islandMap = new HashMap<>();
 
-            Map<String, StackPane> island = new HashMap<>();
-            Map<String, ImageView> motherNature = new HashMap<>();
-            Map<String, ImageView> tower = new HashMap<>();
-            Map<String, ImageView> studentsPawns = new HashMap<>();
-            Map<String, Text> studentsLabels = new HashMap<>();
-            Map<String, ImageView> bridge = new HashMap<>();
+            Map<String, Node> island = new HashMap<>();
+            Map<String, Node> motherNature = new HashMap<>();
+            Map<String, Node> tower = new HashMap<>();
+            Map<String, Node> studentsPawns = new HashMap<>();
+            Map<String, Node> studentsLabels = new HashMap<>();
+            Map<String, Node> bridge = new HashMap<>();
 
             String islandKey = this.getIslandFXID(i);
             StackPane islandValue = (StackPane) this.scene.lookup("#" + islandKey);

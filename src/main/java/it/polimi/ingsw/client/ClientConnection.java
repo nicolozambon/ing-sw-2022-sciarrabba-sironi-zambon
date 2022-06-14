@@ -76,8 +76,8 @@ public class ClientConnection implements AnswerListenableInterface, RequestListe
             sleep(50);
             //if (answer.getPropertyName().equals("stop")) stopClient();
         } catch (Exception e) {
-            //e.printStackTrace();
             stopClient();
+            fireAnswer(new AnswerEvent("stop", "Server unreachable!"));
         }
     }
 
