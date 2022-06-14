@@ -87,6 +87,10 @@
           {
             "value": 7,
             "steps": 4
+          },
+          {
+            "value": 5,
+            "steps": 3
           }
         ]
       },
@@ -222,6 +226,10 @@
           {
             "value": 10,
             "steps": 5
+          },
+          {
+            "value": 9,
+            "steps": 5
           }
         ]
       },
@@ -333,6 +341,10 @@
         "cards": [
           {
             "value": 8,
+            "steps": 4
+          },
+          {
+            "value": 7,
             "steps": 4
           }
         ]
@@ -729,9 +741,6 @@
   },
   "bag": {
     "pawns": [
-      {
-        "color": "GREEN"
-      },
       {
         "color": "GREEN"
       },

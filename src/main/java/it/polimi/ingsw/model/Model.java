@@ -162,7 +162,10 @@ public class Model implements AnswerListenableInterface {
             for (Player p : players) {
                 if (p.getAssistantCards().isEmpty()) check = false;
             }
-            if (check) isLastRound = false;
+            if (check) {
+                isLastRound = false;
+                winner.clear();
+            }
         }
     }
 
@@ -262,21 +265,19 @@ public class Model implements AnswerListenableInterface {
     }
 
     public void findWinner() {
-        if (isLastRound) {
-            List<Player> temp = new ArrayList<>(players);
-            temp = temp.stream().sorted(Comparator.comparingInt(this::getPlayerNumTowers)).toList();
-            if (getPlayerNumTowers(temp.get(temp.size() - 2)) == getPlayerNumTowers(temp.get(temp.size() - 1))) {
-                temp = new ArrayList<>(players);
-                temp = temp.stream().sorted(Comparator.comparingInt(this::getPlayerWinningRanking)).toList();
-                winner = new ArrayList<>();
-                winner.add(temp.get(temp.size() - 1).getNickname());
-                if (getPlayerWinningRanking(temp.get(temp.size() - 2)) == getPlayerWinningRanking(temp.get(temp.size() - 1))) {
-                    winner.add(temp.get(temp.size() - 1).getNickname());
-                }
-            } else {
-                winner = new ArrayList<>();
+        List<Player> temp = new ArrayList<>(players);
+        temp = temp.stream().sorted(Comparator.comparingInt(p -> -getPlayerNumTowers(p))).toList();
+        if (getPlayerNumTowers(temp.get(temp.size() - 2)) == getPlayerNumTowers(temp.get(temp.size() - 1))) {
+            temp = new ArrayList<>(players);
+            temp = temp.stream().sorted(Comparator.comparingInt(this::getPlayerWinningRanking)).toList();
+            winner = new ArrayList<>();
+            winner.add(temp.get(temp.size() - 1).getNickname());
+            if (getPlayerWinningRanking(temp.get(temp.size() - 2)) == getPlayerWinningRanking(temp.get(temp.size() - 1))) {
                 winner.add(temp.get(temp.size() - 1).getNickname());
             }
+        } else {
+            winner = new ArrayList<>();
+            winner.add(temp.get(temp.size() - 1).getNickname());
         }
     }
 
