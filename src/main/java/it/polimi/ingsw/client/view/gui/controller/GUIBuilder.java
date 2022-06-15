@@ -61,6 +61,25 @@ public class GUIBuilder {
         setupSchools(model);
         setupClouds(model);
         setupLastPlayedAssistantCard(model);
+        setupCoins(model);
+    }
+
+    private void setupCoins(ThinModel model) {
+        for(Integer i : idMap.keySet()) {
+            Text coin = (Text) scene.lookup("#coin" + idMap.get(i));
+            int value = model.getCoinByPlayer(i);
+            String string;
+            if (value < 10) string = "x0" + value;
+            else string = "x" + value;
+            coin.setText(string);
+        }
+
+        Text coinReserve = (Text) scene.lookup("#coinReserve");
+        int value = model.getCoinReserve();
+        String string;
+        if (value < 10) string = "x0" + value;
+        else string = "x" + value;
+        coinReserve.setText(string);
     }
 
     private void setupLastPlayedAssistantCard(ThinModel model) {
@@ -145,7 +164,7 @@ public class GUIBuilder {
                 ImageView pawn = this.getStudentPawn(i, color);
                 if (numberOfStudents > 0) {
                     // Set label
-                    label.setText("x" + numberOfStudents.toString());
+                    label.setText("x" + numberOfStudents);
                     // Show pawn
                     pawn.setVisible(true);
                 } else {
@@ -156,11 +175,7 @@ public class GUIBuilder {
 
             // Show bridge
             ImageView bridge = this.getBridgeOnIsland(i);
-            if (model.isIslandLinkedNext(i)) {
-                bridge.setVisible(true);
-            } else {
-                bridge.setVisible(false);
-            }
+            bridge.setVisible(model.isIslandLinkedNext(i));
 
             // Show tower
             TowerColor towerColor = model.getTowerColorOnIsland(i);
@@ -507,8 +522,7 @@ public class GUIBuilder {
      * @return FX:ID of the cloud
      */
     private String getCloudFXID (int IDCloud) {
-        String id = "cloud" + IDCloud;
-        return id;
+        return "cloud" + IDCloud;
     }
 
     /**
@@ -560,18 +574,6 @@ public class GUIBuilder {
         return path;
     }
 
-    public String getProfessorPath (Color color) {
-        String path = "/assets/gui/images/pawns/";
-        switch (color) {
-            case GREEN -> path = path + "greenProfessor.png";
-            case RED -> path = path + "redProfessor.png";
-            case YELLOW -> path = path + "yellowProfessor.png";
-            case PINK -> path = path + "pinkProfessor.png";
-            case BLUE -> path = path + "blueProfessor.png";
-        }
-        return path;
-    }
-
     public String getTowerPath (TowerColor color) {
         String path = "/assets/gui/images/pawns/";
         switch (color) {
@@ -583,37 +585,24 @@ public class GUIBuilder {
     }
 
     public String getStudentsOnCloudFXID (int cloudID, int pawnID) {
-        String id = "scloud" + cloudID + "_" + pawnID;
-        return id;
+        return "scloud" + cloudID + "_" + pawnID;
     }
 
     private String getMotherNatureFXID (int positionID) {
-        String id = "mn" + positionID;
-        return id;
+        return "mn" + positionID;
     }
 
     public String getAssistantCardPath (int id) {
-        String path = "/assets/gui/images/cards/AssistantCard/Assistente_" + id + ".png";
-        return path;
+        return "/assets/gui/images/cards/AssistantCard/Assistente_" + id + ".png";
     }
 
     public String getCharacterCardPath (int id) {
-        String path = "/assets/gui/images/cards/CharacterCard/CharacterCard_" + id + ".jpg";
-        return path;
+        return "/assets/gui/images/cards/CharacterCard/CharacterCard_" + id + ".jpg";
     }
 
     public String getVolumeIconPath (boolean muted) {
         if (muted) return "/assets/gui/images/utils/muted.png";
         else return "/assets/gui/images/utils/unmuted.png";
-    }
-
-    ImageView getImageViewFromFXID(String fxid) {
-        try {
-            return (ImageView) this.scene.lookup(fxid);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        return null;
     }
 
     private String getTowerOnIslandFXID (int islandID) {

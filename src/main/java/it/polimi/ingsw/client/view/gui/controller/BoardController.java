@@ -10,10 +10,10 @@ import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
-import javafx.scene.control.ToggleButton;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.media.MediaPlayer;
 
 import java.lang.reflect.Method;
 import java.util.List;
@@ -181,13 +181,13 @@ public class BoardController implements GUIController {
 
     @FXML
     private void playStopMusic(Event event) {
-        if (((ToggleButton) event.getSource()).isSelected()) {
+        if (gui.mediaPlayer.getStatus() == MediaPlayer.Status.PLAYING) {
             gui.mediaPlayer.pause();
-            this.GUIBuilder.getImageViewFromFXID("#volumeIcon").setImage(new Image(this.GUIBuilder.getVolumeIconPath(true)));
+            ((ImageView) event.getSource()).setImage(new Image(this.GUIBuilder.getVolumeIconPath(true)));
         }
         else {
             gui.mediaPlayer.play();
-            this.GUIBuilder.getImageViewFromFXID("#volumeIcon").setImage(new Image(this.GUIBuilder.getVolumeIconPath(false)));
+            ((ImageView) event.getSource()).setImage(new Image(this.GUIBuilder.getVolumeIconPath(false)));
         }
     }
 
