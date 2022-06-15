@@ -13,7 +13,7 @@ import java.util.Map;
 
 public class CLIBuilder {
 
-    //Map model id to cli id
+    //Map from model-id to cli-id
     private final Map<Integer, Integer> idMap;
 
     public CLIBuilder() {

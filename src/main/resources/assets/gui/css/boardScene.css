@@ -9,6 +9,10 @@
     -fx-background-size: stretch;
 }
 
+.woodBg {
+    
+}
+
 .borderOnHover:hover {
     -fx-effect: dropshadow(three-pass-box, #ffff00, 2.0, 1.0, 0, 0);
 }
@@ -20,4 +24,27 @@
 .invalid_island {
     -fx-effect: dropshadow(three-pass-box, rgba(87, 87, 87, 0.7), 10.0, 1.0, 0, 0);
     -fx-opacity: 0.5;
+}
+
+.diningRoom {
+    -fx-background-color: transparent;
+}
+
+.diningRoom:hover {
+    -fx-background-color: transparent;
+    -fx-border-style: solid;
+    -fx-border-color: #ffff00;
+    -fx-effect: dropshadow(three-pass-box, #ffff00, 2.0, 1.0, 0, 0);
+}
+
+.blackTower {
+    -fx-effect: dropshadow(three-pass-box, #ffffff, 10.0, 0.2, 0, 0);
+}
+
+.whiteTower {
+    -fx-effect: dropshadow(three-pass-box, #000000, 10.0, 0.2, 0, 0);
+}
+
+.greyTower {
+    -fx-effect: dropshadow(three-pass-box, #000000, 10.0, 0.2, 0, 0);
 }

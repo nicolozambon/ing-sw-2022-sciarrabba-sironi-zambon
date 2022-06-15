@@ -1,12 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.geometry.*?>
-<?import javafx.scene.control.*?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.SplitPane?>
+<?import javafx.scene.control.ToggleButton?>
 <?import javafx.scene.*?>
 <?import javafx.scene.effect.*?>
 <?import javafx.scene.image.*?>
 <?import javafx.scene.layout.*?>
-<?import javafx.scene.paint.*?>
 <?import javafx.scene.text.*?>
 <Pane minHeight="810.0" minWidth="1440.0" prefHeight="810.0" prefWidth="1440.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="it.polimi.ingsw.client.view.gui.controller.BoardController">
    <children>
@@ -18,71 +19,17 @@
                             <children>
                                 <HBox alignment="CENTER">
                            <children>
-                              <VBox>
-                                 <children>
-                                    <ImageView fitHeight="68.0" fitWidth="68.0" pickOnBounds="true" preserveRatio="true">
-                                       <image>
-                                          <Image url="@../images/coin.png" />
-                                       </image>
-                                    </ImageView>
-                                    <Text fx:id="coinPlayer0" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="COIN" textAlignment="CENTER" wrappingWidth="68.0">
-                                       <font>
-                                          <Font name="Avenir Next Condensed Bold" size="20.0" />
-                                       </font>
-                                    </Text>
-                                    <Text fx:id="coinPlayer01" fill="WHITE" layoutX="10.0" layoutY="98.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Player 1" textAlignment="CENTER" wrappingWidth="68.0">
-                                       <font>
-                                          <Font name="Avenir Next Condensed Bold" size="20.0" />
-                                       </font>
-                                    </Text>
-                                 </children>
-                              </VBox>
+                              <VBox />
                            </children>
                                 </HBox>
                                 <HBox alignment="CENTER">
                            <children>
-                              <VBox>
-                                 <children>
-                                    <ImageView fitHeight="68.0" fitWidth="68.0" pickOnBounds="true" preserveRatio="true">
-                                       <image>
-                                          <Image url="@../images/coin.png" />
-                                       </image>
-                                    </ImageView>
-                                    <Text fx:id="coinPlayer1" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="COIN" textAlignment="CENTER" wrappingWidth="68.0">
-                                       <font>
-                                          <Font name="Avenir Next Condensed Bold" size="20.0" />
-                                       </font>
-                                    </Text>
-                                    <Text fx:id="coinPlayer011" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Player 2" textAlignment="CENTER" wrappingWidth="68.0">
-                                       <font>
-                                          <Font name="Avenir Next Condensed Bold" size="20.0" />
-                                       </font>
-                                    </Text>
-                                 </children>
-                              </VBox>
+                              <VBox />
                            </children>
                                 </HBox>
                                 <HBox alignment="CENTER">
                                     <children>
-                              <VBox>
-                                 <children>
-                                              <ImageView fitHeight="68.0" fitWidth="68.0" pickOnBounds="true" preserveRatio="true">
-                                                  <image>
-                                                      <Image url="@../images/coin.png" />
-                                                  </image>
-                                              </ImageView>
-                                    <Text fx:id="coinPlayer2" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="COIN" textAlignment="CENTER" wrappingWidth="68.0">
-                                       <font>
-                                          <Font name="Avenir Next Condensed Bold" size="20.0" />
-                                       </font>
-                                    </Text>
-                                    <Text fx:id="coinPlayer012" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Player 3" textAlignment="CENTER" wrappingWidth="68.0">
-                                       <font>
-                                          <Font name="Avenir Next Condensed Bold" size="20.0" />
-                                       </font>
-                                    </Text>
-                                 </children>
-                              </VBox>
+                              <VBox />
                                     </children>
                                 </HBox>
                         <StackPane alignment="TOP_CENTER" prefHeight="229.0" prefWidth="73.0">
@@ -101,7 +48,8 @@
                               <ToggleButton fx:id="musicButton" mnemonicParsing="false" onMouseClicked="#playStopMusic" prefHeight="67.0" prefWidth="78.0" style="-fx-background-color: transparent;">
                                  <cursor>
                                     <Cursor fx:constant="HAND" />
-                                 </cursor></ToggleButton>
+                                 </cursor>
+                              </ToggleButton>
                            </children>
                         </StackPane>
                         <StackPane alignment="TOP_CENTER" prefHeight="229.0" prefWidth="114.0">
@@ -122,7 +70,7 @@
                                     <Insets top="12.0" />
                                  </StackPane.margin>
                               </Text>
-                              <ImageView fx:id="endActionButton" accessibleRole="BUTTON" fitHeight="73.0" fitWidth="135.0" onMouseClicked="#endActionOnClick" pickOnBounds="true" preserveRatio="true" StackPane.alignment="CENTER">
+                              <ImageView fx:id="endActionButton" accessibleRole="BUTTON" fitHeight="73.0" fitWidth="135.0" onMouseClicked="#endActionOnClick" pickOnBounds="true" preserveRatio="true" styleClass="borderOnHover" StackPane.alignment="CENTER">
                                  <image>
                                     <Image url="@../images/buttons/normalBtn.png" />
                                  </image>
@@ -164,7 +112,7 @@
                                           <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                                        </VBox.margin>
                                     </ImageView>
-                                    <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Player 1" textAlignment="CENTER" wrappingWidth="130.0">
+                                    <Text fx:id="nickname0" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Player 1" textAlignment="CENTER" wrappingWidth="130.0">
                                        <font>
                                           <Font name="Avenir Next Condensed Bold" size="20.0" />
                                        </font>
@@ -185,7 +133,7 @@
                                           <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                                        </VBox.margin>
                                     </ImageView>
-                                    <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Player 2" textAlignment="CENTER" wrappingWidth="130.0">
+                                    <Text fx:id="nickname1" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Player 2" textAlignment="CENTER" wrappingWidth="130.0">
                                        <font>
                                           <Font name="Avenir Next Condensed Bold" size="20.0" />
                                        </font>
@@ -206,7 +154,7 @@
                                           <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                                        </VBox.margin>
                                     </ImageView>
-                                    <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Player 3" textAlignment="CENTER" wrappingWidth="130.0">
+                                    <Text fx:id="nickname2" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Player 3" textAlignment="CENTER" wrappingWidth="130.0">
                                        <font>
                                           <Font name="Avenir Next Condensed Bold" size="20.0" />
                                        </font>
@@ -1904,7 +1852,7 @@
                                                 <Insets left="-20.0" top="-90.0" />
                                              </GridPane.margin>
                                           </ImageView>
-                                          <GridPane prefWidth="216.0" rotate="-90.0" GridPane.columnIndex="4" GridPane.rowIndex="7">
+                                          <GridPane fx:id="cloud0" accessibleRole="BUTTON" onMouseClicked="#cloudOnClick" prefWidth="216.0" rotate="-90.0" styleClass="borderOnHover" GridPane.columnIndex="4" GridPane.rowIndex="7">
                                              <GridPane.margin>
                                                 <Insets left="-50.0" top="-100.0" />
                                              </GridPane.margin>
@@ -1921,7 +1869,7 @@
                                                 <RowConstraints maxHeight="95.0" minHeight="10.0" prefHeight="74.0" vgrow="SOMETIMES" />
                                              </rowConstraints>
                                              <children>
-                                                <ImageView fx:id="cloud0" accessibleRole="BUTTON" fitHeight="151.0" fitWidth="120.0" onMouseClicked="#cloudOnClick" pickOnBounds="true" preserveRatio="true" scaleX="1.2" scaleY="1.2" styleClass="borderOnHover" GridPane.rowIndex="1">
+                                                <ImageView fitHeight="151.0" fitWidth="120.0" pickOnBounds="true" preserveRatio="true" scaleX="1.2" scaleY="1.2" GridPane.rowIndex="1">
                                                    <image>
                                                       <Image url="@../images/cloud.png" />
                                                    </image>
@@ -1959,8 +1907,11 @@
                                                    </GridPane.margin>
                                                 </ImageView>
                                              </children>
+                                             <cursor>
+                                                <Cursor fx:constant="HAND" />
+                                             </cursor>
                                           </GridPane>
-                                          <GridPane layoutX="283.0" layoutY="721.0" prefWidth="216.0" rotate="-90.0" GridPane.columnIndex="5" GridPane.rowIndex="7">
+                                          <GridPane fx:id="cloud1" accessibleRole="BUTTON" layoutX="283.0" layoutY="721.0" onMouseClicked="#cloudOnClick" prefWidth="216.0" rotate="-90.0" styleClass="borderOnHover" GridPane.columnIndex="5" GridPane.rowIndex="7">
                                              <columnConstraints>
                                                 <ColumnConstraints hgrow="SOMETIMES" maxWidth="58.0" minWidth="10.0" prefWidth="20.8009033203125" />
                                                 <ColumnConstraints hgrow="SOMETIMES" maxWidth="58.0" minWidth="8.0" prefWidth="37.6990966796875" />
@@ -1974,7 +1925,7 @@
                                                 <RowConstraints maxHeight="95.0" minHeight="10.0" prefHeight="74.0" vgrow="SOMETIMES" />
                                              </rowConstraints>
                                              <children>
-                                                <ImageView fx:id="cloud1" accessibleRole="BUTTON" fitHeight="151.0" fitWidth="120.0" onMouseClicked="#cloudOnClick" pickOnBounds="true" preserveRatio="true" scaleX="1.2" scaleY="1.2" styleClass="borderOnHover" GridPane.rowIndex="2">
+                                                <ImageView fitHeight="151.0" fitWidth="120.0" pickOnBounds="true" preserveRatio="true" scaleX="1.2" scaleY="1.2" GridPane.rowIndex="2">
                                                    <image>
                                                       <Image url="@../images/cloud.png" />
                                                    </image>
@@ -2012,8 +1963,11 @@
                                                    </GridPane.margin>
                                                 </ImageView>
                                              </children>
+                                             <cursor>
+                                                <Cursor fx:constant="HAND" />
+                                             </cursor>
                                           </GridPane>
-                                          <GridPane layoutX="365.0" layoutY="653.0" prefWidth="55.0" rotate="-90.0" GridPane.columnIndex="5" GridPane.rowIndex="5">
+                                          <GridPane fx:id="cloud2" accessibleRole="BUTTON" layoutX="365.0" layoutY="653.0" onMouseClicked="#cloudOnClick" prefWidth="55.0" rotate="-90.0" styleClass="borderOnHover" GridPane.columnIndex="5" GridPane.rowIndex="5">
                                              <columnConstraints>
                                                 <ColumnConstraints maxWidth="58.0" minWidth="10.0" prefWidth="23.63494873046875" />
                                                 <ColumnConstraints maxWidth="58.0" minWidth="8.0" prefWidth="39.256591796875" />
@@ -2027,7 +1981,7 @@
                                                 <RowConstraints maxHeight="95.0" minHeight="10.0" prefHeight="74.0" vgrow="SOMETIMES" />
                                              </rowConstraints>
                                              <children>
-                                                <ImageView fx:id="cloud2" accessibleRole="BUTTON" fitHeight="151.0" fitWidth="120.0" onMouseClicked="#cloudOnClick" pickOnBounds="true" preserveRatio="true" scaleX="1.2" scaleY="1.2" styleClass="borderOnHover" GridPane.rowIndex="2">
+                                                <ImageView fitHeight="151.0" fitWidth="120.0" pickOnBounds="true" preserveRatio="true" scaleX="1.2" scaleY="1.2" GridPane.rowIndex="2">
                                                    <image>
                                                       <Image url="@../images/cloud.png" />
                                                    </image>
@@ -2068,10 +2022,13 @@
                                              <GridPane.margin>
                                                 <Insets />
                                              </GridPane.margin>
+                                             <cursor>
+                                                <Cursor fx:constant="HAND" />
+                                             </cursor>
                                           </GridPane>
                                           <StackPane prefHeight="150.0" prefWidth="9.0" rotate="-90.0" GridPane.columnIndex="4" GridPane.rowIndex="3">
                                              <children>
-                                                <ImageView fx:id="characterCardButton" accessibleRole="BUTTON" fitHeight="92.0" fitWidth="160.0" onMouseClicked="#openCharacterCardSelector" pickOnBounds="true" preserveRatio="true">
+                                                <ImageView fx:id="characterCardButton" accessibleRole="BUTTON" fitHeight="92.0" fitWidth="160.0" onMouseClicked="#openCharacterCardSelector" pickOnBounds="true" preserveRatio="true" styleClass="borderOnHover">
                                                    <image>
                                                       <Image url="@../images/buttons/normalBtn.png" />
                                                    </image>
@@ -2093,20 +2050,24 @@
                                     </GridPane>
                                  </children>
                               </VBox>
-                                 <VBox prefHeight="986.0" prefWidth="370.0" scaleX="0.9" scaleY="0.9" styleClass="board" BorderPane.alignment="CENTER">
+                                 <VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="986.0" prefWidth="401.0" scaleX="0.9" scaleY="0.9" styleClass="board" BorderPane.alignment="CENTER">
                                      <children>
                                          <HBox fx:id="board0" prefHeight="258.0" prefWidth="401.0">
                                              <children>
                                           <VBox>
                                              <children>
-                                                       <Text fx:id="nicknamePlayer0" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Nickname" textAlignment="CENTER" wrappingWidth="400.123046875">
-                                                   <font>
-                                                      <Font name="Avenir Next Condensed Bold" size="30.0" />
-                                                   </font>
-                                                   <effect>
-                                                      <DropShadow />
-                                                   </effect>
-                                                </Text>
+                                                <StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="40.0" prefWidth="401.0">
+                                                   <children>
+                                                             <Text fx:id="nicknamePlayer0" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Nickname" textAlignment="CENTER" wrappingWidth="401.0">
+                                                         <font>
+                                                            <Font name="Avenir Next Condensed Bold" size="30.0" />
+                                                         </font>
+                                                         <effect>
+                                                            <DropShadow spread="0.6" />
+                                                         </effect>
+                                                      </Text>
+                                                   </children>
+                                                </StackPane>
                                                 <GridPane prefHeight="177.0" prefWidth="401.0">
                                                    <columnConstraints>
                                                       <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -2123,46 +2084,65 @@
                                                       <RowConstraints maxHeight="41.84942626953125" minHeight="10.0" prefHeight="34.599639892578125" vgrow="SOMETIMES" />
                                                    </rowConstraints>
                                                    <children>
-                                                      <ImageView fx:id="whiteTower0" fitHeight="64.0" fitWidth="72.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER">
+                                                      <ImageView fx:id="tower0_1" fitHeight="64.0" fitWidth="72.0" pickOnBounds="true" preserveRatio="true" styleClass="whiteTower" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER">
                                                          <image>
                                                             <Image url="@../images/pawns/whiteTower.png" />
                                                          </image>
                                                       </ImageView>
-                                                      <ImageView fx:id="whiteTower1" fitHeight="64.0" fitWidth="72.0" layoutX="93.0" layoutY="33.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER">
+                                                      <ImageView fx:id="tower0_3" fitHeight="64.0" fitWidth="72.0" layoutX="93.0" layoutY="33.0" pickOnBounds="true" preserveRatio="true" styleClass="whiteTower" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER">
                                                          <image>
                                                             <Image url="@../images/pawns/whiteTower.png" />
                                                          </image>
                                                       </ImageView>
-                                                      <ImageView fx:id="whiteTower3" fitHeight="64.0" fitWidth="72.0" layoutX="143.0" layoutY="33.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="4" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER">
+                                                      <ImageView fx:id="tower0_7" fitHeight="64.0" fitWidth="72.0" layoutX="143.0" layoutY="33.0" pickOnBounds="true" preserveRatio="true" styleClass="whiteTower" GridPane.columnIndex="4" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER">
                                                          <image>
                                                             <Image url="@../images/pawns/whiteTower.png" />
                                                          </image>
                                                       </ImageView>
-                                                      <ImageView fx:id="whiteTower2" fitHeight="64.0" fitWidth="72.0" layoutX="10.0" layoutY="-10.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER">
+                                                      <ImageView fx:id="tower0_5" fitHeight="64.0" fitWidth="72.0" layoutX="10.0" layoutY="-10.0" pickOnBounds="true" preserveRatio="true" styleClass="whiteTower" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER">
                                                          <image>
                                                             <Image url="@../images/pawns/whiteTower.png" />
                                                          </image>
                                                       </ImageView>
-                                                      <ImageView fx:id="whiteTower4" fitHeight="64.0" fitWidth="72.0" layoutX="93.0" layoutY="33.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER">
+                                                      <ImageView fx:id="tower0_0" fitHeight="64.0" fitWidth="72.0" layoutX="93.0" layoutY="33.0" pickOnBounds="true" preserveRatio="true" styleClass="whiteTower" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER">
                                                          <image>
                                                             <Image url="@../images/pawns/whiteTower.png" />
                                                          </image>
                                                       </ImageView>
-                                                      <ImageView fx:id="whiteTower7" fitHeight="64.0" fitWidth="72.0" layoutX="143.0" layoutY="33.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="4" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER">
+                                                      <ImageView fx:id="tower0_6" fitHeight="64.0" fitWidth="72.0" layoutX="143.0" layoutY="33.0" pickOnBounds="true" preserveRatio="true" styleClass="whiteTower" GridPane.columnIndex="4" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER">
                                                          <image>
                                                             <Image url="@../images/pawns/whiteTower.png" />
                                                          </image>
                                                       </ImageView>
-                                                      <ImageView fx:id="whiteTower6" fitHeight="64.0" fitWidth="72.0" layoutX="277.0" layoutY="33.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER">
+                                                      <ImageView fx:id="tower0_4" fitHeight="64.0" fitWidth="72.0" layoutX="277.0" layoutY="33.0" pickOnBounds="true" preserveRatio="true" styleClass="whiteTower" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER">
                                                          <image>
                                                             <Image url="@../images/pawns/whiteTower.png" />
                                                          </image>
                                                       </ImageView>
-                                                      <ImageView fx:id="whiteTower5" fitHeight="64.0" fitWidth="72.0" layoutX="210.0" layoutY="33.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER">
+                                                      <ImageView fx:id="tower0_2" fitHeight="64.0" fitWidth="72.0" layoutX="210.0" layoutY="33.0" pickOnBounds="true" preserveRatio="true" styleClass="whiteTower" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER">
                                                          <image>
                                                             <Image url="@../images/pawns/whiteTower.png" />
                                                          </image>
                                                       </ImageView>
+                                                      <ImageView fitHeight="100.0" fitWidth="150.0" pickOnBounds="true" preserveRatio="true" style="-fx-rotate: -90;" GridPane.halignment="CENTER" GridPane.rowIndex="2">
+                                                         <image>
+                                                            <Image url="@../images/coin_new.png" />
+                                                         </image>
+                                                         <effect>
+                                                            <DropShadow spread="0.6" />
+                                                         </effect>
+                                                         <GridPane.margin>
+                                                            <Insets />
+                                                         </GridPane.margin>
+                                                      </ImageView>
+                                                      <Text fx:id="coin0" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-rotate: -90;" text="x99" textAlignment="CENTER" GridPane.halignment="CENTER" GridPane.rowIndex="1">
+                                                         <font>
+                                                            <Font size="24.0" />
+                                                         </font>
+                                                         <effect>
+                                                            <DropShadow spread="0.6" />
+                                                         </effect>
+                                                      </Text>
                                                    </children>
                                                 </GridPane>
                                              </children>
@@ -2234,11 +2214,9 @@
                                          <HBox prefHeight="46.0" prefWidth="503.0" />
                                          <VBox prefHeight="519.0" prefWidth="400.0">
                                              <children>
-                                                 <Pane prefHeight="16.0" prefWidth="401.0" />
-                                          <HBox fx:id="diningRoom" accessibleRole="BUTTON" onMouseClicked="#dgOnClick" prefHeight="451.0" prefWidth="399.0" styleClass="borderOnHover">
+                                          <StackPane accessibleRole="BUTTON" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="480.0" prefWidth="320.0">
                                              <children>
-                                                <VBox prefHeight="451.0" prefWidth="48.0" />
-                                                <VBox fx:id="dgGreen" accessibleRole="BUTTON" onMouseClicked="#dgOnClick" styleClass="borderOnHover">
+                                                <VBox fx:id="dgGreen" accessibleRole="BUTTON" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseClicked="#dgOnClick" prefHeight="480.0" prefWidth="60.0" styleClass="borderOnHover" StackPane.alignment="CENTER_LEFT">
                                                    <children>
                                                       <ImageView fx:id="gs9_0" disable="true" fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true" styleClass="borderOnHover">
                                                          <image>
@@ -2348,11 +2326,11 @@
                                                          </VBox.margin>
                                                       </ImageView>
                                                    </children>
-                                                   <HBox.margin>
-                                                      <Insets right="15.0" />
-                                                   </HBox.margin>
+                                                   <StackPane.margin>
+                                                      <Insets />
+                                                   </StackPane.margin>
                                                 </VBox>
-                                                <VBox fx:id="dgRed" accessibleRole="BUTTON" layoutX="10.0" layoutY="10.0" onMouseClicked="#dgOnClick" styleClass="borderOnHover">
+                                                <VBox fx:id="dgRed" accessibleRole="BUTTON" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseClicked="#dgOnClick" prefHeight="480.0" prefWidth="60.0" styleClass="borderOnHover" StackPane.alignment="CENTER_LEFT">
                                                    <children>
                                                       <ImageView fx:id="rs9_0" disable="true" fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true" styleClass="borderOnHover">
                                                          <image>
@@ -2465,11 +2443,11 @@
                                                          </VBox.margin>
                                                       </ImageView>
                                                    </children>
-                                                   <HBox.margin>
-                                                      <Insets right="15.0" />
-                                                   </HBox.margin>
+                                                   <StackPane.margin>
+                                                      <Insets left="60.0" />
+                                                   </StackPane.margin>
                                                 </VBox>
-                                                <VBox fx:id="dgYellow" accessibleRole="BUTTON" layoutX="110.0" layoutY="10.0" onMouseClicked="#dgOnClick" styleClass="borderOnHover">
+                                                <VBox fx:id="dgYellow" accessibleRole="BUTTON" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseClicked="#dgOnClick" prefHeight="480.0" prefWidth="60.0" styleClass="borderOnHover" StackPane.alignment="CENTER">
                                                    <children>
                                                       <ImageView fx:id="ys9_0" disable="true" fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true" styleClass="borderOnHover">
                                                          <image>
@@ -2582,11 +2560,11 @@
                                                          </VBox.margin>
                                                       </ImageView>
                                                    </children>
-                                                   <HBox.margin>
-                                                      <Insets right="15.0" />
-                                                   </HBox.margin>
+                                                   <StackPane.margin>
+                                                      <Insets right="8.0" />
+                                                   </StackPane.margin>
                                                 </VBox>
-                                                <VBox fx:id="dgPink" accessibleRole="BUTTON" layoutX="210.0" layoutY="10.0" onMouseClicked="#dgOnClick" styleClass="borderOnHover">
+                                                <VBox fx:id="dgPink" accessibleRole="BUTTON" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseClicked="#dgOnClick" prefHeight="480.0" prefWidth="60.0" styleClass="borderOnHover" StackPane.alignment="CENTER_RIGHT">
                                                    <children>
                                                       <ImageView fx:id="ps9_0" disable="true" fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true" styleClass="borderOnHover">
                                                          <image>
@@ -2699,11 +2677,11 @@
                                                          </VBox.margin>
                                                       </ImageView>
                                                    </children>
-                                                   <HBox.margin>
-                                                      <Insets right="15.0" />
-                                                   </HBox.margin>
+                                                   <StackPane.margin>
+                                                      <Insets right="68.0" />
+                                                   </StackPane.margin>
                                                 </VBox>
-                                                <VBox fx:id="dgBlue" accessibleRole="BUTTON" layoutX="310.0" layoutY="10.0" onMouseClicked="#dgOnClick" styleClass="borderOnHover">
+                                                <VBox fx:id="dgBlue" accessibleRole="BUTTON" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseClicked="#dgOnClick" prefHeight="480.0" prefWidth="60.0" styleClass="borderOnHover" StackPane.alignment="CENTER_RIGHT">
                                                    <children>
                                                       <ImageView fx:id="bs8_0" disable="true" fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true" styleClass="borderOnHover">
                                                          <image>
@@ -2816,13 +2794,17 @@
                                                          </VBox.margin>
                                                       </ImageView>
                                                    </children>
-                                                   <HBox.margin>
-                                                      <Insets right="15.0" />
-                                                   </HBox.margin>
+                                                   <StackPane.margin>
+                                                      <Insets right="2.0" />
+                                                   </StackPane.margin>
                                                 </VBox>
+                                                <Button fx:id="diningRoom" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onMouseClicked="#dgOnClick" prefHeight="480.0" prefWidth="320.0" styleClass="diningRoom" StackPane.alignment="CENTER" />
                                              </children>
-                                          </HBox>
+                                          </StackPane>
                                              </children>
+                                       <padding>
+                                          <Insets left="40.0" top="7.0" />
+                                       </padding>
                                          </VBox>
                                          <HBox prefHeight="52.0" prefWidth="500.0" />
                                          <VBox prefHeight="149.0" prefWidth="503.0">
@@ -2856,7 +2838,7 @@
                                                          </StackPane>
                                                          <StackPane layoutX="10.0" layoutY="10.0" prefHeight="88.0" prefWidth="97.0" GridPane.columnIndex="2">
                                                              <children>
-                                                                 <ImageView fx:id="se1_0" accessibleRole="BUTTON" fitHeight="44.0" fitWidth="44.0" onMouseClicked="#entranceStudentOnClick" pickOnBounds="true" preserveRatio="true" styleClass="borderOnHover">
+                                                                 <ImageView fx:id="se2_0" accessibleRole="BUTTON" fitHeight="44.0" fitWidth="44.0" onMouseClicked="#entranceStudentOnClick" pickOnBounds="true" preserveRatio="true" styleClass="borderOnHover">
                                                                      <image>
                                                                          <Image url="@../images/pawns/greenStudent.png" />
                                                                      </image>
@@ -2868,7 +2850,7 @@
                                                          </StackPane>
                                                          <StackPane prefHeight="150.0" prefWidth="200.0" GridPane.columnIndex="3">
                                                              <children>
-                                                                 <ImageView fx:id="se3_0" accessibleRole="BUTTON" fitHeight="44.0" fitWidth="44.0" onMouseClicked="#entranceStudentOnClick" pickOnBounds="true" preserveRatio="true" styleClass="borderOnHover">
+                                                                 <ImageView fx:id="se4_0" accessibleRole="BUTTON" fitHeight="44.0" fitWidth="44.0" onMouseClicked="#entranceStudentOnClick" pickOnBounds="true" preserveRatio="true" styleClass="borderOnHover">
                                                                      <image>
                                                                          <Image url="@../images/pawns/greenStudent.png" />
                                                                      </image>
@@ -2880,7 +2862,7 @@
                                                          </StackPane>
                                                          <StackPane prefHeight="150.0" prefWidth="200.0" GridPane.columnIndex="4">
                                                              <children>
-                                                                 <ImageView fx:id="se5_0" accessibleRole="BUTTON" fitHeight="44.0" fitWidth="44.0" onMouseClicked="#entranceStudentOnClick" pickOnBounds="true" preserveRatio="true" styleClass="borderOnHover">
+                                                                 <ImageView fx:id="se6_0" accessibleRole="BUTTON" fitHeight="44.0" fitWidth="44.0" onMouseClicked="#entranceStudentOnClick" pickOnBounds="true" preserveRatio="true" styleClass="borderOnHover">
                                                                      <image>
                                                                          <Image url="@../images/pawns/greenStudent.png" />
                                                                      </image>
@@ -2892,7 +2874,7 @@
                                                          </StackPane>
                                                          <StackPane prefHeight="150.0" prefWidth="200.0" GridPane.columnIndex="5">
                                                              <children>
-                                                                 <ImageView fx:id="se7_0" accessibleRole="BUTTON" fitHeight="44.0" fitWidth="44.0" onMouseClicked="#entranceStudentOnClick" pickOnBounds="true" preserveRatio="true" styleClass="borderOnHover">
+                                                                 <ImageView fx:id="se8_0" accessibleRole="BUTTON" fitHeight="44.0" fitWidth="44.0" onMouseClicked="#entranceStudentOnClick" pickOnBounds="true" preserveRatio="true" styleClass="borderOnHover">
                                                                      <image>
                                                                          <Image url="@../images/pawns/greenStudent.png" />
                                                                      </image>
@@ -2906,7 +2888,7 @@
                                                    </StackPane>
                                                          <StackPane prefHeight="150.0" prefWidth="200.0" GridPane.columnIndex="2" GridPane.rowIndex="1">
                                                              <children>
-                                                                 <ImageView fx:id="se2_0" accessibleRole="BUTTON" fitHeight="44.0" fitWidth="44.0" onMouseClicked="#entranceStudentOnClick" pickOnBounds="true" preserveRatio="true" styleClass="borderOnHover">
+                                                                 <ImageView fx:id="se1_0" accessibleRole="BUTTON" fitHeight="44.0" fitWidth="44.0" onMouseClicked="#entranceStudentOnClick" pickOnBounds="true" preserveRatio="true" styleClass="borderOnHover">
                                                                      <image>
                                                                          <Image url="@../images/pawns/greenStudent.png" />
                                                                      </image>
@@ -2918,7 +2900,7 @@
                                                          </StackPane>
                                                          <StackPane prefHeight="150.0" prefWidth="200.0" GridPane.columnIndex="3" GridPane.rowIndex="1">
                                                              <children>
-                                                                 <ImageView fx:id="se4_0" accessibleRole="BUTTON" fitHeight="44.0" fitWidth="44.0" onMouseClicked="#entranceStudentOnClick" pickOnBounds="true" preserveRatio="true" styleClass="borderOnHover">
+                                                                 <ImageView fx:id="se3_0" accessibleRole="BUTTON" fitHeight="44.0" fitWidth="44.0" onMouseClicked="#entranceStudentOnClick" pickOnBounds="true" preserveRatio="true" styleClass="borderOnHover">
                                                                      <image>
                                                                          <Image url="@../images/pawns/greenStudent.png" />
                                                                      </image>
@@ -2930,7 +2912,7 @@
                                                          </StackPane>
                                                          <StackPane prefHeight="150.0" prefWidth="200.0" GridPane.columnIndex="4" GridPane.rowIndex="1">
                                                              <children>
-                                                                 <ImageView fx:id="se6_0" accessibleRole="BUTTON" fitHeight="44.0" fitWidth="44.0" onMouseClicked="#entranceStudentOnClick" pickOnBounds="true" preserveRatio="true" styleClass="borderOnHover">
+                                                                 <ImageView fx:id="se5_0" accessibleRole="BUTTON" fitHeight="44.0" fitWidth="44.0" onMouseClicked="#entranceStudentOnClick" pickOnBounds="true" preserveRatio="true" styleClass="borderOnHover">
                                                                      <image>
                                                                          <Image url="@../images/pawns/greenStudent.png" />
                                                                      </image>
@@ -2942,13 +2924,16 @@
                                                          </StackPane>
                                                          <StackPane prefHeight="150.0" prefWidth="200.0" GridPane.columnIndex="5" GridPane.rowIndex="1">
                                                              <children>
-                                                                 <ImageView fx:id="se8_0" accessibleRole="BUTTON" fitHeight="44.0" fitWidth="44.0" onMouseClicked="#entranceStudentOnClick" pickOnBounds="true" preserveRatio="true" styleClass="borderOnHover">
+                                                                 <ImageView fx:id="se7_0" accessibleRole="BUTTON" fitHeight="44.0" fitWidth="44.0" onMouseClicked="#entranceStudentOnClick" pickOnBounds="true" preserveRatio="true" styleClass="borderOnHover">
                                                                      <image>
                                                                          <Image url="@../images/pawns/greenStudent.png" />
                                                                      </image>
                                                          <effect>
                                                             <DropShadow />
                                                          </effect>
+                                                         <StackPane.margin>
+                                                            <Insets bottom="10.0" />
+                                                         </StackPane.margin>
                                                                  </ImageView>
                                                              </children>
                                                          </StackPane>
@@ -2985,7 +2970,7 @@
                                           <Font name="Avenir Next Condensed Bold" size="30.0" />
                                        </font>
                                        <effect>
-                                          <DropShadow />
+                                          <DropShadow spread="0.6" />
                                        </effect>
                                     </Text>
                                     <GridPane prefHeight="177.0" prefWidth="401.0">
@@ -3004,102 +2989,65 @@
                                           <RowConstraints maxHeight="41.84942626953125" minHeight="10.0" prefHeight="34.599639892578125" vgrow="SOMETIMES" />
                                       </rowConstraints>
                                        <children>
-                                          <ImageView fx:id="blackTower0" fitHeight="64.0" fitWidth="72.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER">
+                                          <ImageView fx:id="tower1_0" fitHeight="64.0" fitWidth="72.0" pickOnBounds="true" preserveRatio="true" styleClass="blackTower" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER">
                                              <image>
                                                 <Image url="@../images/pawns/blackTower.png" />
                                              </image>
-                                             <effect>
-                                                <DropShadow>
-                                                   <color>
-                                                      <Color red="1.0" green="1.0" blue="1.0" />
-                                                   </color>
-                                                </DropShadow>
-                                             </effect>
                                           </ImageView>
-                                          <ImageView fx:id="blackTower1" fitHeight="64.0" fitWidth="72.0" layoutX="93.0" layoutY="33.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER">
+                                          <ImageView fx:id="tower1_2" fitHeight="64.0" fitWidth="72.0" layoutX="93.0" layoutY="33.0" pickOnBounds="true" preserveRatio="true" styleClass="blackTower" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER">
                                              <image>
                                                 <Image url="@../images/pawns/blackTower.png" />
                                              </image>
-                                             <effect>
-                                                <DropShadow>
-                                                   <color>
-                                                      <Color red="1.0" green="1.0" blue="1.0" />
-                                                   </color>
-                                                </DropShadow>
-                                             </effect>
                                           </ImageView>
-                                          <ImageView fx:id="blackTower3" fitHeight="64.0" fitWidth="72.0" layoutX="143.0" layoutY="33.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="4" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER">
+                                          <ImageView fx:id="tower1_6" fitHeight="64.0" fitWidth="72.0" layoutX="143.0" layoutY="33.0" pickOnBounds="true" preserveRatio="true" styleClass="blackTower" GridPane.columnIndex="4" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER">
                                              <image>
                                                 <Image url="@../images/pawns/blackTower.png" />
                                              </image>
-                                             <effect>
-                                                <DropShadow>
-                                                   <color>
-                                                      <Color red="1.0" green="1.0" blue="1.0" />
-                                                   </color>
-                                                </DropShadow>
-                                             </effect>
                                           </ImageView>
-                                          <ImageView fx:id="blackTower2" fitHeight="64.0" fitWidth="72.0" layoutX="10.0" layoutY="-10.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER">
+                                          <ImageView fx:id="tower1_4" fitHeight="64.0" fitWidth="72.0" layoutX="10.0" layoutY="-10.0" pickOnBounds="true" preserveRatio="true" styleClass="blackTower" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER">
                                              <image>
                                                 <Image url="@../images/pawns/blackTower.png" />
                                              </image>
-                                             <effect>
-                                                <DropShadow>
-                                                   <color>
-                                                      <Color red="1.0" green="1.0" blue="1.0" />
-                                                   </color>
-                                                </DropShadow>
-                                             </effect>
                                           </ImageView>
-                                          <ImageView fx:id="blackTower4" fitHeight="64.0" fitWidth="72.0" layoutX="93.0" layoutY="33.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER">
+                                          <ImageView fx:id="tower1_1" fitHeight="64.0" fitWidth="72.0" layoutX="93.0" layoutY="33.0" pickOnBounds="true" preserveRatio="true" styleClass="blackTower" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER">
                                              <image>
                                                 <Image url="@../images/pawns/blackTower.png" />
                                              </image>
-                                             <effect>
-                                                <DropShadow>
-                                                   <color>
-                                                      <Color red="1.0" green="1.0" blue="1.0" />
-                                                   </color>
-                                                </DropShadow>
-                                             </effect>
                                           </ImageView>
-                                          <ImageView fx:id="blackTower7" fitHeight="64.0" fitWidth="72.0" layoutX="143.0" layoutY="33.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="4" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER">
+                                          <ImageView fx:id="tower1_7" fitHeight="64.0" fitWidth="72.0" layoutX="143.0" layoutY="33.0" pickOnBounds="true" preserveRatio="true" styleClass="blackTower" GridPane.columnIndex="4" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER">
                                              <image>
                                                 <Image url="@../images/pawns/blackTower.png" />
                                              </image>
-                                             <effect>
-                                                <DropShadow>
-                                                   <color>
-                                                      <Color red="1.0" green="1.0" blue="1.0" />
-                                                   </color>
-                                                </DropShadow>
-                                             </effect>
                                           </ImageView>
-                                          <ImageView fx:id="blackTower6" fitHeight="64.0" fitWidth="72.0" layoutX="277.0" layoutY="33.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER">
+                                          <ImageView fx:id="tower1_5" fitHeight="64.0" fitWidth="72.0" layoutX="277.0" layoutY="33.0" pickOnBounds="true" preserveRatio="true" styleClass="blackTower" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER">
                                              <image>
                                                 <Image url="@../images/pawns/blackTower.png" />
                                              </image>
-                                             <effect>
-                                                <DropShadow>
-                                                   <color>
-                                                      <Color red="1.0" green="1.0" blue="1.0" />
-                                                   </color>
-                                                </DropShadow>
-                                             </effect>
                                           </ImageView>
-                                          <ImageView fx:id="blackTower5" fitHeight="64.0" fitWidth="72.0" layoutX="210.0" layoutY="33.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER">
+                                          <ImageView fx:id="tower1_3" fitHeight="64.0" fitWidth="72.0" layoutX="210.0" layoutY="33.0" pickOnBounds="true" preserveRatio="true" styleClass="blackTower" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER">
                                              <image>
                                                 <Image url="@../images/pawns/blackTower.png" />
                                              </image>
+                                          </ImageView>
+                                          <ImageView fitHeight="100.0" fitWidth="150.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="5" GridPane.halignment="RIGHT" GridPane.valignment="CENTER">
+                                             <image>
+                                                <Image url="@../images/coin_new.png" />
+                                             </image>
                                              <effect>
-                                                <DropShadow>
-                                                   <color>
-                                                      <Color red="1.0" green="1.0" blue="1.0" />
-                                                   </color>
-                                                </DropShadow>
+                                                <DropShadow spread="0.6" />
                                              </effect>
                                           </ImageView>
+                                          <Text fx:id="coin1" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="x99" textAlignment="CENTER" GridPane.columnIndex="5" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER">
+                                             <font>
+                                                <Font size="24.0" />
+                                             </font>
+                                             <effect>
+                                                <DropShadow spread="0.6" />
+                                             </effect>
+                                             <GridPane.margin>
+                                                <Insets right="15.0" />
+                                             </GridPane.margin>
+                                          </Text>
                                        </children>
                                     </GridPane>
                                  </children>
@@ -3753,7 +3701,7 @@
                                           <Font name="Avenir Next Condensed Bold" size="30.0" />
                                        </font>
                                        <effect>
-                                          <DropShadow />
+                                          <DropShadow spread="0.6" />
                                        </effect>
                                     </Text>
                                     <GridPane prefHeight="177.0" prefWidth="401.0">
@@ -3772,49 +3720,65 @@
                                           <RowConstraints maxHeight="41.84942626953125" minHeight="10.0" prefHeight="34.599639892578125" vgrow="SOMETIMES" />
                                        </rowConstraints>
                                        <children>
-                                          <ImageView fx:id="grayTower0" fitHeight="64.0" fitWidth="72.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER">
+                                          <ImageView fx:id="tower2_0" fitHeight="64.0" fitWidth="72.0" pickOnBounds="true" preserveRatio="true" styleClass="greyTower" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER">
                                              <image>
                                                 <Image url="@../images/pawns/grayTower.png" />
+                                             </image>
+                                          </ImageView>
+                                          <ImageView fx:id="tower2_2" fitHeight="64.0" fitWidth="72.0" layoutX="93.0" layoutY="33.0" pickOnBounds="true" preserveRatio="true" styleClass="greyTower" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER">
+                                             <image>
+                                                <Image url="@../images/pawns/grayTower.png" />
+                                             </image>
+                                          </ImageView>
+                                          <ImageView fx:id="tower2_6" fitHeight="64.0" fitWidth="72.0" layoutX="143.0" layoutY="33.0" pickOnBounds="true" preserveRatio="true" styleClass="greyTower" GridPane.columnIndex="4" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER">
+                                             <image>
+                                                <Image url="@../images/pawns/grayTower.png" />
+                                             </image>
+                                          </ImageView>
+                                          <ImageView fx:id="tower2_4" fitHeight="64.0" fitWidth="72.0" layoutX="10.0" layoutY="-10.0" pickOnBounds="true" preserveRatio="true" styleClass="greyTower" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER">
+                                             <image>
+                                                <Image url="@../images/pawns/grayTower.png" />
+                                             </image>
+                                          </ImageView>
+                                          <ImageView fx:id="tower2_1" fitHeight="64.0" fitWidth="72.0" layoutX="93.0" layoutY="33.0" pickOnBounds="true" preserveRatio="true" styleClass="greyTower" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER">
+                                             <image>
+                                                <Image url="@../images/pawns/grayTower.png" />
+                                             </image>
+                                          </ImageView>
+                                          <ImageView fx:id="tower2_7" fitHeight="64.0" fitWidth="72.0" layoutX="143.0" layoutY="33.0" pickOnBounds="true" preserveRatio="true" styleClass="greyTower" GridPane.columnIndex="4" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER">
+                                             <image>
+                                                <Image url="@../images/pawns/grayTower.png" />
+                                             </image>
+                                          </ImageView>
+                                          <ImageView fx:id="tower2_5" fitHeight="64.0" fitWidth="72.0" layoutX="277.0" layoutY="33.0" pickOnBounds="true" preserveRatio="true" styleClass="greyTower" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER">
+                                             <image>
+                                                <Image url="@../images/pawns/grayTower.png" />
+                                             </image>
+                                          </ImageView>
+                                          <ImageView fx:id="tower2_3" fitHeight="64.0" fitWidth="72.0" layoutX="210.0" layoutY="33.0" pickOnBounds="true" preserveRatio="true" styleClass="greyTower" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER">
+                                             <image>
+                                                <Image url="@../images/pawns/grayTower.png" />
+                                             </image>
+                                          </ImageView>
+                                          <ImageView fitHeight="100.0" fitWidth="150.0" pickOnBounds="true" preserveRatio="true" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
+                                             <image>
+                                                <Image url="@../images/coin_new.png" />
                                              </image>
                                              <effect>
-                                                <DropShadow />
+                                                <DropShadow spread="0.6" />
                                              </effect>
                                           </ImageView>
-                                          <ImageView fx:id="grayTower1" fitHeight="64.0" fitWidth="72.0" layoutX="93.0" layoutY="33.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER">
-                                             <image>
-                                                <Image url="@../images/pawns/grayTower.png" />
-                                             </image>
-                                          </ImageView>
-                                          <ImageView fx:id="grayTower3" fitHeight="64.0" fitWidth="72.0" layoutX="143.0" layoutY="33.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="4" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER">
-                                             <image>
-                                                <Image url="@../images/pawns/grayTower.png" />
-                                             </image>
-                                          </ImageView>
-                                          <ImageView fx:id="grayTower2" fitHeight="64.0" fitWidth="72.0" layoutX="10.0" layoutY="-10.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER">
-                                             <image>
-                                                <Image url="@../images/pawns/grayTower.png" />
-                                             </image>
-                                          </ImageView>
-                                          <ImageView fx:id="grayTower4" fitHeight="64.0" fitWidth="72.0" layoutX="93.0" layoutY="33.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER">
-                                             <image>
-                                                <Image url="@../images/pawns/grayTower.png" />
-                                             </image>
-                                          </ImageView>
-                                          <ImageView fx:id="grayTower7" fitHeight="64.0" fitWidth="72.0" layoutX="143.0" layoutY="33.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="4" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER">
-                                             <image>
-                                                <Image url="@../images/pawns/grayTower.png" />
-                                             </image>
-                                          </ImageView>
-                                          <ImageView fx:id="grayTower6" fitHeight="64.0" fitWidth="72.0" layoutX="277.0" layoutY="33.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER">
-                                             <image>
-                                                <Image url="@../images/pawns/grayTower.png" />
-                                             </image>
-                                          </ImageView>
-                                          <ImageView fx:id="grayTower5" fitHeight="64.0" fitWidth="72.0" layoutX="210.0" layoutY="33.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER">
-                                             <image>
-                                                <Image url="@../images/pawns/grayTower.png" />
-                                             </image>
-                                          </ImageView>
+                                          <Text fx:id="coin2" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="x99" textAlignment="CENTER" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER">
+                                             <font>
+                                                <Font size="24.0" />
+                                             </font>
+                                             <effect>
+                                                <DropShadow spread="0.6" />
+                                             </effect>
+                                             <GridPane.margin>
+                                                <Insets top="10.0" />
+                                             </GridPane.margin>
+                                          </Text>
                                        </children>
                                     </GridPane>
                                  </children>
@@ -4539,7 +4503,7 @@
                            <children>
                               <HBox fx:id="rightChoiceHBox1" alignment="CENTER" spacing="10.0" styleClass="card-Slot">
                                  <children>
-                                    <ImageView fitHeight="147.0" fitWidth="120.0" pickOnBounds="true" preserveRatio="true">
+                                    <ImageView fx:id="assistantCard1_0" fitHeight="147.0" fitWidth="120.0" pickOnBounds="true" preserveRatio="true">
                                        <image>
                                           <Image url="@../images/cards/AssistantCard/Assistente_3.png" />
                                        </image>
@@ -4549,12 +4513,11 @@
                                     </ImageView>
                                     <VBox alignment="CENTER_LEFT">
                                        <children>
-                                          <Text fill="#115686" strokeType="OUTSIDE" strokeWidth="0.0" text="Nickname1" wrappingWidth="170.0">
+                                          <Text fx:id="assistantNickname0" fill="#115686" strokeType="OUTSIDE" strokeWidth="0.0" text="Nickname0" wrappingWidth="170.0">
                                              <font>
                                                 <Font name="Avenir Book" size="27.0" />
                                              </font>
                                           </Text>
-                                          <Label maxHeight="34.0" maxWidth="180.0" text="Your Worker may move into an opponent Worker’s space, if their Worker can be forced one space straight backwards to an unoccupied space at any level." wrapText="true" />
                                        </children>
                                     </VBox>
                                  </children>
@@ -4567,7 +4530,7 @@
                               </HBox>
                               <HBox fx:id="rightChoiceHBox2" alignment="CENTER" spacing="10.0" styleClass="card-Slot">
                                  <children>
-                                    <ImageView fitHeight="147.0" fitWidth="120.0" pickOnBounds="true" preserveRatio="true">
+                                    <ImageView fx:id="assistantCard1_1" fitHeight="147.0" fitWidth="120.0" pickOnBounds="true" preserveRatio="true">
                                        <image>
                                           <Image url="@../images/cards/AssistantCard/Assistente_6.png" />
                                        </image>
@@ -4577,12 +4540,11 @@
                                     </ImageView>
                                     <VBox alignment="CENTER_LEFT">
                                        <children>
-                                          <Text fill="#115686" strokeType="OUTSIDE" strokeWidth="0.0" text="Nickname2" wrappingWidth="170.0">
+                                          <Text fx:id="assistantNickname1" fill="#115686" strokeType="OUTSIDE" strokeWidth="0.0" text="Nickname1" wrappingWidth="170.0">
                                              <font>
                                                 <Font name="Avenir Book" size="27.0" />
                                              </font>
                                           </Text>
-                                          <Label maxHeight="34.0" maxWidth="180.0" text="Your Worker may move into an opponent Worker’s space, if their Worker can be forced one space straight backwards to an unoccupied space at any level." wrapText="true" />
                                        </children>
                                     </VBox>
                                  </children>
@@ -4592,7 +4554,7 @@
                               </HBox>
                               <HBox fx:id="rightChoiceHBox3" alignment="CENTER" spacing="10.0" styleClass="card-Slot">
                                  <children>
-                                    <ImageView fitHeight="147.0" fitWidth="120.0" pickOnBounds="true" preserveRatio="true">
+                                    <ImageView fx:id="assistantCard1_2" fitHeight="147.0" fitWidth="120.0" pickOnBounds="true" preserveRatio="true">
                                        <image>
                                           <Image url="@../images/cards/AssistantCard/Assistente_10.png" />
                                        </image>
@@ -4602,12 +4564,11 @@
                                     </ImageView>
                                     <VBox alignment="CENTER_LEFT">
                                        <children>
-                                          <Text fill="#115686" strokeType="OUTSIDE" strokeWidth="0.0" text="Nickname3" wrappingWidth="170.0">
+                                          <Text fx:id="assistantNickname2" fill="#115686" strokeType="OUTSIDE" strokeWidth="0.0" text="Nickname2" wrappingWidth="170.0">
                                              <font>
                                                 <Font name="Avenir Book" size="27.0" />
                                              </font>
                                           </Text>
-                                          <Label maxHeight="34.0" maxWidth="180.0" text="Your Worker may move into an opponent Worker’s space, if their Worker can be forced one space straight backwards to an unoccupied space at any level." wrapText="true" />
                                        </children>
                                     </VBox>
                                  </children>
