@@ -169,6 +169,7 @@ public class GUIBuilder {
 
             // Show mother nature
             ImageView motherNature = this.getMotherNature(i);
+            motherNature.setDisable(false);
             motherNature.setVisible(model.getMNPosition() == i);
 
             // Show students

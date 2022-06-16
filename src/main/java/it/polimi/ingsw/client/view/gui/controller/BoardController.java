@@ -42,7 +42,6 @@ public class BoardController implements GUIController {
     @FXML private Node characterCardButton;
 
     private Node sourceNode;
-    private Node destinationNode;
 
     @Override
     public void optionsHandling(List<String> options) {
@@ -140,7 +139,7 @@ public class BoardController implements GUIController {
     }
 
     private void moveMotherNature() {
-        guiBuilder.getMotherNature(model.getMNPosition()).setDisable(false);
+        //guiBuilder.getMotherNature(model.getMNPosition()).setDisable(false);
     }
 
     private void playCharacterCard() {
@@ -162,6 +161,7 @@ public class BoardController implements GUIController {
     private void card6() {
 
     }
+
     private void card7() {
 
     }
@@ -184,6 +184,11 @@ public class BoardController implements GUIController {
         entranceStudents.forEach(n -> n.setDisable(true));
         guiBuilder.getIslands().forEach(n -> n.setDisable(true));
         guiBuilder.getClouds().forEach(n -> n.setDisable(true));
+        dgGreen.setDisable(true);
+        dgPink.setDisable(true);
+        dgBlue.setDisable(true);
+        dgYellow.setDisable(true);
+        dgRed.setDisable(true);
     }
 
     @FXML
@@ -212,21 +217,52 @@ public class BoardController implements GUIController {
 
     @FXML
     private void entranceStudentOnClick(Event event) {
-        System.out.println(((Node)event.getSource()).getId());
+        entranceStudents.forEach(n -> n.setDisable(true));
+        sourceNode = ((Node)event.getSource());
+        sourceNode.getStyleClass().add("selected");
+        guiBuilder.getIslands().forEach(n -> n.setDisable(false));
+        diningRoom.setDisable(false);
+    }
+
+
+    @FXML
+    private void motherNatureOnClick(Event event) {
+        sourceNode = ((Node)event.getSource());
+        sourceNode.setDisable(true);
+        sourceNode.getStyleClass().add("selected");
+        guiBuilder.getIslands().forEach(n -> n.setDisable(false));
     }
 
     @FXML
     private void cloudOnClick(Event event) {
-
+        Node cloud = (Node) event.getSource();
+        int position = Integer.parseInt(cloud.getId().substring(cloud.getId().length() - 1));
+        this.gui.fireRequest(new RequestEvent("takeStudentsFromCloud", this.gui.getId(), position));
     }
 
     @FXML
     private void islandOnClick(Event event) {
-
+        Node islandNode = (Node) event.getSource();
+        int island = Integer.parseInt(islandNode.getId().substring(6));
+        if (sourceNode.getId().matches("mn[0-9][0-1]?")) {
+            int mn = Integer.parseInt(sourceNode.getId().substring(2));
+            int steps = island - mn;
+            if (steps < 0) {
+                steps = steps + 12;
+            }
+            this.gui.fireRequest(new RequestEvent("moveMotherNature", this.gui.getId(), steps));
+        } else if (sourceNode.getId().matches("studentEntrance[0-8]")) {
+            int student = Integer.parseInt(sourceNode.getId().substring(sourceNode.getId().length() - 1));
+            this.gui.fireRequest(new RequestEvent("moveStudentToIsland", this.gui.getId(), student+1, island+1));
+        }
+        sourceNode.getStyleClass().remove("selected");
     }
 
     @FXML
-    private void dgOnClick(Event event) {
-
+    private void diningRoomOnClick(Event event) {
+        int position = Integer.parseInt(sourceNode.getId().substring(sourceNode.getId().length() - 1));
+        this.gui.fireRequest(new RequestEvent("moveStudentToDiningRoom", this.gui.getId(), position+1));
+        sourceNode.getStyleClass().remove("selected");
     }
+
 }
