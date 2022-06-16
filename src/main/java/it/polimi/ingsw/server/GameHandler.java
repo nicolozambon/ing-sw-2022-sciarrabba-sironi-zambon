@@ -19,13 +19,13 @@ public class GameHandler implements Runnable {
 
     public GameHandler(Map<String, ConnectionHandler> playersConnection, boolean completeRule) {
         this.playersConnection = new HashMap<>();
-        //TODO: change to false to have only 3 Character cards
 
         if (playersConnection.containsKey("player0") && playersConnection.containsKey("player1") && playersConnection.containsKey("player2")) {
             InputStream inputStream = getClass().getResourceAsStream("/config/model2.json");
             this.model = new ModelBuilder().buildModel(inputStream);
         } else {
-            this.model = new ModelBuilder().buildModel(playersConnection.keySet().stream().toList(), true, completeRule);
+            //TODO: change allCharacterCards to false to have only 3 Character cards
+            this.model = new ModelBuilder().buildModel(playersConnection.keySet().stream().toList(), false, completeRule);
         }
         this.controller = model.getController();
         for (Player player : controller.getPlayersToPlay()) {

@@ -2056,61 +2056,90 @@
                                                 <Cursor fx:constant="HAND" />
                                              </cursor>
                                           </GridPane>
-                                          <StackPane prefHeight="150.0" prefWidth="9.0" rotate="-90.0" GridPane.columnIndex="4" GridPane.rowIndex="3">
+                                          <StackPane fx:id="characterCardButton" accessibleRole="BUTTON" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseClicked="#openCharacterCardSelector" prefHeight="200.0" prefWidth="150.0" rotate="-90.0" styleClass="borderOnHover" GridPane.columnIndex="5" GridPane.rowIndex="3">
                                              <children>
-                                                <ImageView fx:id="characterCardButton" accessibleRole="BUTTON" fitHeight="92.0" fitWidth="160.0" onMouseClicked="#openCharacterCardSelector" pickOnBounds="true" preserveRatio="true" styleClass="borderOnHover">
+                                                <ImageView fx:id="mainCharacterCard2" fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" style="-fx-rotate: -40;" StackPane.alignment="TOP_CENTER">
                                                    <image>
-                                                      <Image url="@../images/buttons/normalBtn.png" />
+                                                      <Image url="@../images/cards/CharacterCard/CharacterCard_3.jpg" />
                                                    </image>
-                                                   <cursor>
-                                                      <Cursor fx:constant="HAND" />
-                                                   </cursor>
+                                                   <StackPane.margin>
+                                                      <Insets right="20.0" />
+                                                   </StackPane.margin>
                                                 </ImageView>
-                                                <Text disable="true" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Character Card">
+                                                <ImageView fx:id="mainCharacterCard1" fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" style="-fx-rotate: -20;" StackPane.alignment="TOP_CENTER">
+                                                   <image>
+                                                      <Image url="@../images/cards/CharacterCard/CharacterCard_2.jpg" />
+                                                   </image>
+                                                   <StackPane.margin>
+                                                      <Insets right="10.0" />
+                                                   </StackPane.margin>
+                                                </ImageView>
+                                                <ImageView fx:id="mainCharacterCard0" fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" StackPane.alignment="TOP_CENTER">
+                                                   <image>
+                                                      <Image url="@../images/cards/CharacterCard/CharacterCard_1.jpg" />
+                                                   </image>
+                                                </ImageView>
+                                                <Text disable="true" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Character Card" textAlignment="CENTER" wrappingWidth="200.0" StackPane.alignment="BOTTOM_CENTER">
                                                    <font>
                                                       <Font name="Avenir Next Bold" size="18.0" />
                                                    </font>
+                                                   <effect>
+                                                      <DropShadow />
+                                                   </effect>
+                                                   <StackPane.margin>
+                                                      <Insets top="20.0" />
+                                                   </StackPane.margin>
                                                 </Text>
                                              </children>
                                              <GridPane.margin>
                                                 <Insets left="-50.0" />
                                              </GridPane.margin>
                                           </StackPane>
-                                          <ImageView fitHeight="100.0" fitWidth="150.0" pickOnBounds="true" preserveRatio="true" style="-fx-rotate: -90;" GridPane.columnIndex="3" GridPane.halignment="LEFT" GridPane.rowIndex="4" GridPane.valignment="BOTTOM">
-                                             <image>
-                                                <Image url="@../images/coin_new.png" />
-                                             </image>
-                                             <effect>
-                                                <DropShadow spread="0.6" />
-                                             </effect>
-                                          </ImageView>
-                                          <Text fx:id="coinReserve" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-rotate: -90;" text="x99" textAlignment="CENTER" GridPane.columnIndex="3" GridPane.halignment="RIGHT" GridPane.rowIndex="4" GridPane.valignment="CENTER">
-                                             <font>
-                                                <Font size="24.0" />
-                                             </font>
-                                             <effect>
-                                                <DropShadow spread="0.6" />
-                                             </effect>
-                                             <GridPane.margin>
-                                                <Insets right="10.0" />
-                                             </GridPane.margin>
-                                          </Text>
-                                          <ImageView fitHeight="100.0" fitWidth="150.0" pickOnBounds="true" preserveRatio="true" style="-fx-rotate: -90;" GridPane.columnIndex="3" GridPane.rowIndex="4">
-                                             <image>
-                                                <Image url="@../images/coin_new.png" />
-                                             </image>
-                                             <effect>
-                                                <DropShadow spread="0.6" />
-                                             </effect>
-                                          </ImageView>
-                                          <ImageView fitHeight="100.0" fitWidth="150.0" pickOnBounds="true" preserveRatio="true" style="-fx-rotate: -90;" GridPane.columnIndex="3" GridPane.rowIndex="4" GridPane.valignment="TOP">
-                                             <image>
-                                                <Image url="@../images/coin_new.png" />
-                                             </image>
-                                             <effect>
-                                                <DropShadow spread="0.6" />
-                                             </effect>
-                                          </ImageView>
+                                          <StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="120.0" prefWidth="100.0" style="-fx-rotate: -90;" GridPane.columnIndex="3" GridPane.rowIndex="5">
+                                             <children>
+                                                <ImageView fitHeight="100.0" fitWidth="150.0" pickOnBounds="true" preserveRatio="true" StackPane.alignment="TOP_CENTER">
+                                                   <image>
+                                                      <Image url="@../images/coin_new.png" />
+                                                   </image>
+                                                   <effect>
+                                                      <DropShadow spread="0.6" />
+                                                   </effect>
+                                                   <StackPane.margin>
+                                                      <Insets left="40.0" />
+                                                   </StackPane.margin>
+                                                </ImageView>
+                                                <ImageView fitHeight="100.0" fitWidth="150.0" pickOnBounds="true" preserveRatio="true" StackPane.alignment="TOP_CENTER">
+                                                   <image>
+                                                      <Image url="@../images/coin_new.png" />
+                                                   </image>
+                                                   <effect>
+                                                      <DropShadow spread="0.6" />
+                                                   </effect>
+                                                   <StackPane.margin>
+                                                      <Insets left="20.0" />
+                                                   </StackPane.margin>
+                                                </ImageView>
+                                                <ImageView fitHeight="100.0" fitWidth="150.0" pickOnBounds="true" preserveRatio="true" StackPane.alignment="TOP_CENTER">
+                                                   <image>
+                                                      <Image url="@../images/coin_new.png" />
+                                                   </image>
+                                                   <effect>
+                                                      <DropShadow spread="0.6" />
+                                                   </effect>
+                                                </ImageView>
+                                                <Text fx:id="coinReserve" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="x99" textAlignment="CENTER" StackPane.alignment="BOTTOM_CENTER">
+                                                   <font>
+                                                      <Font size="24.0" />
+                                                   </font>
+                                                   <effect>
+                                                      <DropShadow spread="0.6" />
+                                                   </effect>
+                                                   <StackPane.margin>
+                                                      <Insets left="30.0" />
+                                                   </StackPane.margin>
+                                                </Text>
+                                             </children>
+                                          </StackPane>
                                        </children>
                                     </GridPane>
                                  </children>
@@ -2892,71 +2921,26 @@
                                                          <RowConstraints maxHeight="84.35791015625" minHeight="10.0" prefHeight="81.0" vgrow="SOMETIMES" />
                                                      </rowConstraints>
                                                      <children>
-                                                         <StackPane prefHeight="88.0" prefWidth="97.0" GridPane.columnIndex="1">
-                                                             <children>
-                                                                 <ImageView fx:id="se0_0" accessibleRole="BUTTON" fitHeight="44.0" fitWidth="44.0" onMouseClicked="#entranceStudentOnClick" pickOnBounds="true" preserveRatio="true" styleClass="borderOnHover">
-                                                                     <image>
-                                                                         <Image url="@../images/pawns/greenStudent.png" />
-                                                                     </image>
-                                                         <effect>
-                                                            <DropShadow />
-                                                         </effect>
-                                                                 </ImageView>
-                                                             </children>
-                                                         </StackPane>
-                                                         <StackPane layoutX="10.0" layoutY="10.0" prefHeight="88.0" prefWidth="97.0" GridPane.columnIndex="2">
-                                                             <children>
-                                                                 <ImageView fx:id="se2_0" accessibleRole="BUTTON" fitHeight="44.0" fitWidth="44.0" onMouseClicked="#entranceStudentOnClick" pickOnBounds="true" preserveRatio="true" styleClass="borderOnHover">
-                                                                     <image>
-                                                                         <Image url="@../images/pawns/greenStudent.png" />
-                                                                     </image>
-                                                         <effect>
-                                                            <DropShadow />
-                                                         </effect>
-                                                                 </ImageView>
-                                                             </children>
-                                                         </StackPane>
-                                                         <StackPane prefHeight="150.0" prefWidth="200.0" GridPane.columnIndex="3">
-                                                             <children>
-                                                                 <ImageView fx:id="se4_0" accessibleRole="BUTTON" fitHeight="44.0" fitWidth="44.0" onMouseClicked="#entranceStudentOnClick" pickOnBounds="true" preserveRatio="true" styleClass="borderOnHover">
-                                                                     <image>
-                                                                         <Image url="@../images/pawns/greenStudent.png" />
-                                                                     </image>
-                                                         <effect>
-                                                            <DropShadow />
-                                                         </effect>
-                                                                 </ImageView>
-                                                             </children>
-                                                         </StackPane>
-                                                         <StackPane prefHeight="150.0" prefWidth="200.0" GridPane.columnIndex="4">
-                                                             <children>
-                                                                 <ImageView fx:id="se6_0" accessibleRole="BUTTON" fitHeight="44.0" fitWidth="44.0" onMouseClicked="#entranceStudentOnClick" pickOnBounds="true" preserveRatio="true" styleClass="borderOnHover">
-                                                                     <image>
-                                                                         <Image url="@../images/pawns/greenStudent.png" />
-                                                                     </image>
-                                                         <effect>
-                                                            <DropShadow />
-                                                         </effect>
-                                                                 </ImageView>
-                                                             </children>
-                                                         </StackPane>
-                                                         <StackPane prefHeight="150.0" prefWidth="200.0" GridPane.columnIndex="5">
-                                                             <children>
-                                                                 <ImageView fx:id="se8_0" accessibleRole="BUTTON" fitHeight="44.0" fitWidth="44.0" onMouseClicked="#entranceStudentOnClick" pickOnBounds="true" preserveRatio="true" styleClass="borderOnHover">
-                                                                     <image>
-                                                                         <Image url="@../images/pawns/greenStudent.png" />
-                                                                     </image>
-                                                         <effect>
-                                                            <DropShadow />
-                                                         </effect>
-                                                                 </ImageView>
-                                                             </children>
-                                                         </StackPane>
                                                          <StackPane prefHeight="150.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
                                                    </StackPane>
-                                                         <StackPane prefHeight="150.0" prefWidth="200.0" GridPane.columnIndex="2" GridPane.rowIndex="1">
+                                                         <StackPane fx:id="studentEntrance0" accessibleRole="BUTTON" onMouseClicked="#entranceStudentOnClick" prefHeight="88.0" prefWidth="97.0" styleClass="borderOnHover" GridPane.columnIndex="1">
+                                                   <children>
+                                                                 <ImageView fx:id="se0_0" fitHeight="44.0" fitWidth="44.0" pickOnBounds="true" preserveRatio="true">
+                                                                     <image>
+                                                                         <Image url="@../images/pawns/greenStudent.png" />
+                                                                     </image>
+                                                         <effect>
+                                                            <DropShadow />
+                                                         </effect>
+                                                         <StackPane.margin>
+                                                            <Insets left="5.0" />
+                                                         </StackPane.margin>
+                                                                 </ImageView>
+                                                   </children>
+                                                         </StackPane>
+                                                         <StackPane fx:id="studentEntrance2" accessibleRole="BUTTON" layoutX="10.0" layoutY="10.0" onMouseClicked="#entranceStudentOnClick" prefHeight="88.0" prefWidth="97.0" styleClass="borderOnHover" GridPane.columnIndex="2">
                                                              <children>
-                                                                 <ImageView fx:id="se1_0" accessibleRole="BUTTON" fitHeight="44.0" fitWidth="44.0" onMouseClicked="#entranceStudentOnClick" pickOnBounds="true" preserveRatio="true" styleClass="borderOnHover">
+                                                                 <ImageView fx:id="se2_0" fitHeight="44.0" fitWidth="44.0" pickOnBounds="true" preserveRatio="true">
                                                                      <image>
                                                                          <Image url="@../images/pawns/greenStudent.png" />
                                                                      </image>
@@ -2966,9 +2950,9 @@
                                                                  </ImageView>
                                                              </children>
                                                          </StackPane>
-                                                         <StackPane prefHeight="150.0" prefWidth="200.0" GridPane.columnIndex="3" GridPane.rowIndex="1">
+                                                         <StackPane fx:id="studentEntrance4" accessibleRole="BUTTON" onMouseClicked="#entranceStudentOnClick" prefHeight="150.0" prefWidth="200.0" styleClass="borderOnHover" GridPane.columnIndex="3">
                                                              <children>
-                                                                 <ImageView fx:id="se3_0" accessibleRole="BUTTON" fitHeight="44.0" fitWidth="44.0" onMouseClicked="#entranceStudentOnClick" pickOnBounds="true" preserveRatio="true" styleClass="borderOnHover">
+                                                                 <ImageView fx:id="se4_0" fitHeight="44.0" fitWidth="44.0" pickOnBounds="true" preserveRatio="true">
                                                                      <image>
                                                                          <Image url="@../images/pawns/greenStudent.png" />
                                                                      </image>
@@ -2978,9 +2962,9 @@
                                                                  </ImageView>
                                                              </children>
                                                          </StackPane>
-                                                         <StackPane prefHeight="150.0" prefWidth="200.0" GridPane.columnIndex="4" GridPane.rowIndex="1">
+                                                         <StackPane fx:id="studentEntrance6" accessibleRole="BUTTON" onMouseClicked="#entranceStudentOnClick" prefHeight="150.0" prefWidth="200.0" styleClass="borderOnHover" GridPane.columnIndex="4">
                                                              <children>
-                                                                 <ImageView fx:id="se5_0" accessibleRole="BUTTON" fitHeight="44.0" fitWidth="44.0" onMouseClicked="#entranceStudentOnClick" pickOnBounds="true" preserveRatio="true" styleClass="borderOnHover">
+                                                                 <ImageView fx:id="se6_0" fitHeight="44.0" fitWidth="44.0" pickOnBounds="true" preserveRatio="true">
                                                                      <image>
                                                                          <Image url="@../images/pawns/greenStudent.png" />
                                                                      </image>
@@ -2990,9 +2974,57 @@
                                                                  </ImageView>
                                                              </children>
                                                          </StackPane>
-                                                         <StackPane prefHeight="150.0" prefWidth="200.0" GridPane.columnIndex="5" GridPane.rowIndex="1">
+                                                         <StackPane fx:id="studentEntrance8" accessibleRole="BUTTON" onMouseClicked="#entranceStudentOnClick" prefHeight="150.0" prefWidth="200.0" styleClass="borderOnHover" GridPane.columnIndex="5">
                                                              <children>
-                                                                 <ImageView fx:id="se7_0" accessibleRole="BUTTON" fitHeight="44.0" fitWidth="44.0" onMouseClicked="#entranceStudentOnClick" pickOnBounds="true" preserveRatio="true" styleClass="borderOnHover">
+                                                                 <ImageView fx:id="se8_0" fitHeight="44.0" fitWidth="44.0" pickOnBounds="true" preserveRatio="true">
+                                                                     <image>
+                                                                         <Image url="@../images/pawns/greenStudent.png" />
+                                                                     </image>
+                                                         <effect>
+                                                            <DropShadow />
+                                                         </effect>
+                                                                 </ImageView>
+                                                             </children>
+                                                         </StackPane>
+                                                         <StackPane fx:id="studentEntrance1" accessibleRole="BUTTON" onMouseClicked="#entranceStudentOnClick" prefHeight="150.0" prefWidth="200.0" styleClass="borderOnHover" GridPane.columnIndex="2" GridPane.rowIndex="1">
+                                                             <children>
+                                                                 <ImageView fx:id="se1_0" fitHeight="44.0" fitWidth="44.0" pickOnBounds="true" preserveRatio="true">
+                                                                     <image>
+                                                                         <Image url="@../images/pawns/greenStudent.png" />
+                                                                     </image>
+                                                         <effect>
+                                                            <DropShadow />
+                                                         </effect>
+                                                                 </ImageView>
+                                                             </children>
+                                                         </StackPane>
+                                                         <StackPane fx:id="studentEntrance3" accessibleRole="BUTTON" onMouseClicked="#entranceStudentOnClick" prefHeight="150.0" prefWidth="200.0" styleClass="borderOnHover" GridPane.columnIndex="3" GridPane.rowIndex="1">
+                                                             <children>
+                                                                 <ImageView fx:id="se3_0" fitHeight="44.0" fitWidth="44.0" pickOnBounds="true" preserveRatio="true">
+                                                                     <image>
+                                                                         <Image url="@../images/pawns/greenStudent.png" />
+                                                                     </image>
+                                                         <effect>
+                                                            <DropShadow />
+                                                         </effect>
+                                                                 </ImageView>
+                                                             </children>
+                                                         </StackPane>
+                                                         <StackPane fx:id="studentEntrance5" accessibleRole="BUTTON" onMouseClicked="#entranceStudentOnClick" prefHeight="150.0" prefWidth="200.0" styleClass="borderOnHover" GridPane.columnIndex="4" GridPane.rowIndex="1">
+                                                             <children>
+                                                                 <ImageView fx:id="se5_0" fitHeight="44.0" fitWidth="44.0" pickOnBounds="true" preserveRatio="true">
+                                                                     <image>
+                                                                         <Image url="@../images/pawns/greenStudent.png" />
+                                                                     </image>
+                                                         <effect>
+                                                            <DropShadow />
+                                                         </effect>
+                                                                 </ImageView>
+                                                             </children>
+                                                         </StackPane>
+                                                         <StackPane fx:id="studentEntrance7" accessibleRole="BUTTON" onMouseClicked="#entranceStudentOnClick" prefHeight="150.0" prefWidth="200.0" styleClass="borderOnHover" GridPane.columnIndex="5" GridPane.rowIndex="1">
+                                                             <children>
+                                                                 <ImageView fx:id="se7_0" fitHeight="44.0" fitWidth="44.0" pickOnBounds="true" preserveRatio="true">
                                                                      <image>
                                                                          <Image url="@../images/pawns/greenStudent.png" />
                                                                      </image>
@@ -4775,9 +4807,9 @@
                      <children>
                         <VBox>
                            <children>
-                              <StackPane>
+                              <StackPane prefHeight="600.0">
                                  <children>
-                                    <ImageView fx:id="CharacterCard1" accessibleRole="BUTTON" fitHeight="272.0" fitWidth="200.0" onMouseClicked="#chooseCharacterCard" pickOnBounds="true" preserveRatio="true" styleClass="cardValid">
+                                    <ImageView fx:id="CharacterCard0" accessibleRole="BUTTON" fitHeight="272.0" fitWidth="200.0" onMouseClicked="#chooseCharacterCard" pickOnBounds="true" preserveRatio="true" styleClass="cardValid" StackPane.alignment="TOP_CENTER">
                                        <image>
                                           <Image url="@../images/cards/CharacterCard/CharacterCard_1.jpg" />
                                        </image>
@@ -4785,48 +4817,51 @@
                                           <Cursor fx:constant="HAND" />
                                        </cursor>
                                     </ImageView>
-                                    <ImageView fx:id="coinCharacterCard1" fitHeight="84.0" fitWidth="52.0" pickOnBounds="true" preserveRatio="true" StackPane.alignment="BOTTOM_LEFT">
+                                    <ImageView disable="true" fitHeight="84.0" fitWidth="100.0" pickOnBounds="true" preserveRatio="true" StackPane.alignment="CENTER">
                                        <image>
-                                          <Image url="@../images/coin.png" />
+                                          <Image url="@../images/coin_new.png" />
                                        </image>
                                        <StackPane.margin>
-                                          <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                          <Insets bottom="115.0" left="5.0" right="130.0" />
                                        </StackPane.margin>
                                        <effect>
                                           <DropShadow />
                                        </effect>
                                     </ImageView>
-                                    <Text fx:id="costCharacterCard1" disable="true" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" StackPane.alignment="BOTTOM_CENTER">
+                                    <Text fx:id="costCharacterCard0" disable="true" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="x99" StackPane.alignment="CENTER">
                                        <font>
                                           <Font name="Avenir Next Condensed Bold" size="35.0" />
                                        </font>
                                        <effect>
                                           <DropShadow />
                                        </effect>
+                                       <StackPane.margin>
+                                          <Insets bottom="100.0" />
+                                       </StackPane.margin>
+                                    </Text>
+                                    <Text fx:id="textCharacterCard0" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Choose an Island and resolve the Island as if Mother Nature had ended her movement there. Mother Nature will still move and the Island where she ends her movement will also be resolved." textAlignment="CENTER" wrappingWidth="185.9853515625" StackPane.alignment="TOP_CENTER">
+                                       <font>
+                                          <Font name="Avenir Next Bold" size="16.0" />
+                                       </font>
+                                       <effect>
+                                          <DropShadow />
+                                       </effect>
+                                       <StackPane.margin>
+                                          <Insets top="280.0" />
+                                       </StackPane.margin>
                                     </Text>
                                  </children>
                                  <cursor>
                                     <Cursor fx:constant="HAND" />
                                  </cursor>
                               </StackPane>
-                              <Text fx:id="textCharacterCard1" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Choose an Island and resolve the Island as if Mother Nature had ended her movement there. Mother Nature will still move and the Island where she ends her movement will also be resolved." textAlignment="CENTER" wrappingWidth="185.9853515625">
-                                 <VBox.margin>
-                                    <Insets top="10.0" />
-                                 </VBox.margin>
-                                 <font>
-                                    <Font name="Avenir Next Bold" size="16.0" />
-                                 </font>
-                                 <effect>
-                                    <DropShadow />
-                                 </effect>
-                              </Text>
                            </children>
                         </VBox>
                         <VBox>
                            <children>
-                              <StackPane>
+                              <StackPane prefHeight="600.0">
                                  <children>
-                                    <ImageView fx:id="CharacterCard2" accessibleRole="BUTTON" fitHeight="272.0" fitWidth="200.0" onMouseClicked="#chooseCharacterCard" pickOnBounds="true" preserveRatio="true" styleClass="cardValid">
+                                    <ImageView fx:id="CharacterCard1" accessibleRole="BUTTON" fitHeight="272.0" fitWidth="200.0" onMouseClicked="#chooseCharacterCard" pickOnBounds="true" preserveRatio="true" styleClass="cardValid" StackPane.alignment="TOP_CENTER">
                                        <image>
                                           <Image url="@../images/cards/CharacterCard/CharacterCard_2.jpg" />
                                        </image>
@@ -4834,48 +4869,51 @@
                                           <Cursor fx:constant="HAND" />
                                        </cursor>
                                     </ImageView>
-                                    <ImageView fx:id="coinCharacterCard2" fitHeight="84.0" fitWidth="52.0" pickOnBounds="true" preserveRatio="true" StackPane.alignment="BOTTOM_LEFT">
+                                    <ImageView disable="true" fitHeight="84.0" fitWidth="100.0" pickOnBounds="true" preserveRatio="true" StackPane.alignment="CENTER">
                                        <image>
-                                          <Image url="@../images/coin.png" />
+                                          <Image url="@../images/coin_new.png" />
                                        </image>
                                        <effect>
                                           <DropShadow />
                                        </effect>
                                        <StackPane.margin>
-                                          <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                          <Insets bottom="115.0" left="5.0" right="130.0" />
                                        </StackPane.margin>
                                     </ImageView>
-                                    <Text fx:id="costCharacterCard2" disable="true" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" StackPane.alignment="BOTTOM_CENTER">
+                                    <Text fx:id="costCharacterCard1" disable="true" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="x99" StackPane.alignment="CENTER">
                                        <font>
                                           <Font name="Avenir Next Condensed Bold" size="35.0" />
                                        </font>
                                        <effect>
                                           <DropShadow />
                                        </effect>
+                                       <StackPane.margin>
+                                          <Insets bottom="100.0" />
+                                       </StackPane.margin>
+                                    </Text>
+                                    <Text fx:id="textCharacterCard1" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="During this turn, you take control of any number of Professors even if you have the same number of Students as the player who currently controls them." textAlignment="CENTER" wrappingWidth="185.9853515625" StackPane.alignment="TOP_CENTER">
+                                       <font>
+                                          <Font name="Avenir Next Bold" size="16.0" />
+                                       </font>
+                                       <effect>
+                                          <DropShadow />
+                                       </effect>
+                                       <StackPane.margin>
+                                          <Insets top="280.0" />
+                                       </StackPane.margin>
                                     </Text>
                                  </children>
                                  <cursor>
                                     <Cursor fx:constant="HAND" />
                                  </cursor>
                               </StackPane>
-                              <Text fx:id="textCharacterCard2" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="During this turn, you take control of any number of Professors even if you have the same number of Students as the player who currently controls them." textAlignment="CENTER" wrappingWidth="185.9853515625">
-                                 <font>
-                                    <Font name="Avenir Next Bold" size="16.0" />
-                                 </font>
-                                 <VBox.margin>
-                                    <Insets top="10.0" />
-                                 </VBox.margin>
-                                 <effect>
-                                    <DropShadow />
-                                 </effect>
-                              </Text>
                            </children>
                         </VBox>
                         <VBox>
                            <children>
-                              <StackPane>
+                              <StackPane prefHeight="600.0">
                                  <children>
-                                    <ImageView fx:id="CharacterCard3" accessibleRole="BUTTON" fitHeight="272.0" fitWidth="200.0" onMouseClicked="#chooseCharacterCard" pickOnBounds="true" preserveRatio="true" styleClass="cardValid">
+                                    <ImageView fx:id="CharacterCard2" accessibleRole="BUTTON" fitHeight="272.0" fitWidth="200.0" onMouseClicked="#chooseCharacterCard" pickOnBounds="true" preserveRatio="true" styleClass="cardValid" StackPane.alignment="TOP_CENTER">
                                        <image>
                                           <Image url="@../images/cards/CharacterCard/CharacterCard_3.jpg" />
                                        </image>
@@ -4883,41 +4921,44 @@
                                           <Cursor fx:constant="HAND" />
                                        </cursor>
                                     </ImageView>
-                                    <ImageView fx:id="coinCharacterCard3" fitHeight="84.0" fitWidth="52.0" pickOnBounds="true" preserveRatio="true" StackPane.alignment="BOTTOM_LEFT">
+                                    <ImageView disable="true" fitHeight="84.0" fitWidth="100.0" pickOnBounds="true" preserveRatio="true" StackPane.alignment="CENTER">
                                        <image>
-                                          <Image url="@../images/coin.png" />
+                                          <Image url="@../images/coin_new.png" />
                                        </image>
                                        <effect>
                                           <DropShadow />
                                        </effect>
                                        <StackPane.margin>
-                                          <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                          <Insets bottom="115.0" left="5.0" right="130.0" />
                                        </StackPane.margin>
                                     </ImageView>
-                                    <Text fx:id="costCharacterCard3" disable="true" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" StackPane.alignment="BOTTOM_CENTER">
+                                    <Text fx:id="costCharacterCard2" disable="true" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="x99" StackPane.alignment="CENTER">
                                        <font>
                                           <Font name="Avenir Next Condensed Bold" size="35.0" />
                                        </font>
                                        <effect>
                                           <DropShadow />
                                        </effect>
+                                       <StackPane.margin>
+                                          <Insets bottom="100.0" />
+                                       </StackPane.margin>
+                                    </Text>
+                                    <Text fx:id="textCharacterCard2" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Choose a type of Student: every player (including yourself) must return 3 Students of that type from their Dining Room to the bag. If any player has fewer than 3 Students of that type, return as many Students as they have." textAlignment="CENTER" wrappingWidth="185.9853515625" StackPane.alignment="TOP_CENTER">
+                                       <font>
+                                          <Font name="Avenir Next Bold" size="16.0" />
+                                       </font>
+                                       <effect>
+                                          <DropShadow />
+                                       </effect>
+                                       <StackPane.margin>
+                                          <Insets top="280.0" />
+                                       </StackPane.margin>
                                     </Text>
                                  </children>
                                  <cursor>
                                     <Cursor fx:constant="HAND" />
                                  </cursor>
                               </StackPane>
-                              <Text fx:id="textCharacterCard3" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Choose a type of Student: every player (including yourself) must return 3 Students of that type from their Dining Room to the bag. If any player has fewer than 3 Students of that type, return as many Students as they have." textAlignment="CENTER" wrappingWidth="185.9853515625">
-                                 <font>
-                                    <Font name="Avenir Next Bold" size="16.0" />
-                                 </font>
-                                 <VBox.margin>
-                                    <Insets top="10.0" />
-                                 </VBox.margin>
-                                 <effect>
-                                    <DropShadow />
-                                 </effect>
-                              </Text>
                            </children>
                         </VBox>
                      </children>
@@ -4940,7 +4981,7 @@
             </StackPane>
          </center>
          <right>
-            <Pane prefHeight="200.0" prefWidth="179.0" BorderPane.alignment="CENTER">
+            <Pane prefHeight="200.0" prefWidth="186.0" BorderPane.alignment="CENTER">
                <children>
                   <ImageView fx:id="characterCardSelectBtn1" accessibleRole="BUTTON" fitHeight="52.0" fitWidth="134.0" layoutX="33.0" layoutY="23.0" onMouseClicked="#closeCharacterCardSelector" pickOnBounds="true" preserveRatio="true">
                      <image>

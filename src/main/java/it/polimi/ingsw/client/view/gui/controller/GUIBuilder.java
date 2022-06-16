@@ -4,6 +4,7 @@ import it.polimi.ingsw.enums.Color;
 import it.polimi.ingsw.enums.TowerColor;
 import it.polimi.ingsw.model.ThinModel;
 import it.polimi.ingsw.model.card.AssistantCard;
+import it.polimi.ingsw.model.card.CharacterCard;
 import javafx.beans.binding.Bindings;
 import javafx.scene.Node;
 import javafx.scene.Scene;
@@ -25,6 +26,7 @@ public class GUIBuilder {
     private Map<Integer, Map<String, Node>> clouds = null;
     private List<Node> assistantCards;
     private List<ImageView> lastPlayedAssistantCards;
+    private List<Text> characterCardsCost;
     private final Scene scene;
     private final Integer playersNumber;
 
@@ -53,6 +55,7 @@ public class GUIBuilder {
         this.defineSchoolsMap(model);
         this.defineCloudsMap();
         this.defineAssistantsCards();
+        if (model.isCompleteRule()) this.defineCharacterCards(model.getCharacterCards());
     }
 
     protected void updateGUI(ThinModel model) {
@@ -62,6 +65,17 @@ public class GUIBuilder {
         setupClouds(model);
         setupLastPlayedAssistantCard(model);
         setupCoins(model);
+        if (model.isCompleteRule()) setupCharacterCardsCost(model.getCharacterCards());
+    }
+
+    private void setupCharacterCardsCost(List<CharacterCard> cards) {
+        for (int i = 0; i < 3; i++) {
+            CharacterCard card = cards.get(i);
+            String string;
+            if (card.getCoins() < 10) string = "x0" + card.getCoins();
+            else string = "x" + card.getCoins();
+            characterCardsCost.get(i).setText(string);
+        }
     }
 
     private void setupCoins(ThinModel model) {
@@ -211,6 +225,32 @@ public class GUIBuilder {
         }
     }
 
+    private void defineCharacterCards(List<CharacterCard> cards) {
+        characterCardsCost = new ArrayList<>();
+        for (int i = 0; i < 3; i++) {
+            characterCardsCost.add(defineCharacterCard(cards.get(i), i));
+        }
+    }
+
+    private Text defineCharacterCard(CharacterCard card, int id) {
+        ImageView imageView = (ImageView) scene.lookup("#" + getCharacterCardSelectorID(id, false, false, false));
+        ImageView mainImageView = (ImageView) scene.lookup("#" + getCharacterCardSelectorID(id, false, false, true));
+        Text text = (Text) scene.lookup("#" + getCharacterCardSelectorID(id, false, true, false));
+        Text cost = (Text) scene.lookup("#" + getCharacterCardSelectorID(id, true, false, false));
+
+        Bindings.bindBidirectional(imageView.imageProperty(), mainImageView.imageProperty());
+        imageView.setImage(new Image(getCharacterCardPath(card.getId())));
+
+        text.setText(card.getEffect());
+
+        String string;
+        if (card.getCoins() < 10) string = "x0" + card.getCoins();
+        else string = "x" + card.getCoins();
+        cost.setText(string);
+
+        return cost;
+    }
+
     private void defineLastPlayedAssistantCards(List<String> nicknames) {
         lastPlayedAssistantCards = new ArrayList<>();
         for (int i = 0; i < 3; i++) {
@@ -332,6 +372,12 @@ public class GUIBuilder {
             for (int j=0; j<9; j++) {
                 String key = this.getStudentFXID(j, false, null, idMap.get(i));
                 ImageView value = (ImageView) this.scene.lookup("#" + key);
+
+                if (idMap.get(i) == 0) {
+                    Node node = this.scene.lookup("#studentEntrance" + j);
+                    Bindings.bindBidirectional(node.visibleProperty(), value.visibleProperty());
+                }
+
                 if (j < model.getEntranceByPlayer(i).size()) {
                     entrance.put(key, value);
                 }
@@ -432,10 +478,6 @@ public class GUIBuilder {
     private ImageView getStudentInEntrance(int schoolId, int position) {
         String identifier = this.getStudentFXID(position, false, null, idMap.get(schoolId));
         return this.schools.get(schoolId).get("entrance").get(identifier);
-    }
-
-    protected Map<String, ImageView> getStudentsInEntrance(int schoolId) {
-        return this.schools.get(schoolId).get("entrance");
     }
 
     protected ImageView getMotherNature(int islandId) {
@@ -624,14 +666,12 @@ public class GUIBuilder {
      * @param ID 1, 2, 3 of the card in game
      * @return FX:ID generated.
      */
-    private String getCharacterCardSelectorID (int ID, boolean coin, boolean cost, boolean text) {
+    private String getCharacterCardSelectorID (int ID, boolean cost, boolean text, boolean main) {
         String id = "";
-        if (coin) id = "coin";
+        if (main) id = "main";
         if (cost) id = "cost";
         if (text) id = "text";
-        id = id + "CharacterCard" + ID;
-
-        return id;
+        return id + "CharacterCard" + ID;
     }
 
     /**

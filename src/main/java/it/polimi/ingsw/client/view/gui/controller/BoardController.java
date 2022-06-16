@@ -16,15 +16,18 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.media.MediaPlayer;
 
 import java.lang.reflect.Method;
+import java.util.ArrayList;
 import java.util.List;
 
 public class BoardController implements GUIController {
 
     private ViewGUI gui;
 
-    private GUIBuilder GUIBuilder = null;
+    private GUIBuilder guiBuilder = null;
 
     private ThinModel model;
+
+    private List<Node> entranceStudents;
 
     @FXML private BorderPane wizardBorderPane;
     @FXML private BorderPane assistantBorderPane;
@@ -38,8 +41,8 @@ public class BoardController implements GUIController {
     @FXML private Node endActionButton;
     @FXML private Node characterCardButton;
 
-    private String sourceID;
-    private String destinationID;
+    private Node sourceNode;
+    private Node destinationNode;
 
     @Override
     public void optionsHandling(List<String> options) {
@@ -69,12 +72,16 @@ public class BoardController implements GUIController {
     @Override
     public void updateModel(ThinModel model) {
         this.model = model;
-        if (GUIBuilder == null) {
-            GUIBuilder = new GUIBuilder(model, this.gui.getStage().getScene(), this.gui.getNickname());
+        if (guiBuilder == null) {
+            guiBuilder = new GUIBuilder(model, this.gui.getStage().getScene(), this.gui.getNickname());
+            entranceStudents = new ArrayList<>();
+            for (int i = 0; i < model.getEntranceByPlayer(gui.getId()).size(); i++) {
+                entranceStudents.add(this.gui.getStage().getScene().lookup("#studentEntrance" + i));
+            }
+            if (!model.isCompleteRule()) characterCardButton.setVisible(false);
         }
-
         disableAll();
-        GUIBuilder.updateGUI(model);
+        guiBuilder.updateGUI(model);
         new CLIBuilder().buildCLI(model, this.gui.getNickname()).showGameBoard();
     }
 
@@ -125,15 +132,15 @@ public class BoardController implements GUIController {
     }
 
     private void moveStudentToDiningRoom() {
-        GUIBuilder.getStudentsInEntrance(this.gui.getId()).values().forEach(n -> n.setDisable(false));
+        entranceStudents.forEach(n -> n.setDisable(false));
     }
 
     private void moveStudentToIsland() {
-        GUIBuilder.getStudentsInEntrance(this.gui.getId()).values().forEach(n -> n.setDisable(false));
+        entranceStudents.forEach(n -> n.setDisable(false));
     }
 
     private void moveMotherNature() {
-        GUIBuilder.getMotherNature(model.getMNPosition()).setDisable(false);
+        guiBuilder.getMotherNature(model.getMNPosition()).setDisable(false);
     }
 
     private void playCharacterCard() {
@@ -141,7 +148,7 @@ public class BoardController implements GUIController {
     }
 
     private void takeStudentsFromCloud() {
-        GUIBuilder.getClouds().forEach(n -> n.setDisable(false));
+        guiBuilder.getClouds().forEach(n -> n.setDisable(false));
     }
 
     private void endAction() {
@@ -174,20 +181,20 @@ public class BoardController implements GUIController {
 
         //Disable all clickable components
         diningRoom.setDisable(true);
-        GUIBuilder.getStudentsInEntrance(gui.getId()).values().forEach(n -> n.setDisable(true));
-        GUIBuilder.getIslands().forEach(n -> n.setDisable(true));
-        GUIBuilder.getClouds().forEach(n -> n.setDisable(true));
+        entranceStudents.forEach(n -> n.setDisable(true));
+        guiBuilder.getIslands().forEach(n -> n.setDisable(true));
+        guiBuilder.getClouds().forEach(n -> n.setDisable(true));
     }
 
     @FXML
     private void playStopMusic(Event event) {
         if (gui.mediaPlayer.getStatus() == MediaPlayer.Status.PLAYING) {
             gui.mediaPlayer.pause();
-            ((ImageView) event.getSource()).setImage(new Image(this.GUIBuilder.getVolumeIconPath(true)));
+            ((ImageView) event.getSource()).setImage(new Image(this.guiBuilder.getVolumeIconPath(true)));
         }
         else {
             gui.mediaPlayer.play();
-            ((ImageView) event.getSource()).setImage(new Image(this.GUIBuilder.getVolumeIconPath(false)));
+            ((ImageView) event.getSource()).setImage(new Image(this.guiBuilder.getVolumeIconPath(false)));
         }
     }
 
@@ -205,7 +212,7 @@ public class BoardController implements GUIController {
 
     @FXML
     private void entranceStudentOnClick(Event event) {
-
+        System.out.println(((Node)event.getSource()).getId());
     }
 
     @FXML

@@ -8,7 +8,6 @@ import it.polimi.ingsw.json.HandlerDeserializer;
 import it.polimi.ingsw.json.HandlerSerializer;
 import it.polimi.ingsw.model.card.AssistantCard;
 import it.polimi.ingsw.model.card.CharacterCard;
-import it.polimi.ingsw.model.card.CharacterCardFactory;
 import it.polimi.ingsw.model.card.Deck;
 
 import java.io.InputStream;
@@ -182,17 +181,31 @@ public class ModelBuilder {
         InputStream inputStream = getClass().getResourceAsStream("/config/character_cards.json");
         characters = Arrays.asList(gson.fromJson(new InputStreamReader(inputStream), CharacterCard[].class));
 
-        CharacterCardFactory factory = new CharacterCardFactory();
-        List<CharacterCard> characterCards = new ArrayList<>();
-        Random generator = new Random();
-        int index;
+        if (allCharacterCards) {
+            return new ArrayList<>(characters); //TODO Only for testing purpose!
+        } else {
+            List<CharacterCard> characterCards = new ArrayList<>();
+            Random generator = new Random();
+            int index1 = 0;
+            int index2 = 0;
+            int index3 = 0;
 
-        for (int i = 0; i < 3; i++) {
-            index = generator.nextInt(characters.size());
-            characterCards.add(factory.setSubclass(characters.get(index)));
+            index1 = generator.nextInt(characters.size());
+
+            do {
+                index2 = generator.nextInt(characters.size());
+            } while (index1 == index2);
+
+            do {
+                index3 = generator.nextInt(characters.size());
+            } while (index1 == index3 || index2 == index3);
+
+            characterCards.add(characters.get(index1));
+            characterCards.add(characters.get(index2));
+            characterCards.add(characters.get(index3));
+
+            return new ArrayList<>(characterCards);
         }
 
-        if (allCharacterCards) return new ArrayList<>(characters); //TODO Only for testing purpose!
-        return new ArrayList<>(characterCards);
     }
 }
