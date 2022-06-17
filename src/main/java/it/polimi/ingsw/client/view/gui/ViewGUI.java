@@ -233,6 +233,10 @@ public class ViewGUI extends Application implements RequestListenableInterface, 
         });
     }
 
+    public List<String> getOptions() {
+        return new ArrayList<>(options);
+    }
+
     @Override
     public void stop() {
         if (clientConnection != null) clientConnection.stopClient();

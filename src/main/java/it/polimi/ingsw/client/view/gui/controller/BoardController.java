@@ -3,6 +3,7 @@ package it.polimi.ingsw.client.view.gui.controller;
 import it.polimi.ingsw.client.view.cli.CLIBuilder;
 import it.polimi.ingsw.client.view.cli.OptionLister;
 import it.polimi.ingsw.client.view.gui.ViewGUI;
+import it.polimi.ingsw.enums.Color;
 import it.polimi.ingsw.enums.Wizard;
 import it.polimi.ingsw.events.RequestEvent;
 import it.polimi.ingsw.model.ThinModel;
@@ -28,7 +29,7 @@ public class BoardController implements GUIController {
     private GUIBuilder guiBuilder = null;
 
     private ThinModel model;
-    private OptionLister optionLister;
+    private final OptionLister optionLister;
 
     @FXML private BorderPane wizardBorderPane;
     @FXML private BorderPane assistantBorderPane;
@@ -52,16 +53,18 @@ public class BoardController implements GUIController {
     @Override
     public void optionsHandling(List<String> options) {
         messages.setText(optionLister.list(options).substring(1));
-        for (String option : options) {
-            try {
-                Method method = BoardController.class.getDeclaredMethod(option);
-                method.setAccessible(true);
-                method.invoke(this);
-            } catch (Exception e){
-                e.printStackTrace();
+        if (options.size() == 1 && options.contains("endAction")) endActionOnClick(null);
+        else {
+            for (String option : options) {
+                try {
+                    Method method = BoardController.class.getDeclaredMethod(option);
+                    method.setAccessible(true);
+                    method.invoke(this);
+                } catch (Exception e){
+                    e.printStackTrace();
+                }
             }
         }
-        if (options.size() == 1 && options.contains("endAction")) endActionOnClick(null);
     }
 
     @Override
@@ -95,47 +98,11 @@ public class BoardController implements GUIController {
                 characterCardButton.setVisible(false);
             }
         }
+        Text text = (Text) this.gui.getScenes().get("boardScene").lookup("#characterCardText");
+        text.setText("Character Card");
         disableAll();
         guiBuilder.updateGUI(model);
         new CLIBuilder().buildCLI(model, this.gui.getNickname()).showGameBoard(); //TODO only debugging purpose
-    }
-
-    @FXML
-    private void exitGame(Event event) {
-        Platform.exit();
-    }
-
-    @FXML
-    private void chooseWizard(Event event) {
-        String id = ((Node) event.getSource()).getId();
-        id = id.substring(0, id.length() - 5);
-        this.gui.fireRequest(new RequestEvent("chooseWizard", this.gui.getId(), Wizard.valueOf(id.toUpperCase()).ordinal()));
-        gui.playPopEffect();
-        //System.out.println(Wizard.valueOf(id.toUpperCase()));
-    }
-
-    @FXML
-    private void chooseAssistantCard(Event event) {
-        String id = ((Node) event.getSource()).getId();
-        id = id.substring(id.length() - 2);
-        //System.out.println(id);
-        assistantBorderPane.setVisible(false); //remove from here
-        gui.fireRequest(new RequestEvent("playAssistantCard", gui.getId(), Integer.parseInt(id)));
-        gui.playPopEffect();
-    }
-
-    @FXML
-    private void chooseCharacterCard (Event event) {
-        String id = ((ImageView) event.getSource()).getImage().getUrl();
-        id = Character.toString(id.charAt(id.length() - 5));
-        gui.fireRequest(new RequestEvent("playCharacterCard", gui.getId(), Integer.parseInt(id)));
-        closeCharacterCardSelector();
-        gui.playPopEffect();
-    }
-
-    @FXML
-    private void endActionOnClick(Event event) {
-        this.gui.fireRequest(new RequestEvent("endAction", this.gui.getId()));
     }
 
     private void chooseWizard() {
@@ -172,19 +139,31 @@ public class BoardController implements GUIController {
     }
 
     private void card2() {
-
+        //Island
+        Text text = (Text) this.gui.getScenes().get("boardScene").lookup("#characterCardText");
+        text.setText("Use Card 2 Effect");
+        characterCardButton.setDisable(false);
     }
 
     private void card6() {
-
+        //Color
+        Text text = (Text) this.gui.getScenes().get("boardScene").lookup("#characterCardText");
+        text.setText("Use Card 6 Effect");
+        characterCardButton.setDisable(false);
     }
 
     private void card7() {
-
+        //Imprecazioni
+        Text text = (Text) this.gui.getScenes().get("boardScene").lookup("#characterCardText");
+        text.setText("Use Card 7 Effect");
+        characterCardButton.setDisable(false);
     }
 
     private void card8() {
-
+        //Color
+        Text text = (Text) this.gui.getScenes().get("boardScene").lookup("#characterCardText");
+        text.setText("Use Card 8 Effect");
+        characterCardButton.setDisable(false);
     }
 
     private void disableAll() {
@@ -215,21 +194,67 @@ public class BoardController implements GUIController {
     }
 
     @FXML
-    private void playStopMusic(Event event) {
-        if (gui.mediaPlayer.getStatus() == MediaPlayer.Status.PLAYING) {
-            gui.mediaPlayer.pause();
-            ((ImageView) event.getSource()).setImage(new Image(this.guiBuilder.getVolumeIconPath(true)));
-        }
-        else {
-            gui.mediaPlayer.play();
-            ((ImageView) event.getSource()).setImage(new Image(this.guiBuilder.getVolumeIconPath(false)));
+    private void chooseWizard(Event event) {
+        String id = ((Node) event.getSource()).getId();
+        id = id.substring(0, id.length() - 5);
+        this.gui.fireRequest(new RequestEvent("chooseWizard", this.gui.getId(), Wizard.valueOf(id.toUpperCase()).ordinal()));
+        gui.playPopEffect();
+        //System.out.println(Wizard.valueOf(id.toUpperCase()));
+    }
+
+    @FXML
+    private void chooseAssistantCard(Event event) {
+        String id = ((Node) event.getSource()).getId();
+        id = id.substring(id.length() - 2);
+        //System.out.println(id);
+        assistantBorderPane.setVisible(false); //remove from here
+        gui.fireRequest(new RequestEvent("playAssistantCard", gui.getId(), Integer.parseInt(id)));
+        gui.playPopEffect();
+    }
+
+    @FXML
+    private void chooseCharacterCard (Event event) {
+        if (sourceNode == null) {
+            String id = ((ImageView) event.getSource()).getImage().getUrl();
+            id = Character.toString(id.charAt(id.length() - 5));
+            gui.fireRequest(new RequestEvent("playCharacterCard", gui.getId(), Integer.parseInt(id)));
+            closeCharacterCardSelector();
+            gui.playPopEffect();
         }
     }
 
     @FXML
-    private void openCharacterCardSelector () {
-        gui.getStage().getScene().lookup("#characterBorderPane").setVisible(true);
-        gui.playPopEffect();
+    private void openCharacterCardSelector(Event event) {
+        Text text = (Text) this.gui.getScenes().get("boardScene").lookup("#characterCardText");
+        if (text.getText().equals("Character Card")) {
+            gui.getStage().getScene().lookup("#characterBorderPane").setVisible(true);
+            gui.playPopEffect();
+        } else if (text.getText().startsWith("Use")){
+            if (sourceNode == null) {
+                disableAll();
+                sourceNode = (Node) event.getSource();
+                characterCardButton.setDisable(false);
+                characterCardButton.getStyleClass().add("selected");
+                int value = Integer.parseInt(text.getText().substring(9,10));
+                switch(value) {
+                    case 2 -> {
+                        for (Node island : guiBuilder.getIslands()) {
+                            island.getStyleClass().add("borderOnHover");
+                            island.setCursor(Cursor.HAND);
+                        }
+                    }
+                    case 6 -> System.out.println("card 6");
+                    case 7 -> System.out.println("card 7");
+                    case 8 -> System.out.println("card 8");
+                }
+            } else if (sourceNode.equals(event.getSource())) {
+                disableAll();
+                characterCardButton.getStyleClass().remove("selected");
+                sourceNode = null;
+                optionsHandling(gui.getOptions());
+            }
+
+        }
     }
 
     @FXML
@@ -240,7 +265,7 @@ public class BoardController implements GUIController {
 
     @FXML
     private void entranceStudentOnClick(Event event) {
-        if (sourceNode  == null) {
+        if (sourceNode == null) {
             entranceStudents.forEach(n -> n.setDisable(true));
             sourceNode = ((Node)event.getSource());
             sourceNode.getStyleClass().add("selected");
@@ -262,9 +287,7 @@ public class BoardController implements GUIController {
             sourceNode.getStyleClass().remove("selected");
             sourceNode = null;
         }
-
     }
-
 
     @FXML
     private void motherNatureOnClick(Event event) {
@@ -293,14 +316,23 @@ public class BoardController implements GUIController {
             if (sourceNode.getId().matches("mn[0-9][0-1]?")) { //Regex expression
                 //TODO handling when islands are connected
                 int mn = Integer.parseInt(sourceNode.getId().substring(2));
-                int steps = island - mn;
-                if (steps < 0) {
-                    steps = steps + 12;
+                while (model.isIslandLinkedNext(mn)) {
+                    mn++;
                 }
+                while (model.isIslandLinkedPrev(island)) {
+                    island--;
+                }
+                int steps = (island - mn + 12) % 12;
                 this.gui.fireRequest(new RequestEvent("moveMotherNature", this.gui.getId(), steps));
             } else if (sourceNode.getId().matches("studentEntrance[0-8]")) { //Regex expression
                 int student = Integer.parseInt(sourceNode.getId().substring(sourceNode.getId().length() - 1));
                 this.gui.fireRequest(new RequestEvent("moveStudentToIsland", this.gui.getId(), student + 1, island + 1));
+            } else if (sourceNode.equals(characterCardButton)) {
+                Text text = (Text) this.gui.getScenes().get("boardScene").lookup("#characterCardText");
+                if (text.getText().contains("2")) {
+                    System.out.println("fire extraAction");
+                    this.gui.fireRequest(new RequestEvent("extraAction", this.gui.getId(), island + 1));
+                }
             }
             sourceNode.getStyleClass().remove("selected");
             sourceNode = null;
@@ -315,6 +347,37 @@ public class BoardController implements GUIController {
             sourceNode.getStyleClass().remove("selected");
             sourceNode = null;
         }
+    }
+
+    @FXML
+    private void colorOnClick(Event event) {
+        if (sourceNode instanceof Text) {
+            Node source = (Node) event.getSource();
+            Color color = Color.valueOf(source.getId().substring(2).toUpperCase());
+            this.gui.fireRequest(new RequestEvent("extraAction", gui.getId(), color.ordinal()));
+        }
+    }
+
+    @FXML
+    private void endActionOnClick(Event event) {
+        this.gui.fireRequest(new RequestEvent("endAction", this.gui.getId()));
+    }
+
+    @FXML
+    private void playStopMusic(Event event) {
+        if (gui.mediaPlayer.getStatus() == MediaPlayer.Status.PLAYING) {
+            gui.mediaPlayer.pause();
+            ((ImageView) event.getSource()).setImage(new Image(this.guiBuilder.getVolumeIconPath(true)));
+        }
+        else {
+            gui.mediaPlayer.play();
+            ((ImageView) event.getSource()).setImage(new Image(this.guiBuilder.getVolumeIconPath(false)));
+        }
+    }
+
+    @FXML
+    private void exitGame(Event event) {
+        Platform.exit();
     }
 
 }

@@ -43,7 +43,9 @@ public class ViewCLI implements AnswerListener, RequestListenableInterface {
     public synchronized void onAnswerEvent(AnswerEvent answerEvent) {
         switch(answerEvent.getPropertyName()) {
             case "set_nickname" -> this.nickname = answerEvent.getMessage();
-            case "lobby" -> System.out.println(answerEvent.getOptions());//TODO improve lobby in cli
+            case "lobby" -> System.out.println(
+                    "Player in lobby: " +
+                    answerEvent.getOptions().toString().substring(1, answerEvent.getOptions().toString().length() - 1));
             case "set_id" -> {
                 this.id = answerEvent.getNum();
                 this.optionHandler.setPlayerId(this.id);

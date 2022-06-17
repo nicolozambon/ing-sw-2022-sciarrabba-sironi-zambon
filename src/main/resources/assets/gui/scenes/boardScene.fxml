@@ -1898,7 +1898,7 @@
                                                       <Image url="@../images/cards/CharacterCard/CharacterCard_1.jpg" />
                                                    </image>
                                                 </ImageView>
-                                                <Text disable="true" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Character Card" textAlignment="CENTER" wrappingWidth="200.0" StackPane.alignment="BOTTOM_CENTER">
+                                                <Text fx:id="characterCardText" disable="true" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Character Card" textAlignment="CENTER" wrappingWidth="200.0" StackPane.alignment="BOTTOM_CENTER">
                                                    <font>
                                                       <Font name="Avenir Next Bold" size="18.0" />
                                                    </font>
@@ -2309,7 +2309,7 @@
                                              <children>
                                           <StackPane accessibleRole="BUTTON" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="480.0" prefWidth="320.0">
                                              <children>
-                                                <VBox fx:id="dgGreen" accessibleRole="BUTTON" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="480.0" prefWidth="60.0" styleClass="borderOnHover" StackPane.alignment="CENTER_LEFT">
+                                                <VBox fx:id="dgGreen" accessibleRole="BUTTON" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseClicked="#colorOnClick" prefHeight="480.0" prefWidth="60.0" styleClass="borderOnHover" StackPane.alignment="CENTER_LEFT">
                                                    <children>
                                                       <ImageView fx:id="gs9_0" disable="true" fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true" styleClass="borderOnHover">
                                                          <image>
@@ -2374,7 +2374,7 @@
                                                             <Insets top="7.0" />
                                                          </VBox.margin>
                                                       </ImageView>
-                                                      <ImageView fx:id="gs2_0" disable="true" fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true" styleClass="borderOnHover">
+                                                      <ImageView fx:id="gs3_0" disable="true" fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true" styleClass="borderOnHover">
                                                          <image>
                                                             <Image url="@../images/pawns/greenStudent.png" />
                                                          </image>
@@ -2385,7 +2385,7 @@
                                                             <Insets top="7.0" />
                                                          </VBox.margin>
                                                       </ImageView>
-                                                      <ImageView fx:id="gs3_0" disable="true" fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true" styleClass="borderOnHover">
+                                                      <ImageView fx:id="gs2_0" disable="true" fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true" styleClass="borderOnHover">
                                                          <image>
                                                             <Image url="@../images/pawns/greenStudent.png" />
                                                          </image>
@@ -2426,7 +2426,7 @@
                                                       <Cursor fx:constant="HAND" />
                                                    </cursor>
                                                 </VBox>
-                                                <VBox fx:id="dgRed" accessibleRole="BUTTON" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="480.0" prefWidth="60.0" styleClass="borderOnHover" StackPane.alignment="CENTER_LEFT">
+                                                <VBox fx:id="dgRed" accessibleRole="BUTTON" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseClicked="#colorOnClick" prefHeight="480.0" prefWidth="60.0" styleClass="borderOnHover" StackPane.alignment="CENTER_LEFT">
                                                    <children>
                                                       <ImageView fx:id="rs9_0" disable="true" fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true" styleClass="borderOnHover">
                                                          <image>
@@ -2546,7 +2546,7 @@
                                                       <Cursor fx:constant="HAND" />
                                                    </cursor>
                                                 </VBox>
-                                                <VBox fx:id="dgYellow" accessibleRole="BUTTON" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="480.0" prefWidth="60.0" styleClass="borderOnHover" StackPane.alignment="CENTER">
+                                                <VBox fx:id="dgYellow" accessibleRole="BUTTON" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseClicked="#colorOnClick" prefHeight="480.0" prefWidth="60.0" styleClass="borderOnHover" StackPane.alignment="CENTER">
                                                    <children>
                                                       <ImageView fx:id="ys9_0" disable="true" fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true" styleClass="borderOnHover">
                                                          <image>
@@ -2666,7 +2666,7 @@
                                                       <Cursor fx:constant="HAND" />
                                                    </cursor>
                                                 </VBox>
-                                                <VBox fx:id="dgPink" accessibleRole="BUTTON" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="480.0" prefWidth="60.0" styleClass="borderOnHover" StackPane.alignment="CENTER_RIGHT">
+                                                <VBox fx:id="dgPink" accessibleRole="BUTTON" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseClicked="#colorOnClick" prefHeight="480.0" prefWidth="60.0" styleClass="borderOnHover" StackPane.alignment="CENTER_RIGHT">
                                                    <children>
                                                       <ImageView fx:id="ps9_0" disable="true" fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true" styleClass="borderOnHover">
                                                          <image>
@@ -2690,7 +2690,7 @@
                                                             <Insets left="10.0" top="7.0" />
                                                          </VBox.margin>
                                                       </ImageView>
-                                                      <ImageView fx:id="ps6_0" disable="true" fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true" styleClass="borderOnHover">
+                                                      <ImageView fx:id="ps7_0" disable="true" fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true" styleClass="borderOnHover">
                                                          <image>
                                                             <Image url="@../images/pawns/pinkStudent.png" />
                                                          </image>
@@ -2701,7 +2701,7 @@
                                                             <Insets left="10.0" top="7.0" />
                                                          </VBox.margin>
                                                       </ImageView>
-                                                      <ImageView fx:id="ps7_0" disable="true" fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true" styleClass="borderOnHover">
+                                                      <ImageView fx:id="ps6_0" disable="true" fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true" styleClass="borderOnHover">
                                                          <image>
                                                             <Image url="@../images/pawns/pinkStudent.png" />
                                                          </image>
@@ -2723,7 +2723,7 @@
                                                             <Insets left="10.0" top="7.0" />
                                                          </VBox.margin>
                                                       </ImageView>
-                                                      <ImageView fx:id="ps2_0" disable="true" fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true" styleClass="borderOnHover">
+                                                      <ImageView fx:id="ps4_0" disable="true" fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true" styleClass="borderOnHover">
                                                          <image>
                                                             <Image url="@../images/pawns/pinkStudent.png" />
                                                          </image>
@@ -2745,7 +2745,7 @@
                                                             <Insets left="10.0" top="7.0" />
                                                          </VBox.margin>
                                                       </ImageView>
-                                                      <ImageView fx:id="ps4_0" disable="true" fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true" styleClass="borderOnHover">
+                                                      <ImageView fx:id="ps2_0" disable="true" fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true" styleClass="borderOnHover">
                                                          <image>
                                                             <Image url="@../images/pawns/pinkStudent.png" />
                                                          </image>
@@ -2786,19 +2786,8 @@
                                                       <Cursor fx:constant="HAND" />
                                                    </cursor>
                                                 </VBox>
-                                                <VBox fx:id="dgBlue" accessibleRole="BUTTON" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="480.0" prefWidth="60.0" styleClass="borderOnHover" StackPane.alignment="CENTER_RIGHT">
+                                                <VBox fx:id="dgBlue" accessibleRole="BUTTON" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseClicked="#colorOnClick" prefHeight="480.0" prefWidth="60.0" styleClass="borderOnHover" StackPane.alignment="CENTER_RIGHT">
                                                    <children>
-                                                      <ImageView fx:id="bs8_0" disable="true" fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true" styleClass="borderOnHover">
-                                                         <image>
-                                                            <Image url="@../images/pawns/blueStudent.png" />
-                                                         </image>
-                                                         <effect>
-                                                            <DropShadow />
-                                                         </effect>
-                                                         <VBox.margin>
-                                                            <Insets left="10.0" />
-                                                         </VBox.margin>
-                                                      </ImageView>
                                                       <ImageView fx:id="bs9_0" disable="true" fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true" styleClass="borderOnHover">
                                                          <image>
                                                             <Image url="@../images/pawns/blueStudent.png" />
@@ -2808,6 +2797,17 @@
                                                          </effect>
                                                          <VBox.margin>
                                                             <Insets left="10.0" top="7.0" />
+                                                         </VBox.margin>
+                                                      </ImageView>
+                                                      <ImageView fx:id="bs8_0" disable="true" fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true" styleClass="borderOnHover">
+                                                         <image>
+                                                            <Image url="@../images/pawns/blueStudent.png" />
+                                                         </image>
+                                                         <effect>
+                                                            <DropShadow />
+                                                         </effect>
+                                                         <VBox.margin>
+                                                            <Insets left="10.0" />
                                                          </VBox.margin>
                                                       </ImageView>
                                                       <ImageView fx:id="bs7_0" disable="true" fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true" styleClass="borderOnHover">
@@ -2821,7 +2821,7 @@
                                                             <Insets left="10.0" top="7.0" />
                                                          </VBox.margin>
                                                       </ImageView>
-                                                      <ImageView fx:id="bs5_0" disable="true" fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true" styleClass="borderOnHover">
+                                                      <ImageView fx:id="bs6_0" disable="true" fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true" styleClass="borderOnHover">
                                                          <image>
                                                             <Image url="@../images/pawns/blueStudent.png" />
                                                          </image>
@@ -2832,7 +2832,7 @@
                                                             <Insets left="10.0" top="7.0" />
                                                          </VBox.margin>
                                                       </ImageView>
-                                                      <ImageView fx:id="bs6_0" disable="true" fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true" styleClass="borderOnHover">
+                                                      <ImageView fx:id="bs5_0" disable="true" fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true" styleClass="borderOnHover">
                                                          <image>
                                                             <Image url="@../images/pawns/blueStudent.png" />
                                                          </image>

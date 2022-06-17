@@ -782,137 +782,6 @@
     "wizards": [],
     "playersToPlay": [
       {
-        "nickname": "player2",
-        "school": {
-          "id": 2,
-          "entrance": {
-            "pawns": [
-              {
-                "color": "PINK"
-              },
-              {
-                "color": "YELLOW"
-              },
-              {
-                "color": "PINK"
-              },
-              {
-                "color": "GREEN"
-              },
-              {
-                "color": "PINK"
-              },
-              {
-                "color": "RED"
-              },
-              {
-                "color": "RED"
-              },
-              {
-                "color": "GREEN"
-              },
-              {
-                "color": "YELLOW"
-              }
-            ]
-          },
-          "diningRoom": {
-            "YELLOW": {
-              "pawns": []
-            },
-            "RED": {
-              "pawns": []
-            },
-            "BLUE": {
-              "pawns": []
-            },
-            "GREEN": {
-              "pawns": []
-            },
-            "PINK": {
-              "pawns": []
-            }
-          },
-          "professorsTable": {
-            "pawns": []
-          },
-          "towersBoard": {
-            "pawns": [
-              {
-                "color": "GREY"
-              },
-              {
-                "color": "GREY"
-              },
-              {
-                "color": "GREY"
-              },
-              {
-                "color": "GREY"
-              },
-              {
-                "color": "GREY"
-              },
-              {
-                "color": "GREY"
-              }
-            ]
-          }
-        },
-        "id": 2,
-        "towerColor": "GREY",
-        "coins": 1,
-        "assistantCardDeck": {
-          "cards": [
-            {
-              "value": 1,
-              "steps": 1
-            },
-            {
-              "value": 2,
-              "steps": 1
-            },
-            {
-              "value": 4,
-              "steps": 2
-            },
-            {
-              "value": 5,
-              "steps": 3
-            },
-            {
-              "value": 6,
-              "steps": 3
-            },
-            {
-              "value": 7,
-              "steps": 4
-            },
-            {
-              "value": 8,
-              "steps": 4
-            },
-            {
-              "value": 9,
-              "steps": 5
-            },
-            {
-              "value": 10,
-              "steps": 5
-            }
-          ]
-        },
-        "discardPileDeck": {
-          "cards": [
-            {
-              "value": 3,
-              "steps": 2
-            }
-          ]
-        },
-        "wizard": "PIXIE"
-      },
-      {
         "nickname": "player0",
         "school": {
           "id": 0,
@@ -1173,6 +1042,137 @@
           ]
         },
         "wizard": "SORCERER"
+      },
+      {
+        "nickname": "player2",
+        "school": {
+          "id": 2,
+          "entrance": {
+            "pawns": [
+              {
+                "color": "PINK"
+              },
+              {
+                "color": "YELLOW"
+              },
+              {
+                "color": "PINK"
+              },
+              {
+                "color": "GREEN"
+              },
+              {
+                "color": "PINK"
+              },
+              {
+                "color": "RED"
+              },
+              {
+                "color": "RED"
+              },
+              {
+                "color": "GREEN"
+              },
+              {
+                "color": "YELLOW"
+              }
+            ]
+          },
+          "diningRoom": {
+            "YELLOW": {
+              "pawns": []
+            },
+            "RED": {
+              "pawns": []
+            },
+            "BLUE": {
+              "pawns": []
+            },
+            "GREEN": {
+              "pawns": []
+            },
+            "PINK": {
+              "pawns": []
+            }
+          },
+          "professorsTable": {
+            "pawns": []
+          },
+          "towersBoard": {
+            "pawns": [
+              {
+                "color": "GREY"
+              },
+              {
+                "color": "GREY"
+              },
+              {
+                "color": "GREY"
+              },
+              {
+                "color": "GREY"
+              },
+              {
+                "color": "GREY"
+              },
+              {
+                "color": "GREY"
+              }
+            ]
+          }
+        },
+        "id": 2,
+        "towerColor": "GREY",
+        "coins": 1,
+        "assistantCardDeck": {
+          "cards": [
+            {
+              "value": 1,
+              "steps": 1
+            },
+            {
+              "value": 2,
+              "steps": 1
+            },
+            {
+              "value": 4,
+              "steps": 2
+            },
+            {
+              "value": 5,
+              "steps": 3
+            },
+            {
+              "value": 6,
+              "steps": 3
+            },
+            {
+              "value": 7,
+              "steps": 4
+            },
+            {
+              "value": 8,
+              "steps": 4
+            },
+            {
+              "value": 9,
+              "steps": 5
+            },
+            {
+              "value": 10,
+              "steps": 5
+            }
+          ]
+        },
+        "discardPileDeck": {
+          "cards": [
+            {
+              "value": 3,
+              "steps": 2
+            }
+          ]
+        },
+        "wizard": "PIXIE"
       }
     ],
     "playersHavePlayed": [],
@@ -1180,7 +1180,7 @@
       "callableMethod": {
         "moveStudentToIsland": 4,
         "endAction": 0,
-        "extraAction": 2,
+        "extraAction": 1,
         "moveMotherNature": 0,
         "takeStudentsFromCloud": 0,
         "moveStudentToDiningRoom": 4,
@@ -1191,17 +1191,15 @@
   },
   "handler": {
     "card": {
-      "extraControl": 0,
-      "possibleExchange": 2,
-      "numOfStudentsToReturn": 0,
-      "id": 7,
-      "coins": 2,
-      "effect": "You may exchange up to 2 Students between your Entrance and your Dining Room.",
-      "category": "movement",
+      "extra_movement": 0,
+      "extra_resolving": true,
+      "id": 2,
+      "coins": 3,
+      "effect": "Choose an Island and resolve the Island as if Mother Nature had ended her movement there. Mother Nature will still move and the Island where she ends her movement will also be resolved.",
+      "category": "mother_nature",
       "params": {
-        "extra_control": 0,
-        "possible_exchange": 2,
-        "num_of_students_to_return": 0
+        "extra_movement": 0,
+        "extra_resolving": true
       },
       "hasExtraAction": true
     }

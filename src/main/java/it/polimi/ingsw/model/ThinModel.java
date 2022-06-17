@@ -135,6 +135,9 @@ public final class ThinModel {
     public boolean isIslandLinkedNext(int islandId) {
         return islands.get(islandId).isLinkedNext;
     }
+    public boolean isIslandLinkedPrev(int islandId) {
+        return islands.get(islandId).isLinkedPrev;
+    }
 
     public List<Color> getProfessorsByPlayer(int playerId) {
         return new ArrayList<>(schools.get(playerId).profTable);

@@ -43,9 +43,6 @@ public class MotherNatureHandler extends Handler {
             } catch (IndexOutOfBoundsException e) {
                 throw new IslandException();
             }
-
-
-
         }
     }
 
