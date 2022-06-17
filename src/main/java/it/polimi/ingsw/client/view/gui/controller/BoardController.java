@@ -1,6 +1,7 @@
 package it.polimi.ingsw.client.view.gui.controller;
 
 import it.polimi.ingsw.client.view.cli.CLIBuilder;
+import it.polimi.ingsw.client.view.cli.OptionLister;
 import it.polimi.ingsw.client.view.gui.ViewGUI;
 import it.polimi.ingsw.enums.Wizard;
 import it.polimi.ingsw.events.RequestEvent;
@@ -8,12 +9,14 @@ import it.polimi.ingsw.model.ThinModel;
 import javafx.application.Platform;
 import javafx.event.Event;
 import javafx.fxml.FXML;
+import javafx.scene.Cursor;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.media.MediaPlayer;
+import javafx.scene.text.Text;
 
 import java.lang.reflect.Method;
 import java.util.ArrayList;
@@ -22,16 +25,13 @@ import java.util.List;
 public class BoardController implements GUIController {
 
     private ViewGUI gui;
-
     private GUIBuilder guiBuilder = null;
 
     private ThinModel model;
-
-    private List<Node> entranceStudents;
+    private OptionLister optionLister;
 
     @FXML private BorderPane wizardBorderPane;
     @FXML private BorderPane assistantBorderPane;
-
     @FXML private Button diningRoom;
     @FXML private Node dgGreen;
     @FXML private Node dgRed;
@@ -40,11 +40,18 @@ public class BoardController implements GUIController {
     @FXML private Node dgPink;
     @FXML private Node endActionButton;
     @FXML private Node characterCardButton;
+    @FXML private Text messages;
+    private List<Node> entranceStudents;
 
     private Node sourceNode;
 
+    public BoardController() {
+        optionLister = new OptionLister();
+    }
+
     @Override
     public void optionsHandling(List<String> options) {
+        messages.setText(optionLister.list(options).substring(1));
         for (String option : options) {
             try {
                 Method method = BoardController.class.getDeclaredMethod(option);
@@ -61,6 +68,13 @@ public class BoardController implements GUIController {
     public void onWaitEvent(String name) {
         assistantBorderPane.setVisible(false);
         wizardBorderPane.setVisible(false);
+        disableAll();
+
+        String string;
+        if (name == null) string = "Please wait it is not your turn!";
+        else string = "Please wait, it is " + name + "'s turn!";
+
+        messages.setText(string);
     }
 
     @Override
@@ -77,11 +91,13 @@ public class BoardController implements GUIController {
             for (int i = 0; i < model.getEntranceByPlayer(gui.getId()).size(); i++) {
                 entranceStudents.add(this.gui.getStage().getScene().lookup("#studentEntrance" + i));
             }
-            if (!model.isCompleteRule()) characterCardButton.setVisible(false);
+            if (!model.isCompleteRule()) {
+                characterCardButton.setVisible(false);
+            }
         }
         disableAll();
         guiBuilder.updateGUI(model);
-        new CLIBuilder().buildCLI(model, this.gui.getNickname()).showGameBoard();
+        new CLIBuilder().buildCLI(model, this.gui.getNickname()).showGameBoard(); //TODO only debugging purpose
     }
 
     @FXML
@@ -139,7 +155,7 @@ public class BoardController implements GUIController {
     }
 
     private void moveMotherNature() {
-        //guiBuilder.getMotherNature(model.getMNPosition()).setDisable(false);
+        guiBuilder.getMotherNature(model.getMNPosition()).setDisable(false);
     }
 
     private void playCharacterCard() {
@@ -152,6 +168,7 @@ public class BoardController implements GUIController {
 
     private void endAction() {
         endActionButton.setDisable(false);
+        endActionButton.setVisible(true);
     }
 
     private void card2() {
@@ -176,14 +193,20 @@ public class BoardController implements GUIController {
         assistantBorderPane.setVisible(false);
 
         //Disable button not needed
-        endActionButton.setDisable(true);
+        endActionButton.setVisible(false);
         characterCardButton.setDisable(true);
 
-        //Disable all clickable components
+        //Disable 'full' dining room, entrance student, islands, clouds
         diningRoom.setDisable(true);
         entranceStudents.forEach(n -> n.setDisable(true));
-        guiBuilder.getIslands().forEach(n -> n.setDisable(true));
+        for (Node island : guiBuilder.getIslands()) {
+            island.getStyleClass().clear();
+            island.setCursor(Cursor.DEFAULT);
+        }
+        //guiBuilder.getIslands().forEach(n -> n.setDisable(true));
         guiBuilder.getClouds().forEach(n -> n.setDisable(true));
+
+        //Disable colors dining room
         dgGreen.setDisable(true);
         dgPink.setDisable(true);
         dgBlue.setDisable(true);
@@ -217,11 +240,29 @@ public class BoardController implements GUIController {
 
     @FXML
     private void entranceStudentOnClick(Event event) {
-        entranceStudents.forEach(n -> n.setDisable(true));
-        sourceNode = ((Node)event.getSource());
-        sourceNode.getStyleClass().add("selected");
-        guiBuilder.getIslands().forEach(n -> n.setDisable(false));
-        diningRoom.setDisable(false);
+        if (sourceNode  == null) {
+            entranceStudents.forEach(n -> n.setDisable(true));
+            sourceNode = ((Node)event.getSource());
+            sourceNode.getStyleClass().add("selected");
+            sourceNode.setDisable(false);
+            for (Node island : guiBuilder.getIslands()) {
+                island.getStyleClass().add("borderOnHover");
+                island.setCursor(Cursor.HAND);
+            }
+            diningRoom.setDisable(false);
+            characterCardButton.setDisable(true);
+        } else if (sourceNode.equals(event.getSource())) {
+            entranceStudents.forEach(n -> n.setDisable(false));
+            for (Node island : guiBuilder.getIslands()) {
+                island.getStyleClass().clear();
+                island.setCursor(Cursor.DEFAULT);
+            }
+            diningRoom.setDisable(true);
+            characterCardButton.setDisable(false);
+            sourceNode.getStyleClass().remove("selected");
+            sourceNode = null;
+        }
+
     }
 
 
@@ -230,39 +271,50 @@ public class BoardController implements GUIController {
         sourceNode = ((Node)event.getSource());
         sourceNode.setDisable(true);
         sourceNode.getStyleClass().add("selected");
-        guiBuilder.getIslands().forEach(n -> n.setDisable(false));
+        for (Node island : guiBuilder.getIslands()) {
+            island.getStyleClass().add("borderOnHover");
+            island.setCursor(Cursor.HAND);
+        }
+        event.consume();
     }
 
     @FXML
     private void cloudOnClick(Event event) {
         Node cloud = (Node) event.getSource();
         int position = Integer.parseInt(cloud.getId().substring(cloud.getId().length() - 1));
-        this.gui.fireRequest(new RequestEvent("takeStudentsFromCloud", this.gui.getId(), position));
+        this.gui.fireRequest(new RequestEvent("takeStudentsFromCloud", this.gui.getId(), position + 1));
     }
 
     @FXML
     private void islandOnClick(Event event) {
-        Node islandNode = (Node) event.getSource();
-        int island = Integer.parseInt(islandNode.getId().substring(6));
-        if (sourceNode.getId().matches("mn[0-9][0-1]?")) {
-            int mn = Integer.parseInt(sourceNode.getId().substring(2));
-            int steps = island - mn;
-            if (steps < 0) {
-                steps = steps + 12;
+        if (sourceNode != null) {
+            Node islandNode = (Node) event.getSource();
+            int island = Integer.parseInt(islandNode.getId().substring(6));
+            if (sourceNode.getId().matches("mn[0-9][0-1]?")) { //Regex expression
+                //TODO handling when islands are connected
+                int mn = Integer.parseInt(sourceNode.getId().substring(2));
+                int steps = island - mn;
+                if (steps < 0) {
+                    steps = steps + 12;
+                }
+                this.gui.fireRequest(new RequestEvent("moveMotherNature", this.gui.getId(), steps));
+            } else if (sourceNode.getId().matches("studentEntrance[0-8]")) { //Regex expression
+                int student = Integer.parseInt(sourceNode.getId().substring(sourceNode.getId().length() - 1));
+                this.gui.fireRequest(new RequestEvent("moveStudentToIsland", this.gui.getId(), student + 1, island + 1));
             }
-            this.gui.fireRequest(new RequestEvent("moveMotherNature", this.gui.getId(), steps));
-        } else if (sourceNode.getId().matches("studentEntrance[0-8]")) {
-            int student = Integer.parseInt(sourceNode.getId().substring(sourceNode.getId().length() - 1));
-            this.gui.fireRequest(new RequestEvent("moveStudentToIsland", this.gui.getId(), student+1, island+1));
+            sourceNode.getStyleClass().remove("selected");
+            sourceNode = null;
         }
-        sourceNode.getStyleClass().remove("selected");
     }
 
     @FXML
     private void diningRoomOnClick(Event event) {
-        int position = Integer.parseInt(sourceNode.getId().substring(sourceNode.getId().length() - 1));
-        this.gui.fireRequest(new RequestEvent("moveStudentToDiningRoom", this.gui.getId(), position+1));
-        sourceNode.getStyleClass().remove("selected");
+        if (sourceNode != null) {
+            int position = Integer.parseInt(sourceNode.getId().substring(sourceNode.getId().length() - 1));
+            this.gui.fireRequest(new RequestEvent("moveStudentToDiningRoom", this.gui.getId(), position + 1));
+            sourceNode.getStyleClass().remove("selected");
+            sourceNode = null;
+        }
     }
 
 }

@@ -74,7 +74,7 @@ public class Model implements AnswerListenableInterface {
     }
 
 
-    public void playCharacterCard(int playerId, int choice) throws NotEnoughCoinsException, CardException {
+    public CharacterCard playCharacterCard(int playerId, int choice) throws NotEnoughCoinsException, CardException {
         CharacterCard card;
         if (characterCards.stream().anyMatch(x -> x.getId() == choice)) {
             card = characterCards.stream().filter(x -> x.getId() == choice).findFirst().get();
@@ -86,6 +86,7 @@ public class Model implements AnswerListenableInterface {
         } else {
             throw new CardException("Invalid character card played! Retry");
         }
+        return card;
     }
 
     public void moveStudentToDiningRoom(int playerId, int choice) throws InvalidActionException {

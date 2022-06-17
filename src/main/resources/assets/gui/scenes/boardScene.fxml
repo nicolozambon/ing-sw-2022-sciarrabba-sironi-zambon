@@ -16,21 +16,14 @@
                     <right>
                         <HBox spacing="15.0" BorderPane.alignment="CENTER">
                             <children>
-                                <HBox alignment="CENTER">
-                           <children>
-                              <VBox />
-                           </children>
-                                </HBox>
-                                <HBox alignment="CENTER">
-                           <children>
-                              <VBox />
-                           </children>
-                                </HBox>
-                                <HBox alignment="CENTER">
-                                    <children>
-                              <VBox />
-                                    </children>
-                                </HBox>
+                        <Text fx:id="messages" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Messages with action or which player turn" wrappingWidth="300.0">
+                           <font>
+                              <Font size="20.0" />
+                           </font>
+                           <effect>
+                              <DropShadow />
+                           </effect>
+                        </Text>
                         <StackPane alignment="TOP_CENTER" prefHeight="229.0" prefWidth="73.0">
                            <children>
                               <ImageView fx:id="volumeIcon" accessibleRole="BUTTON" fitHeight="68.0" fitWidth="78.0" onMouseClicked="#playStopMusic" pickOnBounds="true" preserveRatio="true">
@@ -72,7 +65,7 @@
                                     <Cursor fx:constant="HAND" />
                                  </cursor>
                               </ImageView>
-                              <Text accessibleRole="BUTTON" disable="true" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="End Action" textAlignment="CENTER" wrappingWidth="135.0" StackPane.alignment="CENTER">
+                              <Text fx:id="endActionText" accessibleRole="BUTTON" disable="true" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="End Action" textAlignment="CENTER" wrappingWidth="135.0" StackPane.alignment="CENTER">
                                  <font>
                                     <Font size="24.0" />
                                  </font>
@@ -313,6 +306,9 @@
                                                          <image>
                                                             <Image url="@../images/pawns/motherNature.png" />
                                                          </image>
+                                                         <cursor>
+                                                            <Cursor fx:constant="HAND" />
+                                                         </cursor>
                                                       </ImageView>
                                                       <ImageView fx:id="island0Tower" fitHeight="35.0" fitWidth="20.0" layoutX="142.0" layoutY="102.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="2">
                                                          <image>
@@ -440,6 +436,9 @@
                                                          <image>
                                                             <Image url="@../images/pawns/motherNature.png" />
                                                          </image>
+                                                         <cursor>
+                                                            <Cursor fx:constant="HAND" />
+                                                         </cursor>
                                                       </ImageView>
                                                       <ImageView fx:id="island1Tower" fitHeight="35.0" fitWidth="20.0" layoutX="142.0" layoutY="102.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="2">
                                                          <image>
@@ -567,6 +566,9 @@
                                                          <image>
                                                             <Image url="@../images/pawns/motherNature.png" />
                                                          </image>
+                                                         <cursor>
+                                                            <Cursor fx:constant="HAND" />
+                                                         </cursor>
                                                       </ImageView>
                                                       <ImageView fx:id="island2Tower" fitHeight="35.0" fitWidth="20.0" layoutX="142.0" layoutY="102.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="2">
                                                          <image>
@@ -694,6 +696,9 @@
                                                          <image>
                                                             <Image url="@../images/pawns/motherNature.png" />
                                                          </image>
+                                                         <cursor>
+                                                            <Cursor fx:constant="HAND" />
+                                                         </cursor>
                                                       </ImageView>
                                                       <ImageView fx:id="island3Tower" fitHeight="35.0" fitWidth="20.0" layoutX="142.0" layoutY="102.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="2">
                                                          <image>
@@ -821,6 +826,9 @@
                                                          <image>
                                                             <Image url="@../images/pawns/motherNature.png" />
                                                          </image>
+                                                         <cursor>
+                                                            <Cursor fx:constant="HAND" />
+                                                         </cursor>
                                                       </ImageView>
                                                       <ImageView fx:id="island4Tower" fitHeight="35.0" fitWidth="20.0" layoutX="142.0" layoutY="102.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="2">
                                                          <image>
@@ -948,6 +956,9 @@
                                                          <image>
                                                             <Image url="@../images/pawns/motherNature.png" />
                                                          </image>
+                                                         <cursor>
+                                                            <Cursor fx:constant="HAND" />
+                                                         </cursor>
                                                       </ImageView>
                                                       <ImageView fx:id="island5Tower" fitHeight="35.0" fitWidth="20.0" layoutX="142.0" layoutY="102.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="2">
                                                          <image>
@@ -1075,6 +1086,9 @@
                                                          <image>
                                                             <Image url="@../images/pawns/motherNature.png" />
                                                          </image>
+                                                         <cursor>
+                                                            <Cursor fx:constant="HAND" />
+                                                         </cursor>
                                                       </ImageView>
                                                       <ImageView fx:id="island6Tower" fitHeight="35.0" fitWidth="20.0" layoutX="142.0" layoutY="102.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="2">
                                                          <image>
@@ -1202,6 +1216,9 @@
                                                          <image>
                                                             <Image url="@../images/pawns/motherNature.png" />
                                                          </image>
+                                                         <cursor>
+                                                            <Cursor fx:constant="HAND" />
+                                                         </cursor>
                                                       </ImageView>
                                                       <ImageView fx:id="island7Tower" fitHeight="35.0" fitWidth="20.0" layoutX="142.0" layoutY="102.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="2">
                                                          <image>
@@ -1329,6 +1346,9 @@
                                                          <image>
                                                             <Image url="@../images/pawns/motherNature.png" />
                                                          </image>
+                                                         <cursor>
+                                                            <Cursor fx:constant="HAND" />
+                                                         </cursor>
                                                       </ImageView>
                                                       <ImageView fx:id="island8Tower" fitHeight="35.0" fitWidth="20.0" layoutX="142.0" layoutY="102.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="2">
                                                          <image>
@@ -1456,6 +1476,9 @@
                                                          <image>
                                                             <Image url="@../images/pawns/motherNature.png" />
                                                          </image>
+                                                         <cursor>
+                                                            <Cursor fx:constant="HAND" />
+                                                         </cursor>
                                                       </ImageView>
                                                       <ImageView fx:id="island9Tower" fitHeight="35.0" fitWidth="20.0" layoutX="142.0" layoutY="102.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="2">
                                                          <image>
@@ -1583,6 +1606,9 @@
                                                          <image>
                                                             <Image url="@../images/pawns/motherNature.png" />
                                                          </image>
+                                                         <cursor>
+                                                            <Cursor fx:constant="HAND" />
+                                                         </cursor>
                                                       </ImageView>
                                                       <ImageView fx:id="island10Tower" fitHeight="35.0" fitWidth="20.0" layoutX="142.0" layoutY="102.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="2">
                                                          <image>
@@ -1710,6 +1736,9 @@
                                                          <image>
                                                             <Image url="@../images/pawns/motherNature.png" />
                                                          </image>
+                                                         <cursor>
+                                                            <Cursor fx:constant="HAND" />
+                                                         </cursor>
                                                       </ImageView>
                                                       <ImageView fx:id="island11Tower" fitHeight="35.0" fitWidth="20.0" layoutX="142.0" layoutY="102.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="2">
                                                          <image>
@@ -1846,216 +1875,6 @@
                                                 <Insets left="-20.0" top="-90.0" />
                                              </GridPane.margin>
                                           </ImageView>
-                                          <GridPane fx:id="cloud0" accessibleRole="BUTTON" onMouseClicked="#cloudOnClick" prefWidth="216.0" rotate="-90.0" styleClass="borderOnHover" GridPane.columnIndex="4" GridPane.rowIndex="7">
-                                             <GridPane.margin>
-                                                <Insets left="-50.0" top="-100.0" />
-                                             </GridPane.margin>
-                                             <columnConstraints>
-                                                <ColumnConstraints hgrow="SOMETIMES" maxWidth="58.0" minWidth="3.0533447265625" prefWidth="19.87835693359375" />
-                                                <ColumnConstraints hgrow="SOMETIMES" maxWidth="58.0" minWidth="10.0" prefWidth="22.12164306640625" />
-                                                <ColumnConstraints hgrow="SOMETIMES" maxWidth="47.0" minWidth="10.0" prefWidth="31.0" />
-                                                <ColumnConstraints hgrow="SOMETIMES" maxWidth="57.0" minWidth="10.0" prefWidth="25.0" />
-                                             </columnConstraints>
-                                             <rowConstraints>
-                                                <RowConstraints maxHeight="131.0" minHeight="10.0" prefHeight="73.0" vgrow="SOMETIMES" />
-                                                <RowConstraints maxHeight="95.0" minHeight="10.0" prefHeight="39.661651611328125" vgrow="SOMETIMES" />
-                                                <RowConstraints maxHeight="95.0" minHeight="10.0" prefHeight="64.33834838867188" vgrow="SOMETIMES" />
-                                                <RowConstraints maxHeight="95.0" minHeight="10.0" prefHeight="74.0" vgrow="SOMETIMES" />
-                                             </rowConstraints>
-                                             <children>
-                                                <ImageView fitHeight="151.0" fitWidth="120.0" pickOnBounds="true" preserveRatio="true" scaleX="1.2" scaleY="1.2" GridPane.rowIndex="1">
-                                                   <image>
-                                                      <Image url="@../images/cloud.png" />
-                                                   </image>
-                                                </ImageView>
-                                                <ImageView fx:id="scloud0_0" fitHeight="57.0" fitWidth="35.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" GridPane.rowIndex="1">
-                                                   <image>
-                                                      <Image url="@../images/pawns/blueStudent.png" />
-                                                   </image>
-                                                   <GridPane.margin>
-                                                      <Insets left="5.0" top="-35.0" />
-                                                   </GridPane.margin>
-                                                   <effect>
-                                                      <DropShadow />
-                                                   </effect>
-                                                </ImageView>
-                                                <ImageView fx:id="scloud0_1" fitHeight="57.0" fitWidth="35.0" layoutX="31.0" layoutY="48.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="3" GridPane.rowIndex="1">
-                                                   <image>
-                                                      <Image url="@../images/pawns/blueStudent.png" />
-                                                   </image>
-                                                   <GridPane.margin>
-                                                      <Insets top="-35.0" />
-                                                   </GridPane.margin>
-                                                   <effect>
-                                                      <DropShadow />
-                                                   </effect>
-                                                </ImageView>
-                                                <ImageView fx:id="scloud0_3" fitHeight="57.0" fitWidth="35.0" layoutX="52.0" layoutY="86.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="3" GridPane.rowIndex="2">
-                                                   <image>
-                                                      <Image url="@../images/pawns/blueStudent.png" />
-                                                   </image>
-                                                   <GridPane.margin>
-                                                      <Insets top="-35.0" />
-                                                   </GridPane.margin>
-                                                   <effect>
-                                                      <DropShadow />
-                                                   </effect>
-                                                </ImageView>
-                                                <ImageView fx:id="scloud0_2" fitHeight="57.0" fitWidth="35.0" layoutX="50.0" layoutY="97.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" GridPane.rowIndex="2">
-                                                   <image>
-                                                      <Image url="@../images/pawns/blueStudent.png" />
-                                                   </image>
-                                                   <GridPane.margin>
-                                                      <Insets left="5.0" top="-30.0" />
-                                                   </GridPane.margin>
-                                                   <effect>
-                                                      <DropShadow />
-                                                   </effect>
-                                                </ImageView>
-                                             </children>
-                                             <cursor>
-                                                <Cursor fx:constant="HAND" />
-                                             </cursor>
-                                          </GridPane>
-                                          <GridPane fx:id="cloud1" accessibleRole="BUTTON" layoutX="283.0" layoutY="721.0" onMouseClicked="#cloudOnClick" prefWidth="216.0" rotate="-90.0" styleClass="borderOnHover" GridPane.columnIndex="5" GridPane.rowIndex="7">
-                                             <columnConstraints>
-                                                <ColumnConstraints hgrow="SOMETIMES" maxWidth="58.0" minWidth="10.0" prefWidth="20.8009033203125" />
-                                                <ColumnConstraints hgrow="SOMETIMES" maxWidth="58.0" minWidth="8.0" prefWidth="37.6990966796875" />
-                                                <ColumnConstraints hgrow="SOMETIMES" maxWidth="72.2213134765625" minWidth="10.0" prefWidth="72.2213134765625" />
-                                                <ColumnConstraints hgrow="SOMETIMES" maxWidth="47.0" minWidth="10.0" prefWidth="31.0" />
-                                             </columnConstraints>
-                                             <rowConstraints>
-                                                <RowConstraints maxHeight="131.0" minHeight="10.0" prefHeight="73.0" vgrow="SOMETIMES" />
-                                                <RowConstraints maxHeight="131.0" minHeight="10.0" prefHeight="73.0" vgrow="SOMETIMES" />
-                                                <RowConstraints maxHeight="95.0" minHeight="10.0" prefHeight="74.0" vgrow="SOMETIMES" />
-                                                <RowConstraints maxHeight="95.0" minHeight="10.0" prefHeight="74.0" vgrow="SOMETIMES" />
-                                             </rowConstraints>
-                                             <children>
-                                                <ImageView fitHeight="151.0" fitWidth="120.0" pickOnBounds="true" preserveRatio="true" scaleX="1.2" scaleY="1.2" GridPane.rowIndex="2">
-                                                   <image>
-                                                      <Image url="@../images/cloud.png" />
-                                                   </image>
-                                                </ImageView>
-                                                <ImageView fx:id="scloud1_0" fitHeight="57.0" fitWidth="35.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" GridPane.rowIndex="1">
-                                                   <image>
-                                                      <Image url="@../images/pawns/blueStudent.png" />
-                                                   </image>
-                                                   <GridPane.margin>
-                                                      <Insets top="10.0" />
-                                                   </GridPane.margin>
-                                                   <effect>
-                                                      <DropShadow />
-                                                   </effect>
-                                                </ImageView>
-                                                <ImageView fx:id="scloud1_1" fitHeight="57.0" fitWidth="35.0" layoutX="31.0" layoutY="48.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="2" GridPane.rowIndex="1">
-                                                   <image>
-                                                      <Image url="@../images/pawns/blueStudent.png" />
-                                                   </image>
-                                                   <GridPane.margin>
-                                                      <Insets top="10.0" />
-                                                   </GridPane.margin>
-                                                   <effect>
-                                                      <DropShadow />
-                                                   </effect>
-                                                </ImageView>
-                                                <ImageView fx:id="scloud1_3" fitHeight="57.0" fitWidth="35.0" layoutX="52.0" layoutY="86.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="2" GridPane.rowIndex="3">
-                                                   <image>
-                                                      <Image url="@../images/pawns/blueStudent.png" />
-                                                   </image>
-                                                   <GridPane.margin>
-                                                      <Insets top="-20.0" />
-                                                   </GridPane.margin>
-                                                   <effect>
-                                                      <DropShadow />
-                                                   </effect>
-                                                </ImageView>
-                                                <ImageView fx:id="scloud1_2" fitHeight="57.0" fitWidth="35.0" layoutX="64.0" layoutY="89.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" GridPane.rowIndex="3">
-                                                   <image>
-                                                      <Image url="@../images/pawns/blueStudent.png" />
-                                                   </image>
-                                                   <GridPane.margin>
-                                                      <Insets top="-20.0" />
-                                                   </GridPane.margin>
-                                                   <effect>
-                                                      <DropShadow />
-                                                   </effect>
-                                                </ImageView>
-                                             </children>
-                                             <cursor>
-                                                <Cursor fx:constant="HAND" />
-                                             </cursor>
-                                          </GridPane>
-                                          <GridPane fx:id="cloud2" accessibleRole="BUTTON" layoutX="365.0" layoutY="653.0" onMouseClicked="#cloudOnClick" prefWidth="55.0" rotate="-90.0" styleClass="borderOnHover" GridPane.columnIndex="5" GridPane.rowIndex="5">
-                                             <columnConstraints>
-                                                <ColumnConstraints maxWidth="58.0" minWidth="10.0" prefWidth="23.63494873046875" />
-                                                <ColumnConstraints maxWidth="58.0" minWidth="8.0" prefWidth="39.256591796875" />
-                                                <ColumnConstraints maxWidth="72.0" minWidth="10.0" prefWidth="62.243408203125" />
-                                                <ColumnConstraints maxWidth="47.0" minWidth="10.0" prefWidth="31.0" />
-                                             </columnConstraints>
-                                             <rowConstraints>
-                                                <RowConstraints maxHeight="131.0" minHeight="10.0" prefHeight="73.0" vgrow="SOMETIMES" />
-                                                <RowConstraints maxHeight="131.0" minHeight="10.0" prefHeight="73.0" vgrow="SOMETIMES" />
-                                                <RowConstraints maxHeight="95.0" minHeight="10.0" prefHeight="74.0" vgrow="SOMETIMES" />
-                                                <RowConstraints maxHeight="95.0" minHeight="10.0" prefHeight="74.0" vgrow="SOMETIMES" />
-                                             </rowConstraints>
-                                             <children>
-                                                <ImageView fitHeight="151.0" fitWidth="120.0" pickOnBounds="true" preserveRatio="true" scaleX="1.2" scaleY="1.2" GridPane.rowIndex="2">
-                                                   <image>
-                                                      <Image url="@../images/cloud.png" />
-                                                   </image>
-                                                </ImageView>
-                                                <ImageView fx:id="scloud2_1" fitHeight="57.0" fitWidth="35.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="2" GridPane.rowIndex="1">
-                                                   <image>
-                                                      <Image url="@../images/pawns/blueStudent.png" />
-                                                   </image>
-                                                   <GridPane.margin>
-                                                      <Insets />
-                                                   </GridPane.margin>
-                                                   <effect>
-                                                      <DropShadow />
-                                                   </effect>
-                                                </ImageView>
-                                                <ImageView fx:id="scloud2_0" fitHeight="57.0" fitWidth="35.0" layoutX="31.0" layoutY="48.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" GridPane.rowIndex="1">
-                                                   <image>
-                                                      <Image url="@../images/pawns/blueStudent.png" />
-                                                   </image>
-                                                   <GridPane.margin>
-                                                      <Insets />
-                                                   </GridPane.margin>
-                                                   <effect>
-                                                      <DropShadow />
-                                                   </effect>
-                                                </ImageView>
-                                                <ImageView fx:id="scloud2_2" fitHeight="57.0" fitWidth="35.0" layoutX="52.0" layoutY="86.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" GridPane.rowIndex="2">
-                                                   <image>
-                                                      <Image url="@../images/pawns/blueStudent.png" />
-                                                   </image>
-                                                   <GridPane.margin>
-                                                      <Insets top="30.0" />
-                                                   </GridPane.margin>
-                                                   <effect>
-                                                      <DropShadow />
-                                                   </effect>
-                                                </ImageView>
-                                                <ImageView fx:id="scloud2_3" fitHeight="57.0" fitWidth="35.0" layoutX="37.0" layoutY="97.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="2" GridPane.rowIndex="2">
-                                                   <image>
-                                                      <Image url="@../images/pawns/blueStudent.png" />
-                                                   </image>
-                                                   <GridPane.margin>
-                                                      <Insets top="30.0" />
-                                                   </GridPane.margin>
-                                                   <effect>
-                                                      <DropShadow />
-                                                   </effect>
-                                                </ImageView>
-                                             </children>
-                                             <GridPane.margin>
-                                                <Insets />
-                                             </GridPane.margin>
-                                             <cursor>
-                                                <Cursor fx:constant="HAND" />
-                                             </cursor>
-                                          </GridPane>
                                           <StackPane fx:id="characterCardButton" accessibleRole="BUTTON" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseClicked="#openCharacterCardSelector" prefHeight="200.0" prefWidth="150.0" rotate="-90.0" styleClass="borderOnHover" GridPane.columnIndex="5" GridPane.rowIndex="3">
                                              <children>
                                                 <ImageView fx:id="mainCharacterCard2" fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" style="-fx-rotate: -40;" StackPane.alignment="TOP_CENTER">
@@ -2094,6 +1913,9 @@
                                              <GridPane.margin>
                                                 <Insets left="-50.0" />
                                              </GridPane.margin>
+                                             <cursor>
+                                                <Cursor fx:constant="HAND" />
+                                             </cursor>
                                           </StackPane>
                                           <StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="120.0" prefWidth="100.0" style="-fx-rotate: -90;" GridPane.columnIndex="3" GridPane.rowIndex="5">
                                              <children>
@@ -2138,6 +1960,180 @@
                                                       <Insets left="30.0" />
                                                    </StackPane.margin>
                                                 </Text>
+                                             </children>
+                                          </StackPane>
+                                          <StackPane fx:id="cloud0" accessibleRole="BUTTON" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseClicked="#cloudOnClick" prefHeight="150.0" prefWidth="150.0" style="-fx-rotate: -90;" styleClass="borderOnHover" GridPane.columnIndex="3" GridPane.halignment="LEFT" GridPane.rowIndex="7">
+                                             <children>
+                                                <ImageView fitHeight="150.0" fitWidth="150.0" pickOnBounds="true" preserveRatio="true">
+                                                   <image>
+                                                      <Image url="@../images/cloud.png" />
+                                                   </image>
+                                                </ImageView>
+                                                <ImageView fx:id="scloud0_1" fitHeight="57.0" fitWidth="35.0" pickOnBounds="true" preserveRatio="true" StackPane.alignment="TOP_RIGHT">
+                                                   <image>
+                                                      <Image url="@../images/pawns/blueStudent.png" />
+                                                   </image>
+                                                   <effect>
+                                                      <DropShadow />
+                                                   </effect>
+                                                   <StackPane.margin>
+                                                      <Insets right="30.0" top="30.0" />
+                                                   </StackPane.margin>
+                                                </ImageView>
+                                                <ImageView fx:id="scloud0_0" fitHeight="57.0" fitWidth="35.0" pickOnBounds="true" preserveRatio="true" StackPane.alignment="TOP_LEFT">
+                                                   <image>
+                                                      <Image url="@../images/pawns/blueStudent.png" />
+                                                   </image>
+                                                   <effect>
+                                                      <DropShadow />
+                                                   </effect>
+                                                   <StackPane.margin>
+                                                      <Insets left="30.0" top="30.0" />
+                                                   </StackPane.margin>
+                                                </ImageView>
+                                                <ImageView fx:id="scloud0_2" fitHeight="57.0" fitWidth="35.0" pickOnBounds="true" preserveRatio="true" StackPane.alignment="BOTTOM_LEFT">
+                                                   <image>
+                                                      <Image url="@../images/pawns/blueStudent.png" />
+                                                   </image>
+                                                   <effect>
+                                                      <DropShadow />
+                                                   </effect>
+                                                   <StackPane.margin>
+                                                      <Insets bottom="30.0" left="30.0" />
+                                                   </StackPane.margin>
+                                                </ImageView>
+                                                <ImageView fx:id="scloud0_3" fitHeight="57.0" fitWidth="35.0" pickOnBounds="true" preserveRatio="true" StackPane.alignment="BOTTOM_RIGHT">
+                                                   <image>
+                                                      <Image url="@../images/pawns/blueStudent.png" />
+                                                   </image>
+                                                   <effect>
+                                                      <DropShadow />
+                                                   </effect>
+                                                   <StackPane.margin>
+                                                      <Insets bottom="30.0" right="35.0" />
+                                                   </StackPane.margin>
+                                                </ImageView>
+                                             </children>
+                                             <cursor>
+                                                <Cursor fx:constant="HAND" />
+                                             </cursor>
+                                             <GridPane.margin>
+                                                <Insets />
+                                             </GridPane.margin>
+                                          </StackPane>
+                                          <StackPane fx:id="cloud1" accessibleRole="BUTTON" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseClicked="#cloudOnClick" prefHeight="150.0" prefWidth="150.0" style="-fx-rotate: -90;" styleClass="borderOnHover" GridPane.columnIndex="5" GridPane.halignment="RIGHT" GridPane.rowIndex="7">
+                                             <cursor>
+                                                <Cursor fx:constant="HAND" />
+                                             </cursor>
+                                             <children>
+                                                <ImageView fitHeight="150.0" fitWidth="150.0" pickOnBounds="true" preserveRatio="true">
+                                                   <image>
+                                                      <Image url="@../images/cloud.png" />
+                                                   </image>
+                                                </ImageView>
+                                                <ImageView fx:id="scloud1_0" fitHeight="57.0" fitWidth="35.0" pickOnBounds="true" preserveRatio="true" StackPane.alignment="TOP_LEFT">
+                                                   <image>
+                                                      <Image url="@../images/pawns/blueStudent.png" />
+                                                   </image>
+                                                   <effect>
+                                                      <DropShadow />
+                                                   </effect>
+                                                   <StackPane.margin>
+                                                      <Insets left="30.0" top="30.0" />
+                                                   </StackPane.margin>
+                                                </ImageView>
+                                                <ImageView fx:id="scloud1_1" fitHeight="57.0" fitWidth="35.0" pickOnBounds="true" preserveRatio="true" StackPane.alignment="TOP_RIGHT">
+                                                   <image>
+                                                      <Image url="@../images/pawns/blueStudent.png" />
+                                                   </image>
+                                                   <effect>
+                                                      <DropShadow />
+                                                   </effect>
+                                                   <StackPane.margin>
+                                                      <Insets right="30.0" top="30.0" />
+                                                   </StackPane.margin>
+                                                </ImageView>
+                                                <ImageView fx:id="scloud1_2" fitHeight="57.0" fitWidth="35.0" pickOnBounds="true" preserveRatio="true" StackPane.alignment="BOTTOM_LEFT">
+                                                   <image>
+                                                      <Image url="@../images/pawns/blueStudent.png" />
+                                                   </image>
+                                                   <effect>
+                                                      <DropShadow />
+                                                   </effect>
+                                                   <StackPane.margin>
+                                                      <Insets bottom="30.0" left="30.0" />
+                                                   </StackPane.margin>
+                                                </ImageView>
+                                                <ImageView fx:id="scloud1_3" fitHeight="57.0" fitWidth="35.0" pickOnBounds="true" preserveRatio="true" StackPane.alignment="BOTTOM_RIGHT">
+                                                   <image>
+                                                      <Image url="@../images/pawns/blueStudent.png" />
+                                                   </image>
+                                                   <effect>
+                                                      <DropShadow />
+                                                   </effect>
+                                                   <StackPane.margin>
+                                                      <Insets bottom="30.0" right="30.0" />
+                                                   </StackPane.margin>
+                                                </ImageView>
+                                             </children>
+                                             <GridPane.margin>
+                                                <Insets />
+                                             </GridPane.margin>
+                                          </StackPane>
+                                          <StackPane fx:id="cloud2" accessibleRole="BUTTON" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseClicked="#cloudOnClick" prefHeight="150.0" prefWidth="150.0" style="-fx-rotate: -90;" styleClass="borderOnHover" GridPane.columnIndex="5" GridPane.rowIndex="5">
+                                             <cursor>
+                                                <Cursor fx:constant="HAND" />
+                                             </cursor>
+                                             <children>
+                                                <ImageView fitHeight="150.0" fitWidth="150.0" pickOnBounds="true" preserveRatio="true">
+                                                   <image>
+                                                      <Image url="@../images/cloud.png" />
+                                                   </image>
+                                                </ImageView>
+                                                <ImageView fx:id="scloud2_0" fitHeight="57.0" fitWidth="35.0" pickOnBounds="true" preserveRatio="true" StackPane.alignment="TOP_LEFT">
+                                                   <image>
+                                                      <Image url="@../images/pawns/blueStudent.png" />
+                                                   </image>
+                                                   <effect>
+                                                      <DropShadow />
+                                                   </effect>
+                                                   <StackPane.margin>
+                                                      <Insets left="30.0" top="30.0" />
+                                                   </StackPane.margin>
+                                                </ImageView>
+                                                <ImageView fx:id="scloud2_1" fitHeight="57.0" fitWidth="35.0" pickOnBounds="true" preserveRatio="true" StackPane.alignment="TOP_RIGHT">
+                                                   <image>
+                                                      <Image url="@../images/pawns/blueStudent.png" />
+                                                   </image>
+                                                   <effect>
+                                                      <DropShadow />
+                                                   </effect>
+                                                   <StackPane.margin>
+                                                      <Insets right="30.0" top="30.0" />
+                                                   </StackPane.margin>
+                                                </ImageView>
+                                                <ImageView fx:id="scloud2_2" fitHeight="57.0" fitWidth="35.0" pickOnBounds="true" preserveRatio="true" StackPane.alignment="BOTTOM_LEFT">
+                                                   <image>
+                                                      <Image url="@../images/pawns/blueStudent.png" />
+                                                   </image>
+                                                   <effect>
+                                                      <DropShadow />
+                                                   </effect>
+                                                   <StackPane.margin>
+                                                      <Insets bottom="30.0" left="30.0" />
+                                                   </StackPane.margin>
+                                                </ImageView>
+                                                <ImageView fx:id="scloud2_3" fitHeight="57.0" fitWidth="35.0" pickOnBounds="true" preserveRatio="true" StackPane.alignment="BOTTOM_RIGHT">
+                                                   <image>
+                                                      <Image url="@../images/pawns/blueStudent.png" />
+                                                   </image>
+                                                   <effect>
+                                                      <DropShadow />
+                                                   </effect>
+                                                   <StackPane.margin>
+                                                      <Insets bottom="30.0" right="30.0" />
+                                                   </StackPane.margin>
+                                                </ImageView>
                                              </children>
                                           </StackPane>
                                        </children>
@@ -2426,6 +2422,9 @@
                                                    <StackPane.margin>
                                                       <Insets />
                                                    </StackPane.margin>
+                                                   <cursor>
+                                                      <Cursor fx:constant="HAND" />
+                                                   </cursor>
                                                 </VBox>
                                                 <VBox fx:id="dgRed" accessibleRole="BUTTON" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="480.0" prefWidth="60.0" styleClass="borderOnHover" StackPane.alignment="CENTER_LEFT">
                                                    <children>
@@ -2543,6 +2542,9 @@
                                                    <StackPane.margin>
                                                       <Insets left="60.0" />
                                                    </StackPane.margin>
+                                                   <cursor>
+                                                      <Cursor fx:constant="HAND" />
+                                                   </cursor>
                                                 </VBox>
                                                 <VBox fx:id="dgYellow" accessibleRole="BUTTON" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="480.0" prefWidth="60.0" styleClass="borderOnHover" StackPane.alignment="CENTER">
                                                    <children>
@@ -2660,6 +2662,9 @@
                                                    <StackPane.margin>
                                                       <Insets right="8.0" />
                                                    </StackPane.margin>
+                                                   <cursor>
+                                                      <Cursor fx:constant="HAND" />
+                                                   </cursor>
                                                 </VBox>
                                                 <VBox fx:id="dgPink" accessibleRole="BUTTON" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="480.0" prefWidth="60.0" styleClass="borderOnHover" StackPane.alignment="CENTER_RIGHT">
                                                    <children>
@@ -2777,6 +2782,9 @@
                                                    <StackPane.margin>
                                                       <Insets right="68.0" />
                                                    </StackPane.margin>
+                                                   <cursor>
+                                                      <Cursor fx:constant="HAND" />
+                                                   </cursor>
                                                 </VBox>
                                                 <VBox fx:id="dgBlue" accessibleRole="BUTTON" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="480.0" prefWidth="60.0" styleClass="borderOnHover" StackPane.alignment="CENTER_RIGHT">
                                                    <children>
@@ -2894,8 +2902,14 @@
                                                    <StackPane.margin>
                                                       <Insets right="2.0" />
                                                    </StackPane.margin>
+                                                   <cursor>
+                                                      <Cursor fx:constant="HAND" />
+                                                   </cursor>
                                                 </VBox>
-                                                <Button fx:id="diningRoom" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onMouseClicked="#diningRoomOnClick" prefHeight="480.0" prefWidth="320.0" styleClass="diningRoom" StackPane.alignment="CENTER" />
+                                                <Button fx:id="diningRoom" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onMouseClicked="#diningRoomOnClick" prefHeight="480.0" prefWidth="320.0" styleClass="diningRoom" StackPane.alignment="CENTER">
+                                                   <cursor>
+                                                      <Cursor fx:constant="HAND" />
+                                                   </cursor></Button>
                                              </children>
                                           </StackPane>
                                              </children>
@@ -2937,6 +2951,9 @@
                                                          </StackPane.margin>
                                                                  </ImageView>
                                                    </children>
+                                                   <cursor>
+                                                      <Cursor fx:constant="HAND" />
+                                                   </cursor>
                                                          </StackPane>
                                                          <StackPane fx:id="studentEntrance2" accessibleRole="BUTTON" layoutX="10.0" layoutY="10.0" onMouseClicked="#entranceStudentOnClick" prefHeight="88.0" prefWidth="97.0" styleClass="borderOnHover" GridPane.columnIndex="2">
                                                              <children>
@@ -2949,6 +2966,9 @@
                                                          </effect>
                                                                  </ImageView>
                                                              </children>
+                                                   <cursor>
+                                                      <Cursor fx:constant="HAND" />
+                                                   </cursor>
                                                          </StackPane>
                                                          <StackPane fx:id="studentEntrance4" accessibleRole="BUTTON" onMouseClicked="#entranceStudentOnClick" prefHeight="150.0" prefWidth="200.0" styleClass="borderOnHover" GridPane.columnIndex="3">
                                                              <children>
@@ -2961,6 +2981,9 @@
                                                          </effect>
                                                                  </ImageView>
                                                              </children>
+                                                   <cursor>
+                                                      <Cursor fx:constant="HAND" />
+                                                   </cursor>
                                                          </StackPane>
                                                          <StackPane fx:id="studentEntrance6" accessibleRole="BUTTON" onMouseClicked="#entranceStudentOnClick" prefHeight="150.0" prefWidth="200.0" styleClass="borderOnHover" GridPane.columnIndex="4">
                                                              <children>
@@ -2973,6 +2996,9 @@
                                                          </effect>
                                                                  </ImageView>
                                                              </children>
+                                                   <cursor>
+                                                      <Cursor fx:constant="HAND" />
+                                                   </cursor>
                                                          </StackPane>
                                                          <StackPane fx:id="studentEntrance8" accessibleRole="BUTTON" onMouseClicked="#entranceStudentOnClick" prefHeight="150.0" prefWidth="200.0" styleClass="borderOnHover" GridPane.columnIndex="5">
                                                              <children>
@@ -2985,6 +3011,9 @@
                                                          </effect>
                                                                  </ImageView>
                                                              </children>
+                                                   <cursor>
+                                                      <Cursor fx:constant="HAND" />
+                                                   </cursor>
                                                          </StackPane>
                                                          <StackPane fx:id="studentEntrance1" accessibleRole="BUTTON" onMouseClicked="#entranceStudentOnClick" prefHeight="150.0" prefWidth="200.0" styleClass="borderOnHover" GridPane.columnIndex="2" GridPane.rowIndex="1">
                                                              <children>
@@ -2997,6 +3026,9 @@
                                                          </effect>
                                                                  </ImageView>
                                                              </children>
+                                                   <cursor>
+                                                      <Cursor fx:constant="HAND" />
+                                                   </cursor>
                                                          </StackPane>
                                                          <StackPane fx:id="studentEntrance3" accessibleRole="BUTTON" onMouseClicked="#entranceStudentOnClick" prefHeight="150.0" prefWidth="200.0" styleClass="borderOnHover" GridPane.columnIndex="3" GridPane.rowIndex="1">
                                                              <children>
@@ -3009,6 +3041,9 @@
                                                          </effect>
                                                                  </ImageView>
                                                              </children>
+                                                   <cursor>
+                                                      <Cursor fx:constant="HAND" />
+                                                   </cursor>
                                                          </StackPane>
                                                          <StackPane fx:id="studentEntrance5" accessibleRole="BUTTON" onMouseClicked="#entranceStudentOnClick" prefHeight="150.0" prefWidth="200.0" styleClass="borderOnHover" GridPane.columnIndex="4" GridPane.rowIndex="1">
                                                              <children>
@@ -3021,6 +3056,9 @@
                                                          </effect>
                                                                  </ImageView>
                                                              </children>
+                                                   <cursor>
+                                                      <Cursor fx:constant="HAND" />
+                                                   </cursor>
                                                          </StackPane>
                                                          <StackPane fx:id="studentEntrance7" accessibleRole="BUTTON" onMouseClicked="#entranceStudentOnClick" prefHeight="150.0" prefWidth="200.0" styleClass="borderOnHover" GridPane.columnIndex="5" GridPane.rowIndex="1">
                                                              <children>
@@ -3036,6 +3074,9 @@
                                                          </StackPane.margin>
                                                                  </ImageView>
                                                              </children>
+                                                   <cursor>
+                                                      <Cursor fx:constant="HAND" />
+                                                   </cursor>
                                                          </StackPane>
                                                      </children>
                                                  </GridPane>

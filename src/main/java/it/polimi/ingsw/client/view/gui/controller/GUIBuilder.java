@@ -50,6 +50,8 @@ public class GUIBuilder {
             scene.lookup("#assistantNickname2").setVisible(false);
         }
 
+        Bindings.bindBidirectional(scene.lookup("#endActionButton").visibleProperty(), scene.lookup("#endActionText").visibleProperty());
+
         this.defineLastPlayedAssistantCards(model.getNicknames());
         this.defineIslandsMap();
         this.defineSchoolsMap(model);
@@ -169,7 +171,7 @@ public class GUIBuilder {
 
             // Show mother nature
             ImageView motherNature = this.getMotherNature(i);
-            motherNature.setDisable(false);
+            motherNature.setDisable(true);
             motherNature.setVisible(model.getMNPosition() == i);
 
             // Show students

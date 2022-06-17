@@ -3,6 +3,7 @@ package it.polimi.ingsw.controller;
 import it.polimi.ingsw.exceptions.*;
 import it.polimi.ingsw.model.Model;
 import it.polimi.ingsw.model.Player;
+import it.polimi.ingsw.model.card.CharacterCard;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -38,9 +39,9 @@ public class ActionPhase {
 
     public void playCharacterCard(int choice) throws NotEnoughCoinsException, CardException {
         if (callableMethod.get("playCharacterCard") > 0) {
-            this.model.playCharacterCard(this.currentPlayer.getId(), choice);
+            CharacterCard card = this.model.playCharacterCard(this.currentPlayer.getId(), choice);
             callableMethod.put("playCharacterCard", callableMethod.get("playCharacterCard") - 1);
-            if (this.model.getCharacterCards().get(choice-1).getHasExtraAction()) {
+            if (card.getHasExtraAction()) {
                 callableMethod.put("extraAction", 1);
                 if (this.model.getCharacterCardIdFromHandler() == 7) callableMethod.put("extraAction", 2);
 
