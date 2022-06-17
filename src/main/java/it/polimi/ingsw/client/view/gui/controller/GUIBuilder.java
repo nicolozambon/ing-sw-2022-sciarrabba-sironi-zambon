@@ -206,9 +206,6 @@ public class GUIBuilder {
             } else {
                 tower.setVisible(false);
             }
-
-            // TODO add elements here
-
         }
     }
 

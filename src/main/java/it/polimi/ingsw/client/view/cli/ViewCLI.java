@@ -94,7 +94,6 @@ public class ViewCLI implements AnswerListener, RequestListenableInterface {
         this.model = answerEvent.getModel();
     }
 
-    //TODO default loopback ip for testing purpose
     public void startCLI() {
         Scanner stdin = new Scanner(System.in);
         System.out.println("Server IP:");

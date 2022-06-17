@@ -182,7 +182,7 @@ public class ModelBuilder {
         characters = Arrays.asList(gson.fromJson(new InputStreamReader(inputStream), CharacterCard[].class));
 
         if (allCharacterCards) {
-            return new ArrayList<>(characters); //TODO Only for testing purpose!
+            return new ArrayList<>(characters);
         } else {
             List<CharacterCard> characterCards = new ArrayList<>();
             Random generator = new Random();

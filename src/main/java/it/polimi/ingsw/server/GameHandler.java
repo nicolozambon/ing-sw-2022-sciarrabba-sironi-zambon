@@ -24,7 +24,6 @@ public class GameHandler implements Runnable {
             InputStream inputStream = getClass().getResourceAsStream("/config/model2.json");
             this.model = new ModelBuilder().buildModel(inputStream);
         } else {
-            //TODO: change allCharacterCards to false to have only 3 Character cards
             this.model = new ModelBuilder().buildModel(playersConnection.keySet().stream().toList(), false, completeRule);
         }
         this.controller = model.getController();
