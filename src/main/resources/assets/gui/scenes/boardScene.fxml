@@ -1,13 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.*?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.SplitPane?>
-<?import javafx.scene.*?>
-<?import javafx.scene.effect.*?>
-<?import javafx.scene.image.*?>
-<?import javafx.scene.layout.*?>
-<?import javafx.scene.text.*?>
+<?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.FlowPane?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
 <Pane minHeight="810.0" minWidth="1440.0" prefHeight="810.0" prefWidth="1440.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="it.polimi.ingsw.client.view.gui.controller.BoardController">
    <children>
         <BorderPane layoutX="-313.0" layoutY="-174.0" minHeight="1080.0" minWidth="1920.0" prefHeight="1160.0" prefWidth="2067.0" scaleX="0.7" scaleY="0.7" styleClass="anchor" stylesheets="@../css/boardScene.css">
@@ -16,9 +27,9 @@
                     <right>
                         <HBox spacing="15.0" BorderPane.alignment="CENTER">
                             <children>
-                        <Text fx:id="messages" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Messages with action or which player turn" wrappingWidth="300.0">
+                        <Text fx:id="messages" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Messages with action or which player turn" textAlignment="CENTER" wrappingWidth="300.0">
                            <font>
-                              <Font size="20.0" />
+                              <Font size="26.0" />
                            </font>
                            <effect>
                               <DropShadow />
@@ -67,7 +78,7 @@
                               </ImageView>
                               <Text fx:id="endActionText" accessibleRole="BUTTON" disable="true" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="End Action" textAlignment="CENTER" wrappingWidth="135.0" StackPane.alignment="CENTER">
                                  <font>
-                                    <Font size="24.0" />
+                                    <Font name="Avenir Next Condensed Bold" size="24.0" />
                                  </font>
                                  <StackPane.margin>
                                     <Insets bottom="2.0" />
