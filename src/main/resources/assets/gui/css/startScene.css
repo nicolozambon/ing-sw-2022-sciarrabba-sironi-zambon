@@ -1,8 +1,3 @@
-@font-face {
-    font-family: 'Avenir Next Condensed';
-    src: url("../fonts/Avenir_Next_Condensed.ttc");
-}
-
 .split-pane-divider {
     -fx-background-color: transparent;
  }
