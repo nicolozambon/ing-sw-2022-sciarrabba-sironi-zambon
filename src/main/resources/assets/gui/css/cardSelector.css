@@ -1,3 +1,8 @@
+@font-face {
+    font-family: 'Avenir Next Condensed';
+    src: url("../fonts/Avenir_Next_Condensed.ttc");
+}
+
 .anchor {
     -fx-background-image: url("../images/background/Sky_sfocatura.png");
     -fx-background-color: transparent;
