@@ -16,6 +16,7 @@ import javafx.scene.Scene;
 import javafx.scene.layout.StackPane;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
+import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
@@ -58,6 +59,7 @@ public class ViewGUI extends Application implements RequestListenableInterface, 
     }
 
     public void startGUI() {
+        Font.loadFonts(getClass().getResource("/assets/gui/fonts/Avenir_Next_Condensed.ttc").toExternalForm(), 16);
         launch();
     }
 
