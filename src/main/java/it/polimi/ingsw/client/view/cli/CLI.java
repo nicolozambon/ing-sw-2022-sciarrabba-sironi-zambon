@@ -66,7 +66,7 @@ public class CLI {
         }
 
         // Create three clouds
-        for (int i=0; i<3; i++) {
+        for (int i=0; i< nicknames.size(); i++) {
             this.clouds.add(loader.getCloud());
         }
 
@@ -314,8 +314,8 @@ public class CLI {
             offset_x = 2;
             offset_y = 2;
             for (int i = 0; i < 10; i++) {
-                entranceId = "1"; // TODO To be changed to String.valueOf(i)
                 if (i != 0) {
+                    entranceId = i + " ";
                     school = this.writeTextInMatrix(school, entranceId, offset_x, offset_y);
                 }
                 if (offset_x < 10) {
