@@ -83,6 +83,9 @@
                                  <StackPane.margin>
                                     <Insets bottom="2.0" />
                                  </StackPane.margin>
+                                 <cursor>
+                                    <Cursor fx:constant="HAND" />
+                                 </cursor>
                               </Text>
                            </children>
                         </StackPane>
@@ -114,6 +117,9 @@
                                        <font>
                                           <Font name="Avenir Next Condensed Bold" size="20.0" />
                                        </font>
+                                       <effect>
+                                          <DropShadow />
+                                       </effect>
                                     </Text>
                                  </children>
                               </VBox>
@@ -135,6 +141,9 @@
                                        <font>
                                           <Font name="Avenir Next Condensed Bold" size="20.0" />
                                        </font>
+                                       <effect>
+                                          <DropShadow />
+                                       </effect>
                                     </Text>
                                  </children>
                               </VBox>
@@ -156,6 +165,9 @@
                                        <font>
                                           <Font name="Avenir Next Condensed Bold" size="20.0" />
                                        </font>
+                                       <effect>
+                                          <DropShadow />
+                                       </effect>
                                     </Text>
                                  </children>
                               </VBox>
@@ -1962,7 +1974,7 @@
                                                 </ImageView>
                                                 <Text fx:id="coinReserve" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="x99" textAlignment="CENTER" StackPane.alignment="BOTTOM_CENTER">
                                                    <font>
-                                                      <Font size="24.0" />
+                                                      <Font name="Avenir Next Condensed Bold" size="24.0" />
                                                    </font>
                                                    <effect>
                                                       <DropShadow spread="0.6" />
@@ -2238,7 +2250,7 @@
                                                       </ImageView>
                                                       <Text fx:id="coin0" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-rotate: -90;" text="x99" textAlignment="CENTER" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER">
                                                          <font>
-                                                            <Font size="24.0" />
+                                                            <Font name="Avenir Next Condensed Bold" size="24.0" />
                                                          </font>
                                                          <effect>
                                                             <DropShadow spread="0.6" />
@@ -3191,7 +3203,7 @@
                                           </ImageView>
                                           <Text fx:id="coin1" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="x99" textAlignment="CENTER" GridPane.columnIndex="5" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER">
                                              <font>
-                                                <Font size="24.0" />
+                                                <Font name="Avenir Next Condensed Bold" size="24.0" />
                                              </font>
                                              <effect>
                                                 <DropShadow spread="0.6" />
@@ -3922,7 +3934,7 @@
                                           </ImageView>
                                           <Text fx:id="coin2" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="x99" textAlignment="CENTER" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER">
                                              <font>
-                                                <Font size="24.0" />
+                                                <Font name="Avenir Next Condensed Bold" size="24.0" />
                                              </font>
                                              <effect>
                                                 <DropShadow spread="0.6" />
