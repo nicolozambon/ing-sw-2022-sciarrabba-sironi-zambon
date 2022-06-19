@@ -479,34 +479,36 @@ public class CLI {
     }
 
     private String[][] addCharacterCardsInIslandsSet(String[][] set, int[][] disposition) {
-        for (int i=0; i<disposition.length; i++) {
-            for (int j=0; j<disposition[i].length; j++) {
-                int cardRowOnSet;
-                int cardColOnSet;
-                int cardBaseRowOnSet = 8;
-                int cardBaseColOnSet = 0;
-                boolean printCard = false;
-                if (disposition[i][j] == -1) {
-                    cardBaseColOnSet = 24;
-                    printCard = true;
-                } else if (disposition[i][j] == -2) {
-                    cardBaseColOnSet = 48;
-                    printCard = true;
-                } else if (disposition[i][j] == -3) {
-                    cardBaseColOnSet = 72;
-                    printCard = true;
-                }
-                String[][] card = this.characterCardTest;
-                if (printCard) {
-                    for (int cardRow=0; cardRow<card.length; cardRow++) {
-                        for (int cardCol=0; cardCol<card[0].length; cardCol++) {
-                            cardRowOnSet = cardBaseRowOnSet + cardRow;
-                            cardColOnSet = cardBaseColOnSet + cardCol;
-                            set[cardRowOnSet][cardColOnSet] = card[cardRow][cardCol];
+        if (this.characterCards.size() == 3) {
+            for (int i = 0; i < disposition.length; i++) {
+                for (int j = 0; j < disposition[i].length; j++) {
+                    int cardRowOnSet;
+                    int cardColOnSet;
+                    int cardBaseRowOnSet = 8;
+                    int cardBaseColOnSet = 0;
+                    boolean printCard = false;
+                    if (disposition[i][j] == -1) {
+                        cardBaseColOnSet = 24;
+                        printCard = true;
+                    } else if (disposition[i][j] == -2) {
+                        cardBaseColOnSet = 48;
+                        printCard = true;
+                    } else if (disposition[i][j] == -3) {
+                        cardBaseColOnSet = 72;
+                        printCard = true;
+                    }
+                    String[][] card = this.characterCardTest;
+                    if (printCard) {
+                        for (int cardRow = 0; cardRow < card.length; cardRow++) {
+                            for (int cardCol = 0; cardCol < card[0].length; cardCol++) {
+                                cardRowOnSet = cardBaseRowOnSet + cardRow;
+                                cardColOnSet = cardBaseColOnSet + cardCol;
+                                set[cardRowOnSet][cardColOnSet] = card[cardRow][cardCol];
+                            }
                         }
                     }
-                }
 
+                }
             }
         }
         return set;
