@@ -2309,7 +2309,7 @@
                                              <children>
                                           <StackPane accessibleRole="BUTTON" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="480.0" prefWidth="320.0">
                                              <children>
-                                                <VBox fx:id="dgGreen" accessibleRole="BUTTON" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseClicked="#colorOnClick" prefHeight="480.0" prefWidth="60.0" styleClass="borderOnHover" StackPane.alignment="CENTER_LEFT">
+                                                <VBox fx:id="dgGreen" accessibleRole="BUTTON" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseClicked="#colorOnClick" prefHeight="480.0" prefWidth="60.0" styleClass="diningRoom" StackPane.alignment="CENTER_LEFT">
                                                    <children>
                                                       <ImageView fx:id="gs9_0" disable="true" fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true" styleClass="borderOnHover">
                                                          <image>
@@ -2426,7 +2426,7 @@
                                                       <Cursor fx:constant="HAND" />
                                                    </cursor>
                                                 </VBox>
-                                                <VBox fx:id="dgRed" accessibleRole="BUTTON" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseClicked="#colorOnClick" prefHeight="480.0" prefWidth="60.0" styleClass="borderOnHover" StackPane.alignment="CENTER_LEFT">
+                                                <VBox fx:id="dgRed" accessibleRole="BUTTON" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseClicked="#colorOnClick" prefHeight="480.0" prefWidth="60.0" styleClass="diningRoom" StackPane.alignment="CENTER_LEFT">
                                                    <children>
                                                       <ImageView fx:id="rs9_0" disable="true" fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true" styleClass="borderOnHover">
                                                          <image>
@@ -2546,7 +2546,7 @@
                                                       <Cursor fx:constant="HAND" />
                                                    </cursor>
                                                 </VBox>
-                                                <VBox fx:id="dgYellow" accessibleRole="BUTTON" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseClicked="#colorOnClick" prefHeight="480.0" prefWidth="60.0" styleClass="borderOnHover" StackPane.alignment="CENTER">
+                                                <VBox fx:id="dgYellow" accessibleRole="BUTTON" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseClicked="#colorOnClick" prefHeight="480.0" prefWidth="60.0" styleClass="diningRoom" StackPane.alignment="CENTER">
                                                    <children>
                                                       <ImageView fx:id="ys9_0" disable="true" fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true" styleClass="borderOnHover">
                                                          <image>
@@ -2666,7 +2666,7 @@
                                                       <Cursor fx:constant="HAND" />
                                                    </cursor>
                                                 </VBox>
-                                                <VBox fx:id="dgPink" accessibleRole="BUTTON" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseClicked="#colorOnClick" prefHeight="480.0" prefWidth="60.0" styleClass="borderOnHover" StackPane.alignment="CENTER_RIGHT">
+                                                <VBox fx:id="dgPink" accessibleRole="BUTTON" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseClicked="#colorOnClick" prefHeight="480.0" prefWidth="60.0" styleClass="diningRoom" StackPane.alignment="CENTER_RIGHT">
                                                    <children>
                                                       <ImageView fx:id="ps9_0" disable="true" fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true" styleClass="borderOnHover">
                                                          <image>
@@ -2786,9 +2786,9 @@
                                                       <Cursor fx:constant="HAND" />
                                                    </cursor>
                                                 </VBox>
-                                                <VBox fx:id="dgBlue" accessibleRole="BUTTON" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseClicked="#colorOnClick" prefHeight="480.0" prefWidth="60.0" styleClass="borderOnHover" StackPane.alignment="CENTER_RIGHT">
+                                                <VBox fx:id="dgBlue" accessibleRole="BUTTON" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseClicked="#colorOnClick" prefHeight="480.0" prefWidth="60.0" styleClass="diningRoom" StackPane.alignment="CENTER_RIGHT">
                                                    <children>
-                                                      <ImageView fx:id="bs9_0" disable="true" fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true" styleClass="borderOnHover">
+                                                      <ImageView fx:id="bs9_0" disable="true" fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true" styleClass="borderOnHover" translateY="-8.0">
                                                          <image>
                                                             <Image url="@../images/pawns/blueStudent.png" />
                                                          </image>
@@ -2906,7 +2906,7 @@
                                                       <Cursor fx:constant="HAND" />
                                                    </cursor>
                                                 </VBox>
-                                                <Button fx:id="diningRoom" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onMouseClicked="#diningRoomOnClick" prefHeight="480.0" prefWidth="320.0" styleClass="diningRoom" StackPane.alignment="CENTER">
+                                                <Button fx:id="diningRoom" disable="true" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onMouseClicked="#diningRoomOnClick" prefHeight="480.0" prefWidth="320.0" styleClass="diningRoom" StackPane.alignment="CENTER">
                                                    <cursor>
                                                       <Cursor fx:constant="HAND" />
                                                    </cursor></Button>

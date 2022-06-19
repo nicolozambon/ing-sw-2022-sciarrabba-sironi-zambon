@@ -72,6 +72,12 @@
           "pawns": [
             {
               "color": "BLACK"
+            },
+            {
+              "color": "BLACK"
+            },
+            {
+              "color": "BLACK"
             }
           ]
         }
@@ -401,7 +407,7 @@
           }
         ]
       },
-      "unifyNext": true,
+      "unifyNext": false,
       "unifyPrev": false,
       "pawns": [
         {
@@ -412,15 +418,15 @@
     {
       "id": 1,
       "towerBoard": {
-        "pawns": [
-          {
-            "color": "BLACK"
-          }
-        ]
+        "pawns": []
       },
-      "unifyNext": true,
-      "unifyPrev": true,
-      "pawns": []
+      "unifyNext": false,
+      "unifyPrev": false,
+      "pawns": [
+        {
+          "color": "RED"
+        }
+      ]
     },
     {
       "id": 2,
@@ -431,8 +437,8 @@
           }
         ]
       },
-      "unifyNext": true,
-      "unifyPrev": true,
+      "unifyNext": false,
+      "unifyPrev": false,
       "pawns": [
         {
           "color": "RED"
@@ -637,7 +643,7 @@
   ],
   "motherNature": {
     "position": {
-      "id": 7,
+      "id": 0,
       "towerBoard": {
         "pawns": []
       },

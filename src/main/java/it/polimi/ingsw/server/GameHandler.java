@@ -21,7 +21,7 @@ public class GameHandler implements Runnable {
         this.playersConnection = new HashMap<>();
 
         if (playersConnection.containsKey("player0") && playersConnection.containsKey("player1") && playersConnection.containsKey("player2")) {
-            InputStream inputStream = getClass().getResourceAsStream("/config/model2.json");
+            InputStream inputStream = getClass().getResourceAsStream("/config/model_finishing.json");
             this.model = new ModelBuilder().buildModel(inputStream);
         } else {
             this.model = new ModelBuilder().buildModel(playersConnection.keySet().stream().toList(), false, completeRule);
