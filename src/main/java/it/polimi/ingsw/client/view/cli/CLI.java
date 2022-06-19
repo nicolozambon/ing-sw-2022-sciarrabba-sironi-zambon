@@ -304,10 +304,29 @@ public class CLI {
             label = " " + label;
         }
         label = nickname + label;
-
         int offset_x = 3;
         int offset_y = school.length - 2;
         school = this.writeTextInMatrix(school, label, offset_x, offset_y);
+
+        // Add IDs to main-school entrance
+        if(school[0].length > 70) {
+            String entranceId;
+            offset_x = 2;
+            offset_y = 2;
+            for (int i = 0; i < 10; i++) {
+                entranceId = "1"; // TODO To be changed to String.valueOf(i)
+                if (i != 0) {
+                    school = this.writeTextInMatrix(school, entranceId, offset_x, offset_y);
+                }
+                if (offset_x < 10) {
+                    offset_x += 12;
+                } else {
+                    offset_x -= 12;
+                    offset_y += 2;
+                }
+            }
+        }
+
         return school;
     }
 
