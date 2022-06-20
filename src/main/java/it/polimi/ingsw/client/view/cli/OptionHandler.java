@@ -22,6 +22,7 @@ public class OptionHandler {
     private final OptionLister optionLister;
     private final Scanner stdin;
     private int playerId;
+    private boolean isWindows;
 
     public OptionHandler() {
         this.playerId = -1;
@@ -30,6 +31,8 @@ public class OptionHandler {
         Gson gson = new Gson();
         InputStream inputStream = getClass().getResourceAsStream("/assets/cli/json/options_selected.json");
         this.optionSelected = gson.fromJson(new InputStreamReader(inputStream), new TypeToken<Map<String, String>>(){}.getType());
+        isWindows = false;
+        if (System.getProperty("os.name").toLowerCase().contains("win")) isWindows = true;
     }
 
     public void setPlayerId(int playerId) {
@@ -78,7 +81,7 @@ public class OptionHandler {
         while (error) {
             System.out.println(this.optionSelected.get(option));
             try {
-                while (System.in.available() == 0) {
+                while (!isWindows && System.in.available() == 0) {
                     Thread.sleep(100);
                 }
                 choice = Wizard.valueOf(stdin.nextLine().toUpperCase()).ordinal();
@@ -100,7 +103,7 @@ public class OptionHandler {
         while (error) {
             System.out.println(this.optionSelected.get(option));
             try {
-                while (System.in.available() == 0) {
+                while (!isWindows && System.in.available() == 0) {
                     Thread.sleep(100);
                 }
                 input = stdin.nextLine().split(",");
@@ -132,7 +135,7 @@ public class OptionHandler {
         while (error) {
             try {
                 System.out.println(message);
-                while (System.in.available() == 0) {
+                while (!isWindows && System.in.available() == 0) {
                     Thread.sleep(100);
                 }
                 choice = stdin.nextInt();
@@ -179,7 +182,7 @@ public class OptionHandler {
         while (error) {
             try {
                 System.out.println(this.optionSelected.get(option));
-                while (System.in.available() == 0) {
+                while (!isWindows && System.in.available() == 0) {
                     Thread.sleep(100);
                 }
                 String s = stdin.nextLine();
@@ -211,7 +214,7 @@ public class OptionHandler {
         while (error) {
             System.out.println(this.optionSelected.get(option));
             try {
-                while (System.in.available() == 0) {
+                while (!isWindows && System.in.available() == 0) {
                     Thread.sleep(100);
                 }
                 input = stdin.nextLine().split(",");
