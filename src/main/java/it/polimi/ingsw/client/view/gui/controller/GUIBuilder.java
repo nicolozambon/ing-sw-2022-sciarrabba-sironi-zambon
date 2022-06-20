@@ -57,6 +57,7 @@ public class GUIBuilder {
         this.defineSchoolsMap(model);
         this.defineCloudsMap();
         this.defineAssistantsCards();
+        this.bindVolumeIcons();
         if (model.isCompleteRule()) this.defineCharacterCards(model.getCharacterCards());
     }
 
@@ -276,6 +277,16 @@ public class GUIBuilder {
             }
             card.setVisible(false);
         }
+    }
+
+    private void bindVolumeIcons() {
+        ImageView v0 = (ImageView) scene.lookup("#volumeIcon");
+        ImageView v1 = (ImageView) scene.lookup("#volumeIcon1");
+        ImageView v2 = (ImageView) scene.lookup("#volumeIcon2");
+        ImageView v3 = (ImageView) scene.lookup("#volumeIcon3");
+        Bindings.bindBidirectional(v0.imageProperty(), v1.imageProperty());
+        Bindings.bindBidirectional(v0.imageProperty(), v2.imageProperty());
+        Bindings.bindBidirectional(v0.imageProperty(), v3.imageProperty());
     }
 
     private void defineAssistantsCards() {
