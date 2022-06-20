@@ -20,7 +20,7 @@
          <top>
             <Pane>
                <children>
-                  <Text id="lobbyIDText" fill="WHITE" layoutX="290.0" layoutY="33.0" strokeType="OUTSIDE" strokeWidth="0.0" text="LOBBY ID" BorderPane.alignment="CENTER">
+                  <Text id="lobbyIDText" fill="WHITE" layoutX="313.0" layoutY="33.0" strokeType="OUTSIDE" strokeWidth="0.0" text="LOBBY" BorderPane.alignment="CENTER">
                      <font>
                         <Font name="Avenir Next Condensed Bold" size="30.0" />
                      </font>
