@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.geometry.Insets?>
+<?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
@@ -30,12 +31,15 @@
             <Insets bottom="6.0" />
          </StackPane.margin>
       </ImageView>
-      <Button mnemonicParsing="false" onMouseClicked="#okButtonOnClick" prefHeight="22.0" prefWidth="74.0" style="-fx-background-color: transparent;" text="OK" textFill="WHITE" StackPane.alignment="BOTTOM_CENTER">
+      <Button fx:id="okErrorBtn" mnemonicParsing="false" onMouseClicked="#okButtonOnClick" prefHeight="22.0" prefWidth="74.0" style="-fx-background-color: transparent;" text="OK" textFill="WHITE" StackPane.alignment="BOTTOM_CENTER">
          <StackPane.margin>
             <Insets bottom="10.0" />
          </StackPane.margin>
          <font>
             <Font name="Avenir Next Condensed Bold" size="19.0" />
-         </font></Button>
+         </font>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor></Button>
    </children>
 </StackPane>

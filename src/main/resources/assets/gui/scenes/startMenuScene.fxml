@@ -19,6 +19,9 @@
          <font>
             <Font name="Avenir Next Condensed Bold" size="50.0" />
          </font>
+         <StackPane.margin>
+            <Insets top="10.0" />
+         </StackPane.margin>
       </Text>
       <ImageView fitHeight="400.0" fitWidth="400.0" StackPane.alignment="CENTER_LEFT">
          <image>
@@ -145,7 +148,4 @@
          </children>
       </Pane>
    </children>
-   <padding>
-      <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
-   </padding>
 </StackPane>

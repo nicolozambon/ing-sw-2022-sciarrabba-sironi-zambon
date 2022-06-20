@@ -11,8 +11,12 @@ import it.polimi.ingsw.listeners.RequestListener;
 import it.polimi.ingsw.model.ThinModel;
 import javafx.application.Application;
 import javafx.application.Platform;
+import javafx.event.ActionEvent;
+import javafx.event.Event;
+import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.layout.StackPane;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
@@ -228,6 +232,15 @@ public class ViewGUI extends Application implements RequestListenableInterface, 
                 }
                 case "stop" -> {
                     System.out.println(answerEvent.getMessage());
+                    mediaPlayer.pause();
+                    changeScene("errorScene");
+                    Text text = (Text) currentScene.lookup("#errorMessage");
+                    StackPane stackPane = (StackPane) currentScene.lookup("#stackPane");
+                    Button btn = (Button) currentScene.lookup("#okErrorBtn");
+                    btn.setOnAction(event -> exitGame());
+                    text.setText(answerEvent.getMessage());
+                    stackPane.setPrefHeight(text.getBoundsInLocal().getHeight()*2);
+                    if (options != null) currentController.optionsHandling(this.options);
                     this.stop();
                 }
                 case "winner" -> {
@@ -253,8 +266,9 @@ public class ViewGUI extends Application implements RequestListenableInterface, 
     @Override
     public void stop() {
         if (clientConnection != null) clientConnection.stopClient();
-        this.stage.close();
-        this.errorStage.close();
-        //TODO better disconnection handling
+    }
+
+    private void exitGame() {
+        Platform.exit();
     }
 }
