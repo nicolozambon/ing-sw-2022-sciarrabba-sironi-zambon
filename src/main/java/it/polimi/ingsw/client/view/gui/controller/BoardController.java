@@ -155,7 +155,7 @@ public class BoardController implements GUIController {
     }
 
     private void card7() {
-        //Imprecazioni
+        //Change student
         Text text = (Text) this.gui.getScenes().get("boardScene").lookup("#characterCardText");
         text.setText("Use Card 7 Effect");
         characterCardButton.setDisable(false);
