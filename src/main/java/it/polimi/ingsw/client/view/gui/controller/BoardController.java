@@ -1,6 +1,5 @@
 package it.polimi.ingsw.client.view.gui.controller;
 
-import it.polimi.ingsw.client.view.cli.CLIBuilder;
 import it.polimi.ingsw.client.view.cli.OptionLister;
 import it.polimi.ingsw.client.view.gui.ViewGUI;
 import it.polimi.ingsw.enums.Color;
@@ -104,7 +103,6 @@ public class BoardController implements GUIController {
             }
         }
         guiBuilder.updateGUI(model);
-        new CLIBuilder().buildCLI(model, this.gui.getNickname()).showGameBoard(); //TODO only debugging purpose
     }
 
     private void chooseWizard() {

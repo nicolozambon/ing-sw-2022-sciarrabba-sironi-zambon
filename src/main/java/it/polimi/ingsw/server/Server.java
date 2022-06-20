@@ -3,6 +3,7 @@ package it.polimi.ingsw.server;
 import it.polimi.ingsw.events.AnswerEvent;
 import it.polimi.ingsw.exceptions.WrongSetupException;
 
+import java.io.File;
 import java.io.IOException;
 import java.net.ServerSocket;
 import java.net.Socket;
@@ -29,6 +30,7 @@ public class Server {
         this.queue = new ArrayDeque<>();
         this.players = new ConcurrentHashMap<>();
         this.games = new ArrayList<>();
+        new File("./saves").mkdirs();
     }
 
     public static void main(String[] args) {

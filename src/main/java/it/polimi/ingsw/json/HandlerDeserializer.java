@@ -10,6 +10,7 @@ import it.polimi.ingsw.model.MotherNatureHandler;
 import it.polimi.ingsw.model.MovementHandler;
 
 import java.lang.reflect.Type;
+import java.util.ArrayList;
 import java.util.Map;
 import java.util.TreeMap;
 
@@ -26,10 +27,13 @@ public class HandlerDeserializer implements JsonDeserializer<Handler> {
 
     @Override
     public Handler deserialize(JsonElement jsonElement, Type type, JsonDeserializationContext jsonDeserializationContext) throws JsonParseException {
-        String type1 = jsonElement.getAsJsonObject().get("card").getAsJsonObject().get("category").getAsString();
+        String type1 = jsonElement.getAsJsonObject().get("category").getAsString();
         Class c = map.get(type1);
         if (c == null) throw new RuntimeException("Unknown class: " + type);
-        return jsonDeserializationContext.deserialize(jsonElement, c);
+        if (c != map.get("default")) return jsonDeserializationContext.deserialize(jsonElement, c);
+        else {
+            return new Handler(new ArrayList<>());
+        }
     }
 }
 

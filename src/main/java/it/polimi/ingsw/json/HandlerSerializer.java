@@ -1,6 +1,7 @@
 package it.polimi.ingsw.json;
 
 import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
 import com.google.gson.JsonSerializationContext;
 import com.google.gson.JsonSerializer;
 import it.polimi.ingsw.model.Handler;
@@ -30,7 +31,12 @@ public class HandlerSerializer implements JsonSerializer<Handler> {
         else {
                 Class c = map.get(handler.getCategory());
                 if (c == null) throw new RuntimeException("Unknown class: " + handler.getCategory());
-                return jsonSerializationContext.serialize(handler, c);
+                if (c != map.get("default")) return jsonSerializationContext.serialize(handler, c);
+                else {
+                    JsonObject jsonObject = new JsonObject();
+                    jsonObject.addProperty("category", handler.getCategory());
+                    return jsonObject;
+                }
         }
     }
 }

@@ -28,6 +28,7 @@ class ControllerTest {
         names.add("player2");
         model = new ModelBuilder().buildModel(names, true, true);
         controller = model.getController();
+        controller.restoreAfterDeserialization(model);
     }
 
     @Test

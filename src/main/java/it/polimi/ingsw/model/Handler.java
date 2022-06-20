@@ -9,10 +9,18 @@ import java.util.*;
 
 public class Handler {
 
+    private final String category;
+
     protected transient List<Player> players;
 
-    protected Handler(List<Player> players) {
+    public Handler(List<Player> players) {
         this.players = new ArrayList<>(players);
+        this.category = "default";
+    }
+
+    protected Handler(List<Player> players, String category) {
+        this.players = new ArrayList<>(players);
+        this.category = category;
     }
 
     protected void professorControl(Player currentPlayer, Color color, Board<Professor> startingProfBoard) {
@@ -188,7 +196,7 @@ public class Handler {
     }
 
     public String getCategory() {
-        return "default";
+        return category;
     }
 
     protected void setPlayers(List<Player> players) {

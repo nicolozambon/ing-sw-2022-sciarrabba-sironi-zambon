@@ -15,6 +15,10 @@ public class Deck<T> {
         this.cards = new ArrayList<>(cards);
     }
 
+    public void clear() {
+        cards.clear();
+    }
+
     public List<T> getCards() {
         return new ArrayList<T>(cards);
     }

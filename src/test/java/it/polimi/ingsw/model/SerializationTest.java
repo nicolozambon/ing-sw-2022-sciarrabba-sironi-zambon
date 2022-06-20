@@ -18,7 +18,6 @@ public class SerializationTest {
         Model model = new ModelBuilder().buildModel(nicknames, true, true);
         model.getController();
 
-
         model.setWizard(0, Wizard.WIZARD);
         model.setWizard(1, Wizard.PIXIE);
         model.setWizard(2, Wizard.KING);
@@ -40,8 +39,8 @@ public class SerializationTest {
 
         Model model1 = gson.fromJson(string, Model.class);
 
-        System.out.println(model.getHandler().getCategory());
-        System.out.println(model1.getHandler().getCategory());
+        System.out.println(model.getHandler().getClass());
+        System.out.println(model1.getHandler().getClass());
 
     }
 }

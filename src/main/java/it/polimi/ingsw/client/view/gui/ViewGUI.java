@@ -11,9 +11,6 @@ import it.polimi.ingsw.listeners.RequestListener;
 import it.polimi.ingsw.model.ThinModel;
 import javafx.application.Application;
 import javafx.application.Platform;
-import javafx.event.ActionEvent;
-import javafx.event.Event;
-import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -233,7 +230,7 @@ public class ViewGUI extends Application implements RequestListenableInterface, 
                     if (options != null) currentController.optionsHandling(this.options);
                 }
                 case "stop" -> {
-                    System.out.println(answerEvent.getMessage());
+                    //System.out.println(answerEvent.getMessage());
                     mediaPlayer.pause();
                     changeScene("errorScene");
                     Text text = (Text) currentScene.lookup("#errorMessage");

@@ -10,10 +10,10 @@ import java.util.List;
 
 public class MovementHandler extends Handler {
 
-    private MovementCharacterCard card;
+    private final MovementCharacterCard card;
 
     protected MovementHandler(List<Player> players, MovementCharacterCard card) {
-        super(players);
+        super(players, card.getCategory());
         this.card = card;
     }
 
@@ -65,6 +65,6 @@ public class MovementHandler extends Handler {
 
     @Override
     public String getCategory() {
-        return this.card.getCategory();
+        return super.getCategory();
     }
 }

@@ -9,10 +9,10 @@ import java.util.List;
 
 public class MotherNatureHandler extends Handler {
 
-    private MotherNatureCharacterCard card;
+    private final MotherNatureCharacterCard card;
 
     protected MotherNatureHandler(List<Player> players, MotherNatureCharacterCard card) {
-        super(players);
+        super(players, card.getCategory());
         this.card = card;
     }
 
@@ -53,7 +53,7 @@ public class MotherNatureHandler extends Handler {
 
     @Override
     public String getCategory() {
-        return this.card.getCategory();
+        return super.getCategory();
     }
 
 }

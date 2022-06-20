@@ -105,8 +105,11 @@ public class GUIBuilder {
                 Image image = new Image(getAssistantCardPath(model.getLastAssistantCardByPlayer(i).getValue()));
                 lastPlayedAssistantCards.get(idMap.get(i)).setImage(image);
                 lastPlayedAssistantCards.get(idMap.get(i)).setVisible(true);
+            } else {
+                lastPlayedAssistantCards.get(idMap.get(i)).setVisible(false);
             }
         }
+
     }
 
     private void setupAssistantCards(List<AssistantCard> cards) {
@@ -358,7 +361,8 @@ public class GUIBuilder {
     }
 
     private void defineSchoolsMap(ThinModel model) {
-
+        int number = 7;
+        if (model.getNicknames().size() == 3) number = 9;
         this.schools = new HashMap<>();
         for (Integer i : idMap.keySet()) {
             Map<String, Map<String, ImageView>> schoolMap = new HashMap<>();
@@ -389,7 +393,7 @@ public class GUIBuilder {
                     Bindings.bindBidirectional(node.visibleProperty(), value.visibleProperty());
                 }
 
-                if (j < model.getEntranceByPlayer(i).size()) {
+                if (j < number) {
                     entrance.put(key, value);
                 }
                 value.setVisible(false);

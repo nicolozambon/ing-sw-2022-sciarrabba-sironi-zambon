@@ -10,6 +10,9 @@ import it.polimi.ingsw.listenables.AnswerListenableInterface;
 import it.polimi.ingsw.listeners.AnswerListener;
 import it.polimi.ingsw.model.card.CharacterCard;
 
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
@@ -33,7 +36,7 @@ public class Model implements AnswerListenableInterface {
 
     private boolean isLastRound;
     private boolean isTakeCloud;
-    private boolean completeRule;
+    private final boolean completeRule;
 
     private transient AnswerListenable answerListenable;
 
@@ -154,6 +157,13 @@ public class Model implements AnswerListenableInterface {
         update();
     }
 
+    public void resetLastAssistantCards() {
+        for (Player player : players) {
+            player.resetLastAssistantCard();
+        }
+        update();
+    }
+
     protected void returnStudentsToBag(Color color, int num){
         for (Player player : players) {
             player.returnStudentsToBag(bag, color, num);
@@ -249,7 +259,16 @@ public class Model implements AnswerListenableInterface {
 
     private void update() {
         fireAnswer(new AnswerEvent("update", this));
-        if (isThereWinner()) fireAnswer(new AnswerEvent("winner", winner));
+        if (isThereWinner()) {
+            fireAnswer(new AnswerEvent("winner", winner));
+
+            System.out.println("deleting...");
+            try {
+                Files.delete(Paths.get("./saves/" + String.join("_", players.stream().map(Player::getNickname).sorted().toList()) + ".json"));
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+        }
     }
 
     protected void resumeFromDisk() {

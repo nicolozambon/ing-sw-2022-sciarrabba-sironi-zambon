@@ -6,7 +6,12 @@ import it.polimi.ingsw.model.Model;
 import it.polimi.ingsw.model.ModelBuilder;
 import it.polimi.ingsw.model.Player;
 
-import java.io.InputStream;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -18,16 +23,32 @@ public class GameHandler implements Runnable {
     private final Map<Integer, ConnectionHandler> playersConnection;
 
     public GameHandler(Map<String, ConnectionHandler> playersConnection, boolean completeRule) {
+        Model model1;
+
+
         this.playersConnection = new HashMap<>();
 
-        if (playersConnection.containsKey("player0") && playersConnection.containsKey("player1") && playersConnection.containsKey("player2")) {
-            InputStream inputStream = getClass().getResourceAsStream("/config/model2.json");
-            this.model = new ModelBuilder().buildModel(inputStream);
+        Path path = Paths.get("./saves/" + String.join("_", playersConnection.keySet().stream().sorted().toList()) + ".json");
+        if (Files.exists(path)) {
+            System.out.println("From savings");
+            try {
+                FileInputStream fileInputStream = new FileInputStream(path.toFile());
+                model1 = new ModelBuilder().buildModel(fileInputStream);
+                fileInputStream.close();
+            } catch (FileNotFoundException e) {
+                model1 = new ModelBuilder().buildModel(playersConnection.keySet().stream().toList(), false, completeRule);
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
         } else {
-            this.model = new ModelBuilder().buildModel(playersConnection.keySet().stream().toList(), false, completeRule);
+            System.out.println("Build");
+            model1 = new ModelBuilder().buildModel(playersConnection.keySet().stream().toList(), false, completeRule);
         }
+
+        this.model = model1;
         this.controller = model.getController();
-        for (Player player : controller.getPlayersToPlay()) {
+
+        for (Player player : model.getPlayers()) {
             playersConnection.get(player.getNickname()).send(new AnswerEvent("set_id", player.getId()));
             this.playersConnection.put(player.getId(), playersConnection.get(player.getNickname()));
         }

@@ -117,8 +117,8 @@ public class Player {
         this.coins += value;
     }
 
-    protected int getAssistantCardDeckSize() {
-        return this.assistantCardDeck.getCards().size();
+    protected void resetLastAssistantCard() {
+        discardPileDeck.clear();
     }
 
     protected Wizard getWizard() {
