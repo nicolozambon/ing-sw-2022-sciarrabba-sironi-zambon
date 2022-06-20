@@ -2,6 +2,7 @@ package it.polimi.ingsw.client.view.gui.controller;
 
 import it.polimi.ingsw.client.view.gui.ViewGUI;
 import it.polimi.ingsw.model.ThinModel;
+import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
@@ -18,12 +19,7 @@ public class LobbyController implements GUIController {
     @FXML
     private void exitButtonClicked() {
         gui.playPopEffect();
-        System.out.println("exit");
-        try {
-            this.gui.stop();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+        Platform.exit();
     }
 
     @Override
