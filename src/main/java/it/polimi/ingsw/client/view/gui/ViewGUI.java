@@ -238,7 +238,7 @@ public class ViewGUI extends Application implements RequestListenableInterface, 
                     StackPane stackPane = (StackPane) currentScene.lookup("#stackPane");
                     Button btn = (Button) currentScene.lookup("#okErrorBtn");
                     btn.setOnAction(event -> exitGame());
-                    text.setText("A client has disconnected, closing the game...");
+                    text.setText(answerEvent.getMessage());
                     stackPane.setPrefHeight(text.getBoundsInLocal().getHeight()*2);
                     if (options != null) currentController.optionsHandling(this.options);
                     this.stop();
