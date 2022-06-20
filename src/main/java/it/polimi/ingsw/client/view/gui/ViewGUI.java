@@ -83,7 +83,7 @@ public class ViewGUI extends Application implements RequestListenableInterface, 
     }
 
     public void setup() {
-        List<String> fxmlScenes = new ArrayList<>(List.of("startMenuScene", "lobbyScene", "errorScene", "boardScene"));
+        List<String> fxmlScenes = new ArrayList<>(List.of("startMenuScene", "lobbyScene", "errorScene", "boardScene", "winnerScene"));
         FXMLLoader loader;
         GUIController controller;
         try {
@@ -244,6 +244,17 @@ public class ViewGUI extends Application implements RequestListenableInterface, 
                     stackPane.setPrefHeight(text.getBoundsInLocal().getHeight()*2);
                     if (options != null) currentController.optionsHandling(this.options);
                     this.stop();
+                }
+                case "winner" -> {
+                    if (this.model != null) currentController.updateModel(this.model);
+
+                    controllerMap.get("winnerScene").optionsHandling(answerEvent.getOptions());
+
+                    Stage winnerStage = new Stage();
+                    winnerStage.setScene(this.getScenes().get("winnerScene"));
+                    winnerStage.show();
+
+                    fireRequest(new RequestEvent("end", id));
                 }
                 default -> System.out.println("Answer Error!");
             }
