@@ -4639,14 +4639,29 @@
             </HBox>
          </center>
          <top>
-            <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="SELECT A WIZARD:" BorderPane.alignment="CENTER">
-               <font>
-                  <Font name="Avenir Next Condensed Bold" size="50.0" />
-               </font>
+            <Pane BorderPane.alignment="CENTER">
                <BorderPane.margin>
                   <Insets bottom="-50.0" top="50.0" />
                </BorderPane.margin>
-            </Text>
+               <children>
+                  <Text fill="WHITE" layoutX="563.0" layoutY="49.0" strokeType="OUTSIDE" strokeWidth="0.0" text="SELECT A WIZARD:">
+                     <font>
+                        <Font name="Avenir Next Condensed Bold" size="50.0" />
+                     </font>
+                  </Text>
+                  <ImageView fx:id="volumeIcon1" accessibleRole="BUTTON" fitHeight="60.0" fitWidth="60.0" layoutX="1330.0" layoutY="4.0" onMouseClicked="#playStopMusic" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/utils/unmuted.png" />
+                     </image>
+                     <effect>
+                        <DropShadow radius="7.25" width="10.0" />
+                     </effect>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </ImageView>
+               </children>
+            </Pane>
          </top>
       </BorderPane>
       <BorderPane fx:id="assistantBorderPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="810.0" prefWidth="1440.0" style="visibility: false;" styleClass="anchor" stylesheets="@../css/cardSelector.css">
@@ -4852,7 +4867,24 @@
                      <font>
                         <Font name="Avenir Next Condensed Bold" size="40.0" />
                      </font>
+                     <StackPane.margin>
+                        <Insets top="20.0" />
+                     </StackPane.margin>
                   </Text>
+                  <ImageView fx:id="volumeIcon2" accessibleRole="BUTTON" fitHeight="60.0" fitWidth="60.0" onMouseClicked="#playStopMusic" pickOnBounds="true" preserveRatio="true" StackPane.alignment="TOP_RIGHT">
+                     <image>
+                        <Image url="@../images/utils/unmuted.png" />
+                     </image>
+                     <effect>
+                        <DropShadow radius="7.25" width="10.0" />
+                     </effect>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                     <StackPane.margin>
+                        <Insets bottom="25.0" left="25.0" right="25.0" top="25.0" />
+                     </StackPane.margin>
+                  </ImageView>
                </children>
                <BorderPane.margin>
                   <Insets top="10.0" />
@@ -5035,9 +5067,23 @@
                         <Font name="Avenir Next Condensed Bold" size="40.0" />
                      </font>
                      <StackPane.margin>
-                        <Insets top="15.0" />
+                        <Insets top="25.0" />
                      </StackPane.margin>
                   </Text>
+                  <ImageView fx:id="volumeIcon3" accessibleRole="BUTTON" fitHeight="60.0" fitWidth="60.0" onMouseClicked="#playStopMusic" pickOnBounds="true" preserveRatio="true" StackPane.alignment="TOP_RIGHT">
+                     <image>
+                        <Image url="@../images/utils/unmuted.png" />
+                     </image>
+                     <effect>
+                        <DropShadow radius="7.25" width="10.0" />
+                     </effect>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                     <StackPane.margin>
+                        <Insets bottom="25.0" left="25.0" top="25.0" />
+                     </StackPane.margin>
+                  </ImageView>
                </children>
                <BorderPane.margin>
                   <Insets top="10.0" />
@@ -5047,7 +5093,7 @@
          <right>
             <Pane prefHeight="200.0" prefWidth="186.0" BorderPane.alignment="CENTER">
                <children>
-                  <ImageView fx:id="characterCardSelectBtn1" accessibleRole="BUTTON" fitHeight="52.0" fitWidth="134.0" layoutX="33.0" layoutY="23.0" onMouseClicked="#closeCharacterCardSelector" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fx:id="characterCardSelectBtn1" accessibleRole="BUTTON" fitHeight="52.0" fitWidth="134.0" layoutX="33.0" layoutY="30.0" onMouseClicked="#closeCharacterCardSelector" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../images/buttons/normalBtn.png" />
                      </image>
@@ -5055,7 +5101,7 @@
                         <Cursor fx:constant="HAND" />
                      </cursor>
                   </ImageView>
-                  <Text disable="true" fill="WHITE" layoutX="70.0" layoutY="55.0" strokeType="OUTSIDE" strokeWidth="0.0" text="EXIT">
+                  <Text disable="true" fill="WHITE" layoutX="70.0" layoutY="62.0" strokeType="OUTSIDE" strokeWidth="0.0" text="EXIT">
                      <font>
                         <Font name="Avenir Next Bold" size="18.0" />
                      </font>

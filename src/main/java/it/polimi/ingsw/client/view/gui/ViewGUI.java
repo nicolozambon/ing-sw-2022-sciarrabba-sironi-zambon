@@ -145,11 +145,13 @@ public class ViewGUI extends Application implements RequestListenableInterface, 
         this.mediaPlayerEffect = new MediaPlayer(this.clickEffect);
     }
     private void music() {
+        mediaPlayer.setVolume(40);
         mediaPlayer.setAutoPlay(true);
         mediaPlayer.setCycleCount(MediaPlayer.INDEFINITE);
     }
 
     public void playPopEffect() {
+        mediaPlayerEffect.setVolume(50);
         mediaPlayerEffect.seek(mediaPlayerEffect.getStartTime());
         mediaPlayerEffect.play();
     }
