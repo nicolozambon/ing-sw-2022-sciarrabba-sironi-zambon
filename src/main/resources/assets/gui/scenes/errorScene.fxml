@@ -30,7 +30,7 @@
             <Insets bottom="6.0" />
          </StackPane.margin>
       </ImageView>
-      <Button mnemonicParsing="false" onMouseClicked="#okButtonOnClick" prefHeight="22.0" prefWidth="74.0" style="-fx-background-color: transparent;" text="OK" textFill="WHITE" StackPane.alignment="BOTTOM_CENTER">
+      <Button fx:id="okErrorBtn" mnemonicParsing="false" onMouseClicked="#okButtonOnClick" prefHeight="22.0" prefWidth="74.0" style="-fx-background-color: transparent;" text="OK" textFill="WHITE" StackPane.alignment="BOTTOM_CENTER">
          <StackPane.margin>
             <Insets bottom="10.0" />
          </StackPane.margin>
