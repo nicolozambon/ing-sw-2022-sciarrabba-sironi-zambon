@@ -167,6 +167,11 @@ public class BoardController implements GUIController {
     }
 
     private void disableAll() {
+
+        //Disable mother nature
+        guiBuilder.getMotherNature(model.getMNPosition()).getStyleClass().remove("selected");
+        guiBuilder.getMotherNature(model.getMNPosition()).setDisable(true);
+
         //Hide other pane
         wizardBorderPane.setVisible(false);
         assistantBorderPane.setVisible(false);
@@ -174,10 +179,13 @@ public class BoardController implements GUIController {
         //Disable button not needed
         endActionButton.setVisible(false);
         characterCardButton.setDisable(true);
+        characterCardButton.getStyleClass().remove("selected");
 
         //Disable 'full' dining room, entrance student, islands, clouds
         diningRoom.setDisable(true);
         entranceStudents.forEach(n -> n.setDisable(true));
+        entranceStudents.forEach(n -> n.getStyleClass().remove("selected"));
+
         for (Node island : guiBuilder.getIslands()) {
             island.getStyleClass().clear();
             island.setCursor(Cursor.DEFAULT);
@@ -315,6 +323,7 @@ public class BoardController implements GUIController {
         sourceNode = ((Node)event.getSource());
         sourceNode.setDisable(true);
         sourceNode.getStyleClass().add("selected");
+        characterCardButton.setDisable(true);
         for (Node island : guiBuilder.getIslands()) {
             island.getStyleClass().add("borderOnHover");
             island.setCursor(Cursor.HAND);
