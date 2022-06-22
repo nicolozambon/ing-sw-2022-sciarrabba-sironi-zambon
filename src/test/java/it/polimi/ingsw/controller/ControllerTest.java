@@ -7,9 +7,11 @@ import it.polimi.ingsw.model.Model;
 import it.polimi.ingsw.model.ModelBuilder;
 import it.polimi.ingsw.model.Player;
 import it.polimi.ingsw.model.ThinModel;
+import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -29,6 +31,21 @@ class ControllerTest {
         model = new ModelBuilder().buildModel(names, true, true);
         controller = model.getController();
         controller.restoreAfterDeserialization(model);
+    }
+
+    @AfterAll
+    public static void cleanUp() {
+        deleteDirectory(new File("./saves"));
+    }
+
+    private static boolean deleteDirectory(File directoryToBeDeleted) {
+        File[] allContents = directoryToBeDeleted.listFiles();
+        if (allContents != null) {
+            for (File file : allContents) {
+                deleteDirectory(file);
+            }
+        }
+        return directoryToBeDeleted.delete();
     }
 
     @Test
