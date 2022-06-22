@@ -1,5 +1,6 @@
 package it.polimi.ingsw.model;
 
+import it.polimi.ingsw.enums.Color;
 import it.polimi.ingsw.exceptions.CardException;
 import it.polimi.ingsw.exceptions.InvalidActionException;
 import it.polimi.ingsw.exceptions.MotherNatureStepsException;
@@ -29,6 +30,19 @@ class ModelTest {
         playersNames.add("player2");
         model = modelBuilder.buildModel(playersNames, true, true);
         professors = model.getProfessors();
+    }
+
+    @Test
+    void extraActionTest() throws InvalidActionException {
+        for (Color color : Color.values()) {
+            model.returnStudentsToBag(color, 3);
+        }
+        Student student = model.getPlayers().get(0).getSchool().getEntrance().getPawns().get(0);
+        Student student1 = model.getPlayers().get(0).getSchool().getEntrance().getPawns().get(1);
+        model.moveStudentToDiningRoom(0, 0);
+        model.exchangeStudentsDiningRoomEntrance(0, 0, student.getColor());
+        assertEquals(1, model.getPlayers().get(0).getSchool().getDiningRoomByColor(student1.getColor()).getNumPawns());
+        if (student.getColor() != student1.getColor()) assertEquals(0, model.getPlayers().get(0).getSchool().getDiningRoomByColor(student.getColor()).getNumPawns());
     }
 
     @Test
