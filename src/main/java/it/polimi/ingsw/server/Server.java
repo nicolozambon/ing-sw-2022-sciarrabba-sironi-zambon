@@ -7,6 +7,8 @@ import java.io.File;
 import java.io.IOException;
 import java.net.ServerSocket;
 import java.net.Socket;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.util.*;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ExecutorService;
@@ -189,7 +191,15 @@ public class Server {
                     currentGame = game;
                 }
             }
-            if (currentGame != null && currentGame.getConnections().isEmpty()) games.remove(currentGame);
+            if (currentGame != null && currentGame.getConnections().isEmpty()) {
+                games.remove(currentGame);
+                System.out.println("deleting...");
+                try {
+                    Files.delete(Paths.get("./saves/" + String.join("_", currentGame.getNicknames().stream().sorted().toList()) + ".json"));
+                } catch (IOException e) {
+                    throw new RuntimeException(e);
+                }
+            }
         }
     }
 

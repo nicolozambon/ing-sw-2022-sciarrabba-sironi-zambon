@@ -14,18 +14,19 @@ public class Eriantys {
         Scanner scanner = new Scanner(System.in);
         int choice = scanner.nextInt();
         switch (choice) {
-            case 1:
+            case 1 -> {
                 try {
-                    Server server= new Server();
+                    Server server = new Server();
                     server.startServer();
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
-                break;
-            case 2:
+            }
+            case 2 -> {
                 Client client = new Client();
-                client.main(args);
-                break;
+                client.startClient();
+            }
+            default -> System.out.println("Not a possible choice!");
         }
 
     }

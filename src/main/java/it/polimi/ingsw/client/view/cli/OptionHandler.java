@@ -31,8 +31,7 @@ public class OptionHandler {
         Gson gson = new Gson();
         InputStream inputStream = getClass().getResourceAsStream("/assets/cli/json/options_selected.json");
         this.optionSelected = gson.fromJson(new InputStreamReader(inputStream), new TypeToken<Map<String, String>>(){}.getType());
-        isWindows = false;
-        if (System.getProperty("os.name").toLowerCase().contains("win")) isWindows = true;
+        isWindows = System.getProperty("os.name").toLowerCase().contains("win");
     }
 
     public void setPlayerId(int playerId) {
@@ -68,6 +67,8 @@ public class OptionHandler {
                             return oneInputHandler(options.get(choice));
                         }
                     }
+                } else {
+                    System.out.println("Not a possible choice, retry!");
                 }
             } while (choice > options.size() || choice < 1);
 

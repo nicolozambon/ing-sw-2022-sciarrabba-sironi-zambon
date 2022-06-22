@@ -24,8 +24,6 @@ public class GameHandler implements Runnable {
 
     public GameHandler(Map<String, ConnectionHandler> playersConnection, boolean completeRule) {
         Model model1;
-
-
         this.playersConnection = new HashMap<>();
 
         Path path = Paths.get("./saves/" + String.join("_", playersConnection.keySet().stream().sorted().toList()) + ".json");
@@ -88,7 +86,7 @@ public class GameHandler implements Runnable {
     }
 
     protected List<String> getNicknames() {
-        return playersConnection.values().stream().map(ConnectionHandler::getNickname).toList();
+        return model.getPlayers().stream().map(Player::getNickname).toList();
     }
 
     protected List<ConnectionHandler> getConnections() {

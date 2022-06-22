@@ -4,13 +4,8 @@
 <?import javafx.scene.Cursor?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
-<?import javafx.scene.layout.BorderPane?>
-<?import javafx.scene.layout.Pane?>
-<?import javafx.scene.layout.StackPane?>
-<?import javafx.scene.layout.VBox?>
-<?import javafx.scene.text.Font?>
-<?import javafx.scene.text.Text?>
-
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 <Pane styleClass="lobbyBG" stylesheets="@../css/startScene.css" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="it.polimi.ingsw.client.view.gui.controller.LobbyController">
    <children>
       <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="515.0" prefWidth="724.0">
