@@ -183,8 +183,8 @@ public class BoardController implements GUIController {
 
         //Disable 'full' dining room, entrance student, islands, clouds
         diningRoom.setDisable(true);
-        entranceStudents.forEach(n -> n.setDisable(true));
-        entranceStudents.forEach(n -> n.getStyleClass().remove("selected"));
+        entranceStudents.forEach(n -> { n.setDisable(true);
+                                        n.getStyleClass().remove("selected");});
 
         for (Node island : guiBuilder.getIslands()) {
             island.getStyleClass().clear();

@@ -1,20 +1,13 @@
 package it.polimi.ingsw.controller;
 
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
 import it.polimi.ingsw.enums.Wizard;
 import it.polimi.ingsw.events.AnswerEvent;
 import it.polimi.ingsw.events.RequestEvent;
 import it.polimi.ingsw.exceptions.*;
-import it.polimi.ingsw.json.HandlerDeserializer;
-import it.polimi.ingsw.json.HandlerSerializer;
 import it.polimi.ingsw.listeners.RequestListener;
-import it.polimi.ingsw.model.Handler;
 import it.polimi.ingsw.model.Model;
 import it.polimi.ingsw.model.Player;
 
-import java.io.FileWriter;
-import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.ArrayList;
@@ -34,9 +27,6 @@ public class Controller implements RequestListener {
     private ActionPhase action;
     private boolean isPlanningFinished;
 
-    private transient Gson gson;
-    private transient String saveName;
-
     public Controller(List<Player> players, Model model, int numStudentToMove) {
 
         this.playersToPlay = players;
@@ -47,16 +37,10 @@ public class Controller implements RequestListener {
         this.wizards = new ArrayList<>(Arrays.asList(Wizard.values()));
 
         this.planning = new PlanningPhase(playersToPlay.get(0), this.model);
-        this.model.addStudentsToClouds();
-
-        this.saveName = String.join("_", model.getPlayers().stream().map(Player::getNickname).sorted().toList()) + ".json";
-        this.gson = new GsonBuilder()
-                .registerTypeAdapter(Handler.class, new HandlerSerializer())
-                .registerTypeAdapter(Handler.class, new HandlerDeserializer())
-                .create();
-
         this.action = null;
         this.isPlanningFinished = false;
+
+        this.model.addStudentsToClouds();
     }
 
     public void playAssistantCard(int playerId, int choice) throws CardException, NotPlayerTurnException, InvalidActionException {
@@ -199,21 +183,12 @@ public class Controller implements RequestListener {
     }
 
     public List<String> getOptions() {
-        try {
-            FileWriter saveFile = new FileWriter("./saves/" + saveName);
-            saveFile.write(this.gson.toJson(this.model));
-            saveFile.close();
-        } catch (IOException e) {
-            System.out.println("Error in saving the game!");
-            //e.printStackTrace();
-        }
         if (wizards.isEmpty()) {
             if (!isPlanningFinished) return planning.getOptions();
             return action.getOptions();
         } else {
             return new ArrayList<>(List.of("chooseWizard"));
         }
-
     }
 
     private boolean isRoundEnded() {
@@ -239,7 +214,9 @@ public class Controller implements RequestListener {
         }
         if (isRoundEnded()) {
             if (model.isLastRound()) model.findWinner();
-            orderPlayersForNextRound();
+            else {
+                orderPlayersForNextRound();
+            }
             model.resetLastAssistantCards();
         }
     }
@@ -315,12 +292,6 @@ public class Controller implements RequestListener {
     public void restoreAfterDeserialization(Model model) {
         this.model = model;
         rebuildPlayer(model.getPlayers());
-
-        if (this.saveName == null) this.saveName = String.join("_", model.getPlayers().stream().map(Player::getNickname).sorted().toList()) + ".json";
-        this.gson = new GsonBuilder()
-                    .registerTypeAdapter(Handler.class, new HandlerSerializer())
-                    .registerTypeAdapter(Handler.class, new HandlerDeserializer())
-                    .create();
 
         if (action != null) action.setModel(this.model, playersToPlay.get(0));
         if (planning != null) planning.setModel(this.model, playersToPlay.get(0));
