@@ -27,11 +27,10 @@ public class ClientConnection implements AnswerListenableInterface, RequestListe
 
     private final DataOutputStream outputStream;
     private final DataInputStream inputStream;
+    private boolean ping;
 
     private final AnswerListenable answerListenable;
-
     private final Gson gson;
-
     private final ExecutorService executorService;
 
     public ClientConnection(String ip) throws IOException {
@@ -45,6 +44,7 @@ public class ClientConnection implements AnswerListenableInterface, RequestListe
         this.active = true;
 
         this.executorService = Executors.newCachedThreadPool();
+        this.ping = true;
         System.out.println("Connection established");
     }
 
@@ -59,11 +59,13 @@ public class ClientConnection implements AnswerListenableInterface, RequestListe
         this.active = true;
 
         this.executorService = Executors.newCachedThreadPool();
+        this.ping = true;
         System.out.println("Connection established");
     }
 
     @Override
     public void run() {
+        executorService.submit(this::pingFunction);
         while (active) {
             read();
         }
@@ -73,7 +75,15 @@ public class ClientConnection implements AnswerListenableInterface, RequestListe
     private void read() {
         try {
             AnswerEvent answer = gson.fromJson(inputStream.readUTF(), AnswerEvent.class);
-            executorService.submit(() -> this.fireAnswer(answer));
+            if (answer.getPropertyName().equals("ping")) {
+                send(new RequestEvent("ping", 0));
+                ping = true;
+                synchronized (this) {
+                    notifyAll();
+                }
+            } else {
+                executorService.submit(() -> this.fireAnswer(answer));
+            }
             sleep(50);
         } catch (EOFException e) {
             stopClient();
@@ -85,7 +95,7 @@ public class ClientConnection implements AnswerListenableInterface, RequestListe
         }
     }
 
-    private void send(RequestEvent request) {
+    private synchronized void send(RequestEvent request) {
         try {
             outputStream.writeUTF(gson.toJson(request));
             outputStream.flush();
@@ -106,6 +116,26 @@ public class ClientConnection implements AnswerListenableInterface, RequestListe
         } finally {
             active = false;
         }
+    }
+
+    private void pingFunction() {
+        synchronized (this) {
+            try {
+                wait();
+            } catch (InterruptedException e) {
+                throw new RuntimeException(e);
+            }
+        }
+        while (ping) {
+            try {
+                ping = false;
+                sleep(6000);
+            } catch (InterruptedException e) {
+                throw new RuntimeException(e);
+            }
+        }
+        fireAnswer(new AnswerEvent("stop", "Server unreachable!"));
+        stopClient();
     }
 
     @Override

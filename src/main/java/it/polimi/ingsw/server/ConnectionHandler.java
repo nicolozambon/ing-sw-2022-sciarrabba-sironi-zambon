@@ -19,6 +19,7 @@ import static java.lang.Thread.sleep;
 
 public class ConnectionHandler implements Runnable, RequestListenableInterface {
 
+    private String nickname = null;
 
     private final Server server;
     private final Socket socket;
@@ -26,13 +27,10 @@ public class ConnectionHandler implements Runnable, RequestListenableInterface {
 
     private DataInputStream inputStream;
     private DataOutputStream outputStream;
-
-    private String nickname = null;
+    private boolean pong;
 
     private final RequestListenable requestListenable;
-
     private final Gson gson;
-
     private final ExecutorService executorService;
 
     public ConnectionHandler(Socket socket, Server server) {
@@ -42,10 +40,12 @@ public class ConnectionHandler implements Runnable, RequestListenableInterface {
         this.gson = new Gson();
         this.executorService = Executors.newCachedThreadPool();
         startConnection();
+        this.pong = true;
     }
 
     @Override
     public void run() {
+        executorService.submit(this::pingFunction);
         while (active) {
             read();
         }
@@ -64,6 +64,7 @@ public class ConnectionHandler implements Runnable, RequestListenableInterface {
                     this.server.endGame(this);
                     stopConnection();
                 }
+                case "ping" -> pong = true;
                 default -> executorService.submit(() -> {
                     try {
                         fireRequest(request);
@@ -84,7 +85,7 @@ public class ConnectionHandler implements Runnable, RequestListenableInterface {
         }
     }
 
-    public void send(AnswerEvent answer) {
+    public synchronized void send(AnswerEvent answer) {
         try {
             outputStream.writeUTF(gson.toJson(answer));
             outputStream.flush();
@@ -126,6 +127,20 @@ public class ConnectionHandler implements Runnable, RequestListenableInterface {
 
     public boolean isActive() {
         return active;
+    }
+
+    private void pingFunction() {
+        while (pong) {
+            send(new AnswerEvent("ping"));
+            pong = false;
+            try {
+                sleep(5000);
+            } catch (InterruptedException e) {
+                throw new RuntimeException(e);
+            }
+        }
+        server.unexpectedDisconnection(this);
+        stopConnection();
     }
 
     @Override
