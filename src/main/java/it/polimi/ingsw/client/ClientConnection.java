@@ -129,7 +129,7 @@ public class ClientConnection implements AnswerListenableInterface, RequestListe
         while (ping) {
             try {
                 ping = false;
-                sleep(6000);
+                sleep(5050);
             } catch (InterruptedException e) {
                 throw new RuntimeException(e);
             }
