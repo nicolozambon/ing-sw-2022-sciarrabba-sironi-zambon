@@ -30,6 +30,30 @@ public class CLI {
     private final int playersNumber;
     private int boardCoins;
     private final List<String> nicknames;
+    public static final String ANSI_RESET = "\u001B[0m";
+    private static final Map<Object, String> colorsMap = new HashMap<>(){{
+        this.put(Color.YELLOW, "\u001B[33m");
+        this.put(Color.GREEN, "\u001B[32m");
+        this.put(Color.BLUE, "\u001B[34m");
+        this.put(Color.RED, "\u001B[31m");
+        this.put(Color.PINK, "\u001B[95m");
+        this.put(TowerColor.BLACK, "\u001B[0;30;47m");
+        this.put(TowerColor.GREY, "\u001B[0;90m");
+        this.put(TowerColor.WHITE, "\u001B[0;37m");
+    }};
+    private static final Map<Object, Integer> positionMap = new HashMap<>(){{
+        this.put(Color.GREEN, 0);
+        this.put(Color.RED, 1);
+        this.put(Color.YELLOW, 2);
+        this.put(Color.PINK, 3);
+        this.put(Color.BLUE, 4);
+    }};
+    private static final Map<String, String> pawnsMap = new HashMap<>(){{
+        this.put("s", "●");
+        this.put("p", "■");
+        this.put("t", "♜");
+        this.put("n", "♟");
+    }};
 
 
     public CLI(List<String> nicknames, List<Integer> coins) {
@@ -74,53 +98,19 @@ public class CLI {
 
     /**
      * Setter of the coins on the game board
-     * @param boardCoins
+     * @param boardCoins number of coins
      */
     public void setBoardCoins(int boardCoins) {
         this.boardCoins = boardCoins;
     }
 
+    /**
+     * Set the link to the next island
+     * @param islandId ID of the island
+     */
     public void addLinkToNextIsland(int islandId) {
         this.islandsLinkedToNext.set(islandId, true);
     }
-
-    public static final String ANSI_RESET = "\u001B[0m";
-
-    private static final Map<Object, String> colorsMap = new HashMap<>(){{
-        this.put(Color.YELLOW, "\u001B[33m");
-        this.put(Color.GREEN, "\u001B[32m");
-        this.put(Color.BLUE, "\u001B[34m");
-        this.put(Color.RED, "\u001B[31m");
-        this.put(Color.PINK, "\u001B[95m");
-        this.put(TowerColor.BLACK, "\u001B[0;30;47m");
-        this.put(TowerColor.GREY, "\u001B[0;90m");
-        this.put(TowerColor.WHITE, "\u001B[0;37m");
-    }};
-
-    private static final Map<Object, Integer> positionMap = new HashMap<>(){{
-        this.put(Color.GREEN, 0);
-        this.put(Color.RED, 1);
-        this.put(Color.YELLOW, 2);
-        this.put(Color.PINK, 3);
-        this.put(Color.BLUE, 4);
-    }};
-
-    private static final Map<Character, Character> bordersMap = new HashMap<>(){{
-        this.put('║', '═');
-        this.put('╚', '╗');
-        this.put('│', '─');
-        this.put('¦', '─');
-        this.put('├', '┬');
-        this.put('┤', '┴');
-        this.put('└', '┐');
-    }};
-
-    private static final Map<String, String> pawnsMap = new HashMap<>(){{
-        this.put("s", "●");
-        this.put("p", "■");
-        this.put("t", "♜");
-        this.put("n", "♟");
-    }};
 
     private Map<String, Integer> getFirstAvailablePlaceholder(String[][] board, String identifier, Object color, boolean isAllColorsArea) {
         Map<String, Integer> placeholder = new HashMap<>();
@@ -238,27 +228,6 @@ public class CLI {
     protected void addStudentToCloud(int id, Color color) {
         String[][] board = this.findBoardBy(id, this.clouds);
         this.addPawnToBoard(board, color, "S", true);
-    }
-
-    @Deprecated
-    private char[][] rotateBoard(char[][] board) {
-        char[][] rotated = new char[board[0].length][board.length];
-        for (int i = 0; i < board.length; i++) {
-            for (int j = 0; j < board[i].length; j++) {
-                if (bordersMap.containsKey(board[i][j])) {
-                    rotated[j][i] = bordersMap.get(board[i][j]);
-                } else if (bordersMap.containsValue(board[i][j])) {
-                    for (Map.Entry<Character, Character> entry : bordersMap.entrySet()) {
-                        if (entry.getValue().equals(board[i][j])) {
-                            rotated[j][i] = entry.getKey();
-                        }
-                    }
-                } else {
-                    rotated[j][i] = board[i][j];
-                }
-            }
-        }
-        return rotated;
     }
 
     private String[][] writeTextInMatrix(String[][] board, String text, int offset_x, int offset_y) {
