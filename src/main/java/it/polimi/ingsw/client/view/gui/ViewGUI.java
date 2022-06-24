@@ -80,6 +80,8 @@ public class ViewGUI extends Application implements RequestListenableInterface, 
         this.stage.setResizable(false);
         this.stage.getIcons().add(new Image("/assets/gui/images/utils/desktop_icon.png"));
         this.stage.show();
+        this.stage.setAlwaysOnTop(true);
+        this.stage.setAlwaysOnTop(false);
     }
 
     public void setup() {
@@ -212,8 +214,12 @@ public class ViewGUI extends Application implements RequestListenableInterface, 
                 }
                 case "update" -> {
                     if (!currentScene.equals(sceneMap.get("boardScene"))) {
+                        stage.close();
                         changeScene("boardScene");
                         stage.setResizable(false);
+                        stage.show();
+                        stage.setAlwaysOnTop(true);
+                        stage.setAlwaysOnTop(false);
                     }
                     this.model = answerEvent.getModel();
                     currentController.updateModel(this.model);
@@ -235,6 +241,7 @@ public class ViewGUI extends Application implements RequestListenableInterface, 
                 case "stop" -> {
                     //System.out.println(answerEvent.getMessage());
                     mediaPlayer.pause();
+                    stage.close();
                     changeScene("errorScene");
                     Text text = (Text) currentScene.lookup("#errorMessage");
                     StackPane stackPane = (StackPane) currentScene.lookup("#stackPane");
@@ -242,6 +249,9 @@ public class ViewGUI extends Application implements RequestListenableInterface, 
                     btn.setOnAction(event -> exitGame());
                     text.setText(answerEvent.getMessage());
                     stackPane.setPrefHeight(text.getBoundsInLocal().getHeight()*2);
+                    stage.show();
+                    stage.setAlwaysOnTop(true);
+                    stage.setAlwaysOnTop(false);
                     if (options != null) currentController.optionsHandling(this.options);
                     this.stop();
                 }
@@ -253,7 +263,8 @@ public class ViewGUI extends Application implements RequestListenableInterface, 
                     Stage winnerStage = new Stage();
                     winnerStage.setScene(this.getScenes().get("winnerScene"));
                     winnerStage.show();
-
+                    winnerStage.setAlwaysOnTop(true);
+                    winnerStage.setAlwaysOnTop(false);
                     fireRequest(new RequestEvent("end", id));
                 }
                 default -> System.out.println("Answer Error!");
