@@ -16,6 +16,18 @@ The final version includes:
 * Source code of the implementation;
 * Source code of unity tests.
 
+## Implemented Functionalities
+| Functionality                    | Status |
+|:---------------------------------|:------:|
+| Basic rules                      |   ✅    |
+| Complete rules                   |   ✅    |
+| Socket                           |   ✅    |
+| CLI (_Command Line Interface_)   |   ✅    |
+| GUI (_Graphical User Interface_) |   ✅    |
+
+#### Legend
+⛔ Not Implemented &nbsp;&nbsp;&nbsp;&nbsp; ✅ Implemented
+
 ## Test cases
 
 **Coverage criteria**: code lines.
