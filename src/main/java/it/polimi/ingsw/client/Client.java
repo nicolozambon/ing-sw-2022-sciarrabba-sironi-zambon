@@ -9,7 +9,16 @@ import java.util.Scanner;
 public class Client {
 
     public static void main(String[] args) {
-        new Client().startClient();
+        if (args.length > 0) {
+            if (args[0].equals("-gui")) {
+                new ViewGUI().startGUI();
+            }
+            if (args[0].equals("-cli")) {
+                new ViewCLI().startCLI();
+            }
+        } else {
+            new Client().startClient();
+        }
     }
 
     public void startClient() {
