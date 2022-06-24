@@ -34,7 +34,7 @@ public class GUIBuilder {
         this.scene = scene;
 
         //Map from 'real' id to 'gui' id
-        idMap = new HashMap<>();
+        idMap = new LinkedHashMap<>();
         List<String> nicknames = model.getNicknames();
         id = nicknames.indexOf(nickname);
         idMap.put(id, 0);
@@ -301,16 +301,16 @@ public class GUIBuilder {
     }
 
     private void defineIslandsMap() {
-        this.islands = new HashMap<>();
+        this.islands = new LinkedHashMap<>();
         for (int i=0; i<12; i++) {
-            Map<String, Map<String, Node>> islandMap = new HashMap<>();
+            Map<String, Map<String, Node>> islandMap = new LinkedHashMap<>();
 
-            Map<String, Node> island = new HashMap<>();
-            Map<String, Node> motherNature = new HashMap<>();
-            Map<String, Node> tower = new HashMap<>();
-            Map<String, Node> studentsPawns = new HashMap<>();
-            Map<String, Node> studentsLabels = new HashMap<>();
-            Map<String, Node> bridge = new HashMap<>();
+            Map<String, Node> island = new LinkedHashMap<>();
+            Map<String, Node> motherNature = new LinkedHashMap<>();
+            Map<String, Node> tower = new LinkedHashMap<>();
+            Map<String, Node> studentsPawns = new LinkedHashMap<>();
+            Map<String, Node> studentsLabels = new LinkedHashMap<>();
+            Map<String, Node> bridge = new LinkedHashMap<>();
 
             String islandKey = this.getIslandFXID(i);
             StackPane islandValue = (StackPane) this.scene.lookup("#" + islandKey);
@@ -363,14 +363,14 @@ public class GUIBuilder {
     private void defineSchoolsMap(ThinModel model) {
         int number = 7;
         if (model.getNicknames().size() == 3) number = 9;
-        this.schools = new HashMap<>();
+        this.schools = new LinkedHashMap<>();
         for (Integer i : idMap.keySet()) {
-            Map<String, Map<String, ImageView>> schoolMap = new HashMap<>();
+            Map<String, Map<String, ImageView>> schoolMap = new LinkedHashMap<>();
 
-            Map<String, ImageView> dining = new HashMap<>();
-            Map<String, ImageView> entrance = new HashMap<>();
-            Map<String, ImageView> towers = new HashMap<>();
-            Map<String, ImageView> professors = new HashMap<>();
+            Map<String, ImageView> dining = new LinkedHashMap<>();
+            Map<String, ImageView> entrance = new LinkedHashMap<>();
+            Map<String, ImageView> towers = new LinkedHashMap<>();
+            Map<String, ImageView> professors = new LinkedHashMap<>();
 
             // Get all students in dining room
             for (Color color : Color.values()) {
@@ -431,7 +431,7 @@ public class GUIBuilder {
     }
 
     private void defineCloudsMap() {
-        this.clouds = new HashMap<>();
+        this.clouds = new LinkedHashMap<>();
         int cloudsNumber = 2;
         int maxStudentsOnCloud = 3;
         if (this.playersNumber == 3) {
@@ -440,7 +440,7 @@ public class GUIBuilder {
         }
 
         for (int i=0; i<3; i++) {
-            Map<String, Node> cloudMap = new HashMap<>();
+            Map<String, Node> cloudMap = new LinkedHashMap<>();
 
             if (i < cloudsNumber) {
                 for (int j = 0; j < 4; j++) {
