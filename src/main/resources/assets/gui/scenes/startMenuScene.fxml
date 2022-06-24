@@ -105,7 +105,7 @@
             </Text>
             <ImageView fx:id="playerImageView2" accessibleRole="BUTTON" fitHeight="170.0" fitWidth="250.0" onMouseClicked="#numPlayerOnClick" pickOnBounds="true" preserveRatio="true" styleClass="onHover" StackPane.alignment="CENTER_LEFT">
                <image>
-                  <Image url="@../images/twoPlayers.png" />
+                  <Image url="@../images/buttons/twoPlayers.png" />
                </image>
                <cursor>
                   <Cursor fx:constant="HAND" />
@@ -124,7 +124,7 @@
             </CheckBox>
             <ImageView fx:id="playerImageView3" accessibleRole="BUTTON" fitHeight="273.0" fitWidth="250.0" onMouseClicked="#numPlayerOnClick" pickOnBounds="true" preserveRatio="true" styleClass="onHover" StackPane.alignment="CENTER_RIGHT">
                <image>
-                  <Image url="@../images/threePlayers.png" />
+                  <Image url="@../images/buttons/threePlayers.png" />
                </image>
                <cursor>
                   <Cursor fx:constant="HAND" />

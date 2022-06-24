@@ -1769,7 +1769,7 @@
                                           </StackPane>
                                           <ImageView fx:id="bridge0_1" fitHeight="39.0" fitWidth="85.0" pickOnBounds="true" preserveRatio="true" rotate="90.0" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="7" GridPane.valignment="CENTER">
                                              <image>
-                                                <Image url="@../images/bridgeShort.png" />
+                                                <Image url="@../images/islands/bridgeShort.png" />
                                              </image>
                                              <GridPane.margin>
                                                 <Insets bottom="15.0" />
@@ -1780,7 +1780,7 @@
                                           </ImageView>
                                           <ImageView fx:id="bridge1_2" fitHeight="39.0" fitWidth="85.0" layoutX="55.0" layoutY="694.0" pickOnBounds="true" preserveRatio="true" rotate="90.0" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="5" GridPane.valignment="CENTER">
                                              <image>
-                                                <Image url="@../images/bridgeShort.png" />
+                                                <Image url="@../images/islands/bridgeShort.png" />
                                              </image>
                                              <effect>
                                                 <DropShadow />
@@ -1791,7 +1791,7 @@
                                           </ImageView>
                                           <ImageView fx:id="bridge2_3" fitHeight="39.0" fitWidth="85.0" layoutX="55.0" layoutY="478.0" pickOnBounds="true" preserveRatio="true" rotate="90.0" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="CENTER">
                                              <image>
-                                                <Image url="@../images/bridgeShort.png" />
+                                                <Image url="@../images/islands/bridgeShort.png" />
                                              </image>
                                              <effect>
                                                 <DropShadow />
@@ -1799,7 +1799,7 @@
                                           </ImageView>
                                           <ImageView fx:id="bridge4_5" fitHeight="39.0" fitWidth="85.0" layoutX="69.0" layoutY="259.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="4">
                                              <image>
-                                                <Image url="@../images/bridgeShort.png" />
+                                                <Image url="@../images/islands/bridgeShort.png" />
                                              </image>
                                              <effect>
                                                 <DropShadow />
@@ -1807,7 +1807,7 @@
                                           </ImageView>
                                           <ImageView fx:id="bridge10_11" fitHeight="39.0" fitWidth="85.0" layoutX="328.0" layoutY="33.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="4" GridPane.rowIndex="10">
                                              <image>
-                                                <Image url="@../images/bridgeShort.png" />
+                                                <Image url="@../images/islands/bridgeShort.png" />
                                              </image>
                                              <effect>
                                                 <DropShadow />
@@ -1815,7 +1815,7 @@
                                           </ImageView>
                                           <ImageView fx:id="bridge8_9" fitHeight="39.0" fitWidth="85.0" layoutX="64.0" layoutY="680.0" pickOnBounds="true" preserveRatio="true" rotate="90.0" GridPane.columnIndex="7" GridPane.halignment="CENTER" GridPane.rowIndex="7" GridPane.valignment="CENTER">
                                              <image>
-                                                <Image url="@../images/bridgeShort.png" />
+                                                <Image url="@../images/islands/bridgeShort.png" />
                                              </image>
                                              <effect>
                                                 <DropShadow />
@@ -1826,7 +1826,7 @@
                                           </ImageView>
                                           <ImageView fx:id="bridge7_8" fitHeight="39.0" fitWidth="85.0" layoutX="578.0" layoutY="688.0" pickOnBounds="true" preserveRatio="true" rotate="90.0" GridPane.columnIndex="7" GridPane.halignment="CENTER" GridPane.rowIndex="5" GridPane.valignment="CENTER">
                                              <image>
-                                                <Image url="@../images/bridgeShort.png" />
+                                                <Image url="@../images/islands/bridgeShort.png" />
                                              </image>
                                              <effect>
                                                 <DropShadow />
@@ -1837,7 +1837,7 @@
                                           </ImageView>
                                           <ImageView fx:id="bridge6_7" fitHeight="39.0" fitWidth="85.0" layoutX="64.0" layoutY="259.0" pickOnBounds="true" preserveRatio="true" rotate="90.0" GridPane.columnIndex="7" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="CENTER">
                                              <image>
-                                                <Image url="@../images/bridgeShort.png" />
+                                                <Image url="@../images/islands/bridgeShort.png" />
                                              </image>
                                              <effect>
                                                 <DropShadow />
@@ -1845,7 +1845,7 @@
                                           </ImageView>
                                           <ImageView fx:id="bridge3_4" fitHeight="39.0" fitWidth="85.0" layoutX="64.0" layoutY="259.0" pickOnBounds="true" preserveRatio="true" rotate="-45.0" GridPane.columnIndex="2" GridPane.rowIndex="1">
                                              <image>
-                                                <Image url="@../images/bridge.png" />
+                                                <Image url="@../images/islands/bridge.png" />
                                              </image>
                                              <effect>
                                                 <DropShadow />
@@ -1856,7 +1856,7 @@
                                           </ImageView>
                                           <ImageView fx:id="bridge5_6" fitHeight="39.0" fitWidth="85.0" layoutX="117.0" layoutY="71.0" pickOnBounds="true" preserveRatio="true" rotate="45.0" GridPane.columnIndex="7">
                                              <image>
-                                                <Image url="@../images/bridge.png" />
+                                                <Image url="@../images/islands/bridge.png" />
                                              </image>
                                              <effect>
                                                 <DropShadow />
@@ -1867,7 +1867,7 @@
                                           </ImageView>
                                           <ImageView fx:id="bridge11_0" fitHeight="39.0" fitWidth="85.0" layoutX="502.0" layoutY="58.0" pickOnBounds="true" preserveRatio="true" rotate="45.0" GridPane.columnIndex="1" GridPane.rowIndex="10">
                                              <image>
-                                                <Image url="@../images/bridge.png" />
+                                                <Image url="@../images/islands/bridge.png" />
                                              </image>
                                              <effect>
                                                 <DropShadow />
@@ -1878,7 +1878,7 @@
                                           </ImageView>
                                           <ImageView fx:id="bridge9_10" fitHeight="39.0" fitWidth="85.0" layoutX="110.0" layoutY="887.0" pickOnBounds="true" preserveRatio="true" rotate="-45.0" GridPane.columnIndex="7" GridPane.rowIndex="10">
                                              <image>
-                                                <Image url="@../images/bridge.png" />
+                                                <Image url="@../images/islands/bridge.png" />
                                              </image>
                                              <effect>
                                                 <DropShadow />
@@ -1978,7 +1978,7 @@
                                              <children>
                                                 <ImageView fitHeight="150.0" fitWidth="150.0" pickOnBounds="true" preserveRatio="true">
                                                    <image>
-                                                      <Image url="@../images/cloud.png" />
+                                                      <Image url="@../images/islands/cloud.png" />
                                                    </image>
                                                 </ImageView>
                                                 <ImageView fx:id="scloud0_1" fitHeight="57.0" fitWidth="35.0" pickOnBounds="true" preserveRatio="true" StackPane.alignment="TOP_RIGHT">
@@ -2040,7 +2040,7 @@
                                              <children>
                                                 <ImageView fitHeight="150.0" fitWidth="150.0" pickOnBounds="true" preserveRatio="true">
                                                    <image>
-                                                      <Image url="@../images/cloud.png" />
+                                                      <Image url="@../images/islands/cloud.png" />
                                                    </image>
                                                 </ImageView>
                                                 <ImageView fx:id="scloud1_0" fitHeight="57.0" fitWidth="35.0" pickOnBounds="true" preserveRatio="true" StackPane.alignment="TOP_LEFT">
@@ -2099,7 +2099,7 @@
                                              <children>
                                                 <ImageView fitHeight="150.0" fitWidth="150.0" pickOnBounds="true" preserveRatio="true">
                                                    <image>
-                                                      <Image url="@../images/cloud.png" />
+                                                      <Image url="@../images/islands/cloud.png" />
                                                    </image>
                                                 </ImageView>
                                                 <ImageView fx:id="scloud2_0" fitHeight="57.0" fitWidth="35.0" pickOnBounds="true" preserveRatio="true" StackPane.alignment="TOP_LEFT">
@@ -3875,42 +3875,42 @@
                                        <children>
                                           <ImageView fx:id="tower2_0" fitHeight="64.0" fitWidth="72.0" pickOnBounds="true" preserveRatio="true" styleClass="greyTower" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER">
                                              <image>
-                                                <Image url="@../images/pawns/grayTower.png" />
+                                                <Image url="@../images/pawns/greyTower.png" />
                                              </image>
                                           </ImageView>
                                           <ImageView fx:id="tower2_2" fitHeight="64.0" fitWidth="72.0" layoutX="93.0" layoutY="33.0" pickOnBounds="true" preserveRatio="true" styleClass="greyTower" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER">
                                              <image>
-                                                <Image url="@../images/pawns/grayTower.png" />
+                                                <Image url="@../images/pawns/greyTower.png" />
                                              </image>
                                           </ImageView>
                                           <ImageView fx:id="tower2_6" fitHeight="64.0" fitWidth="72.0" layoutX="143.0" layoutY="33.0" pickOnBounds="true" preserveRatio="true" styleClass="greyTower" GridPane.columnIndex="4" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER">
                                              <image>
-                                                <Image url="@../images/pawns/grayTower.png" />
+                                                <Image url="@../images/pawns/greyTower.png" />
                                              </image>
                                           </ImageView>
                                           <ImageView fx:id="tower2_4" fitHeight="64.0" fitWidth="72.0" layoutX="10.0" layoutY="-10.0" pickOnBounds="true" preserveRatio="true" styleClass="greyTower" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER">
                                              <image>
-                                                <Image url="@../images/pawns/grayTower.png" />
+                                                <Image url="@../images/pawns/greyTower.png" />
                                              </image>
                                           </ImageView>
                                           <ImageView fx:id="tower2_1" fitHeight="64.0" fitWidth="72.0" layoutX="93.0" layoutY="33.0" pickOnBounds="true" preserveRatio="true" styleClass="greyTower" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER">
                                              <image>
-                                                <Image url="@../images/pawns/grayTower.png" />
+                                                <Image url="@../images/pawns/greyTower.png" />
                                              </image>
                                           </ImageView>
                                           <ImageView fx:id="tower2_7" fitHeight="64.0" fitWidth="72.0" layoutX="143.0" layoutY="33.0" pickOnBounds="true" preserveRatio="true" styleClass="greyTower" GridPane.columnIndex="4" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER">
                                              <image>
-                                                <Image url="@../images/pawns/grayTower.png" />
+                                                <Image url="@../images/pawns/greyTower.png" />
                                              </image>
                                           </ImageView>
                                           <ImageView fx:id="tower2_5" fitHeight="64.0" fitWidth="72.0" layoutX="277.0" layoutY="33.0" pickOnBounds="true" preserveRatio="true" styleClass="greyTower" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER">
                                              <image>
-                                                <Image url="@../images/pawns/grayTower.png" />
+                                                <Image url="@../images/pawns/greyTower.png" />
                                              </image>
                                           </ImageView>
                                           <ImageView fx:id="tower2_3" fitHeight="64.0" fitWidth="72.0" layoutX="210.0" layoutY="33.0" pickOnBounds="true" preserveRatio="true" styleClass="greyTower" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER">
                                              <image>
-                                                <Image url="@../images/pawns/grayTower.png" />
+                                                <Image url="@../images/pawns/greyTower.png" />
                                              </image>
                                           </ImageView>
                                           <ImageView fitHeight="100.0" fitWidth="150.0" pickOnBounds="true" preserveRatio="true" GridPane.halignment="CENTER" GridPane.valignment="CENTER">

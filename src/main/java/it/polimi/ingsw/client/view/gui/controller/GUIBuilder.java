@@ -598,15 +598,7 @@ public class GUIBuilder {
      * @return String with letter of color.
      */
     private String colorIDHelper(Color color) {
-        String id = "";
-        switch (color) {
-            case GREEN -> id = "g";
-            case RED -> id = "r";
-            case YELLOW -> id = "y";
-            case PINK -> id = "p";
-            case BLUE -> id = "b";
-        }
-        return id;
+        return color.toString().substring(0,1).toLowerCase();
     }
 
     /**
@@ -620,25 +612,11 @@ public class GUIBuilder {
     }
 
     public String getStudentPath(Color color) {
-        String path = "/assets/gui/images/pawns/";
-        switch (color) {
-            case GREEN -> path = path + "greenStudent.png";
-            case RED -> path = path + "redStudent.png";
-            case YELLOW -> path = path + "yellowStudent.png";
-            case PINK -> path = path + "pinkStudent.png";
-            case BLUE -> path = path + "blueStudent.png";
-        }
-        return path;
+        return "/assets/gui/images/pawns/" + color.toString().toLowerCase() + "Student.png";
     }
 
     public String getTowerPath (TowerColor color) {
-        String path = "/assets/gui/images/pawns/";
-        switch (color) {
-            case BLACK -> path = path + "blackTower.png";
-            case WHITE -> path = path + "whiteTower.png";
-            case GREY -> path = path + "grayTower.png";
-        }
-        return path;
+        return "/assets/gui/images/pawns/" + color.toString().toLowerCase() + "Tower.png";
     }
 
     public String getStudentsOnCloudFXID (int cloudID, int pawnID) {
@@ -687,23 +665,6 @@ public class GUIBuilder {
         if (cost) id = "cost";
         if (text) id = "text";
         return id + "CharacterCard" + ID;
-    }
-
-    /**
-     * Generates FX:ID of the table of the dining room (by color) of the player (Board 0)
-     * @param color Color of the dining room students.
-     * @return FX:ID of the table of the dining room.
-     */
-    private String getDRSelectorID (Color color) {
-        String id = "dg";
-        switch (color) {
-            case YELLOW -> id = id + "Yellow";
-            case RED -> id = id + "Red";
-            case BLUE -> id = id + "Blue";
-            case GREEN -> id = id + "Green";
-            case PINK -> id = id + "Pink";
-        }
-        return id;
     }
 
 }
