@@ -1,13 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.*?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.SplitPane?>
-<?import javafx.scene.*?>
-<?import javafx.scene.effect.*?>
-<?import javafx.scene.image.*?>
-<?import javafx.scene.layout.*?>
-<?import javafx.scene.text.*?>
+<?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.FlowPane?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
 <Pane minHeight="810.0" minWidth="1440.0" prefHeight="810.0" prefWidth="1440.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="it.polimi.ingsw.client.view.gui.controller.BoardController">
    <children>
         <BorderPane layoutX="-313.0" layoutY="-174.0" minHeight="1080.0" minWidth="1920.0" prefHeight="1160.0" prefWidth="2067.0" scaleX="0.7" scaleY="0.7" styleClass="anchor" stylesheets="@../css/boardScene.css">
@@ -2186,42 +2197,42 @@
                                                       <RowConstraints maxHeight="41.84942626953125" minHeight="10.0" prefHeight="34.599639892578125" vgrow="SOMETIMES" />
                                                    </rowConstraints>
                                                    <children>
-                                                      <ImageView fx:id="tower0_1" fitHeight="64.0" fitWidth="72.0" pickOnBounds="true" preserveRatio="true" styleClass="whiteTower" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER">
+                                                      <ImageView fx:id="tower0_1" fitHeight="64.0" fitWidth="72.0" pickOnBounds="true" preserveRatio="true" rotate="270.0" styleClass="whiteTower" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER">
                                                          <image>
                                                             <Image url="@../images/pawns/whiteTower.png" />
                                                          </image>
                                                       </ImageView>
-                                                      <ImageView fx:id="tower0_3" fitHeight="64.0" fitWidth="72.0" layoutX="93.0" layoutY="33.0" pickOnBounds="true" preserveRatio="true" styleClass="whiteTower" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER">
+                                                      <ImageView fx:id="tower0_3" fitHeight="64.0" fitWidth="72.0" layoutX="93.0" layoutY="33.0" pickOnBounds="true" preserveRatio="true" rotate="270.0" styleClass="whiteTower" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER">
                                                          <image>
                                                             <Image url="@../images/pawns/whiteTower.png" />
                                                          </image>
                                                       </ImageView>
-                                                      <ImageView fx:id="tower0_7" fitHeight="64.0" fitWidth="72.0" layoutX="143.0" layoutY="33.0" pickOnBounds="true" preserveRatio="true" styleClass="whiteTower" GridPane.columnIndex="4" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER">
+                                                      <ImageView fx:id="tower0_7" fitHeight="64.0" fitWidth="72.0" layoutX="143.0" layoutY="33.0" pickOnBounds="true" preserveRatio="true" rotate="270.0" styleClass="whiteTower" GridPane.columnIndex="4" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER">
                                                          <image>
                                                             <Image url="@../images/pawns/whiteTower.png" />
                                                          </image>
                                                       </ImageView>
-                                                      <ImageView fx:id="tower0_5" fitHeight="64.0" fitWidth="72.0" layoutX="10.0" layoutY="-10.0" pickOnBounds="true" preserveRatio="true" styleClass="whiteTower" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER">
+                                                      <ImageView fx:id="tower0_5" fitHeight="64.0" fitWidth="72.0" layoutX="10.0" layoutY="-10.0" pickOnBounds="true" preserveRatio="true" rotate="270.0" styleClass="whiteTower" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER">
                                                          <image>
                                                             <Image url="@../images/pawns/whiteTower.png" />
                                                          </image>
                                                       </ImageView>
-                                                      <ImageView fx:id="tower0_0" fitHeight="64.0" fitWidth="72.0" layoutX="93.0" layoutY="33.0" pickOnBounds="true" preserveRatio="true" styleClass="whiteTower" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER">
+                                                      <ImageView fx:id="tower0_0" fitHeight="64.0" fitWidth="72.0" layoutX="93.0" layoutY="33.0" pickOnBounds="true" preserveRatio="true" rotate="270.0" styleClass="whiteTower" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER">
                                                          <image>
                                                             <Image url="@../images/pawns/whiteTower.png" />
                                                          </image>
                                                       </ImageView>
-                                                      <ImageView fx:id="tower0_6" fitHeight="64.0" fitWidth="72.0" layoutX="143.0" layoutY="33.0" pickOnBounds="true" preserveRatio="true" styleClass="whiteTower" GridPane.columnIndex="4" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER">
+                                                      <ImageView fx:id="tower0_6" fitHeight="64.0" fitWidth="72.0" layoutX="143.0" layoutY="33.0" pickOnBounds="true" preserveRatio="true" rotate="270.0" styleClass="whiteTower" GridPane.columnIndex="4" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER">
                                                          <image>
                                                             <Image url="@../images/pawns/whiteTower.png" />
                                                          </image>
                                                       </ImageView>
-                                                      <ImageView fx:id="tower0_4" fitHeight="64.0" fitWidth="72.0" layoutX="277.0" layoutY="33.0" pickOnBounds="true" preserveRatio="true" styleClass="whiteTower" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER">
+                                                      <ImageView fx:id="tower0_4" fitHeight="64.0" fitWidth="72.0" layoutX="277.0" layoutY="33.0" pickOnBounds="true" preserveRatio="true" rotate="270.0" styleClass="whiteTower" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER">
                                                          <image>
                                                             <Image url="@../images/pawns/whiteTower.png" />
                                                          </image>
                                                       </ImageView>
-                                                      <ImageView fx:id="tower0_2" fitHeight="64.0" fitWidth="72.0" layoutX="210.0" layoutY="33.0" pickOnBounds="true" preserveRatio="true" styleClass="whiteTower" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER">
+                                                      <ImageView fx:id="tower0_2" fitHeight="64.0" fitWidth="72.0" layoutX="210.0" layoutY="33.0" pickOnBounds="true" preserveRatio="true" rotate="270.0" styleClass="whiteTower" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER">
                                                          <image>
                                                             <Image url="@../images/pawns/whiteTower.png" />
                                                          </image>
@@ -2269,7 +2280,7 @@
                                                          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                                                      </rowConstraints>
                                                      <children>
-                                                         <ImageView fx:id="gp_0" disable="true" fitHeight="44.0" fitWidth="54.0" pickOnBounds="true" preserveRatio="true" styleClass="borderOnHover" GridPane.columnIndex="1">
+                                                         <ImageView fx:id="gp_0" disable="true" fitHeight="44.0" fitWidth="54.0" pickOnBounds="true" preserveRatio="true" rotate="270.0" styleClass="borderOnHover" GridPane.columnIndex="1">
                                                              <image>
                                                                  <Image url="@../images/pawns/greenProf2D.png" />
                                                              </image>
@@ -2280,7 +2291,7 @@
                                                                  <DropShadow />
                                                              </effect>
                                                          </ImageView>
-                                                         <ImageView fx:id="rp_0" disable="true" fitHeight="44.0" fitWidth="54.0" pickOnBounds="true" preserveRatio="true" styleClass="borderOnHover" GridPane.columnIndex="2">
+                                                         <ImageView fx:id="rp_0" disable="true" fitHeight="44.0" fitWidth="54.0" pickOnBounds="true" preserveRatio="true" rotate="270.0" styleClass="borderOnHover" GridPane.columnIndex="2">
                                                              <image>
                                                                  <Image url="@../images/pawns/redProf2D.png" />
                                                              </image>
@@ -2288,7 +2299,7 @@
                                                                  <DropShadow />
                                                              </effect>
                                                          </ImageView>
-                                                         <ImageView fx:id="yp_0" disable="true" fitHeight="44.0" fitWidth="54.0" pickOnBounds="true" preserveRatio="true" styleClass="borderOnHover" GridPane.columnIndex="3">
+                                                         <ImageView fx:id="yp_0" disable="true" fitHeight="44.0" fitWidth="54.0" pickOnBounds="true" preserveRatio="true" rotate="270.0" styleClass="borderOnHover" GridPane.columnIndex="3">
                                                              <image>
                                                                  <Image url="@../images/pawns/yellowProf2D.png" />
                                                              </image>
@@ -2296,7 +2307,7 @@
                                                                  <DropShadow />
                                                              </effect>
                                                          </ImageView>
-                                                         <ImageView fx:id="pp_0" disable="true" fitHeight="44.0" fitWidth="54.0" pickOnBounds="true" preserveRatio="true" styleClass="borderOnHover" GridPane.columnIndex="4">
+                                                         <ImageView fx:id="pp_0" disable="true" fitHeight="44.0" fitWidth="54.0" pickOnBounds="true" preserveRatio="true" rotate="270.0" styleClass="borderOnHover" GridPane.columnIndex="4">
                                                              <image>
                                                                  <Image url="@../images/pawns/pinkProf2D.png" />
                                                              </image>
@@ -2304,7 +2315,7 @@
                                                                  <DropShadow />
                                                              </effect>
                                                          </ImageView>
-                                                         <ImageView fx:id="bp_0" disable="true" fitHeight="44.0" fitWidth="54.0" pickOnBounds="true" preserveRatio="true" styleClass="borderOnHover" GridPane.columnIndex="5">
+                                                         <ImageView fx:id="bp_0" disable="true" fitHeight="44.0" fitWidth="54.0" pickOnBounds="true" preserveRatio="true" rotate="270.0" styleClass="borderOnHover" GridPane.columnIndex="5">
                                                              <image>
                                                                  <Image url="@../images/pawns/blueProf2D.png" />
                                                              </image>
@@ -2323,7 +2334,7 @@
                                              <children>
                                                 <VBox fx:id="dgGreen" accessibleRole="BUTTON" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseClicked="#colorOnClick" prefHeight="480.0" prefWidth="60.0" styleClass="diningRoom" StackPane.alignment="CENTER_LEFT">
                                                    <children>
-                                                      <ImageView fx:id="gs9_0" disable="true" fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true" styleClass="borderOnHover">
+                                                      <ImageView fx:id="gs9_0" disable="true" fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true" rotate="270.0" styleClass="borderOnHover">
                                                          <image>
                                                             <Image url="@../images/pawns/greenStudent.png" />
                                                          </image>
@@ -2331,18 +2342,7 @@
                                                             <DropShadow />
                                                          </effect>
                                                       </ImageView>
-                                                      <ImageView fx:id="gs8_0" disable="true" fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true" styleClass="borderOnHover">
-                                                         <image>
-                                                            <Image url="@../images/pawns/greenStudent.png" />
-                                                         </image>
-                                                         <effect>
-                                                            <DropShadow />
-                                                         </effect>
-                                                         <VBox.margin>
-                                                            <Insets top="7.0" />
-                                                         </VBox.margin>
-                                                      </ImageView>
-                                                      <ImageView fx:id="gs7_0" disable="true" fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true" styleClass="borderOnHover">
+                                                      <ImageView fx:id="gs8_0" disable="true" fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true" rotate="270.0" styleClass="borderOnHover">
                                                          <image>
                                                             <Image url="@../images/pawns/greenStudent.png" />
                                                          </image>
@@ -2353,7 +2353,7 @@
                                                             <Insets top="7.0" />
                                                          </VBox.margin>
                                                       </ImageView>
-                                                      <ImageView fx:id="gs6_0" disable="true" fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true" styleClass="borderOnHover">
+                                                      <ImageView fx:id="gs7_0" disable="true" fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true" rotate="270.0" styleClass="borderOnHover">
                                                          <image>
                                                             <Image url="@../images/pawns/greenStudent.png" />
                                                          </image>
@@ -2364,7 +2364,7 @@
                                                             <Insets top="7.0" />
                                                          </VBox.margin>
                                                       </ImageView>
-                                                      <ImageView fx:id="gs5_0" disable="true" fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true" styleClass="borderOnHover">
+                                                      <ImageView fx:id="gs6_0" disable="true" fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true" rotate="270.0" styleClass="borderOnHover">
                                                          <image>
                                                             <Image url="@../images/pawns/greenStudent.png" />
                                                          </image>
@@ -2375,7 +2375,7 @@
                                                             <Insets top="7.0" />
                                                          </VBox.margin>
                                                       </ImageView>
-                                                      <ImageView fx:id="gs4_0" disable="true" fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true" styleClass="borderOnHover">
+                                                      <ImageView fx:id="gs5_0" disable="true" fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true" rotate="270.0" styleClass="borderOnHover">
                                                          <image>
                                                             <Image url="@../images/pawns/greenStudent.png" />
                                                          </image>
@@ -2386,7 +2386,7 @@
                                                             <Insets top="7.0" />
                                                          </VBox.margin>
                                                       </ImageView>
-                                                      <ImageView fx:id="gs3_0" disable="true" fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true" styleClass="borderOnHover">
+                                                      <ImageView fx:id="gs4_0" disable="true" fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true" rotate="270.0" styleClass="borderOnHover">
                                                          <image>
                                                             <Image url="@../images/pawns/greenStudent.png" />
                                                          </image>
@@ -2397,7 +2397,7 @@
                                                             <Insets top="7.0" />
                                                          </VBox.margin>
                                                       </ImageView>
-                                                      <ImageView fx:id="gs2_0" disable="true" fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true" styleClass="borderOnHover">
+                                                      <ImageView fx:id="gs3_0" disable="true" fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true" rotate="270.0" styleClass="borderOnHover">
                                                          <image>
                                                             <Image url="@../images/pawns/greenStudent.png" />
                                                          </image>
@@ -2408,7 +2408,7 @@
                                                             <Insets top="7.0" />
                                                          </VBox.margin>
                                                       </ImageView>
-                                                      <ImageView fx:id="gs1_0" disable="true" fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true" styleClass="borderOnHover">
+                                                      <ImageView fx:id="gs2_0" disable="true" fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true" rotate="270.0" styleClass="borderOnHover">
                                                          <image>
                                                             <Image url="@../images/pawns/greenStudent.png" />
                                                          </image>
@@ -2419,7 +2419,18 @@
                                                             <Insets top="7.0" />
                                                          </VBox.margin>
                                                       </ImageView>
-                                                      <ImageView fx:id="gs0_0" disable="true" fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true" styleClass="borderOnHover">
+                                                      <ImageView fx:id="gs1_0" disable="true" fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true" rotate="270.0" styleClass="borderOnHover">
+                                                         <image>
+                                                            <Image url="@../images/pawns/greenStudent.png" />
+                                                         </image>
+                                                         <effect>
+                                                            <DropShadow />
+                                                         </effect>
+                                                         <VBox.margin>
+                                                            <Insets top="7.0" />
+                                                         </VBox.margin>
+                                                      </ImageView>
+                                                      <ImageView fx:id="gs0_0" disable="true" fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true" rotate="270.0" styleClass="borderOnHover">
                                                          <image>
                                                             <Image url="@../images/pawns/greenStudent.png" />
                                                          </image>
@@ -2440,7 +2451,7 @@
                                                 </VBox>
                                                 <VBox fx:id="dgRed" accessibleRole="BUTTON" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseClicked="#colorOnClick" prefHeight="480.0" prefWidth="60.0" styleClass="diningRoom" StackPane.alignment="CENTER_LEFT">
                                                    <children>
-                                                      <ImageView fx:id="rs9_0" disable="true" fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true" styleClass="borderOnHover">
+                                                      <ImageView fx:id="rs9_0" disable="true" fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true" rotate="270.0" styleClass="borderOnHover">
                                                          <image>
                                                             <Image url="@../images/pawns/redStudent.png" />
                                                          </image>
@@ -2451,7 +2462,7 @@
                                                             <Insets left="10.0" />
                                                          </VBox.margin>
                                                       </ImageView>
-                                                      <ImageView fx:id="rs8_0" disable="true" fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true" styleClass="borderOnHover">
+                                                      <ImageView fx:id="rs8_0" disable="true" fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true" rotate="270.0" styleClass="borderOnHover">
                                                          <image>
                                                             <Image url="@../images/pawns/redStudent.png" />
                                                          </image>
@@ -2462,7 +2473,7 @@
                                                             <Insets left="10.0" top="7.0" />
                                                          </VBox.margin>
                                                       </ImageView>
-                                                      <ImageView fx:id="rs7_0" disable="true" fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true" styleClass="borderOnHover">
+                                                      <ImageView fx:id="rs7_0" disable="true" fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true" rotate="270.0" styleClass="borderOnHover">
                                                          <image>
                                                             <Image url="@../images/pawns/redStudent.png" />
                                                          </image>
@@ -2473,7 +2484,7 @@
                                                             <Insets left="10.0" top="7.0" />
                                                          </VBox.margin>
                                                       </ImageView>
-                                                      <ImageView fx:id="rs6_0" disable="true" fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true" styleClass="borderOnHover">
+                                                      <ImageView fx:id="rs6_0" disable="true" fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true" rotate="270.0" styleClass="borderOnHover">
                                                          <image>
                                                             <Image url="@../images/pawns/redStudent.png" />
                                                          </image>
@@ -2484,7 +2495,7 @@
                                                             <Insets left="10.0" top="7.0" />
                                                          </VBox.margin>
                                                       </ImageView>
-                                                      <ImageView fx:id="rs5_0" disable="true" fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true" styleClass="borderOnHover">
+                                                      <ImageView fx:id="rs5_0" disable="true" fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true" rotate="270.0" styleClass="borderOnHover">
                                                          <image>
                                                             <Image url="@../images/pawns/redStudent.png" />
                                                          </image>
@@ -2495,7 +2506,7 @@
                                                             <Insets left="10.0" top="7.0" />
                                                          </VBox.margin>
                                                       </ImageView>
-                                                      <ImageView fx:id="rs4_0" disable="true" fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true" styleClass="borderOnHover">
+                                                      <ImageView fx:id="rs4_0" disable="true" fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true" rotate="270.0" styleClass="borderOnHover">
                                                          <image>
                                                             <Image url="@../images/pawns/redStudent.png" />
                                                          </image>
@@ -2506,7 +2517,7 @@
                                                             <Insets left="10.0" top="7.0" />
                                                          </VBox.margin>
                                                       </ImageView>
-                                                      <ImageView fx:id="rs3_0" disable="true" fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true" styleClass="borderOnHover">
+                                                      <ImageView fx:id="rs3_0" disable="true" fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true" rotate="270.0" styleClass="borderOnHover">
                                                          <image>
                                                             <Image url="@../images/pawns/redStudent.png" />
                                                          </image>
@@ -2517,7 +2528,7 @@
                                                             <Insets left="10.0" top="7.0" />
                                                          </VBox.margin>
                                                       </ImageView>
-                                                      <ImageView fx:id="rs2_0" disable="true" fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true" styleClass="borderOnHover">
+                                                      <ImageView fx:id="rs2_0" disable="true" fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true" rotate="270.0" styleClass="borderOnHover">
                                                          <image>
                                                             <Image url="@../images/pawns/redStudent.png" />
                                                          </image>
@@ -2528,7 +2539,7 @@
                                                             <Insets left="10.0" top="7.0" />
                                                          </VBox.margin>
                                                       </ImageView>
-                                                      <ImageView fx:id="rs1_0" disable="true" fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true" styleClass="borderOnHover">
+                                                      <ImageView fx:id="rs1_0" disable="true" fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true" rotate="270.0" styleClass="borderOnHover">
                                                          <image>
                                                             <Image url="@../images/pawns/redStudent.png" />
                                                          </image>
@@ -2539,7 +2550,7 @@
                                                             <Insets left="10.0" top="7.0" />
                                                          </VBox.margin>
                                                       </ImageView>
-                                                      <ImageView fx:id="rs0_0" disable="true" fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true" styleClass="borderOnHover">
+                                                      <ImageView fx:id="rs0_0" disable="true" fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true" rotate="270.0" styleClass="borderOnHover">
                                                          <image>
                                                             <Image url="@../images/pawns/redStudent.png" />
                                                          </image>
@@ -2560,7 +2571,7 @@
                                                 </VBox>
                                                 <VBox fx:id="dgYellow" accessibleRole="BUTTON" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseClicked="#colorOnClick" prefHeight="480.0" prefWidth="60.0" styleClass="diningRoom" StackPane.alignment="CENTER">
                                                    <children>
-                                                      <ImageView fx:id="ys9_0" disable="true" fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true" styleClass="borderOnHover">
+                                                      <ImageView fx:id="ys9_0" disable="true" fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true" rotate="270.0" styleClass="borderOnHover">
                                                          <image>
                                                             <Image url="@../images/pawns/yellowStudent.png" />
                                                          </image>
@@ -2571,7 +2582,7 @@
                                                             <Insets left="10.0" />
                                                          </VBox.margin>
                                                       </ImageView>
-                                                      <ImageView fx:id="ys8_0" disable="true" fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true" styleClass="borderOnHover">
+                                                      <ImageView fx:id="ys8_0" disable="true" fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true" rotate="270.0" styleClass="borderOnHover">
                                                          <image>
                                                             <Image url="@../images/pawns/yellowStudent.png" />
                                                          </image>
@@ -2582,7 +2593,7 @@
                                                             <Insets left="10.0" top="7.0" />
                                                          </VBox.margin>
                                                       </ImageView>
-                                                      <ImageView fx:id="ys7_0" disable="true" fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true" styleClass="borderOnHover">
+                                                      <ImageView fx:id="ys7_0" disable="true" fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true" rotate="270.0" styleClass="borderOnHover">
                                                          <image>
                                                             <Image url="@../images/pawns/yellowStudent.png" />
                                                          </image>
@@ -2593,7 +2604,7 @@
                                                             <Insets left="10.0" top="7.0" />
                                                          </VBox.margin>
                                                       </ImageView>
-                                                      <ImageView fx:id="ys6_0" disable="true" fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true" styleClass="borderOnHover">
+                                                      <ImageView fx:id="ys6_0" disable="true" fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true" rotate="270.0" styleClass="borderOnHover">
                                                          <image>
                                                             <Image url="@../images/pawns/yellowStudent.png" />
                                                          </image>
@@ -2604,7 +2615,7 @@
                                                             <Insets left="10.0" top="7.0" />
                                                          </VBox.margin>
                                                       </ImageView>
-                                                      <ImageView fx:id="ys5_0" disable="true" fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true" styleClass="borderOnHover">
+                                                      <ImageView fx:id="ys5_0" disable="true" fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true" rotate="270.0" styleClass="borderOnHover">
                                                          <image>
                                                             <Image url="@../images/pawns/yellowStudent.png" />
                                                          </image>
@@ -2615,7 +2626,7 @@
                                                             <Insets left="10.0" top="7.0" />
                                                          </VBox.margin>
                                                       </ImageView>
-                                                      <ImageView fx:id="ys4_0" disable="true" fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true" styleClass="borderOnHover">
+                                                      <ImageView fx:id="ys4_0" disable="true" fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true" rotate="270.0" styleClass="borderOnHover">
                                                          <image>
                                                             <Image url="@../images/pawns/yellowStudent.png" />
                                                          </image>
@@ -2626,7 +2637,7 @@
                                                             <Insets left="10.0" top="7.0" />
                                                          </VBox.margin>
                                                       </ImageView>
-                                                      <ImageView fx:id="ys3_0" disable="true" fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true" styleClass="borderOnHover">
+                                                      <ImageView fx:id="ys3_0" disable="true" fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true" rotate="270.0" styleClass="borderOnHover">
                                                          <image>
                                                             <Image url="@../images/pawns/yellowStudent.png" />
                                                          </image>
@@ -2637,7 +2648,7 @@
                                                             <Insets left="10.0" top="7.0" />
                                                          </VBox.margin>
                                                       </ImageView>
-                                                      <ImageView fx:id="ys2_0" disable="true" fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true" styleClass="borderOnHover">
+                                                      <ImageView fx:id="ys2_0" disable="true" fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true" rotate="270.0" styleClass="borderOnHover">
                                                          <image>
                                                             <Image url="@../images/pawns/yellowStudent.png" />
                                                          </image>
@@ -2648,7 +2659,7 @@
                                                             <Insets left="10.0" top="7.0" />
                                                          </VBox.margin>
                                                       </ImageView>
-                                                      <ImageView fx:id="ys1_0" disable="true" fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true" styleClass="borderOnHover">
+                                                      <ImageView fx:id="ys1_0" disable="true" fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true" rotate="270.0" styleClass="borderOnHover">
                                                          <image>
                                                             <Image url="@../images/pawns/yellowStudent.png" />
                                                          </image>
@@ -2659,7 +2670,7 @@
                                                             <Insets left="10.0" top="7.0" />
                                                          </VBox.margin>
                                                       </ImageView>
-                                                      <ImageView fx:id="ys0_0" disable="true" fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true" styleClass="borderOnHover">
+                                                      <ImageView fx:id="ys0_0" disable="true" fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true" rotate="270.0" styleClass="borderOnHover">
                                                          <image>
                                                             <Image url="@../images/pawns/yellowStudent.png" />
                                                          </image>
@@ -2680,7 +2691,7 @@
                                                 </VBox>
                                                 <VBox fx:id="dgPink" accessibleRole="BUTTON" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseClicked="#colorOnClick" prefHeight="480.0" prefWidth="60.0" styleClass="diningRoom" StackPane.alignment="CENTER_RIGHT">
                                                    <children>
-                                                      <ImageView fx:id="ps9_0" disable="true" fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true" styleClass="borderOnHover">
+                                                      <ImageView fx:id="ps9_0" disable="true" fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true" rotate="270.0" styleClass="borderOnHover">
                                                          <image>
                                                             <Image url="@../images/pawns/pinkStudent.png" />
                                                          </image>
@@ -2691,7 +2702,7 @@
                                                             <Insets left="10.0" />
                                                          </VBox.margin>
                                                       </ImageView>
-                                                      <ImageView fx:id="ps8_0" disable="true" fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true" styleClass="borderOnHover">
+                                                      <ImageView fx:id="ps8_0" disable="true" fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true" rotate="270.0" styleClass="borderOnHover">
                                                          <image>
                                                             <Image url="@../images/pawns/pinkStudent.png" />
                                                          </image>
@@ -2702,7 +2713,7 @@
                                                             <Insets left="10.0" top="7.0" />
                                                          </VBox.margin>
                                                       </ImageView>
-                                                      <ImageView fx:id="ps7_0" disable="true" fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true" styleClass="borderOnHover">
+                                                      <ImageView fx:id="ps7_0" disable="true" fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true" rotate="270.0" styleClass="borderOnHover">
                                                          <image>
                                                             <Image url="@../images/pawns/pinkStudent.png" />
                                                          </image>
@@ -2713,7 +2724,7 @@
                                                             <Insets left="10.0" top="7.0" />
                                                          </VBox.margin>
                                                       </ImageView>
-                                                      <ImageView fx:id="ps6_0" disable="true" fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true" styleClass="borderOnHover">
+                                                      <ImageView fx:id="ps6_0" disable="true" fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true" rotate="270.0" styleClass="borderOnHover">
                                                          <image>
                                                             <Image url="@../images/pawns/pinkStudent.png" />
                                                          </image>
@@ -2724,7 +2735,7 @@
                                                             <Insets left="10.0" top="7.0" />
                                                          </VBox.margin>
                                                       </ImageView>
-                                                      <ImageView fx:id="ps5_0" disable="true" fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true" styleClass="borderOnHover">
+                                                      <ImageView fx:id="ps5_0" disable="true" fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true" rotate="270.0" styleClass="borderOnHover">
                                                          <image>
                                                             <Image url="@../images/pawns/pinkStudent.png" />
                                                          </image>
@@ -2735,7 +2746,7 @@
                                                             <Insets left="10.0" top="7.0" />
                                                          </VBox.margin>
                                                       </ImageView>
-                                                      <ImageView fx:id="ps4_0" disable="true" fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true" styleClass="borderOnHover">
+                                                      <ImageView fx:id="ps4_0" disable="true" fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true" rotate="270.0" styleClass="borderOnHover">
                                                          <image>
                                                             <Image url="@../images/pawns/pinkStudent.png" />
                                                          </image>
@@ -2746,7 +2757,7 @@
                                                             <Insets left="10.0" top="7.0" />
                                                          </VBox.margin>
                                                       </ImageView>
-                                                      <ImageView fx:id="ps3_0" disable="true" fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true" styleClass="borderOnHover">
+                                                      <ImageView fx:id="ps3_0" disable="true" fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true" rotate="270.0" styleClass="borderOnHover">
                                                          <image>
                                                             <Image url="@../images/pawns/pinkStudent.png" />
                                                          </image>
@@ -2757,7 +2768,7 @@
                                                             <Insets left="10.0" top="7.0" />
                                                          </VBox.margin>
                                                       </ImageView>
-                                                      <ImageView fx:id="ps2_0" disable="true" fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true" styleClass="borderOnHover">
+                                                      <ImageView fx:id="ps2_0" disable="true" fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true" rotate="270.0" styleClass="borderOnHover">
                                                          <image>
                                                             <Image url="@../images/pawns/pinkStudent.png" />
                                                          </image>
@@ -2768,7 +2779,7 @@
                                                             <Insets left="10.0" top="7.0" />
                                                          </VBox.margin>
                                                       </ImageView>
-                                                      <ImageView fx:id="ps1_0" disable="true" fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true" styleClass="borderOnHover">
+                                                      <ImageView fx:id="ps1_0" disable="true" fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true" rotate="270.0" styleClass="borderOnHover">
                                                          <image>
                                                             <Image url="@../images/pawns/pinkStudent.png" />
                                                          </image>
@@ -2779,7 +2790,7 @@
                                                             <Insets left="10.0" top="7.0" />
                                                          </VBox.margin>
                                                       </ImageView>
-                                                      <ImageView fx:id="ps0_0" disable="true" fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true" styleClass="borderOnHover">
+                                                      <ImageView fx:id="ps0_0" disable="true" fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true" rotate="270.0" styleClass="borderOnHover">
                                                          <image>
                                                             <Image url="@../images/pawns/pinkStudent.png" />
                                                          </image>
@@ -2800,7 +2811,7 @@
                                                 </VBox>
                                                 <VBox fx:id="dgBlue" accessibleRole="BUTTON" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseClicked="#colorOnClick" prefHeight="480.0" prefWidth="60.0" styleClass="diningRoom" StackPane.alignment="CENTER_RIGHT">
                                                    <children>
-                                                      <ImageView fx:id="bs9_0" disable="true" fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true" styleClass="borderOnHover" translateY="-8.0">
+                                                      <ImageView fx:id="bs9_0" disable="true" fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true" rotate="270.0" styleClass="borderOnHover" translateY="-8.0">
                                                          <image>
                                                             <Image url="@../images/pawns/blueStudent.png" />
                                                          </image>
@@ -2811,7 +2822,7 @@
                                                             <Insets left="10.0" top="7.0" />
                                                          </VBox.margin>
                                                       </ImageView>
-                                                      <ImageView fx:id="bs8_0" disable="true" fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true" styleClass="borderOnHover">
+                                                      <ImageView fx:id="bs8_0" disable="true" fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true" rotate="270.0" styleClass="borderOnHover">
                                                          <image>
                                                             <Image url="@../images/pawns/blueStudent.png" />
                                                          </image>
@@ -2822,7 +2833,7 @@
                                                             <Insets left="10.0" />
                                                          </VBox.margin>
                                                       </ImageView>
-                                                      <ImageView fx:id="bs7_0" disable="true" fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true" styleClass="borderOnHover">
+                                                      <ImageView fx:id="bs7_0" disable="true" fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true" rotate="270.0" styleClass="borderOnHover">
                                                          <image>
                                                             <Image url="@../images/pawns/blueStudent.png" />
                                                          </image>
@@ -2833,7 +2844,7 @@
                                                             <Insets left="10.0" top="7.0" />
                                                          </VBox.margin>
                                                       </ImageView>
-                                                      <ImageView fx:id="bs6_0" disable="true" fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true" styleClass="borderOnHover">
+                                                      <ImageView fx:id="bs6_0" disable="true" fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true" rotate="270.0" styleClass="borderOnHover">
                                                          <image>
                                                             <Image url="@../images/pawns/blueStudent.png" />
                                                          </image>
@@ -2844,7 +2855,7 @@
                                                             <Insets left="10.0" top="7.0" />
                                                          </VBox.margin>
                                                       </ImageView>
-                                                      <ImageView fx:id="bs5_0" disable="true" fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true" styleClass="borderOnHover">
+                                                      <ImageView fx:id="bs5_0" disable="true" fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true" rotate="270.0" styleClass="borderOnHover">
                                                          <image>
                                                             <Image url="@../images/pawns/blueStudent.png" />
                                                          </image>
@@ -2855,7 +2866,7 @@
                                                             <Insets left="10.0" top="7.0" />
                                                          </VBox.margin>
                                                       </ImageView>
-                                                      <ImageView fx:id="bs4_0" disable="true" fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true" styleClass="borderOnHover">
+                                                      <ImageView fx:id="bs4_0" disable="true" fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true" rotate="270.0" styleClass="borderOnHover">
                                                          <image>
                                                             <Image url="@../images/pawns/blueStudent.png" />
                                                          </image>
@@ -2866,7 +2877,7 @@
                                                             <Insets left="10.0" top="7.0" />
                                                          </VBox.margin>
                                                       </ImageView>
-                                                      <ImageView fx:id="bs3_0" disable="true" fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true" styleClass="borderOnHover">
+                                                      <ImageView fx:id="bs3_0" disable="true" fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true" rotate="270.0" styleClass="borderOnHover">
                                                          <image>
                                                             <Image url="@../images/pawns/blueStudent.png" />
                                                          </image>
@@ -2877,7 +2888,7 @@
                                                             <Insets left="10.0" top="7.0" />
                                                          </VBox.margin>
                                                       </ImageView>
-                                                      <ImageView fx:id="bs2_0" disable="true" fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true" styleClass="borderOnHover">
+                                                      <ImageView fx:id="bs2_0" disable="true" fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true" rotate="270.0" styleClass="borderOnHover">
                                                          <image>
                                                             <Image url="@../images/pawns/blueStudent.png" />
                                                          </image>
@@ -2888,7 +2899,7 @@
                                                             <Insets left="10.0" top="7.0" />
                                                          </VBox.margin>
                                                       </ImageView>
-                                                      <ImageView fx:id="bs1_0" disable="true" fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true" styleClass="borderOnHover">
+                                                      <ImageView fx:id="bs1_0" disable="true" fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true" rotate="270.0" styleClass="borderOnHover">
                                                          <image>
                                                             <Image url="@../images/pawns/blueStudent.png" />
                                                          </image>
@@ -2899,7 +2910,7 @@
                                                             <Insets left="10.0" top="7.0" />
                                                          </VBox.margin>
                                                       </ImageView>
-                                                      <ImageView fx:id="bs0_0" disable="true" fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true" styleClass="borderOnHover">
+                                                      <ImageView fx:id="bs0_0" disable="true" fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true" rotate="270.0" styleClass="borderOnHover">
                                                          <image>
                                                             <Image url="@../images/pawns/blueStudent.png" />
                                                          </image>
@@ -2951,7 +2962,7 @@
                                                    </StackPane>
                                                          <StackPane fx:id="studentEntrance0" accessibleRole="BUTTON" onMouseClicked="#entranceStudentOnClick" prefHeight="88.0" prefWidth="97.0" styleClass="borderOnHover" GridPane.columnIndex="1">
                                                    <children>
-                                                                 <ImageView fx:id="se0_0" fitHeight="44.0" fitWidth="44.0" pickOnBounds="true" preserveRatio="true">
+                                                                 <ImageView fx:id="se0_0" fitHeight="44.0" fitWidth="44.0" pickOnBounds="true" preserveRatio="true" rotate="270.0">
                                                                      <image>
                                                                          <Image url="@../images/pawns/greenStudent.png" />
                                                                      </image>
@@ -2969,7 +2980,7 @@
                                                          </StackPane>
                                                          <StackPane fx:id="studentEntrance2" accessibleRole="BUTTON" layoutX="10.0" layoutY="10.0" onMouseClicked="#entranceStudentOnClick" prefHeight="88.0" prefWidth="97.0" styleClass="borderOnHover" GridPane.columnIndex="2">
                                                              <children>
-                                                                 <ImageView fx:id="se2_0" fitHeight="44.0" fitWidth="44.0" pickOnBounds="true" preserveRatio="true">
+                                                                 <ImageView fx:id="se2_0" fitHeight="44.0" fitWidth="44.0" pickOnBounds="true" preserveRatio="true" rotate="270.0">
                                                                      <image>
                                                                          <Image url="@../images/pawns/greenStudent.png" />
                                                                      </image>
@@ -2984,7 +2995,7 @@
                                                          </StackPane>
                                                          <StackPane fx:id="studentEntrance4" accessibleRole="BUTTON" onMouseClicked="#entranceStudentOnClick" prefHeight="150.0" prefWidth="200.0" styleClass="borderOnHover" GridPane.columnIndex="3">
                                                              <children>
-                                                                 <ImageView fx:id="se4_0" fitHeight="44.0" fitWidth="44.0" pickOnBounds="true" preserveRatio="true">
+                                                                 <ImageView fx:id="se4_0" fitHeight="44.0" fitWidth="44.0" pickOnBounds="true" preserveRatio="true" rotate="270.0">
                                                                      <image>
                                                                          <Image url="@../images/pawns/greenStudent.png" />
                                                                      </image>
@@ -2999,7 +3010,7 @@
                                                          </StackPane>
                                                          <StackPane fx:id="studentEntrance6" accessibleRole="BUTTON" onMouseClicked="#entranceStudentOnClick" prefHeight="150.0" prefWidth="200.0" styleClass="borderOnHover" GridPane.columnIndex="4">
                                                              <children>
-                                                                 <ImageView fx:id="se6_0" fitHeight="44.0" fitWidth="44.0" pickOnBounds="true" preserveRatio="true">
+                                                                 <ImageView fx:id="se6_0" fitHeight="44.0" fitWidth="44.0" pickOnBounds="true" preserveRatio="true" rotate="270.0">
                                                                      <image>
                                                                          <Image url="@../images/pawns/greenStudent.png" />
                                                                      </image>
@@ -3014,7 +3025,7 @@
                                                          </StackPane>
                                                          <StackPane fx:id="studentEntrance8" accessibleRole="BUTTON" onMouseClicked="#entranceStudentOnClick" prefHeight="150.0" prefWidth="200.0" styleClass="borderOnHover" GridPane.columnIndex="5">
                                                              <children>
-                                                                 <ImageView fx:id="se8_0" fitHeight="44.0" fitWidth="44.0" pickOnBounds="true" preserveRatio="true">
+                                                                 <ImageView fx:id="se8_0" fitHeight="44.0" fitWidth="44.0" pickOnBounds="true" preserveRatio="true" rotate="270.0">
                                                                      <image>
                                                                          <Image url="@../images/pawns/greenStudent.png" />
                                                                      </image>
@@ -3029,7 +3040,7 @@
                                                          </StackPane>
                                                          <StackPane fx:id="studentEntrance1" accessibleRole="BUTTON" onMouseClicked="#entranceStudentOnClick" prefHeight="150.0" prefWidth="200.0" styleClass="borderOnHover" GridPane.columnIndex="2" GridPane.rowIndex="1">
                                                              <children>
-                                                                 <ImageView fx:id="se1_0" fitHeight="44.0" fitWidth="44.0" pickOnBounds="true" preserveRatio="true">
+                                                                 <ImageView fx:id="se1_0" fitHeight="44.0" fitWidth="44.0" pickOnBounds="true" preserveRatio="true" rotate="270.0">
                                                                      <image>
                                                                          <Image url="@../images/pawns/greenStudent.png" />
                                                                      </image>
@@ -3044,7 +3055,7 @@
                                                          </StackPane>
                                                          <StackPane fx:id="studentEntrance3" accessibleRole="BUTTON" onMouseClicked="#entranceStudentOnClick" prefHeight="150.0" prefWidth="200.0" styleClass="borderOnHover" GridPane.columnIndex="3" GridPane.rowIndex="1">
                                                              <children>
-                                                                 <ImageView fx:id="se3_0" fitHeight="44.0" fitWidth="44.0" pickOnBounds="true" preserveRatio="true">
+                                                                 <ImageView fx:id="se3_0" fitHeight="44.0" fitWidth="44.0" pickOnBounds="true" preserveRatio="true" rotate="270.0">
                                                                      <image>
                                                                          <Image url="@../images/pawns/greenStudent.png" />
                                                                      </image>
@@ -3059,7 +3070,7 @@
                                                          </StackPane>
                                                          <StackPane fx:id="studentEntrance5" accessibleRole="BUTTON" onMouseClicked="#entranceStudentOnClick" prefHeight="150.0" prefWidth="200.0" styleClass="borderOnHover" GridPane.columnIndex="4" GridPane.rowIndex="1">
                                                              <children>
-                                                                 <ImageView fx:id="se5_0" fitHeight="44.0" fitWidth="44.0" pickOnBounds="true" preserveRatio="true">
+                                                                 <ImageView fx:id="se5_0" fitHeight="44.0" fitWidth="44.0" pickOnBounds="true" preserveRatio="true" rotate="270.0">
                                                                      <image>
                                                                          <Image url="@../images/pawns/greenStudent.png" />
                                                                      </image>
@@ -3074,7 +3085,7 @@
                                                          </StackPane>
                                                          <StackPane fx:id="studentEntrance7" accessibleRole="BUTTON" onMouseClicked="#entranceStudentOnClick" prefHeight="150.0" prefWidth="200.0" styleClass="borderOnHover" GridPane.columnIndex="5" GridPane.rowIndex="1">
                                                              <children>
-                                                                 <ImageView fx:id="se7_0" fitHeight="44.0" fitWidth="44.0" pickOnBounds="true" preserveRatio="true">
+                                                                 <ImageView fx:id="se7_0" fitHeight="44.0" fitWidth="44.0" pickOnBounds="true" preserveRatio="true" rotate="270.0">
                                                                      <image>
                                                                          <Image url="@../images/pawns/greenStudent.png" />
                                                                      </image>

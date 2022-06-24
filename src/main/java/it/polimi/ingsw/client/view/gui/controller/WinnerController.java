@@ -2,6 +2,7 @@ package it.polimi.ingsw.client.view.gui.controller;
 
 import it.polimi.ingsw.client.view.gui.ViewGUI;
 import it.polimi.ingsw.model.ThinModel;
+import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.scene.text.Text;
 
@@ -17,7 +18,7 @@ public class WinnerController implements GUIController {
     @FXML
     private void exitGame() {
         gui.playPopEffect();
-
+        Platform.exit();
     }
 
     @Override

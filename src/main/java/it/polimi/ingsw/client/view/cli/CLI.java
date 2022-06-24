@@ -21,7 +21,6 @@ public class CLI {
     private final List<String[][]> islands = new ArrayList<>();
     private final List<String[][]> clouds = new ArrayList<>();
     private final List<Boolean> islandsLinkedToNext = new ArrayList<>();
-
     private final String[][] characterCardTest;
     private final String[][] assistantCardTest;
     private final List<CharacterCard> characterCards = new ArrayList<>();
@@ -30,12 +29,7 @@ public class CLI {
     private final String[][] lastPlayedAssistantCardsContainer;
     private final int playersNumber;
     private int boardCoins;
-
     private final List<String> nicknames;
-
-    /*
-    private ArrayList<AssistantCardContent> = new ArrayList<>();
-    */
 
 
     public CLI(List<String> nicknames, List<Integer> coins) {
@@ -78,6 +72,10 @@ public class CLI {
 
     }
 
+    /**
+     * Setter of the coins on the game board
+     * @param boardCoins
+     */
     public void setBoardCoins(int boardCoins) {
         this.boardCoins = boardCoins;
     }
