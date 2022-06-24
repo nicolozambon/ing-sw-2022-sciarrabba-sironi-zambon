@@ -16,7 +16,9 @@ The final version includes:
 * Source code of the implementation;
 * Source code of unity tests.
 
-## Implemented Functionalities
+## Implemented functionalities
+
+### Main functionalities
 | Functionality                    | Status |
 |:---------------------------------|:------:|
 | Basic rules                      |   ✅    |
@@ -24,6 +26,12 @@ The final version includes:
 | Socket                           |   ✅    |
 | CLI _(Command Line Interface)_   |   ✅    |
 | GUI _(Graphical User Interface)_ |   ✅    |
+
+### Advanced functionalities
+| Functionality      | Status |
+|:-------------------|:------:|
+| Simultaneous games |   ✅    |
+| Persistence        |   ✅    |
 
 #### Legend
 ⛔ Not Implemented &nbsp;&nbsp;&nbsp;&nbsp; ✅ Implemented
