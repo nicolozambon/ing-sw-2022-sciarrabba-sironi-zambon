@@ -22,8 +22,8 @@ The final version includes:
 | Basic rules                      |   ✅    |
 | Complete rules                   |   ✅    |
 | Socket                           |   ✅    |
-| CLI (_Command Line Interface_)   |   ✅    |
-| GUI (_Graphical User Interface_) |   ✅    |
+| CLI _(Command Line Interface)_   |   ✅    |
+| GUI _(Graphical User Interface)_ |   ✅    |
 
 #### Legend
 ⛔ Not Implemented &nbsp;&nbsp;&nbsp;&nbsp; ✅ Implemented
