@@ -14,6 +14,7 @@ import javafx.application.Platform;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.image.Image;
 import javafx.scene.layout.StackPane;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
@@ -71,11 +72,13 @@ public class ViewGUI extends Application implements RequestListenableInterface, 
         this.errorStage.setScene(sceneMap.get("errorScene"));
         this.errorStage.setResizable(false);
         this.errorStage.setTitle("Error");
+        this.errorStage.getIcons().add(new Image("/assets/gui/images/utils/errorIcon.png"));
 
         this.stage = stage;
         this.stage.setScene(currentScene);
         this.stage.setTitle("Eriantys");
         this.stage.setResizable(false);
+        this.stage.getIcons().add(new Image("/assets/gui/images/utils/desktop_icon.png"));
         this.stage.show();
     }
 
