@@ -56,12 +56,15 @@ public class CLI {
     }};
 
 
+    /**
+     * CLI constructor
+     * @param nicknames list of nicknames
+     * @param coins list of coins in the same order of the nicknames
+     */
     public CLI(List<String> nicknames, List<Integer> coins) {
         this.playersNumber = nicknames.size();
-
         final AssetsLoader loader = new AssetsLoader();
         this.islandLinkers = loader.getIslandLinkers();
-
         this.nicknames = nicknames;
 
         // Create schools
@@ -91,9 +94,7 @@ public class CLI {
         this.characterCardTest = loader.getCharacterCardContainer();
         this.assistantCardTest = loader.getAssistantCardContainer();
         this.lastPlayedAssistantCardsContainer = loader.getLastPlayedAssistantCards();
-
         this.boardCoins = 0;
-
     }
 
     /**
@@ -112,6 +113,14 @@ public class CLI {
         this.islandsLinkedToNext.set(islandId, true);
     }
 
+    /**
+     * Return the position of the first available placeholder of a given type in a given board
+     * @param board matrix of interests (could be the entire game-board)
+     * @param identifier ID of the pawn
+     * @param color color of the pawn
+     * @param isAllColorsArea refers to a zone where the pawn has not a defined color
+     * @return map containing a starting row and a starting column
+     */
     private Map<String, Integer> getFirstAvailablePlaceholder(String[][] board, String identifier, Object color, boolean isAllColorsArea) {
         Map<String, Integer> placeholder = new HashMap<>();
         String colorRow = "0";
@@ -143,6 +152,13 @@ public class CLI {
         return null;
     }
 
+    /**
+     * Add a pawn to a given board
+     * @param board matrix of interests (could be the entire game-board)
+     * @param color color of the pawn
+     * @param identifier ID of the pawn
+     * @param isAllColorsArea refers to a zone where the pawn has not a defined color
+     */
     private void addPawnToBoard(String[][] board, Object color, String identifier, boolean isAllColorsArea) {
         Map<String, Integer> placeholder = null;
         if (!(color instanceof Color) && !(color instanceof TowerColor)) {
@@ -160,29 +176,45 @@ public class CLI {
             board[i][j+2] = "";
 
         } else {
-            System.out.println("ERROR. There is no space for a new pawn. (Identifier=" + identifier + ")."); // To be removed --> new Exception
-
-            //TODO: handle exception
+            System.out.println("ERROR. There is no space for a new pawn. (Identifier=" + identifier + ").");
         }
     }
 
+    /**
+     * Return a board given a list and an ID
+     * @param id the ID of the board
+     * @param boardList the list of boards
+     * @return the requested board
+     */
     private String[][] findBoardBy(int id, List<String[][]> boardList) {
         return boardList.get(id);
     }
 
+    /**
+     * Add a CharacterCard to the CLI
+     * @param card the CharacterCard to be added
+     */
     protected void addCharacterCard(CharacterCard card) {
         this.characterCards.add(card);
     }
 
+    /**
+     * Add an AssistantCard to the CLI
+     * @param card the AssistantCard to be added
+     */
     protected void addAssistantCard(AssistantCard card) {
         this.assistantCards.add(card);
     }
 
+    /**
+     * Add the last played AssistantCard to the CLI
+     * @param card the AssistantCard to be added
+     */
     protected void addLastPlayedAssistantCard(AssistantCard card) {
         this.lastPlayedAssistantCards.add(card);
     }
 
-    // SCHOOLS METHODS
+
     protected void addStudentToSchoolDiningRoom(int id, Color color) {
         String[][] board = this.findBoardBy(id, this.schools);
         this.addPawnToBoard(board, color, "S", false);
@@ -199,14 +231,6 @@ public class CLI {
         String[][] board = this.findBoardBy(id, this.schools);
         this.addPawnToBoard(board, color, "T", false);
     }
-
-    // ISLANDS METHODS
-    /*
-    protected void addStudentToIsland(int id, Color color) {
-        String[][] board = this.findBoardBy(id, this.islands);
-        this.addPawnToBoard(board, color, "S", false);
-    }
-    */
 
     protected void addStudentsToIsland(int id, Color color, int amount) {
         String[][] board = this.findBoardBy(id, this.islands);
