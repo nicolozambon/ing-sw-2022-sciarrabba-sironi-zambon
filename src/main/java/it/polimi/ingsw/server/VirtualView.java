@@ -9,11 +9,28 @@ import it.polimi.ingsw.listeners.RequestListener;
 
 import java.lang.reflect.InvocationTargetException;
 
+/**
+ * Representation of the views on the server side, send the correct AnswerEvent to each client
+ */
 public class VirtualView implements RequestListener, RequestListenableInterface, AnswerListener {
 
+    /**
+     * GameHandler to be used by VirtualView
+     * @see GameHandler
+     */
     private final GameHandler gameHandler;
+
+    /**
+     * RequestListenable that will handle all RequestListener
+     * @see RequestListenable
+     * @see RequestListener
+     */
     private final RequestListenable requestListenable;
 
+    /**
+     * Constructor VirtualView, instantiate the VirtualView for the given GameHandler
+     * @param gameHandler GameHandler to be linked to the VirtualView
+     */
     public VirtualView(GameHandler gameHandler) {
         this.gameHandler = gameHandler;
         this.requestListenable = new RequestListenable();

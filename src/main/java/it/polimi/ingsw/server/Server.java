@@ -12,20 +12,48 @@ import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
+/**
+ * Server class, handling first client connection, lobby functionality, matches creation and unexpected client
+ * disconnection
+ */
 public class Server {
 
+    /**
+     * Port number to be used by the Server
+     */
     private static final int port = 1337;
 
+    /**
+     * Queue of ConnectionHandler, before acceptance
+     * @see ConnectionHandler
+     */
     private final Queue<ConnectionHandler> queue;
-    private final List<GameHandler> games;
+
+    /**
+     * Map of nicknames and ConnectionHandler of that player
+     * @see ConnectionHandler
+     */
     private final Map<String, ConnectionHandler> players;
 
     /**
-     * Number of players for the match being built.
+     * List of GameHandler, includes all games hosted by the Server
+     * @see GameHandler
+     */
+    private final List<GameHandler> games;
+
+    /**
+     * Number of players of the game
      */
     private int numPlayers = -1;
+
+    /**
+     * Boolean flag to set the game to complete rules or simple rules
+     */
     private boolean completeRule = true;
 
+    /**
+     * Server constructor, initialize all private attributes and create if not exists 'saves' folder
+     */
     public Server(){
         this.queue = new ArrayDeque<>();
         this.players = new ConcurrentHashMap<>();
@@ -33,6 +61,10 @@ public class Server {
         new File("./saves").mkdirs();
     }
 
+    /**
+     * Main method for server
+     * @param args no arguments needed
+     */
     public static void main(String[] args) {
         try {
             new Server().startServer();
@@ -41,6 +73,10 @@ public class Server {
         }
     }
 
+    /**
+     * Starts Server on specified port, begin to accept client connections
+     * @throws IOException if server can't accept the client
+     */
     public void startServer() throws IOException {
 
         ExecutorService connectionThreadPool = Executors.newCachedThreadPool();
@@ -55,7 +91,9 @@ public class Server {
         System.out.println("Server socket ready on port: " +  serverSocket.getLocalPort());
         System.out.println("Server socket ready on IP: " + serverSocket.getInetAddress().getHostAddress());
 
+        //start a thread to handling the lobby
         connectionThreadPool.submit(this::lobby);
+
         while (true) {
             try {
                 Socket socket = serverSocket.accept();
@@ -73,8 +111,14 @@ public class Server {
         serverSocket.close();
     }
 
+    /**
+     * Enqueues each client connection after it received the nickname, check if nickname is valid and then add it to the
+     * queue
+     * @param connectionHandler ConnectionHandler of the client who has set nickname
+     * @see ConnectionHandler
+     */
     public void enqueuePlayer(ConnectionHandler connectionHandler) {
-        if (isNicknameUnique(connectionHandler)) {
+        if (isNicknameValid(connectionHandler)) {
             connectionHandler.send(new AnswerEvent("set_nickname", connectionHandler.getNickname()));
             synchronized (queue) {
                 this.queue.add(connectionHandler);
@@ -84,12 +128,16 @@ public class Server {
         }
     }
 
+    /**
+     * Handles different client and put it in a lobby, ready to start the game
+     */
     private void lobby() {
         ConnectionHandler connectionHandler;
         List<String> first_playerOption = new ArrayList<>(List.of("firstPlayer"));
         ExecutorService gameThreadPool = Executors.newCachedThreadPool();
         while (true) {
 
+            //Check if there is client ready to join a game
             while (queue.isEmpty()) {
                 try {
                     synchronized (queue) {
@@ -100,13 +148,16 @@ public class Server {
                 }
             }
 
+            //Add client to the game
             synchronized (queue) {
                 connectionHandler = queue.remove();
             }
-
-            players.put(connectionHandler.getNickname(), connectionHandler);
+            synchronized (players) {
+                players.put(connectionHandler.getNickname(), connectionHandler);
+            }
             System.out.println("added player to a game");
 
+            //Ask the first client with how many players the game will be
             if (players.size() == 1) {
                 numPlayers = -1;
                 connectionHandler.send(new AnswerEvent("options", first_playerOption));
@@ -122,8 +173,10 @@ public class Server {
                 connectionHandler.send(new AnswerEvent("wait"));
             }
 
+            //Send to each client who is in the lobby
             players.values().forEach(c -> c.send(new AnswerEvent("lobby", players.keySet().stream().toList())));
 
+            //Start the game once the lobby is full
             if (players.size() == numPlayers) {
                 GameHandler game = new GameHandler(players, completeRule);
                 gameThreadPool.submit(game);
@@ -141,7 +194,12 @@ public class Server {
 
     }
 
-    private boolean isNicknameUnique(ConnectionHandler connectionHandler) {
+    /**
+     * Checks whether the nickname is valid
+     * @param connectionHandler ConnectionHandler to the client which has set a nickname
+     * @return true if the nickname is valid, false otherwise
+     */
+    private boolean isNicknameValid(ConnectionHandler connectionHandler) {
         if (connectionHandler.getNickname() == null) return false;
 
         if (connectionHandler.getNickname().length() > 12) {
@@ -153,9 +211,11 @@ public class Server {
             return false;
         }
 
-        if (players.containsKey(connectionHandler.getNickname())) {
-            connectionHandler.send(new AnswerEvent("error", "Nickname already taken!"));
-            return false;
+        synchronized (players) {
+            if (players.containsKey(connectionHandler.getNickname())) {
+                connectionHandler.send(new AnswerEvent("error", "Nickname already taken!"));
+                return false;
+            }
         }
 
         synchronized (games) {
@@ -169,6 +229,12 @@ public class Server {
         return true;
     }
 
+    /**
+     * Sets game with first player's preferences
+     * @param num number of players for the game
+     * @param completeRule true if the game has complete rules, false otherwise
+     * @throws WrongSetupException if the number of players is not allowed
+     */
     public synchronized void firstPlayerSetup(int num, int completeRule) throws WrongSetupException {
         if ((num != 2 && num != 3) || (completeRule != 1 && completeRule != 0)) {
             throw new WrongSetupException();
@@ -179,6 +245,10 @@ public class Server {
         }
     }
 
+    /**
+     * Closes the connection for client who has finished the match
+     * @param connectionHandler ConnectionHandler of the client who has finished the match
+     */
     protected void endGame(ConnectionHandler connectionHandler) {
 
         synchronized (games) {
@@ -189,10 +259,17 @@ public class Server {
                     currentGame = game;
                 }
             }
+
+            //Removing tha game from games if all players have received and command
             if (currentGame != null && currentGame.getConnections().isEmpty()) games.remove(currentGame);
         }
     }
 
+    /**
+     * Closes the connection for client who has unexpectedly disconnected and every other clients in the same lobby or
+     * match
+     * @param connectionHandler ConnectionHandler of the client who has unexpectedly disconnected
+     */
     protected void unexpectedDisconnection(ConnectionHandler connectionHandler) {
         System.out.println("removing connection");
         synchronized (queue) {
@@ -220,6 +297,10 @@ public class Server {
         }
     }
 
+    /**
+     * Stops client's ConnectionHandler
+     * @param connectionHandler ConnectionHandler of the client who has to stop
+     */
     private void stopConnection(ConnectionHandler connectionHandler) {
         connectionHandler.send(new AnswerEvent("stop", "A client has disconnected, closing the game"));
         connectionHandler.stopConnection();
