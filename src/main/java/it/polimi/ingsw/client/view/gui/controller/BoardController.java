@@ -344,14 +344,14 @@ public class BoardController implements GUIController {
         int island = Integer.parseInt(islandNode.getId().substring(6));
         if (sourceNode != null) {
             if (sourceNode.getId().matches("mn[0-9][0-1]?")) { //Regex expression
+                //Calculate the correct number of steps if islands are united
                 int mn = Integer.parseInt(sourceNode.getId().substring(2));
-                while (model.isIslandLinkedNext(mn)) {
-                    mn++;
-                }
-                while (model.isIslandLinkedPrev(island)) {
-                    island--;
-                }
                 int steps = (island - mn + 12) % 12;
+                for (int i = 0; i < (island - mn + 12) % 12; i++) {
+                    if (model.isIslandLinkedNext((mn + i) % 12)) {
+                        steps--;
+                    }
+                }
                 this.gui.fireRequest(new RequestEvent("moveMotherNature", this.gui.getId(), steps));
             } else if (sourceNode.getId().matches("studentEntrance[0-8]")) { //Regex expression
                 int student = Integer.parseInt(sourceNode.getId().substring(sourceNode.getId().length() - 1));
