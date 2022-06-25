@@ -1,6 +1,6 @@
 # Eriantys Board Game - Software Engineering Project
 
-<img src="https://raw.githubusercontent.com/nicolozambon/ing-sw-2022-sciarrabba-sironi-zambon/master/src/main/resources/assets/gui/images/Eriantys_Scatola.png?token=GHSAT0AAAAAABV6XEHJJKE2UVVMDDL6PEGCYVV22XA" width="190" align="right" />
+<img src="https://github.com/nicolozambon/ing-sw-2022-sciarrabba-sironi-zambon/blob/master/src/main/resources/assets/gui/images/Eriantys_Scatola.png?raw=true" width="190" align="right" />
 
 Eriantys Board Game is the final test of **"Software Engineering"**, course of **"Computer Science Engineering"** held at Politecnico di Milano (2021/2022).
 
