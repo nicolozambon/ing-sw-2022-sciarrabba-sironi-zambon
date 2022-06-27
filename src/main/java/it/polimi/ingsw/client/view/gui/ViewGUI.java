@@ -29,42 +29,112 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+/**
+ * ViewGUI Main Class, start, setup and Stage Handling
+ */
 public class ViewGUI extends Application implements RequestListenableInterface, AnswerListener {
-
+    /**
+     * ClientConnection associated to the client
+     */
     private ClientConnection clientConnection  = null;
 
+    /**
+     * Listenable for request sending and receiving
+     */
     private final RequestListenable requestListenable;
 
+    /**
+     * Maps the GUI's Controller for each scene
+     */
     private final Map<String, GUIController> controllerMap;
+
+    /**
+     * Maps the GUI's scenes to their name
+     */
     private final Map<String, Scene> sceneMap;
 
+    /**
+     * Stage of the GUI
+     */
     private Stage stage;
+
+    /**
+     * Stage for error alerts
+     */
     private Stage errorStage;
+
+    /**
+     * currentScene loaded and displayed in stage
+     */
     private Scene currentScene;
+
+    /**
+     * Current controller used
+     */
     private GUIController currentController;
 
+    /**
+     * ID of the GUI (View)
+     */
     private int id = -1;
+
+    /**
+     * Player's Nickname
+     */
     private String nickname;
+
+    /**
+     * ThinModel instance, representation of the model for the view
+     */
     private ThinModel model;
+
+    /**
+     * Available options
+     */
     private List<String> options;
 
+    /**
+     * Media for the in-game music
+     */
     public Media soundtrack;
+
+    /**
+     * Media for the click sound effect
+     */
     public Media clickEffect;
+
+    /**
+     * MediaPlayer for the in-game music
+     */
     public MediaPlayer mediaPlayer;
 
+    /**
+     * MediaPlayer for the click sound effect
+     */
     public MediaPlayer mediaPlayerEffect;
 
+    /**
+     * ViewGUI Constructor
+     */
     public ViewGUI() {
         sceneMap = new HashMap<>();
         controllerMap = new HashMap<>();
         requestListenable =new RequestListenable();
     }
 
+    /**
+     * Method that launches the GUI and loads the font as a resource
+     */
     public void startGUI() {
         Font.loadFonts(getClass().getResource("/assets/gui/fonts/Avenir_Next_Condensed.ttc").toExternalForm(), 16);
         launch();
     }
 
+    /**
+     * Start and initialize the main stage and error stage
+     * @param stage main stage
+     * @throws IOException if there is an error in loading the icon's images
+     */
     @Override
     public void start(Stage stage) throws IOException {
         setup();
@@ -84,6 +154,10 @@ public class ViewGUI extends Application implements RequestListenableInterface, 
         this.stage.setAlwaysOnTop(false);
     }
 
+    /**
+     * Setup of the scenes, mapped and loaded the corresponding .fxml. Initializes the MediaPlayers and sets currentScene and
+     * currentController for the startMenu scene
+     */
     public void setup() {
         List<String> fxmlScenes = new ArrayList<>(List.of("startMenuScene", "lobbyScene", "errorScene", "boardScene", "winnerScene"));
         FXMLLoader loader;
@@ -106,10 +180,18 @@ public class ViewGUI extends Application implements RequestListenableInterface, 
         currentController = controllerMap.get("startMenuScene");
     }
 
+    /**
+     * @return all available scenes
+     */
     public HashMap<String, Scene> getScenes() {
         return new HashMap<>(this.sceneMap);
     }
 
+    /**
+     * Connects the GUI to the Server, initializing clientConnection
+     * @param ip server's IP Address
+     * @param nickname nickname chosen by the player
+     */
     public void connect(String ip, String nickname) {
         try {
             if (clientConnection == null ) {
@@ -130,6 +212,10 @@ public class ViewGUI extends Application implements RequestListenableInterface, 
 
     }
 
+    /**
+     * Change the currentScene in this.stage
+     * @param sceneName
+     */
     public void changeScene(String sceneName) {
         currentController = controllerMap.get(sceneName);
         currentScene = sceneMap.get(sceneName);
@@ -140,55 +226,92 @@ public class ViewGUI extends Application implements RequestListenableInterface, 
         }
     }
 
+    /**
+     * Setup of the MediaPlayers and Media loading
+     */
     private void initMusicPlayers() {
         this.soundtrack = new Media(getClass().getResource("/assets/gui/music/track.mp3").toExternalForm());
         this.mediaPlayer = new MediaPlayer(this.soundtrack);
         this.clickEffect = new Media(getClass().getResource("/assets/gui/music/pop.mp3").toExternalForm());
         this.mediaPlayerEffect = new MediaPlayer(this.clickEffect);
     }
+
+    /**
+     * Start the in-game soundtrack, and set it to repeat
+     */
     private void music() {
         mediaPlayer.setVolume(40);
         mediaPlayer.setAutoPlay(true);
         mediaPlayer.setCycleCount(MediaPlayer.INDEFINITE);
     }
 
+    /**
+     * Play the click sound effect
+     */
     public void playPopEffect() {
         mediaPlayerEffect.setVolume(50);
         mediaPlayerEffect.seek(mediaPlayerEffect.getStartTime());
         mediaPlayerEffect.play();
     }
 
-
+    /**
+     * @return the nickname associated with this GUI
+     */
     public String getNickname() {
         return nickname;
     }
 
+    /**
+     * @return this GUI's ID
+     */
     public int getId() {
         return id;
     }
 
+    /**
+     * @return ThinModel representation of the model that this GUI holds
+     */
     public ThinModel getModel() {
         return model;
     }
 
+    /**
+     * @return the currently displayed stage
+     */
     public Stage getStage() {
         return stage;
     }
 
+    /**
+     * @return the Error Stage
+     */
     public Stage getErrorStage() {
         return errorStage;
     }
 
+    /**
+     * Adds the specified requestListener object
+    * @param requestListener to add
+     * @see RequestListenable
+     */
     @Override
     public void addRequestListener(RequestListener requestListener) {
         this.requestListenable.addRequestListener(requestListener);
     }
 
+    /**
+     * Removes the specified requestListener from the requestListenable list
+     * @param requestListener to remove
+     */
     @Override
     public void removeRequestListener(RequestListener requestListener) {
         this.requestListenable.removeRequestListener(requestListener);
     }
 
+    /**
+     * Fires a new request Event incoming from the GUI's choices to the server
+     * @param requestEvent the event requested
+     */
     @Override
     public synchronized void fireRequest(RequestEvent requestEvent) {
         try {
@@ -198,6 +321,10 @@ public class ViewGUI extends Application implements RequestListenableInterface, 
         }
     }
 
+    /**
+     * Provides all actions to be taken upon receiving an answerEvent, given its type
+     * @param answerEvent received event
+     */
     @Override
     public synchronized void onAnswerEvent(AnswerEvent answerEvent) {
         Platform.runLater(() -> {
@@ -272,15 +399,24 @@ public class ViewGUI extends Application implements RequestListenableInterface, 
         });
     }
 
+    /**
+     * @return all available options that can be taken
+     */
     public List<String> getOptions() {
         return new ArrayList<>(options);
     }
 
+    /**
+     * Stops the GUI if the clientConnection is valid
+     */
     @Override
     public void stop() {
         if (clientConnection != null) clientConnection.stopClient();
     }
 
+    /**
+     * Closes the application entirely
+     */
     private void exitGame() {
         Platform.exit();
     }
