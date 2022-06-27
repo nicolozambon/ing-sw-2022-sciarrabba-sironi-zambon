@@ -51,6 +51,11 @@ public class VirtualView implements RequestListener, RequestListenableInterface,
         this.requestListenable.fireRequest(requestEvent);
     }
 
+    /**
+     * Forwards the received RequestEvent to the RequestListeners
+     * @param requestEvent The RequestEvent received from the RequestListenable
+     * @throws IllegalAccessException if the RequestListener cannot perform the request
+     */
     @Override
     public synchronized void onRequestEvent(RequestEvent requestEvent) throws IllegalAccessException {
         try {
@@ -65,6 +70,10 @@ public class VirtualView implements RequestListener, RequestListenableInterface,
 
     }
 
+    /**
+     * Sends the AnswerEvent to the correct client
+     * @param answerEvent The AnswerEvent received from the AnswerListenable
+     */
     @Override
     public void onAnswerEvent(AnswerEvent answerEvent) {
         switch (answerEvent.getPropertyName()) {
