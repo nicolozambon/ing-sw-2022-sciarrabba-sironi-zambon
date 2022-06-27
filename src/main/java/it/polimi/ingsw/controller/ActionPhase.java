@@ -10,9 +10,9 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-
-//Class ActionPhase keep track of action for the player
-
+/**
+ * Handling of Action Phase of the turn of the player
+ */
 public class ActionPhase {
     /**
      * Current Model, state of the game

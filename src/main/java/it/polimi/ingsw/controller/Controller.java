@@ -20,34 +20,42 @@ import java.util.stream.Collectors;
  * Controller class for the Model
  */
 public class Controller implements RequestListener {
+
     /**
      * Model, state of the game
      */
     private transient Model model;
+
     /**
      * Number of students that can be moved in a round
      */
     private final int numStudentToMove;
+
     /**
      * Wizards List for player choice at the start of the game
      */
     private final List<Wizard> wizards;
+
     /**
      * Players that have yet to play the round
      */
     private List<Player> playersToPlay;
+
     /**
      * Players that have already played this round
      */
     private List<Player> playersHavePlayed;
+
     /**
      * Planning Phase for this round
      */
     private PlanningPhase planning;
+
     /**
      * Action Phase for this round
      */
     private ActionPhase action;
+
     /**
      * Has the player ended his actions
      */
@@ -372,14 +380,14 @@ public class Controller implements RequestListener {
     }
 
     /**
-     * @return playersHavePlayed new ArrayList<Player>
+     * @return playersHavePlayed new List of Player
      */
     public List<Player> getPlayersHavePlayed() {
         return new ArrayList<>(playersHavePlayed);
     }
 
     /**
-     * @return playersToPlay new ArrayList<Player>
+     * @return playersToPlay new List of Player
      */
     public List<Player> getPlayersToPlay() {
         return new ArrayList<>(playersToPlay);
