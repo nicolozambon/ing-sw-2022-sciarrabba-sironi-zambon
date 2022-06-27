@@ -31,11 +31,11 @@ public class HandlerSerializer implements JsonSerializer<Handler> {
     }
 
     /**
-     *
+     * Custom serialize method following Gson specification
      * @param handler Handler to be serialized
      * @param type the type of the object to be serialized
      * @param jsonSerializationContext the context of JSON serializer
-     * @return
+     * @return JsonElement for serialization of Handler
      */
     @Override
     public JsonElement serialize(Handler handler, Type type, JsonSerializationContext jsonSerializationContext) {

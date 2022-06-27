@@ -32,13 +32,12 @@ public class HandlerDeserializer implements JsonDeserializer<Handler> {
     }
 
     /**
-     *
-     *
+     * Custom deserialize method following Gson specification
      * @param jsonElement JsonElement to be deserialized
      * @param type the type of the object to be deserialized
      * @param jsonDeserializationContext the context of JSON deserialize
-     * @return
-     * @throws JsonParseException
+     * @return Handler deserialized from the json
+     * @throws JsonParseException if there is error in parsing the json
      */
     @Override
     public Handler deserialize(JsonElement jsonElement, Type type, JsonDeserializationContext jsonDeserializationContext) throws JsonParseException {

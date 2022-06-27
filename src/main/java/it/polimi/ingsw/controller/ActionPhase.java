@@ -20,7 +20,7 @@ public class ActionPhase {
     private final Map<String, Integer> callableMethod;
 
 
-    public ActionPhase(Player currentPlayer, int numOfStudentToMove, Model model) {
+    protected ActionPhase(Player currentPlayer, int numOfStudentToMove, Model model) {
         this.currentPlayer = currentPlayer;
         this.model = model;
 
@@ -37,7 +37,7 @@ public class ActionPhase {
         else this.callableMethod.put("playCharacterCard", 0);
     }
 
-    public void playCharacterCard(int choice) throws NotEnoughCoinsException, CardException {
+    protected void playCharacterCard(int choice) throws NotEnoughCoinsException, CardException {
         if (callableMethod.get("playCharacterCard") > 0) {
             CharacterCard card = this.model.playCharacterCard(this.currentPlayer.getId(), choice);
             callableMethod.put("playCharacterCard", callableMethod.get("playCharacterCard") - 1);
@@ -49,21 +49,21 @@ public class ActionPhase {
         }
     }
 
-    public void moveStudentToDiningRoom(int choice) throws InvalidActionException {
+    protected void moveStudentToDiningRoom(int choice) throws InvalidActionException {
         if(callableMethod.get("moveStudentToDiningRoom") > 0) {
             this.model.moveStudentToDiningRoom(this.currentPlayer.getId(), choice);
             moveStudentCounter();
         }
     }
 
-    public void moveStudentToIsland(int studentChoice, int islandChoice) throws InvalidActionException {
+    protected void moveStudentToIsland(int studentChoice, int islandChoice) throws InvalidActionException {
         if(callableMethod.get("moveStudentToIsland") > 0) {
             this.model.moveStudentToIsland(this.currentPlayer.getId(), studentChoice, islandChoice);
             moveStudentCounter();
         }
     }
 
-    public void moveMotherNature(int stepsChoice) throws MotherNatureStepsException {
+    protected void moveMotherNature(int stepsChoice) throws MotherNatureStepsException {
         if(callableMethod.get("moveMotherNature") > 0) {
             this.model.moveMotherNature(this.currentPlayer.getId(), stepsChoice);
             callableMethod.put("moveMotherNature", callableMethod.get("moveMotherNature") - 1);
@@ -74,7 +74,7 @@ public class ActionPhase {
         }
     }
 
-    public void takeStudentsFromCloud(int choice) throws CloudException {
+    protected void takeStudentsFromCloud(int choice) throws CloudException {
         if(callableMethod.get("takeStudentsFromCloud") > 0) {
             this.model.takeStudentsFromCloud(this.currentPlayer.getId(), choice);
             callableMethod.put("takeStudentsFromCloud", callableMethod.get("takeStudentsFromCloud") - 1);
@@ -84,20 +84,20 @@ public class ActionPhase {
         }
     }
 
-    public void extraAction(int ... values) throws Exception {
+    protected void extraAction(int ... values) throws Exception {
         if(callableMethod.get("extraAction") > 0) {
             this.model.extraAction(this.currentPlayer.getId(), values);
             callableMethod.put("extraAction", callableMethod.get("extraAction") - 1);
         }
     }
 
-    public void endAction(){
+    protected void endAction(){
         if(callableMethod.get("endAction") > 0) {
             callableMethod.replaceAll((s, v) -> 0);
         }
     }
 
-    public boolean isEnded() {
+    protected boolean isEnded() {
       for (String s : callableMethod.keySet()) {
           if (callableMethod.get(s) > 0) return false;
       }
@@ -113,7 +113,7 @@ public class ActionPhase {
         }
     }
 
-    public List<String> getOptions() {
+    protected List<String> getOptions() {
         List<String> options = new ArrayList<>(callableMethod.entrySet().stream()
                                                         .filter(x -> x.getValue() > 0)
                                                         .map(Map.Entry::getKey).toList());

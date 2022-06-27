@@ -7,8 +7,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Event fired by the Model to the AnswerListeners, with only one attribute
+ * Event fired by an AnswerListenable to AnswerListeners
  * @see it.polimi.ingsw.listeners.AnswerListener
+ * @see it.polimi.ingsw.listenables.AnswerListenable
  */
 public class AnswerEvent {
 
@@ -92,7 +93,7 @@ public class AnswerEvent {
     }
 
     /**
-     *
+     * Constructor for an event with a number as attribute
      * @param propertyName name of the property that has changed
      * @param num number to be sent with the event
      */

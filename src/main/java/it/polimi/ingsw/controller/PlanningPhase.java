@@ -24,7 +24,7 @@ public class PlanningPhase {
         }};
     }
 
-    public synchronized void playAssistantCard(int choice) throws CardException {
+    protected void playAssistantCard(int choice) throws CardException {
         if (callableMethod.get("playAssistantCard") > 0 && cardIsPlayable(choice)) {
             model.playAssistantCard(this.currentPlayer.getId(), choice);
             callableMethod.put("playAssistantCard", 0);
@@ -54,14 +54,14 @@ public class PlanningPhase {
         return !playedAssistantCard().contains(choice) || !existsNotPlayedCard();
     }
 
-    public boolean isEnded() {
+    protected boolean isEnded() {
         for (String s : callableMethod.keySet()) {
             if (callableMethod.get(s) > 0) return false;
         }
         return true;
     }
 
-    public List<String> getOptions() {
+    protected List<String> getOptions() {
         return new ArrayList<>(callableMethod.entrySet().stream()
                 .filter(x -> x.getValue() > 0)
                 .map(Map.Entry::getKey).toList());

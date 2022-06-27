@@ -186,9 +186,9 @@ public class ModelBuilder {
         } else {
             List<CharacterCard> characterCards = new ArrayList<>();
             Random generator = new Random();
-            int index1 = 0;
-            int index2 = 0;
-            int index3 = 0;
+            int index1;
+            int index2;
+            int index3;
 
             index1 = generator.nextInt(characters.size());
 

@@ -66,38 +66,38 @@ public class ClientConnection implements AnswerListenableInterface, RequestListe
     @Override
     public void run() {
         executorService.submit(this::pingFunction);
-        while (active) {
-            read();
-        }
+        read();
         stopClient();
     }
 
     private void read() {
-        try {
-            AnswerEvent answer = gson.fromJson(inputStream.readUTF(), AnswerEvent.class);
-            if (answer.getPropertyName().equals("ping")) {
-                send(new RequestEvent("ping", 0));
-                ping = true;
-                synchronized (this) {
-                    notifyAll();
+        while (active) {
+            try {
+                AnswerEvent answer = gson.fromJson(inputStream.readUTF(), AnswerEvent.class);
+                if (answer.getPropertyName().equals("ping")) {
+                    send(new RequestEvent("ping", 0));
+                    ping = true;
+                    synchronized (this) {
+                        notifyAll();
+                    }
+                } else {
+                    executorService.submit(() -> this.fireAnswer(answer));
                 }
-            } else {
-                executorService.submit(() -> this.fireAnswer(answer));
+                sleep(50);
+            } catch (EOFException e) {
+                stopClient();
+            } catch (IOException e) {
+                fireAnswer(new AnswerEvent("stop", "Server unreachable!"));
+                stopClient();
+            } catch (InterruptedException e) {
+                e.printStackTrace();
             }
-            sleep(50);
-        } catch (EOFException e) {
-            stopClient();
-        }catch (IOException e) {
-            fireAnswer(new AnswerEvent("stop", "Server unreachable!"));
-            stopClient();
-        } catch (InterruptedException e) {
-            e.printStackTrace();
         }
     }
 
-    private synchronized void send(RequestEvent request) {
+    private synchronized void send(RequestEvent requestEvent) {
         try {
-            outputStream.writeUTF(gson.toJson(request));
+            outputStream.writeUTF(gson.toJson(requestEvent));
             outputStream.flush();
         }catch(Exception e){
             e.printStackTrace();

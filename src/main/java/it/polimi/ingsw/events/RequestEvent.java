@@ -1,8 +1,9 @@
 package it.polimi.ingsw.events;
 
 /**
- * Event fired by the clients to the RequestListener, used to perform various action on the Model
+ * Event fired by a RequestListenable to RequestListeners
  * @see it.polimi.ingsw.listeners.RequestListener
+ * @see it.polimi.ingsw.listenables.RequestListenable
  */
 public class RequestEvent {
 

@@ -31,7 +31,7 @@ public class VirtualView implements RequestListener, RequestListenableInterface,
      * Constructor VirtualView, instantiate the VirtualView for the given GameHandler
      * @param gameHandler GameHandler to be linked to the VirtualView
      */
-    public VirtualView(GameHandler gameHandler) {
+    protected VirtualView(GameHandler gameHandler) {
         this.gameHandler = gameHandler;
         this.requestListenable = new RequestListenable();
     }
