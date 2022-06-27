@@ -55,7 +55,6 @@ public class CLI {
         this.put("n", "♟");
     }};
 
-
     /**
      * CLI constructor
      * @param nicknames list of nicknames
@@ -214,24 +213,52 @@ public class CLI {
         this.lastPlayedAssistantCards.add(card);
     }
 
-
+    /**
+     * Add a student of a given color to the school of a given ID
+     * @param id identifier of the school
+     * @param color color of the student
+     */
     protected void addStudentToSchoolDiningRoom(int id, Color color) {
         String[][] board = this.findBoardBy(id, this.schools);
         this.addPawnToBoard(board, color, "S", false);
     }
+
+    /**
+     * Add a student of a given color to the entrance of a school of a given ID
+     * @param id identifier of the school
+     * @param color color of the student
+     */
     protected void addStudentToSchoolEntrance(int id, Color color) {
         String[][] board = this.findBoardBy(id, this.schools);
         this.addPawnToBoard(board, color, "S", true);
     }
+
+    /**
+     * Add a professor of a given color to a school of a given ID
+     * @param id identifier of the school
+     * @param color color of the professor
+     */
     protected void addProfessorToSchool(int id, Color color) {
         String[][] board = this.findBoardBy(id, this.schools);
         this.addPawnToBoard(board, color, "P", false);
     }
+
+    /**
+     * Add a tower of a given color to a school of a given ID
+     * @param id identifier of the school
+     * @param color color of the tower
+     */
     protected void addTowerToSchool(int id, TowerColor color) {
         String[][] board = this.findBoardBy(id, this.schools);
         this.addPawnToBoard(board, color, "T", false);
     }
 
+    /**
+     * Add a given amount of students of a given color to an island of a given ID
+     * @param id identifier of the island
+     * @param color color of the student
+     * @param amount amount of students to be added
+     */
     protected void addStudentsToIsland(int id, Color color, int amount) {
         String[][] board = this.findBoardBy(id, this.islands);
         board = this.addStudentsCounterToIsland(board, color, amount);
@@ -239,21 +266,43 @@ public class CLI {
 
     }
 
+    /**
+     * Add mother nature to the island with a given ID
+     * @param id identifier of the island
+     */
     protected void addMotherNatureToIsland(int id) {
         String[][] board = this.findBoardBy(id, this.islands);
         this.addPawnToBoard(board, Color.RED, "N", false);
     }
+
+    /**
+     * Add a tower of a given color to an island of a given ID
+     * @param id identifier of the island
+     * @param color color of the tower
+     */
     protected void addTowerToIsland(int id, TowerColor color) {
         String[][] board = this.findBoardBy(id, this.islands);
         this.addPawnToBoard(board, color, "T", false);
     }
 
-    // CLOUDS METHODS
+    /**
+     * Add a student of a given color to a cloud of a given ID
+     * @param id identifier of the cloud
+     * @param color color of the student
+     */
     protected void addStudentToCloud(int id, Color color) {
         String[][] board = this.findBoardBy(id, this.clouds);
         this.addPawnToBoard(board, color, "S", true);
     }
 
+    /**
+     * Add a given string into a matrix replacing existing content
+     * @param board matrix of interest
+     * @param text text to be inserted
+     * @param offset_x x coordinate of the first letter of the text in matrix
+     * @param offset_y y coordinate of the first letter of the text in matrix
+     * @return updated matrix
+     */
     private String[][] writeTextInMatrix(String[][] board, String text, int offset_x, int offset_y) {
         board[offset_y][offset_x] = text;
         for (int i=offset_x+1; i<offset_x+text.length(); i++) {
@@ -262,6 +311,13 @@ public class CLI {
         return board;
     }
 
+    /**
+     * Add the counter of the students of a given color to the given island
+     * @param island island matrix
+     * @param color color of the students
+     * @param counter amount of the students of the given color
+     * @return updated matrix
+     */
     private String[][] addStudentsCounterToIsland(String[][] island, Color color, int counter) {
         String label = String.valueOf(counter);
         while (label.length() < 2) {
@@ -274,6 +330,12 @@ public class CLI {
         return island;
     }
 
+    /**
+     * Add the identifier of the island to a given island
+     * @param island island matrix
+     * @param id island number
+     * @return updated matrix
+     */
     private String[][] addNumberToIsland(String[][] island, int id) {
         String label = String.valueOf(id);
         while (label.length() < 2) {
@@ -285,6 +347,13 @@ public class CLI {
         return island;
     }
 
+    /**
+     * Add caption to a given school
+     * @param school school matrix
+     * @param nickname nickname to be added in the caption
+     * @param coins number of coins to be added in the caption
+     * @return updated matrix
+     */
     private String[][] addCaptionToSchool(String[][] school, String nickname, int coins) {
         String label = String.valueOf(coins);
         while (label.length() < 2) {
@@ -321,6 +390,11 @@ public class CLI {
         return school;
     }
 
+    /**
+     * Remove placeholders from a given board
+     * @param board matrix of interest
+     * @return updated matrix
+     */
     private String[][] removePlaceholdersFromBoard(String[][] board) {
         for (int i=0; i<board.length; i++) {
             for (int j=0; j<board[0].length; j++) {
@@ -332,6 +406,11 @@ public class CLI {
         return board;
     }
 
+    /**
+     * Convert the given board into a string
+     * @param board matrix of the board
+     * @return string representing the board
+     */
     private String boardMatrixToString(String[][] board) {
         StringBuilder builder = new StringBuilder();
         for (int i=0; i<board.length; i++) {
@@ -343,6 +422,11 @@ public class CLI {
         return builder.toString();
     }
 
+    /**
+     * Add CharacterCards to a given board
+     * @param board matrix of interest
+     * @return updated matrix
+     */
     private String[][] addCharacterCardsToBoard(String[][] board) {
         String cardTitle;
         String cardText;
@@ -398,6 +482,12 @@ public class CLI {
         return board;
     }
 
+    /**
+     * Prepare the board before it can be printed
+     * @param board matrix of interest
+     * @param removePlaceholders boolean choice
+     * @return string representing the board
+     */
     private String getPrintableBoard(String[][] board, boolean removePlaceholders) {
         if (removePlaceholders) {
             this.removePlaceholdersFromBoard(board);
@@ -406,6 +496,16 @@ public class CLI {
         return this.boardMatrixToString(board);
     }
 
+    /**
+     * Add the linkers between the islands
+     * @param set matrix containing all the islands
+     * @param disposition disposition matrix
+     * @param islandH height of the island
+     * @param islandW width of the island
+     * @param spaceH vertical space between the islands
+     * @param spaceW horizontal space between the islands
+     * @return updated matrix
+     */
     private String[][] addLinkersBetweenIslands(String[][] set, int[][] disposition, int islandH, int islandW, int spaceH, int spaceW) {
         String[][] linker = null;
         int linkerRowOnSet = 0;
