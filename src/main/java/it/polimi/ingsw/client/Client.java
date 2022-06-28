@@ -6,8 +6,15 @@ import it.polimi.ingsw.client.view.gui.ViewGUI;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
+/**
+ * Main Class for the client. Selects and starts the requested view
+ */
 public class Client {
 
+    /**
+     * Main for the client
+     * @param args arguments passed to the execution of the program
+     */
     public static void main(String[] args) {
         if (args.length > 0) {
             if (args[0].equals("-gui")) {
@@ -21,6 +28,9 @@ public class Client {
         }
     }
 
+    /**
+     * Asks the user to launch the CLI or the GUI
+     */
     public void startClient() {
         boolean check = true;
         while (check) {
