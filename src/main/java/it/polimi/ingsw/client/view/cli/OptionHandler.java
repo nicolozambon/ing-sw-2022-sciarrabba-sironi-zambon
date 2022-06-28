@@ -18,12 +18,34 @@ import java.util.Scanner;
 
 public class OptionHandler {
 
+    /**
+     * Map of selected options
+     */
     private final Map<String, String> optionSelected;
+
+    /**
+     * Lister of option
+     */
     private final OptionLister optionLister;
+
+    /**
+     * Standard input
+     */
     private final Scanner stdin;
+
+    /**
+     * Identifier of the player
+     */
     private int playerId;
+
+    /**
+     * OS identifier
+     */
     private final boolean isWindows;
 
+    /**
+     * Constructor of OptionHandler
+     */
     public OptionHandler() {
         this.playerId = -1;
         this.optionLister = new OptionLister();
@@ -34,10 +56,20 @@ public class OptionHandler {
         isWindows = System.getProperty("os.name").toLowerCase().contains("win");
     }
 
+    /**
+     * Setter of playerId
+     * @param playerId playerId
+     */
     public void setPlayerId(int playerId) {
         this.playerId = playerId;
     }
 
+    /**
+     * Getter of request event
+     * @param options list of options
+     * @return RequestEvent instance
+     * @throws InterruptedException raised on interruption
+     */
     public RequestEvent getRequestEvent(List<String> options) throws InterruptedException {
         if (options.size() > 0) {
             int choice = 1;
@@ -71,11 +103,16 @@ public class OptionHandler {
                     System.out.println("Not a possible choice, retry!");
                 }
             } while (choice > options.size() || choice < 1);
-
         }
         return null;
     }
 
+    /**
+     * Choose wizard
+     * @param option choice
+     * @return RequestEvent instance
+     * @throws InterruptedException raised on interruption
+     */
     private RequestEvent chooseWizard(String option) throws InterruptedException {
         int choice = -1;
         boolean error = true;
@@ -96,6 +133,12 @@ public class OptionHandler {
         return new RequestEvent("chooseWizard", this.playerId, choice);
     }
 
+    /**
+     * Two input handler
+     * @param option choice
+     * @return RequestEvent instance
+     * @throws InterruptedException raised on interruption
+     */
     private RequestEvent twoInputHandler(String option) throws InterruptedException {
         String[] input;
         int num1 = 0;
@@ -125,11 +168,23 @@ public class OptionHandler {
         return new RequestEvent(option, this.playerId, num1, num2);
     }
 
+    /**
+     * One input handler
+     * @param option choice
+     * @return RequestEvent instance
+     * @throws InterruptedException raised on interruption
+     */
     private RequestEvent oneInputHandler(String option) throws InterruptedException {
         int choice = inputNumber(this.optionSelected.get(option));
         return new RequestEvent(option, this.playerId, choice);
     }
 
+    /**
+     * Input number
+     * @param message string of message
+     * @return integer
+     * @throws InterruptedException raised on interruption
+     */
     private int inputNumber(String message) throws InterruptedException {
         boolean error = true;
         int choice = 0;
@@ -152,17 +207,33 @@ public class OptionHandler {
         return choice;
     }
 
+    /**
+     * No input handler
+     * @param option choice
+     * @return RequestEvent instance
+     */
     private RequestEvent noInputHandler(String option) {
         System.out.println(this.optionSelected.get(option));
         return new RequestEvent(option, this.playerId);
     }
 
+    /**
+     * Setter for the nickname
+     * @param option choice
+     * @return RequestEvent instance
+     */
     private RequestEvent setNickname(String option) {
         System.out.println(this.optionSelected.get(option));
         String nickname = stdin.nextLine();
         return new RequestEvent("nickname", this.playerId, nickname);
     }
 
+    /**
+     * Extra-action input handler
+     * @param option choice
+     * @return RequestEvent instance
+     * @throws InterruptedException raised on interruption
+     */
     private RequestEvent extraActionInputHandler(String option) throws InterruptedException {
         try {
             Method method = OptionHandler.class.getDeclaredMethod(option, String.class);
@@ -177,6 +248,12 @@ public class OptionHandler {
         return null;
     }
 
+    /**
+     * Input color
+     * @param option choice
+     * @return RequestEvent instance
+     * @throws InterruptedException raised on interruption
+     */
     private RequestEvent inputColor(String option) throws InterruptedException {
         boolean error = true;
         int choice = -1;
@@ -198,16 +275,34 @@ public class OptionHandler {
         return new RequestEvent(option, this.playerId, choice);
     }
 
+    /**
+     * Card 2
+     * @param option choice
+     * @return RequestEvent instance
+     * @throws InterruptedException raised on interruption
+     */
     private RequestEvent card2(String option) throws InterruptedException{
         RequestEvent requestEvent = oneInputHandler(option);
         return new RequestEvent("extraAction", this.playerId, requestEvent.getValues());
     }
 
+    /**
+     * Card 6
+     * @param option choice
+     * @return RequestEvent instance
+     * @throws InterruptedException raised on interruption
+     */
     private RequestEvent card6(String option) throws InterruptedException{
         RequestEvent requestEvent = inputColor(option);
         return new RequestEvent("extraAction", this.playerId, requestEvent.getValues());
     }
 
+    /**
+     * Card 7
+     * @param option choice
+     * @return RequestEvent instance
+     * @throws InterruptedException raised on interruption
+     */
     private RequestEvent card7(String option) throws InterruptedException{
         String[] input;
         int[] values = null;
@@ -238,6 +333,12 @@ public class OptionHandler {
         return new RequestEvent("extraAction", this.playerId, values);
     }
 
+    /**
+     * Card 8
+     * @param option choice
+     * @return RequestEvent instance
+     * @throws InterruptedException raised on interruption
+     */
     private RequestEvent card8(String option) throws InterruptedException{
         RequestEvent requestEvent = inputColor(option);
         return new RequestEvent("extraAction", this.playerId, requestEvent.getValues());
