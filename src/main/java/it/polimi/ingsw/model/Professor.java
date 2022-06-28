@@ -11,4 +11,5 @@ public class Professor extends Pawn<Color>{
     protected Professor (Color color){
         super(color);
     }
+
 }
