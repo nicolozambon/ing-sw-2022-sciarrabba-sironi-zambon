@@ -22,29 +22,99 @@ import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * GUI Controller for the Board Scene (main scene)
+ */
 public class BoardController implements GUIController {
 
+    /**
+     * Current GUI
+     */
     private ViewGUI gui;
+
+    /**
+     * Associated GUIBuilder
+     */
     private GUIBuilder guiBuilder = null;
 
+    /**
+     * Thin Model representation of the match
+     */
     private ThinModel model;
+
+    /**
+     * Lists all the possible in-game options
+     */
     private final OptionLister optionLister;
 
+    /**
+     * Wizard selector Pane
+     */
     @FXML private BorderPane wizardBorderPane;
+
+    /**
+     * AssistantCard selector Pane
+     */
     @FXML private BorderPane assistantBorderPane;
+
+    /**
+     * Dining Room button, clickable to move a student into the player's dining room
+     */
     @FXML private Button diningRoom;
+
+    /**
+     * Node for the Green Dining ROom
+     */
     @FXML private Node dgGreen;
+
+    /**
+     * Node for the Red Dining ROom
+     */
     @FXML private Node dgRed;
+
+    /**
+     * Node for the Yellow Dining ROom
+     */
     @FXML private Node dgYellow;
+
+    /**
+     * Node for the Blue Dining ROom
+     */
     @FXML private Node dgBlue;
+
+    /**
+     * Node for the Pink Dining ROom
+     */
     @FXML private Node dgPink;
+
+    /**
+     * Node for the End Action Button (displayed when appropriate, and it's the player's turn)
+     */
     @FXML private Node endActionButton;
+
+    /**
+     * Node for the CharacterCard selector opener
+     */
     @FXML private Node characterCardButton;
+
+    /**
+     * Text node. Messages to the user, regarding the possible actions
+     */
     @FXML private Text messages;
+
+    /**
+     * List of all the nodes for the player's school entrance
+     */
     private List<Node> entranceStudents;
 
+    /**
+     * Source node (start) of the click action
+     */
     private Node sourceNode;
 
+    /**
+     * Constructor for the class, creates a new OptionLister object
+     */
     public BoardController() {
         optionLister = new OptionLister();
     }
@@ -105,39 +175,66 @@ public class BoardController implements GUIController {
         guiBuilder.updateGUI(model);
     }
 
+    /**
+     * Sets the Wizard Selector Pane visible
+     */
     private void chooseWizard() {
         wizardBorderPane.setVisible(true);
     }
 
+    /**
+     * Sets the Assistant Card Selector Pane visible
+     */
     private void playAssistantCard() {
         assistantBorderPane.setVisible(true);
     }
 
+    /**
+     * Enables the pawns in the entrance for a click event
+     */
     private void moveStudentToDiningRoom() {
         entranceStudents.forEach(n -> n.setDisable(false));
     }
 
+    /**
+     * Enables the pawns in the entrance for a click event
+     */
     private void moveStudentToIsland() {
         entranceStudents.forEach(n -> n.setDisable(false));
     }
 
+    /**
+     * Enables the Mother Nature pawn for a click event
+     */
     private void moveMotherNature() {
         guiBuilder.getMotherNature(model.getMNPosition()).setDisable(false);
     }
 
+    /**
+     * Sets the CharacterCard Selector Pane visible
+     */
     private void playCharacterCard() {
         this.gui.getScenes().get("boardScene").lookup("#characterCardButton").setDisable(false);
     }
 
+    /**
+     * Enables the Clouds for a click event
+     */
     private void takeStudentsFromCloud() {
         guiBuilder.getClouds().forEach(n -> n.setDisable(false));
     }
 
+    /**
+     * Sets the End Action button visible and clickable
+     */
     private void endAction() {
         endActionButton.setDisable(false);
         endActionButton.setVisible(true);
     }
 
+    /**
+     * Sets the Text under the Character Card button after selecting the Character Card 2
+     */
     private void card2() {
         //Island
         Text text = (Text) this.gui.getScenes().get("boardScene").lookup("#characterCardText");
@@ -145,6 +242,9 @@ public class BoardController implements GUIController {
         characterCardButton.setDisable(false);
     }
 
+    /**
+     * Sets the Text under the Character Card button after selecting the Character Card 6
+     */
     private void card6() {
         //Color
         Text text = (Text) this.gui.getScenes().get("boardScene").lookup("#characterCardText");
@@ -152,6 +252,9 @@ public class BoardController implements GUIController {
         characterCardButton.setDisable(false);
     }
 
+    /**
+     * Sets the Text under the Character Card button after selecting the Character Card 7
+     */
     private void card7() {
         //Change student
         Text text = (Text) this.gui.getScenes().get("boardScene").lookup("#characterCardText");
@@ -159,6 +262,9 @@ public class BoardController implements GUIController {
         characterCardButton.setDisable(false);
     }
 
+    /**
+     * Sets the Text under the Character Card button after selecting the Character Card 8
+     */
     private void card8() {
         //Color
         Text text = (Text) this.gui.getScenes().get("boardScene").lookup("#characterCardText");
@@ -166,6 +272,9 @@ public class BoardController implements GUIController {
         characterCardButton.setDisable(false);
     }
 
+    /**
+     * Disables all pawns, making them unclickable
+     */
     private void disableAll() {
 
         //Disable mother nature
@@ -201,6 +310,10 @@ public class BoardController implements GUIController {
         dgRed.setDisable(true);
     }
 
+    /**
+     * Save the user's choice regarding the wizard, getting the selected one from the source of the click event
+     * @param event Click Event
+     */
     @FXML
     private void chooseWizard(Event event) {
         String id = ((Node) event.getSource()).getId();
@@ -210,6 +323,10 @@ public class BoardController implements GUIController {
         //System.out.println(Wizard.valueOf(id.toUpperCase()));
     }
 
+    /**
+     * Save the user's choice regarding the Assistant Card, getting the selected one from the source of the click event
+     * @param event Click Event
+     */
     @FXML
     private void chooseAssistantCard(Event event) {
         String id = ((Node) event.getSource()).getId();
@@ -220,6 +337,10 @@ public class BoardController implements GUIController {
         gui.playPopEffect();
     }
 
+    /**
+     * Save the user's choice regarding the Character Card, getting the selected one from the source of the click event
+     * @param event Click Event
+     */
     @FXML
     private void chooseCharacterCard (Event event) {
         if (sourceNode == null) {
@@ -231,6 +352,10 @@ public class BoardController implements GUIController {
         }
     }
 
+    /**
+     * Opens the Character Card Selector Pane
+     * @param event
+     */
     @FXML
     private void openCharacterCardSelector(Event event) {
         Text text = (Text) this.gui.getScenes().get("boardScene").lookup("#characterCardText");
@@ -269,12 +394,20 @@ public class BoardController implements GUIController {
         }
     }
 
+    /**
+     * Closes the Character Card Selector Pane, setting the visibility to false
+     */
     @FXML
     private void closeCharacterCardSelector () {
         gui.getStage().getScene().lookup("#characterBorderPane").setVisible(false);
         gui.playPopEffect();
     }
 
+    /**
+     * Specifies the behavior of the UI after a click on a student on the entrance. Sets enabled the dining room and the islands
+     * as destinations of the pawn
+     * @param event Click event on the student's pawn
+     */
     @FXML
     private void entranceStudentOnClick(Event event) {
         if (sourceNode == null) {
@@ -318,6 +451,11 @@ public class BoardController implements GUIController {
         }
     }
 
+    /**
+     * Specifies the behavior of the UI after a click on Mother Nature. Sets the islands as destination, adding
+     * the borderOnHover CSS Style to them
+     * @param event Click Event
+     */
     @FXML
     private void motherNatureOnClick(Event event) {
         sourceNode = ((Node)event.getSource());
@@ -331,6 +469,11 @@ public class BoardController implements GUIController {
         event.consume();
     }
 
+    /**
+     * Specifies the behavior of the UI after a selection of a cloud, getting the choice from the user based on the
+     * FX:ID of the source node of the event
+     * @param event Click event
+     */
     @FXML
     private void cloudOnClick(Event event) {
         Node cloud = (Node) event.getSource();
@@ -338,6 +481,15 @@ public class BoardController implements GUIController {
         this.gui.fireRequest(new RequestEvent("takeStudentsFromCloud", this.gui.getId(), position + 1));
     }
 
+    /**
+     * Specifies the behavior of the UI after a click on an island, registering the choice from the user based on
+     * the FX:ID of the source node of the event.
+     * If the source of the click event is a MotherNature pawn, then the method calculates if the number of steps
+     * are possible, considering if the islands are linked together.
+     * If the source of the click event is a student, a request to move the student is fired to the server.
+     * Graphical Style of the pawns involved in the event are changed accordingly
+     * @param event Click Event
+     */
     @FXML
     private void islandOnClick(Event event) {
         Node islandNode = (Node) event.getSource();
@@ -368,6 +520,10 @@ public class BoardController implements GUIController {
         }
     }
 
+    /**
+     * If the Source of the click event is valid, then a request is fired to move the student to the dining room to the server
+     * @param event Click event
+     */
     @FXML
     private void diningRoomOnClick(Event event) {
         if (sourceNode != null) {
@@ -378,6 +534,12 @@ public class BoardController implements GUIController {
         }
     }
 
+    /**
+     * Helper method for Character Card 6, 7, 8, that require the choice of a color for the action.
+     * if (sourceNode == null) branch handles cards 6, 8.
+     * else branch handles card 7, which requires a student and a color
+     * @param event Click Event
+     */
     @FXML
     private void colorOnClick(Event event) {
         if (sourceNode == null) {
@@ -395,11 +557,19 @@ public class BoardController implements GUIController {
         characterCardButton.getStyleClass().remove("selected");
     }
 
+    /**
+     * When the End Action button is pressed, a new request is fired ("endAction")
+     * @param event
+     */
     @FXML
     private void endActionOnClick(Event event) {
         this.gui.fireRequest(new RequestEvent("endAction", this.gui.getId()));
     }
 
+    /**
+     * Plays and pauses the soundtrack in-game music when the button is pressed, and the icon is changed accordingly
+     * @param event
+     */
     @FXML
     private void playStopMusic(Event event) {
         if (gui.mediaPlayer.getStatus() == MediaPlayer.Status.PLAYING) {
@@ -412,6 +582,9 @@ public class BoardController implements GUIController {
         }
     }
 
+    /**
+     * Quits the application
+     */
     @FXML
     private void exitGame(Event event) {
         Platform.exit();
