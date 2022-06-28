@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.Button?>
+<?import javafx.scene.Cursor?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.Pane?>
@@ -8,19 +8,22 @@
 <?import javafx.scene.text.Text?>
 <Pane prefHeight="363.0" prefWidth="596.0" styleClass="winnerBG" stylesheets="@../css/startScene.css" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="it.polimi.ingsw.client.view.gui.controller.WinnerController">
    <children>
-      <ImageView fitHeight="57.0" fitWidth="132.0" layoutX="234.0" layoutY="276.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView accessibleRole="BUTTON" fitHeight="57.0" fitWidth="132.0" layoutX="234.0" layoutY="276.0" onMouseClicked="#exitGame" pickOnBounds="true" preserveRatio="true" styleClass="onHover">
          <image>
             <Image url="@../images/buttons/normalBtn.png" />
          </image>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
       </ImageView>
-      <Button layoutX="229.0" layoutY="276.0" mnemonicParsing="false" onMouseClicked="#exitGame" prefHeight="57.0" prefWidth="138.0" style="-fx-background-color: transparent;" text="EXIT" textFill="WHITE">
-         <font>
-            <Font name="Avenir Next Condensed Bold" size="24.0" />
-         </font>
-      </Button>
       <Text id="errorMessage" fx:id="winnerText" disable="true" fill="WHITE" layoutX="148.0" layoutY="111.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Winner Message" textAlignment="CENTER" textOrigin="CENTER" wrappingWidth="300.0">
          <font>
             <Font name="Avenir Next Condensed Bold" size="40.0" />
+         </font>
+      </Text>
+      <Text disable="true" fill="WHITE" layoutX="275.0" layoutY="313.0" strokeType="OUTSIDE" strokeWidth="0.0" text="EXIT">
+         <font>
+            <Font size="24.0" />
          </font>
       </Text>
    </children>
