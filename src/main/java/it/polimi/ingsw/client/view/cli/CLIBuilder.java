@@ -13,13 +13,24 @@ import java.util.Map;
 
 public class CLIBuilder {
 
-    //Map from model-id to cli-id
+    /**
+     * Map from model-id to CLI-id
+     */
     private final Map<Integer, Integer> idMap;
 
+    /**
+     * Constructor of CLIBulider
+     */
     public CLIBuilder() {
         this.idMap = new HashMap<>();
     }
 
+    /**
+     * Build CLI
+     * @param model the ThinModel instance
+     * @param nickname nickname of the player
+     * @return CLI instance
+     */
     public CLI buildCLI(ThinModel model, String nickname) {
         List<String> nicknames = model.getNicknames();
         List<String> nicknamesCLI = new ArrayList<>();
@@ -50,6 +61,11 @@ public class CLIBuilder {
         return cli;
     }
 
+    /**
+     * Build island
+     * @param cli CLI instance
+     * @param model ThinModel instance
+     */
     private void buildIsland(CLI cli, ThinModel model) {
         for (int i = 0; i < model.getNumIslands(); i++) {
             Map<Color, Integer> studentsMap = model.getStudentOnIsland(i);
@@ -63,6 +79,11 @@ public class CLIBuilder {
 
     }
 
+    /**
+     * Build cloud
+     * @param cli CLI instance
+     * @param model ThinModel instance
+     */
     private void buildCloud(CLI cli, ThinModel model) {
         for (int i = 0; i < model.getNumClouds(); i++) {
             List<Color> students = model.getStudentOnCloud(i);
@@ -72,6 +93,11 @@ public class CLIBuilder {
         }
     }
 
+    /**
+     * Build CharacterCards
+     * @param cli CLI instance
+     * @param model ThinModel instance
+     */
     private void buildCharacterCards(CLI cli, ThinModel model) {
         if (model.isCompleteRule()) {
             List<CharacterCard> cards = model.getCharacterCards();
@@ -81,6 +107,11 @@ public class CLIBuilder {
         }
     }
 
+    /**
+     * Build school
+     * @param cli CLI instance
+     * @param model ThinModel instance
+     */
     private void buildSchool(CLI cli, ThinModel model) {
         for (Integer id : idMap.keySet()) {
             //AssistantCard
@@ -111,4 +142,5 @@ public class CLIBuilder {
             }
         }
     }
+
 }
