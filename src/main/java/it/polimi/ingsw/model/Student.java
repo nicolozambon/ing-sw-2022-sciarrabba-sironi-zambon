@@ -4,9 +4,9 @@ import it.polimi.ingsw.enums.Color;
 
 public class Student extends Pawn<Color>{
 
-    /** Student's constructor
-     *
-     * @param color Student's color
+    /**
+     * Constructor of Student
+     * @param color color
      */
     protected Student (Color color){
         super(color);
