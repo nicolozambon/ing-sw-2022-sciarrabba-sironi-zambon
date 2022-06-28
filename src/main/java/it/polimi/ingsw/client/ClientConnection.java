@@ -10,7 +10,6 @@ import it.polimi.ingsw.listeners.RequestListener;
 
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
-import java.io.EOFException;
 import java.io.IOException;
 import java.net.Socket;
 import java.util.concurrent.ExecutorService;
@@ -139,10 +138,8 @@ public class ClientConnection implements AnswerListenableInterface, RequestListe
                     executorService.submit(() -> this.fireAnswer(answer));
                 }
                 sleep(50);
-            } catch (EOFException e) {
-                stopClient();
             } catch (IOException e) {
-                fireAnswer(new AnswerEvent("stop", "Server unreachable!"));
+                fireAnswer(new AnswerEvent("stop", "An error occurred, quitting..."));
                 stopClient();
             } catch (InterruptedException e) {
                 e.printStackTrace();
