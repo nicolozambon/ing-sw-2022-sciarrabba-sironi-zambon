@@ -33,6 +33,7 @@ import java.util.Map;
  * ViewGUI Main Class, start, setup and Stage Handling
  */
 public class ViewGUI extends Application implements RequestListenableInterface, AnswerListener {
+
     /**
      * ClientConnection associated to the client
      */
@@ -213,8 +214,8 @@ public class ViewGUI extends Application implements RequestListenableInterface, 
     }
 
     /**
-     * Change the currentScene in this.stage
-     * @param sceneName
+     * Change the currentScene in the stage
+     * @param sceneName the scene name
      */
     public void changeScene(String sceneName) {
         currentController = controllerMap.get(sceneName);

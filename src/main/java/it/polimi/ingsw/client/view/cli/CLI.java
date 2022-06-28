@@ -27,7 +27,6 @@ public class CLI {
     private final List<AssistantCard> assistantCards = new ArrayList<>();
     private final List<AssistantCard> lastPlayedAssistantCards = new ArrayList<>();
     private final String[][] lastPlayedAssistantCardsContainer;
-    private final int playersNumber;
     private int boardCoins;
     private final List<String> nicknames;
     public static final String ANSI_RESET = "\u001B[0m";
@@ -61,7 +60,7 @@ public class CLI {
      * @param coins list of coins in the same order of the nicknames
      */
     public CLI(List<String> nicknames, List<Integer> coins) {
-        this.playersNumber = nicknames.size();
+        int playersNumber = nicknames.size();
         final AssetsLoader loader = new AssetsLoader();
         this.islandLinkers = loader.getIslandLinkers();
         this.nicknames = nicknames;
@@ -69,9 +68,9 @@ public class CLI {
         // Create schools
         boolean isMain = false;
         String[][] school;
-        for (int i=0; i<playersNumber; i++) {
+        for (int i = 0; i< playersNumber; i++) {
             school = loader.getSchool(isMain);
-            school = this.addCaptionToSchool(school, this.nicknames.get(i), coins.get(i));
+            this.addCaptionToSchool(school, this.nicknames.get(i), coins.get(i));
             this.schools.add(school);
             isMain = true;
         }
@@ -80,7 +79,7 @@ public class CLI {
         String[][] island;
         for (int i=1; i<=12; i++) {
             island = loader.getIsland();
-            island = this.addNumberToIsland(island, i);
+            this.addNumberToIsland(island, i);
             this.islands.add(island);
             this.islandsLinkedToNext.add(false);
         }
@@ -261,7 +260,7 @@ public class CLI {
      */
     protected void addStudentsToIsland(int id, Color color, int amount) {
         String[][] board = this.findBoardBy(id, this.islands);
-        board = this.addStudentsCounterToIsland(board, color, amount);
+        this.addStudentsCounterToIsland(board, color, amount);
         this.addPawnToBoard(board, color, "S", false);
 
     }
@@ -297,76 +296,73 @@ public class CLI {
 
     /**
      * Add a given string into a matrix replacing existing content
-     * @param board matrix of interest
-     * @param text text to be inserted
+     *
+     * @param board    matrix of interest
+     * @param text     text to be inserted
      * @param offset_x x coordinate of the first letter of the text in matrix
      * @param offset_y y coordinate of the first letter of the text in matrix
-     * @return updated matrix
      */
-    private String[][] writeTextInMatrix(String[][] board, String text, int offset_x, int offset_y) {
+    private void writeTextInMatrix(String[][] board, String text, int offset_x, int offset_y) {
         board[offset_y][offset_x] = text;
         for (int i=offset_x+1; i<offset_x+text.length(); i++) {
             board[offset_y][i] = "";
         }
-        return board;
     }
 
     /**
      * Add the counter of the students of a given color to the given island
-     * @param island island matrix
-     * @param color color of the students
+     *
+     * @param island  island matrix
+     * @param color   color of the students
      * @param counter amount of the students of the given color
-     * @return updated matrix
      */
-    private String[][] addStudentsCounterToIsland(String[][] island, Color color, int counter) {
-        String label = String.valueOf(counter);
+    private void addStudentsCounterToIsland(String[][] island, Color color, int counter) {
+        StringBuilder label = new StringBuilder(String.valueOf(counter));
         while (label.length() < 2) {
-            label = "0" + label;
+            label.insert(0, "0");
         }
-        label = "x" + label;
+        label.insert(0, "x");
         int offset_x = 5;
         int offset_y = positionMap.get(color) + 1;
-        island = this.writeTextInMatrix(island, label, offset_x, offset_y);
-        return island;
+        this.writeTextInMatrix(island, label.toString(), offset_x, offset_y);
     }
 
     /**
      * Add the identifier of the island to a given island
+     *
      * @param island island matrix
-     * @param id island number
-     * @return updated matrix
+     * @param id     island number
      */
-    private String[][] addNumberToIsland(String[][] island, int id) {
-        String label = String.valueOf(id);
+    private void addNumberToIsland(String[][] island, int id) {
+        StringBuilder label = new StringBuilder(String.valueOf(id));
         while (label.length() < 2) {
-            label = "0" + label;
+            label.insert(0, "0");
         }
         int offset_x = 18;
         int offset_y = 1;
-        island = this.writeTextInMatrix(island, label, offset_x, offset_y);
-        return island;
+        this.writeTextInMatrix(island, label.toString(), offset_x, offset_y);
     }
 
     /**
      * Add caption to a given school
-     * @param school school matrix
+     *
+     * @param school   school matrix
      * @param nickname nickname to be added in the caption
-     * @param coins number of coins to be added in the caption
-     * @return updated matrix
+     * @param coins    number of coins to be added in the caption
      */
-    private String[][] addCaptionToSchool(String[][] school, String nickname, int coins) {
-        String label = String.valueOf(coins);
+    private void addCaptionToSchool(String[][] school, String nickname, int coins) {
+        StringBuilder label = new StringBuilder(String.valueOf(coins));
         while (label.length() < 2) {
-            label = "0" + label;
+            label.insert(0, "0");
         }
-        label = "$:" + label;
+        label.insert(0, "$:");
         while (label.length() + nickname.length() < school[0].length - 6) {
-            label = " " + label;
+            label.insert(0, " ");
         }
-        label = nickname + label;
+        label.insert(0, nickname);
         int offset_x = 3;
         int offset_y = school.length - 2;
-        school = this.writeTextInMatrix(school, label, offset_x, offset_y);
+        this.writeTextInMatrix(school, label.toString(), offset_x, offset_y);
 
         // Add IDs to main-school entrance
         if(school[0].length > 70) {
@@ -376,7 +372,7 @@ public class CLI {
             for (int i = 0; i < 10; i++) {
                 if (i != 0) {
                     entranceId = i + " ";
-                    school = this.writeTextInMatrix(school, entranceId, offset_x, offset_y);
+                    this.writeTextInMatrix(school, entranceId, offset_x, offset_y);
                 }
                 if (offset_x < 10) {
                     offset_x += 12;
@@ -387,15 +383,14 @@ public class CLI {
             }
         }
 
-        return school;
     }
 
     /**
      * Remove placeholders from a given board
+     *
      * @param board matrix of interest
-     * @return updated matrix
      */
-    private String[][] removePlaceholdersFromBoard(String[][] board) {
+    private void removePlaceholdersFromBoard(String[][] board) {
         for (int i=0; i<board.length; i++) {
             for (int j=0; j<board[0].length; j++) {
                 if (board[i][j].length() == 1 && ((isLetter(board[i][j].charAt(0)) && Character.isUpperCase(board[i][j].charAt(0))) || isDigit(board[i][j].charAt(0)))) {
@@ -403,7 +398,6 @@ public class CLI {
                 }
             }
         }
-        return board;
     }
 
     /**
@@ -413,9 +407,9 @@ public class CLI {
      */
     private String boardMatrixToString(String[][] board) {
         StringBuilder builder = new StringBuilder();
-        for (int i=0; i<board.length; i++) {
-            for (int j=0; j<board[0].length; j++) {
-                builder.append(board[i][j]);
+        for (String[] strings : board) {
+            for (int j = 0; j < board[0].length; j++) {
+                builder.append(strings[j]);
             }
             builder.append("\n");
         }
@@ -424,39 +418,33 @@ public class CLI {
 
     /**
      * Add CharacterCards to a given board
+     *
      * @param board matrix of interest
-     * @return updated matrix
      */
-    private String[][] addCharacterCardsToBoard(String[][] board) {
+    private void addCharacterCardsToBoard(String[][] board) {
         String cardTitle;
         String cardText;
         int cardNumber = 0;
         int cardTextWidth = 18;
         int cardTextHeight = 13;
 
-        String id;
-        String coins;
+        StringBuilder id;
+        StringBuilder coins;
         if (this.characterCards.size() == 3) {
             for (int i = 0; i < board.length; i++) {
                 for (int j = 0; j < board[0].length; j++) {
                     if (Objects.equals(board[i][j], "$")) {
-                        id = String.valueOf(this.characterCards.get(cardNumber).getId());
-                        coins = String.valueOf(this.characterCards.get(cardNumber).getCoins());
+                        id = new StringBuilder(String.valueOf(this.characterCards.get(cardNumber).getId()));
+                        coins = new StringBuilder(String.valueOf(this.characterCards.get(cardNumber).getCoins()));
                         while (id.length() < 2) {
-                            id = "0" + id;
+                            id.insert(0, "0");
                         }
                         while (coins.length() < 2) {
-                            coins = "0" + coins;
+                            coins.insert(0, "0");
                         }
                         //cardTitle = "CARD:" + id + "   COINS:" + coins;
                         cardTitle = "CARD:" + id + "       $:" + coins;
                         this.writeTextInMatrix(board, cardTitle, j, i);
-                    /*
-                    for (int k=0; k<cardTitle.length(); k++) {
-                        board[i][j+k] = String.valueOf(cardTitle.charAt(k));
-                    }
-
-                     */
                         cardNumber++;
                         if (cardNumber > 2) cardNumber = 0;
                     }
@@ -479,37 +467,34 @@ public class CLI {
                 }
             }
         }
-        return board;
     }
 
     /**
      * Prepare the board before it can be printed
+     *
      * @param board matrix of interest
-     * @param removePlaceholders boolean choice
      * @return string representing the board
      */
-    private String getPrintableBoard(String[][] board, boolean removePlaceholders) {
-        if (removePlaceholders) {
-            this.removePlaceholdersFromBoard(board);
-        }
+    private String getPrintableBoard(String[][] board) {
+        this.removePlaceholdersFromBoard(board);
         this.addCharacterCardsToBoard(board);
         return this.boardMatrixToString(board);
     }
 
     /**
      * Add the linkers between the islands
-     * @param set matrix containing all the islands
+     *
+     * @param set         matrix containing all the islands
      * @param disposition disposition matrix
-     * @param islandH height of the island
-     * @param islandW width of the island
-     * @param spaceH vertical space between the islands
-     * @param spaceW horizontal space between the islands
-     * @return updated matrix
+     * @param islandH     height of the island
+     * @param islandW     width of the island
+     * @param spaceH      vertical space between the islands
+     * @param spaceW      horizontal space between the islands
      */
-    private String[][] addLinkersBetweenIslands(String[][] set, int[][] disposition, int islandH, int islandW, int spaceH, int spaceW) {
+    private void addLinkersBetweenIslands(String[][] set, int[][] disposition, int islandH, int islandW, int spaceH, int spaceW) {
         String[][] linker = null;
-        int linkerRowOnSet = 0;
-        int linkerColOnSet = 0;
+        int linkerRowOnSet;
+        int linkerColOnSet;
 
         for (int i=0; i<disposition.length; i++) {
             for (int j=0; j<disposition[i].length; j++) {
@@ -519,21 +504,19 @@ public class CLI {
                         int linkerBaseRowOnSet = 0;
                         int linkerBaseColOnSet = 0;
 
+                        int linkerBaseColOnSet_main = j * (islandW + spaceW) + islandW - 1;
+
                         if (i == 1 && j == 0) {
                             linker = islandLinkers.get("tl");
-                            linkerBaseRowOnSet = i * (islandH + spaceH) - (islandH + spaceH);
-                            linkerBaseColOnSet = j * (islandW + spaceW);
                         } else if (i == 0 && j == disposition[i].length-2) {
                             linker = islandLinkers.get("tr");
-                            linkerBaseRowOnSet = i * (islandH + spaceH);
-                            linkerBaseColOnSet = j * (islandW + spaceW) + islandW - 1;
+                            linkerBaseColOnSet = linkerBaseColOnSet_main;
                         } else if (i == disposition.length-1 && j == 1) {
                             linker = islandLinkers.get("bl");
                             linkerBaseRowOnSet = i * (islandH + spaceH) + islandH - 1 - (islandH + spaceH) + 2;
-                            linkerBaseColOnSet = j * (islandW + spaceW) - (islandW + spaceW);
                         } else if (i == disposition.length-2 && j == disposition[i].length-1) {
                             linker = islandLinkers.get("br");
-                            linkerBaseRowOnSet = i * (islandH + spaceH) + islandH - 1 + 2;
+                            linkerBaseRowOnSet = linkerBaseColOnSet_main + 2;
                             linkerBaseColOnSet = j * (islandW + spaceW) - spaceW - 1;
                         } else if (i == 0 || i == disposition.length-1) {
                             linker = islandLinkers.get("hr");
@@ -541,20 +524,20 @@ public class CLI {
                             if (i > disposition.length/2) {
                                 linkerBaseRowOnSet += 2;
                             }
-                            linkerBaseColOnSet = j * (islandW + spaceW) + islandW - 1;
+                            linkerBaseColOnSet = linkerBaseColOnSet_main;
                             if (i == disposition.length-1) {
                                 linkerBaseColOnSet -= (islandW + spaceW);
                             }
                         } else if (j == 0 || j == disposition[i].length-1) {
                             linker = islandLinkers.get("vr");
-                            linkerBaseRowOnSet = i * (islandH + spaceH) + islandH - 1;
+                            linkerBaseRowOnSet = linkerBaseColOnSet_main;
                             linkerBaseColOnSet = j * (islandW + spaceW);
                             if (j == 0) {
                                 linkerBaseRowOnSet -= (islandH + spaceH);
                             }
                         }
 
-                        for (int linkerRow=0; linkerRow<linker.length; linkerRow++) {
+                        for (int linkerRow = 0; linkerRow< Objects.requireNonNull(linker).length; linkerRow++) {
                             for (int linkerCol=0; linkerCol<linker[0].length; linkerCol++) {
                                 linkerRowOnSet = linkerBaseRowOnSet + linkerRow;
                                 linkerColOnSet = linkerBaseColOnSet + linkerCol;
@@ -566,25 +549,30 @@ public class CLI {
                 }
             }
         }
-        return set;
     }
 
-    private String[][] addCharacterCardsInIslandsSet(String[][] set, int[][] disposition) {
+    /**
+     * Add CharacterCards to the board of islands
+     *
+     * @param set         matrix of interest
+     * @param disposition disposition matrix of the islands
+     */
+    private void addCharacterCardsInIslandsSet(String[][] set, int[][] disposition) {
         if (this.characterCards.size() == 3) {
-            for (int i = 0; i < disposition.length; i++) {
-                for (int j = 0; j < disposition[i].length; j++) {
+            for (int[] ints : disposition) {
+                for (int anInt : ints) {
                     int cardRowOnSet;
                     int cardColOnSet;
                     int cardBaseRowOnSet = 8;
                     int cardBaseColOnSet = 0;
                     boolean printCard = false;
-                    if (disposition[i][j] == -1) {
+                    if (anInt == -1) {
                         cardBaseColOnSet = 24;
                         printCard = true;
-                    } else if (disposition[i][j] == -2) {
+                    } else if (anInt == -2) {
                         cardBaseColOnSet = 48;
                         printCard = true;
-                    } else if (disposition[i][j] == -3) {
+                    } else if (anInt == -3) {
                         cardBaseColOnSet = 72;
                         printCard = true;
                     }
@@ -602,10 +590,15 @@ public class CLI {
                 }
             }
         }
-        return set;
     }
 
-    private String[][] addCloudsToIslandsSet(String[][] set, int[][] disposition) {
+    /**
+     * Add clouds to the islands matrix
+     *
+     * @param set         matrix of interest
+     * @param disposition disposition matrix of the islands
+     */
+    private void addCloudsToIslandsSet(String[][] set, int[][] disposition) {
         int cloudH = this.clouds.get(0).length;
         int cloudW = this.clouds.get(0)[0].length;
         int cloudVerticalSpace = 1;
@@ -627,16 +620,16 @@ public class CLI {
                 }
             }
         }
-        for (int i=0; i<disposition.length; i++) {
-            for (int j=0; j<disposition[i].length; j++) {
+        for (int[] ints : disposition) {
+            for (int anInt : ints) {
                 int cloudRowOnSet;
                 int cloudColOnSet;
                 int cloudBaseRowOnSet = 8;
-                int cloudBaseColOnSet = 0;
-                if (disposition[i][j] == -5) {
+                int cloudBaseColOnSet;
+                if (anInt == -5) {
                     cloudBaseColOnSet = 96;
-                    for (int cloudRow=0; cloudRow<cloudsRectangle.length; cloudRow++) {
-                        for (int cloudCol=0; cloudCol<cloudsRectangle[0].length; cloudCol++) {
+                    for (int cloudRow = 0; cloudRow < cloudsRectangle.length; cloudRow++) {
+                        for (int cloudCol = 0; cloudCol < cloudsRectangle[0].length; cloudCol++) {
                             cloudRowOnSet = cloudBaseRowOnSet + cloudRow;
                             cloudColOnSet = cloudBaseColOnSet + cloudCol;
                             set[cloudRowOnSet][cloudColOnSet] = cloudsRectangle[cloudRow][cloudCol];
@@ -645,9 +638,12 @@ public class CLI {
                 }
             }
         }
-        return set;
     }
 
+    /**
+     * Build a matrix representing the set of islands
+     * @return generated matrix
+     */
     private String[][] buildSetOfIslands() {
         int[][] disposition = {
                 {110,   0,      1,      2,      3,      34},
@@ -704,7 +700,12 @@ public class CLI {
         return set;
     }
 
-    private String[][] addAssistantCardsDeckToGameBoard(String[][] board) {
+    /**
+     * Add deck of AssistantCards to the game-board
+     *
+     * @param board matrix of the game-board
+     */
+    private void addAssistantCardsDeckToGameBoard(String[][] board) {
         // Assistant card
         int cardRowOnSet;
         int cardColOnSet;
@@ -713,20 +714,20 @@ public class CLI {
         String[][] card = this.assistantCardTest;
         int offset = 0;
         int assistantCardIndex = 0;
-        String value;
-        String steps;
+        StringBuilder value;
+        StringBuilder steps;
 
         for (int cardRow=0; cardRow<card.length; cardRow++) {
             for (int cardCol=0; cardCol<card[0].length; cardCol++) {
                 if (Objects.equals(card[cardRow][cardCol], "^")) {
                     if (assistantCardIndex < this.assistantCards.size()) {
-                        value = String.valueOf(this.assistantCards.get(assistantCardIndex).getValue());
-                        steps = String.valueOf(this.assistantCards.get(assistantCardIndex).getSteps());
+                        value = new StringBuilder(String.valueOf(this.assistantCards.get(assistantCardIndex).getValue()));
+                        steps = new StringBuilder(String.valueOf(this.assistantCards.get(assistantCardIndex).getSteps()));
                         while (value.length() < 2) {
-                            value = "0" + value;
+                            value.insert(0, "0");
                         }
                         while (steps.length() < 2) {
-                            steps = "0" + steps;
+                            steps.insert(0, "0");
                         }
                         String label = "VAL:" + value + "   S:" +steps;
                         this.writeTextInMatrix(card, label, 2 + offset, cardRow);
@@ -749,10 +750,14 @@ public class CLI {
                 board[cardRowOnSet][cardColOnSet] = card[cardRow][cardCol];
             }
         }
-        return board;
     }
 
-    private String[][] addLastPlayedAssistantCardsToGameBoard(String[][] board) {
+    /**
+     * Add last played AssistantCards to the game-board
+     *
+     * @param board matrix of the game-board
+     */
+    private void addLastPlayedAssistantCardsToGameBoard(String[][] board) {
         // Assistant card
         int cardRowOnSet;
         int cardColOnSet;
@@ -761,18 +766,18 @@ public class CLI {
         String[][] block = this.lastPlayedAssistantCardsContainer;
 
         String title = "Last played assistant cards".toUpperCase();
-        String label = String.valueOf(this.boardCoins);
+        StringBuilder label = new StringBuilder(String.valueOf(this.boardCoins));
         while (label.length() < 2) {
-            label = "0" + label;
+            label.insert(0, "0");
         }
-        label = "$:" + label;
+        label.insert(0, "$:");
         while (label.length() + title.length() < block[0].length - 6) {
-            label = " " + label;
+            label.insert(0, " ");
         }
-        label = title + label;
+        label.insert(0, title);
         int offset_x = 3;
         int offset_y = 1;
-        block = this.writeTextInMatrix(block, label, offset_x, offset_y);
+        this.writeTextInMatrix(block, label.toString(), offset_x, offset_y);
 
 
         int offset = 0;
@@ -782,35 +787,33 @@ public class CLI {
                 nicknameBuilder.append(" ");
             }
             nickname = nicknameBuilder.toString();
-            block = this.writeTextInMatrix(block, nickname, 2 + offset, 3);
+            this.writeTextInMatrix(block, nickname, 2 + offset, 3);
             offset += 16;
         }
 
         offset = 0;
         int assistantCardIndex = 0;
-        String value;
-        String steps;
+        StringBuilder value;
+        StringBuilder steps;
 
         for (int cardRow=0; cardRow<block.length; cardRow++) {
             for (int cardCol=0; cardCol<block[0].length; cardCol++) {
                 if (Objects.equals(block[cardRow][cardCol], "^")) {
                     if (assistantCardIndex < this.lastPlayedAssistantCards.size() && this.lastPlayedAssistantCards.get(assistantCardIndex) != null) {
-                        value = String.valueOf(this.lastPlayedAssistantCards.get(assistantCardIndex).getValue());
-                        steps = String.valueOf(this.lastPlayedAssistantCards.get(assistantCardIndex).getSteps());
+                        value = new StringBuilder(String.valueOf(this.lastPlayedAssistantCards.get(assistantCardIndex).getValue()));
+                        steps = new StringBuilder(String.valueOf(this.lastPlayedAssistantCards.get(assistantCardIndex).getSteps()));
                         while (value.length() < 2) {
-                            value = "0" + value;
+                            value.insert(0, "0");
                         }
                         while (steps.length() < 2) {
-                            steps = "0" + steps;
+                            steps.insert(0, "0");
                         }
-                        label = "VAL:" + value + "   S:" +steps;
-                        this.writeTextInMatrix(block, label, 2 + offset, cardRow);
-                        offset += label.length() + 3;
+                        label = new StringBuilder("VAL:" + value + "   S:" + steps);
                     } else {
-                        label = "-------------";
-                        this.writeTextInMatrix(block, label, 2 + offset, cardRow);
-                        offset += label.length() + 3;
+                        label = new StringBuilder("-------------");
                     }
+                    this.writeTextInMatrix(block, label.toString(), 2 + offset, cardRow);
+                    offset += label.length() + 3;
                     assistantCardIndex++;
                 }
             }
@@ -824,10 +827,13 @@ public class CLI {
                 board[cardRowOnSet][cardColOnSet] = block[cardRow][cardCol];
             }
         }
-        return board;
     }
 
-
+    /**
+     * Build the entire game-board
+     * @param setOfIslands matrix representing the set of islands
+     * @return generated matrix
+     */
     private String[][] buildGameBoard(String[][] setOfIslands) {
         int space = 4;
         int height = Math.max((setOfIslands.length + this.schools.get(0).length), this.schools.get(1).length);
@@ -835,10 +841,8 @@ public class CLI {
         int width = setOfIslands[0].length + (this.schools.get(1)[0].length + space) * 2;
 
         String[][] gameBoard = new String[height][width];
-        for (int i=0; i<gameBoard.length; i++) {
-            for (int j=0; j<gameBoard[i].length; j++) {
-                gameBoard[i][j] = " ";
-            }
+        for (String[] strings : gameBoard) {
+            Arrays.fill(strings, " ");
         }
 
         int mainSchoolOffset;
@@ -873,6 +877,9 @@ public class CLI {
         return gameBoard;
     }
 
+    /**
+     * Generate and display the entire game-board
+     */
     public void showGameBoard() {
         // Build set of islands
         String[][] setOfIslands = this.buildSetOfIslands();
@@ -886,7 +893,7 @@ public class CLI {
         System.out.flush();
 
         // Print game board
-        System.out.println(this.getPrintableBoard(gameBoard, true));
+        System.out.println(this.getPrintableBoard(gameBoard));
 
         AnsiConsole.systemUninstall();
     }

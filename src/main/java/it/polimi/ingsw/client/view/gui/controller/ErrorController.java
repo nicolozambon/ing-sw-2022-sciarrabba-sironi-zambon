@@ -30,16 +30,19 @@ public class ErrorController implements GUIController {
         this.gui = gui;
     }
 
+    //Nothing to do
     @Override
     public void optionsHandling(List<String> options) {
 
     }
 
+    //Nothing to do
     @Override
     public void onWaitEvent(String name) {
 
     }
 
+    //Nothing to do
     @Override
     public void updateModel(ThinModel model) {
 
