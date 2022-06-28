@@ -569,6 +569,12 @@ public class CLI {
         return set;
     }
 
+    /**
+     * Add CharacterCards to the board of islands
+     * @param set matrix of interest
+     * @param disposition disposition matrix of the islands
+     * @return updated matrix
+     */
     private String[][] addCharacterCardsInIslandsSet(String[][] set, int[][] disposition) {
         if (this.characterCards.size() == 3) {
             for (int i = 0; i < disposition.length; i++) {
@@ -605,6 +611,12 @@ public class CLI {
         return set;
     }
 
+    /**
+     * Add clouds to the islands matrix
+     * @param set matrix of interest
+     * @param disposition disposition matrix of the islands
+     * @return updated matrix
+     */
     private String[][] addCloudsToIslandsSet(String[][] set, int[][] disposition) {
         int cloudH = this.clouds.get(0).length;
         int cloudW = this.clouds.get(0)[0].length;
@@ -648,6 +660,10 @@ public class CLI {
         return set;
     }
 
+    /**
+     * Build a matrix representing the set of islands
+     * @return generated matrix
+     */
     private String[][] buildSetOfIslands() {
         int[][] disposition = {
                 {110,   0,      1,      2,      3,      34},
@@ -704,6 +720,11 @@ public class CLI {
         return set;
     }
 
+    /**
+     * Add deck of AssistantCards to the game-board
+     * @param board matrix of the game-board
+     * @return updated matrix
+     */
     private String[][] addAssistantCardsDeckToGameBoard(String[][] board) {
         // Assistant card
         int cardRowOnSet;
@@ -752,6 +773,11 @@ public class CLI {
         return board;
     }
 
+    /**
+     * Add last played AssistantCards to the game-board
+     * @param board matrix of the game-board
+     * @return updated matrix
+     */
     private String[][] addLastPlayedAssistantCardsToGameBoard(String[][] board) {
         // Assistant card
         int cardRowOnSet;
@@ -827,7 +853,11 @@ public class CLI {
         return board;
     }
 
-
+    /**
+     * Build the entire game-board
+     * @param setOfIslands matrix representing the set of islands
+     * @return generated matrix
+     */
     private String[][] buildGameBoard(String[][] setOfIslands) {
         int space = 4;
         int height = Math.max((setOfIslands.length + this.schools.get(0).length), this.schools.get(1).length);
@@ -873,6 +903,9 @@ public class CLI {
         return gameBoard;
     }
 
+    /**
+     * Generate and display the entire game-board
+     */
     public void showGameBoard() {
         // Build set of islands
         String[][] setOfIslands = this.buildSetOfIslands();
