@@ -16,20 +16,54 @@ import java.util.Scanner;
 
 public class ViewCLI implements AnswerListener, RequestListenableInterface {
 
+    /**
+     * Client connection
+     */
     private ClientConnection clientConnection;
 
+    /**
+     * Nickname
+     */
     private String nickname;
+
+    /**
+     * Identifier
+     */
     private int id;
 
+    /**
+     * List of options
+     */
     private List<String> options;
+
+    /**
+     * Instance of OptionLister
+     */
     private final OptionLister optionLister;
+
+    /**
+     * Instance of OptionHandler
+     */
     private final OptionHandler optionHandler;
 
+    /**
+     * Instance of RequestListenable
+     */
     private final RequestListenable requestListenable;
 
+    /**
+     * Instance of ThinModel
+     */
     private ThinModel model = null;
+
+    /**
+     * Instance of CLIBuilder
+     */
     private final CLIBuilder cliBuilder;
 
+    /**
+     * Constructor of ViewCLI
+     */
     public ViewCLI() {
         this.optionLister = new OptionLister();
         this.options = new ArrayList<>(List.of("nickname"));
@@ -37,7 +71,6 @@ public class ViewCLI implements AnswerListener, RequestListenableInterface {
         this.requestListenable = new RequestListenable();
         this.cliBuilder = new CLIBuilder();
     }
-
 
     @Override
     public synchronized void onAnswerEvent(AnswerEvent answerEvent) {
@@ -79,7 +112,10 @@ public class ViewCLI implements AnswerListener, RequestListenableInterface {
 
     }
 
-
+    /**
+     * Handle options method
+     * @param answerEvent AnswerEvent instance
+     */
     private void handleOptions(AnswerEvent answerEvent) {
         this.options = answerEvent.getOptions();
         if (this.model != null && !answerEvent.getPropertyName().equals("error")) cliBuilder.buildCLI(this.model, nickname).showGameBoard();
@@ -92,10 +128,17 @@ public class ViewCLI implements AnswerListener, RequestListenableInterface {
         if (requestEvent != null) fireRequest(requestEvent);
     }
 
+    /**
+     * Update model
+     * @param answerEvent AnswerEvent instance
+     */
     private void updateModel(AnswerEvent answerEvent) {
         this.model = answerEvent.getModel();
     }
 
+    /**
+     * Start CLI method
+     */
     public void startCLI() {
         Scanner stdin = new Scanner(System.in);
         System.out.println("Server IP:");
@@ -130,4 +173,5 @@ public class ViewCLI implements AnswerListener, RequestListenableInterface {
             e.printStackTrace();
         }
     }
+
 }
