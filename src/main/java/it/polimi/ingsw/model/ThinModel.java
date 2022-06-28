@@ -66,7 +66,6 @@ public final class ThinModel {
         }
 
         islands.get(model.getMotherNature().getPosition().getId()).motherNaturePresence = true;
-
     }
 
     public int getNumStudentOnIsland(int islandId) {
@@ -135,9 +134,6 @@ public final class ThinModel {
     public boolean isIslandLinkedNext(int islandId) {
         return islands.get(islandId).isLinkedNext;
     }
-    public boolean isIslandLinkedPrev(int islandId) {
-        return islands.get(islandId).isLinkedPrev;
-    }
 
     public List<Color> getProfessorsByPlayer(int playerId) {
         return new ArrayList<>(schools.get(playerId).profTable);
@@ -163,25 +159,6 @@ public final class ThinModel {
         return completeRule;
     }
 
-    @Override
-    public String toString() {
-        String first = "ModelSerializable{" +
-                "\n\nschools = " + schools +
-                ",\n\nplayer's coin = " + coins;
-        String second = ",\n\nassistantsCards = ";
-        for (Integer i : assistantsCards.keySet()) {
-            second = second + "\n" + assistantsCards.get(i);
-        }
-        second = second + "\n\nLastPlayedAssistantCard = " + lastPlayedAssistantCard;
-        String third = ",\n\ncoinReserve = " + coinReserve +
-                ",\n\nislands = " + islands +
-                ",\n\nclouds = " + clouds +
-                ",\n\ncharacterCards = " + characterCards +
-                ",\n\nprofessors = " + professors +
-                "\n}";
-        return first + second + third;
-    }
-
     private static class SchoolSerializable { //A SchoolSerializable for all players.
 
         Map<Color, Integer> diningRoom = new HashMap<>();
@@ -202,17 +179,6 @@ public final class ThinModel {
             for (Professor professor : school.getProfessorsTable().getPawns()) {
                 profTable.add(professor.getColor());
             }
-        }
-
-        @Override
-        public String toString() {
-            return "\n{" +
-                    "diningRoom = " + diningRoom +
-                    ", entrance = " + entrance +
-                    ", profTable = " + profTable +
-                    ", numTowers = " + numTowers +
-                    ", towerColor = " + towerColor +
-                    "}";
         }
     }
 
@@ -240,17 +206,6 @@ public final class ThinModel {
                 towerColor = island.getTower().getColor();
             }
         }
-
-        @Override
-        public String toString() {
-            return "\n{" +
-                    "students = " + students +
-                    ", color = " + towerColor +
-                    ", motherNaturePresence = " + motherNaturePresence +
-                    ", linkedPrev = " + isLinkedPrev +
-                    ", linkedNext = " + isLinkedNext +
-                    "}";
-        }
     }
 
     private static class CloudSerializable {
@@ -262,13 +217,6 @@ public final class ThinModel {
             for (Student student : cloud.getPawns()) {
                 students.add(student.getColor());
             }
-        }
-
-        @Override
-        public String toString() {
-            return "\n{" +
-                    "students = " + students +
-                    "}";
         }
     }
 }

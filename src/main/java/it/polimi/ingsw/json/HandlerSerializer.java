@@ -13,8 +13,14 @@ import java.lang.reflect.Type;
 import java.util.Map;
 import java.util.TreeMap;
 
+/**
+ * Custom Json serializer to correctly manage inheritance of Handler and subclasses
+ */
 public class HandlerSerializer implements JsonSerializer<Handler> {
 
+    /**
+     * Map Handler and subclasses category attribute to the correct class
+     */
     private static final Map<String, Class> map = new TreeMap<>();
 
     static {
@@ -24,6 +30,13 @@ public class HandlerSerializer implements JsonSerializer<Handler> {
         map.put("movement", MovementHandler.class);
     }
 
+    /**
+     * Custom serialize method following Gson specification
+     * @param handler Handler to be serialized
+     * @param type the type of the object to be serialized
+     * @param jsonSerializationContext the context of JSON serializer
+     * @return JsonElement for serialization of Handler
+     */
     @Override
     public JsonElement serialize(Handler handler, Type type, JsonSerializationContext jsonSerializationContext) {
         if (handler == null)

@@ -117,7 +117,7 @@ public class Server {
      * @param connectionHandler ConnectionHandler of the client who has set nickname
      * @see ConnectionHandler
      */
-    public void enqueuePlayer(ConnectionHandler connectionHandler) {
+    protected void enqueuePlayer(ConnectionHandler connectionHandler) {
         if (isNicknameValid(connectionHandler)) {
             connectionHandler.send(new AnswerEvent("set_nickname", connectionHandler.getNickname()));
             synchronized (queue) {
@@ -235,7 +235,7 @@ public class Server {
      * @param completeRule true if the game has complete rules, false otherwise
      * @throws WrongSetupException if the number of players is not allowed
      */
-    public synchronized void firstPlayerSetup(int num, int completeRule) throws WrongSetupException {
+    protected synchronized void firstPlayerSetup(int num, int completeRule) throws WrongSetupException {
         if ((num != 2 && num != 3) || (completeRule != 1 && completeRule != 0)) {
             throw new WrongSetupException();
         } else {
@@ -250,7 +250,6 @@ public class Server {
      * @param connectionHandler ConnectionHandler of the client who has finished the match
      */
     protected void endGame(ConnectionHandler connectionHandler) {
-
         synchronized (games) {
             GameHandler currentGame = null;
             for (GameHandler game : games) {

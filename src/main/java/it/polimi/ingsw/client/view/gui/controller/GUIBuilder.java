@@ -15,6 +15,9 @@ import javafx.scene.text.Text;
 
 import java.util.*;
 
+/**
+ * GUIBuilder, builds the main boardScene
+ */
 public class GUIBuilder {
 
     private final Map<Integer, Integer> idMap;

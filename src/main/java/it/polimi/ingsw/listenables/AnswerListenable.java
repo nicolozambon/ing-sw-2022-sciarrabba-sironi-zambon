@@ -6,10 +6,19 @@ import it.polimi.ingsw.listeners.AnswerListener;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Concrete implementation of the AnswerListenableInterface
+ */
 public class AnswerListenable implements AnswerListenableInterface{
 
+    /**
+     * List of AnswerListener subscribed
+     */
     private final List<AnswerListener> listeners;
 
+    /**
+     * Constructor, initialize listeners list
+     */
     public AnswerListenable() {
         this.listeners = new ArrayList<>();
     }

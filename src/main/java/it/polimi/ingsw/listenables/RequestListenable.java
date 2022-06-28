@@ -7,10 +7,19 @@ import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Concrete implementation of the RequestListenableInterface
+ */
 public class RequestListenable implements RequestListenableInterface{
 
+    /**
+     * List of RequestListener subscribed
+     */
     private final List<RequestListener> listeners;
 
+    /**
+     * Constructor, initialize listeners list
+     */
     public RequestListenable() {
         this.listeners = new ArrayList<>();
     }

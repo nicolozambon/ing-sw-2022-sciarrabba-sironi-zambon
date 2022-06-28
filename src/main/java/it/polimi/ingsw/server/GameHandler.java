@@ -22,19 +22,48 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+/**
+ * This class handles a single match, it contains all players ConnectionHandler, it starts the game (newly created or
+ * resumed from a saving file), subscribe every listener to the correct listenable
+ */
 public class GameHandler implements Runnable {
 
+    /**
+     * Model of the match
+     */
     private final Model model;
+
+    /**
+     * Controller of the Model
+     */
     private final Controller controller;
+
+    /**
+     * Map containing unique player's match id and relative ConnectionHandler
+     */
     private final Map<Integer, ConnectionHandler> playersConnection;
+
+    /**
+     * Name of the save file
+     */
     private final String saveName;
+
+    /**
+     * Gson object to manage Model serialization/deserialization
+     */
     private final Gson gson;
 
-    public GameHandler(Map<String, ConnectionHandler> playersConnection, boolean completeRule) {
+    /**
+     * Constructor build or resume model for the match, initialize all attributes
+     * @param playersConnection Map containing player's nickname - ConnectionHandler
+     * @param completeRule if the rule for the game will be complete or not
+     */
+    protected GameHandler(Map<String, ConnectionHandler> playersConnection, boolean completeRule) {
         Model model1;
         this.playersConnection = new HashMap<>();
+        this.saveName = String.join("_", playersConnection.keySet().stream().sorted().toList()) + ".json";
 
-        Path path = Paths.get("./saves/" + String.join("_", playersConnection.keySet().stream().sorted().toList()) + ".json");
+        Path path = Paths.get("./saves/" + this.saveName);
         if (Files.exists(path)) {
             System.out.println("From savings");
             try {
@@ -59,13 +88,16 @@ public class GameHandler implements Runnable {
             this.playersConnection.put(player.getId(), playersConnection.get(player.getNickname()));
         }
 
-        this.saveName = String.join("_", model.getPlayers().stream().map(Player::getNickname).sorted().toList()) + ".json";
         this.gson = new GsonBuilder()
                 .registerTypeAdapter(Handler.class, new HandlerSerializer())
                 .registerTypeAdapter(Handler.class, new HandlerDeserializer())
                 .create();
     }
 
+    /**
+     * Run method to be executed by a Thread, subscribe every listener to the correct listenable, sends the first
+     * AnswerEvents
+     */
     @Override
     public void run() {
         VirtualView virtualView = new VirtualView(this);
@@ -79,8 +111,15 @@ public class GameHandler implements Runnable {
         else launchAnswerEventCurrentPlayer(new AnswerEvent("options", controller.getOptions()));
     }
 
-    public synchronized void launchAnswerEventEveryone(AnswerEvent answerEvent) {
+    /**
+     * Sends the AnswerEvent to every ConnectionHandler
+     * @param answerEvent the AnswerEvent to be sent
+     * @see AnswerEvent
+     */
+    protected synchronized void launchAnswerEventEveryone(AnswerEvent answerEvent) {
         playersConnection.values().forEach(connectionHandler -> connectionHandler.send(answerEvent));
+
+        //Delete save file
         if (answerEvent.getPropertyName().equals("winner")) {
             System.out.println("deleting...");
             try {
@@ -91,7 +130,12 @@ public class GameHandler implements Runnable {
         }
     }
 
-    public void launchAnswerEventCurrentPlayer(AnswerEvent answerEvent) {
+    /**
+     * Sends the AnswerEvent to the current player's ConnectionHandler
+     * @param answerEvent the AnswerEvent to be sent
+     * @see AnswerEvent
+     */
+    protected void launchAnswerEventCurrentPlayer(AnswerEvent answerEvent) {
         int currentPlayerId = controller.getActivePlayer().getId();
         AnswerEvent waitEvent = new AnswerEvent("wait", controller.getActivePlayer().getNickname());
         for (int id : playersConnection.keySet()) {
@@ -102,6 +146,7 @@ public class GameHandler implements Runnable {
             }
         }
 
+        //Save file for future resuming
         if (answerEvent.getPropertyName().equals("options")) {
             try {
                 FileWriter saveFile = new FileWriter("./saves/" + saveName);
@@ -114,18 +159,36 @@ public class GameHandler implements Runnable {
         }
     }
 
-    public synchronized void launchAnswerEventPlayer(int playerId, AnswerEvent answerEvent) {
+    /**
+     * Sends the AnswerEvent to specified player's ConnectionHandler
+     * @param playerId the id of the player that will receive the AnswerEvent
+     * @param answerEvent the AnswerEvent to be sent
+     * @see AnswerEvent
+     */
+    protected synchronized void launchAnswerEventPlayer(int playerId, AnswerEvent answerEvent) {
         playersConnection.get(playerId).send(answerEvent);
     }
 
+    /**
+     * Returns the nicknames of the players currently in the match
+     * @return the List of player's nicknames
+     */
     protected List<String> getNicknames() {
         return model.getPlayers().stream().map(Player::getNickname).toList();
     }
 
+    /**
+     * Returns the ConnectionHandlers of the players currently in the match
+     * @return the List of player's connections
+     */
     protected List<ConnectionHandler> getConnections() {
         return playersConnection.values().stream().toList();
     }
 
+    /**
+     * Removes the specified ConnectionHandler from the match
+     * @param connectionHandler the ConnectionHandler to be removed
+     */
     protected void removeConnection(ConnectionHandler connectionHandler) {
         playersConnection.values().remove(connectionHandler);
     }

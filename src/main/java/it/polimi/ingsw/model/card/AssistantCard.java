@@ -32,9 +32,4 @@ public class AssistantCard {
         return Objects.hash(value, steps);
     }
 
-    @Override
-    public String toString() {
-        return "{value = " + value +
-                ", steps = " + steps + "}";
-    }
 }

@@ -14,8 +14,14 @@ import java.util.ArrayList;
 import java.util.Map;
 import java.util.TreeMap;
 
+/**
+ * Custom Json deserializer to correctly manage inheritance of Handler and subclasses
+ */
 public class HandlerDeserializer implements JsonDeserializer<Handler> {
 
+    /**
+     * Map Handler and subclasses category attribute to the correct class
+     */
     private static final Map<String, Class> map = new TreeMap<>();
 
     static {
@@ -25,6 +31,14 @@ public class HandlerDeserializer implements JsonDeserializer<Handler> {
         map.put("movement", MovementHandler.class);
     }
 
+    /**
+     * Custom deserialize method following Gson specification
+     * @param jsonElement JsonElement to be deserialized
+     * @param type the type of the object to be deserialized
+     * @param jsonDeserializationContext the context of JSON deserialize
+     * @return Handler deserialized from the json
+     * @throws JsonParseException if there is error in parsing the json
+     */
     @Override
     public Handler deserialize(JsonElement jsonElement, Type type, JsonDeserializationContext jsonDeserializationContext) throws JsonParseException {
         String type1 = jsonElement.getAsJsonObject().get("category").getAsString();

@@ -22,7 +22,7 @@ public class OptionHandler {
     private final OptionLister optionLister;
     private final Scanner stdin;
     private int playerId;
-    private boolean isWindows;
+    private final boolean isWindows;
 
     public OptionHandler() {
         this.playerId = -1;
