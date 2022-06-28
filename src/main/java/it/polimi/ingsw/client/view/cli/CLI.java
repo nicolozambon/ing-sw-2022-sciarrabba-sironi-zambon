@@ -14,6 +14,7 @@ import static java.lang.Character.isDigit;
 import static java.lang.Character.isLetter;
 import static java.lang.Math.min;
 
+
 public class CLI {
 
     private final Map<String, String[][]> islandLinkers;

@@ -386,6 +386,9 @@ public class ViewGUI extends Application implements RequestListenableInterface, 
                 case "winner" -> {
                     if (this.model != null) currentController.updateModel(this.model);
 
+                    currentScene.lookup("#mainPane").setOpacity(0.5);
+                    currentScene.lookup("#mainPane").setDisable(true);
+
                     controllerMap.get("winnerScene").optionsHandling(answerEvent.getOptions());
 
                     Stage winnerStage = new Stage();
