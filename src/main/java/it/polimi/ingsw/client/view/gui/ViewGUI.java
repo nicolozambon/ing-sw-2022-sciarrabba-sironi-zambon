@@ -391,6 +391,8 @@ public class ViewGUI extends Application implements RequestListenableInterface, 
 
                     controllerMap.get("winnerScene").optionsHandling(answerEvent.getOptions());
 
+                    this.mediaPlayer.pause();
+
                     Stage winnerStage = new Stage();
                     winnerStage.setScene(this.getScenes().get("winnerScene"));
                     winnerStage.show();
