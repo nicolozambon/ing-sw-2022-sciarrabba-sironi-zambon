@@ -139,7 +139,7 @@ public class ClientConnection implements AnswerListenableInterface, RequestListe
                 }
                 sleep(50);
             } catch (IOException e) {
-                fireAnswer(new AnswerEvent("stop", "Server unreachable!"));
+                fireAnswer(new AnswerEvent("stop", "An error occurred, quitting..."));
                 stopClient();
             } catch (InterruptedException e) {
                 e.printStackTrace();
