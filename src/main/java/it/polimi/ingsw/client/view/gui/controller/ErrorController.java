@@ -6,10 +6,19 @@ import javafx.fxml.FXML;
 
 import java.util.List;
 
+/**
+ * GUI Controller for the Error Scene
+ */
 public class ErrorController implements GUIController {
 
+    /**
+     * Current GUI
+     */
     private ViewGUI gui;
 
+    /**
+     * Ok button in the scene, specifies the behavior when clicked
+     */
     @FXML
     private void okButtonOnClick() {
         gui.playPopEffect();

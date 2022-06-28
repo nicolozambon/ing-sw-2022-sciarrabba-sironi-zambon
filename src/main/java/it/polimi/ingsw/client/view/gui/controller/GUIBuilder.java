@@ -16,23 +16,68 @@ import javafx.scene.text.Text;
 import java.util.*;
 
 /**
- * GUIBuilder, builds the main boardScene
+ * GUIBuilder, builds the main boardScene, initializing all Maps and Lists containing in-game objects.
+ * Helper Class for BoardController
  */
 public class GUIBuilder {
-
+    /**
+     * Map for "Real" playerID with the GUI's Player ID.
+     * In GUI, the player owner is always 0, but in the Model the player may have a different ID.
+     */
     private final Map<Integer, Integer> idMap;
 
+    /**
+     * ID of the Player
+     */
     private final int id;
 
+    /**
+     * Maps the schools with their FX:ID and ImageView corresponding, with their ID
+     */
     private Map<Integer, Map<String, Map<String, ImageView>>> schools = null;
+
+    /**
+     * Maps the islands with their FX:ID and JavaFX's nodes corresponding, with their ID
+     */
     private Map<Integer, Map<String, Map<String, Node>>> islands = null;
+
+    /**
+     * Maps the clouds with their FX:ID and JavaFX's nodes corresponding, with their ID
+     */
     private Map<Integer, Map<String, Node>> clouds = null;
+
+    /**
+     * List of the JavaFX nodes corresponding to the in-game Assistant Cards in the selector pane
+     */
     private List<Node> assistantCards;
+
+    /**
+     * List of the JavaFX nodes corresponding to the last played Assistant Cards visible in the main board view
+     */
     private List<ImageView> lastPlayedAssistantCards;
+
+    /**
+     * List of the Character Cards Cost for JavaFX representation in-game, ordered by the Character Card's ID
+     */
     private List<Text> characterCardsCost;
+
+    /**
+     * JavaFX Scene for the boardView (main view of the game)
+     */
     private final Scene scene;
+
+    /**
+     * Number of the player for the current match
+     */
     private final Integer playersNumber;
 
+    /**
+     * Constructor for the GUIBuilder, initializes all maps, correctly sets the scene based on the number of the players
+     * in this match
+     * @param model ThinModel to build in GUI (initial situation)
+     * @param scene current JavaFX scene
+     * @param nickname nickname of the player
+     */
     public GUIBuilder(ThinModel model, Scene scene, String nickname) {
         this.scene = scene;
 
@@ -64,6 +109,10 @@ public class GUIBuilder {
         if (model.isCompleteRule()) this.defineCharacterCards(model.getCharacterCards());
     }
 
+    /**
+     * Updates the GUI where there is a change in the Model
+     * @param model ThinModel instance to recreate
+     */
     protected void updateGUI(ThinModel model) {
         setupAssistantCards(model.getAssistantCardsByPlayer(id));
         setupIslands(model);
@@ -74,6 +123,10 @@ public class GUIBuilder {
         if (model.isCompleteRule()) setupCharacterCardsCost(model.getCharacterCards());
     }
 
+    /**
+     * Setup method for displaying a Character Card's cost
+     * @param cards List of the Character Cards for this match
+     */
     private void setupCharacterCardsCost(List<CharacterCard> cards) {
         for (int i = 0; i < 3; i++) {
             CharacterCard card = cards.get(i);
@@ -84,6 +137,10 @@ public class GUIBuilder {
         }
     }
 
+    /**
+     * Displays the number of coins for each player
+     * @param model model representation of the match
+     */
     private void setupCoins(ThinModel model) {
         for(Integer i : idMap.keySet()) {
             Text coin = (Text) scene.lookup("#coin" + idMap.get(i));
@@ -102,6 +159,10 @@ public class GUIBuilder {
         coinReserve.setText(string);
     }
 
+    /**
+     * Displays the last played assistant card for each user, if there is any, for the round
+     * @param model model representation of the match
+     */
     private void setupLastPlayedAssistantCard(ThinModel model) {
         for(Integer i : idMap.keySet()) {
             if (model.getLastAssistantCardByPlayer(i) != null) {
@@ -115,6 +176,11 @@ public class GUIBuilder {
 
     }
 
+    /**
+     * Correctly sets up the assistant cards' images. If an assistant card can't be played, the method sets it greyed out
+     * and disabled
+     * @param cards list of all assistant cards
+     */
     private void setupAssistantCards(List<AssistantCard> cards) {
         for (Node assistantCard : assistantCards) {
             assistantCard.getStyleClass().clear();
@@ -129,6 +195,10 @@ public class GUIBuilder {
         }
     }
 
+    /**
+     * Sets up the schools' pawns correctly, based on the number of players for the match
+     * @param model model representation of the match
+     */
     private void setupSchools(ThinModel model) {
         int maxEntrance = 7;
 
@@ -173,6 +243,11 @@ public class GUIBuilder {
         }
     }
 
+    /**
+     * Sets up all images for each island; positions the right student's pawns and number of students on the island,
+     * along with MotherNature, if present, and the bridge if the islands are connected
+     * @param model model representation of the game
+     */
     private void setupIslands(ThinModel model) {
         for (int i=0; i<12; i++) {
 
@@ -216,6 +291,11 @@ public class GUIBuilder {
         }
     }
 
+    /**
+     * Sets up clouds with the right images of the students, based on the color and the number of pawns on them, depending
+     * on the match's number of players
+     * @param model model representation of the match
+     */
     private void setupClouds(ThinModel model) {
         for (Integer i : clouds.keySet()) {
             List<Color> students = model.getStudentOnCloud(i);
@@ -232,6 +312,10 @@ public class GUIBuilder {
         }
     }
 
+    /**
+     * Defines the cost of the character cards playable in the match
+     * @param cards list of the Character Cards available
+     */
     private void defineCharacterCards(List<CharacterCard> cards) {
         characterCardsCost = new ArrayList<>();
         for (int i = 0; i < 3; i++) {
@@ -239,6 +323,12 @@ public class GUIBuilder {
         }
     }
 
+    /**
+     * Helper method for defineCharacterCards, shows the right image for the Character Card and binds the properties
+     * @param card Character Card to define
+     * @param id ID of the Character Card
+     * @return the cost of the Character Card
+     */
     private Text defineCharacterCard(CharacterCard card, int id) {
         ImageView imageView = (ImageView) scene.lookup("#" + getCharacterCardSelectorID(id, false, false, false));
         ImageView mainImageView = (ImageView) scene.lookup("#" + getCharacterCardSelectorID(id, false, false, true));
@@ -258,6 +348,11 @@ public class GUIBuilder {
         return cost;
     }
 
+    /**
+     * Shows the right image for the Last Played Assistant Cards; binds the properties for the last played AC
+     * in the main view, as well as in the AC selector
+     * @param nicknames nicknames of the players
+     */
     private void defineLastPlayedAssistantCards(List<String> nicknames) {
         lastPlayedAssistantCards = new ArrayList<>();
         for (int i = 0; i < 3; i++) {
@@ -285,6 +380,9 @@ public class GUIBuilder {
         }
     }
 
+    /**
+     * Binds all ImageView and their properties of all the volume icons present in the scene
+     */
     private void bindVolumeIcons() {
         ImageView v0 = (ImageView) scene.lookup("#volumeIcon");
         ImageView v1 = (ImageView) scene.lookup("#volumeIcon1");
@@ -295,6 +393,9 @@ public class GUIBuilder {
         Bindings.bindBidirectional(v0.imageProperty(), v3.imageProperty());
     }
 
+    /**
+     * Defines the Assistant Cards' JavaFX nodes in the GUI
+     */
     private void defineAssistantsCards() {
         this.assistantCards = new ArrayList<>();
         for (int i = 1; i < 11; i++) {
@@ -303,6 +404,9 @@ public class GUIBuilder {
         }
     }
 
+    /**
+     * Defines all Islands' maps, containing all students' JavaFX Nodes
+     */
     private void defineIslandsMap() {
         this.islands = new LinkedHashMap<>();
         for (int i=0; i<12; i++) {
@@ -363,6 +467,10 @@ public class GUIBuilder {
         }
     }
 
+    /**
+     * Defines all schools' maps, containing all students' JavaFX Nodes
+     * @param model model representation of the match
+     */
     private void defineSchoolsMap(ThinModel model) {
         int number = 7;
         if (model.getNicknames().size() == 3) number = 9;
@@ -433,6 +541,9 @@ public class GUIBuilder {
         }
     }
 
+    /**
+     * Defines all maps for the clouds, containing the JavaFX nodes of the students on the cloud
+     */
     private void defineCloudsMap() {
         this.clouds = new LinkedHashMap<>();
         int cloudsNumber = 2;
@@ -463,6 +574,9 @@ public class GUIBuilder {
         }
     }
 
+    /**
+     * @return a list of the JavaFX nodes of the islands
+     */
     protected List<Node> getIslands() {
         List<Node> islands = new ArrayList<>();
         for (int i = 0; i < 12; i++) {
@@ -471,6 +585,9 @@ public class GUIBuilder {
         return islands;
     }
 
+    /**
+     * @return a list of the JavaFX nodes of the clouds
+     */
     protected List<Node> getClouds() {
         List<Node> clouds = new ArrayList<>();
         for (int i = 0; i < 3; i++) {
@@ -479,40 +596,78 @@ public class GUIBuilder {
         return clouds;
     }
 
+    /**
+     * @param schoolId ID of the school
+     * @return a List of the ImageViews of the towers on the desired school
+     */
     private List<ImageView> getTowerOnSchool(int schoolId) {
         return this.schools.get(schoolId).get("towers").values().stream().toList();
     }
 
+    /**
+     * @param schoolId ID of the school to get the professor's ImageView from
+     * @param color color of the professor to pick
+     * @return the ImageView of the desired professor on the selected school
+     */
     private ImageView getProfessorOnSchool(int schoolId, Color color) {
         String identifier = this.getProfessorFXID(idMap.get(schoolId), color);
         return this.schools.get(schoolId).get("professors").get(identifier);
     }
 
+    /**
+     * @param schoolId ID of the school to take the student in the dining room from
+     * @param position Position of the student to pick
+     * @param color Color of the student to pick
+     * @return the ImageView of the desired student in the selected Dining Room
+     */
     private ImageView getStudentInDiningRoom(int schoolId, int position, Color color) {
         String identifier = this.getStudentFXID(position, true, color, idMap.get(schoolId));
         return this.schools.get(schoolId).get("dining").get(identifier);
     }
 
+    /**
+     * @param schoolId ID of the school to take the student in the entrance from
+     * @param position Position of the student to pick
+     * @return the ImageView of the desired student in the selected Entrance
+     */
     private ImageView getStudentInEntrance(int schoolId, int position) {
         String identifier = this.getStudentFXID(position, false, null, idMap.get(schoolId));
         return this.schools.get(schoolId).get("entrance").get(identifier);
     }
 
+    /**
+     * @param islandId ID of the island wanted
+     * @return the ImageView of Mother Nature in the desired islandID
+     */
     protected ImageView getMotherNature(int islandId) {
         String identifier = this.getMotherNatureFXID(islandId);
         return (ImageView) this.islands.get(islandId).get("motherNature").get(identifier);
     }
 
+    /**
+     * @param islandId ID of the island wanted
+     * @param color Color of the students desired
+     * @return the Text JavaFX element for the number of the students of the specified color in the selected island
+     */
     private Text getStudentLabel(int islandId, Color color) {
         String identifier = this.getStudentNumberFXIDOnIsland(islandId, color);
         return (Text) this.islands.get(islandId).get("studentsLabels").get(identifier);
     }
 
+    /**
+     * @param islandId ID of the island wanted
+     * @param color Color of the student desired
+     * @return the ImageView of the Student Pawn in the desired island
+     */
     private ImageView getStudentPawn(int islandId, Color color) {
         String identifier = this.getStudentFXIDOnIsland(islandId, color);
         return (ImageView) this.islands.get(islandId).get("studentsPawns").get(identifier);
     }
 
+    /**
+     * @param startingIsland first of the two islands that the bridge connects
+     * @return the ImageView of the bridge connecting the startingIsland and the startingIsland+1
+     */
     private ImageView getBridgeOnIsland(int startingIsland) {
         int destinationIsland = startingIsland+1;
         if (destinationIsland == 12) {
@@ -522,6 +677,10 @@ public class GUIBuilder {
         return  (ImageView) this.islands.get(startingIsland).get("bridge").get(identifier);
     }
 
+    /**
+     * @param islandId ID of the island wanted
+     * @return the ImageView of the Tower in the desired island
+     */
     private ImageView getTowerOnIsland(int islandId) {
         String identifier = this.getTowerOnIslandFXID(islandId);
         return (ImageView) this.islands.get(islandId).get("tower").get(identifier);
@@ -614,43 +773,86 @@ public class GUIBuilder {
         return "tower" + playerId + "_" + position;
     }
 
+    /**
+     * @param color color of the student
+     * @return the path of the resource (image) of the student of the selected color
+     */
     public String getStudentPath(Color color) {
         return "/assets/gui/images/pawns/" + color.toString().toLowerCase() + "Student.png";
     }
 
+    /**
+     * @param color color of the tower
+     * @return the path of the resource (image) of the tower of the selected color
+     */
     public String getTowerPath (TowerColor color) {
         return "/assets/gui/images/pawns/" + color.toString().toLowerCase() + "Tower.png";
     }
 
+    /**
+     * @param cloudID ID of the cloud to get the student's FX:ID from
+     * @param pawnID ID of the pawn on the cloud
+     * @return the FX:ID of the wanted students on the selected cloud
+     */
     public String getStudentsOnCloudFXID (int cloudID, int pawnID) {
         return "scloud" + cloudID + "_" + pawnID;
     }
 
+    /**
+     * @param positionID ID of the island
+     * @return the FX:ID of Mother Nature in the selected Island ID
+     */
     private String getMotherNatureFXID (int positionID) {
         return "mn" + positionID;
     }
 
+    /**
+     * @param id ID of the desired AssistantCard
+     * @return the path of the resource (image) of the Assistant Card desired
+     */
     public String getAssistantCardPath (int id) {
         return "/assets/gui/images/cards/AssistantCard/Assistente_" + id + ".png";
     }
 
+    /**
+     * @param id ID of the desired CharacterCard
+     * @return the path of the resource (image) of the Character Card desired
+     */
     public String getCharacterCardPath (int id) {
         return "/assets/gui/images/cards/CharacterCard/CharacterCard_" + id + ".jpg";
     }
 
+    /**
+     * @param muted true if the resource desired is the muted volume icon
+     * @return the path of the resource (image) for the volume icon
+     */
     public String getVolumeIconPath (boolean muted) {
         if (muted) return "/assets/gui/images/utils/muted.png";
         else return "/assets/gui/images/utils/unmuted.png";
     }
 
+    /**
+     * @param islandID ID of the island
+     * @return the FX:ID of the tower on the island
+     */
     private String getTowerOnIslandFXID (int islandID) {
         return "island" + islandID + "Tower";
     }
 
+    /**
+     *
+     * @param islandID1 First island connected
+     * @param islandID2 Second island connected
+     * @return the FX:ID of the tower connecting the former and latter islands selected
+     */
     private String getBridgeFXID (int islandID1, int islandID2) {
         return "bridge" + islandID1 + "_" + islandID2;
     }
 
+    /**
+     * @param id ID of the Assistant Card wanted
+     * @return the FX:ID of the Assistant Card selected
+     */
     private String getCardFXID(int id) {
         String string = Integer.toString(id);
         if (string.length() < 2) string = "0" + string;
