@@ -60,9 +60,9 @@ Regardless of the operating system, you must have installed the following progra
 #### Windows
 On Windows it is needed to:
 - Set system visual scaling to 100%.
-Only for CLI:
-- Install the font "DejaVuSansMono.ttf" (find it in deliverables folder) and set it for the terminal.
-- Run the `chcp 65001` command in the terminal. This enables UTF-8 encoding.
+- Only for CLI:
+  - Install the font "DejaVuSansMono.ttf" (find it in deliverables folder) and set it for the terminal.
+  - Run the `chcp 65001` command in the terminal. This enables UTF-8 encoding.
 
 ### Instructions
 1. Clone this repository:
