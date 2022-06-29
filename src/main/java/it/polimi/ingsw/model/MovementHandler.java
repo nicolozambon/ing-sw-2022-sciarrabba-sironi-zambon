@@ -8,20 +8,33 @@ import java.util.Arrays;
 import java.util.Comparator;
 import java.util.List;
 
+/**
+ * The Handler associated to MovementCharacterCard
+ * @see MovementCharacterCard
+ */
 public class MovementHandler extends Handler {
 
+    /**
+     * The movement character card associated to this Handler
+     */
     private final MovementCharacterCard card;
 
+    /**
+     * Constructor with the specified MovementCharacterCard
+     * @param players list of players
+     * @param card the specified MovementCharacterCard
+     */
     protected MovementHandler(List<Player> players, MovementCharacterCard card) {
         super(players, card.getCategory());
         this.card = card;
     }
 
     /**
-     * Card 10: exchange 1 or 2 students from the dining room and vice versa; takes a couple of Position-Color values to exchange.
-     * @param currentPlayer Current player, who has invoked extraAction
-     * @param model the full model of the games
-     * @param values the list of values useful for the function
+     * Play the extra action associated to the MovementCharacterCard if available
+     * Card 7: exchange 1 or 2 students from the dining room and vice versa; takes a couple of Position-Color values to exchange.
+     * @param currentPlayer the current player
+     * @param model the model of the game
+     * @param values various argument
      */
     @Override
     protected void extraAction(Player currentPlayer, Model model, int ... values) throws InvalidActionException {
@@ -37,6 +50,12 @@ public class MovementHandler extends Handler {
         }
     }
 
+    /**
+     * Find and assign the professor to the right player, following the MovementCharacterCard rules
+     * @param currentPlayer the current player
+     * @param color the color of the professor
+     * @param startingProfBoard the starting board where every professor stay at the beginning
+     */
     @Override
     protected void professorControl(Player currentPlayer, Color color, Board<Professor> startingProfBoard) {
         Professor professor = getProfessor(color, startingProfBoard);

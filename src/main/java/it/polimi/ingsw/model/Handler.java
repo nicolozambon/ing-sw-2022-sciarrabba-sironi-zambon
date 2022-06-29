@@ -6,23 +6,47 @@ import it.polimi.ingsw.exceptions.WinnerException;
 
 import java.util.*;
 
-
+/**
+ * Class to handle part of business logic that depends on CharacterCard played
+ */
 public class Handler {
 
+    /**
+     * Category of the handler
+     */
     private final String category;
 
+    /**
+     * List of Player
+     * @see Player
+     */
     protected transient List<Player> players;
 
+    /**
+     * Default constructor with list of players
+     * @param players the list of players
+     */
     public Handler(List<Player> players) {
         this.players = new ArrayList<>(players);
         this.category = "default";
     }
 
+    /**
+     * Constructor with custom category, useful in subclasses
+     * @param players the list of players
+     * @param category the category to be assigned
+     */
     protected Handler(List<Player> players, String category) {
         this.players = new ArrayList<>(players);
         this.category = category;
     }
 
+    /**
+     * Find and assign the professor to the right player
+     * @param currentPlayer the current player
+     * @param color the color of the professor
+     * @param startingProfBoard the starting board where every professor stay at the beginning
+     */
     protected void professorControl(Player currentPlayer, Color color, Board<Professor> startingProfBoard) {
         Professor professor = getProfessor(color, startingProfBoard);
         Board<Professor> professorBoard = getProfessorBoard(color, startingProfBoard);
@@ -40,6 +64,14 @@ public class Handler {
         }
     }
 
+    /**
+     * Move mother nature by the specified steps
+     * @param currentPlayer the current player
+     * @param motherNature the mother nature to be moved
+     * @param stepsChoice the steps chosen by the player
+     * @throws MotherNatureStepsException thrown if the amount of steps is invalid
+     * @throws WinnerException thrown if there is a winner
+     */
     protected void motherNatureMovement(Player currentPlayer, MotherNature motherNature, int stepsChoice) throws MotherNatureStepsException, WinnerException {
         Player mostInfluentialPlayer = null;
         if(stepsChoice > 0 && stepsChoice <= currentPlayer.getLastAssistantCard().getSteps()) {
@@ -54,6 +86,12 @@ public class Handler {
         }
     }
 
+    /**
+     * Returns the influence of the specified player on the specified island or group of islands
+     * @param island the island
+     * @param player the player
+     * @return the influence of the specified player on the specified island or group of islands
+     */
     protected int resolveIsland(Island island, Player player) {
         int influence = 0;
 
@@ -70,6 +108,13 @@ public class Handler {
         return influence;
     }
 
+    /**
+     * Returns the influence of the specified player on the specified island
+     * @param island the island
+     * @param player the player
+     * @param influence the influence of the player in islands linked to the specified
+     * @return the influence of the specified player on the specified island
+     */
     protected int resolveIslandHelper (Island island, Player player, int influence) {
         for (Professor professor : player.getSchool().getProfessorsTable().getPawns()) {
             influence += island.countStudentsByColor(professor.getColor());
@@ -82,10 +127,10 @@ public class Handler {
     }
 
     /**
-     * Calculates for every player the influence on each (group of) island.
-     * @param currentPlayer The current player who has moved mother nature
-     * @param island The Island where mother nature has ended her movement
-     * @return The most influential player on the specified island, the one who builds the tower
+     * Returns the most influential player on the specified island or group of islands
+     * @param currentPlayer the current player who has moved mother nature
+     * @param island the Island where mother nature has ended her movement
+     * @return the most influential player on the specified island, the one who builds the tower
      */
     protected Player getMostInfluentialPlayer(Player currentPlayer, Island island) {
         Map<Player, Integer> playerInfluence = new HashMap<>();
@@ -114,8 +159,10 @@ public class Handler {
 
     /**
      * Switches the ownership of all island linked together, changing the towers.
-     * @param island
-     * @param newOwner
+     * @param island the Island where switch towers
+     * @param newOwner the new Player that has more influence on the specified island
+     * @see Island
+     * @see Player
      */
     protected void switchTowers (Island island, Player newOwner) throws WinnerException {
         while (island.isUnifyPrev()) {
@@ -130,6 +177,10 @@ public class Handler {
         }
     }
 
+    /**
+     * Unifies islands recursively
+     * @param island the first island to begin unify
+     */
     protected void unifyIsland(Island island) {
         Tower tower = island.getTower();
         if (tower != null) {
@@ -154,11 +205,24 @@ public class Handler {
         }
     }
 
+    /**
+     * Method to be overridden in subclasses
+     * @param currentPlayer the current player
+     * @param model the model of the game
+     * @param values various argument
+     * @throws Exception thrown if there is some error
+     */
     protected void extraAction(Player currentPlayer, Model model, int ... values) throws Exception {
         // @Override
     }
 
 
+    /**
+     * Returns the professor of the specified color wherever it is
+     * @param color the color of the professor
+     * @param startingProfBoard the starting board where every professor stay at the beginning
+     * @return
+     */
     protected Professor getProfessor(Color color, Board<Professor> startingProfBoard) {
 
         for (Professor prof : startingProfBoard.getPawns()) {
@@ -173,6 +237,12 @@ public class Handler {
         return null;
     }
 
+    /**
+     * Returns the board where the professor of the specified color is
+     * @param color the color of the professor
+     * @param startingProfBoard the starting board where every professor stay at the beginning
+     * @return
+     */
     protected Board<Professor> getProfessorBoard(Color color, Board<Professor> startingProfBoard) {
 
         for (Professor prof : startingProfBoard.getPawns()) {
@@ -187,18 +257,36 @@ public class Handler {
         return null;
     }
 
+    /**
+     * Returns the number of student in the dining room for the specified player and color
+     * @param player the player
+     * @param color the color of the dining room
+     * @return
+     */
     protected int getNumStudentsDR(Player player, Color color) {
         return player.getSchool().getDiningRoomByColor(color).getNumPawns();
     }
 
+    /**
+     * Returns the id of the CharacterCard associated to the Handler
+     * @return
+     */
     public int getCardId() {
         return -1;
     }
 
+    /**
+     * Returns the category
+     * @return the category
+     */
     public String getCategory() {
         return category;
     }
 
+    /**
+     * Sets the list of players
+     * @param players the new list of players
+     */
     protected void setPlayers(List<Player> players) {
         this.players = new ArrayList<>(players);
     }

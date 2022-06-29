@@ -8,16 +8,39 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+/**
+ * The Handler associated to InfluenceCharacterCard
+ * @see InfluenceCharacterCard
+ */
 public class InfluenceHandler extends Handler {
 
+    /**
+     * The influence character card associated to this Handler
+     */
     private final InfluenceCharacterCard card;
+
+    /**
+     * The color with no influence during this action phase
+     */
     private Color colorWithNoInfluence = null;
 
+    /**
+     * Constructor with the specified InfluenceCharacterCard
+     * @param players list of players
+     * @param card the specified InfluenceCharacterCard
+     */
     protected InfluenceHandler(List<Player> players, InfluenceCharacterCard card) {
         super(players, card.getCategory());
         this.card = card;
     }
 
+    /**
+     * Returns the influence of the specified player on the specified island, following the InfluenceCharacterCard rules
+     * @param island the island
+     * @param player the player
+     * @param influence the influence of the player in islands linked to the specified
+     * @return the influence of the specified player on the specified island
+     */
     @Override
     protected int resolveIslandHelper (Island island, Player player, int influence) {
         for (Professor professor : player.getSchool().getProfessorsTable().getPawns()) {
@@ -35,6 +58,12 @@ public class InfluenceHandler extends Handler {
         return influence;
     }
 
+    /**
+     * Returns the most influential player on the specified island or group of islands, following the InfluenceCharacterCard rules
+     * @param currentPlayer the current player who has moved mother nature
+     * @param island the Island where mother nature has ended her movement
+     * @return the most influential player on the specified island, the one who builds the tower
+     */
     @Override
     protected Player getMostInfluentialPlayer(Player currentPlayer, Island island) {
         Map<Player, Integer> playerInfluence = new HashMap<>();
@@ -63,6 +92,12 @@ public class InfluenceHandler extends Handler {
         return null;
     }
 
+    /**
+     * Play the extra action associated to the InfluenceCharacterCard if available
+     * @param currentPlayer the current player
+     * @param model the model of the game
+     * @param values various argument
+     */
     @Override
     protected void extraAction(Player currentPlayer, Model model, int ... values) {
         colorWithNoInfluence = Arrays.stream(Color.values()).filter(c -> c.ordinal() == values[0]).findFirst().get();
