@@ -54,8 +54,8 @@ The final version includes:
 ### Requirements
 
 Regardless of the operating system, you must have installed the following programs:
-- Java
-- Maven
+- Java 17
+- Maven 3.3+ (e.g. 3.8.6)
 
 #### Windows
 On Windows it is needed to:
@@ -86,3 +86,12 @@ On Windows it is needed to:
     java -jar server.jar
     java -jar client.jar
     ```
+
+## Screenshots
+### Command Line Interface
+<img src="https://github.com/nicolozambon/ing-sw-2022-sciarrabba-sironi-zambon/blob/master/deliverables/screenshot/demo_cli.png?raw=true" />
+
+### Graphical User Interface
+<img src="https://github.com/nicolozambon/ing-sw-2022-sciarrabba-sironi-zambon/blob/master/deliverables/screenshot/demo_gui_start.png?raw=true" />
+
+<img src="https://github.com/nicolozambon/ing-sw-2022-sciarrabba-sironi-zambon/blob/master/deliverables/screenshot/demo_gui.png?raw=true" />
