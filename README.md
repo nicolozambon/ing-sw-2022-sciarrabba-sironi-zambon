@@ -74,13 +74,11 @@ On Windows it is needed to:
 
     ```shell
     mvn clean package -P client
-    # ------------------------------------------ add command here
     ```
 4. Build the server package and move it from `target` to a new directory:
 
     ```shell
     mvn clean package -P server
-    # ------------------------------------------ add command here
     ```
 5. Move to the new directory and execute the server and a client:
     ```shell
