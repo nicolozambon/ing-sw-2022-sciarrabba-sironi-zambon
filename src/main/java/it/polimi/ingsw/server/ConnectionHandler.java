@@ -114,7 +114,7 @@ public class ConnectionHandler implements Runnable, RequestListenableInterface {
                     }
                     case "firstPlayer" -> this.server.firstPlayerSetup(request.getValues()[0], request.getValues()[1]);
                     case "end" -> {
-                        this.server.endGame(this);
+                        if (request.getString() == null) this.server.endGame(this);
                         stopConnection();
                     }
                     case "ping" -> pong = true;

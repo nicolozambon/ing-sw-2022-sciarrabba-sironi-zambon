@@ -367,38 +367,39 @@ public class ViewGUI extends Application implements RequestListenableInterface, 
                     if (options != null) currentController.optionsHandling(this.options);
                 }
                 case "stop" -> {
-                    //System.out.println(answerEvent.getMessage());
                     mediaPlayer.pause();
                     stage.close();
+
                     changeScene("errorScene");
                     Text text = (Text) currentScene.lookup("#errorMessage");
                     StackPane stackPane = (StackPane) currentScene.lookup("#stackPane");
                     Button btn = (Button) currentScene.lookup("#okErrorBtn");
                     btn.setOnAction(event -> exitGame());
-                    text.setText(answerEvent.getMessage());
+
+                    if (answerEvent.getMessage() != null) {
+                        text.setText(answerEvent.getMessage());
+                    } else text.setText("Server unreachable!");
                     stackPane.setPrefHeight(text.getBoundsInLocal().getHeight()*2);
+
                     stage.show();
                     stage.setAlwaysOnTop(true);
                     stage.setAlwaysOnTop(false);
-                    if (options != null) currentController.optionsHandling(this.options);
-                    this.stop();
                 }
                 case "winner" -> {
                     if (this.model != null) currentController.updateModel(this.model);
+                    this.mediaPlayer.pause();
 
+                    //Disable boardScene
                     currentScene.lookup("#mainPane").setOpacity(0.5);
                     currentScene.lookup("#mainPane").setDisable(true);
 
+                    //Set winnerScene
                     controllerMap.get("winnerScene").optionsHandling(answerEvent.getOptions());
-
-                    this.mediaPlayer.pause();
-
                     Stage winnerStage = new Stage();
                     winnerStage.setScene(this.getScenes().get("winnerScene"));
                     winnerStage.show();
                     winnerStage.setAlwaysOnTop(true);
                     winnerStage.setAlwaysOnTop(false);
-                    fireRequest(new RequestEvent("end", id));
                 }
                 default -> System.out.println("Answer Error!");
             }
