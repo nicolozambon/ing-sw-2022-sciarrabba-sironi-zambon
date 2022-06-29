@@ -35,8 +35,8 @@ The final version includes:
 ### Advanced functionalities
 | Functionality                | Status |
 |:-----------------------------|:------:|
-| Twelve character cards       |   ⛔    |
-| Four players option          |   ⛔    |
+| 12 character cards           |   ⛔    |
+| 4 players option             |   ⛔    |
 | Simultaneous games           |   ✅    |
 | Persistence                  |   ✅    |
 | Resilience to disconnections |   ⛔    |
