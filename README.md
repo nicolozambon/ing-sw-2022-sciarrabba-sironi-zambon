@@ -60,7 +60,8 @@ Regardless of the operating system, you must have installed the following progra
 #### Windows
 On Windows it is needed to:
 - Set system visual scaling to 100%.
-- Install the "dejaVu Sans Font" and set it for the terminal.
+Only for CLI:
+- Install the font "DejaVuSansMono.ttf" (find it in deliverables folder) and set it for the terminal.
 - Run the `chcp 65001` command in the terminal. This enables UTF-8 encoding.
 
 ### Instructions
