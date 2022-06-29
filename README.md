@@ -51,6 +51,19 @@ The final version includes:
 
 ## Usage
 
+### Requirements
+
+Regardless of the operating system, you must have installed the following programs:
+- Java
+- Maven
+
+#### Windows
+On Windows it is needed to:
+- Set system visual scaling to 100%.
+- Install the "dejaVu Sans Font" and set it for the terminal.
+- Run the `chcp 65001` command in the terminal. This enables UTF-8 encoding.
+
+### Instructions
 1. Clone this repository:
     ```shell
    git clone https://github.com/nicolozambon/ing-sw-2022-sciarrabba-sironi-zambon
