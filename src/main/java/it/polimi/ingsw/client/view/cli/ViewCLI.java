@@ -96,16 +96,16 @@ public class ViewCLI implements AnswerListener, RequestListenableInterface {
                 handleOptions(new AnswerEvent("error", this.options));
             }
             case "stop" -> {
-                System.out.println(answerEvent.getMessage());
-                clientConnection.stopClient();
+                if (answerEvent.getMessage() != null) {
+                    System.out.println(answerEvent.getMessage());
+                } else System.out.println("Server unreachable!");
             }
             case "winner" -> {
                 if (this.model != null) cliBuilder.buildCLI(model, nickname).showGameBoard();
                 List<String> winners = answerEvent.getOptions();
                 if (winners.contains(nickname)) winners.set(winners.indexOf(nickname), "You");
-                System.out.println("Winners of this game: " + winners);
-                fireRequest(new RequestEvent("end", id));
-                //clientConnection.stopClient();
+                System.out.println("Winners of this game: " +
+                        answerEvent.getOptions().toString().substring(1, answerEvent.getOptions().toString().length() - 1));
             }
             default -> System.out.println("Answer Error!");
         }

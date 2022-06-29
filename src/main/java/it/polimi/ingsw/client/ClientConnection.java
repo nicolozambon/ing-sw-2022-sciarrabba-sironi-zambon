@@ -128,18 +128,29 @@ public class ClientConnection implements AnswerListenableInterface, RequestListe
         while (active) {
             try {
                 AnswerEvent answer = gson.fromJson(inputStream.readUTF(), AnswerEvent.class);
-                if (answer.getPropertyName().equals("ping")) {
-                    send(new RequestEvent("ping", 0));
-                    ping = true;
-                    synchronized (this) {
-                        notifyAll();
+                switch (answer.getPropertyName()) {
+                    case "ping" -> {
+                        send(new RequestEvent("ping", 0));
+                        ping = true;
+                        synchronized (this) {
+                            notifyAll();
+                        }
                     }
-                } else {
-                    executorService.submit(() -> this.fireAnswer(answer));
+                    case "stop" -> {
+                        this.fireAnswer(answer);
+                        send(new RequestEvent("end", 0, "disconnect"));
+                        stopClient();
+                    }
+                    case "winner" -> {
+                        this.fireAnswer(answer);
+                        send(new RequestEvent("end", 0));
+                        stopClient();
+                    }
+                    default -> executorService.submit(() -> this.fireAnswer(answer));
                 }
                 sleep(50);
             } catch (IOException e) {
-                fireAnswer(new AnswerEvent("stop", "An error occurred, quitting..."));
+                fireAnswer(new AnswerEvent("stop"));
                 stopClient();
             } catch (InterruptedException e) {
                 e.printStackTrace();
@@ -196,8 +207,8 @@ public class ClientConnection implements AnswerListenableInterface, RequestListe
                 throw new RuntimeException(e);
             }
         }
-        fireAnswer(new AnswerEvent("stop", "Server unreachable!"));
-        stopClient();
+        fireAnswer(new AnswerEvent("stop"));
+        //stopClient();
     }
 
     @Override

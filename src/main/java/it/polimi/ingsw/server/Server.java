@@ -302,7 +302,6 @@ public class Server {
      */
     private void stopConnection(ConnectionHandler connectionHandler) {
         connectionHandler.send(new AnswerEvent("stop", "A client has disconnected, closing the game"));
-        connectionHandler.stopConnection();
     }
 
 }
