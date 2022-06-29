@@ -5,6 +5,10 @@ import java.util.Random;
 
 public class StudentBag extends Board<Student> {
 
+    /**
+     * Constructor of StudentBag
+     * @param students list of students
+     */
     protected StudentBag(List<Student> students) {
         super(students);
     }

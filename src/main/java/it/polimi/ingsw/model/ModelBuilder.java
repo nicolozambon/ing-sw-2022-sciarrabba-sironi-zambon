@@ -14,17 +14,30 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.*;
 
-
+/**
+ * ModelBuilder class populates a Model instance with the correct number of pawns for each player.
+ * If a match is resumed from a saved JSON file, this class correctly setups the Model instance
+ */
 public class ModelBuilder {
-
+    /**
+     * Maps the number of students to move with the number of players
+     */
     private final Map<Integer, Integer> numStudentToMoveMap = new HashMap<>(){{
         this.put(2, 3);
         this.put(3, 4);
         this.put(4, 3);
     }};
 
+    /**
+     * Boolean, true if the ModelBuilder has to load all the Character Cards
+     */
     private boolean allCharacterCards;
 
+    /**
+     * Builds the model using a GSON Builder from a JSON file, resuming from a saved match
+     * @param inputStream Input containing the JSON file
+     * @return
+     */
     public Model buildModel(InputStream inputStream) {
         GsonBuilder gsonBuilder = new GsonBuilder();
         gsonBuilder.registerTypeAdapter(Handler.class, new HandlerSerializer());
@@ -58,6 +71,13 @@ public class ModelBuilder {
         return model;
     }
 
+    /**
+     * Builds a new Model, populating it with all the right pawns, according to the rules and settings given
+     * @param names List of nicknames
+     * @param allCharacterCards Boolean, true if the game supports all the Character Cards
+     * @param completeRule Boolean, true if the match is to be created with the complete rules
+     * @return
+     */
     public Model buildModel(List<String> names, boolean allCharacterCards, boolean completeRule) {
 
         this.allCharacterCards = allCharacterCards;
@@ -80,6 +100,12 @@ public class ModelBuilder {
         return new Model(buildPlayers(names,bag), islands, clouds, motherNature, buildCharacterCards(), 20 - names.size(), buildProfessorBoard(), bag, numStudentToMove, completeRule);
     }
 
+    /**
+     * Builds the players instances, given their nicknames and the student bag to get the student pawns from
+     * @param names List of Nicknames for the players
+     * @param bag Student Bag to extract the pawns from
+     * @return
+     */
     private List<Player> buildPlayers(List<String> names, StudentBag bag) {
         List<Player> players = new ArrayList<>();
         List<AssistantCard> assistants = buildAssistantCards();
@@ -108,6 +134,12 @@ public class ModelBuilder {
         return new ArrayList<>(players);
     }
 
+    /**
+     * Builds the entrance of the schools, extracting from the student bag "num" pawns and returning them
+     * @param num Number of students to extract
+     * @param bag Student Bag to extract the pawns from
+     * @return an ArrayList containing the pawns
+     */
     private List<Student> buildEntrance(int num, StudentBag bag) {
         Board<Student> students = new Board<>();
         for (int i = 0; i < num; i++) {
@@ -116,6 +148,12 @@ public class ModelBuilder {
         return students.getPawns();
     }
 
+    /**
+     * Builds a set of towers of the desired color
+     * @param num Number of towers to generate
+     * @param color Color of the towers to generate
+     * @return an ArrayList containing the created Tower objects
+     */
     private List<Tower> buildTowers(int num, TowerColor color) {
         List<Tower> towers = new ArrayList<>();
         for (int i = 0; i < num; i++) {
@@ -124,6 +162,10 @@ public class ModelBuilder {
         return new ArrayList<>(towers);
     }
 
+    /**
+     * Builds a new Student Bag, containing all the pawns of each color
+     * @return a new Student Bag
+     */
     private StudentBag buildStudentBag() {
         List<Student> students = new ArrayList<>();
 
@@ -135,6 +177,10 @@ public class ModelBuilder {
         return new StudentBag(students);
     }
 
+    /**
+     * Builds all the islands, linking them together accordingly to their position
+     * @return an ArrayList containing all the islands
+     */
     private List<Island> buildIslands() {
         List<Island> islands = new ArrayList<>();
         for (int i = 0; i < 12; i++) {
@@ -148,6 +194,10 @@ public class ModelBuilder {
         return new ArrayList<>(islands);
     }
 
+    /**
+     * Builds a Starting Professor's board, containing a professor for each color.
+     * @return a new Board of professors
+     */
     private Board<Professor> buildProfessorBoard() {
         List<Professor> professors = new ArrayList<>();
         for (Color c : Color.values()) {
@@ -156,6 +206,11 @@ public class ModelBuilder {
         return new Board<>(professors);
     }
 
+    /**
+     * Builds all the cloud instances
+     * @param num Number of clouds to create
+     * @return an ArrayList containing all the created clouds
+     */
     private List<Cloud> buildClouds(int num) {
         List<Cloud> clouds = new ArrayList<>();
         for (int i = 0; i < num; i++) {
@@ -164,6 +219,10 @@ public class ModelBuilder {
         return new ArrayList<>(clouds);
     }
 
+    /**
+     * Builds all the Assistant Card instances, reading their values from a JSON file
+     * @return an ArrayList containing all the Assistant Cards created
+     */
     private List<AssistantCard> buildAssistantCards() {
         List<AssistantCard> assistants;
         Gson gson = new Gson();
@@ -174,6 +233,10 @@ public class ModelBuilder {
         return new ArrayList<>(assistants);
     }
 
+    /**
+     * Builds all the Character Card instances for the match, reading their values from a JSON file and choosing them randomly
+     * @return an ArrayList containing all the Character Cards created
+     */
     private List<CharacterCard> buildCharacterCards() {
         List<CharacterCard> characters;
         Gson gson = new Gson();
@@ -206,6 +269,5 @@ public class ModelBuilder {
 
             return new ArrayList<>(characterCards);
         }
-
     }
 }

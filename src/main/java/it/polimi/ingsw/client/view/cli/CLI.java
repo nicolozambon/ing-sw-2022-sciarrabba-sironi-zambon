@@ -16,21 +16,79 @@ import static java.lang.Math.min;
 
 public class CLI {
 
+    /**
+     * Map that contains a linker id and its representation
+     */
     private final Map<String, String[][]> islandLinkers;
+
+    /**
+     * List that contains the representation of each school
+     */
     private final List<String[][]> schools = new ArrayList<>();
+
+    /**
+     * List that contains the representation of each island
+     */
     private final List<String[][]> islands = new ArrayList<>();
+
+    /**
+     * List that contains the representation of each cloud
+     */
     private final List<String[][]> clouds = new ArrayList<>();
+
+    /**
+     * List that contains boolean value that says if an island is linked to the next one
+     */
     private final List<Boolean> islandsLinkedToNext = new ArrayList<>();
-    private final String[][] characterCardTest;
-    private final String[][] assistantCardTest;
+
+    /**
+     * Matrix that represent the container of the CharacterCards
+     */
+    private final String[][] characterCardContainer;
+
+    /**
+     * Matrix that represent the container of the AssistantCards
+     */
+    private final String[][] assistantCardContainer;
+
+    /**
+     * List of CharacterCards
+     */
     private final List<CharacterCard> characterCards = new ArrayList<>();
+
+    /**
+     * List of AssistantCards
+     */
     private final List<AssistantCard> assistantCards = new ArrayList<>();
+
+    /**
+     * List of last played AssistantCards
+     */
     private final List<AssistantCard> lastPlayedAssistantCards = new ArrayList<>();
+
+    /**
+     * Matrix that represent the container of the last played AssistantCards
+     */
     private final String[][] lastPlayedAssistantCardsContainer;
-    private final int playersNumber;
+
+    /**
+     * Coins present on the game-board
+     */
     private int boardCoins;
+
+    /**
+     * List of nicknames
+     */
     private final List<String> nicknames;
+
+    /**
+     * String that represent the ANSI code for reset (to be used after each color)
+     */
     public static final String ANSI_RESET = "\u001B[0m";
+
+    /**
+     * Map that links each color with its relative ANSI code
+     */
     private static final Map<Object, String> colorsMap = new HashMap<>(){{
         this.put(Color.YELLOW, "\u001B[33m");
         this.put(Color.GREEN, "\u001B[32m");
@@ -41,6 +99,10 @@ public class CLI {
         this.put(TowerColor.GREY, "\u001B[0;90m");
         this.put(TowerColor.WHITE, "\u001B[0;37m");
     }};
+
+    /**
+     * Map that links each color with its order (row) in an island
+     */
     private static final Map<Object, Integer> positionMap = new HashMap<>(){{
         this.put(Color.GREEN, 0);
         this.put(Color.RED, 1);
@@ -48,6 +110,10 @@ public class CLI {
         this.put(Color.PINK, 3);
         this.put(Color.BLUE, 4);
     }};
+
+    /**
+     * Map that links each pawn placeholder with its symbol
+     */
     private static final Map<String, String> pawnsMap = new HashMap<>(){{
         this.put("s", "●");
         this.put("p", "■");
@@ -61,7 +127,7 @@ public class CLI {
      * @param coins list of coins in the same order of the nicknames
      */
     public CLI(List<String> nicknames, List<Integer> coins) {
-        this.playersNumber = nicknames.size();
+        int playersNumber = nicknames.size();
         final AssetsLoader loader = new AssetsLoader();
         this.islandLinkers = loader.getIslandLinkers();
         this.nicknames = nicknames;
@@ -69,7 +135,7 @@ public class CLI {
         // Create schools
         boolean isMain = false;
         String[][] school;
-        for (int i=0; i<playersNumber; i++) {
+        for (int i = 0; i< playersNumber; i++) {
             school = loader.getSchool(isMain);
             school = this.addCaptionToSchool(school, this.nicknames.get(i), coins.get(i));
             this.schools.add(school);
@@ -90,8 +156,8 @@ public class CLI {
             this.clouds.add(loader.getCloud());
         }
 
-        this.characterCardTest = loader.getCharacterCardContainer();
-        this.assistantCardTest = loader.getAssistantCardContainer();
+        this.characterCardContainer = loader.getCharacterCardContainer();
+        this.assistantCardContainer = loader.getAssistantCardContainer();
         this.lastPlayedAssistantCardsContainer = loader.getLastPlayedAssistantCards();
         this.boardCoins = 0;
     }
@@ -594,7 +660,7 @@ public class CLI {
                         cardBaseColOnSet = 72;
                         printCard = true;
                     }
-                    String[][] card = this.characterCardTest;
+                    String[][] card = this.characterCardContainer;
                     if (printCard) {
                         for (int cardRow = 0; cardRow < card.length; cardRow++) {
                             for (int cardCol = 0; cardCol < card[0].length; cardCol++) {
@@ -731,7 +797,7 @@ public class CLI {
         int cardColOnSet;
         int cardBaseRowOnSet = 39;
         int cardBaseColOnSet = 151;
-        String[][] card = this.assistantCardTest;
+        String[][] card = this.assistantCardContainer;
         int offset = 0;
         int assistantCardIndex = 0;
         String value;
