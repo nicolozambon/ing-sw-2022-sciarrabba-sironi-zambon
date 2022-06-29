@@ -89,9 +89,9 @@ On Windows it is needed to:
 
 ## Screenshots
 ### Command Line Interface
-<img src="https://github.com/nicolozambon/ing-sw-2022-sciarrabba-sironi-zambon/blob/master/deliverables/screenshot/demo_cli.png?raw=true" />
+<img src="https://github.com/nicolozambon/ing-sw-2022-sciarrabba-sironi-zambon/blob/master/deliverables/screenshots/demo_cli.png?raw=true" />
 
 ### Graphical User Interface
-<img src="https://github.com/nicolozambon/ing-sw-2022-sciarrabba-sironi-zambon/blob/master/deliverables/screenshot/demo_gui_start.png?raw=true" />
+<img src="https://github.com/nicolozambon/ing-sw-2022-sciarrabba-sironi-zambon/blob/master/deliverables/screenshots/demo_gui_start.png?raw=true" />
 
-<img src="https://github.com/nicolozambon/ing-sw-2022-sciarrabba-sironi-zambon/blob/master/deliverables/screenshot/demo_gui.png?raw=true" />
+<img src="https://github.com/nicolozambon/ing-sw-2022-sciarrabba-sironi-zambon/blob/master/deliverables/screenshots/demo_gui.png?raw=true" />
