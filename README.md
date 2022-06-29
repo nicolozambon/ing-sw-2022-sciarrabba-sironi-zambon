@@ -70,11 +70,13 @@ On Windows it is needed to:
    ```
 2. Move to the repository folder.
 3. Build the client package and move it from `target` to a new directory:
+
     ```shell
     mvn clean package -P client
     # ------------------------------------------ add command here
     ```
 4. Build the server package and move it from `target` to a new directory:
+
     ```shell
     mvn clean package -P server
     # ------------------------------------------ add command here
