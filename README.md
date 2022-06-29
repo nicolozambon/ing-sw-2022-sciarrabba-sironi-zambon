@@ -44,10 +44,10 @@ The final version includes:
 ⛔ Not implemented &nbsp;&nbsp;&nbsp;&nbsp; ✅ Implemented
 
 ## Test cases
-| Package    | Class, %    | Method, %     | Line, %       |
-|:-----------|:------------|:--------------|:--------------|
-| Model      | 87% (29/33) | 86% (183/213) | 79% (600/760) |
-| Controller | 71% (5/7)   | 93% (44/47)   | 83% (223/266) |
+| Package    | Class, %     | Method, %     | Line, %       |
+|:-----------|:-------------|:--------------|:--------------|
+| Model      | 100% (29/29) | 87% (183/208) | 82% (597/721) |
+| Controller | 100% (5/5)   | 97% (44/45)   | 86% (223/257) |
 
 ## Usage
 
