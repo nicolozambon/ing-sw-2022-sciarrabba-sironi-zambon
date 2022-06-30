@@ -87,10 +87,12 @@ On Windows it is needed to:
     ```
    Note that the client also accepts arguments at startup. In fact, it can also be started as:
    1. For CLI version:
+   
        ```shell
        java -jar client.jar -cli
        ```
    2. For GUI version:
+   
        ```shell
        java -jar client.jar -gui
        ```
