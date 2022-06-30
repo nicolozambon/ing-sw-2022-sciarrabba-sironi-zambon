@@ -208,7 +208,7 @@ public class ClientConnection implements AnswerListenableInterface, RequestListe
             }
         }
         fireAnswer(new AnswerEvent("stop"));
-        //stopClient();
+        stopClient();
     }
 
     @Override
