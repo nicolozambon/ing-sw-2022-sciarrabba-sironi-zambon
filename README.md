@@ -61,7 +61,7 @@ Regardless of the operating system, you must have installed the following progra
 On Windows it is needed to:
 - Set system visual scaling to 100%.
 - Only for CLI:
-  - Set the CMD font to "Lucida Console" (the towers will show up as rectangles '▯', if you want them to show up as tower character '♜' please install the font "DejaVuSansMono.ttf", find it in deliverables folder, and set it for the CMD).
+  - Set the CMD font to "Lucida Console" (the towers will show up as rectangles `▯`, if you want them to show up as tower character `♜` please install the font "DejaVuSansMono.ttf", find it in deliverables folder, and set it for the CMD).
   - Run the `chcp 65001` command in the CMD. This enables UTF-8 encoding.
 
 ### Instructions
