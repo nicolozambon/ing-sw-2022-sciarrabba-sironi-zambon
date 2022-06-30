@@ -235,6 +235,7 @@ public class GUIBuilder {
                     Image studentPawn = new Image(Objects.requireNonNull(getClass().getResourceAsStream(path)));
                     student.setImage(studentPawn);
                     student.setVisible(true);
+                    student.setDisable(true);
                 } else {
                     student.setVisible(false);
                 }
@@ -767,7 +768,7 @@ public class GUIBuilder {
      * Generate FX:ID of a tower.
      * @param playerId player id in the gui
      * @param position position of the pawn.
-     * @return
+     * @return the specified tower's fx id
      */
     private String getTowerFXID(int playerId, int position) {
         return "tower" + playerId + "_" + position;
