@@ -165,7 +165,13 @@ public class BoardController implements GUIController {
         if (guiBuilder == null) {
             guiBuilder = new GUIBuilder(model, this.gui.getStage().getScene(), this.gui.getNickname());
             entranceStudents = new ArrayList<>();
-            for (int i = 0; i < model.getEntranceByPlayer(gui.getId()).size(); i++) {
+
+            int maxEntrance = 7;
+            if (model.getNicknames().size() == 3) {
+                maxEntrance = 9;
+            }
+
+            for (int i = 0; i < maxEntrance; i++) {
                 entranceStudents.add(this.gui.getStage().getScene().lookup("#studentEntrance" + i));
             }
             if (!model.isCompleteRule()) {
