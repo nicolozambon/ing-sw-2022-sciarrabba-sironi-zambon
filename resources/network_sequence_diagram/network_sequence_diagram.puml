@@ -1,0 +1,52 @@
+@startuml
+
+skinparam SequenceArrowThickness 2
+skinparam RoundCorner 20
+skinparam SequenceDividerBackgroundColor LightSalmon
+
+actor User
+box "Client" #LightCyan
+participant "GUI/CLI" as Client
+participant ClientConnection
+end box
+queue Network
+box "Server" #LightGoldenRodYellow
+participant ConnectionHandler
+participant VirtualView
+participant Controller
+participant Model
+end box
+
+==Request==
+User -> Client: Input
+activate Client
+
+Client -> ClientConnection: fireRequestEvent()
+deactivate Client
+
+ClientConnection -> ConnectionHandler: RequestEvent
+
+ConnectionHandler -> VirtualView: RequestEvent
+VirtualView -> Controller: RequestEvent   
+activate Controller
+
+Controller -> Controller: onRequestEvent()
+Controller ->o Model: DoAction
+deactivate Controller
+activate Model
+
+==Answer==
+
+Model --> VirtualView: fireAnswerEvent()
+deactivate Model
+
+VirtualView --> ConnectionHandler: AnswerEvent
+ConnectionHandler --> ClientConnection: AnswerEvent
+ClientConnection --> Client: AnswerEvent
+activate Client
+
+Client --> Client: onAnswerEvent()
+Client -->o User: View Update
+deactivate Client
+
+@enduml
