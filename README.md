@@ -101,6 +101,9 @@ On Windows it is needed to:
        java -jar client.jar -gui
        ```
 
+## Network Sequence Diagram
+<img src="https://github.com/nicolozambon/ing-sw-2022-sciarrabba-sironi-zambon/blob/master/resources/network_sequence_diagram/network_sequence_diagram.png?raw=true" />
+
 ## Screenshots
 ### Command Line Interface
 <img src="https://github.com/nicolozambon/ing-sw-2022-sciarrabba-sironi-zambon/blob/master/resources/screenshots/demo_cli.png?raw=true" />
@@ -113,7 +116,3 @@ On Windows it is needed to:
 <img src="https://github.com/nicolozambon/ing-sw-2022-sciarrabba-sironi-zambon/blob/master/resources/screenshots/demo_gui_select_wizard.png?raw=true" />
 
 <img src="https://github.com/nicolozambon/ing-sw-2022-sciarrabba-sironi-zambon/blob/master/resources/screenshots/demo_gui.png?raw=true" />
-
-
-## Network Sequence Diagram
-<img src="https://github.com/nicolozambon/ing-sw-2022-sciarrabba-sironi-zambon/blob/master/resources/network_sequence_diagram/network_sequence_diagram.png?raw=true" />
