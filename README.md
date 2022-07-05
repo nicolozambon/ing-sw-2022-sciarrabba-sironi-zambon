@@ -14,7 +14,9 @@ Eriantys Board Game is the final test of **"Software Engineering"**, course of *
 * [Nicolò Zambon](https://github.com/nicolozambon)
 
 ## Project specification
-The project consists of a Java version of the board game *Eriantys*, made by Cranio Creations. You can find the full game [here](https://www.craniocreations.it/prodotto/eriantys/).
+The project consists of a Java version of the board game *Eriantys*, made by Cranio Creations. You can find the real game [here](https://www.craniocreations.it/prodotto/eriantys/).
+
+Project requirements: [link](https://github.com/nicolozambon/ing-sw-2022-sciarrabba-sironi-zambon/blob/master/resources/requirements.pdf?raw=true).
 
 The final version includes:
 * Initial UML diagram.
